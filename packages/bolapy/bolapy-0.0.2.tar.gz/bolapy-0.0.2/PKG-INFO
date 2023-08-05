@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: bolapy
+Version: 0.0.2
+Summary: Um pacote de tutorial
+Home-page: UNKNOWN
+Author: Rafael Rayes
+Author-email: rafa@rayes.com
+License: UNKNOWN
+Description: 
+        use bola assim:
+        ```
+        bolapy.bola()
+        ```
+        para imprimir algo
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
