@@ -1,0 +1,67 @@
+# Imagine Client for Python
+
+This library allows you to easily connect to doc.ai's Imagine API.
+
+## Supported Image Models
+
+Model Id       | Type  | Description |
+---------------|-------|-------------|
+phenomenal-face| image | Given a facial image, this model infers the age, sex, height, and weight of a person |
+happy-face     | image | Given a facial image, this model infers the mood of a person |
+manna     | image | Given a food image, this model infers whether the food is healthy/unhealthy |
+face-detector     | image | Given an image, this model detects whether a face is present |
+food-detector     | image | Given an image, this model detects whether food is present | 
+
+
+## API
+
+```ImageBasedModel.create(imagine_client, model_id)```
+
+> Given an ImagineClient (imagine_client) and string (model_id), creates an image model. See the *"Supported Image Models"* section for a list of supported model ids.
+
+```ImageBasedModel.infer(image_file_stream, store=false, metadata=None)```
+
+> Performs the model's inference on an image. A read stream should be passed as the parameter (image_file_stream).
+
+```ImageBasedModel.insert_correction(corrections_dict, metadata=None)```
+
+> Uploads a correction label to the imagine API, for a given inference.
+
+```ImageBasedModel.insert_prediction(predictions_dict, metadata=None)```
+
+> (FOR EDGE PREDICTIONS) Uploads a prediction label to the imagine API, for a given inference.
+
+### Example
+
+```python
+
+from imagine_client_py import ImagineClient, ImageBasedModel
+
+# Required parameters
+API_KEY = <VALID_IMAGINE_API_KEY>
+IMAGE_PATH = <IMAGE_FILE_PATH>
+CLIENT_ID = <ANY_CLIENT_ID>
+
+# Initialize imagine client
+imagine_client = ImagineClient({
+  'api_key': API_KEY,
+  'client_id': CLIENT_ID
+})
+
+# Create the 'happy-face' model interface
+model = ImageBasedModel.create(imagine_client, 'happy-face')
+
+# Create a read stream to a image file
+with open(IMAGE_PATH, 'rb') as image_face_file:
+  # Perform the model's inference, on the image.
+  result = model.infer(image_face_file)
+```
+
+
+##Tests
+
+To run tests:
+```
+export IMAGINE_API_KEY=<API key> IMAGINE_CLIENT_ID=test
+pytest
+```

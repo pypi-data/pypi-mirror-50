@@ -1,0 +1,14 @@
+README.md
+setup.py
+imagine_client_py/__init__.py
+imagine_client_py/client.py
+imagine_client_py/image_based_model.py
+imagine_client_py/utils.py
+imagine_client_py.egg-info/PKG-INFO
+imagine_client_py.egg-info/SOURCES.txt
+imagine_client_py.egg-info/dependency_links.txt
+imagine_client_py.egg-info/top_level.txt
+tests/__init__.py
+tests/test_client.py
+tests/test_models.py
+tests/test_utils.py
