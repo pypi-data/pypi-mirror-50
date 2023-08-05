@@ -1,0 +1,16 @@
+MANIFEST.in
+README.md
+setup.py
+mlr/Data_plots.py
+mlr/Diagnostics_plots.py
+mlr/Inference.py
+mlr/MLR.py
+mlr/Metrics.py
+mlr/Multicollinearity.py
+mlr/Outliers.py
+mlr/__init__.py
+mlr.egg-info/PKG-INFO
+mlr.egg-info/SOURCES.txt
+mlr.egg-info/dependency_links.txt
+mlr.egg-info/requires.txt
+mlr.egg-info/top_level.txt
