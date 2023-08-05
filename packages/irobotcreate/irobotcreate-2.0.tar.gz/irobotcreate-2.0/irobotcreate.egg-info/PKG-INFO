@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: irobotcreate
+Version: 2.0
+Summary: Python code to control the irobotCreate2 from a raspberry pi
+Home-page: https://github.com/topherCantrell/robots-piCreate
+Author: Chris Cantrell
+Author-email: topherCantrell@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Operating System :: POSIX :: Linux
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development
+Classifier: Topic :: System :: Hardware
