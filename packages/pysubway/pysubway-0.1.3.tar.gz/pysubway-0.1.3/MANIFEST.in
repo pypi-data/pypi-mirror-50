@@ -1,0 +1,2 @@
+include pysubway/apps/app_batch_test/templates/*
+include pysubway/service/booldata/*.xlsx
