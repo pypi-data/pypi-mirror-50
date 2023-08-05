@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: pyqdf
+Version: 0.0.1
+Summary: Python library for user with Qlik Deployment Framerok projects
+Home-page: https://github.com/lucasmagalhaes88/qdf_metadata
+Author: Paralelo Consultoria e Serviços Ltda
+Author-email: contato@paralelocs.com.br
+License: UNKNOWN
+Keywords: qdf
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+
+# Python for Qlik Deployment Framework Projects
+
+
+## Get Started
+
+#### Repository
+Class to represent the project repository in Qlik Deployment Framework.
+
+
+
+#### Container
+Class to represent each container in Qlik Deployment Framework.
+
+For default the pattern of container is base on 'Qlik Sense Only'
+
+
+#### QVS
+Class to represent each qvs file inside of container in Qlik Deployment Framework.
+
+For default the pattern of container is base on 'Qlik Sense Only'
+
+
+#### QVF
+
+Class to represent each qvf application inside of container in Qlik Deployment Framework.
+
+
