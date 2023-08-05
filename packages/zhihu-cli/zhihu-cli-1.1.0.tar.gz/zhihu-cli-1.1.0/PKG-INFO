@@ -1,0 +1,121 @@
+Metadata-Version: 2.1
+Name: zhihu-cli
+Version: 1.1.0
+Summary: zhihu
+Home-page: https://github.com/deplives/zhihu
+Author: zhangbo
+Author-email: deplives.zhang@gmail.com
+License: MIT
+Description: # zhihu
+        
+        ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/zhihu-cli?style=social)
+        ![GitHub release](https://img.shields.io/github/release/deplives/zhihu-cli)
+        
+        zhihu 是一个简单的知乎信息获取工具，可以免登陆实现获取知乎的用户(User)，提问(Question)，回答(Answer)信息
+        # install
+        
+        `pip3 install zhihu-cli`
+        
+        # Usage
+        
+        ## 用户类 User
+        可以通过用户的 **自定义ID(customized_id)** 或者 **内部ID(internal_id)** 初始化用户信息，其中 **自定义ID** 从用户URL中即可获得
+        
+        例如 知乎小管家URL：`https://www.zhihu.com/people/zhihuadmin/activities` 
+        
+        **自定义ID** 即为 **zhihuadmin** 
+        
+        **内部ID** 是形如 `3d198a56310c02c4a83efb9f4a4c027e` 这样的ID，需要通过其他手段拿到。
+        
+        而这两种ID均可以初始化`User`类
+        ```python
+        from zhihu import User
+        
+        user = User('zhihuadmin')
+        ```
+        而此时就可以通过 `user.internal_id`来获取到知乎小管家的 **内部ID** (就是上面的`3d198a56310c02c4a83efb9f4a4c027e`)
+        
+        用户类的属性包括：
+        
+        | 属性 | 类型 | 描述 |
+        | :----:| :----: | :----: |
+        | customized_id | str | 自定义ID |
+        | internal_id | str | 内部ID |
+        | nickname | str | 昵称 |
+        | gender | str | 昵称 |
+        | avatar | str | 头像URL |
+        | headline | str | 个人简介 |
+        | is_vip | bool | 盐选会员 |
+        | follower_count | int | 关注者数量 |
+        | following_count | int | 关注的人数量 |
+        | followers | generator 对象 | 关注者 |
+        | followings | generator 对象 | 关注的人 |
+        | answer_count | int | 回答数量 |
+        | articles_count | int | 文章数量 |
+        | voteup_count | int | 获得赞同数 |
+        | info | dict | 以上所有信息 |
+        
+        ## 提问类 Question
+        通过 **问题ID(qid)** 初始化一个问题
+        
+        **问题ID** 可以通过 **问题URL** 获得
+        
+        例如：《如何使用知乎？》问题URL: `https://www.zhihu.com/question/19550225`
+        
+        **问题ID** 即为 **19550225**
+        ```python
+        from zhihu import Question
+        
+        question = Question('19550225')
+        ```
+        问题类的属性包括：
+        
+        | 属性 | 类型 | 描述 |
+        | :----:| :----: | :----: |
+        | qid | str | 问题ID |
+        | title | str | 标题 |
+        | detail | str | 详细描述 |
+        | type | str | 问题状态 |
+        | created | datetime | 发布时间 |
+        | updated | datetime | 最后一次更新时间 |
+        | author | User 对象 | 提问人 |
+        | info | dict | 以上所有信息 |
+        | answers()| generator 对象| 所有回答的生成器 |
+        
+        `answers()` 接受`sort_by = default|updated` 参数，返回类型为 Answer 对象
+        
+        ## 回答类 Answer
+        通过 **回答ID(aid)** 初始化一个回答
+        
+        **回答ID** 可从一个回答的URL中获得：
+        
+        例如：`https://www.zhihu.com/question/19550225/answer/95067981` 
+        
+        **回答ID** 即为 **95067981**
+        ```python
+        from zhihu import Answer
+        
+        answer = Answer('95067981')
+        ```
+        回答类的属性包括：
+        
+        | 属性 | 类型 | 描述 |
+        | :----:| :----: | :----: |
+        | aid | str | 回答ID |
+        | type | str | 该回答状态 |
+        | author | User 对象 | 回答者 |
+        | excerpt | str | 摘要 |
+        | content | str | 回答的原始内容(包含HTML内容) |
+        | text | str | 回答的纯文字(不包含HTML内容) |
+        | comment_count | int | 回答评论数 |
+        | voteup_count | int | 回答赞同数 |
+        | created | datetime | 回答时间 |
+        | updated | datetime | 最后一次修改时间 |
+        | question | Question 对象 | 回答的问题对象 |
+        | info | dict | 以上所有信息 | 
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
