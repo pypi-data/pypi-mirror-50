@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: tox-wikimedia
+Version: 0.0.2
+Summary: Automatically configure tox environments to use Wikimedia's standard tools
+Home-page: https://www.mediawiki.org/wiki/tox-wikimedia
+Author: Kunal Mehta
+Author-email: legoktm@member.fsf.org
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Framework :: tox
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: tox (>=3.8.0)
+
+tox-wikimedia
+=============
+
+Automatically configure tox environments to use standard tools in a
+hopefully unobtrusive way.
+
+For example::
+
+    [tox]
+    envlist=py{34,35,36,37}-{flake8,pytest}
+    skip_missing_interpreters = True
+    requires = tox-wikimedia
+
+    [wikimedia]
+
+The following tools are supported for now:
+
+* flake8_
+* pytest_
+
+.. _flake8: https://pypi.org/project/flake8/
+.. _pytest: https://pytest.org/en/latest/
+
+More to come!
+
+
