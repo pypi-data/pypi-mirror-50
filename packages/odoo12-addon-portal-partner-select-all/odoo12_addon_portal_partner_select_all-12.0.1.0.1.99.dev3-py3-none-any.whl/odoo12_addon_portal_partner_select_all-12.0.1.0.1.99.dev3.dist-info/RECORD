@@ -1,0 +1,16 @@
+odoo/addons/portal_partner_select_all/README.rst,sha256=Gehz-MA2ldNKFmi3ueNlIbxodGc8t1hCkSRW2RnqWwM,3298
+odoo/addons/portal_partner_select_all/__init__.py,sha256=jI5PZDKS0aV-yXubn1o0DHe5ldzQZrLmZYbgF0Q7DWg,21
+odoo/addons/portal_partner_select_all/__manifest__.py,sha256=uSqjoMXpEy3soU1bWm1yBxdiAS0IrjF52NvfrPn-HiA,497
+odoo/addons/portal_partner_select_all/i18n/portal_partner_select_all.pot,sha256=IGSbBkOYGLFdkKflQ4V3ahpyUuJxbkSUUkd2bTbIit0,998
+odoo/addons/portal_partner_select_all/readme/CONTRIBUTORS.rst,sha256=Jlkf7wToSTYRhhKv2cgpZqeC40FmS7P8X4IdzmrW5wI,62
+odoo/addons/portal_partner_select_all/readme/DESCRIPTION.rst,sha256=Mlu6arYoxbMUWzjzEMw56zUGQlSH83g1qtCc3BQFy4Y,216
+odoo/addons/portal_partner_select_all/readme/USAGE.rst,sha256=qgtUOjW8epTHZUsUOVPZTem_ZgRUpwHci5wkKxyVw0o,384
+odoo/addons/portal_partner_select_all/static/description/icon.png,sha256=6xBPJauaFOF0KDHfHgQopSc28kKvxMaeoQFQWZtfZDo,9455
+odoo/addons/portal_partner_select_all/static/description/index.html,sha256=BLYQE_tDHRSM7YodchdHmnzJeQ7ujBilsiAoP47nXLQ,12618
+odoo/addons/portal_partner_select_all/wizard/__init__.py,sha256=TPfpq53PUqPjz_6ptUBcL6wVnNDEemRv7S2_dgzVg38,97
+odoo/addons/portal_partner_select_all/wizard/portal_wizard.py,sha256=xIlDjuqKWXu1ab97ajl6aym1v0q98y1F_dLKcUs_w1g,868
+odoo/addons/portal_partner_select_all/wizard/portal_wizard.xml,sha256=aPLPPgTsKDRat8XIZL-frhXjrg1h2Vgy9Ymm0CSotMc,817
+odoo12_addon_portal_partner_select_all-12.0.1.0.1.99.dev3.dist-info/METADATA,sha256=kk2IgbfCyjA8CoP8LSFNrrCJXVRHu4oUUvYnfHIOSDM,3822
+odoo12_addon_portal_partner_select_all-12.0.1.0.1.99.dev3.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+odoo12_addon_portal_partner_select_all-12.0.1.0.1.99.dev3.dist-info/top_level.txt,sha256=qBj40grFkGOfDZ2WDSw3y1RnDlgG0u8rP8pvGNdbz4w,5
+odoo12_addon_portal_partner_select_all-12.0.1.0.1.99.dev3.dist-info/RECORD,,
