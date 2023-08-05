@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+constraints.txt
+setup.cfg
+setup.py
+redash_py.egg-info/PKG-INFO
+redash_py.egg-info/SOURCES.txt
+redash_py.egg-info/dependency_links.txt
+redash_py.egg-info/entry_points.txt
+redash_py.egg-info/requires.txt
+redash_py.egg-info/top_level.txt
