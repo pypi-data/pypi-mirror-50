@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+
+{% block sb_admin_custom_js %}
+<script type="text/javascript">
+    // https://stackoverflow.com/questions/1879872/django-update-div-with-ajax
+    var url = "{% url 'status_update' %}";
+
+    function update() {
+        $.getJSON(url, function(data){
+
+            if (data.state == 'REMOVED'){
+                // task remove no more information to use
+                return(0)
+            }
+            // Enumerate JSON
+            perc = Math.round(data.progress);
+            var text_for_div = perc+"%";
+            var style_width = "width:"+perc+"%";
+
+            document.getElementById("pbar").innerHTML = text_for_div;
+            document.getElementById("pbar").setAttribute("style", style_width );
+            document.getElementById("pbar").setAttribute("aria-valuenow", perc);
+
+            document.getElementById("state").innerHTML = data.state;
+            document.getElementById("status").innerHTML = data.status;
+            if (data.state === 'FAILURE' || data.state === 'FAILURE-KNOWN'){
+                document.getElementById("failure").innerHTML = '<i class="fa fa-fw fa-exclamation-triangle"  style="color:red"></i>';
+                alert('Error!')
+            }else if (data.progress < 100){
+                setTimeout('update()', 1000)
+            } else {
+                alert('Finished!')
+            }
+
+            });
+        }
+    update()
+
+</script>
+{% endblock sb_admin_custom_js %}
+
+{% block sb_admin_title %}Monitor progress{% endblock sb_admin_title %}
+{% block sb_admin_subheading %} <small></small> {% endblock sb_admin_subheading %}
+{% block sb_admin_breadcrumb %} <a href="{% url "index" %}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a> {% endblock sb_admin_breadcrumb %}
+{% block sb_admin_breadcrumb_active %} / monitoring progress {% endblock sb_admin_breadcrumb_active %}
+{% block form_title %}{% endblock form_title %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Percentage complete</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="progress">
+                        <div id="pbar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                            0%
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Information</h3>
+                </div>
+                <div class="panel-body">
+                    <div id="state"></div>
+                    <div id="status"></div>
+                    <div class="huge" id="failure"></div>
+
+                    <p><a href="{% url "track_tasks" %}">View all tasks</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

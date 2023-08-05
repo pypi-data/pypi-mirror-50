@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block sb_admin_custom_js %}
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="{% static "django_tables2_column_shifter/js/django_tables2_column_shifter.min.js" %}"> </script>
+{% endblock sb_admin_custom_js %}
+
+{% block content %}
+    {% block preamble %}{% endblock preamble %}
+
+
+    {% load render_table from django_tables2 %}
+    {% load bootstrap3 %}
+    {% load querystring from django_tables2 %}
+
+    {% block hidden_value %}{% endblock hidden_value %}
+    {% if filter %}
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{% block panel_title2 %}Filter{% endblock panel_title2 %}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form action="" method="get" class="form form-inline">
+                            {{ filter.form.media }}
+                            {% bootstrap_form filter.form layout='inline' %}
+                            {% bootstrap_button 'filter' %}
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    {%  endif %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{% block panel_title %}Summary{% endblock panel_title %}</h3>
+                </div>
+                <div class="panel-body">
+{#                    <p><a href="{% querystring '_export'='csv' %}">Export to CSV</a></p>#}
+
+                    <div class="table-responsive">
+                        {% load render_table from django_tables2 %}
+                        {% render_table table %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% block postamble %}{% endblock postamble %}
+
+{% endblock content %}

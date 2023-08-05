@@ -1,0 +1,27 @@
+<form method="get">
+    {% csrf_token %}
+
+    <table class="table table-hover" id="filter_table">
+        <thead>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for field in filter.form %}
+                <tr>
+                    <td>{{ field.label }}</td>
+                    <td>{{ field }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td></td>
+                <td><button type="submit" >Filter</button></td>
+            </tr>
+        </tbody>
+
+
+    </table>
+
+</form>

@@ -1,0 +1,26 @@
+
+
+
+
+<table class="table table-hover" id="form_table">
+    {% csrf_token %}
+    {{ form.media }}
+    {% csrf_token %}
+{#    <thead>#}
+{#        <tr>#}
+{#            <th></th>#}
+{#            <th></th>#}
+{#        </tr>#}
+{#    </thead>#}
+    <tbody>
+        {% for field in form %}
+        <tr >
+            <td >{{ field.label }}</td>
+            <td >{{ field }} <br> <em class="grayout"> {{ field.help_text }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<button type="submit" >Submit</button>
+{% include "gfiles/form_errors.html" %}

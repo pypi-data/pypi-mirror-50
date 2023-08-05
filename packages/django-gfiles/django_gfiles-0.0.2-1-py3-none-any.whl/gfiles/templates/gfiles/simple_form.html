@@ -1,0 +1,9 @@
+{% extends 'gfiles/single_panel.html' %}
+{% block panel_body %}
+    {% block preamble %}{% endblock preamble %}
+
+    <form name="form" method="post" action="" enctype="multipart/form-data">
+	    {% include "gfiles/form_table.html" %}
+    </form>
+    {% block postamble %}{% endblock postamble %}
+{% endblock %}
