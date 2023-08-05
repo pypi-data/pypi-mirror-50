@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: scriptax-jupyter-kernel
+Version: 0.1.0
+Summary: Scriptax Jupyter kernel
+Home-page: https://github.com/Apitax/Scriptax-Jupyter-Kernel
+Author: Shawn Clake
+Author-email: shawn.clake@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: IPython
+Requires-Dist: ipykernel
+Requires-Dist: jupyter-client
+Requires-Dist: pytest
+Requires-Dist: scriptax-runtime (==0.2.1)
+
+# Scriptax-Jupyter-Kernel
+Jupyter Kernel for Scriptax
+
+
