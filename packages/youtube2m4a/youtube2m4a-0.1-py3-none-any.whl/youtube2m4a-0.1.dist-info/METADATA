@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: youtube2m4a
+Version: 0.1
+Summary: A wrapper on youtube-dl to download playlists of songs.
+Home-page: https://github.com/jamestjw
+Author: James Tan
+Author-email: james_tan97@outlook.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: bs4
+Requires-Dist: youtube-dl
+
+Search for and download songs from youtube! You can also download entire playlists of songs.
+
+
