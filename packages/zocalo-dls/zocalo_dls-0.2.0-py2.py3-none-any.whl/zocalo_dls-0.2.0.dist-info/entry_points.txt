@@ -1,0 +1,9 @@
+[libtbx.precommit]
+zocalo_dls = zocalo_dls
+
+[workflows.service]
+ISPyB = zocalo_dls.service.ispybsvc:ISPyB
+
+[zocalo.wrapper]
+generic_process = zocalo_dls.wrapper.generic:ProcessRegisterWrapper
+
