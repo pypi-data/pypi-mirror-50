@@ -1,0 +1,16 @@
+README.md
+setup.cfg
+setup.py
+phone_email_verifier/ProcessException.py
+phone_email_verifier/__init__.py
+phone_email_verifier/contacts_verifier.py
+phone_email_verifier/email_verifier.py
+phone_email_verifier/function.py
+phone_email_verifier/phone_verifier.py
+phone_email_verifier/treatment.py
+phone_email_verifier/treatment_email.py
+phone_email_verifier/treatment_phone.py
+phone_email_verifier.egg-info/PKG-INFO
+phone_email_verifier.egg-info/SOURCES.txt
+phone_email_verifier.egg-info/dependency_links.txt
+phone_email_verifier.egg-info/top_level.txt
