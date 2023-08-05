@@ -1,0 +1,12 @@
+README.md
+setup.py
+noticeme/__init__.py
+noticeme/__main__.py
+noticeme/inotify_build.py
+noticeme/noticeme.py
+noticeme.egg-info/PKG-INFO
+noticeme.egg-info/SOURCES.txt
+noticeme.egg-info/dependency_links.txt
+noticeme.egg-info/entry_points.txt
+noticeme.egg-info/requires.txt
+noticeme.egg-info/top_level.txt

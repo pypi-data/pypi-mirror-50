@@ -1,0 +1,3 @@
+[console_scripts]
+noticeme = noticeme.__main__:main
+
