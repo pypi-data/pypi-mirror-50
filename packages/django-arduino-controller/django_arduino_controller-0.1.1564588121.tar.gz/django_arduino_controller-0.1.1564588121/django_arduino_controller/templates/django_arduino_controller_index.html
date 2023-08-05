@@ -1,0 +1,226 @@
+{% extends 'plug_in_django_basic.html' %}
+{% load static %}
+{% block contend %}
+    <table id="portList" class="table">
+        <thead>
+        <tr id="portList_header">
+            <th name="port_port">Port</th>
+            <th name="port_status">Status</th>
+            <th name="port_baudrate">Baudrate</th>
+            <th name="port_firmware">Firmware</th>
+            <th name="port_class">Board Class</th>
+            <th name="port_name">Name</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <div id="boardList"></div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'django_arduino_controller/json_websocket.js'%}"></script>
+
+    <script>
+        var logger = console;
+        var $portList= $('#portList');
+        var $boardList= $('#boardList');
+
+        var port_listener_ws = new JsonWebsocket("ws://"+window.location.host+"{% url 'django_arduino_controller:websocket' socket_type="port_listener"%}","Port Listener Websocket");
+        var boarddata_ws={};
+        var ports = {};
+
+        var boards = {};
+
+        function remove_port(port) {
+            if(ports[port] === undefined)
+                return;
+            logger.info("remove "+port);
+            ports[port].data_element.remove();
+            ports[port].ws.close();
+            delete ports[port];
+        }
+
+        function generate_port(port) {
+            if(ports[port] !== undefined)
+                return ports[port];
+            var tr = $('<tr name="'+port+'"></tr>');
+            var data = {};
+
+            $portList.find('#portList_header').find("th").each(function (i, e) {
+                let name = e.getAttribute('name');
+                if(name !== undefined) {
+                    tr.append('<td name="' + name + '"></td>');
+                    data[name.replace("port_","")] = "-"
+                }
+            });
+            $portList.find('tbody').append(tr);
+            ports[port]={
+                port:port,
+                status:null,
+                ws:null,
+                data_element:tr,
+                data:data
+            };
+            return ports[port];
+        }
+
+        function create_port_websocket(port_object) {
+            let ws = new JsonWebsocket("ws://"+window.location.host+"{% url 'django_arduino_controller:websocket_arg' socket_type="board_data" arg="port_id"%}".replace("port_id",port_object.port),port_object.port+" Listener Websocket");
+            ws.add_cmd_funcion("board_update",function (data) {update_port(port_object,data.board_data);});
+            ws.add_cmd_funcion("set_board",function (data) {set_board(data.port,data.board);});
+            ws.add_cmd_funcion("port_data_point",port_data_point);
+            return ws;
+        }
+
+        function update_port(port,port_data) {
+            port.data.status = port.status;
+            port.data = Object.assign(port.data, port_data);
+
+            for(let key in port.data){
+                port.data_element.find("[name='port_"+key+"']").text((port.data[key] !== null)?port.data[key]:"-")
+            }
+        }
+
+        function set_port_available(port) {
+            var port_object = generate_port(port);
+            if(port_object.status === "available")
+                return;
+            if(port_object.ws !== null) {
+                port_object.ws.close();
+                port_object.ws = null;
+            }
+            port_object.status = "available";
+            for (var key in port_object.data)
+                port_object.data[key] = null;
+            update_port(port_object,{port:port});
+
+            logger.info("port available: "+ port)
+        }
+
+        function set_port_connected(port) {
+            var port_object = generate_port(port.port);
+            if(port_object.status === "connected"|| port_object.status === "identified")
+                return;
+            port_object.status = "connected";
+            update_port(port_object,port);
+
+            if(port_object.ws === null)
+                port_object.ws = create_port_websocket(port_object);
+            logger.info("port connected: "+ port.port);
+        }
+
+        function set_port_identified(port) {
+            var port_object = generate_port(port.port);
+            if(port_object.status === "identified")
+                return;
+            port_object.status = "identified";
+            update_port(port_object,port);
+            generate_board(port_object);
+            port_object.ws.add_on_connect_function(function () {this.cmd_message("get_board");});
+            logger.info("port identified: "+ port.port);
+        }
+
+        function set_port_ignored(port) {
+            var port_object = generate_port(port);
+            if(port_object.status === "ignored")
+                return;
+            if(port_object.ws !== null) {
+                port_object.ws.close();
+                port_object.ws = null;
+            }
+            port_object.status = "ignored";
+            for (var key in port_object.data)
+                port_object.data[key] = null;
+
+            update_port(port_object,{port:port});
+            logger.info("port ignored: "+ port)
+        }
+
+        function set_ports(data){
+            for(let i=0;i<data.ports.available_ports.length;i++)
+                set_port_available(data.ports.available_ports[i]);
+
+            for(let i=0;i<data.ports.connected_ports.length;i++)
+                set_port_connected(data.ports.connected_ports[i]);
+
+            for(let i=0;i<data.ports.identified_ports.length;i++)
+                set_port_identified(data.ports.identified_ports[i]);
+
+            for(let i=0;i<data.ports.ignored_ports.length;i++)
+                set_port_ignored(data.ports.ignored_ports[i]);
+
+            var all_new = data.ports.available_ports
+                .concat(data.ports.ignored_ports)
+                .concat(data.ports.connected_ports.map(p => p.port))
+                .concat(data.ports.identified_ports.map(p => p.port));
+
+            let all_old = Object.keys(ports);
+            for(let i = 0;i<all_old.length;i++)
+                if(all_new.indexOf(all_old[i])<0)
+                    remove_port(all_old[i])
+        }
+
+
+        function generate_board(port_object){
+            if(boards[port_object.port] !== undefined)
+                return boards[port_object.port];
+
+            var board_div = $('<div board_port="board_'+port_object.port+'"><div><h6>'+port_object.port+'</h6></div><form class="form-inline" name="data_container"></form></div>');
+
+            $boardList.append(board_div);
+
+            boards[port_object.port]={
+                port:port_object,
+                data_element:board_div
+            };
+
+            var data = {};
+            return boards[port_object.port];
+        }
+
+        function port_data_point(data) {
+            if( boards[data.port] === undefined)return;
+            boards[data.port].data_element.find('[name="data_point_'+data.key+'"]').val(data.y);
+        }
+        function set_board(port,board){
+            if( boards[port] === undefined)return;
+
+            let mod_vars = Object.keys(board.module_variables);
+            let data_container = boards[port].data_element.find('[name="data_container"]');
+            data_container.empty();
+
+            for(let i=0;i<mod_vars.length;i++){
+
+                let input = $(board.module_variables[mod_vars[i]].form)
+                    .addClass('form-control');
+                let label = $('<label for="ard_var_'+input.attr("name")+'">'+mod_vars[i]+'</label>');
+
+                let f = $('<div class="form-group"></div>');
+                f.append(label);
+                f.append(input);
+                if(input.attr("type") === "checkbox")
+                    input.prop("checked",input.val() === "True");
+                data_container.append(f);
+                input.change(function () {
+                    let val = input.val();
+                    if(input.attr("type") === "checkbox")
+                        val = input.prop("checked");
+                    boards[port].port.ws.cmd_message("set_board_attribute",
+                        {attribute:mod_vars[i],value:val}
+                        );
+                })
+            }
+        }
+        port_listener_ws.add_cmd_funcion("set_ports",set_ports);
+    </script>
+    <style>
+        input[type=number]:read-only::-webkit-inner-spin-button,
+        input[type=number]:read-only::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number]:-moz-read-only {
+            -moz-appearance:textfield;
+        }
+    </style>
+{% endblock %}
