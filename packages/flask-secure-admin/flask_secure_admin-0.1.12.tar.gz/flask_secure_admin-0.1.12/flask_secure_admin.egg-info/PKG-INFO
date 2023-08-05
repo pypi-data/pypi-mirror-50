@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: flask-secure-admin
+Version: 0.1.12
+Summary: A bundling of flask-security and flask-admin with a bit of integration.
+Home-page: https://github.com/me/myproject
+Author: Brian Peterson
+Author-email: bepetersondev@gmail.com
+License: MIT
+Description: 
+        # flask_secure_admin
+        
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy

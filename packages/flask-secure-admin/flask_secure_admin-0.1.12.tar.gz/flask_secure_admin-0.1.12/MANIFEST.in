@@ -1,0 +1,2 @@
+recursive-include flask_secure_admin/templates *.html
+include flask_secure_admin/create.sql

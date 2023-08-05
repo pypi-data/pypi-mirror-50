@@ -1,0 +1,19 @@
+{% extends 'admin/base.html' %}
+
+{% block main_menu %}
+  <ul class="nav navbar-nav">
+    {% block inner_nav %}
+
+    {% block default_layout %}
+      {{ layout.menu() }}
+    {% endblock %}
+
+    {% block logout %}
+      {% if current_user.is_authenticated %}
+        <li><a href="/logout?next=/admin">Logout</a></li>
+      {% endif %}
+    {% endblock %}
+
+    {% endblock %}
+  </ul>
+{% endblock %}
