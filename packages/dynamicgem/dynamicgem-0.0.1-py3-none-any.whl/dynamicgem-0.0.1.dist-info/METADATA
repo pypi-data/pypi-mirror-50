@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: dynamicgem
+Version: 0.0.1
+Summary: A Python library for Dynamic Graph Embedding Methods
+Home-page: https://github.com/Sujit-O/dynamicgem.git
+Author: Sujit Rokka Chhetri, Palash Goyal, Martinez Canedo, Arquimedes
+Author-email: sujitchhetri@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: sphinx (>=2.1.2)
+Requires-Dist: networkx (>=2.2)
+Requires-Dist: setuptools (>=40.8.0)
+Requires-Dist: matplotlib (>=3.0.3)
+Requires-Dist: numpy (>=1.16.2)
+Requires-Dist: seaborn (>=0.9.0)
+Requires-Dist: scikit-learn (>=0.20.3)
+Requires-Dist: hyperopt (>=0.1.2)
+Requires-Dist: progressbar2 (>=3.39.3)
+Requires-Dist: pathlib (>=1.0.1)
+Requires-Dist: numpydoc (>=0.9.1)
+Requires-Dist: sphinx-gallery (>=0.3.1)
+Requires-Dist: sphinx-rtd-theme (>=0.4.3)
+Requires-Dist: pytest (>=3.6)
+Requires-Dist: Cython (>=0.29)
+Requires-Dist: tensorflow (>=1.14.0)
+Requires-Dist: h5py (>=2.8.0)
+Requires-Dist: joblib (>=0.12.5)
+Requires-Dist: Keras (>=2.2.4)
+Requires-Dist: matplotlib (==3.0.1)
+Requires-Dist: pandas (>=0.23.4)
+Requires-Dist: six (>=1.11.0)
+
+# dyngem
+
+
