@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: htmlify
+Version: 0.1.2-beta
+Summary: An ultra-basic, human-friendly templating system for doing CGI with Python for less 😕 and more 🎉
+Home-page: https://github.com/iDoObject/htmlify
+Author: Theo Court
+Author-email: theo.court@pm.me
+License: MIT
+Download-URL: https://github.com/iDoObject/htmlify/archive/v0.1.2-beta.tar.gz
+Description: # htmlify
+        An ultra-basic, human-friendly templating system for doing CGI with Python for less 😕 and more 🎉
+        
+        htmlify is powerful enough to drive small web projects, while lightweight enough that you don't feel like you're learning a whole new language. See the [GitHub page](https://github.com/iDoObject/htmlify) for more info and an installation/usage guide.
+Keywords: CGI,python3,HTML,templates,templating
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
