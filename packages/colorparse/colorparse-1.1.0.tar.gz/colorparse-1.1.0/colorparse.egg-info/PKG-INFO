@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: colorparse
+Version: 1.1.0
+Summary: A string-coloring package for terminals
+Home-page: https://github.com/tubi-carrillo/colorparse
+Author: Esteban Carrillo
+Author-email: estebancn0324@hotmail.com
+License: UNKNOWN
+Description: # colorparse
+        
+        ``colorparse`` is a python package that will read and parse strings with defined color codes, showing their respective colors in the terminal. This way, a string can be easily colored, simplifying the work for the user. For the complete documentation, change log and more, visit the [readthedocs page](https://colorparse.readthedocs.io/en/latest) and the [github page](https://github.com/tubi-carrillo/colorparse).
+        
+        
+        # Installation
+        
+        To install, use this command:
+        ```
+          $ pip install colorparse
+        ```
+        
+        After this, the package should be ready to use. To upgrade or uninstall, use the following:
+        ```
+           $ pip install --upgrade colorparse
+           $ pip uninstall colorparse
+        ```
+        # Recent Changes
+        
+        \* *the prefixes [t] refer to terminal-only, [m] for module-only and [d] for docs-only changes, respectively* *
+        
+        ```diff
+        # version 1.1.0   (2019 - 08 - 01)
+        - [t] Fixed problem with reading special characters on Windows.
+        - [t] Improved (and fixed some grammatical errors) in the help menu.
+        - [t] Replaced `-r` (`--read-special`) with `-I` (uppercase i) or `--ignore-special` (roles are reversed).
+        - [t] Added new optional argument `-p` or `--position`.
+        - [t] Added new optional argument `-S` (uppercase s) or `--strip`.
+        - [m] Added more documentation for the functions insde the module (use built-in `help` function).
+        - [d] Created a documentation page.
+        
+        ```
+        
+Keywords: colorparse,terminal,color,ansi
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
