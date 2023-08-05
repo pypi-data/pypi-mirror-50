@@ -1,0 +1,67 @@
+{% extends "django_sb_admin/base.html" %}
+{% load static %}
+{% load staticfiles %}
+
+{% block sb_admin_css %}
+    <link href="{% static "css/sb-admin.css"%}" rel="stylesheet">
+    <link href="{% static 'css/mogi.css' %}" rel="stylesheet">
+
+{% endblock sb_admin_css %}
+
+{% block sb_admin_fonts_css %}
+    <link rel="stylesheet" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}" />
+    <link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet" type="text/css">
+    <link href="{% static "font-awesome/css/font-awesome.min.css"%}" rel="stylesheet" type="text/css">
+{% endblock sb_admin_fonts_css %}
+
+{% block title %}{% endblock %}
+{% block sb_admin_header_url %}{% url "index" %}{% endblock sb_admin_header_url %}
+{% block sb_admin_header %}<img class="img-responsive" src="{% static 'img/logo.svg' %}" alt="" />  {% endblock sb_admin_header %}
+
+{% block sb_admin_title %}{% endblock sb_admin_title %}
+{% block sb_admin_subheading %}{% endblock sb_admin_subheading %}
+
+{% block sb_admin_navbar_right %}
+    <ul class="nav navbar-right top-nav">
+        <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu alert-dropdown">
+                        <li>
+                            <a href="#"> <span class="label label-default">Alert Badge</span></a>
+                        </li>
+                    </ul>
+        </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {% if user.username %}{{ user.username }}{% else %}Anonymous{% endif %} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                            {% if user.is_authenticated %}
+                                <li><a href="#"><i class="fa fa-fw fa-user"></i> Profile</a></li>
+                                <li><a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a></li>
+
+                                <li class="divider"></li>
+                                <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                            {% else %}
+                                <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                                <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            {% endif %}
+                    </ul>
+                </li>
+</ul>{% endblock sb_admin_navbar_right %}
+
+
+{% block sb_admin_sidebar %}
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li {% if nav_active == "dashboard" %}class="active"{% endif %}>
+                        <a href="{% url "index" %}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+{% endblock sb_admin_sidebar %}
+
+{% block sb_admin_content %}
+    {% block content %}
+    {% endblock %}
+{% endblock %}
+
