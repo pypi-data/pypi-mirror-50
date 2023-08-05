@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: trips-web
+Version: 1.0.11
+Summary: Command-line interface for the TRIPS web parser
+Home-page: http://www.github.com/mrmechko/trips-web
+Author: Rik Bose
+Author-email: rbose@cs.rochester.edu
+License: MIT
+Platform: UNKNOWN
+Requires-Python: >3.0
+Requires-Dist: argparse
+Requires-Dist: xmltodict
+
+UNKNOWN
+
+
