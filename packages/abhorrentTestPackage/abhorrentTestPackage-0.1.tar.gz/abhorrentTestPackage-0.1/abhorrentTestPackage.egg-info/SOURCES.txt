@@ -1,0 +1,12 @@
+README.md
+setup.cfg
+setup.py
+abhorrentTestPackage.egg-info/PKG-INFO
+abhorrentTestPackage.egg-info/SOURCES.txt
+abhorrentTestPackage.egg-info/dependency_links.txt
+abhorrentTestPackage.egg-info/not-zip-safe
+abhorrentTestPackage.egg-info/top_level.txt
+distributions/Binomialdistribution.py
+distributions/Gaussiandistribution.py
+distributions/Generaldistribution.py
+distributions/__init__.py
