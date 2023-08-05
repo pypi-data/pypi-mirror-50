@@ -1,0 +1,25 @@
+Source: cubicweb-dataprocessing
+Section: web
+Priority: optional
+Maintainer: LOGILAB S.A. (Paris, FRANCE) <contact@logilab.fr>
+Build-Depends:
+ debhelper (>= 7),
+ python (>= 2.6.5),
+Standards-Version: 3.9.3
+X-Python-Version: >= 2.6
+
+Package: cubicweb-dataprocessing
+Architecture: all
+Depends:
+ python-six (>= 1.4.0),
+ python-cubicweb (>= 3.24.0),
+ cubicweb-file,
+ ${python:Depends},
+ ${misc:Depends},
+Description: Data validation and transformation process
+ CubicWeb is a semantic web application framework.
+ .
+ Data validation and transformation process
+ .
+ This package will install all the components you need to run the
+ cubicweb-dataprocessing application (cube :)..

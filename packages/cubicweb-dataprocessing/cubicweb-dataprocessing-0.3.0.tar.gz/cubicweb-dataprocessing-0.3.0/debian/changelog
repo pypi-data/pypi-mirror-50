@@ -1,0 +1,24 @@
+cubicweb-dataprocessing (0.3.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Switch to 3.0 (quilt) source format
+
+ -- Denis Laxalde <denis.laxalde@logilab.fr>  Wed, 31 Jul 2019 10:48:46 +0200
+
+cubicweb-dataprocessing (0.2.1-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Denis Laxalde <denis.laxalde@logilab.fr>  Thu, 26 May 2016 17:32:26 +0200
+
+cubicweb-dataprocessing (0.2.0-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Denis Laxalde <denis.laxalde@logilab.fr>  Thu, 26 May 2016 16:44:39 +0200
+
+cubicweb-dataprocessing (0.1.0-1) unstable; urgency=low
+
+  * initial release
+
+ -- Denis Laxalde <denis.laxalde@logilab.fr>  Mon, 25 Jan 2016 10:28:43 +0100
