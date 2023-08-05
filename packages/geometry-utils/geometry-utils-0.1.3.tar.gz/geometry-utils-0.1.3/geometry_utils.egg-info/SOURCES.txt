@@ -1,0 +1,10 @@
+README.md
+setup.py
+geometry_utils/__init__.py
+geometry_utils/bidimensional.py
+geometry_utils/helper.py
+geometry_utils/tridimensional.py
+geometry_utils.egg-info/PKG-INFO
+geometry_utils.egg-info/SOURCES.txt
+geometry_utils.egg-info/dependency_links.txt
+geometry_utils.egg-info/top_level.txt
