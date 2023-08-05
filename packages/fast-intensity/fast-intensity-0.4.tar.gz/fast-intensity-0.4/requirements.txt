@@ -1,0 +1,4 @@
+# This is a listing of runtime requirements
+# Building or running tests additionally requires Cython
+numpy
+scipy
