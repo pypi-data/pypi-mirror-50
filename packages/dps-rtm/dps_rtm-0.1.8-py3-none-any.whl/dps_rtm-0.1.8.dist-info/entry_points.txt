@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        rtm=rtm.cli:rtm_cli
+    
