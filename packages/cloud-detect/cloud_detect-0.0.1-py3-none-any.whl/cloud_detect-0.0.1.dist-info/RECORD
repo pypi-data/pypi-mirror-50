@@ -1,0 +1,10 @@
+cloud_detect/__init__.py,sha256=ZeMV3mZHxrRFyJOpsDWrU20EfmUcjVzSpUp4I7kruUk,461
+cloud_detect/providers/__init__.py,sha256=Rg5H4j7fhyXU_lhuRbzYe1wOXanStssok3eeaiKd2qM,114
+cloud_detect/providers/aws_provider.py,sha256=zRCJpLsgHUJslI8tLCeHXxRrGm0OohCMU1DybCCvAks,1560
+cloud_detect/providers/gcp_provider.py,sha256=u__Kj4m40vc-stEq1e5aT-PHVsKIYGC2xb49SVxjESw,1534
+cloud_detect/providers/provider.py,sha256=k625ZN_h8tfCYVBSPtyMlRnXJOJV1HDCLXLEYDZDNpc,454
+cloud_detect-0.0.1.dist-info/LICENSE.md,sha256=A3iheUflsvoC9Nuu6iY0mFa2S8tBMMAS0dn5F1dsmUg,1078
+cloud_detect-0.0.1.dist-info/METADATA,sha256=3ZLQH5J45XknGOXPT15Jd17ke01DRV8ILE6X-eW8d8o,2524
+cloud_detect-0.0.1.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+cloud_detect-0.0.1.dist-info/top_level.txt,sha256=iHdE4Mld9ibEVOoJevrcdhJRrQyNc3keoBhasTV1-cI,13
+cloud_detect-0.0.1.dist-info/RECORD,,
