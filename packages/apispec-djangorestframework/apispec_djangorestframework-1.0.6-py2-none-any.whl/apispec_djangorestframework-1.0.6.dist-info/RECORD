@@ -1,0 +1,17 @@
+apispec_drf/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+apispec_drf/builder.py,sha256=mLNHsqlccXl7u7usRByXECuwSnnX8Nk1EWQU-9uN0Y8,10689
+apispec_drf/decorators.py,sha256=34t2A9F4IGdNGPz5n_sw3nnoUWiIwksBnqzNfUdHk8s,4924
+apispec_drf/urls.py,sha256=PvitahrQwAFf7kC54qGDef46DPI4slin-ORyqF5LaSA,277
+apispec_drf/version.py,sha256=IuPOBa_NnPLDUxwIwqm5qSZ6amYNA6KVj3lA1x2UX5A,82
+apispec_drf/management/__init__.py,sha256=s1gBrtZkJ-12RmIBOgfO99xlreMMMihFMk2ps8dSDkY,60
+apispec_drf/management/commands/__init__.py,sha256=s1gBrtZkJ-12RmIBOgfO99xlreMMMihFMk2ps8dSDkY,60
+apispec_drf/management/commands/generate_swagger_spec.py,sha256=rBwocPHNL_Sg5mJj_TdvfBc_tsAN0SJ173m9TvMdtiA,1658
+apispec_drf/static/swagger-ui/oauth2_redirect.html,sha256=FVx9LA1kkWj-m5xINC6iulQRmTzcQsSCneL_GX14vaQ,1739
+apispec_drf/static/swagger-ui/swagger-ui-bundle.js,sha256=JRXAnhuSiWq2nkvNnq0SqxEnXkLpNk9eFUsm1og4dHo,1622064
+apispec_drf/static/swagger-ui/swagger-ui-standalone-preset.js,sha256=CT9QCtI3Arg6VVrm1-NAOnJGcy6sdYdCH00xXnvJJp4,261140
+apispec_drf/static/swagger-ui/swagger-ui.css,sha256=Sl6FttMqvWtx5HoFLZhXiHcqykTcgR65zpjf3NdsZKM,33339
+apispec_drf/templates/apispec_drf/swagger-ui.html,sha256=bC4tpurp6e7KZKbXxr3npUhSQbvyIl351HAVaLNYZjM,4100
+apispec_djangorestframework-1.0.6.dist-info/METADATA,sha256=H08mstm-qOQ1uZntVSZg5LmKRiCWh6BdfzLY75usrcw,251
+apispec_djangorestframework-1.0.6.dist-info/WHEEL,sha256=Ph_z28wTcU7HnQwSQ6yCQ-zkcGK4h4ehDfP8b6UoHVE,92
+apispec_djangorestframework-1.0.6.dist-info/top_level.txt,sha256=cLhqllk4A5jShgSp8anCmK_vIQqJXY-bVCWD2jzb21g,12
+apispec_djangorestframework-1.0.6.dist-info/RECORD,,
