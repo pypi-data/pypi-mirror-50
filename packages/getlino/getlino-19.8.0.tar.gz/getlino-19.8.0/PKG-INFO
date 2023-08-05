@@ -1,0 +1,27 @@
+Metadata-Version: 1.1
+Name: getlino
+Version: 19.8.0
+Summary: Lino installer
+Home-page: http://lino-framework.org
+Author: Rumma & Ko Ltd
+Author-email: team@lino-framework.org
+License: BSD-2-Clause
+Description: 
+            Configure a Lino server and create sites on it.
+        
+            Quick guide: http://www.lino-framework.org/getlino.html
+        
+            Technical docs: http://getlino.lino-framework.org
+        
+            
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Console
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: System :: Installation/Setup
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
