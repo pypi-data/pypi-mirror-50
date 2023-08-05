@@ -1,0 +1,14 @@
+celery>=4.3
+django-oscar<2.0.0,>=1.6.0
+djangorestframework>=3.9
+django-redis>=4.8.0
+hiredis>=0.2.0
+redis>=3.0.0
+
+[development]
+psycopg2cffi>=2.7.7
+flake8>=3.2.1
+sphinx>=1.5.2
+tox>=2.6.0
+versiontag>=1.2.0
+splinter>=0.7.5
