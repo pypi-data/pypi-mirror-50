@@ -1,0 +1,5 @@
+# INCLUDE NON .PY FILES IN SITE-PACKAGES FOLDER
+# EX:
+# include package-name/funny.jpg
+# include package-name/data/*.csv
+# recursive-include package-name/template/ *
