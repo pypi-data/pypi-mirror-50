@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: hra-etl
+Version: 0.0.1
+Summary: A small example package
+Home-page: https://gitlab.dell.com/corporate/hr-data-lake/ETL/etl-architecture
+Author: Gyanendra Kumar Patro
+Author-email: gyanendrapatro02@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+
+This is a simple example package. You can use
+[Github-flavored Markdown](https://guides.github.com/features/mastering-markdown/)
+to write your content.
+
