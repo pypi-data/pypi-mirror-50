@@ -1,0 +1,40 @@
+[07/31/19 21:05:33]: /Users/jon/miniconda3/envs/amptk_dev/bin/amptk ion -i ion.test.fastq -o ion_map -m ion.mapping_file.txt
+
+[07/31/19 21:05:33]: OS: MacOSX 10.14.6, 8 cores, ~ 17 GB RAM. Python: 3.7.3
+[07/31/19 21:05:33]: Python Modules: numpy v1.16.4, pandas v0.25.0, matplotlib v3.1.1, psutil v5.6.3, natsort v6.0.0, biopython v1.74, edlib v1.2.4.post1, biom-format v2.1.7
+[07/31/19 21:05:33]: AMPtk v1.4.1, USEARCH v9.2.64, VSEARCH v2.13.6
+[07/31/19 21:05:33]: Foward primer: AGTGARTCATCGAATCTTTG,  Rev comp'd rev primer: GCATATCAATAAGCGGAGGA
+[07/31/19 21:05:33]: Loading FASTQ Records
+[07/31/19 21:05:33]: 2,000 reads (1.6 MB)
+[07/31/19 21:05:33]: Dropping reads less than 100 bp and setting lossless trimming to 300 bp.
+[07/31/19 21:05:33]: Splitting FASTQ files over 8 cpus
+[07/31/19 21:05:34]: Concatenating Demuxed Files
+[07/31/19 21:05:34]: 2,000 total reads
+[07/31/19 21:05:34]: 1,409 valid Barcode
+[07/31/19 21:05:34]: 1,406 Fwd Primer found, 1,151 Rev Primer found
+[07/31/19 21:05:34]: 34 discarded too short (< 100 bp)
+[07/31/19 21:05:34]: 1,372 valid output reads
+[07/31/19 21:05:34]: Found 19 barcoded samples
+                Sample:  Count
+                 BC.27:  95
+                 BC.17:  90
+                 BC.23:  90
+                 BC.28:  88
+                 BC.20:  82
+                 BC.73:  80
+                 BC.18:  77
+                 BC.21:  72
+                 BC.15:  72
+                 BC.16:  72
+                 BC.10:  71
+                 BC.22:  68
+                 BC.11:  66
+                  BC.9:  65
+                 BC.14:  65
+                 BC.24:  62
+                 BC.12:  60
+                 BC.19:  53
+                  BC.5:  44
+[07/31/19 21:05:34]: pigz -c -p 8 ion_map.demux.fq
+[07/31/19 21:05:34]: Output file:  ion_map.demux.fq.gz (241.9 KB)
+[07/31/19 21:05:34]: Mapping file: ion_map.mapping_file.txt
