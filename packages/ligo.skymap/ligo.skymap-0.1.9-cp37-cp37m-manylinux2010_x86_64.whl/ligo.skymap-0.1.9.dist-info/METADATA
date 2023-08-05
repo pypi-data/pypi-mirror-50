@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: ligo.skymap
+Version: 0.1.9
+Summary: Tools for reading, writing, manipulating, and making LIGO and Virgo sky maps
+Home-page: https://lscsoft.docs.ligo.org/ligo.skymap/
+Author: Leo Singer
+Author-email: leo.singer@ligo.org
+License: BSD 3-Clause
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Classifier: Topic :: Scientific/Engineering :: Physics
+Requires-Dist: astroplan (>=0.5)
+Requires-Dist: astropy (>=3.1)
+Requires-Dist: astropy-healpix (>=0.3)
+Requires-Dist: healpy
+Requires-Dist: h5py
+Requires-Dist: lalsuite (>=6.53)
+Requires-Dist: lscsoft-glue (>=2.0.0)
+Requires-Dist: ligo-gracedb (>=2.0.1)
+Requires-Dist: ligo-segments (>=1.2.0)
+Requires-Dist: matplotlib (>=3.0.2)
+Requires-Dist: networkx
+Requires-Dist: numpy (!=1.15.3,>=1.14)
+Requires-Dist: pillow (>=2.5.0)
+Requires-Dist: ptemcee
+Requires-Dist: python-ligo-lw
+Requires-Dist: reproject (>=0.3.2)
+Requires-Dist: scipy (>=0.14)
+Requires-Dist: seaborn (>=0.8.0)
+Requires-Dist: tqdm
+Requires-Dist: pytz
+
+UNKNOWN
+
+
