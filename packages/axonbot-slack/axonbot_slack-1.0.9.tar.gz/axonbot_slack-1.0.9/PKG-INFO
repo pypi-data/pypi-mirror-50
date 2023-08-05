@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: axonbot_slack
+Version: 1.0.9
+Summary: Axonius Slack Bot
+Home-page: https://github.com/Axonius/axonbot_slack
+Author: Axonius
+Author-email: apiclient@axonius.com
+License: MIT
+Description: # Axonius Slack Bot
+        
+        This is a [Slack bot](https://api.slack.com/bot-users) for [Axonius](https://axonius.com). It enables users in Slack to interact with an Axonius instance in a number of ways:
+        * Get a JSON report of objects. 
+        * You can search for user objects by username, email (using regex or not).
+        * You can search for device objects by hostname, IP address, or MAC address (using regex or not).
+        * You can search for user or device objects by a query built in the Query Wizard of the Axonius GUI.
+        * You can add or remove labels in the thread that is started up for returned objects.
+        
+        Documentation can be found [here](https://github.com/Axonius/axonbot_slack/blob/master/docs/README.md).
+        
+        For questions, feature requests, or bug reports, you can:
+        * File an issue on the [Issue Tracker](https://github.com/Axonius/axonbot_slack/issues)
+        * Email apiclient@axonius.com
+        
+Keywords: axonius,slack,bot
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*
+Description-Content-Type: text/markdown
