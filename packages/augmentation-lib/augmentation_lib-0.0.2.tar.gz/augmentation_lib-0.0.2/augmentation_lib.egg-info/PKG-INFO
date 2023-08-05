@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: augmentation-lib
+Version: 0.0.2
+Summary: Image augmentation library
+Home-page: https://github.com/laume/augmentation_lib
+Author: Laura Lu
+Author-email: new4spam@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/laume/augmentation_lib
+Description: # Image augmentation library
+        
+        This augmentation library can be used to crop, flip, blur, sharpen, mix channels, overlay images.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
