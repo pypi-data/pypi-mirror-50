@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: iyi
+Version: 0.2.0
+Summary: a terminal tool for youdao dictionary
+Home-page: https://github.com/bonfy/iyi
+Author: bonfy
+Author-email: foreverbonfy@163.com
+License: UNKNOWN
+Keywords: python youdao dictionary terminal
+Platform: UNKNOWN
+Requires-Dist: termcolor
+Requires-Dist: requests
+
+a terminal tool for youdao dictionary
+
+
