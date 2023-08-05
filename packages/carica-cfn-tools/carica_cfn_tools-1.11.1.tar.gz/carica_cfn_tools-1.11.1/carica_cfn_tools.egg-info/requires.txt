@@ -1,0 +1,11 @@
+PyYAML~=4.2b1
+aws-sam-translator~=1.9.0
+boto3~=1.9.99
+cfn_flip~=1.1.0
+click~=6.7
+jinja2~=2.10
+
+[dev]
+check-manifest
+
+[test]
