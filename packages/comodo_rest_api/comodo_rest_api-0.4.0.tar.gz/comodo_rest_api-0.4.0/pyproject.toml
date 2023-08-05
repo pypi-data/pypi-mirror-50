@@ -1,0 +1,18 @@
+[build-system]
+requires = ["flit"]
+build-backend = "flit.buildapi"
+
+[tool.flit.metadata]
+module = "comodo_rest_api"
+author = "Erinn Looney-Triggs"
+author-email = "erinn.looneytriggs@gmail.com"
+home-page = "https://github.com/erinn/comodo_rest_api/"
+description-file = "README.md"
+classifiers = ["License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+               "Development Status :: 5 - Production/Stable"]
+requires = [
+    "pyjsend",
+    "requests",
+]
+requires-python = ">=3"
+keywords = "sectigo comodo jsend"

@@ -1,0 +1,92 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2018-08-06T18:07:49",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Cookie": [
+            "CCMBSESSIONID=57E6436E45FBDFE80F2F4C560F138C92"
+          ],
+          "User-Agent": [
+            "python-requests/2.18.4"
+          ],
+          "customerUri": [
+            "<CUSTOMER_LOGIN_URI>"
+          ],
+          "login": [
+            "<LOGIN>"
+          ],
+          "password": [
+            "<PASSWORD>"
+          ]
+        },
+        "method": "GET",
+        "uri": "https://hard.cert-manager.com/api/ssl/v1/collect/655043/X509CO"
+      },
+      "response": {
+        "body": {
+          "encoding": "UTF-8",
+          "string": "-----BEGIN CERTIFICATE-----\nMIIHCDCCBfCgAwIBAgIQK0G2Tb7w0AVf4n325qlpqDANBgkqhkiG9w0BAQsFADCB\nljELMAkGA1UEBhMCR0IxGzAZBgNVBAgTEkdyZWF0ZXIgTWFuY2hlc3RlcjEQMA4G\nA1UEBxMHU2FsZm9yZDEaMBgGA1UEChMRQ09NT0RPIENBIExpbWl0ZWQxPDA6BgNV\nBAMTM0NPTU9ETyBSU0EgT3JnYW5pemF0aW9uIFZhbGlkYXRpb24gU2VjdXJlIFNl\ncnZlciBDQTAeFw0xODA4MDMwMDAwMDBaFw0xOTA4MDMyMzU5NTlaMIH/MQswCQYD\nVQQGEwJVUzEOMAwGA1UEERMFODAzMDMxCzAJBgNVBAgTAkNPMRAwDgYDVQQHEwdC\nb3VsZGVyMRQwEgYDVQQJEwszNjQ1IE1hcmluZTEqMCgGA1UEChMhVW5pdmVyc2l0\neSBvZiBDb2xvcmFkbyBhdCBCb3VsZGVyMQwwCgYDVQQLEwNTSVMxNDAyBgNVBAsT\nK0hvc3RlZCBieSBVbml2ZXJzaXR5IG9mIENvbG9yYWRvIGF0IEJvdWxkZXIxHzAd\nBgNVBAsTFlVuaWZpZWQgQ29tbXVuaWNhdGlvbnMxGjAYBgNVBAMTEXRlc3QuY29s\nb3JhZG8uZWR1MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxt4fdFsw\nUB8iQv3La+e2DnUcIdniNSDdHuOzZDBIPl82az6bLs5VWOeTvixMxdSKJmgLG/7q\njeB45XeBpNmzKqoDTiWAv+0RS0V1+I9Dz+rIy+mXKhcdZ2UD//3E229HipFEs0q9\n0ZqmaFp66/simn2hrzVBN/Z0iVS9NED9GrAc30lVpl2UeGB4TYyquVLF8kNS/FIy\nDeZom86L+NTcX+4afGN5rycHberZvQnsJwkLDs+cHYdNPSCC9HB621HO3omikdDp\nqIFbuB0YNTiDdn8kj7NzEToFJgYAbGWkEze8WIwyjHVQ8eLVJonpejr+oUW9a9+m\nLmiAW2bnTRhDoQIDAQABo4IC5TCCAuEwHwYDVR0jBBgwFoAUmvMr2s+tT7YvuypI\nSCoStxtCwSQwHQYDVR0OBBYEFIkiYZ1PT2OQVhBhUfyCLwVTYv3yMA4GA1UdDwEB\n/wQEAwIFoDAMBgNVHRMBAf8EAjAAMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEF\nBQcDAjBQBgNVHSAESTBHMDsGDCsGAQQBsjEBAgEDBDArMCkGCCsGAQUFBwIBFh1o\ndHRwczovL3NlY3VyZS5jb21vZG8uY29tL0NQUzAIBgZngQwBAgIwWgYDVR0fBFMw\nUTBPoE2gS4ZJaHR0cDovL2NybC5jb21vZG9jYS5jb20vQ09NT0RPUlNBT3JnYW5p\nemF0aW9uVmFsaWRhdGlvblNlY3VyZVNlcnZlckNBLmNybDCBiwYIKwYBBQUHAQEE\nfzB9MFUGCCsGAQUFBzAChklodHRwOi8vY3J0LmNvbW9kb2NhLmNvbS9DT01PRE9S\nU0FPcmdhbml6YXRpb25WYWxpZGF0aW9uU2VjdXJlU2VydmVyQ0EuY3J0MCQGCCsG\nAQUFBzABhhhodHRwOi8vb2NzcC5jb21vZG9jYS5jb20wHAYDVR0RBBUwE4IRdGVz\ndC5jb2xvcmFkby5lZHUwggEGBgorBgEEAdZ5AgQCBIH3BIH0APIAdwDuS723dc5g\nuuFCaR+r4Z5mow9+X7By2IMAxHuJeqj9ywAAAWT9IHrMAAAEAwBIMEYCIQCeb3ny\n+Ksmzh2RLqxcpcrVCkDPkwz6xeOE37NNkCKLsAIhAJSXHEe57zR1zkcHCA9mkoEq\nFN68sbiTw2qWgPA2COyyAHcAdH7agzGtMxCRIZzOJU9CcMK//V5CIAjGNzV55hB7\nzFYAAAFk/SB7DwAABAMASDBGAiEAxYYnH4RzT/ke6Dzzlzr8O9tk91jHStXLpQyb\nZ8Tdc88CIQC5hJipVljG6Qdfgf/ICfWnUMya4qxvikMMp/HKj2vQDzANBgkqhkiG\n9w0BAQsFAAOCAQEAPnMfhozIb3jzGC5rCDDNl+pjmJRQ6Ml8XzkF+/rcnYxmYSI4\nXcOSc386+3D8qt5uJVfdPjFvQ0DEATK2CqV21ihPLelOMyiA7/vTUNcaTFennbWS\n3whRp549FUNK+Yf7dAbK/d/O/lpDADrUdswWeyw/+EdKud8VphFl/0uf8RFXyCl0\nno6rsFwvXQFD8y+7u4SU7wMRo1prLdPMeb1XZYZ0vbP4iIZtxd/xYIAXXIKFgxIr\nTytdAkSbUy/E7RGqXlRxySVxs7yLGqhuJ7IvdMOU1xlj7WLSDEdwZu1FS9ttsMWy\nwWUyCEuJ7E4Z6WWHuPhQpIMJIhmeOnD74SbiTQ==\n-----END CERTIFICATE-----"
+        },
+        "headers": {
+          "Connection": [
+            "Keep-Alive"
+          ],
+          "Content-Length": [
+            "2499"
+          ],
+          "Content-Security-Policy": [
+            "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://de8of677fyt0b.cloudfront.net https://www.google-analytics.com https://ajax.googleapis.com https://cdnjs.cloudflare.com https://script.hotjar.com https://static.hotjar.com https://plugins.help.com https://maxcdn.bootstrapcdn.com https://secure.comodo.net https://www.trustlogo.com https://secure.comodo.com https://cdn.optimizely.com https://www.google.com https://www.gstatic.com ; style-src 'self' 'unsafe-inline' https://maxcdn.bootstrapcdn.com https://cdnjs.cloudflare.com https://fonts.googleapis.com ; font-src 'self' https://maxcdn.bootstrapcdn.com https://fonts.gstatic.com https://fonts.googleapis.com; img-src 'self' data: https://col.eum-appdynamics.com https://secure.comodo.com https://www.google-analytics.com https://www.trustlogo.com ; frame-src 'self' https://hard.cert-manager.com https://plugins.help.com https://vars.hotjar.com https://www.trustlogo.com https://secure.comodo.net https://secure.comodo.com https://www.youtube.com https://www.google.com ; object-src 'self' https://secure.comodo.net https://secure.comodo.com https://www.youtube.com ; connect-src 'self' https://hard.cert-manager.com https://insights.hotjar.com ; report-uri https://cspreports.comodo.com"
+          ],
+          "Content-Type": [
+            "application/octet-stream;charset=UTF-8"
+          ],
+          "Date": [
+            "Mon, 06 Aug 2018 18:07:48 GMT"
+          ],
+          "Keep-Alive": [
+            "timeout=15, max=100"
+          ],
+          "Server": [
+            "Apache"
+          ],
+          "Strict-Transport-Security": [
+            "max-age=15768000; includeSubDomains",
+            "max-age=15768000"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "content-disposition": [
+            "attachment; filename=test_colorado_edu_cert.cer"
+          ]
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://hard.cert-manager.com/api/ssl/v1/collect/655043/X509CO"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.1"
+}
