@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: colorparse
+Version: 0.0.1
+Summary: A string coloring package for terminals
+Home-page: https://github.com/tubi-carrillo/colorparse
+Author: Esteban Carrillo
+Author-email: estebancn0324@hotmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# Colorparse
+
+This unoriginal package let's the user generate strings with ansi color escape sequences (which are "*codes*" that tell the terminal what color to display the proceeding characters, and much more: <https://wikipedia.org/wiki/ANSI_escape_code>)
+
+Colorparse will simplify the work by reading it's self-defined "*color codes*" inside the strings (e.g. `;r` will produce the color red). For this module's  documentation, go to <https://github.com/tubi-carrillo/colorparse>.
+
+Beware that the words "color code(s)" will be used extensively.
+
+
