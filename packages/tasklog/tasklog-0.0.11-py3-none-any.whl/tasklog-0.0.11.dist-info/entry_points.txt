@@ -1,0 +1,3 @@
+[console_scripts]
+tasklog = tasklog.__main__:main
+
