@@ -1,0 +1,17 @@
+odoo/addons/oca_event_badge/CONTRIBUTORS.rst,sha256=z6e9HCa5tZZO7mBm2Kep9K60osUgzAV5dhaJB5__V30,65
+odoo/addons/oca_event_badge/CREDITS.rst,sha256=xMxu4M2Ia8u6kvvQIYGQ66oG7Xu_0rYmm9MTSvH2bcs,137
+odoo/addons/oca_event_badge/DESCRIPTION.rst,sha256=r3npPtczfK004V-bvmy8EwZIC4f-xCH7UcMdBQCuBqU,104
+odoo/addons/oca_event_badge/USAGE.rst,sha256=t-DxzXqJnm5V9EtHqRYbc1TcvFsmo8G41jsFztly6dI,96
+odoo/addons/oca_event_badge/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+odoo/addons/oca_event_badge/__manifest__.py,sha256=BZ84tqm8tubL2rjp57H1WxRTmc1GgEUM1c7bRKc6cZU,626
+odoo/addons/oca_event_badge/static/description/icon.png,sha256=6xBPJauaFOF0KDHfHgQopSc28kKvxMaeoQFQWZtfZDo,9455
+odoo/addons/oca_event_badge/static/src/css/event_event_template.css,sha256=q82VZT0Di3-dherpLIZUF1s3AplNZp9iJDJZilDaoT4,175
+odoo/addons/oca_event_badge/static/src/img/oca_board.png,sha256=rrWYAVSxb8RxUy23bC9lS-n3cquQuFt5-veb-qpPzfM,27854
+odoo/addons/oca_event_badge/static/src/img/oca_delegate.png,sha256=ZR5SRsx6eyESPZ9G7MvY7UnHfBdnTG4yywdfcohhDoM,26349
+odoo/addons/oca_event_badge/static/src/img/oca_member.png,sha256=7pqrONGvJhuBnf19yPRJwSBY--8htEgl0_f42t1n6AY,25615
+odoo/addons/oca_event_badge/views/event_event_template_asset_report.xml,sha256=W_FRXzIziH5-iY0LXLrGCORZQw6vpd6kvtGRKQxVngU,408
+odoo/addons/oca_event_badge/views/event_event_templates.xml,sha256=PxtdO4DGQpmPYE_rFgQfdw4WUZzAtHMoZCXzbn3JVJw,1981
+odoo11_addon_oca_event_badge-11.0.1.0.0.dist-info/METADATA,sha256=bPuWBfqU6jib_TDd26KnMYfcCA-_clX-MgKPTq1ZnAg,581
+odoo11_addon_oca_event_badge-11.0.1.0.0.dist-info/WHEEL,sha256=h_aVn5OB2IERUjMbi2pucmR_zzWJtk303YXvhh60NJ8,110
+odoo11_addon_oca_event_badge-11.0.1.0.0.dist-info/top_level.txt,sha256=qBj40grFkGOfDZ2WDSw3y1RnDlgG0u8rP8pvGNdbz4w,5
+odoo11_addon_oca_event_badge-11.0.1.0.0.dist-info/RECORD,,
