@@ -1,0 +1,13 @@
+aiobotocore[awscli]
+aiofiles
+aiohttp
+async-timeout
+asyncinit
+boto3==1.9.91
+idna
+idna-ssl
+python-dateutil
+taskcluster
+
+[pandas]
+pandas
