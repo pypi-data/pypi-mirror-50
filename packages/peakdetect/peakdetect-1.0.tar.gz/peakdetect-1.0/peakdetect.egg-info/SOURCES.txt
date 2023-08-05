@@ -1,0 +1,9 @@
+README.rst
+setup.py
+peakdetect/__init__.py
+peakdetect/peakdetect.py
+peakdetect.egg-info/PKG-INFO
+peakdetect.egg-info/SOURCES.txt
+peakdetect.egg-info/dependency_links.txt
+peakdetect.egg-info/requires.txt
+peakdetect.egg-info/top_level.txt
