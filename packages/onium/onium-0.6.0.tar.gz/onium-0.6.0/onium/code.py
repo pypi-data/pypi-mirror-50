@@ -1,0 +1,289 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import requests
+import os
+import platform
+import sys
+import time
+import operator
+import glob
+import subprocess
+import six
+import psutil
+import shutil
+from argparse import ArgumentParser,_SubParsersAction
+from sys import platform as _platform
+from colorama import init as colorama_init, Fore, Style
+from .asar import Asar
+from string import Template
+
+
+SLACK_PLUGIN_CODE = """
+const { app } = require('electron')
+const { BrowserWindow } = require('electron')
+
+payload = `
+function changeStyle() { 
+    var classes = ['ql-editor', 'c-message__body', 'message_body', 'c-message_attachment__text', 'msg_inline_attachment_row', 'c-mrkdwn__pre', 'c-message_kit__text'];
+
+    classes.forEach((cls) => {
+      for (let item of document.getElementsByClassName(cls))
+      { 
+        item.setAttribute('dir','auto');
+        item.style.textAlign = 'start';
+      }
+    });
+
+    classes = ['c-message__edited_label'];
+
+    classes.forEach((cls) => {
+      for (let item of document.getElementsByClassName(cls))
+      { 
+        item.style.display = 'inline-block';
+      }
+    });
+    
+
+    //$$('.ql-editor, .c-message__body, .message_body, .c-message_attachment__text, .msg_inline_attachment_row, .c-mrkdwn__pre, .c-message_kit__text').attr('dir', 'auto').css('text-align', 'start');
+    //$$('.c-message__edited_label').css('display','inline-block');
+}
+function doIt() {
+  document.getElementsByTagName('body')[0].addEventListener('DOMSubtreeModified', changeStyle)
+}
+
+doIt();
+`
+$debug_script
+
+app.on('web-contents-created', (evt, webContents) => {
+     webContents.on('did-finish-load', function() {
+        webContents.executeJavaScript(payload); 
+     });
+});
+"""
+
+SLACK_DEBUGGER_CODE = """
+app.commandLine.appendSwitch('remote-debugging-port', '9222');
+"""
+
+
+def find_app_local_path(app):
+    app_root = os.path.join(os.environ['LOCALAPPDATA'],app)
+    if os.path.isdir(app_root): # Local install mode
+        apps = os.path.join(app_root, "app-")
+        candidates = [x for x in glob.glob(os.path.join(apps + "*")) if os.path.isdir(x)]
+
+        versions = [[int(y) for y in x.rsplit('-',1)[-1].split('.')] for x in candidates]
+        max_index, max_value = max(enumerate(versions), key=operator.itemgetter(1))
+        return candidates[max_index]
+
+def find_app_store_path(app):
+    try:
+        app_root = subprocess.check_output(["powershell.exe", "-NoLogo", "-NoProfile", "-NonInteractive", '(Get-AppxPackage | where {$_.Name -match \"'+app+'\"} ).InstallLocation'])
+        app_root = app_root.decode('utf-8').strip()
+        if not os.path.isdir(app_root): return None
+        return os.path.join(app_root, app)
+    except subprocess.CalledProcessError:
+        pass
+
+
+def find_app_path(location, app):
+    if _platform == 'darwin':
+        if location == "auto":
+            p = '/Applications/' + app + '.app/Contents/MacOS'
+        else: 
+            p = location
+        if not os.path.isdir(p) or not os.path.isfile(os.path.join(p, app)):
+            raise Exception("%s is not a valid slack directory" % p)
+        asar_path = os.path.join(p,"resources") 
+        if len([name for name in os.listdir(p)]) is 1:
+                asar_path = '/Applications/' + app + '.app/Contents/Resources' 
+        return os.path.join(p, app), asar_path
+
+    elif _platform == 'win32' or _platform == 'win64':
+        if location == "store":
+            p = find_app_store_path(app)
+        elif location == "local":
+            p = find_app_local_path(app)
+        elif location == "auto":
+            p = find_app_local_path(app)
+            if p is None: p = find_app_store_path(app)
+        else:
+            p = location
+
+        if p is None:
+            raise Exception("Cannot find a valid {} path in {}".format(app, location))
+        if not os.path.isdir(p) or not os.path.isfile(os.path.join(p, app + ".exe")):
+            raise Exception("{} find a valid {} directory".format(p, app))
+        return os.path.join(p, app + ".exe"), os.path.join(p,"resources")
+
+    elif _platform.startswith('linux'):
+        p = None
+        if location == "auto":
+            for path in os.environ["PATH"].split(os.pathsep):
+                p = os.path.join(path, app)
+                if os.path.isfile(p) and os.access(p, os.X_OK):
+                    p=os.path.realpath(p)
+                    path=os.path.dirname(p)
+                    break
+        else:
+            p = location
+            path = os.path.split(location)
+
+        if p is None:
+            raise Exception("Could not find %s in path" % app)
+
+        if os.path.isfile(p) and os.access(p, os.X_OK):
+            return p, os.path.join(path, "resources")
+        else:
+            raise Exception("{} find a valid {} path".format(p, app))
+    else:
+        raise Exception ("%s is not a supported platform" % _platfom)
+
+
+def run_app(path, param):
+    DETACHED_PROCESS = 0x00000008
+
+    if _platform == 'darwin':
+        cmd = path
+        if param is not None:
+            cmd = cmd + " " + param
+        else:
+            cmd = "open -a " + cmd
+        subprocess.Popen([cmd], shell=True)
+
+    elif _platform == 'win32' or _platform == 'win64':
+        cmd = [path]
+        if param is not None:
+            cmd = cmd + [param]
+        subprocess.Popen(cmd, creationflags=DETACHED_PROCESS, shell=True)
+
+    elif _platform.startswith('linux'):
+        if (param is not None):
+            arg = [path, param]
+        else:
+            arg = path
+        subprocess.Popen(arg, shell=False)
+
+    else:
+        raise Exception("%s is not a supported platform" % _platfom)
+
+def kill_existing_app(app):
+    for i in psutil.process_iter():               
+        try:
+            name = os.path.splitext(i.name())[0]
+            if name.lower() == app:
+                six.print_("Killing %s process Pid:%s%s%s." % (app, Fore.GREEN, i.pid, Style.RESET_ALL), end='\n', flush=True)
+                try:
+                    i.terminate()
+                except:
+                    pass
+        except psutil.AccessDenied:
+            pass
+
+def edit_file(content, script, prefix):
+    COMMENT_PRE = "\n// ### INSERTED BELOW ### //\n".encode('utf-8')
+    COMMENT_POST = "\n// ### INSERTED ABOVE ### //\n".encode('utf-8')
+    loc_pre = content.rfind(COMMENT_PRE)
+    loc_post = content.rfind(COMMENT_POST)
+    if (loc_pre != -1): 
+        if (loc_post == -1): 
+            raise Exception("found prefix at %d but can't find postfix" % loc_pre)
+        content = content[:loc_pre] + content[loc_post:]
+    if prefix:
+        return COMMENT_PRE + script + COMMENT_POST + content
+    else:
+        return content + COMMENT_PRE + script + COMMENT_POST
+
+def find_target_file_in_asar(asar):
+    knowns = [
+            os.path.join("dist","main.js")
+    ]
+
+    for f in knowns: 
+        if f in asar: return f
+    raise Exception("Can't find any of %s in asar file" % str(knowns))
+    
+
+def do_edit_method(args, app_path, asar_path):
+    backup_file = os.path.join(asar_path, args.backup)
+    backup_unpacked_path = os.path.join(asar_path, args.backup + ".unpacked")
+    asar_file = os.path.join(asar_path, 'app.asar')
+    asar_unpacked_path = os.path.join(asar_path, 'app.asar.unpacked')
+    if os.path.exists(backup_file) or (os.path.exists(asar_unpacked_path) and os.path.exists(backup_unpacked_path)):
+        if not args.force:
+            raise Exception("Backup file already exists, consider using --force. Stopped" + backup_file)
+    else:
+        six.print_("Backup %s as %s%s%s." % ('app.asar', Fore.GREEN, backup_file, Style.RESET_ALL))
+        shutil.copy(asar_file, backup_file)
+        if os.path.exists(asar_unpacked_path):
+            shutil.copytree(asar_unpacked_path, backup_unpacked_path)
+
+    asar = Asar.open(asar_file)
+    stat_file = find_target_file_in_asar(asar)
+
+    template = Template(SLACK_PLUGIN_CODE)
+    if args.debug:
+        script = template.substitute(debug_script=SLACK_DEBUGGER_CODE)
+    else:
+        script = template.substitute(debug_script="")
+
+
+    asar[stat_file] = edit_file(asar[stat_file], script.encode('utf-8'), True)
+    six.print_("Marking %s%s%s in %s%s%s as unpacked file." % (Fore.GREEN, stat_file, Style.RESET_ALL, Fore.GREEN, asar_file, Style.RESET_ALL))
+    asar.mark_packed(stat_file, True)
+    asar.save(asar_file)
+    six.print_("Patching %s%s%s." % (Fore.GREEN, asar_file, Style.RESET_ALL))
+
+    if args.start:
+        six.print_("Running %s from %s %s." % ('slack', Fore.GREEN, app_path))
+        run_app(app_path, None)
+
+def main():
+    parser = ArgumentParser(description=""" 
+    Inject hebrew support plugin into Slack's tab inside an electron app.
+
+    This program injects the Chrome's hebrew_slack plugin into any electron (desktop) version of the slack app
+    """)
+    parser.add_argument("-l", "--location",
+                      action="store", dest="location", default="auto",
+                      help="Location of application to run, or auto, local (Windows only), store (Windows only) [default: auto]")
+
+    parser.add_argument("--no-kill", dest="kill", action='store_false',
+                        help="Do not attempt to kill original application before starting",
+                        default=True
+                        )
+
+    parser.add_argument("--no-start", dest="start", action='store_false',
+                        help="Do not attempt to start application (assume already running)",
+                        default=True
+                        )
+
+    parser.add_argument("-b", "--backup", 
+                         default = "app.asar.orig",
+                         help = "Name to use save original slack app backup. This will never overwrite an existing backup file. Fails if file already exists and not used with -f [default: %(default)s]")
+    parser.add_argument("-f", "--force", 
+                         default = False,
+                         action = "store_true",
+                         help = "Proceed even if backup file already exists [default: %(default)s]")
+
+    parser.add_argument("-d", "--debug",
+                        default = False,
+                        action = "store_true",
+                        help = "Pass --remote-debugging-port=9222 to enable rendered debugger with chrome")
+
+    # parse args
+    args  = parser.parse_args()
+
+    app_path, asar_path = find_app_path(args.location, 'slack')
+
+    colorama_init(autoreset=True)
+
+    if args.kill:
+        kill_existing_app('slack')
+
+
+    do_edit_method(args, app_path, asar_path)
+
+    six.print_("Done")
