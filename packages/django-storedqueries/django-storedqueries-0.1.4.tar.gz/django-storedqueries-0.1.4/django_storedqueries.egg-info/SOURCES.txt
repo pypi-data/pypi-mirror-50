@@ -1,0 +1,15 @@
+.coveragerc
+CHANGELOG
+LICENSE
+MANIFEST.in
+Makefile
+README.rst
+setup.cfg
+setup.py
+django_storedqueries.egg-info/PKG-INFO
+django_storedqueries.egg-info/SOURCES.txt
+django_storedqueries.egg-info/dependency_links.txt
+django_storedqueries.egg-info/not-zip-safe
+django_storedqueries.egg-info/requires.txt
+django_storedqueries.egg-info/top_level.txt
+storedqueries/__init__.py

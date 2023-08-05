@@ -1,0 +1,16 @@
+Change history for django-storedqueries
+-------------------------------------------------------------
+0.1.4
+^^^^^^
+
+* Changed the ``open`` and ``close`` methods of ``TemporaryTableEditor`` to avoid using the cursor as a context manager for greater compatibility (ie: I have an old internal project where this could be useful)
+
+0.1.3
+^^^^^^
+
+* Raise an exception at runtime if the temporary model being passed in delares ``ForeignKey`` etc without setting ``related_name="+"`` for each.
+* Add functionality for MySQL to detect if it can use the ``MEMORY`` engine.
+
+0.1.2
+^^^^^^
+* Initial release
