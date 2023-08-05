@@ -1,0 +1,15 @@
+rabbitmqX/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+rabbitmqX/command/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+rabbitmqX/command/command.py,sha256=g1q9-1myn1cus2PPBGX54QjXm-Q6eget4S7zdewm_dk,130
+rabbitmqX/journal/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+rabbitmqX/journal/journal.py,sha256=3T0E7pxTLyvLW_hq5xFheB2pLF34cl_6YUlm23lEk5o,197
+rabbitmqX/patterns/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+rabbitmqX/patterns/client/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+rabbitmqX/patterns/client/rpc_client.py,sha256=bTQ8ZLolZHlAAHtFfFhfokG__F9kbu6U_1v_3mFy_P0,1643
+rabbitmqX/patterns/server/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+rabbitmqX/patterns/server/rpc_server.py,sha256=dCRyp3m65Q7KPGEkbQLJYg8OEeTCXwLJX5Eo_zc8Tck,1507
+rabbitmqX-1.0.0.dist-info/LICENSE,sha256=UKq5d68373OtIsm_BVIPU-Lv2kJelU3SyQg9Gtw9KUs,11345
+rabbitmqX-1.0.0.dist-info/METADATA,sha256=rNs6uW1vxkd7St7aJG3x0Bx5stO4CUKhzD1xRS5fAYk,424
+rabbitmqX-1.0.0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+rabbitmqX-1.0.0.dist-info/top_level.txt,sha256=-4NkMNjga32OKhLRbfUcxaIhQE5YuVpmbr9uFOB-g0E,10
+rabbitmqX-1.0.0.dist-info/RECORD,,
