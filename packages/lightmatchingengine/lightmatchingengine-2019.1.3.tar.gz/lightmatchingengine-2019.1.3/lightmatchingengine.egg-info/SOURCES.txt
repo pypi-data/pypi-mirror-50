@@ -1,0 +1,17 @@
+.travis.yml
+LICENSE.txt
+MANIFEST
+MANIFEST.in
+Makefile
+README.md
+setup.cfg
+setup.py
+tox.ini
+lightmatchingengine/__init__.py
+lightmatchingengine/lightmatchingengine.py
+lightmatchingengine.egg-info/PKG-INFO
+lightmatchingengine.egg-info/SOURCES.txt
+lightmatchingengine.egg-info/dependency_links.txt
+lightmatchingengine.egg-info/top_level.txt
+tests/__init__.py
+tests/unit/test_basic_orders.py
