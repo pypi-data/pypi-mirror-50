@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: augmentation_lib
+Version: 0.0.3
+Summary: Image augmentation library
+Home-page: https://github.com/laume/augmentation_lib
+Author: Laura Lu
+Author-email: new4spam@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/laume/augmentation_lib
+Description: #Image augmentation library
+        
+        This image augmentation library can be used to crop, flip, blur, sharpen, mix channels, overlay images.
+        The main idea is to use only numpy library to perform this tasks.
+        
+        #Getting it
+        
+        To download augmentation_lib, either fork this github repo or simply use Pypi via pip.
+        $ pip install augmentation-lib
+        
+        #Using it
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
