@@ -1,0 +1,6 @@
+# whether to release on fedora. False by default
+fedora: true
+# list of fedora branches bot should release on. Master is always implied
+fedora_branches:
+  - f30
+trigger_on_issue: true
