@@ -1,0 +1,16 @@
+README.md
+setup.py
+./TCPClient.py
+./__init__.py
+TCPClient.egg-info/PKG-INFO
+TCPClient.egg-info/SOURCES.txt
+TCPClient.egg-info/dependency_links.txt
+TCPClient.egg-info/entry_points.txt
+TCPClient.egg-info/not-zip-safe
+TCPClient.egg-info/requires.txt
+TCPClient.egg-info/top_level.txt
+libs/__init__.py
+libs/clientAbstract.py
+libs/clientQt.py
+libs/clientSocket.py
+libs/frontend.py
