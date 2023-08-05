@@ -1,0 +1,5 @@
+osmium~=2.15
+pyparsing~=2.4
+pyyaml
+shapely~=1.6
+gdal~=2.4.1
