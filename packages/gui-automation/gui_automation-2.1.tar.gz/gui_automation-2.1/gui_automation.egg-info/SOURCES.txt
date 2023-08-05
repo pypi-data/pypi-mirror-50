@@ -1,0 +1,13 @@
+README.md
+setup.py
+gui_automation/__init__.py
+gui_automation/gui_automation.py
+gui_automation/image_detection.py
+gui_automation/image_loader.py
+gui_automation/mouse.py
+gui_automation/spot.py
+gui_automation.egg-info/PKG-INFO
+gui_automation.egg-info/SOURCES.txt
+gui_automation.egg-info/dependency_links.txt
+gui_automation.egg-info/requires.txt
+gui_automation.egg-info/top_level.txt
