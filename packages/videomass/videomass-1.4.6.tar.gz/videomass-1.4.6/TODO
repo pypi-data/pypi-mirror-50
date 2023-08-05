@@ -1,0 +1,35 @@
+
+************** NEW DEVELOPMENT CYCLE  july/2018 ***************
+
+This file serves as a scratch place for some ideas about things that are wanted
+in Videomass or that would be nice to have.
+
+This is a partial list of planned features that are yet to be implemented. 
+--------------------
+URGENCY: to do soon
+--------------------  
+Profile update:
+- profile to add audio traces to a movie;
+- profile to add audio track on images.
+  
+--------------
+URGENCY: high
+--------------
+
+-------------
+URGENCY: low
+-------------
+
+---------------
+URGENCY: medium
+----------------
+- The log view for the double pass should show the progressive pass number.
+  
+  EXAMPLE:
+  
+    file queue 1 of 1
+    ...pass 1 of 2
+    ...pass 2 of 2
+    
+
+
