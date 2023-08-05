@@ -1,0 +1,80 @@
+#!/usr/bin/env python3
+# encoding: utf-8
+
+# hiding GCP warning since we're using user creds
+import warnings
+warnings.filterwarnings("ignore", "Your application has authenticated using end user credentials")
+
+import yaml
+import os, sys
+import click
+from tabulate import tabulate
+from framl.assembler import Assembler
+from framl.config import Config
+from framl.flags import Flags
+
+current_path = os.getcwd()
+conf = Config( current_path )
+ass = Assembler( conf)
+
+@click.group()
+def root():
+    pass
+
+@root.command('init', help="To create and configure a new frame in the current directory")
+def init():
+    name = click.prompt('Model Name', type=click.STRING, err=True)
+    name = name.replace( ' ', '_' ).lower()
+
+    gcp = click.prompt('GCP Project id', type=click.STRING, err=True)
+
+    author = click.prompt('Author', type=click.STRING, err=True)
+    git = click.prompt('Git repo URL', type=click.STRING, default="")
+
+    desc = click.prompt('Description', type=click.STRING, default="")
+
+    conf_dict = ass.create_config(model_name=name, gcp_project_id=gcp, description=desc, author=author, git_url=git)
+    click.confirm(f"\nYou're about to create a frame in {current_path}/.\n"
+                  f"Here is your configuration file:\n{yaml.dump(conf_dict)}\n\n"
+                  f"Is this OK?", default=True, show_default=True, abort=True)
+
+    ass.download_skeleton()
+    ass.copy_base()
+    ass.save_conf_fil( conf_dict )
+
+    click.echo( "Frame successfully created created!")
+
+@root.group()
+def flags():
+    if not os.path.isfile( current_path + '/config.yaml'):
+        raise click.UsageError('No config.yaml in the current working directory. '
+                        'Please make sure you\'re at the right path')
+    conf.load_project_config()
+
+@flags.command('list', help="List declared and hosted flags")
+def list_flags():
+    try:
+        flags_ob = Flags(conf)
+        comp = flags_ob.compare_current_with_config()
+        click.echo(tabulate(comp, headers=['Declared', 'Pushed', 'Value', ''], tablefmt=""))
+    except Exception as e:
+        raise e
+        #raise click.ClickException( e )
+
+@flags.command('publish', help="List declared and hosted flags")
+def publish_flags():
+    flags_ob = Flags(conf)
+    comp = flags_ob.compare_current_with_config()
+    click.echo(tabulate(comp, headers=['Declared', 'Pushed', 'Value', ''], tablefmt=""))
+
+    click.confirm(f"\nYou're sure you want to continue?", default=True, show_default=True, abort=True)
+    flags_ob.save()
+
+    click.echo("Flags have been updated!")
+
+@flags.command('create', help="List declared and hosted flags")
+def list_flags():
+    print( 'coucou')
+
+
+root()
