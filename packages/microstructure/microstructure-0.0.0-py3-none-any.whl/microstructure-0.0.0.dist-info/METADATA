@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: microstructure
+Version: 0.0.0
+Summary: Library for dealing with microstructure.
+License: MIT
+Author: Dominik Steinberger
+Author-email: microstructure@steinberger.io
+Requires-Python: >=3.6,<4.0
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering :: Physics
+Description-Content-Type: text/markdown
+
+microstructure
+==============
+
+Library for dealing with microstructure.
+
