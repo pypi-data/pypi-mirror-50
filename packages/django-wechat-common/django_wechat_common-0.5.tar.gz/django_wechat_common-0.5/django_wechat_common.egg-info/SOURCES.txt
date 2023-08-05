@@ -1,0 +1,15 @@
+README.rst
+setup.cfg
+setup.py
+djang_wechat/__init__.py
+djang_wechat/apps.py
+djang_wechat/common.py
+djang_wechat/models.py
+djang_wechat/msg_admin.py
+djang_wechat/tag_admin.py
+djang_wechat/migrations/0001_initial.py
+djang_wechat/migrations/__init__.py
+django_wechat_common.egg-info/PKG-INFO
+django_wechat_common.egg-info/SOURCES.txt
+django_wechat_common.egg-info/dependency_links.txt
+django_wechat_common.egg-info/top_level.txt
