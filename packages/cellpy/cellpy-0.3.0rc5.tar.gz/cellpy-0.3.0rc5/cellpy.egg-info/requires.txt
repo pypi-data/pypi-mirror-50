@@ -1,0 +1,27 @@
+scipy
+numpy
+pandas
+python-box
+setuptools
+pyyaml
+matplotlib
+xlrd
+click
+PyGithub
+
+[:platform_system == "windows"]
+pyodbc
+
+[all]
+ipython
+jupyter
+lmfit
+matplotlib
+
+[batch]
+ipython
+jupyter
+
+[fit]
+lmfit
+matplotlib
