@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: GetConfigDictClass
+Version: 0.0.3
+Summary: PyPI GetConfigDictClass
+Home-page: https://github.com/laughterGod
+Author: hanziguo
+Author-email: hanziguo@foxmail.com
+License: UNKNOWN
+Description:  cf = GetConfigDictClass.GetConfigDictClass(filename, filepath)
+         
+         print (cf.sections())
+         
+         res = cf.get('Section1', 'foo')
+         
+         print (res)
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
