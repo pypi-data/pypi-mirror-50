@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: dynamodb-ce
+Version: 0.0.1
+Summary: A parser for DynamoDB conditional expressions that returns a truthy function
+Home-page: https://github.com/QuiNovas/dynamodb-conditional-expressions
+Author: Joseph Wortmann
+Author-email: jwortmann@quinovas.com
+License: Apache 2.0
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3.7
