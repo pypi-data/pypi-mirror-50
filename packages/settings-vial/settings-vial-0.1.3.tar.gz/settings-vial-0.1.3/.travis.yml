@@ -1,0 +1,29 @@
+language: python
+stages:
+- lint
+- test
+before_install:
+- pip install codecov
+install:
+- pip install tox-travis
+script: tox
+jobs:
+  include:
+  - python: '3.5'
+  - python: '3.6'
+  - python: '3.7'
+    dist: xenial
+    after_success:
+    - codecov
+  - stage: lint
+    python: '3.7'
+    script:
+    - tox -e lint,isort-check,black-check
+deploy:
+  provider: pypi
+  user: kpn-digital
+  skip_cleanup: true
+  password:
+    secure: Bw256IONSgq4rzJZlaCsFDh9W39fogoGQBYTxC2d91iNGyxPsOyt3lVf5bHdC3Z+ajRmZae+hQocPFdFzZxsQ7Y2xm/YthxoczK3F6llaHg5F35+Uc8DeBMg1/XRCJofmmwx1fF8TlfQg2am8mzIj0N+cJbg0yYmeCYb2MAsXyfYaOQ9a2+1p88XQ9kodGlOpAOXTloJEkQGvYiUr+HUmGlQ0r1KVGkr0HKMWa2e9/6uaSSfHq0Cjwv0eD/8rUoUApq80FWq68g0FBiyFCFdgFvCyjxwoBu6SUzPkBjdvF0XBiqpzYk3iWMe7ARurpaQaeshvaCuZXWTUhSFi8SyxLaWJVQic9zM2QF4C4klRyfj6rsoizNAxYkicB9btYVA42y+HqJFIP/InyEP2HAAASmrCM2xPwMPl1ZA2+KgNPnJgMbtf/Xpl9vY9DbaAKQ1YjPPN4KsXwQffYgeB5zf32qokK/6SkmMdjEn7ZI8RBGU7gFoTzD7BX5WgfX/YwjPcUVTLnMd9PZpMEV/XY/ddAlvSSDFzGr2v8cZwfW0a7tEsYLZv+Wqy+GUZJjixk6JcEvfaRqa4FWjOTdiFPw2Yz9IwKq2YM1qkVGrVrtFeXc6B1T54kWTnX3oqbIybKmDQg8O/IKHY6P37pxeqcR/FMjHT/I1ss+F7iT5TYP8oT4=
+  on:
+    tags: true
