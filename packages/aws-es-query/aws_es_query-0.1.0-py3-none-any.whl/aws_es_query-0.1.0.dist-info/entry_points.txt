@@ -1,0 +1,3 @@
+[console_scripts]
+aws-es-query = aws_es_query:main
+
