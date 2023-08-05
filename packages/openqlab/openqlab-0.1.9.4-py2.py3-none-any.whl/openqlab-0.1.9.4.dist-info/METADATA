@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: openqlab
+Version: 0.1.9.4
+Summary: An open-source collection of tools for quantum-optics experiments
+Home-page: https://gitlab.rrz.uni-hamburg.de/las-nq/openqlab
+Author: Group LasNQ, ILP, University of Hamburg
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Requires-Dist: pyserial
+Requires-Dist: Sphinx
+Requires-Dist: numpy
+Requires-Dist: scipy (>=1.1.0)
+Requires-Dist: pandas (>=0.23.3)
+Requires-Dist: matplotlib
+Requires-Dist: sphinx-rtd-theme
+Requires-Dist: tabulate
+Requires-Dist: recommonmark
+Requires-Dist: sphinx-markdown-tables
+Requires-Dist: wheel
+Requires-Dist: pytest (<4.0)
+Requires-Dist: pytest-cov (>=2.5.1)
+Requires-Dist: pytimeparse
+Requires-Dist: pytz
+Requires-Dist: pathlib
+Requires-Dist: datetime
+Requires-Dist: psutil
+Requires-Dist: statsmodels
+Requires-Dist: jsonpickle
+Requires-Dist: multiprocess
+Requires-Dist: dill
+Requires-Dist: requests
+Requires-Dist: six (>=1.12.0)
+Requires-Dist: python-dateutil (>=2.7.5)
+Requires-Dist: eml-parser (>=1.11)
+Requires-Dist: setuptools
+Requires-Dist: twine
+Requires-Dist: mypy
+Requires-Dist: pylint
+
+UNKNOWN
+
+
