@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+setup.py
+warp10_jupyter.egg-info/PKG-INFO
+warp10_jupyter.egg-info/SOURCES.txt
+warp10_jupyter.egg-info/dependency_links.txt
+warp10_jupyter.egg-info/not-zip-safe
+warp10_jupyter.egg-info/requires.txt
+warp10_jupyter.egg-info/top_level.txt
+warpscript/__init__.py
+warpscript/warp10_gateway.py
+warpscript/warp10_version.py
+warpscript/warpscript_magics.py
+warpscript/warp10-2.1.0/bin/warp10-2.1.0.jar
