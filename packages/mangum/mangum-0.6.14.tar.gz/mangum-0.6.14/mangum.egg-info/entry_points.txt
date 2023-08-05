@@ -1,0 +1,3 @@
+[console_scripts]
+mangum = mangum.__main__:main
+
