@@ -1,0 +1,4 @@
+include *.in
+include *.md
+include *.rst
+recursive-include m8tricks *.png
