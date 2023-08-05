@@ -1,0 +1,16 @@
+MANIFEST.in
+README.rst
+VERSION.txt
+setup.py
+src/lovely/__init__.py
+src/lovely/pytest/__init__.py
+src/lovely/pytest/docker/__init__.py
+src/lovely/pytest/docker/compose.py
+src/penguins_pytest_docker.egg-info/PKG-INFO
+src/penguins_pytest_docker.egg-info/SOURCES.txt
+src/penguins_pytest_docker.egg-info/dependency_links.txt
+src/penguins_pytest_docker.egg-info/entry_points.txt
+src/penguins_pytest_docker.egg-info/namespace_packages.txt
+src/penguins_pytest_docker.egg-info/not-zip-safe
+src/penguins_pytest_docker.egg-info/requires.txt
+src/penguins_pytest_docker.egg-info/top_level.txt
