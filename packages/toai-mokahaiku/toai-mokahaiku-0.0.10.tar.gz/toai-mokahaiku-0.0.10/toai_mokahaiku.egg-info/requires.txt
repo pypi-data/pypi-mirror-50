@@ -1,0 +1,16 @@
+attrs
+imagehash
+funcy
+Pillow
+seaborn
+numpy
+pandas
+sklearn
+fastprogress
+
+[tests]
+pytest
+pytest-pep8
+pytest-xdist
+pytest-cov
+pytest-timeout
