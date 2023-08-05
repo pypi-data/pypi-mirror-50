@@ -1,0 +1,15 @@
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+bin/pman
+pman/__init__.py
+pman/crunner.py
+pman/openshiftmgr.py
+pman/pman.py
+pman.egg-info/PKG-INFO
+pman.egg-info/SOURCES.txt
+pman.egg-info/dependency_links.txt
+pman.egg-info/not-zip-safe
+pman.egg-info/requires.txt
+pman.egg-info/top_level.txt
