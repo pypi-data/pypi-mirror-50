@@ -1,0 +1,14 @@
+README.rst
+setup.cfg
+setup.py
+dropboxfs/__init__.py
+dropboxfs/dropboxfs.py
+dropboxfs/opener.py
+dropboxfs/tests/__init__.py
+dropboxfs/tests/testone.py
+fs.dropboxfs.egg-info/PKG-INFO
+fs.dropboxfs.egg-info/SOURCES.txt
+fs.dropboxfs.egg-info/dependency_links.txt
+fs.dropboxfs.egg-info/entry_points.txt
+fs.dropboxfs.egg-info/requires.txt
+fs.dropboxfs.egg-info/top_level.txt
