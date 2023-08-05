@@ -1,0 +1,6 @@
+{% extends "admin/change_list.html" %}
+{% load admin_toggle_columns %}
+{% block filters %}
+    {#% toggle_columns %#}
+    {{ block.super }}
+{% endblock %}
