@@ -1,0 +1,15 @@
+README.md
+setup.py
+django_massmailer.egg-info/PKG-INFO
+django_massmailer.egg-info/SOURCES.txt
+django_massmailer.egg-info/dependency_links.txt
+django_massmailer.egg-info/requires.txt
+django_massmailer.egg-info/top_level.txt
+massmailer/__init__.py
+massmailer/admin.py
+massmailer/forms.py
+massmailer/models.py
+massmailer/query_parser.py
+massmailer/tasks.py
+massmailer/urls.py
+massmailer/views.py
