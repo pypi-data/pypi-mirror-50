@@ -1,0 +1,11 @@
+azure/__init__.py,sha256=ACgdTCPVpFSrDhMom8E5xDMBxH_nvndKbECs5Ph9zmU,408
+azure/cli/__init__.py,sha256=ACgdTCPVpFSrDhMom8E5xDMBxH_nvndKbECs5Ph9zmU,408
+azure/cli/command_modules/__init__.py,sha256=ACgdTCPVpFSrDhMom8E5xDMBxH_nvndKbECs5Ph9zmU,408
+azure/cli/command_modules/cloud/__init__.py,sha256=qeqgfxF_S28YG_aiTiglYU_l3CEWYBmYWaaAp9UaikY,4692
+azure/cli/command_modules/cloud/_completers.py,sha256=IgK9XSKKRjBkncpnkyYEfY7-SpSvekh2kwMRPSTBqcA,864
+azure/cli/command_modules/cloud/_help.py,sha256=XiHYz13ZO8ZtY2lOm0-l3qWbDVaGmuinbOiI2clnZPM,1413
+azure/cli/command_modules/cloud/custom.py,sha256=D82nzoICNQkk6C0wQukaKGA2ePpymHRmzYc4QNyGJwc,6665
+opal_azure_cli_cloud-2.1.4.dist-info/METADATA,sha256=1mTDCkg0P7l-F8CmV80elnrhn0CXPIiHwyQhNYZw3QE,3144
+opal_azure_cli_cloud-2.1.4.dist-info/WHEEL,sha256=h_aVn5OB2IERUjMbi2pucmR_zzWJtk303YXvhh60NJ8,110
+opal_azure_cli_cloud-2.1.4.dist-info/top_level.txt,sha256=S7DhWV9m80TBzAhOFjxDUiNbKszzoThbnrSz5MpbHSQ,6
+opal_azure_cli_cloud-2.1.4.dist-info/RECORD,,
