@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: izifile
+Version: 0.1.0
+Summary: 
+Home-page: UNKNOWN
+License: UNKNOWN
+Author: Andrii Maksymov
+Author-email: echoes@ex.ua
+Requires-Python: >=3.7,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: click (>=7.0,<8.0)
+Requires-Dist: pyyaml (>=5.1,<6.0)
