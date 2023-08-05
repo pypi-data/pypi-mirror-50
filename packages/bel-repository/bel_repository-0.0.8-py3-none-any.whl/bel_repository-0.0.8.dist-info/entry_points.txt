@@ -1,0 +1,3 @@
+[console_scripts]
+bel-repository = bel_repository.cli:main
+
