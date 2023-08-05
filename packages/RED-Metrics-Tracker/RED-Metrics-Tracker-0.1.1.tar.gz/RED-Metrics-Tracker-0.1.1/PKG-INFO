@@ -1,0 +1,7 @@
+Metadata-Version: 1.1
+Name: RED-Metrics-Tracker
+Version: 0.1.1
+Summary: RED Metrics tracker able to instrument flask views using prometheus metrics.
+Home-page: https://github.com/nlsdfnbch/RED-Metrics-Tracker
+Author: Nils Diefenbach
+Author-email: nlsdfnbch.foos@kolabnow.com
