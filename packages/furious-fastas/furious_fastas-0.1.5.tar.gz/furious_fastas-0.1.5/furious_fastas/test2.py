@@ -1,0 +1,72 @@
+# %load_ext autoreload
+# %autoreload 2
+
+# from pathlib import Path
+
+# from furious_fastas.fasta import Fasta, fasta
+# from furious_fastas.fastas import Fastas
+# from collections import Counter
+# from furious_fastas.contaminants import contaminants
+
+# # human_raw = download(uniprot_url['human'])
+# data_path = Path(r"~/Projects/furious_fastas/data").expanduser()
+# human = Fastas()
+# human.read(data_path/"human_raw.fasta")
+# human.repeat_stats()
+# human.fasta_types()
+
+# human.reverse()
+# human.fasta_types()
+# human.fasta_types()
+
+# human.extend(contaminants)
+
+# human[0].header
+# human[0].to_ncbi_general()
+
+# from furious_fastas.contaminants import raw_contaminants
+
+
+# f = Fasta(pf.header, pf.sequence)
+# f.reverse()
+
+
+
+
+
+
+# human.write(data_path/'matteo_test.fasta')
+# human[0]
+# human[10]
+
+# contaminated_human = human + contaminants
+# contaminated_human.repeat_stats()
+# contaminants.repeat_stats()
+
+
+# fasta(">gnl|db|REVERSE20565 REVERSE20565 Reversed Sequence 20565",
+#       "KSNEVGALIYKANSE")
+
+
+
+# f_sl = human[0]
+# f_tr = human[1]
+# f_tr.header = f_tr.header.replace('>sp|','>tr|')
+# f_gnl_reverse = Fasta(">gnl|db|REVERSE20565 REVERSE20565 Reversed Sequence 20565",
+#       "KSNEVGALIYKANSEDVGFTAEVRYEYPAGTIVPTRYEYPGGSIVPTRTVQENGGLKLFPSGQAGFQLFLRIVGGPDIIFTGRIVAAPDIIFTGKADLGTVPESSGAGRVPAYYSAADLGDKSWESFDAPTVDA")
+
+# f_gnl = Fasta(">gnl|db|P61513 RL37A_HUMAN 60S ribosomal protein L37a OS=Homo sapiens OX=9606 GN=RPL37A PE=1 SV=2",
+# "MAKRTKKVGIVGKYGTRYGASLRKMVKKIEISQHAKYTCSFCGKTKMKRRAVGIWHCGSCMKTVAGGAWTYNTTSAVTVKSAIRRLKELKDQ"
+# )
+
+# f_sl_reverse = Fasta(">REVERSE20431 Reversed Sequence 20431",
+# "IKLKKTTELRKKLLEGMELLSHLYSSQVKGQVTKSFKREEPSLSTDELILEELKLAILHTELGKIHDVVNSILTQLGTVYDQFSTFVPPMIISTEKKKKKKKQLNLKYPRLVSECYSSVWLIVSITEVFFVLNELLTPHTKLNGDKVELLDGKCKSFVDKLQDLLSKFSNEIREQIEMTDELGSTDLEYIDNVLYFSSIQCQSCGSNFFGGMRTPVPGLFPYQIDKEIFRKGTELTAELQQLLLRLIDIRSSVGNEATKESNKPEVPHNLSPLGSILRLTLSRIRLWLTEEELSLKKHEESVDRDKPDWSFFVNLDRNDRLDEWPIDDEEPRLNMSKISEALSTSINAELLLDLLMRETRVQAFHLSNNLRNRFAIFEPIKEFAGYKYAQIIYESTDKQNSHFFRLAFNCSQSAAAYQGLSEAYRTLLYGITDHQIHKADLSSYLDVVPEFAGLMCYIRVLLLKFQANSPSHTLGEELLTLAQWVTTEDGTERWVDILAHVALLCYYDSFQLETKLCTKGFELGHQYRLMLERVVSLKQNKDMTHYLGLLRTLQVVCLHQQLARIDAPLALKDETPTSLPVVGLLQNIFKTCQTAPLLDVFVKLDTFCCPKDGFKKFYQFMLEEPDGLKYEDNCGQSRLRRILELKALHPGRLHRSSKSEETIRDEIFKVAKEASYHVEGELSHEGEAPPSWAEEILRFVSDFYTLYFQWDDSNKLLLRRSLANCEPWRSLKKYMAMCKNERSQIESTLKEGLKGRIVDLAEQYKGLRELIMYYLEVEAEAEIKDEKVMKEVMREALPLFMTKSLNEDQASISQMILSMVSWFYYPNKPVIKYLAMGAQQMKKYEGVRAYAMFLHSHYEESNPVKKVAAEYLKTVLEPRHMERYLITLAQLSNDDTPELAAVEQALTFAEEQKGTRQLGIAKLVKACHLDKHKKLLKDAQQIAMKNNGNDLYDYIPRLRRDNPDQVHGRTAM")
+# f = f_sl
+
+# w = get_fasta_auto(">REVERSE20431 Reversed Sequence 20431", "IKLKKTT")
+# w.accession
+# w.entry
+# w.description
+
+# ParsedFasta(f.header, f.sequence)
+# str('')
