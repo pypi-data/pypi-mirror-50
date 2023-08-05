@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: caisson
+Version: 0.0.1
+Summary: Recursive file decompressor
+Home-page: UNKNOWN
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Keywords: compress,decompress,unzip,7z,unrar
+Platform: UNKNOWN
+
+# `caisson`: The Recursive File Decompressor
+
+## Usage
+
+```
+$ caisson <src1> <src2> <srcN> <dst>
+```
+
+* `src`: Can be a file or a directory
+
+

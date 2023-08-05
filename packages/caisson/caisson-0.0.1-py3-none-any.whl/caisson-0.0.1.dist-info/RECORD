@@ -1,0 +1,14 @@
+caisson/__init__.py,sha256=t5fAxjaU8dN8xpQR2vz0ZGhfTkdVy2RCbkhJhZFglk4,50
+caisson/__main__.py,sha256=G31UmjzE4teZCSc04xdqKHtf7FdtwxOCj-uyOuvvGmE,963
+caisson/configuration.py,sha256=qCxupjwciurPvT3C3bmRZIhH6Eody3ZOVlYLWhD9eIU,162
+caisson/constants.py,sha256=CY7vvuVSqjNplTUcSMhKy17rDV4VBOCQGl0BlKse_Q8,78
+caisson/decompressors.py,sha256=BMgdoT-k30vj9JihbaBlSp2pm3KSuzKuvJPjejosKLg,3741
+caisson/io.py,sha256=9YEADxqabzPQ8dDKc3O8yT6XYzu3gpSCOPIcElpQHCA,2837
+caisson/parser.py,sha256=aJGCGcCZ55dBUbWiLPJuxNeGnrVNgxJz9m3AHg0OyFU,1158
+caisson-0.0.1.dist-info/LICENSE,sha256=OXLcl0T2SZ8Pmy2_dmlvKuetivmyPd5m1q-Gyd-zaYY,35149
+caisson-0.0.1.dist-info/METADATA,sha256=L-q_b2MiLc5fOh5qa7ydgbGTaCRom3dN67es_5AExl8,368
+caisson-0.0.1.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+caisson-0.0.1.dist-info/entry_points.txt,sha256=W2gaO8guI7tJtE4-FVgbf5XpUWnF5k_46OQ3dvroWGY,51
+caisson-0.0.1.dist-info/top_level.txt,sha256=55X0Cup1S-jUZvlyy5uo7wCOciSezvYO4mXljC3SqqI,8
+caisson-0.0.1.dist-info/zip-safe,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
+caisson-0.0.1.dist-info/RECORD,,
