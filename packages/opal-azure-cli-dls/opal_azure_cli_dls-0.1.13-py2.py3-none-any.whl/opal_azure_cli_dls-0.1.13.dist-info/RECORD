@@ -1,0 +1,14 @@
+azure/__init__.py,sha256=jwUpEftyp-71KJZRiDO8VY0bF3pPg2gQauDzBT8mzRc,409
+azure/cli/__init__.py,sha256=jwUpEftyp-71KJZRiDO8VY0bF3pPg2gQauDzBT8mzRc,409
+azure/cli/command_modules/__init__.py,sha256=jwUpEftyp-71KJZRiDO8VY0bF3pPg2gQauDzBT8mzRc,409
+azure/cli/command_modules/dls/__init__.py,sha256=cSbL57Qg0DzOKxXclE5zHGpz0t5PdTVanPo39WCP3JM,1480
+azure/cli/command_modules/dls/_client_factory.py,sha256=eSvU71jcGebvMO6kVIiAhIafuoaX71funZ_WGqqzIus,2112
+azure/cli/command_modules/dls/_help.py,sha256=sWxvo8H0HKfosChbdDjnQIxrZmU8wifeomKeqnkiebM,13034
+azure/cli/command_modules/dls/_params.py,sha256=9nlAqNH3Vm7GUNNVhAtgskLwlwEMv0_dfzGVWr9APJo,9334
+azure/cli/command_modules/dls/_validators.py,sha256=l6gBLAZN67_eooVKI_Y_9lFIOK9H38kc_saz74Omt90,2644
+azure/cli/command_modules/dls/commands.py,sha256=DDSABGA6reaqX1zrbQnVka6nlRWqfgrzEX5OhPzy3dw,4671
+azure/cli/command_modules/dls/custom.py,sha256=p2iHOft_xqO765wXkFvSpbW4CVTT-vJMg9iR7t7ZnTo,12482
+opal_azure_cli_dls-0.1.13.dist-info/METADATA,sha256=jwdTNbtJTYxFJ6j-xGd9KNXO63V6P0r2qPeMwNQD44M,4116
+opal_azure_cli_dls-0.1.13.dist-info/WHEEL,sha256=h_aVn5OB2IERUjMbi2pucmR_zzWJtk303YXvhh60NJ8,110
+opal_azure_cli_dls-0.1.13.dist-info/top_level.txt,sha256=S7DhWV9m80TBzAhOFjxDUiNbKszzoThbnrSz5MpbHSQ,6
+opal_azure_cli_dls-0.1.13.dist-info/RECORD,,
