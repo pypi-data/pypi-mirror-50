@@ -1,0 +1,17 @@
+istsosproto/__init__.py,sha256=PmjqJHqRCE65hDzjeOFtsBHp7puPvTfcCBtap6qI4JI,4282
+istsosproto/databasic_grpc.py,sha256=4WAhOzQP_SPyDjICcNPmaLU0cB0G6aU9FGVbVBxaR9g,6214
+istsosproto/databasic_pb2.py,sha256=4qObdl4pGocYWXe-dae7OjvUjmaR7TMXMtjGu_8aD6g,17711
+istsosproto/dataprofile_grpc.py,sha256=o386xrbTUCqOPdD_reLo6vDx7RPrKjL27RLGnLblYxc,989
+istsosproto/dataprofile_pb2.py,sha256=Nz73nPjeWroTdAizrCxQD9cM-IoJ6qHwB7wY4t-oVVQ,2710
+istsosproto/dataraster_grpc.py,sha256=5-aJSgNEMfiGuqvuX9U2mVT2Ea9CdTgdwwbJBJNYil4,973
+istsosproto/dataraster_pb2.py,sha256=VsXokuXnjBnJibGY1A9wXDLlxJCJ5pB2Wn91IUCS7X8,2671
+istsosproto/metadata_grpc.py,sha256=t6EzI2MfNJqssjo8Kw0heVj94dWI0EwZXmCYmZC0iGs,3309
+istsosproto/metadata_pb2.py,sha256=HEOW_cxCzB67LLD9ryoxbuX3UvbIMQr02Mp4ops1otI,46636
+istsosproto/query_grpc.py,sha256=eEmR_WsbqUP3NrBJodcrdpVTrQITl9UO7inLhFopgPc,123
+istsosproto/query_pb2.py,sha256=sxKP5arji4cL88Vi30zTCLRk_V9sUJlnFOP1fe9lsas,21755
+istsosproto/spatial_grpc.py,sha256=DiRzZq0GAdtQ1DI0ldj0Kkf8Zrn1DFLfx62QX3ciMkI,4523
+istsosproto/spatial_pb2.py,sha256=lLw6ocGSCVDFqG_u3dGOVpGwBRXua7ALAwbklmmqkt4,13535
+istsos_proto-0.0.1b3.dist-info/METADATA,sha256=TIOhUnB4gQydfU8XSr3ojPdX1WFsTVFw0dQx5moVshw,4140
+istsos_proto-0.0.1b3.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+istsos_proto-0.0.1b3.dist-info/top_level.txt,sha256=CrzSSIj17s6cByXlPWfRqup5DFg-YAaq1EPYEcoegtQ,12
+istsos_proto-0.0.1b3.dist-info/RECORD,,
