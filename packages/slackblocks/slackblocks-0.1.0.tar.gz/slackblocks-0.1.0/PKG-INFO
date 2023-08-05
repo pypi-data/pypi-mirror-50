@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: slackblocks
+Version: 0.1.0
+Summary: Python wrapper for the Slack Blocks API
+Home-page: https://github.com/nicklambourne/slackblocks
+Author: Nicholas Lambourne
+Author-email: nick@ndl.im
+License: UNKNOWN
+Description: # slackblocks
+        Python API for Building Messages Using the Slack Blocks API
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Typing :: Typed
+Classifier: Topic :: Communications :: Chat
+Description-Content-Type: text/markdown
