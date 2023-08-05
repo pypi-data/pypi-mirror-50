@@ -1,0 +1,10 @@
+README.md
+setup.py
+src/confseq/__init__.py
+src/confseq/python_interface.cpp
+src/confseq.egg-info/PKG-INFO
+src/confseq.egg-info/SOURCES.txt
+src/confseq.egg-info/dependency_links.txt
+src/confseq.egg-info/not-zip-safe
+src/confseq.egg-info/requires.txt
+src/confseq.egg-info/top_level.txt
