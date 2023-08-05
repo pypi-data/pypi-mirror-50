@@ -1,0 +1,4 @@
+azure-batch==6.0.0
+azure-mgmt-batch==6.0.0
+azure-mgmt-keyvault==1.1.0
+opal-azure-cli-core>=2.0.68
