@@ -1,0 +1,71 @@
+Metadata-Version: 2.1
+Name: spyrate
+Version: 0.1.5
+Summary: Python bindings to the Radiative Transfer for Energetics library
+Home-page: https://github.com/JoyMonteiro/spyrate
+Author: Joy Merwin Monteiro
+Author-email: joy.merwin@gmail.com
+License: BSD license
+Keywords: spyrate
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: cffi (>=1.12.3)
+Requires-Dist: numpy (>=1.16.0)
+
+=======
+spyrate
+=======
+
+
+.. image:: https://img.shields.io/pypi/v/spyrate.svg
+        :target: https://pypi.python.org/pypi/spyrate
+
+.. image:: https://img.shields.io/travis/JoyMonteiro/spyrate.svg
+        :target: https://travis-ci.org/JoyMonteiro/spyrate
+
+.. image:: https://readthedocs.org/projects/spyrate/badge/?version=latest
+        :target: https://spyrate.readthedocs.io/en/latest/?badge=latest
+        :alt: Documentation Status
+
+
+
+
+Python bindings to the Radiative Transfer for Energetics library
+
+
+* Free software: BSD license
+* Documentation: https://spyrate.readthedocs.io.
+
+
+Features
+--------
+
+* TODO
+
+Credits
+-------
+
+This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+
+
+=======
+History
+=======
+
+Latest changes
+------------------
+
+* Add numpy to requirements
+* Get Travis build up
+* Initial commit
+
+
