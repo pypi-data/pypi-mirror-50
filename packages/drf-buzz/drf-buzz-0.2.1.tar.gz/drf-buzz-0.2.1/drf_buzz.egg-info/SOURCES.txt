@@ -1,0 +1,12 @@
+CHANGES.md
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+drf_buzz/__init__.py
+drf_buzz/utils.py
+drf_buzz.egg-info/PKG-INFO
+drf_buzz.egg-info/SOURCES.txt
+drf_buzz.egg-info/dependency_links.txt
+drf_buzz.egg-info/requires.txt
+drf_buzz.egg-info/top_level.txt
