@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: sitecomber-article-tests
+Version: 0.0.33
+Summary: Article related tests for Sitecomber
+Home-page: https://github.com/ninapavlich/sitecomber-article-tests
+Author: Nina Pavlich
+Author-email: nina@ninalp.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
