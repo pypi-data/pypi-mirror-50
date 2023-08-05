@@ -1,0 +1,10 @@
+README.md
+setup.py
+sudoku_manager/__init__.py
+sudoku_manager/area.py
+sudoku_manager/cell.py
+sudoku_manager/sudoku.py
+sudoku_manager.egg-info/PKG-INFO
+sudoku_manager.egg-info/SOURCES.txt
+sudoku_manager.egg-info/dependency_links.txt
+sudoku_manager.egg-info/top_level.txt
