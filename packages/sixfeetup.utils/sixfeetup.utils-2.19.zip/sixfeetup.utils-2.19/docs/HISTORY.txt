@@ -1,0 +1,14 @@
+Changelog
+=========
+
+2.19 - (2019-07-31)
+-------------------
+
+* Python 3 compatibility
+
+2.18 - (2018-12-11)
+-------------------
+
+* Work around an issue with the upgrade from Plone from 5.1.2 to 5.1.4:
+  `AttributeError: REQUEST`.
+  [rpatterson]

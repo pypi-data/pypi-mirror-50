@@ -1,0 +1,40 @@
+Metadata-Version: 1.1
+Name: sixfeetup.utils
+Version: 2.19
+Summary: A collection of commonly used code snippets
+Home-page: http://www.sixfeetup.com/
+Author: Six Feet Up, Inc.
+Author-email: info@sixfeetup.com
+License: GPL
+Description: Introduction
+        ============
+        
+        The purpose of this package is to put some common code used by the Six Feet Up folks all in one place.
+        
+        Installation
+        ------------
+        
+        See docs/INSTALL.txt
+        
+        
+        Changelog
+        =========
+        
+        2.19 - (2019-07-31)
+        -------------------
+        
+        * Python 3 compatibility
+        
+        2.18 - (2018-12-11)
+        -------------------
+        
+        * Work around an issue with the upgrade from Plone from 5.1.2 to 5.1.4:
+          `AttributeError: REQUEST`.
+          [rpatterson]
+        
+        
+Keywords: plone zope utils
+Platform: UNKNOWN
+Classifier: Framework :: Plone
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
