@@ -1,0 +1,3 @@
+[console_scripts]
+plz=pretty_plz.main:main
+
