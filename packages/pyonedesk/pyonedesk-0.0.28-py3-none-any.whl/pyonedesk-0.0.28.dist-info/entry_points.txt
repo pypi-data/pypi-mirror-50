@@ -1,0 +1,3 @@
+[console_scripts]
+pyonedesk = pyonedesk.main:main
+
