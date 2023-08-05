@@ -1,0 +1,4 @@
+#!python
+
+from pypax.pypax import pax_hello
+pax_hello(15)
