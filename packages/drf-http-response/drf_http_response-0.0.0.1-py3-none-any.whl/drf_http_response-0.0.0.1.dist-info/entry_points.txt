@@ -1,0 +1,3 @@
+[console_scripts]
+drf_http_response = drf_http_response.responses:main
+

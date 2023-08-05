@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: drf-http-response
+Version: 0.0.0.1
+Summary: UNKNOWN
+Home-page: https://github.com/Kutumbita/drf_http_reponse
+Author: Raisul
+Author-email: raisul@kutumbita.com
+License: License :: OSI Approved :: MIT License
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# drf_http_response
+A DRF http custom response
+
