@@ -1,0 +1,6 @@
+dnspython>=1.16.0
+expiringdict
+pyleri
+publicsuffix2
+requests
+timeout-decorator
