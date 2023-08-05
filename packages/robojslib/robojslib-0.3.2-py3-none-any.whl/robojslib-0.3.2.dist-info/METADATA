@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: robojslib
+Version: 0.3.2
+Summary: A simple RobotFramework keyword library written using Vanilla/Python
+Home-page: https://github.com/andreagubellini/RoboJSLib
+Author: Andrea Gubellini
+Author-email: agubellini@yahoo.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: robotframework
+Requires-Dist: robotframework-seleniumlibrary
+
+UNKNOWN
+
+
