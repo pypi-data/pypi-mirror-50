@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: nerf
+Version: 0.1.6
+Summary: Second test version of NERF
+Home-page: UNKNOWN
+Author: Yue Zhang
+Author-email: yue.zhang@lih.lu
+License: UNKNOWN
+Description: NERF is an interpretation tool for scikit-learn built random forest modelsNERF is designed to capture synergy effect between biological molecule.
+Keywords: random forest,interpretation
+Platform: any
