@@ -1,0 +1,4 @@
+[console_scripts]
+geofinder = geofinder.GeoFinder:entry
+geoutil = geofinder.GeoUtil:entry
+
