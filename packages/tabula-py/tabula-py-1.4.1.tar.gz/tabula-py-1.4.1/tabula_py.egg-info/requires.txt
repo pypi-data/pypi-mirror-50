@@ -1,0 +1,12 @@
+pandas
+numpy
+distro
+
+[dev]
+pytest
+flake8
+black
+isort
+
+[test]
+pytest
