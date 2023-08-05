@@ -1,0 +1,12 @@
+README.md
+setup.py
+IGVSessions/__main__.py
+camu/__main__.py
+camu.egg-info/PKG-INFO
+camu.egg-info/SOURCES.txt
+camu.egg-info/dependency_links.txt
+camu.egg-info/requires.txt
+camu.egg-info/top_level.txt
+detectFIO/__main__.py
+findDupAndLinked/__main__.py
+snapshotIGV/__main__.py
