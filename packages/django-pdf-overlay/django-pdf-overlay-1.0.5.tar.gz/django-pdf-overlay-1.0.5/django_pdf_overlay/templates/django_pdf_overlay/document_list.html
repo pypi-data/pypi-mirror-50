@@ -1,0 +1,28 @@
+{% extends 'django_pdf_overlay/base.html' %}
+
+{% block content %}
+
+    <table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Page Count</th>
+        <th>Used</th>
+        <th>Created</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for document in object_list %}
+            <tr>
+                <th scope="row">{{ document.pk }}</th>
+                <td><a href="{{ document.get_absolute_url }}">{{ document.name }}</a></td>
+                <td>{{ document.pages.count }}</td>
+                <td>{{ document.times_used }}</td>
+                <td>{{ document.inserted }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+
+{% endblock %}

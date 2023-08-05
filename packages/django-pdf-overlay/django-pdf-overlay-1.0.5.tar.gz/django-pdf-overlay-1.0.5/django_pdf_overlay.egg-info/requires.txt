@@ -1,0 +1,4 @@
+Django>=1.11
+django-bootstrap4
+PyPDF2
+reportlab
