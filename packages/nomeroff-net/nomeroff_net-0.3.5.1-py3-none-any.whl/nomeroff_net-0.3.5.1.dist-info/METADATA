@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: nomeroff-net
+Version: 0.3.5.1
+Summary: Automatic numberplate recognition system
+Home-page: https://github.com/ria-com/nomeroff-net
+Author: Dmytro Probachay, Oleg Cherniy
+Author-email: dimabendera@gmail.com, oleg.cherniy@ria.com
+License: MIT
+Keywords: Nomeroff Net ai  Mask_RCNN OCR GRU opensource license number plate recognition licenseplate numberplate license-plate number-plate ria-com RIA.com ria
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Dist: GitPython
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+Requires-Dist: Keras
+Requires-Dist: Cython
+Requires-Dist: pycocotools
+Requires-Dist: tensorflow
+Requires-Dist: opencv-python
+Requires-Dist: imutils
+Requires-Dist: scikit-image
+Requires-Dist: jupyter
+Requires-Dist: asyncio
+Requires-Dist: imgaug
+
+Nomeroff Net is a opensource python license plate recognition framework based on the application of a convolutional neural network on the Mask_RCNN architecture, and cusomized OCR-module powered by GRU architecture. The project is now at the initial stage of development, write to us if you are interested in helping us in the formation of a dataset for your country.
+
+
