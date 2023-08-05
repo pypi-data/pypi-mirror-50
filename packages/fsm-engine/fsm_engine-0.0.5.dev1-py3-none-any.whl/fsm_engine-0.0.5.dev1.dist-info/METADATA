@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: fsm-engine
+Version: 0.0.5.dev1
+Summary: Finite State Machine engine implementation
+Home-page: https://github.com/delbio/py-automata
+Author: Fabio Del Bene
+Author-email: delbio87@gmail.com
+License: UNKNOWN
+Project-URL: Bug Reports, https://github.com/delbio/py-automata/issues
+Project-URL: Source, https://github.com/delbio/py-automata/
+Keywords: sample automata finite state machine engine
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3
+Description-Content-Type: text/markdown
+
+# Fsm
+
+
+
