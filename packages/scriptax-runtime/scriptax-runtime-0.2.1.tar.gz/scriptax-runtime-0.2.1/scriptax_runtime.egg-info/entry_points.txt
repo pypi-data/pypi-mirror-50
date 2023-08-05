@@ -1,0 +1,4 @@
+[console_scripts]
+scriptax = scriptax_runtime.scriptax.cli:scriptax
+spm = scriptax_runtime.scriptax.spm:spm
+
