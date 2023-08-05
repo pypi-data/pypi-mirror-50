@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: transcriptic
+Version: 7.0.0
+Summary: Transcriptic CLI & Python Client Library
+Home-page: https://github.com/transcriptic/transcriptic
+License: BSD
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.5
+Requires-Dist: Click (<8,>=7.0)
+Requires-Dist: requests (<3,>=2.0)
+Requires-Dist: python-magic (<1,>=0.4)
+Requires-Dist: Jinja2 (<3,>=2.0)
+Provides-Extra: analysis
+Requires-Dist: pandas (<1,>=0.23) ; extra == 'analysis'
+Requires-Dist: matplotlib (<2,>=1.4) ; extra == 'analysis'
+Requires-Dist: scipy (<1,>=0.14) ; extra == 'analysis'
+Requires-Dist: numpy (<2,>=1.14) ; extra == 'analysis'
+Requires-Dist: plotly (==1.9.6) ; extra == 'analysis'
+Requires-Dist: pillow (<4,>=3) ; extra == 'analysis'
+Provides-Extra: docs
+Requires-Dist: releases (<2,>=1.5) ; extra == 'docs'
+Requires-Dist: mock (<4,>=3) ; extra == 'docs'
+Requires-Dist: Sphinx (<1.8,>=1.7) ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme (<1,>=0.4) ; extra == 'docs'
+Provides-Extra: jupyter
+Requires-Dist: pandas (<1,>=0.23) ; extra == 'jupyter'
+Provides-Extra: test
+Requires-Dist: coverage (<5,>=4.5) ; extra == 'test'
+Requires-Dist: jsonschema (<3,>=2.6) ; extra == 'test'
+Requires-Dist: mock (<4,>=3) ; extra == 'test'
+Requires-Dist: pylint (<2,>=1.9) ; extra == 'test'
+Requires-Dist: pytest (<5,>=4) ; extra == 'test'
+Requires-Dist: pytest-cov (<3,>=2) ; extra == 'test'
+Requires-Dist: tox (<4,>=3.7) ; extra == 'test'
+
+UNKNOWN
+
+
