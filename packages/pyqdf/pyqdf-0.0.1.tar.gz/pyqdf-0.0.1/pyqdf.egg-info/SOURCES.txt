@@ -1,0 +1,12 @@
+README.md
+setup.cfg
+setup.py
+pyqdf/__init__.py
+pyqdf/container.py
+pyqdf/qvf.py
+pyqdf/qvs.py
+pyqdf/repository.py
+pyqdf.egg-info/PKG-INFO
+pyqdf.egg-info/SOURCES.txt
+pyqdf.egg-info/dependency_links.txt
+pyqdf.egg-info/top_level.txt
