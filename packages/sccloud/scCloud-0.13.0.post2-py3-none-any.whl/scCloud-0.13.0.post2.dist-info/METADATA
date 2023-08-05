@@ -1,0 +1,67 @@
+Metadata-Version: 2.1
+Name: scCloud
+Version: 0.13.0.post2
+Summary: scRNA-Seq analysis tools that scale to millions of cells
+Home-page: https://github.com/klarman-cell-observatory/scCloudPy
+Author: Bo Li, Joshua Gould, Yiming Yang, Siranush Sarkizova, Marcin Tabaka, Orr Ashenberg, et al.
+Author-email: libo@broadinstitute.org, jgould@broadinstitute.org, sarkizova@broadinstitue.org, mtabaka@broadinstitute.org, orr@broadinstitute.org
+License: UNKNOWN
+Keywords: single cell RNA-Seq data analysis
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Framework :: Jupyter
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Requires-Python: ~=3.5
+Requires-Dist: matplotlib (>=2.0.0)
+Requires-Dist: pandas (>=0.21)
+Requires-Dist: Cython
+Requires-Dist: scipy (==1.2.1)
+Requires-Dist: seaborn
+Requires-Dist: scikit-learn (<=0.21.1,>=0.19.1)
+Requires-Dist: statsmodels
+Requires-Dist: natsort
+Requires-Dist: numba (<0.44.0)
+Requires-Dist: numpy
+Requires-Dist: tables
+Requires-Dist: xlsxwriter
+Requires-Dist: loompy
+Requires-Dist: leidenalg
+Requires-Dist: docopt
+Requires-Dist: setuptools
+Requires-Dist: plotly
+Requires-Dist: pybind11
+Requires-Dist: umap-learn
+Requires-Dist: pyarrow
+Requires-Dist: lightgbm (==2.2.1)
+Requires-Dist: joblib
+Requires-Dist: scikit-misc
+Requires-Dist: anndata-modified
+Requires-Dist: fisher-modified
+Requires-Dist: hnswlib-modified
+Requires-Dist: louvain-github
+Requires-Dist: MulticoreTSNE-modified
+Provides-Extra: fitsne
+Requires-Dist: fitsne ; extra == 'fitsne'
+Provides-Extra: mkl
+Requires-Dist: mkl ; extra == 'mkl'
+
+====================================
+Single Cell Cloud tools (scCloud)
+====================================
+
+scCloud is a tool for analyzing transcriptomes of millions of single cells. It is a command line tool, a python package and a base for Cloud-based analysis workflows.
+
+`Read documentation <http://sccloud.readthedocs.io>`__
+
+
