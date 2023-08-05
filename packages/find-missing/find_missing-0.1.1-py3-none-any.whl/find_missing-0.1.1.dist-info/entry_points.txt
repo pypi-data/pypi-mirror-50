@@ -1,0 +1,3 @@
+[console_scripts]
+find-missing=find_missing:main
+
