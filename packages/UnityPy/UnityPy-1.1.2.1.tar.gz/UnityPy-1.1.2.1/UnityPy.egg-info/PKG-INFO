@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: UnityPy
+Version: 1.1.2.1
+Summary: Python implementation of the .unity3d format
+Home-page: https://github.com/K0lb3/UnityPy
+Author: K0lb3
+Author-email: UNKNOWN
+License: UNKNOWN
+Download-URL: https://github.com/K0lb3/UnityPy/tarball/master
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Multimedia :: Graphics
