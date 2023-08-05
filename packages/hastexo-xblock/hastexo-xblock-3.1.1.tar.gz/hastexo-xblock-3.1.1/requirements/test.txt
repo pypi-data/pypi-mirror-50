@@ -1,0 +1,10 @@
+-r base.txt
+-e git://github.com/edx/xblock-sdk.git@master#egg=xblock-sdk==master
+lazy
+nose
+mock
+tox
+coverage
+django-pyfs
+mako
+ddt
