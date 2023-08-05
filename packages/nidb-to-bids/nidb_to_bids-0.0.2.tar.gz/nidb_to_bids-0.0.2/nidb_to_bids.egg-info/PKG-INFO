@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: nidb-to-bids
+Version: 0.0.2
+Summary: Our lab's code to convert data dumped from NiDB to BIDS
+Home-page: https://github.com/nimh-mbdu/nidb_to_bids
+Author: Dylan Nielson
+Author-email: Dylan.Nielson@gmail.com
+License: UNKNOWN
+Description: # nidb_to_bids
+        Our lab's package for converting data downloaded from NiDB to BIDS format.
+        
+        Stable interfaces should not be expected, code is very much still in development.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
+Classifier: Operating System :: POSIX
+Description-Content-Type: text/markdown

@@ -1,0 +1,10 @@
+README.md
+setup.py
+nidb_to_bids/__init__.py
+nidb_to_bids/parse_nidb_metadata.py
+nidb_to_bids.egg-info/PKG-INFO
+nidb_to_bids.egg-info/SOURCES.txt
+nidb_to_bids.egg-info/dependency_links.txt
+nidb_to_bids.egg-info/entry_points.txt
+nidb_to_bids.egg-info/requires.txt
+nidb_to_bids.egg-info/top_level.txt
