@@ -1,0 +1,8 @@
+remote_kernel_provider
+jupyter_kernel_mgmt
+entrypoints
+kubernetes>=4.0.0
+
+[test]
+mock
+pytest
