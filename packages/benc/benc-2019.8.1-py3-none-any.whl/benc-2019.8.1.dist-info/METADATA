@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: benc
+Version: 2019.8.1
+Summary: Bencoder for the modern world
+Home-page: https://github.com/notpeter/benc
+Author: Peter Tripp
+Author-email: notpeter@notpeter.net
+License: MIT
+Keywords: benc bencode
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Text Processing
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Requires-Python: >=3.6
+
+Bencoder in 100 lines of modern Python (MIT License).
+
+
