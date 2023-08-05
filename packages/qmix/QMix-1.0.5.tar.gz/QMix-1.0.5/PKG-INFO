@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: QMix
+Version: 1.0.5
+Summary: Simulate SIS mixer operation
+Home-page: https://garrettj403.github.io/QMix/
+Author: John Garrett
+Author-email: garrettj403@gmail.com
+License: GPL v3
+Description: QMix is a software package for simulating the quasiparticle tunneling currents in Superconductor/Insulator/Superconductor (SIS) junctions. In radio astronomy, these junctions are used for heterodyne mixing at millimeter and submillimeter wavelengths. QMix can be used to simulate the behavior of SIS mixers, optimize their performance and investigate experimental results.
+Keywords: SIS mixers,radio astronomy,superconducting detectors,terahertz instrumentation,Python
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Topic :: Scientific/Engineering :: Astronomy
