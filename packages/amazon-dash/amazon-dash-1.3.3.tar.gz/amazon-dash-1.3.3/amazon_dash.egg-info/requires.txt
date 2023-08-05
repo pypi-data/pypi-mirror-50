@@ -1,0 +1,12 @@
+PyYAML>=3.0
+jsonschema<3.0.0
+requests
+click
+click-default-group
+
+[:python_version < "3.0"]
+scapy<=2.4.0
+subprocess32
+
+[:python_version > "3.0"]
+scapy<=2.4.0
