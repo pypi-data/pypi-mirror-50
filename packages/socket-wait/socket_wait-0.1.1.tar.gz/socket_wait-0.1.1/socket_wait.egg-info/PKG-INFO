@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: socket-wait
+Version: 0.1.1
+Summary: Listen on a port until a connection is received.
+Home-page: https://github.com/tomplex/socket_wait
+Author: Tom Caruso
+Author-email: carusot42@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: Implementation :: CPython

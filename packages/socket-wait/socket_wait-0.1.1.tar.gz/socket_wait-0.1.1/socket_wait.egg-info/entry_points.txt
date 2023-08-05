@@ -1,0 +1,3 @@
+[console_scripts]
+socket_wait = socket_wait:cli
+
