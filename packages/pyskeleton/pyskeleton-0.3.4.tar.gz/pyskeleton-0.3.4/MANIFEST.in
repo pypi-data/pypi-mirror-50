@@ -1,0 +1,9 @@
+include *.txt
+include *.md
+include *.rst
+include setup.cfg
+include LICENSE
+include pyskeleton/pyskeleton.tar.gz
+include .gitignore
+recursive-include tests *.py
+
