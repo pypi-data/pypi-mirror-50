@@ -1,0 +1,3 @@
+[console_scripts]
+motiffinder = motiffinder.__main__:main
+
