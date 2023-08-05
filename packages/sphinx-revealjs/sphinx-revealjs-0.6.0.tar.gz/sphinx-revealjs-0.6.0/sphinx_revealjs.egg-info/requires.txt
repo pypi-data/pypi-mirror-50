@@ -1,0 +1,17 @@
+docutils
+Sphinx
+
+[linting]
+flake8
+flake8-docstrings
+flake8-isort
+pydocstyle<4.0.0
+doc8
+
+[packaging]
+wheel
+bumpversion
+
+[testing]
+nose
+sphinx-testing
