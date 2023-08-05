@@ -1,0 +1,12 @@
+README.rst
+ecgdetectors.py
+hrv.py
+setup.py
+py_ecg_detectors.egg-info/PKG-INFO
+py_ecg_detectors.egg-info/SOURCES.txt
+py_ecg_detectors.egg-info/dependency_links.txt
+py_ecg_detectors.egg-info/not-zip-safe
+py_ecg_detectors.egg-info/requires.txt
+py_ecg_detectors.egg-info/top_level.txt
+templates/template_250hz.csv
+templates/template_360hz.csv
