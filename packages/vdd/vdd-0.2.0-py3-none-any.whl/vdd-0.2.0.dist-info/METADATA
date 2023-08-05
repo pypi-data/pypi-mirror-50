@@ -1,0 +1,63 @@
+Metadata-Version: 2.1
+Name: vdd
+Version: 0.2.0
+Summary: Tools to assist value-driven design & decisions
+Home-page: https://github.com/corriander/vdd
+Author: Alex Corrie
+Author-email: ajccode@gmail.com
+License: MIT
+Download-URL: https://github.com/corriander/vdd/archive/v0.2.0.tar.gz
+Keywords: design engineering requirements analysis
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Manufacturing
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: numpy
+Provides-Extra: test
+Requires-Dist: coverage ; extra == 'test'
+Requires-Dist: mock ; extra == 'test'
+Requires-Dist: ddt ; extra == 'test'
+
+Tools for Value-Driven Design
+=============================
+
+Tools intended to help with modelling decisions in a value centric
+design process. The intent is to keep this as generic as possible, as
+some of this decision modelling is suited to generic decision-making,
+non-design activities with a little massaging.
+
+Features
+--------
+
+-  Concept Design Analysis (CODA) method implementation
+-  Requirements weighting with a Binary Weighting Matrix
+-  Programmatic or Excel-based models.
+
+Roadmap
+-------
+
+-  Model sets for comparative work (rather than a single set of
+   characteristic parameter values).
+-  Improved visualisation.
+-  Export CODA models to Excel template.
+-  House of Quality style requirement/characteristic weighting.
+
+References
+----------
+
+Based on my own degree notes and open access literature:
+
+-  M.H. Eres et al, 2014. Mapping Customer Needs to Engineering
+   Characteristics: An Aerospace Perspective for Conceptual Design -
+   Journal of Engineering Design pp. 1-24
+   http://eprints.soton.ac.uk/id/eprint/361442
+
+
