@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+sfplot/__init__.py
+sfplot/search_core.py
+sfplot/search_from_boxplot.py
+sfplot/search_from_plot.py
+sfplot/search_from_scatter.py
+sfplot.egg-info/PKG-INFO
+sfplot.egg-info/SOURCES.txt
+sfplot.egg-info/dependency_links.txt
+sfplot.egg-info/requires.txt
+sfplot.egg-info/top_level.txt
