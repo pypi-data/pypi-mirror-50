@@ -1,0 +1,45 @@
+groups:
+- neurodata_type_def: Spectrum
+  neurodata_type_inc: NWBDataInterface
+  doc: type for storing power or phase of spectrum
+  datasets:
+  - name: power
+    dtype: float
+    dims:
+    - - frequency
+    - - frequency
+      - channel
+    shape:
+    - - null
+    - - null
+      - null
+    doc: spectrum values
+    quantity: '?'
+  - name: phase
+    dtype: float
+    dims:
+    - - frequency
+    - - frequency
+      - channel
+    shape:
+    - - null
+    - - null
+      - null
+    doc: spectrum values
+    quantity: '?'
+  - name: frequencies
+    dtype: float
+    dims:
+    - frequency
+    shape:
+    - null
+    doc: frequencies of spectrum
+  - name: electrodes
+    neurodata_type_inc: DynamicTableRegion
+    doc: the electrodes that this series was generated from
+    quantity: '?'
+  links:
+  - name: source_timeseries
+    target_type: TimeSeries
+    doc: timeseries that this spectrum describes
+    quantity: '?'
