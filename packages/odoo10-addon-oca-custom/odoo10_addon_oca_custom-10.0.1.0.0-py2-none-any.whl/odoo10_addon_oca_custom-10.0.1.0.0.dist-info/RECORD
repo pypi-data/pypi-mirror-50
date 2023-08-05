@@ -1,0 +1,13 @@
+odoo10_addon_oca_custom-10.0.1.0.0-nspkg.pth,sha256=3hYKiD3YF7y9FeWjACJq1b9R_GVRzuQo9SAZlvZgumg,1672
+odoo/addons/oca_custom/README.rst,sha256=-m-JfAiBvp74J9s-Chn3XGtZ48avpZ50leXBliHMe4Q,949
+odoo/addons/oca_custom/__init__.py,sha256=xOLCV7MR4RjRNVvfA_AxZVHnFXapWy3iqa2ENtoQD7E,45
+odoo/addons/oca_custom/__manifest__.py,sha256=N5fDjPExRigybzAWlgd-pSHZRIOtW7jqMDA8qnnnEqg,610
+odoo/addons/oca_custom/models/__init__.py,sha256=JPpQW6MXguwKgQeeeur-85XVeXDA7ndqwF_SNSu2pVs,50
+odoo/addons/oca_custom/models/res_partner.py,sha256=1pb8kM9Qg4oEGMtqWJ-JOHSSXcr5SIuJplUoljNNJKs,362
+odoo/addons/oca_custom/static/description/icon.png,sha256=soy8F9dpb8OgIRjYGcqIkPkLqL4r4LfBwPm6EPYpdpM,16821
+odoo/addons/oca_custom/views/res_partner.xml,sha256=Oh980CDcAjyDtKssYlOW6RWUG51OCnp6PK5P1olfI9Q,529
+odoo10_addon_oca_custom-10.0.1.0.0.dist-info/METADATA,sha256=skQqmx4Xg9e8_dmyOa8_yWuRgGV3JG_Kbc20E08H8cw,1470
+odoo10_addon_oca_custom-10.0.1.0.0.dist-info/WHEEL,sha256=Ph_z28wTcU7HnQwSQ6yCQ-zkcGK4h4ehDfP8b6UoHVE,92
+odoo10_addon_oca_custom-10.0.1.0.0.dist-info/namespace_packages.txt,sha256=igDP6S4ywc6jzcMqzrKZpRtAUXrS-iYaA_Hu1EtlI48,17
+odoo10_addon_oca_custom-10.0.1.0.0.dist-info/top_level.txt,sha256=qBj40grFkGOfDZ2WDSw3y1RnDlgG0u8rP8pvGNdbz4w,5
+odoo10_addon_oca_custom-10.0.1.0.0.dist-info/RECORD,,
