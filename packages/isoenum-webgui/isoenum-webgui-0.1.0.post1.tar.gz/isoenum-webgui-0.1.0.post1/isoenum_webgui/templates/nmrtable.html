@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<!-- Editable table -->
+<div class="container">
+
+    <h4>Step 4. Select relevant NMR-specific InChI.</h4>
+
+    <div class="btn-group">
+        <a href="{{ url_for('table') }}" class="btn btn-info" id="go-back-button">Go back</a>
+    </div>
+
+    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+        <button class="btn btn-primary" id="select-all-button">Select all</button>
+        <button class="btn btn-primary" id="deselect-all-button">Deselect all</button>
+
+        <button id="save-button" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Save</button>
+        <div class="dropdown-menu" aria-labelledby="export-button">
+            <form id="save-nmr-form" method="post" action="{{ url_for("export_nmr_csv", nmr_type=nmr_experiment_type) }}">
+                <input id="nmr-table-data" type="hidden" name="nmr-csv-data" value="">
+                <input id="nmr-exp-type" type="hidden" name="nmr-type" value="">
+                <input class="dropdown-item" type="submit" id="save-csv" value="CSV">
+            </form>
+            <a class="dropdown-item" href="{{ url_for('export_json') }}" id="save-json">JSON</a>
+        </div>
+    </div>
+
+<br>
+<br>
+
+{% for row in table_data.values() %}
+
+    <p><b>{{ row['Base Identifier'].split("/")[1] }} - {{ nmr_experiment_type }}</b></p>
+
+    <table class="table table-editable table-bordered table-responsive-md text-center inchi-table" id="{{ row['record_id'] }}">
+        <thead>
+            <tr id="inchi-table-header">
+                {% for col in table_header %}
+                    {% if not col["hidden"] %}
+                        <th class="text-center">{{ col['title'] }}</th>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for col in table_header %}
+                    {% if not col["hidden"] %}
+                        <td class="pt-3-half align-middle" contenteditable="false">{{ row[col["title"]] | safe }}</td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-responsive-md text-center nmr-specific-inchi-table sortable-theme-bootstrap" data-sortable id="{{ row['record_id'] }}-nmr-specific">
+        <thead>
+            <tr align="left">
+                <th data-sortable="false"><input type="checkbox" title="Select all" class="parent-checkbox" data-group=".group-{{ row['record_id'] }}"></th>
+                <th>Resonance Description</th>
+                <th>NMR Specific InChI</th>
+                <th>ME Group</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for nmr_inchi in row["NMR"][nmr_experiment_type][row["Repr Identifier"]].values() %}
+                <tr class="nmr-specific-inchi-row" align="left" id="{{ nmr_inchi["row_id"] }}">
+                    <td><input type="checkbox" title="Select row" class="group-{{ row["record_id"] }}"></td>
+                    <td>
+                        {{ " + <br>".join(nmr_inchi["descr"]) | safe }}
+                    </td>
+                    <td>{{ nmr_inchi["inchi"] }}</td>
+                    <td>{{ nmr_inchi["me_group"] }}</td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br><br><br>
+{% endfor %}
+</div>
+
+<script type="text/javascript" charset="utf8" src="{{ url_for('static', filename='custom/js/nmrtable.js') }}"></script>
+
+{% endblock content %}

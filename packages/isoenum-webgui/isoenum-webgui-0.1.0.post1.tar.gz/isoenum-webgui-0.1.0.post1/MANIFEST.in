@@ -1,0 +1,9 @@
+include README.md
+include LICENSE
+include CHANGELOG.rst
+include requirements.txt
+include run.py
+include isoenum_webgui/config_files/*.json
+include isoenum_webgui/templates/*.html
+recursive-include isoenum_webgui/static/ *
+recursive-include isoenum_webgui *.py
