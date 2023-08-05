@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: notarius
+Version: 0.1.0
+Summary: Tool to notarize a macOS dmg
+Home-page: https://github.com/Devolutions/notarius
+Author: Jean-Francois Theroux
+Author-email: jftheroux@devolutions.net
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# notarius
+
+
