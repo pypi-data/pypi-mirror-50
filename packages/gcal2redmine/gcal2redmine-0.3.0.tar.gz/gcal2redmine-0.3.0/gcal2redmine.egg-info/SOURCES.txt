@@ -1,0 +1,15 @@
+LICENSE
+README.md
+setup.cfg
+setup.py
+gcal2redmine/__init__.py
+gcal2redmine/cli.py
+gcal2redmine/gcal.py
+gcal2redmine/redmine.py
+gcal2redmine/utils.py
+gcal2redmine.egg-info/PKG-INFO
+gcal2redmine.egg-info/SOURCES.txt
+gcal2redmine.egg-info/dependency_links.txt
+gcal2redmine.egg-info/entry_points.txt
+gcal2redmine.egg-info/requires.txt
+gcal2redmine.egg-info/top_level.txt

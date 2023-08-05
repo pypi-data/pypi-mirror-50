@@ -1,0 +1,11 @@
+click~=7.0
+google-api-python-client~=1.7
+oauth2client~=4.1
+python-redmine~=2.1
+tzlocal~=1.5
+
+[dev]
+black
+flake8
+mypy
+pylint
