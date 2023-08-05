@@ -1,0 +1,59 @@
+Metadata-Version: 1.1
+Name: todolist-v2
+Version: 1.0.6
+Summary: A simple Django app to keep track of your todo list. It comes with a RESTful API, celery task queue, Oauth2 and is fully tested.
+Home-page: UNKNOWN
+Author: Kenneth Mathenge
+Author-email: mathenge@example.com
+License: UNKNOWN
+Description: =========
+        Todo List
+        =========
+        
+        A simple Django app to keep track of your todo list. It comes with a RESTful API, celery task queue, Oauth2 and is fully tested. It comes with its required dependancies such as Django, Django Rest Framework and Oauth2.
+        
+        Features
+        --------
+        
+         - Django
+         - Django Rest Framework
+         - Oauth2
+         - Django-Redis
+         - Django-Celery
+        
+        Prerequisites
+        -------------
+         
+         - Python >=3.6
+         - Pip
+         - Virtualenv
+        
+        Installation
+        ------------
+        
+        1.Setup a local deploymnet environment::
+        	python3 -m venv {{ virtualenv_name }}
+        	source {{ virtualenv_name }}/bin/activate
+        
+        2.Pip3 install the application::
+        	pip3 install todolist_v2
+        
+        3.Run the applications server::
+        	todo_manage runserver
+        
+        4.To remove the application::
+        	pip3 uninstall todolist_v2
+        
+        License
+        -------
+        You can checkout the license here https://gitlab.slade360emr.com/training/mathenge-project/blob/master/LICENSE.
+        
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
