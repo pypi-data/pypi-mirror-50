@@ -1,0 +1,39 @@
+{
+    "resolved_packages": [],
+    "serialize_version": "4.3",
+    "patch_locks": {},
+    "package_orderers": null,
+    "package_filter": [],
+    "graph": "{'nodes': [((('fillcolor', '#FFFFAA'), ('fontsize', 10), ('style', 'filled,dashed')), [('_1', '~platform==linux'), ('_2', '~arch==x86_64'), ('_3', '~os==Ubuntu-16.04')])], 'edges': []}",
+    "timestamp": 1564513198,
+    "requested_timestamp": null,
+    "building": true,
+    "caching": true,
+    "implicit_packages": [
+        "~platform==linux",
+        "~arch==x86_64",
+        "~os==Ubuntu-16.04"
+    ],
+    "package_requests": [],
+    "package_paths": [
+        "/home/vsts/packages",
+        "/home/vsts/work/1/s/allzparkdemo/packages"
+    ],
+    "default_patch_lock": "no_lock",
+    "rez_version": "2.38.8",
+    "rez_path": "/opt/hostedtoolcache/Python/3.7.2/x64/lib/python3.7/site-packages/rez",
+    "user": "vsts",
+    "host": "fv-az679",
+    "platform": "linux",
+    "arch": "x86_64",
+    "os": "Ubuntu-16.04",
+    "created": 1564513198,
+    "parent_suite_path": null,
+    "suite_context_name": null,
+    "status": "solved",
+    "failure_description": null,
+    "from_cache": false,
+    "solve_time": 0.00022864341735839844,
+    "load_time": 0.0,
+    "num_loaded_packages": 0
+}
