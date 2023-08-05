@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: m8tricks
+Version: 0.71
+Summary: UNKNOWN
+Home-page: UNKNOWN
+Author: Richard Hayler
+Author-email: UNKNOWN
+License: MIT License
+Keywords: raspberrypi,sensehat
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: guizero
+
+========
+m8tricks
+========
+
+A grid editor for the SenseHAT
+
+
