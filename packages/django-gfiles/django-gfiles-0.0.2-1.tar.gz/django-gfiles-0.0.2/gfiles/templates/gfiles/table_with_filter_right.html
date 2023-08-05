@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block sb_admin_custom_js %}
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="{% static "django_tables2_column_shifter/js/django_tables2_column_shifter.min.js" %}"> </script>
+{% endblock sb_admin_custom_js %}
+{% block hidden_value %}{% endblock hidden_value %}
+{% block content %}
+    {% block preamble %}{% endblock preamble %}
+    {% include 'gfiles/table_with_filter_right_include.html' %}
+    {% block postamble %}{% endblock postamble %}
+{% endblock content %}

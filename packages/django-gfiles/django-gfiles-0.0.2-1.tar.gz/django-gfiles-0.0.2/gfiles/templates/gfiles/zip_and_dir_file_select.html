@@ -1,0 +1,44 @@
+{% load static %}
+<script src="{% static 'gfiles/zip_dir.js' %}"></script>
+<p>Choose between uploading a zipfile of metabolomics data files or select a directory containig metabolomics
+data files</p>
+<p><button type="submit" href="#1" id="dir_button" onclick="return show_dir();">Click here to use directories</button></p>
+<p><button type="submit" id="zip_button" style="display: none;" onclick="return show_zip();">Click here to use zipfile</button></p>
+
+
+<form action=""  method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table class="table table-hover" id="form_table">
+        <thead>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody >
+        {% for field in form %}
+            <tr></tr>
+            {% if field.name == 'use_directories' %}
+                {{ field.as_hidden }}
+            {% elif field.name == 'data_mappingfile' or   field.name == 'create_assay_details' %}
+                <tr >
+                    <td >{{ field.label }}</td>
+                    <td >{{ field }} <br> <em class="grayout"> {{ field.help_text }}</td>
+                </tr>
+            {% elif field.name == 'data_zipfile' %}
+                <tr class="zip">
+                    <td >{{ field.label }}</td>
+                    <td >{{ field }} <br> <em class="grayout"> {{ field.help_text }}</td>
+                </tr>
+            {% else  %}
+                <tr class="dir" style="display: none;">
+                    <td >{{ field.label }}</td>
+                    <td >{{ field }} <br> <em class="grayout"> {{ field.help_text }}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+    <button type="submit" >Submit</button>
+</form>
+{% include "gfiles/form_errors.html" %}

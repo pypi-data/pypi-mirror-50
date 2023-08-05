@@ -1,0 +1,7 @@
+include LICENSE
+include README.rst
+include requirements.txt
+recursive-include gfiles/static *
+recursive-include gfiles/templates *
+recursive-include gfiles/tests/data *
+recursive-include gfiles/tests *

@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block sb_admin_custom_js %}
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="{% static 'gfiles/show_hide_filters.js' %}"></script>
+    <script src="{% static 'gfiles/table_check.js' %}"></script>
+    <script type="text/javascript" src="{% static "django_tables2_column_shifter/js/django_tables2_column_shifter.min.js" %}"> </script>
+    <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>#}
+    {{ form.media }}
+
+{% endblock sb_admin_custom_js %}
+
+
+{% block content %}
+    <input type="hidden" id="django_url" name="django_url" value="{{django_url }}">
+    <input type="hidden" id="selected_items" name="selected_items" value='{{ request.session.selected_items | safe}}'>
+    {% load render_table from django_tables2 %}
+    {% load bootstrap3 %}
+    {% load querystring from django_tables2 %}
+    {% block hidden_value %}{% endblock hidden_value %}
+
+     <div class="page-header">
+            <h2>{% block header1 %}Select Items{% endblock header1 %}</h2>
+     </div>
+
+    {% block select_items_info %}{%  endblock select_items_info %}
+
+
+    {% if filter %}
+    <div class="row" >
+        <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{% block panel_title2 %}Filter{% endblock panel_title2 %}</h3>
+                    </div>
+                        <div class="panel-body">
+                            <p><button type="submit" href="#1" id="show_filter" onclick="return show_filters();">Show filters</button></p>
+                            <p><button type="submit" style="display:none;" id="hide_filter" onclick="return hide_filters();">Hide filters</button></p>
+                            <form action="" method="get" class="form form-inline">
+                                <div id="filters" style="display:none;">
+                                {% bootstrap_form filter.form layout='inline' %}
+                                {% bootstrap_button 'filter' %}
+                                </div>
+                            </form>
+
+                    </div>
+                </div>
+            </div>
+    </div>
+    {%  endif %}
+
+
+    <form name="form" method="post" action="" enctype="multipart/form-data" id="form1">
+        <div class="row" >
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{% block panel_title %}Summary{% endblock panel_title %}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p><button type="submit" id="clear_selection" onclick="clearSelection()">Clear selection</button></p>
+
+                        {% load render_table from django_tables2 %}
+                        {% for format in table.export_formats %}
+                            <a class="btn btn-primary" href="{% querystring '_export'='csv' %}"> {{ format }}</a>
+                        {% endfor %}
+                        {% render_table table %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h2>{% block header2 %}Parameters{% endblock header2 %}</h2>
+            <div class="row" >
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Parameters</h3>
+                        </div>
+                        <div class="panel-body">
+                            {% include "gfiles/form_table.html" %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}

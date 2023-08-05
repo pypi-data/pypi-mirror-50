@@ -1,0 +1,28 @@
+<form name="form" method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    {% for form in formset %}
+
+        <h3><i>{{ forloop.counter }} Choose parameters</i></h3>
+
+        <p> {{ form.title}}
+            <table class="table table-hover" id="form_table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ form.label }}</td>
+                        <td>{{ form }} <br> <em class="grayout"> <em>{{ form.help_text }}</em> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </p>
+        <br>
+    {% endfor %}
+    <button type="submit" >Submit</button>
+</form>
+

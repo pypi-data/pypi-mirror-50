@@ -1,0 +1,39 @@
+    {% load render_table from django_tables2 %}
+    {% load bootstrap3 %}
+    {% load querystring from django_tables2 %}
+
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{% block panel_title1 %}Summary{% endblock panel_title1 %}</h3>
+                </div>
+                <div class="panel-body">
+
+                    <div class="table-responsive">
+                        {% load render_table from django_tables2 %}
+                        {% render_table table %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% if filter %}
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{% block panel_title2 %}Filter{% endblock panel_title2 %}</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <form action="" method="get" class="form form-inline">
+                            {% bootstrap_form filter.form layout='inline' %}
+                            {% bootstrap_button 'filter' %}
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>

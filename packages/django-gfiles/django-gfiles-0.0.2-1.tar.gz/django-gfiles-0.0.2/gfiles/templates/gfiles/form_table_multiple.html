@@ -1,0 +1,24 @@
+{% csrf_token %}
+    <table class="table table-hover" id="form_table">
+        <thead>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody >
+        {% for form in forms %}
+            {% for field in form %}
+                <tr>
+                    <td>{{ field.label }}</td>
+                    <td>{{ field }} <br> <em class="grayout"> <em>{{ field.help_text }}</em></td>
+                </tr>
+
+            {% endfor %}
+        {% endfor %}
+        </tbody>
+
+
+    </table>
+
+<button type="submit" >Submit</button>
