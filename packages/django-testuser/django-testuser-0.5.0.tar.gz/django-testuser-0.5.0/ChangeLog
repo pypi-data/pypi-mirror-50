@@ -1,0 +1,11 @@
+CHANGES
+=======
+
+0.5.0
+-----
+
+* update reqsˆ
+* fix django-env-settings
+* fix django-env-settings
+* set User.EMAIL\_FIELD as well
+* init
