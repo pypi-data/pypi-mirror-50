@@ -1,0 +1,3 @@
+[console_scripts]
+evernote-export = exportevernote.EverNote:main
+
