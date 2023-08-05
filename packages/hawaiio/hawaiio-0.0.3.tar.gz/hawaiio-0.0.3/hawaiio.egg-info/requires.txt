@@ -1,0 +1,16 @@
+
+[ci]
+pytest
+pytest-cov
+codecov
+mypy
+
+[dev]
+pytest
+pytest-cov
+codecov
+mypy
+black
+pylint
+rope
+bumpversion
