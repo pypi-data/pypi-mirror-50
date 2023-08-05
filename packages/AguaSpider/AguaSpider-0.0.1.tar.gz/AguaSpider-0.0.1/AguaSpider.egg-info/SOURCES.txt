@@ -1,0 +1,8 @@
+MANIFEST.in
+README.md
+setup.py
+AguaSpider/__init__.py
+AguaSpider.egg-info/PKG-INFO
+AguaSpider.egg-info/SOURCES.txt
+AguaSpider.egg-info/dependency_links.txt
+AguaSpider.egg-info/top_level.txt
