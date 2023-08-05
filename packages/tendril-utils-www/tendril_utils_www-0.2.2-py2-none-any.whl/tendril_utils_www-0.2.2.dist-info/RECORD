@@ -1,0 +1,17 @@
+tendril/__init__.py,sha256=CyBA-t_7hHvwim5oh7A3IAtD-rOa6LxmGeEtaH83ta0,851
+tendril/config/__init__.py,sha256=OfLHl8tEOXTdCmKfIIwDzkvuBjSUdxLfJaIgfX2Wy1M,1112
+tendril/config/www.py,sha256=9fDU7BCZZg8TYcUFZ2UYu8SrW3WoQvhBwavbuXO6aKI,1478
+tendril/utils/__init__.py,sha256=CyBA-t_7hHvwim5oh7A3IAtD-rOa6LxmGeEtaH83ta0,851
+tendril/utils/www/__init__.py,sha256=OpA0SVnnDB-g8aX_84x0OZMJwejnTuQwgMypMnW_TjU,3008
+tendril/utils/www/bare.py,sha256=mmMXYHMUhixOtCPJLvoT3H1QxrZiUzGILXGaLmgf-Wc,7607
+tendril/utils/www/caching.py,sha256=uiC09O9r3zV9StepG3psZER6FQNFmMipM36QgRRHCnc,7841
+tendril/utils/www/helpers.py,sha256=PIiuzP1kQZ676lTTH-qVWtFsKx0mhUDwyFiiGytfTnA,3401
+tendril/utils/www/redirectcache.py,sha256=XFwKLhvf2-puwF4P8mFlFRizBnx-1OwUL3Up_IvM5cw,3868
+tendril/utils/www/req.py,sha256=Mg_a_zwZeR4-Ueo5FokagGGDu1wzPmByoltjB-WRchM,5089
+tendril/utils/www/soap.py,sha256=I0Ky2xWYBZonUjh-9pD5QPtTIAuiuAN4MBbLJBp3rZ8,9328
+tendril/utils/www/status.py,sha256=mPvHTNS62hZmVSq5dRE5QnYXsl8l8Poij7kx8-LsPfI,1490
+tendril_utils_www-0.2.2.dist-info/LICENSE,sha256=V8j_M8nAz8PvAOZQocyRDX7keai8UJ9skgmnwqETmdY,34520
+tendril_utils_www-0.2.2.dist-info/METADATA,sha256=6duZTRUrDarQzH1zfs21w52mMnkbMsC7eFzFfKaTUp8,5584
+tendril_utils_www-0.2.2.dist-info/WHEEL,sha256=pqI-DBMA-Z6OTNov1nVxs7mwm6Yj2kHZGNp_6krVn1E,92
+tendril_utils_www-0.2.2.dist-info/top_level.txt,sha256=cZ37ntjo8Mlxd4OJ5PNxFU0yufka_b2hcfS80URElIM,8
+tendril_utils_www-0.2.2.dist-info/RECORD,,
