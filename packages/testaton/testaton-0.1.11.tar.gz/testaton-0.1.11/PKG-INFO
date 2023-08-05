@@ -1,0 +1,270 @@
+Metadata-Version: 2.1
+Name: testaton
+Version: 0.1.11
+Summary: A command line tool to allow the testing of datasets
+Home-page: https://github.com/mikelupu/testaton
+Author: Michael Farrugia
+Author-email: mike.farrugia@gmail.com
+License: MIT
+Description: The json file `example_config/configuration.json` contains an example configuration of Dtest, Spark, and the data elements and tests that need to be executed. 
+        
+        There are 2 main types of connections:
+        * Database connections
+        * File connections (this will be subdivided into local and S3)
+        
+        The data definition defines one of 3 things:
+        * A database table
+        * A file (csv or parquet)
+        * A database query
+        
+        The tests define the tests that can be executed. These are the following tests that currently can be executed:
+        
+        *unique* - check for the uniqueness of a field
+        ```
+        Required:
+        { "field" : [name of field to check for uniqueness]
+          "dataset" : [the dataset against which you're running the test for]
+        }
+        
+        Optional:
+        { "filter" : [a sql syntax filter] }
+        ```
+        
+        Example:
+        ```
+                "product-id-uniqueness": {
+                    "description": "product_id unique check",
+                    "test_type": "unique",
+                    "dataset": "table_name",
+                    "field": "product_id",
+                    "severity": "Error"
+                }
+        ```
+        
+        *foreign_key* - do a relational foreign key constraint, by checking if a field in one the secondary table all exists in the primary key table.
+        
+        ```
+        Required:
+        {
+            "parent_dataset" : [the parent dataset (one with primary key)]
+            "parent_field" : [the field name of the parent dataset]
+            "child_dataset" : [the child dataset]
+            "child_field" : [the field in the child dataset]
+        }
+        
+        Optional:
+        { "filter" : [a sql syntax filter that is applied to both tables] }
+        ```
+        
+        Example:
+        ```
+                "customer-transaction-fk": {
+                    "description": "customer vs transaction test",
+                    "test_type": "foreign_key",
+                    "parent_dataset": "table_name",
+                    "parent_field": "customer_id",
+                    "child_dataset": "table_name",
+                    "child_field": "transaction_id",
+                    "filter" : "product_id is not null",
+                    "severity": "Error"
+                }
+        ```
+        
+        *filter* -  checks the number of records that match the filter. The test will fail if a result > 0 is returned. The failed return value is the number of records returned.
+        
+        ```
+        Required:
+        {
+            "filter": [an sql valid filter for the dataset in question]
+            "dataset" : [the dataset against which you're running the test for]
+        }
+        ```
+        
+        Example:
+        ```
+                "gender-null": {
+                    "description": "gender null",
+                    "test_type": "filter",
+                    "dataset": "table_name",
+                    "filter": "gender is null",
+                    "severity": "Info"
+                }
+        ```
+        
+        
+        *field_accuracy* - compare two rows that should have identical data and calculate statistics about the accuracy of the data. This test does not succeed or fail, but returns a table with statistics on the datasets.
+        
+        ```
+        Required:
+        {
+            "fields" : [an array with the two fields to compare in the datast]
+            "dataset" : [the dataset against which you're running the test for]
+        }
+        ```
+        
+        Example
+        ```
+                "accuracy-check": {
+                    "description": "Compare the value of two fields",
+                    "test_type": "field_accuracy",
+                    "dataset": "some-file",
+                    "fields": [
+                        "field1",
+                        "field1_b"
+                    ]
+                }
+        ```
+        
+        *data_load_check* - a test to confirm that the data has been loaded across a number of dates
+        
+        ```
+        Required:
+        {
+                "date_field": [the date field to check in the dataset]
+                "dataset" : [the dataset to check]
+                "start_date" : [the start date for the date load check, format YYYYMMDD]
+                "end_date" : [the end date for the date load check, format YYYYMMDD]
+                "date_table" : the name of the date table 
+        }
+        ```
+        
+        Note: The date table needs to be available to run this test. This table should have a list of all the date for the required period. It should have a date field named {{{date_id}}} (format YYYYMMDD)
+        
+        Example:
+        ```
+                "sfmc-send-job-load": {
+                    "description": "Check if the send job table has data loaded for all days in May",
+                    "test_type": "data_load_check",
+                    "date_field": "event_date_id",
+                    "dataset": "sfmc-open",
+                    "start_date": "20190501",
+                    "end_date": "20190531",
+                    "date_table": "date-table",
+                    "severity": "Warn"
+                }
+        ```
+        
+        *dataset_size* - a test to make sure that the datset that you are using are within a certain range of rows inclusive. 
+        
+        ```
+        
+        Required:
+        {
+            "min_value" : [the lowest acceptable value of rows needed in the dataset]
+            "max_value" : [the highest number of rows allowed in the dataset]
+        }
+        
+        ```
+        Example
+        
+        ```
+                "dataset_size_test":{
+                    "description": "check the number of rows in dataset",
+                    "test_type": "dataset_size",
+                    "dataset": "flights",
+                    "min_value": "5000",
+                    "max_value": "6000",
+                    "filter": "carrier != 'American Airlines'",
+                    "severity": "Error"
+                }
+        
+        ### Optional fields supported in all tests
+        
+        There are a number of fields that are supported in all tests as follows:
+        
+        *severity*  - The severity level of the test failure. Can be one of (Error, Warn, Info)
+        
+        *disabled* - Enables a test to be disabled in the script. Can be either true or false
+        
+        #### Date decoding
+        
+        For date filters one can specify a value of TODAY and a possible offset from today as a partial date. 
+        
+        The format for specifying a date ofset is {{{TODAY}}} or {{{TODAY-x}}}
+        
+        For example:
+        ```
+                "sfmc-send-job-load": {
+                    "description": "Check if the send job table has data loaded for all days",
+                    "test_type": "data_load_check",
+                    "date_field": "event_date_id",
+                    "dataset": "sfmc-open",
+                    "start_date": "20190501",
+                    "end_date": "{TODAY-1}",
+                    "date_table": "date-table",
+                    "severity": "Warn"
+                }
+        ```
+        
+        The default is a date string in the format yyyy-mm-dd to support a date field type query on the database. If you need a string, for example to compare with a date_id field you can use the ":STR" addition to the definition, e.g. TODAY:STR or TODAY:STR-1 (i.e. yesterday in string format)
+        
+        ## Installation
+        
+        `pip install testaton`
+        
+        ## Requirements
+        
+        Local installation of spark if `spark-config:master` is set to `local`
+        
+        ## Execution 
+        
+        `testaton configuration-file.json`
+        
+        ## Configuration
+        #### Dtest
+        See [Dtest](https://github.com/sjensen85/dtest) documentation.
+        `test-suite-metadata` is translated to the `metadata` argument
+        `message-broker-config` is translated to the `connectionConfig` argument
+        
+        #### Spark
+        The configuration values for Spark are the master node and the application name. These translate to the corresponding arguments needed to build a SparkSession. More information can be found in the official [SparkSession documentation](https://spark.apache.org/docs/2.1.0/api/python/pyspark.sql.html?highlight=sparksession#pyspark.sql.SparkSession.Builder).
+        
+        The `master` configuration variable sets the Spark master URL to connect to, such as “local” to run locally, “local[4]” to run locally with 4 cores, or “spark://ip-of-master:7077” to run on a Spark standalone cluster.
+        
+        The `app-name` configuration variable sets a name for the application, which will be shown in the Spark web UI.
+        
+        ## TODO
+        
+        **Testing the testaton**
+        - [ ] test all the current available tests on a spark cluster
+        - [ ] add unit tests
+        	- [ ] add unit tests for the generate sql code statements 
+        
+        **Enhancements to current tests**
+        - [ ] update the unique filter test to check uniqueness of multiple fields
+        - [ ] update the daily check test query to support row count validation
+        - [ ] design a structure for a generic sql test, e.g. 
+        ```
+                "raw-query-test-example" : {
+                    "description" : "NOT IMPLEMENTED!! example of a raw sql test", 
+                    "test_type" : "custom_sql",
+                    "table" : "cinema-file",
+                    "sql_code" : "select count(1) error_cells from cinema where cinema_id < 1000",
+                    "validation" : "df['error_cells] < 100"
+                }
+        ```
+        
+        **New tests and test enhancements**
+        - [x] create a test to check for the number of rows in a table are within a range
+        - [ ] count of yesterday's record > today + 10%
+        - [ ] add optional threshold ranges to the tests
+        
+        **Other**
+        - [ ] json configuration validator (syntax)
+        	- [ ] validation of the existance of files, configurations, etc (semantics)
+        - [ ] convert testing code into an extendable class
+        - [ ] cross environment test execution (e.g. a table in a database and a file in parquet)
+        
+        ## Done
+        
+        - [x] add timing calculation to the execution of the test
+        - [x] count of null fields > amount 
+        - [x] complete Dtest integration to the suite (sending the message) 
+        - [x] add a score function test against two variables from two data sets
+        - [x] remove username and password from test file
+        - [x] filter : a number is out of range (e.g. mileage < 0)
+        - [x] update the documentation to explain the different types of tests 
+        - [x] ensure that the integration with dtest 0.19 works
+        - [x] ensure that sending sample data to the UI works
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
