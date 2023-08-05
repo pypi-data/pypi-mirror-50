@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: kubernetes-kernel-provider
+Version: 0.1.0
+Summary: Provides support for launching Jupyter kernels within a Kubernetes cluster
+Home-page: https://jupyter.org
+Author: Jupyter Development Team
+Author-email: jupyter@googlegroups.com
+License: BSD
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.4
+Requires-Dist: remote-kernel-provider
+Requires-Dist: jupyter-kernel-mgmt
+Requires-Dist: entrypoints
+Requires-Dist: kubernetes (>=4.0.0)
+Provides-Extra: test
+Requires-Dist: mock ; extra == 'test'
+Requires-Dist: pytest ; extra == 'test'
+
+UNKNOWN
+
+
