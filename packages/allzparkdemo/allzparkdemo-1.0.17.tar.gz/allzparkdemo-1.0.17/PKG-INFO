@@ -1,0 +1,25 @@
+Metadata-Version: 1.2
+Name: allzparkdemo
+Version: 1.0.17
+Summary: Example files for Allzpark
+Home-page: https://github.com/mottosso/allzpark-demo
+Author: Marcus Ottosson
+Author-email: konstruktion@gmail.com
+License: The Unlicense
+Description: Example files for Allzpark
+Keywords: example files allzpark package manager application launcher
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: Public Domain
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Utilities
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >2.7, <4
