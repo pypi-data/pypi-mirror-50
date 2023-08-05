@@ -1,0 +1,11 @@
+name: ultraheatmap
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - bedtools=2.27.1
+  - deeptools=3.0.1
+  - gffutils=0.9
+  - pybedtools=0.7.10
+  - pybigwig=0.3.10
+  - pyyaml >= 5.1
