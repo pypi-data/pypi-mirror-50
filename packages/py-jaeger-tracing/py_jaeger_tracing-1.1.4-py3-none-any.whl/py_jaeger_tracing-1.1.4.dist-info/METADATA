@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: py-jaeger-tracing
+Version: 1.1.4
+Summary: Ultimate Python Package for Distribution Tracing
+Home-page: https://github.com/mrk-andreev/py_jaeger_tracing
+Author: Mark Andreev
+Author-email: mark.andreev@gmail.com
+Requires-Python: >=3.6,<4.0
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: jaeger-client (>=4.0.0,<5.0.0)
+Requires-Dist: requests (>=2.20.0,<3.0.0)
+Project-URL: Documentation, https://github.com/mrk-andreev/py_jaeger_tracing/wiki
+Project-URL: Repository, https://github.com/mrk-andreev/py_jaeger_tracing
+Description-Content-Type: text/markdown
+
+# PyJaegerTracing
+
+PyJaegerTracing: Ultimate tool for distribution tracing in Python
+
+
+## Installation
+
+```bash
+pip install py-jaeger-tracing
+```
+
+
+## Features
+
+* Multiprocessing support
+* Context / Decorator based tracing
+* Injecting / Extracting tracer span
+* Logger integration
+* Requests integration using patching
+* Boto3 integration using patching
+* Tornado integration
+
