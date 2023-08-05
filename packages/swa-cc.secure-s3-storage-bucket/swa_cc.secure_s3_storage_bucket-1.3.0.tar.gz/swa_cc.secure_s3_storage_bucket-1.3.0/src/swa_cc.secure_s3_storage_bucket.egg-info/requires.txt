@@ -1,0 +1,6 @@
+aws-cdk.core
+aws-cdk.aws-s3
+aws-cdk.aws_kms
+aws-cdk.aws_iam
+aws_cdk.aws_events
+swa_cc.core
