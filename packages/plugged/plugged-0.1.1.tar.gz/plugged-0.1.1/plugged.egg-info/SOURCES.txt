@@ -1,0 +1,11 @@
+README.md
+setup.py
+plugged/__init__.py
+plugged/entry.py
+plugged/imp.py
+plugged/mixin.py
+plugged.egg-info/PKG-INFO
+plugged.egg-info/SOURCES.txt
+plugged.egg-info/dependency_links.txt
+plugged.egg-info/top_level.txt
+plugged.egg-info/zip-safe
