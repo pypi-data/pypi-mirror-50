@@ -1,0 +1,34 @@
+# Deepvision
+Python Library for Deep Neural Netrwork Pre-trained Model testing. Using this library anyone can test any image just give an image as an input arguments and only the single line of code and it will give the prediction so here in this library is only for testing Deep CNN models.
+
+<h2>Pretrained Model</h2>
+<br>
+<table>
+  <th width=50%>Model</th>
+  <th width=50%>Code</th>
+  <th width=50%>Top-5 Accuracy</th>
+  <tr>
+    <td>Vgg16</td>
+    <td><a href="https://github.com/tensorflow/models/blob/master/research/slim/nets/resnet_v1.py">Code</a></td>
+    <td>89.8</td>
+  </tr>
+  <tr>
+    <td>ResNet50</td>
+    <td><a href="https://github.com/tensorflow/models/blob/master/research/slim/nets/resnet_v1.py">Code</td>
+    <td>92.2</td>
+  </tr>
+    <tr>
+    <td>MobileNet_v2_1.4</td>
+    <td><a href="https://github.com/tensorflow/models/blob/master/research/slim/nets/mobilenet/mobilenet_v2.py">Code</td>
+    <td>92.5</td>
+  </tr>
+</table>
+<br>
+
+# Tutorials
+<img src="img/tutorial1.png">
+<br>
+<img src="img/tutoria2.png">
+<br>
+<img src="img/tutorial3.png">
+

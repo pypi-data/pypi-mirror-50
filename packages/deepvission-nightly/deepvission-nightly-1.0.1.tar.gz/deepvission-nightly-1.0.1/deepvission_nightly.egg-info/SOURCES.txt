@@ -1,0 +1,11 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+deepvission/__init__.py
+deepvission/vision.py
+deepvission_nightly.egg-info/PKG-INFO
+deepvission_nightly.egg-info/SOURCES.txt
+deepvission_nightly.egg-info/dependency_links.txt
+deepvission_nightly.egg-info/requires.txt
+deepvission_nightly.egg-info/top_level.txt
