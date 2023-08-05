@@ -1,0 +1,3 @@
+[console_scripts]
+dockenv=dockenv.dockenv:main
+
