@@ -1,0 +1,11 @@
+deepgen/__init__.py,sha256=r2Dgx1vmkvInceHz-V7SeB1ZwQnQHbcShDPVM9grMpw,22
+deepgen/utils.py,sha256=F-zvakvx1L65DuQKKzLIFGo3OcJB1-KrV-IvVC3C5XY,305
+deepgen/gan/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+deepgen/gan/base.py,sha256=nMD-gEh-UpbXrVyKeSrq9LjnqkB-6G9Ew99xlUQ0xdM,943
+deepgen/gan/bgan.py,sha256=0lq7uNhpeGGANmDF9Qg2pxCu6bJSDmOWdQ4J4xWh9VM,7916
+deepgen/gan/cgan.py,sha256=jJWcHQNusmra62a0th1TMk84H-dKH-vsdUiABDRFMY8,6086
+deepgen/gan/gan.py,sha256=dLDtP5ulHZCaromqrUMiOgwridP7fKh7a-priS-uJuI,7583
+deepgen-0.0.10.dist-info/METADATA,sha256=ldAqbfzhhIMsS4ucTdWd4hIkCsVL14dgAnOcxyQ1aKA,2263
+deepgen-0.0.10.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+deepgen-0.0.10.dist-info/top_level.txt,sha256=pbCtUHPWA4dIflnaUMoerr8FxnWV5OA_HIj41HKQtF8,8
+deepgen-0.0.10.dist-info/RECORD,,
