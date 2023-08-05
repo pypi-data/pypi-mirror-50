@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+diffenv-nopaging "$@" | less -FRX
