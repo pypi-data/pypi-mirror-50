@@ -1,0 +1,3 @@
+[console_scripts]
+eztest = flaskeztest3.__main__:flaskeztest_main
+
