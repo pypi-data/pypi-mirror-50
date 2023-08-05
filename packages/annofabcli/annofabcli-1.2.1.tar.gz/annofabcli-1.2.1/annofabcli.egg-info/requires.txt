@@ -1,0 +1,8 @@
+annofabapi>=0.9.1
+requests
+pillow
+pyyaml
+dictdiffer
+more-itertools
+jmespath
+pandas<=0.24.2
