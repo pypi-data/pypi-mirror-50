@@ -1,0 +1,3 @@
+[console_scripts]
+caws = caws.main:main
+
