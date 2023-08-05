@@ -1,0 +1,58 @@
+#!python
+
+from lib.notarius import Notarius
+from lib.logging import warning
+from optparse import OptionParser, OptionGroup
+from time import sleep
+
+def print_help(parser):
+    parser.print_help()
+    exit(1)
+
+if __name__ == '__main__':
+    parser = OptionParser()
+
+    notarize = OptionGroup(parser, 'Notarize app')
+    notarize.add_option('--notarize', action='store_true')
+    notarize.add_option('-b', dest='bundle_id', help="App's bundle ID")
+    notarize.add_option('-p', dest='password', help="Apple developer account's password")
+    notarize.add_option('-u', dest='username', help='Apple developer account')
+    parser.add_option_group(notarize)
+
+    validate = OptionGroup(parser, 'Validate app after notarization')
+    validate.add_option('--validate', action='store_true')
+    parser.add_option_group(validate)
+
+    parser.add_option('-f', dest='filename', help='DMG to use (required for all actions)')
+    parser.add_option('--mock', action='store_true', help='Use mock answers', default=False)
+
+    (options, args) = parser.parse_args()
+
+    notarius = Notarius(options)
+
+    mock = options.mock
+    if mock:
+        warning('Using mock answers for development')
+
+    if not options.filename:
+        print_help(parser)
+
+    notarius.pre_flight_checks()
+    
+    if options.notarize:
+        if not options.username or not options.password or not options.bundle_id:
+            print_help(parser)
+
+        notarius.submit_dmg()
+        notarius.check_request_status()
+
+        if notarius.mock:
+            warning('Development mode, skipping stapling')
+        else:
+            notarius.staple()
+
+        notarius.validate()
+    elif options.validate:
+        notarius.validate()
+    else:
+        print_help(parser)

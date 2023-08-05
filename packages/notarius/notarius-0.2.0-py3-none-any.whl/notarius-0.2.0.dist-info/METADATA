@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: notarius
+Version: 0.2.0
+Summary: Tool to notarize a macOS dmg
+Home-page: https://github.com/Devolutions/notarius
+Author: Jean-Francois Theroux
+Author-email: jftheroux@devolutions.net
+License: MIT
+Keywords: apple,macos,dmg,notarize
+Platform: any
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+
+# Notarius
+
+Notarius submits a macOS application package to Apple to be notarized.
+
+## Requirements
+
++ Python3
++ Xcode 10+
+
+## Installation
+
+`pip install notarius`
+
+## Usage
+
+~~~
+$ notarius -h
+Usage: notarius [options]
+
+Options:
+  -h, --help      show this help message and exit
+  -f FILENAME     DMG to use (required for all actions)
+  --mock          Use mock answers
+
+  Notarize app:
+    --notarize
+    -b BUNDLE_ID  App's bundle ID
+    -p PASSWORD   Apple developer account's password
+    -u USERNAME   Apple developer account
+
+  Validate app after notarization:
+    --validate
+~~~
+
+
