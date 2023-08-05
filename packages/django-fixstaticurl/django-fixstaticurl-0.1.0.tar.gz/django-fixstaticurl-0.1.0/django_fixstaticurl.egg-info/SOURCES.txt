@@ -1,0 +1,14 @@
+README.md
+setup.py
+django_fixstaticurl.egg-info/PKG-INFO
+django_fixstaticurl.egg-info/SOURCES.txt
+django_fixstaticurl.egg-info/dependency_links.txt
+django_fixstaticurl.egg-info/requires.txt
+django_fixstaticurl.egg-info/top_level.txt
+fixstaticurl/__init__.py
+fixstaticurl/admin.py
+fixstaticurl/apps.py
+fixstaticurl/models.py
+fixstaticurl/tests.py
+fixstaticurl/views.py
+fixstaticurl/migrations/__init__.py

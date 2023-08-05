@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: django-fixstaticurl
+Version: 0.1.0
+Summary: Django static tag ignores META.SCRIPT_NAME settings, so we get it fixed.
+Home-page: UNKNOWN
+Author: zencore
+Author-email: dobetter@zencore.cn
+License: MIT
+Description: # django-fixstaticurl
+        
+        Django static tag ignores META.SCRIPT_NAME settings, so we get it fixed.
+        
+        
+        ## Install
+        
+            pip install django-fixstaticurl
+        
+        
+        ## Settings
+        
+        1. Install and config django-middleware-global-request properly, see https://pypi.org/project/django-middleware-global-request/
+        1. Add fixstaticurl in settings.INSTALLED_APPS
+        1. Config nginx and uwsgi properly so that the META.SCRIPT_NAME is correct
+        
+        
+Keywords: django-fixstaticurl,django static url
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires: django
+Requires: django_middleware_global_request
+Description-Content-Type: text/markdown
