@@ -1,0 +1,122 @@
+Metadata-Version: 2.1
+Name: deepgeo
+Version: 0.2.1
+Summary: Easy Deep Learning
+Home-page: https://github.com/Sotaneum/DeepGeo
+Author: Donggun LEE
+Author-email: gnyotnu39@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+
+# Deep Geo
+- Easy Deep Learning
+- Copyright (c) 2019 [InfoLab](http://infolab.kunsan.ac.kr) ([Donggun LEE](http://duration.digimoon.net))
+- PIP : https://pypi.org/project/deepgeo/
+- Demo
+  - [deepGeo.io](http://deepGeo.io)
+  - [DeepGeo.io](http://duration.digimoon.net/dev/deepGeo/test/)
+- How to install
+  ```bash
+  pip install deepgeo
+  ```
+- other version
+  ```basha
+  # 0.0.1
+  pip install deepgeo==0.0.1
+
+  # 0.0.13
+  pip install deepgeo==0.0.13
+
+  # 0.1.0 : Support Yolo (Requirement OpenCV, Only Detect)
+  pip install deepgeo==0.1.0
+
+  # 0.2.0 : Support Extendsion Library
+  pip install deepgeo==0.2.0
+
+  # 0.2.1 : Support Font Management
+  pip install deepgeo==0.2.1
+  ```
+- requirement
+  - Python 3.6
+    ```bash
+    pip install exifread piexif pillow matplotlib scikit-image
+    ```
+- How to use
+  - font Management
+    ```python
+    from deepgeo import Font
+    # register
+    Font.register("D:/User/Downloads/font.ttf","font")
+
+    # delete
+    Font.delete("font")
+    ```
+  - detect
+    ```python
+    from deepgeo import Image, Engine
+    path = "D:"
+
+    engine = Engine()
+    engine.add_model('maskrcnn_mscoco','maskrcnn', path+'/default_config.json')
+
+    image = Image("image.jpg",path)
+    image = engine.detect('maskrcnn_mscoco', image)[0]
+    image.draw_annotations(image.get_annotation())
+    image.save(path+"/","test","PNG")
+    ```
+  - train
+    ```python
+    import sys,os,json
+    from deepgeo import Engine, Image
+
+    def init_loading_bar(max):
+    max_ = str(max)
+    sys.stdout.write("%s/0" % max_)
+    sys.stdout.flush()
+    sys.stdout.write("\b")
+
+    def update_loading_bar(num):
+    sys.stdout.write("%s" % str(num))
+    sys.stdout.flush()
+    sys.stdout.write("\b" * len(str(num)))
+
+    def final_loading_bar():
+    sys.stdout.write("\n")
+
+    def fjson_to_imgs(engine, dataset_name, path, image_path):
+    file_list = os.listdir(path)
+    file_list.sort()
+    init_loading_bar(len(file_list))
+    count = 0
+    for item in file_list:
+    count+=1
+    update_loading_bar(count)
+    if item.find('.json') is not -1:
+    data=None
+    with open(path+item) as data_file:    
+      data = json.load(data_file)
+    engine.add_data('mscoco',dataset_name,Image(data['uri'],image_path,data['annotations']))
+    del data
+    final_loading_bar()
+    del count
+    del file_list
+
+
+    engine = Engine()
+    engine.add_model('mscoco', 'maskrcnn', 'D:/test/config.json')
+    engine.add_dataset('mscoco','train','maskrcnn')
+    engine.add_dataset('mscoco','val','maskrcnn')
+    fjson_to_imgs(engine, 'train','D:/test/val2017/json/','D:/test/val2017/images/')
+    fjson_to_imgs(engine, 'val','D:/test/val2017/json/','D:/test/val2017/images/')
+
+    ## Training...
+    print(" > STEP3 : Fine tune all layers")
+    engine.set_config('mscoco',{"EPOCHS":160, "LAYERS":'all',"LEARNING_RATE":engine.get_config('mscoco',"LEARNING_RATE")/10})
+    engine.train('mscoco',"train","val",None)
+
+    ... etc ...
+    ```
+
+
