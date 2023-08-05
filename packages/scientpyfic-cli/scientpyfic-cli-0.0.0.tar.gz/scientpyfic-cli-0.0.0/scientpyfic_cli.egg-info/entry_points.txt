@@ -1,0 +1,3 @@
+[console_scripts]
+scientpyfic_cli = scientpyfic_cli.cli:main
+
