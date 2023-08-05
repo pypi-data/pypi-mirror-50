@@ -1,0 +1,15 @@
+aiorqlite/__init__.py,sha256=vYOrFlTXAl-iqpfyS9rCZQWpiaGWM2A5bee_Nm828ZE,22
+aiorqlite/_ephemeral.py,sha256=WFvvklFaKop_5sr6EZgb7VdlPzuwbC_yYMx7Qx-2z6M,2241
+aiorqlite/connections.py,sha256=cax6XSP_mYYuoB7IgEWINAEfslm7TjDz5h98zR6TsiQ,4882
+aiorqlite/constants.py,sha256=WfVwD37Y1UXaND1EiYX-yuk4SCxPMahRTH3Mwf208wM,280
+aiorqlite/cursors.py,sha256=DB5ORLJ4RJDxAkKOm_PUtXhGp-CQ_3o6BBkdle1wjnc,8556
+aiorqlite/dbapi2.py,sha256=GhankDSlrmdrykmT6domsiKcsein8PY6Rq44i3Fhy_g,1363
+aiorqlite/exceptions.py,sha256=taPeuzQm920ZUufq5_vHwsPw6v4CM8v_NFZH2A3_EEc,207
+aiorqlite/extensions.py,sha256=PL-9asnT-G0JaCKUxB8KzHafXal-f8ca9YTKju_NrRY,7551
+aiorqlite/row.py,sha256=LtcAcayWkqd3Uo4k76pwLKxbB3SbAV_ouWahrE-a5qs,926
+aiorqlite/types.py,sha256=MXkVyfViggHXsrw5awK3F1xgB-7r2gbz25tbl3bRps0,346
+AIOrqlite-0.1.dist-info/LICENSE,sha256=bdiNh6gIQgnees4PewUKUprs1DJvTM0dFxWePgUc7DY,1077
+AIOrqlite-0.1.dist-info/METADATA,sha256=GxDfIpbnxtK1pu57Q9_j7HoDEAEV9rfqxW9unarNAKk,2029
+AIOrqlite-0.1.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+AIOrqlite-0.1.dist-info/top_level.txt,sha256=3G5MNVfRbwHuABteLKJ8aDqkuea4NM-QC-nB_VqYf-0,10
+AIOrqlite-0.1.dist-info/RECORD,,
