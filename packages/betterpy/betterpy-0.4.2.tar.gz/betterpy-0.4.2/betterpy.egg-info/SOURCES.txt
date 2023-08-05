@@ -1,0 +1,15 @@
+README.md
+setup.py
+better/__init__.py
+better/configparser.py
+better/multiprocessing/__init__.py
+better/multiprocessing/_exceptions.py
+better/multiprocessing/_mplogging.py
+better/multiprocessing/_poolmanager.py
+better/threading/__init__.py
+better/threading/_tfor.py
+better/threading/_threads.py
+betterpy.egg-info/PKG-INFO
+betterpy.egg-info/SOURCES.txt
+betterpy.egg-info/dependency_links.txt
+betterpy.egg-info/top_level.txt
