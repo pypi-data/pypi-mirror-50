@@ -1,0 +1,5 @@
+include rekcurd_dashboard/template/*
+include rekcurd_dashboard/static/**/*
+include requirements.txt
+include README.md
+include LICENSE
