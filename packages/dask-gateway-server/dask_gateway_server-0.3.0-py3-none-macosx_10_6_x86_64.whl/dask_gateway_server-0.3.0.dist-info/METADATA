@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: dask-gateway-server
+Version: 0.3.0
+Summary: A multi-tenant server for securely deploying and managing multiple Dask clusters.
+Home-page: http://github.com/jcrist/dask-gateway/
+Maintainer: Jim Crist
+Maintainer-email: jiminy.crist@gmail.com
+License: BSD
+Platform: UNKNOWN
+Requires-Python: >=3.6
+Requires-Dist: cryptography
+Requires-Dist: tornado
+Requires-Dist: traitlets
+Requires-Dist: sqlalchemy
+Provides-Extra: kerberos
+Requires-Dist: pykerberos ; extra == 'kerberos'
+Provides-Extra: kubernetes
+Requires-Dist: kubernetes (>=9) ; extra == 'kubernetes'
+Provides-Extra: yarn
+Requires-Dist: skein (>=0.7.3) ; extra == 'yarn'
+
+dask-gateway-server
+===================
+
+A multi-tenant server for securely deploying and managing Dask clusters.  See
+`the documentation <https://jcrist.github.io/dask-gateway/>`__ for more
+information.
+
+
