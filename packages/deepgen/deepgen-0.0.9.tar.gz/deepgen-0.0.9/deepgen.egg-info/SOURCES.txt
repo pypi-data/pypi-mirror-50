@@ -1,0 +1,14 @@
+README.md
+setup.py
+deepgen/__init__.py
+deepgen/utils.py
+deepgen.egg-info/PKG-INFO
+deepgen.egg-info/SOURCES.txt
+deepgen.egg-info/dependency_links.txt
+deepgen.egg-info/requires.txt
+deepgen.egg-info/top_level.txt
+deepgen/gan/__init__.py
+deepgen/gan/base.py
+deepgen/gan/bgan.py
+deepgen/gan/cgan.py
+deepgen/gan/gan.py
