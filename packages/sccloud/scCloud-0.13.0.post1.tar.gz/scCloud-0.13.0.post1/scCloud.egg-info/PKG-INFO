@@ -1,0 +1,33 @@
+Metadata-Version: 1.2
+Name: scCloud
+Version: 0.13.0.post1
+Summary: scRNA-Seq analysis tools that scale to millions of cells
+Home-page: https://github.com/klarman-cell-observatory/scCloudPy
+Author: Bo Li, Joshua Gould, Siranush Sarkizova, Marcin Tabaka, Orr Ashenberg, et al.
+Author-email: libo@broadinstitute.org, jgould@broadinstitute.org, sarkizova@broadinstitue.org, mtabaka@broadinstitute.org, orr@broadinstitute.org
+License: UNKNOWN
+Description: ====================================
+        Single Cell Cloud tools (scCloud)
+        ====================================
+        
+        scCloud is a tool for analyzing transcriptomes of millions of single cells. It is a command line tool, a python package and a base for Cloud-based analysis workflows.
+        
+        `Read documentation <http://sccloud.readthedocs.io>`__
+        
+Keywords: single cell RNA-Seq data analysis
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Framework :: Jupyter
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Requires-Python: ~=3.5
