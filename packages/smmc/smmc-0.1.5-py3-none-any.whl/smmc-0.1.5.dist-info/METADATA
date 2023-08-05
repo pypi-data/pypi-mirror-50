@@ -1,0 +1,63 @@
+Metadata-Version: 2.1
+Name: smmc
+Version: 0.1.5
+Summary: ATLAS - Scanner Manager Message Coder
+Home-page: UNKNOWN
+Author: Robin Herrmann
+Author-email: robin.herrmann@mgm-sp.com
+License: GNU GPLv3
+Platform: Linux
+Description-Content-Type: text/markdown
+Requires-Dist: pybase64
+
+# Scanner Manager Message Coder
+
+Scanner Manager Message Coder is a library offering functions to set Atlas Scan Status and send Scan Output via StdOut. When writing scripts for Atlas Docker Containers make sure you never write something to StdOut because it's the standard way to send messages to Atlas.
+
+## Installation
+
+```
+pip install smmc
+```
+
+## Usage
+
+```python
+from smmc import SMMC
+smmc = SMMC()
+
+# sending status update
+smmc.send_status("preparing", details={"reason": "setting up aws node"})
+
+smmc.send_status("finished", details={"statistics": {
+                  "high": 0, "med": 1, "low": 3, "info": 14, "crwaled_pages": 161}})
+
+
+# sending output from dictionary data
+smmc.send_output_json("findings.json", description="Findings of the Scan Job", payload={["id": 5, "type": "injection", "url": "http://test.org/send?data='1=1;--"]})
+
+
+# sending output from strings
+smmc.send_output_string("scan.log", payload="""03/22 08:51:06 INFO   :...read_physical_netif: index #0, interface VLINK1 has address 129.1.1.1, ifidx 0
+03/22 08:51:06 INFO   :...read_physical_netif: index #1, interface TR1 has address 9.37.65.139, ifidx 1
+03/22 08:51:06 INFO   :...read_physical_netif: index #2, interface LINK11 has address 9.67.100.1, ifidx 2
+03/22 08:51:06 INFO   :...read_physical_netif: index #3, interface LINK12 has address 9.67.101.1, ifidx 3
+03/22 08:51:06 INFO   :...read_physical_netif: index #4, interface CTCD0 has address 9.67.116.98, ifidx 4
+03/22 08:51:06 INFO   :...read_physical_netif: index #5, interface CTCD2 has address 9.67.117.98, ifidx 5
+03/22 08:51:06 INFO   :...read_physical_netif: index #6, interface LOOPBACK has address 127.0.0.1, ifidx 0
+03/22 08:51:06 INFO   :....mailslot_create: creating mailslot for timer
+03/22 08:51:06 INFO   :...mailbox_register: mailbox allocated for timer""")
+
+
+# sending output files
+smmc.send_output_file("scan_findings.bin")
+```
+
+# Build & Upload
+
+```
+python3 setup.py bdist bdist_wheel
+python3 -m twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
+```
+
+
