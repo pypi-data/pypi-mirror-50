@@ -1,0 +1,10 @@
+README.md
+setup.py
+awkg/__init__.py
+awkg/__main__.py
+awkg/awkg.py
+awkg.egg-info/PKG-INFO
+awkg.egg-info/SOURCES.txt
+awkg.egg-info/dependency_links.txt
+awkg.egg-info/entry_points.txt
+awkg.egg-info/top_level.txt
