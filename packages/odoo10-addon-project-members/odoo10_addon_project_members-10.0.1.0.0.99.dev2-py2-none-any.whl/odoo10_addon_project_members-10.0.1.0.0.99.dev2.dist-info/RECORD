@@ -1,0 +1,13 @@
+odoo10_addon_project_members-10.0.1.0.0.99.dev2-nspkg.pth,sha256=3hYKiD3YF7y9FeWjACJq1b9R_GVRzuQo9SAZlvZgumg,1672
+odoo/addons/project_members/README.rst,sha256=4-0q9Xg07TMv2_-lahPSxth_JMu4F6fVAgy2h8UWbi0,733
+odoo/addons/project_members/__init__.py,sha256=X9EJGOE2GtZbS0G82PtSXmWSZ_R8jEM0rlJTDliQjp4,21
+odoo/addons/project_members/__manifest__.py,sha256=UsrHqgZSfZFUHQxwrNanQ-SsS4eaEscJu3H_CrLrOb4,513
+odoo/addons/project_members/models/__init__.py,sha256=QljBamIjwrNvPPJB5ngFhBV9v1oMWKP4XBKs33SH9VQ,22
+odoo/addons/project_members/models/project.py,sha256=zqmgOEM-ovx2-SbaxY6Tg35Ce-A3ezLlaqAv2lF3AcI,426
+odoo/addons/project_members/static/description/icon.png,sha256=6xBPJauaFOF0KDHfHgQopSc28kKvxMaeoQFQWZtfZDo,9455
+odoo/addons/project_members/views/project.xml,sha256=M0rNDf2-dTVFDtMBR1C-Q6fIoxC5Xv_W1cxwa7oW4r4,459
+odoo10_addon_project_members-10.0.1.0.0.99.dev2.dist-info/METADATA,sha256=oZqPPfUnK33oYHl7JlZHVAlZkDvR5hCkB_yKJWYDvys,1252
+odoo10_addon_project_members-10.0.1.0.0.99.dev2.dist-info/WHEEL,sha256=Ph_z28wTcU7HnQwSQ6yCQ-zkcGK4h4ehDfP8b6UoHVE,92
+odoo10_addon_project_members-10.0.1.0.0.99.dev2.dist-info/namespace_packages.txt,sha256=igDP6S4ywc6jzcMqzrKZpRtAUXrS-iYaA_Hu1EtlI48,17
+odoo10_addon_project_members-10.0.1.0.0.99.dev2.dist-info/top_level.txt,sha256=qBj40grFkGOfDZ2WDSw3y1RnDlgG0u8rP8pvGNdbz4w,5
+odoo10_addon_project_members-10.0.1.0.0.99.dev2.dist-info/RECORD,,
