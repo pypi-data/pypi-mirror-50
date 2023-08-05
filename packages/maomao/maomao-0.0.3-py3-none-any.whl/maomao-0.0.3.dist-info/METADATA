@@ -1,0 +1,66 @@
+Metadata-Version: 2.1
+Name: maomao
+Version: 0.0.3
+Summary: TODO
+Home-page: https://gitlab.com/nul.one/maomao
+Author: Predrag Mandic
+Author-email: predrag@nul.one
+License: BSD
+Download-URL: https://gitlab.com/nul.one/maomao/-/archive/0.0.3/maomao-0.0.3.tar.gz
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Utilities
+Requires-Python: >=3.4.6
+Description-Content-Type: text/markdown
+Requires-Dist: clipboard (==0.0.4)
+
+
+maomao
+==================================================
+[![PyPI version](https://badge.fury.io/py/maomao.svg)](https://badge.fury.io/py/maomao)
+[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+
+Maomao translator.
+
+Installation
+-------------------------
+
+```bash
+pip3 install maomao
+```
+
+Examples
+-------------------------
+
+### English to Maomao
+
+```bash
+maomao This is just a test sentence.
+```
+
+output:
+
+```output
+MaOo mAOo mAO mAoo mao mAO mAoo mao mAAAO maoO mAoo maOo mao maO mao maOo mAo mAoo maOo mao mAoo mAo maOO maOo mAo maOO maaO mAo .
+```
+
+### Maomao to English
+
+```bash
+maomao MaOo mAOo mAO mAoo mao mAO mAoo mao mAAAO maoO mAoo maOo mao maO mao maOo mAo mAoo maOo mao mAoo mAo maOO maOo mAo maOO maaO mAo .
+```
+
+output:
+
+```output
+This is just a test sentence.
+```
+
+
+
+
