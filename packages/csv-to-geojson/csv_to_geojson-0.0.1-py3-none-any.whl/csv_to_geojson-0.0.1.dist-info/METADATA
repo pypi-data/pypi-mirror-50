@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: csv-to-geojson
+Version: 0.0.1
+Summary: Converts csv files to geojson points.
+Home-page: https://github.com/miquel-vv/csv-to-geojson
+Author: Miquel Vande Velde
+Author-email: miquel.vandevelde@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: geojson
+
+#CSV to Geojson
+
+Takes a csv which contains at least the columns named 'lat' and 'lng', and converts it to geojson points. The additional columns are passed as attributes of the points.
+
