@@ -1,0 +1,15 @@
+README.md
+setup.py
+sfpy/__init__.py
+sfpy/float.c
+sfpy/posit.c
+sfpy.egg-info/PKG-INFO
+sfpy.egg-info/SOURCES.txt
+sfpy.egg-info/dependency_links.txt
+sfpy.egg-info/top_level.txt
+sfpy/include/softfloat.h
+sfpy/include/softfloat_types.h
+sfpy/include/softposit.h
+sfpy/include/softposit_types.h
+sfpy/lib/softfloat.a
+sfpy/lib/softposit.a
