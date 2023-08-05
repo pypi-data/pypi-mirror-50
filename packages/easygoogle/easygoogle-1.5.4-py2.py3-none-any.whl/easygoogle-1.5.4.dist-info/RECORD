@@ -1,0 +1,15 @@
+easygoogle/__init__.py,sha256=9U2fGJBZXQYmexrahIlLV-c32WbEqnfo3jfMEPO2UK0,1069
+easygoogle/_patch_resources.py,sha256=_4jT0zv7K_3xMQA-c-wb4sd945is0snlf8e5kYonJ50,2525
+easygoogle/apis.json,sha256=JlNSwlkuRkZLz9dQZlgaXtg8gV10LO5yXs5MZFOtgpc,82225
+easygoogle/config.py,sha256=q2O1GvCPYvUllTH9e1lvIg1bu5i6CfRzsInNkegHp9E,3153
+easygoogle/constants.py,sha256=MAVN8Dd7OctNKRgfQYREQU3SAdJ1AG4LKYPG9EZEE8I,2014
+easygoogle/controllers/__init__.py,sha256=nrAY76Dhm16BY1YOJpXzxDnVaFhRZsRm2skph6QbB3A,638
+easygoogle/controllers/base.py,sha256=GnwsPoi-QOAa8bfiJcV0_02z2mp_whjPM2C9QF535jM,4016
+easygoogle/controllers/oauth2.py,sha256=7skuHAWVD2Jv8zH30SeLgnCyW5Wc9NAPx1Qqvitqq0A,5998
+easygoogle/controllers/service_account.py,sha256=_3n5ML_q8gK8dt00jq7enw960MW9myBK1Gx-i9Ne0rs,3280
+easygoogle-1.5.4.dist-info/LICENSE,sha256=ps9Ljbog8-2a6MruQh5bFDxpgUFVmZQb79_v2g0LEq8,11362
+easygoogle-1.5.4.dist-info/METADATA,sha256=eOw-QhuiC3utTnuYM8wbDT9f2MuMcqBLLbiFiO4N_3c,876
+easygoogle-1.5.4.dist-info/WHEEL,sha256=h_aVn5OB2IERUjMbi2pucmR_zzWJtk303YXvhh60NJ8,110
+easygoogle-1.5.4.dist-info/entry_points.txt,sha256=Q0CNf3azHpvF7122eAmMHRemXGNEaJe7qQ1MhbUyhiY,67
+easygoogle-1.5.4.dist-info/top_level.txt,sha256=LS1xn5-g6Jc-cbaFvcLt_2i3O4cNV0DRpeeLtz3JXZY,11
+easygoogle-1.5.4.dist-info/RECORD,,
