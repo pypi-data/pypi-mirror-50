@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: PandocCompose
+Version: 0.0.3
+Summary: pandoc-compose lets you manage your documentation base using Pandoc
+Home-page: https://git.feneas.org/christophehenry/pandoc-compose
+Author: Christophe Henry
+Author-email: contact@c-henry.fr
+License: UNKNOWN
+Project-URL: Bug Tracker, https://git.feneas.org/christophehenry/pandoc-compose/issues
+Project-URL: Source Code, https://git.feneas.org/christophehenry/pandoc-compose
+Project-URL: Documentation, https://git.feneas.org/christophehenry/pandoc-compose/blob/master/DOCUMENTATION.md
+Description-Content-Type: text/markdown
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Text Processing :: General
+Requires-Python: >=3.5
+Requires-Dist: pypandoc (==1.4)
+Requires-Dist: PyYAML (==5.1.1)
+Requires-Dist: panflute (==1.11.2)
+Requires-Dist: deepmerge (==0.0.5)
+
+# Usage
+
+`pandoc-compose` lets you manage your documentation base by automating
+conversion of mutiple markdown or other formatted text files using Pandoc.
+
+Pandoc should be already installed on you computer.
+
+## How does it work?
+
+Just like `docker-compose`, when executed, `pandoc-compose` will search for a
+`pandoc-compose.yml` file either in current working directory or in a sepcified
+destination (see [Synpsis](#synpsis)) and extract configuration from it to
+automate the conversion of you document base from any input format to any output
+format supported by Pandoc.
+
+See [the documentation](./DOCUMENTATION.md) for more informations on how to use
+it.
+
+# TODO
+
+* auto-install pandoc
+* option to specify the metadata file
+* pass metadata variables directly from command line
+* extend `pandoc-compose.yml` :
+  * une detection of file (for instance using regexes)
+  * change format
+  * add of remove [extensions](https://pandoc.org/MANUAL.html#extensions)
+
+
