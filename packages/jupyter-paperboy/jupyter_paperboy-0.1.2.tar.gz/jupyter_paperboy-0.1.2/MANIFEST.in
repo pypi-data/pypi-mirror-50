@@ -1,0 +1,6 @@
+recursive-include paperboy/assets *
+recursive-include paperboy/worker/nbconvert_templates *
+
+prune tests
+include requirements.txt
+include LICENSE

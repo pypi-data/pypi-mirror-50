@@ -1,0 +1,4 @@
+[console_scripts]
+paperboy = paperboy.server:main
+paperboy-worker = paperboy.worker:main
+
