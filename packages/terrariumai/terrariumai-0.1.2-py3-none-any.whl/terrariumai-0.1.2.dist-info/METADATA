@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: terrariumai
+Version: 0.1.2
+Summary: Utility package for using Terrarium.ai
+Home-page: http://github.com/terrariumai
+Author: Zac Holland
+Author-email: zacharyhollland@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: grpcio
+Requires-Dist: protobuf
+
+## Example usage
+import random
+from terrariumai import connectRemoteModel, createAction
+
+def randomAction():
+    return random.randint(0, 1)
+def randomDirection():
+    return random.randint(0, 3)
+
+def modelFunc(obsv):
+    action = createAction(obsv.id, randomAction(), randomDirection())
+    return action
+
+`
+connectRemoteModel(
+  # Find your secret key in your dashboard at http://terrarium.ai
+  secret='secret-key', 
+  modelFunc=modelFunc, 
+)
+`
+
