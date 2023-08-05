@@ -1,0 +1,5 @@
+google-cloud-storage<2,>=1.16.1
+google-cloud-kms<2,>=1.1.0
+
+[dev]
+pytest<6,>=5.0.1
