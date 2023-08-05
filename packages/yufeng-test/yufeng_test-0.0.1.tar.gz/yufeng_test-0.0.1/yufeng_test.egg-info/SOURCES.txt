@@ -1,0 +1,8 @@
+MANIFEST.in
+README.md
+setup.py
+yufeng_test/__init__.py
+yufeng_test.egg-info/PKG-INFO
+yufeng_test.egg-info/SOURCES.txt
+yufeng_test.egg-info/dependency_links.txt
+yufeng_test.egg-info/top_level.txt
