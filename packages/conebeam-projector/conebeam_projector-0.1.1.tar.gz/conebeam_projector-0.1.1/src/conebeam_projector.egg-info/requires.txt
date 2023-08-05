@@ -1,0 +1,7 @@
+numpy
+pyconrad
+pycuda
+
+[testing]
+pytest
+pytest-cov
