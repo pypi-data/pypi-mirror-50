@@ -1,0 +1,13 @@
+cython
+numpy
+pillow
+
+[docs]
+numpydoc
+sphinx
+sphinx-automodapi
+sphinx_rtd_theme
+
+[test]
+coveralls
+pytest-cov
