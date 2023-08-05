@@ -1,0 +1,104 @@
+
+
+[[command]]
+name="xpath"
+short_help = "Find xml elements matching xpath query."
+arguments = [{name="query", type="str"}]
+inject_values=["query"]
+
+
+help = """Pull data out of xml documents using xpath.
+
+For example,
+
+.. code-block:: bash
+
+
+    $ mario xpath '//'  map 'x.text' <<EOF
+          <slide type="all">
+            <title>Overview</title>
+              <item>Anything<em>can be</em> in here</item>
+              <item>Or<em>also</em> in here</item>
+          </slide>
+    EOF
+    Overview
+    Anything
+    can be
+    Or
+    also
+
+"""
+
+[[command.stages]]
+command = "read-text"
+
+[[command.stages]]
+command = "map"
+params = {code="x.encode() ! io.BytesIO ! lxml.etree.parse ! x.findall(query) ! map(lambda y: y, x) ! list" }
+
+[[command.stages]]
+command="chain"
+
+
+[[command.tests]]
+invocation = ["xpath", "//", "map", "x.text"]
+input = '''
+<slide type="all">
+<title>Overview</title>
+<item>Anything in here</item>
+</slide>
+'''
+output = """
+Overview
+Anything in here
+"""
+
+
+
+[[command]]
+name = "walk"
+section = 'Traversals'
+inject_values=['t']
+short_help = "[EXPERIMENTAL] Walk a tree from the bottom up."
+help = """
+[EXPERIMENTAL] Walk a tree from the bottom up, transforming objects as you go.
+
+For example,
+
+.. code-block:: bash
+
+    $ mario read-json walk -t'int=x*2' write-json  <<EOF
+    [
+            {"name": "Alice", "age": 21},
+            {"name": "Bob", "age": 22}
+    ]
+    EOF
+    [
+        {
+            "name": "Alice",
+            "age": 42
+        },
+        {
+            "name": "Bob",
+            "age": 44
+        }
+    ]
+
+
+
+"""
+[[command.options]]
+name = "-t"
+multiple=true
+help="Transformers for types. Pass a type-function pair. Each instance of the type will be converted with the function. For example, use ``-tdict=collections.OrderedDict`` to convert all ``dict`` objects to ``OrderedDict``. The right-hand side of the ``=`` is Python code which will be executed. It may use ``x`` as a reference to the input value."
+
+[[command.stages]]
+command = 'map'
+params = {code="mario_addons.plugins.walking.build_transforming_json_walker(pair_str.split('=', maxsplit=1) for pair_str in t)(x)"}
+
+
+
+[[command.tests]]
+invocation = ["eval", "{'a': {'b': 1, 'c': 3.4}}", "walk", "-t", "int=float", ]
+input = ""
+output = "{'a': {'b': 1.0, 'c': 3.4}}\n"
