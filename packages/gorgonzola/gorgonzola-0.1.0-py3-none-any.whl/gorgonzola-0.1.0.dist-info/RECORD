@@ -1,0 +1,14 @@
+gorgonzola/__init__.py,sha256=w7ETtzTDbJl2-DafzgYJYCXKIR4oRMBirZWek8p_MYQ,449
+gorgonzola/aws_boto_session.py,sha256=KJ2YS9v2rkxDd62_95IJKx1n-_BYJViSSYCVfeIm68I,2670
+gorgonzola/aws_dynamodb_table.py,sha256=3WpB3WITdREsSzxhVN5AaMKh5zOa6Kh0ImEeE7K5vxA,4326
+gorgonzola/aws_iam_roles.py,sha256=Aww-prP439uvdwPOi2gWX8uXG1mh4NM3i7B6nfcaB_0,2537
+gorgonzola/aws_lambda_function.py,sha256=Qnn39IW0l-xXVk3ZIs6WrYnD8Mvs2cn2Y3fn1HDcaxU,3194
+gorgonzola/aws_organizations.py,sha256=DbM0kdlJBlugEZnBmKQQg2CJPyRUnXblnGdVffluGxs,3294
+gorgonzola/aws_s3_buckets.py,sha256=0B4EXmTxuAXRjN0NszKL7cy2QbtebOU-Nvfm9eaIeXA,2678
+gorgonzola/aws_ssm_global_parameters.py,sha256=Jmp4upLu88gWg6Ik5wGPCyJGIwM_DqhLhrP7f9i5Kzc,2158
+gorgonzola/aws_sts_credentials.py,sha256=nRvJ6y2tUkgxxSsjRfXnoWGDZyWIqee0em2IrrNqJu0,2210
+gorgonzola-0.1.0.dist-info/LICENSE,sha256=UEP0pAk3Mpb4A735Br1BR8ZZUSbAMN_kwui6lTb7DQw,1069
+gorgonzola-0.1.0.dist-info/METADATA,sha256=HLLuV9PDY3rbmQ6AAPasi1WLPWW9FjV3zceUsWiE1ak,896
+gorgonzola-0.1.0.dist-info/WHEEL,sha256=ZenmQtjt4etEZlyoFFA3Bd8pVkjneWord4ycgKmVLx4,92
+gorgonzola-0.1.0.dist-info/top_level.txt,sha256=v3UboUXqFaEoMjGMitSRcG8ZBpvTzTl6JHb98TDSKWo,11
+gorgonzola-0.1.0.dist-info/RECORD,,
