@@ -1,0 +1,13 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.cfg
+setup.py
+pyextrapolation/__init__.py
+pyextrapolation.egg-info/PKG-INFO
+pyextrapolation.egg-info/SOURCES.txt
+pyextrapolation.egg-info/dependency_links.txt
+pyextrapolation.egg-info/requires.txt
+pyextrapolation.egg-info/top_level.txt
+pyextrapolation/constant/__init__.py
+pyextrapolation/constant/extrapolator.py
