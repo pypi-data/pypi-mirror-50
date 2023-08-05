@@ -1,0 +1,26 @@
+Metadata-Version: 1.1
+Name: isoenum-webgui
+Version: 0.1.0
+Summary: Web interface to generate NMR-specific InChI
+Home-page: https://github.com/MoseleyBioinformaticsLab/isoenum-webgui
+Author: Andrey Smelter
+Author-email: andrey.smelter@gmail.com
+License: BSD
+Description: # isoenum-webgui
+        
+        Create nmr-specific InChI for metabolites.
+        
+Keywords: InChI InChIKey isoenum isotopic enumerator
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Topic :: Software Development :: Libraries :: Python Modules

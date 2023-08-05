@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container">
+
+    <div class="row">
+        <h4>Step 2. Update ISO and CHG columns to generate representative InChI.</h4>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <h4>Step 3. Generate NMR-specific InChI.</h4>
+    </div>
+
+    <div class="row">
+        <div class="btn-group">
+            <form id="generate-nmr-form" class="btn-group" method=post action="">
+                <select class="btn btn-primary" id="select-nmr-experiment-button" name="select-nmr-experiment" title="Select NMR experiment">
+                    <option value="1D-1H">1D-1H</option>
+                    <option value="1D-CHSQC">1D-CHSQC</option>
+                </select>
+                <input id="nmr-table-data" type="hidden" name="nmr-inchi-table-data" value="">
+                <button class="btn btn-success" type="submit" id="generate-nmr-button">
+                    Generate NMR specific InChI
+                </button>
+            </form>
+
+            <button id="save-button" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Save</button>
+            <div class="dropdown-menu" aria-labelledby="export-button">
+                <a class="dropdown-item" href="{{ url_for("export_csv") }}" download>CSV</a>
+                <a class="dropdown-item" href="{{ url_for("export_json") }}" download>JSON</a>
+            </div>
+
+        </div>
+    </div>
+
+    <br>
+
+    <!-- Editable table -->
+    <div class="row">
+        <div id="table" class="table table-editable">
+            <table id="inchi-table" class="table-bordered table-responsive-md text-center">
+                <thead>
+                    <tr id="inchi-table-header">
+                        {% for col in table_header %}
+                            {% if not col["hidden"] %}
+                                <th class="text-center {{ col['title'] }}">{{ col['title'] }}</th>
+                            {% endif %}
+                        {% endfor %}
+                        <th class="text-center Update/Remove">Update/Remove</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for record_id, record in table_data.items() %}
+                        <tr id="{{ record_id }}">
+                            {% for col in table_header %}
+                                {% if not col["hidden"] %}
+                                    {% if col["editable"] %}
+                                        {% if record["error_message"] and col["title"] == "Base Identifier" %}
+                                            <td class="bg-danger pt-3-half align-middle {{ col['title'] }}" contenteditable="true" spellcheck="false">{{ record[col["title"]] | safe }}</td>
+                                        {% else %}
+                                            <td class="pt-3-half align-middle {{ col['title'] }}" contenteditable="true" spellcheck="false">{{ record[col["title"]] | safe }}</td>
+                                        {% endif %}
+                                    {% else %}
+                                        <td class="pt-3-half align-middle {{ col['title'] }}" contenteditable="false">{{ record[col["title"]] | safe }}</td>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            <td class="pt-3-half align-middle">
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-primary update-row-button" record_id="{{ record_id }}">Update</button>
+                                    <button class="btn btn-light" disabled></button>
+                                    <button class="btn btn-danger remove-row-button" record_id="{{ record_id }}">Remove</button>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="btn-group">
+            <button class="btn btn-primary" id="add-button" type="button">Add row</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" charset="utf8" src="{{ url_for('static', filename='custom/js/table.js') }}"></script>
+
+{% endblock content %}
