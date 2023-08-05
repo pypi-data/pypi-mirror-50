@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: otpy
+Version: 0.0.1
+Summary: Python package for OTP (One-Time Password)
+Home-page: https://github.com/l0rem1psum/OTPy
+Author: l0rem1psum
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+This is a Python package to cater to all your needs for generatring and verifying OTP (One-Time Password).
+
+
