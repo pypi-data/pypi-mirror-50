@@ -1,0 +1,8 @@
+README.md
+setup.py
+easy_example_pkg/__init__.py
+easy_example_pkg/example.py
+easy_example_pkg.egg-info/PKG-INFO
+easy_example_pkg.egg-info/SOURCES.txt
+easy_example_pkg.egg-info/dependency_links.txt
+easy_example_pkg.egg-info/top_level.txt
