@@ -1,0 +1,12 @@
+beyond
+peewee
+requests
+aiohttp
+docopt
+matplotlib
+pyyaml
+
+[tests]
+pytest
+pytest-cov
+pytest-console-scripts
