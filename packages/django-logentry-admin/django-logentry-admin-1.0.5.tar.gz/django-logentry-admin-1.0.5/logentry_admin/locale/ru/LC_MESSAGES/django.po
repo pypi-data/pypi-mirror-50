@@ -1,0 +1,60 @@
+# This file is distributed under the same license as the LogEntry Admin package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-29 15:10+0000\n"
+"PO-Revision-Date: 2017-12-29 15:10+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: admin.py:17
+msgctxt "logentry_admin:action_type"
+msgid "Addition"
+msgstr "Добавление"
+
+#: admin.py:18
+msgctxt "logentry_admin:action_type"
+msgid "Deletion"
+msgstr "Удаление"
+
+#: admin.py:19
+msgctxt "logentry_admin:action_type"
+msgid "Change"
+msgstr "Изменение"
+
+#: admin.py:24 admin.py:166
+msgid "action"
+msgstr "действие"
+
+#: admin.py:37
+msgid "staff user"
+msgstr "персонал"
+
+#: admin.py:62
+msgid "Metadata"
+msgstr "Метаданные"
+
+#: admin.py:70
+msgid "Details"
+msgstr "Подробности"
+
+#: admin.py:134
+msgid "object"
+msgstr "объект"
+
+#: admin.py:152
+msgid "user"
+msgstr "пользователь"
+
+#: admin.py:172
+msgid "change message"
+msgstr "сообщение об изменении"
