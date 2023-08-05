@@ -1,0 +1,11 @@
+README.md
+setup.py
+escea/__init__.py
+escea/discover.py
+escea/error.py
+escea/fire.py
+escea/message.py
+escea.egg-info/PKG-INFO
+escea.egg-info/SOURCES.txt
+escea.egg-info/dependency_links.txt
+escea.egg-info/top_level.txt
