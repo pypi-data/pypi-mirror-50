@@ -1,0 +1,17 @@
+#!/usr/bin/ python2
+from nai.hack import *
+from nai import *
+import sys
+
+print("""
+  {}AUTHOR :{} Nasir Ali
+  {}FB : {}fb.com/nasir.xo
+  {}BISE-Mardan RESULT
+""".format(W,G,W,G,R))
+
+try:
+ print(W+'  '+'-'*15+G)
+ dprint(roll(sys.argv[1]))
+ print(W+'  '+'-'*15+G)
+except:
+ print(R+" Error :  Not Found")
