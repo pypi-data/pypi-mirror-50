@@ -1,0 +1,3 @@
+[console_scripts]
+allzparkdemo = allzparkdemo.__main__:main
+
