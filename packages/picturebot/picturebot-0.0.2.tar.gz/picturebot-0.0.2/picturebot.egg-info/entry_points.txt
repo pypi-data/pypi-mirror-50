@@ -1,0 +1,3 @@
+[console_scripts]
+picturebot = picturebot.cli:main
+
