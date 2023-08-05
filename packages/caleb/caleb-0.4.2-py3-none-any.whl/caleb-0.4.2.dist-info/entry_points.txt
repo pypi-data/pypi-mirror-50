@@ -1,0 +1,3 @@
+[console_scripts]
+caleb=caleb.bin.caleb:main
+
