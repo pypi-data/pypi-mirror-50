@@ -1,0 +1,12 @@
+beautifulsoup4
+lxml
+requests
+
+[dev]
+setuptools
+wheel
+twine
+
+[test]
+pytest
+tox

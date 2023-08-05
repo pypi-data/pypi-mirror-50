@@ -1,0 +1,12 @@
+README.md
+setup.py
+html2csv/__init__.py
+html2csv/__main__.py
+html2csv/converter.py
+html2csv/version.py
+html_to_csv.egg-info/PKG-INFO
+html_to_csv.egg-info/SOURCES.txt
+html_to_csv.egg-info/dependency_links.txt
+html_to_csv.egg-info/entry_points.txt
+html_to_csv.egg-info/requires.txt
+html_to_csv.egg-info/top_level.txt
