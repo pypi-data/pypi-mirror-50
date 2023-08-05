@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+import argparse
+
+from furious_fastas.parse_conf_file import parse_conf
+from furious_fastas.update.peaks import update_peaks_fasta_db
+from furious_fastas.update.plgs import update_plgs_fasta_db
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description='Update the fasta databases.')
+    parser.add_argument("db_path",
+        help="Path to the folder treated as database.")
+    parser.add_argument("species2url_path",
+        help="Path to the file mapping species names to urls.")
+    parser.add_argument("db_format",
+        help="peaks or plgs.",
+        choices=['plgs', 'peaks'])
+    a = parser.parse_args()
+    update = {'plgs': update_plgs,
+              'peaks': update_peaks}[a.db_format]
+    update(db_path=a.db_path,
+           species2url=parse_conf(a.species2url_path))
