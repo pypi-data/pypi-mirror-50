@@ -1,0 +1,3 @@
+[console_scripts]
+snowcomp = snowcomp.__main__:main
+

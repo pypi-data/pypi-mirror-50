@@ -1,0 +1,10 @@
+README.md
+setup.py
+snowcomp/__init__.py
+snowcomp/__main__.py
+snowcomp.egg-info/PKG-INFO
+snowcomp.egg-info/SOURCES.txt
+snowcomp.egg-info/dependency_links.txt
+snowcomp.egg-info/entry_points.txt
+snowcomp.egg-info/requires.txt
+snowcomp.egg-info/top_level.txt
