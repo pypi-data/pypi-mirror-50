@@ -1,0 +1,10 @@
+MANIFEST.in
+install_requires.txt
+setup.py
+ecs_ansible_env/__init__.py
+ecs_ansible_env/ecs_env_file.py
+ecs_ansible_env.egg-info/PKG-INFO
+ecs_ansible_env.egg-info/SOURCES.txt
+ecs_ansible_env.egg-info/dependency_links.txt
+ecs_ansible_env.egg-info/requires.txt
+ecs_ansible_env.egg-info/top_level.txt
