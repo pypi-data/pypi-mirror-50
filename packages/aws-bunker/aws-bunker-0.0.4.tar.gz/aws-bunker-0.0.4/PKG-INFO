@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: aws-bunker
+Version: 0.0.4
+Summary: bunker is a command line program for creating a dev/backup ec2 in AWS. It will install software, and clone your git repos, then it will transfer ignored files from your machine to the ec2.
+Home-page: https://gitlab.com/shindagger/bunker
+Author: Andy Klier, Gus Clemens
+Author-email: andyklier@gmail.com
+License: UNKNOWN
+Description: # bunker
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
