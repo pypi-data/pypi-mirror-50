@@ -1,0 +1,4 @@
+numpy
+numba
+dask[complete]>=2.0.0
+multipledispatch
