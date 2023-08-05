@@ -1,0 +1,91 @@
+Metadata-Version: 2.1
+Name: getpodcast
+Version: 1.0.6.post1
+Summary: Download podcast
+Home-page: https://bitbucket.org/fholmer/getpodcast
+Author: Frode Holmer
+Author-email: fholmer+getpodcast@gmail.com
+License: MIT
+Keywords: podcast client resume download
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Topic :: Home Automation
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: pyPodcastParser
+
+==========
+Getpodcast
+==========
+
+* Source code: https://bitbucket.org/fholmer/getpodcast
+* PyPI: https://pypi.org/project/getpodcast/
+* License: MIT
+
+Summary
+-------
+
+Simplify downloading podcasts with getpodcast
+
+Installation
+------------
+
+* Linux:
+
+  .. code-block:: bash
+
+    $ python3 -m pip install --user getpodcast
+
+* Windows:
+
+  .. code-block:: doscon
+
+    > py -3 -m pip install --user getpodcast
+
+Getting started
+---------------
+
+* Create a new file ``mypodcast.py``:
+
+  .. code-block:: python
+
+    #! /usr/bin/env python3
+
+    import getpodcast
+
+    opt = getpodcast.options(
+        date_from='2019-07-07',
+        root_dir='./podcast')
+
+    podcasts = {
+        "SGU": "https://feed.theskepticsguide.org/feed/sgu"
+    }
+
+    getpodcast.getpodcast(podcasts, opt)
+
+
+* Download podcasts:
+
+  .. code-block:: bash
+
+    python3 mypodcast.py --run
+
+
+* More help:
+
+  .. code-block:: bash
+
+    python3 mypodcast.py --help
+
+* Setup cronjob to download once a day:
+
+  .. code-block:: bash
+
+    $ crontab -e
+
+    0 19 * * * /usr/bin/python3 /home/myuser/mypodcasts.py --quiet --onlynew --run
+
+
