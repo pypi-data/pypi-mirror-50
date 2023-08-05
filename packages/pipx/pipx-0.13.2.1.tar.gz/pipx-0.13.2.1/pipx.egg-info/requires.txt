@@ -1,0 +1,13 @@
+userpath
+argcomplete<2.0,>=1.9.4
+
+[dev]
+black
+flake8
+mypy
+check-manifest
+
+[docs]
+jinja2
+mkdocs
+mkdocs-material
