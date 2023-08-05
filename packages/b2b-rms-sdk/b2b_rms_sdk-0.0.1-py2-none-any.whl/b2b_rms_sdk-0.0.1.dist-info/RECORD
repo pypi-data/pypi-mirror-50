@@ -1,0 +1,11 @@
+b2b_rms_sdk/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+b2b_rms_sdk/models.py,sha256=UUeIWkyNTYV-MyOdznuBUgrKTfCcb58SYiaaXhfpMlk,16377
+b2b_rms_sdk/services/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+b2b_rms_sdk/services/routes.py,sha256=AqadAO0QOlCsZSwxoPqEsJO2xpb0CmaQmw-M-AobD7Y,1650
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/factories.py,sha256=HVim1v-21iaaS6Dkk5sMS4gKAcCPYBW3Zer9lm_fv_E,3526
+tests/test_models.py,sha256=_0K7tt80a4sbTqQhtziVwyrjznTIi5CmBzOPpI4jp04,25072
+b2b_rms_sdk-0.0.1.dist-info/METADATA,sha256=sb6o79L1MmpC-btXnvE2tC1EHC-w2vp8PD7X8pI9rAA,548
+b2b_rms_sdk-0.0.1.dist-info/WHEEL,sha256=Ph_z28wTcU7HnQwSQ6yCQ-zkcGK4h4ehDfP8b6UoHVE,92
+b2b_rms_sdk-0.0.1.dist-info/top_level.txt,sha256=rzKnP-Tzy8-zM0ep0UGz4hoqL7Txb4Dshz3QJq9Hj7E,18
+b2b_rms_sdk-0.0.1.dist-info/RECORD,,
