@@ -1,0 +1,10 @@
+README.md
+setup.py
+mathwords/__init__.py
+mathwords/__main__.py
+mathwords/lexer.py
+mathwords/two_way_dict.py
+mathwords.egg-info/PKG-INFO
+mathwords.egg-info/SOURCES.txt
+mathwords.egg-info/dependency_links.txt
+mathwords.egg-info/top_level.txt
