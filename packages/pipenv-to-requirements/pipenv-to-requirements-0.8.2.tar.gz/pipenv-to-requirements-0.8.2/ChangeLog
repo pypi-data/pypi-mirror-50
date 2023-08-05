@@ -1,0 +1,161 @@
+CHANGES
+=======
+
+0.8.2
+-----
+
+* Fix bad support of extras
+* Drop support of Python 3.4 and 3.5
+* Update deps
+
+0.8.1
+-----
+
+* Drop support for 3.4
+
+0.8.0
+-----
+
+* Update deps
+* Fix Issue #12 about missing markers (#13)
+
+0.7.1
+-----
+
+* Fix bad requirement-dev.txt generation
+
+0.7.0
+-----
+
+* Update pypi credentials
+* Drop support of py2.7, test for py3.7
+* Add -d opt to generate custom requirements-dev
+* Use Read the Docs insted of ReadTheDocs (#10)
+
+0.6.1
+-----
+
+* update deps, fix pylint, track lockfile
+* Fix \`AttributeError\` when getting markers (#9)
+
+0.6.0
+-----
+
+* editable: support 'subdir' field (#8)
+
+0.5.1
+-----
+
+* use twine to upload
+* Fix -f
+* Install twine
+
+0.5.0
+-----
+
+* implement -o argument
+* Update README.rst
+* readme is rst
+* link to my cookiecutter
+
+0.4.1
+-----
+
+* Minor improvement to intro comment (#7)
+* update README
+
+0.4.0
+-----
+
+* make: ensure-pip
+* add git branch support
+
+0.3.1
+-----
+
+* Handle local path properly
+* Test pyup Pipfile support
+* Update repository URL
+
+0.3.0
+-----
+
+* add git support
+* update README
+
+0.2.3
+-----
+
+* Add newline at end of file
+
+0.2.2
+-----
+
+* regenerate requirements.txt
+
+0.2.1
+-----
+
+* Fix some typos
+* update readme
+
+0.2.0
+-----
+
+* support extras
+
+0.1.9
+-----
+
+* pylint flake8
+
+0.1.8
+-----
+
+* basestring
+
+0.1.7
+-----
+
+* do not depend on future package for py2
+
+0.1.6
+-----
+
+* require future not only for develop
+
+0.1.5
+-----
+
+* Fix formatting in README
+
+0.1.4
+-----
+
+* Update README
+* Update README
+* Update README
+* Fix Rst formatting
+* Fix Rst formatting
+* Ignore .cache dir
+* Update README
+
+0.1.0
+-----
+
+* update requirments-dev.txt
+* fix if sys.version\_info < (3, 0)
+* make pylint and pyflake8 happy
+* Fix support for markers in Pipfile and requirements.txt
+* Fix incompatibility for python 2
+* Add future as deps for python 2
+* Update requirements warning text
+* Add unit tests
+* make release
+* make requirements
+* importing code
+* missing deps: pipenv
+* pipenv install -d -e 
+* clean and prepare use of the generator
+* travis secret
+* initial commit
