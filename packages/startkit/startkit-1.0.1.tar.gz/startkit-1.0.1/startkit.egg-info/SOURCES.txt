@@ -1,0 +1,42 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+startkit/__init__.py
+startkit/__main__.py
+startkit.egg-info/PKG-INFO
+startkit.egg-info/SOURCES.txt
+startkit.egg-info/dependency_links.txt
+startkit.egg-info/entry_points.txt
+startkit.egg-info/top_level.txt
+startkit/templates/.gitignore
+startkit/templates/LICENSE
+startkit/templates/MANIFEST.in
+startkit/templates/Makefile
+startkit/templates/README.md
+startkit/templates/requirements.txt
+startkit/templates/setup.py
+startkit/templates/.vscode/settings.json
+startkit/templates/docs/Makefile
+startkit/templates/docs/conf.py
+startkit/templates/docs/index.rst
+startkit/templates/docs/make.bat
+startkit/templates/docs/_static/.gitkeep
+startkit/templates/docs/_templates/.gitkeep
+startkit/templates/extras/.gitkeep
+startkit/templates/scripts/clean.py
+startkit/templates/scripts/docs.py
+startkit/templates/scripts/pyrcc.py
+startkit/templates/scripts/pyuic.py
+startkit/templates/scripts/tests.py
+startkit/templates/tests/__init__.py
+startkit/templates/tests/_context.py
+startkit/templates/tests/test_basic.py
+startkit/templates/{{ package }}/__init__.py
+startkit/templates/{{ package }}/__main__.py
+startkit/templates/{{ package }}/main.py
+startkit/templates/{{ package }}/main.qrc
+startkit/templates/{{ package }}/main.ui
+startkit/templates/{{ package }}/main_rc.py
+startkit/templates/{{ package }}/static/i18n/qt_zh_CN.qm
+startkit/templates/{{ package }}/static/img/img.png
