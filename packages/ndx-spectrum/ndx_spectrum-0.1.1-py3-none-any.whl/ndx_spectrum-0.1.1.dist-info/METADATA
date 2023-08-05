@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: ndx-spectrum
+Version: 0.1.1
+Summary: data type for holding power or phase spectra for a signal
+Home-page: UNKNOWN
+Author: Ben Dichter
+Author-email: ben.dichter@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Requires-Dist: pynwb
+Requires-Dist: matplotlib
+
+UNKNOWN
+
+

@@ -1,0 +1,12 @@
+namespaces:
+- author: Ben Dichter
+  contact: ben.dichter@gmail.com
+  doc: data type for holding power or phase spectra for a signal
+  name: ndx-spectrum
+  schema:
+  - namespace: core
+    neurodata_types:
+    - NWBDataInterface
+    - TimeSeries
+  - source: ndx-spectrum.extensions.yaml
+  version: 0.1.0
