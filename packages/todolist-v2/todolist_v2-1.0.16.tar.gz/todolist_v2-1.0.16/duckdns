@@ -1,0 +1,14 @@
+	server {
+
+
+        server_name mathenge.kevo.online www.mathenge.kevo.online;
+
+        location /static/ {
+                root /home/kentay/SIL_Backend_Project;
+}
+
+        location / {
+                include proxy_params;
+                proxy_pass http://unix:/home/kentay/SIL_Backend_Project/SIL_Backend_Project.sock;
+        }
+}
