@@ -1,0 +1,15 @@
+Metadata-Version: 1.2
+Name: vrt-generator
+Version: 0.0.3
+Summary: creating vrt corpora
+Home-page: https://github.com/miweru/vrt_generator
+Author: Michael Ruppert
+Author-email: michael.ruppert@fau.de
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Text Processing :: Linguistic
+Requires-Python: >=3.5
