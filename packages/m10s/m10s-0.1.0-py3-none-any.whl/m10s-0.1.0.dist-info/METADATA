@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: m10s
+Version: 0.1.0
+Summary: Easily convert values of different units of measurement.
+Home-page: https://github.com/ihavenonickname/m10s
+Author: Gabriel Blank Stift Mousquer
+Author-email: gabrielblanksm@gmail.com
+License: MIT
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+
+# m10s
+
+A collection of functions for converting values of different units of measurement.
+
+## Installing
+
+    pip install m10s
+
+## Relevant links:
+
+* Official page on PyPI: https://pypi.org/project/m10s/
+* Issue tracker: https://github.com/ihavenonickname/m10s/issues
+
+
