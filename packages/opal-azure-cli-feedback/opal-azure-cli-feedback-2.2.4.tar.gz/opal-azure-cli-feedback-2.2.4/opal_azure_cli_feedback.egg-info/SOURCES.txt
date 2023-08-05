@@ -1,0 +1,16 @@
+HISTORY.rst
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+azure/__init__.py
+azure/cli/__init__.py
+azure/cli/command_modules/__init__.py
+azure/cli/command_modules/feedback/__init__.py
+azure/cli/command_modules/feedback/_help.py
+azure/cli/command_modules/feedback/custom.py
+opal_azure_cli_feedback.egg-info/PKG-INFO
+opal_azure_cli_feedback.egg-info/SOURCES.txt
+opal_azure_cli_feedback.egg-info/dependency_links.txt
+opal_azure_cli_feedback.egg-info/requires.txt
+opal_azure_cli_feedback.egg-info/top_level.txt
