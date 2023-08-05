@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: res-facenet
+Version: 0.0.3
+Summary: This model has been trained on VGGv2 and tested on LFW with 92% accuracy. The pretrained model can be accessed on res_facenet.model_921 or res_facenet.model_920
+Home-page: https://github.com/khrlimam/res-facenet
+Author: Khairul Imam
+Author-email: ki65559@gmail.com
+License: UNKNOWN
+Description: # ResFacenet
+        This package is intended as an __pytorch hub__ entry point for my trained facenet model on this repo [khrlimam/facenet](https://github.com/khrlimam/facenet).
+        This pretrained model can be used for anyone who want to use it for transfer learning or any other applications.
+        
+        This model trained on VGGv2 dataset and tested on LFW dataset and gained 92% accuracy.
+        
+        This work is distributed under MIT license, so I hope you consider the license's policy. Cheers!
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
