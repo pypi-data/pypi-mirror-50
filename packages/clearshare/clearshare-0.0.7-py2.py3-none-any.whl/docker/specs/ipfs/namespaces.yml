@@ -1,0 +1,96 @@
+- name: data
+  description: "File add, remove and pin operations."
+  endpoints:
+    - name: browse
+      description: "Browse local cluster/node storage assigned for IPFS."
+      routes: ['/browse/<path:reqpath>']
+      post:
+        docstring: >
+          Get the contents of `req_path` in the local cluster storage. If it is
+          a folder, list its contents; otherwise return the contents of the file.
+        expect:
+          object: Pagination
+        marshal:
+          object: DirectoryLs
+        function:
+          fqn: datacustodian.ipfs.dirlist
+    - name: download
+      description: "Download the contents of the specified file."
+      routes: ['/download/<path:reqpath>']
+      get:
+        docstring: >
+          Download the contents of the specified file, which is assumed to be
+          in local server storage. The first part of the `reqpath` should be a
+          valid, configured root directory in the configuration files.
+        function:
+          fqn: datacustodian.ipfs.download
+    - name: files
+      description: 'Add, get, and remove files with the local IPFS cluster.'
+      routes: ['/files/<string:reqpath>','/files/<path:reqpath>']
+      post:
+        docstring: >
+          Add the file included in the POST to the IPFS cluster. This operation
+          *also* pins the file to the local node.
+        marshal:
+          object: IPFSAddResult
+        function:
+          fqn: datacustodian.ipfs.add
+        response:
+          code: 200
+          message: 'File added (and pinned) successfully.'
+      put:
+        docstring: >
+          Add the *local* file included in the PUT request path to the
+          IPFS cluster. This operation *also* pins the file to the local node.
+        marshal:
+          object: IPFSAddResult
+        function:
+          fqn: datacustodian.ipfs.add_local
+        response:
+          code: 200
+          message: 'File added (and pinned) successfully.'
+      get:
+        docstring: >
+          Download the specified file from the IPFS cluster. If the file is not
+          pinned on the local node, it will be retrieved from the IPFS network.
+        function:
+          fqn: datacustodian.ipfs.get
+      delete:
+        docstring: >
+          Remove the specified file from the IPFS cluster. Note that IPFS is the
+          *permanent* web, so things never get deleted from IPFS itself.
+          However, you can choose to not pin things anymore so that they are
+          deleted locally. If nobody is pinning something, it is essentially
+          deleted since a lookup will not return any peers that can actually
+          serve the content.
+        marshal:
+          object: IPFSUnpinResult
+        function:
+          fqn: datacustodian.ipfs.rm
+        response:
+          code: 200
+          message: 'File unpinned successfully.'
+    - name: 'pins'
+      description: 'Add, get, and remove pins with the local IPFS cluster.'
+      routes: ['/pins/<string:reqpath>']
+      put:
+        docstring: >
+          Pin the specified IPFS address to the local node. This makes the node
+          download the file from the IPFS network so that it has a local copy.
+        function:
+          fqn: datacustodian.ipfs.pin
+        response:
+          code: 200
+          message: 'File pinned successfully.'
+      delete:
+        docstring: >
+          Unpins the IPFS address from the local node. This removes only the
+          local copy of the file from the node, the file will continue to exist
+          in the IPFS network.
+        marshal:
+          object: IPFSUnpinResult
+        function:
+          fqn: datacustodian.ipfs.unpin
+        response:
+          code: 200
+          message: 'File unpinned successfully.'

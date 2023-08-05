@@ -1,0 +1,25 @@
+server:
+  SERVER_NAME: clearshare.local:8095
+  SWAGGER_UI_DOC_EXPANSION: 'list'
+  RESTPLUS_VALIDATE: True
+  RESTPLUS_MASK_SWAGGER: False
+  ERROR_404_HELP: False
+  SECRET_KEY: somerandomstring
+app:
+  title: "ClearSHARE API"
+  description: "Secure ClearSHARE access for localhost only."
+  debug: False
+package:
+  name: clearshare
+  root: ~/codes/clear/clearid/clearshare-dist
+  version: 0.0.1
+  description: Data management REST API for ClearSHARE.
+components:
+  - name: ipfs
+    models: ':ipfs/models'
+    namespaces: ':ipfs/namespaces'
+    parsers: ':ipfs/parsers'
+    url_prefix: '/ipfs'
+    title: "IPFS Cluster API"
+    description: "REST API for accessing typical file operations."
+ipfs: ':ipfs'
