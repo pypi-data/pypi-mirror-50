@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: py-adobeio-api
+Version: 0.41
+Summary: Python API wrapper for Adobe IO.  Made for portability.
+Home-page: https://github.com/MattJermyWright/adobeio-python-general-api
+Author: Matt Wright
+Author-email: matthew.jeremy.wright@gmail.com
+License: GPLv3.0
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: jwt
+Requires-Dist: loguru
+Requires-Dist: requests
+
+## Adobe.io Python Api
+Basic API used for interacting with Adobe.io APIs.  Tested with the GDPR API and the Adobe Launch API.
+
+Please see https://github.com/MattJermyWright/adobeio-python-general-api for more information.
+
