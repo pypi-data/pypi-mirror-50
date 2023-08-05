@@ -1,0 +1,1233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Scientific Modes &#8212; MEGARA Data Reduction Pipeline 0.6.dev1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.6.dev1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="MEGARA Data Reduction Pipeline 0.6.dev1 documentation" href="index.html" />
+    <link rel="up" title="Observing modes" href="modes.html" />
+    <link rel="next" title="Reduction Recipes" href="recipes.html" />
+    <link rel="prev" title="Auxiliary Modes" href="auxiliary.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="recipes.html" title="Reduction Recipes"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="auxiliary.html" title="Auxiliary Modes"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MEGARA Data Reduction Pipeline 0.6.dev1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modes.html" accesskey="U">Observing modes</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="scientific-modes">
+<h1>Scientific Modes<a class="headerlink" href="#scientific-modes" title="Permalink to this headline">¶</a></h1>
+<p>The observing modes described in this section are those intended for the
+acquisition of scientific data by the observer. Here we describe all possible
+scientific observations to be carried out either with one of the MEGARA IFUs or
+the Fiber MOS.</p>
+<div class="section" id="lcb-ifu-scientific-observation">
+<h2>LCB IFU scientific observation<a class="headerlink" href="#lcb-ifu-scientific-observation" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">LCB IFU scientific observation</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body">Online, Offline</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Key:</th><td class="field-body">MEGARA_LCB_IMAGE</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Recipe:</th><td class="field-body"><a class="reference internal" href="#megaradrp.recipes.scientific.lcb.LCBImageRecipe" title="megaradrp.recipes.scientific.lcb.LCBImageRecipe"><code class="xref py py-class docutils literal"><span class="pre">LCBImageRecipe</span></code></a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Recipe input:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">LCBImageRecipeInput</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Recipe result:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">LCBImageRecipeResult</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>This mode sequence includes the required actions to obtain scientifically-valid
+data with the LCB IFU instrument mode of MEGARA.</p>
+<div class="section" id="requirements">
+<h3>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h3>
+<p>This mode requires having the focal-plane cover configured, the instrument
+shutter open, to configure the VPH mechanism to select the grating to be used,
+to set the instrument mode to LCB IFU, to move the focusing mechanism to the
+position pre-defined for the specific VPH of choice, and to expose a certain
+time and to readout the detector in a series of exposures, being this series
+the LCB IFU image set.</p>
+<p>A pre-requisite for this observing mode is to have previously executed a &#8220;Fine
+acquisition with the LCB IFU&#8221; auxiliary observing mode (TBC depending on the
+system absolute positioning precision and the observer requirements).</p>
+<p>As part of the MEGARA on-line quick-look software the images to be obtained by
+this observing mode should be processed and the spectra extracted so to produce
+a view of the field at a selectable wavelength within the wavelength range
+covered by the VPH of choice. As a number of Fiber MOS positioners are devoted
+to the measure of the sky background simultaneously with the LCB IFU
+observations the on-line quick-look software should be able to subtract the
+spectrum of the sky from the spectra in each IFU spaxel and from the maps
+generated above. This software should have information on the specific
+focal-plane cover configuration being used.</p>
+<p>In the case of observing relatively extended targets (comparable in size or
+larger than the LCB IFU field of view) but a mapping observing mode is not
+required to be used a blank-sky image set should be obtained using the same
+instrumental configuration as for the science target.</p>
+</div>
+<div class="section" id="procedure">
+<h3>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="products">
+<h3>Products<a class="headerlink" href="#products" title="Permalink to this headline">¶</a></h3>
+<p>The observer will obtain LCB IFU image sets as part of the routine scientific
+operation of the instrument. The observatory staff could also make use of this
+observing mode to verify the status of the instrument using any source
+different from a standard star. In the case of observing a standard star the
+calibration mode standard star with the LCB IFU could be used instead.</p>
+</div>
+<div class="section" id="recipe-inputs-and-results">
+<h3>Recipe, inputs and results<a class="headerlink" href="#recipe-inputs-and-results" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="megaradrp.recipes.scientific.lcb.LCBImageRecipe">
+<em class="property">class </em><code class="descclassname">megaradrp.recipes.scientific.lcb.</code><code class="descname">LCBImageRecipe</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.scientific.lcb.LCBImageRecipe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process LCB images.</p>
+<dl class="class">
+<dt id="megaradrp.recipes.scientific.lcb.LCBImageRecipe.ImageRecipeInput">
+<em class="property">class </em><code class="descname">ImageRecipeInput</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.scientific.lcb.LCBImageRecipe.ImageRecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>ImageRecipeInput documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>master_bias</td>
+<td>(MasterBias, requirement) Master BIAS image</td>
+</tr>
+<tr class="row-even"><td>master_bpm</td>
+<td>(MasterBPM, requirement, optional) Master Bad Pixel Mask</td>
+</tr>
+<tr class="row-odd"><td>master_dark</td>
+<td>(MasterDark, requirement, optional) Master DARK image</td>
+</tr>
+<tr class="row-even"><td>master_fiberflat</td>
+<td>(MasterFiberFlat, requirement) Master fiber flat calibration</td>
+</tr>
+<tr class="row-odd"><td>master_slitflat</td>
+<td>(MasterSlitFlat, requirement, optional) Master slit flat calibration</td>
+</tr>
+<tr class="row-even"><td>master_twilight</td>
+<td>(MasterSlitFlat, requirement) Master slit flat calibration</td>
+</tr>
+<tr class="row-odd"><td>obresult</td>
+<td>(ObservationResultType, requirement) Observation Result</td>
+</tr>
+<tr class="row-even"><td>tracemap</td>
+<td>(TraceMap, requirement) Trace information of the Apertures</td>
+</tr>
+<tr class="row-odd"><td>wlcalib</td>
+<td>(WavelengthCalibration, requirement) Wavelength calibration table</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="megaradrp.recipes.scientific.lcb.LCBImageRecipe.LCBImageRecipeResult">
+<em class="property">class </em><code class="descclassname">LCBImageRecipe.</code><code class="descname">LCBImageRecipeResult</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.scientific.lcb.LCBImageRecipe.LCBImageRecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>LCBImageRecipeResult documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>final</td>
+<td>(ProcessedRSS, product)</td>
+</tr>
+<tr class="row-even"><td>qc</td>
+<td>(QualityControlProduct, product)</td>
+</tr>
+<tr class="row-odd"><td>reduced</td>
+<td>(ProcessedFrame, product)</td>
+</tr>
+<tr class="row-even"><td>sky</td>
+<td>(ProcessedRSS, product)</td>
+</tr>
+<tr class="row-odd"><td>target</td>
+<td>(ProcessedRSS, product)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.recipes.scientific.lcb.LCBImageRecipe.RecipeInput">
+<code class="descclassname">LCBImageRecipe.</code><code class="descname">RecipeInput</code><a class="headerlink" href="#megaradrp.recipes.scientific.lcb.LCBImageRecipe.RecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ImageRecipeInput</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.recipes.scientific.lcb.LCBImageRecipe.RecipeResult">
+<code class="descclassname">LCBImageRecipe.</code><code class="descname">RecipeResult</code><a class="headerlink" href="#megaradrp.recipes.scientific.lcb.LCBImageRecipe.RecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">LCBImageRecipeResult</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="lcb-ifu-fast-mapping">
+<h2>LCB IFU fast mapping<a class="headerlink" href="#lcb-ifu-fast-mapping" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">LCB IFU fast mapping</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body">Online, Offline</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Key:</th><td class="field-body">MEGARA_LCB_FAST_MAPPING</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Recipe:</th><td class="field-body"><a class="reference internal" href="#megaradrp.recipes.scientific.lcbfastmapping.LCBFastMappingRecipe" title="megaradrp.recipes.scientific.lcbfastmapping.LCBFastMappingRecipe"><code class="xref py py-class docutils literal"><span class="pre">LCBFastMappingRecipe</span></code></a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Recipe input:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">LCBFastMappingRecipeInput</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Recipe result:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">LCBFastMappingRecipeResult</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>This mode sequence includes the required actions to obtain scientifically valid
+data with the LCB IFU instrument mode of MEGARA covering a relatively large
+area of the sky (of an extension equivalent to several LCB FOV). As this mode
+is intended for the observation of large areas of the sky the exposure times of
+individual exposures are expected to be short. That implies that the use of the
+A&amp;G system is not mandatory. By skipping the use of the A&amp;G system throughout
+the mapping process the observing efficiency dramatically increases. A (slow)
+mapping observation, where each position in the grid should make use of the A&amp;G
+system, would have to be defined by the means of individual LCB IFU scientific
+observing modes. The current observing mode only contemplates the possibility
+of using the A&amp;G system for the starting position of the mapping grid.</p>
+<div class="section" id="id1">
+<h3>Requirements<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>This mode requires having the focal-plane cover configured, the instrument
+shutter open, to configure the VPH mechanism to select the grating to be used,
+to set the instrument mode to LCB IFU, to move the focusing mechanism to the
+position pre-defined for the specific VPH of choice, to expose a certain time
+and to readout the detector in a series of exposures, and to repeat the data
+acquisition in a regular grid of positions on the sky, being this series the
+LCB IFU fast-mapping image set.</p>
+<p>The execution of a &#8220;Fine acquisition with the LCB IFU&#8221; auxiliary observing mode
+is optional in this case and it would be only possible for the starting
+position in the grid.</p>
+<p>As part of the MEGARA on-line quick-look software the images to be obtained by
+this observing mode should be processed and the spectra extracted so to produce
+a view of the entire mapped field at a selectable wavelength within the
+wavelength range covered by the VPH of choice. The user can provide a blank-sky
+position away from the mapping area. As a number of Fiber MOS positioners are
+devoted to the measure of the sky background simultaneously with the LCB IFU
+observations, alternatively, the on-line quick-look software could also
+subtract the spectrum of the sky from the spectra in each IFU spaxel and from
+the maps generated above. In the latter case (i.e. when no blank-sky position
+is defined) showing sky-subtracted maps is optional as the sky positioners
+could be strongly contaminated by emission from the extended target. Note that,
+in any case, the on-line quick-look software should have information on the
+configuration of the focal-plane cover as well.</p>
+</div>
+<div class="section" id="id2">
+<h3>Procedure<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id3">
+<h3>Products<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>The observer will obtain LCB IFU image sets as part of the routine scientific
+operation of the instrument. The observatory staff could also make use of this
+observing mode to verify the status of the instrument using any source
+different from a standard star.</p>
+</div>
+<div class="section" id="id4">
+<h3>Recipe, inputs and results<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="megaradrp.recipes.scientific.lcbfastmapping.LCBFastMappingRecipe">
+<em class="property">class </em><code class="descclassname">megaradrp.recipes.scientific.lcbfastmapping.</code><code class="descname">LCBFastMappingRecipe</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.scientific.lcbfastmapping.LCBFastMappingRecipe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process LCB Fast Mapping Recipe.</p>
+<dl class="class">
+<dt id="megaradrp.recipes.scientific.lcbfastmapping.LCBFastMappingRecipe.LCBFastMappingRecipeResult">
+<em class="property">class </em><code class="descname">LCBFastMappingRecipeResult</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.scientific.lcbfastmapping.LCBFastMappingRecipe.LCBFastMappingRecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>LCBFastMappingRecipeResult documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>final</td>
+<td>(ProcessedMultiRSS, product)</td>
+</tr>
+<tr class="row-even"><td>qc</td>
+<td>(QualityControlProduct, product)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="megaradrp.recipes.scientific.lcbfastmapping.LCBFastMappingRecipe.MegaraBaseRecipeInput">
+<em class="property">class </em><code class="descclassname">LCBFastMappingRecipe.</code><code class="descname">MegaraBaseRecipeInput</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.scientific.lcbfastmapping.LCBFastMappingRecipe.MegaraBaseRecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>MegaraBaseRecipeInput documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>obresult</td>
+<td>(ObservationResultType, requirement) Observation Result</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.recipes.scientific.lcbfastmapping.LCBFastMappingRecipe.RecipeInput">
+<code class="descclassname">LCBFastMappingRecipe.</code><code class="descname">RecipeInput</code><a class="headerlink" href="#megaradrp.recipes.scientific.lcbfastmapping.LCBFastMappingRecipe.RecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">MegaraBaseRecipeInput</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.recipes.scientific.lcbfastmapping.LCBFastMappingRecipe.RecipeResult">
+<code class="descclassname">LCBFastMappingRecipe.</code><code class="descname">RecipeResult</code><a class="headerlink" href="#megaradrp.recipes.scientific.lcbfastmapping.LCBFastMappingRecipe.RecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">LCBFastMappingRecipeResult</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="fiber-mos-scientific-observation">
+<h2>Fiber MOS scientific observation<a class="headerlink" href="#fiber-mos-scientific-observation" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Fiber MOS scientific observation</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body">Online, Offline</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Key:</th><td class="field-body">MEGARA_MOS_IMAGE</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Recipe:</th><td class="field-body"><a class="reference internal" href="#megaradrp.recipes.scientific.mos.MOSImageRecipe" title="megaradrp.recipes.scientific.mos.MOSImageRecipe"><code class="xref py py-class docutils literal"><span class="pre">MOSImageRecipe</span></code></a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Recipe input:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">MOSImageRecipeInput</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Recipe result:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">MOSImageRecipeResult</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>This mode sequence includes the required actions to observe a list of targets
+with known celestial coordinates with MEGARA using the Fiber MOS instrument
+mode. The information on the assignment of targets and positioners is included
+in the form of a set of input catalogues generated off-line by the MEGARA
+Observing Preparation Software Suite (MOPSS). The reference position for each
+positioner is the center of the central fiber of the 7-fiber minibundle. This
+observing mode could be run with one of the sides of the focal-plane cover
+closed in order to reduce the cross-talk between positioners that would be
+placed adjacent in the pseudo-slit. Thus, the input catalogues should be
+specific of the focal-plane cover configuration to be used and both the on-line
+quick-look software and the off-line pipeline should include that information
+as a parameter or set of parameters. Note that the Fiber MOS catalogues and
+configuration files could be designed for their use under any focal-plane cover
+configuration. Even in that case the data processing software should know under
+which configuration a given image set was obtained.</p>
+<div class="section" id="id5">
+<h3>Requirements<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>This observing mode requires having the focal-plane cover configured, the
+instrument shutter open, to configure the VPH mechanism to select the grating
+to be used, to set the instrument mode to Fiber MOS, to move the focusing
+mechanism to the position pre-defined for the specific VPH of choice, to move
+all robotic positioners with a target associated in the input catalogues to the
+position of the corresponding target (these include science targets, reference
+stars for fine acquisition and positioners devoted to blank-sky measurements)
+and to expose a certain time and to readout the detector in a series of
+exposures, being this series the Fiber MOS image set.</p>
+<p>A pre-requisite for running this observing mode is to have previously executed
+a &#8220;Fine acquisition with the Fiber MOS&#8221; auxiliary observing mode on the same
+field.</p>
+<p>As part of the MEGARA on-line quick-look software, the image (or images)
+obtained should be processed and the spectra extracted. The observer might
+define a number of positioners to be placed on blank-sky regions of the field
+in order to improve sky subtraction. Alternatively, the user can also define a
+blank sky position. This is particularly important when observing individual
+stars in a nearby (Local Group) galaxy, for example, where the emission from
+the host galaxy is expected to contaminate even the outermost positioners.
+Should that be the case, the on-line quick-look software should be able to
+derive a sky spectrum from the blank-sky observation (if present) or the
+spectra of these positioners (if defined and no blank-sky observation is
+available) and subtract it from the spectra of the targets. The processed
+spectra should then be visualized using the on-line quick-look software. If
+neither a blank-sky observation nor blank-sky positioners are available no sky
+subtraction will be performed.</p>
+</div>
+<div class="section" id="id6">
+<h3>Procedure<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id7">
+<h3>Products<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>The observer will obtain Fiber MOS image sets as part of the routine scientific
+operation of the instrument. The observatory staff could also make use of this
+observing mode to verify the status of the instrument.</p>
+</div>
+<div class="section" id="id8">
+<h3>Recipe, inputs and results<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="megaradrp.recipes.scientific.mos.MOSImageRecipe">
+<em class="property">class </em><code class="descclassname">megaradrp.recipes.scientific.mos.</code><code class="descname">MOSImageRecipe</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.scientific.mos.MOSImageRecipe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process MOS images.</p>
+<dl class="class">
+<dt id="megaradrp.recipes.scientific.mos.MOSImageRecipe.ImageRecipeInput">
+<em class="property">class </em><code class="descname">ImageRecipeInput</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.scientific.mos.MOSImageRecipe.ImageRecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>ImageRecipeInput documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>master_bias</td>
+<td>(MasterBias, requirement) Master BIAS image</td>
+</tr>
+<tr class="row-even"><td>master_bpm</td>
+<td>(MasterBPM, requirement, optional) Master Bad Pixel Mask</td>
+</tr>
+<tr class="row-odd"><td>master_dark</td>
+<td>(MasterDark, requirement, optional) Master DARK image</td>
+</tr>
+<tr class="row-even"><td>master_fiberflat</td>
+<td>(MasterFiberFlat, requirement) Master fiber flat calibration</td>
+</tr>
+<tr class="row-odd"><td>master_slitflat</td>
+<td>(MasterSlitFlat, requirement, optional) Master slit flat calibration</td>
+</tr>
+<tr class="row-even"><td>master_twilight</td>
+<td>(MasterSlitFlat, requirement) Master slit flat calibration</td>
+</tr>
+<tr class="row-odd"><td>obresult</td>
+<td>(ObservationResultType, requirement) Observation Result</td>
+</tr>
+<tr class="row-even"><td>tracemap</td>
+<td>(TraceMap, requirement) Trace information of the Apertures</td>
+</tr>
+<tr class="row-odd"><td>wlcalib</td>
+<td>(WavelengthCalibration, requirement) Wavelength calibration table</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="megaradrp.recipes.scientific.mos.MOSImageRecipe.MOSImageRecipeResult">
+<em class="property">class </em><code class="descclassname">MOSImageRecipe.</code><code class="descname">MOSImageRecipeResult</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.scientific.mos.MOSImageRecipe.MOSImageRecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>MOSImageRecipeResult documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>final</td>
+<td>(ProcessedRSS, product)</td>
+</tr>
+<tr class="row-even"><td>qc</td>
+<td>(QualityControlProduct, product)</td>
+</tr>
+<tr class="row-odd"><td>reduced</td>
+<td>(ProcessedFrame, product)</td>
+</tr>
+<tr class="row-even"><td>sky</td>
+<td>(ProcessedRSS, product)</td>
+</tr>
+<tr class="row-odd"><td>target</td>
+<td>(ProcessedRSS, product)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.recipes.scientific.mos.MOSImageRecipe.RecipeInput">
+<code class="descclassname">MOSImageRecipe.</code><code class="descname">RecipeInput</code><a class="headerlink" href="#megaradrp.recipes.scientific.mos.MOSImageRecipe.RecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ImageRecipeInput</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.recipes.scientific.mos.MOSImageRecipe.RecipeResult">
+<code class="descclassname">MOSImageRecipe.</code><code class="descname">RecipeResult</code><a class="headerlink" href="#megaradrp.recipes.scientific.mos.MOSImageRecipe.RecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">MOSImageRecipeResult</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="standard-star-with-the-lcb-ifu">
+<h2>Standard star with the LCB IFU<a class="headerlink" href="#standard-star-with-the-lcb-ifu" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Standard start with the LCB IFU</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body">Offline</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Key:</th><td class="field-body">MEGARA_LCB_STD_STAR</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Recipe:</th><td class="field-body"><a class="reference internal" href="#megaradrp.recipes.scientific.lcbstdstar.LCBStandardRecipe" title="megaradrp.recipes.scientific.lcbstdstar.LCBStandardRecipe"><code class="xref py py-class docutils literal"><span class="pre">LCBStandardRecipe</span></code></a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Recipe input:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">LCBStandardRecipeInput</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Recipe result:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">LCBStandardRecipeResult</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>This observing mode includes the required actions to obtain those calibration
+images needed to correct for the variation in the response of the system along
+the spectral direction. This signature is manifested by a change in the
+conversion factor between the energy surface density hitting the telescope
+primary mirror and the DUs per CCD pixel with wavelength. Its effect is already
+present in the original data but it could get modified during the reduction
+process, e.g. after the fiber-flat correction is applied.</p>
+<p>The flux calibration is performed by observing one or several
+spectrophotometric stars with the same instrument configuration that for the
+scientific observations. Depending on the number of standard stars observed and
+on the weather conditions (mainly transparency) two different types of
+calibration could be achieved:</p>
+<ul class="simple">
+<li>Absolute-flux calibration: The weather conditions during the night should be photometric and a number of spectrophotometric standard stars at different airmasses should be observed. This allows to fully correct from DUs per CCD pixel to energy surface density (typically in erg s-1 cm-2 Å-1) incident at the top of the atmosphere. If only one single standard star is observed (at the airmass of the science object) this correction allows deriving the energy surface density hitting the telescope primary mirror exclusively, unless an atmospheric extinction curve for the observatory and that particular night is assumed. In order to properly flux-calibrate scientific observations at all airmasses several stars should be observed during the night.</li>
+<li>Relative-flux calibration: If the weather conditions are not photometric this correction only allows normalizing the DUs per CCD pixel along the spectral direction so the conversion to incident energy at the top of the atmosphere is the same at all wavelengths. In order for this calibration to be valid the assumption that the effect of the atmosphere (including atmospheric cirrus and possibly thick clouds) on the wavelength dependence of this correction is that given by the atmospheric extinction curve adopted.</li>
+</ul>
+<p>Since the observing sequence needed for both types of flux calibration is
+identical only one observing mode (standard star) needs to be defined.</p>
+<p>We will use this same observing mode also for the observation of either
+telluric standards or radial-velocity standards. The former are needed to
+correct for the presence of telluric absorptions mainly in the red part of the
+spectrum and are achieved by means of observing A-type stars at the same
+airmass and very close in time to the corresponding scientific observation.
+The latter can used to determine a precise zero point velocity for the
+instrument at a specific night and to verify its stability from night to night
+and season to season.</p>
+<div class="section" id="id9">
+<h3>Requirements<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>This mode requires the entire flux of the spectrophotometric standard star to
+be recovered (even if the star is a telluric or radial-velocity standard),
+especially when an absolute-flux calibration is needed, so the LCB IFU bundle
+must be used. The FOV of the LCB IFU is large enough for these observations to
+be carried out with one of the sides of the focal-plane cover closed. When this
+calibration is aimed for a set of Fiber-MOS scientific observations,
+complementary observations of standard stars through the Fiber-MOS minibundles
+might be also required. This allows verifying the quality and stability of the
+calibration when two different pseudo-slits are used. Such observing mode is
+described later.</p>
+<p>This mode requires having the focal-plane cover configured (at least one of the
+sides should be open), the instrument shutter open, to configure the VPH
+mechanism to select the grating to be used, to set the instrument mode to LCB
+IFU, to move the focusing mechanism to the position pre-defined for the
+specific VPH of choice, and to expose a certain time and to readout the
+detector in a series of exposures, being this series the image set containing
+the spectral energy distribution of the spectrophotometric standard star.</p>
+<p>In order to distribute the flux from the star across multiple spaxels in the
+LCB IFU bundle (particularly important in the case of very bright
+spectrophotometric standard stars) we might also need to apply a small drift
+motion (typically of a few arcsec per second) to one of the telescope axes at
+the start of the observation or, more likely, slightly defocus the telescope.</p>
+</div>
+<div class="section" id="id10">
+<h3>Procedure<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id11">
+<h3>Products<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>Standard star image sets are to be obtained only as part of the routine
+calibration activities performed by the observer and that are needed for
+processing data for scientific exploitation.</p>
+</div>
+<div class="section" id="id12">
+<h3>Recipe, inputs and results<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="megaradrp.recipes.scientific.lcbstdstar.LCBStandardRecipe">
+<em class="property">class </em><code class="descclassname">megaradrp.recipes.scientific.lcbstdstar.</code><code class="descname">LCBStandardRecipe</code><a class="headerlink" href="#megaradrp.recipes.scientific.lcbstdstar.LCBStandardRecipe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process LCB Standard Recipe.</p>
+<dl class="class">
+<dt id="megaradrp.recipes.scientific.lcbstdstar.LCBStandardRecipe.ImageRecipeInput">
+<em class="property">class </em><code class="descname">ImageRecipeInput</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.scientific.lcbstdstar.LCBStandardRecipe.ImageRecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>ImageRecipeInput documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>master_bias</td>
+<td>(MasterBias, requirement) Master BIAS image</td>
+</tr>
+<tr class="row-even"><td>master_bpm</td>
+<td>(MasterBPM, requirement, optional) Master Bad Pixel Mask</td>
+</tr>
+<tr class="row-odd"><td>master_dark</td>
+<td>(MasterDark, requirement, optional) Master DARK image</td>
+</tr>
+<tr class="row-even"><td>master_fiberflat</td>
+<td>(MasterFiberFlat, requirement) Master fiber flat calibration</td>
+</tr>
+<tr class="row-odd"><td>master_slitflat</td>
+<td>(MasterSlitFlat, requirement, optional) Master slit flat calibration</td>
+</tr>
+<tr class="row-even"><td>master_twilight</td>
+<td>(MasterSlitFlat, requirement) Master slit flat calibration</td>
+</tr>
+<tr class="row-odd"><td>obresult</td>
+<td>(ObservationResultType, requirement) Observation Result</td>
+</tr>
+<tr class="row-even"><td>tracemap</td>
+<td>(TraceMap, requirement) Trace information of the Apertures</td>
+</tr>
+<tr class="row-odd"><td>wlcalib</td>
+<td>(WavelengthCalibration, requirement) Wavelength calibration table</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="megaradrp.recipes.scientific.lcbstdstar.LCBStandardRecipe.MegaraBaseRecipeResult">
+<em class="property">class </em><code class="descclassname">LCBStandardRecipe.</code><code class="descname">MegaraBaseRecipeResult</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.scientific.lcbstdstar.LCBStandardRecipe.MegaraBaseRecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>MegaraBaseRecipeResult documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="91%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>qc</td>
+<td>(QualityControlProduct, product)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.recipes.scientific.lcbstdstar.LCBStandardRecipe.RecipeInput">
+<code class="descclassname">LCBStandardRecipe.</code><code class="descname">RecipeInput</code><a class="headerlink" href="#megaradrp.recipes.scientific.lcbstdstar.LCBStandardRecipe.RecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ImageRecipeInput</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.recipes.scientific.lcbstdstar.LCBStandardRecipe.RecipeResult">
+<code class="descclassname">LCBStandardRecipe.</code><code class="descname">RecipeResult</code><a class="headerlink" href="#megaradrp.recipes.scientific.lcbstdstar.LCBStandardRecipe.RecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">MegaraBaseRecipeResult</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="standard-star-with-the-fiber-mos">
+<h2>Standard star with the Fiber MOS<a class="headerlink" href="#standard-star-with-the-fiber-mos" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Standard start with the FIBER MOS</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body">Offline</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Key:</th><td class="field-body">MEGARA_MOS_STD_STAR</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Recipe:</th><td class="field-body"><a class="reference internal" href="#megaradrp.recipes.scientific.mosstdstar.MOSStandardRecipe" title="megaradrp.recipes.scientific.mosstdstar.MOSStandardRecipe"><code class="xref py py-class docutils literal"><span class="pre">MOSStandardRecipe</span></code></a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Recipe input:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">MOSStandardRecipeInput</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Recipe result:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">MOSStandardRecipeResult</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>This observing mode includes the required actions to obtain those calibration
+images needed to correct for the variation in the response of the system along
+the spectral direction. The difference between this mode and the two precedent
+observing modes is that in this case the spectrophotometric standard star is
+observed through one of the robotic positioners of the Fiber-MOS subsystem.</p>
+<p>As in Standard star with the IFUs observing modes, the calibration is performed
+by observing one or several spectrophotometric stars with the same instrument
+configuration that for the scientific observations. Depending on the number of
+standard stars observed and the weather conditions two different types of
+calibration could be achieved, absolute or relative. In the case of the former
+calibration an aperture correction should be applied to take into account the
+possible flux losses from the standard stars when observed through one of the
+~1.6-arcsec-wide robotic positioners.</p>
+<div class="section" id="id13">
+<h3>Requirements<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<p>This mode requires having the focal-plane cover configured, the instrument
+shutter open, to configure the VPH mechanism to select the grating to be used,
+to set the instrument mode to Fiber MOS, to move the focusing mechanism to the
+position pre-defined for the specific VPH of choice, to move one of the robotic
+positioners to the position of the spectrophotometric standard star (other
+positioners could be also moved if needed) and to expose a certain time and to
+readout the detector in a series of exposures, being this series the image set
+containing the spectral energy distribution of the spectrophotometric standard
+star.</p>
+<p>This observing mode could still be carried out with one of the sides of the
+focal-plane cover closed. However, as the (commonly rather bright)
+spectrophotometric standard star is the only object of interest in the field,
+the other positioners would not be observing scientific targets, so the level
+of cross-talk between these and the positioner devoted to the standard star
+should be negligible. Thus, the use of the focal-plane cover, although
+considered, is not recommended for this specific observing mode.</p>
+<p>In order to place the robotic positioner(s) on the corresponding target(s) a
+set of input catalogues previously generated by the observer using MOPSS
+(MEGARA Observing Preparation Software Suite) are needed.</p>
+</div>
+<div class="section" id="id14">
+<h3>Procedure<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id15">
+<h3>Products<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<p>Standard star image sets are to be obtained only as part of the routine
+calibration activities performed by the observer that are needed for processing
+data for scientific exploitation.</p>
+</div>
+<div class="section" id="id16">
+<h3>Recipe, inputs and results<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="megaradrp.recipes.scientific.mosstdstar.MOSStandardRecipe">
+<em class="property">class </em><code class="descclassname">megaradrp.recipes.scientific.mosstdstar.</code><code class="descname">MOSStandardRecipe</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.scientific.mosstdstar.MOSStandardRecipe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process MOS Standard Recipe.</p>
+<dl class="class">
+<dt id="megaradrp.recipes.scientific.mosstdstar.MOSStandardRecipe.ImageRecipeInput">
+<em class="property">class </em><code class="descname">ImageRecipeInput</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.scientific.mosstdstar.MOSStandardRecipe.ImageRecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>ImageRecipeInput documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>master_bias</td>
+<td>(MasterBias, requirement) Master BIAS image</td>
+</tr>
+<tr class="row-even"><td>master_bpm</td>
+<td>(MasterBPM, requirement, optional) Master Bad Pixel Mask</td>
+</tr>
+<tr class="row-odd"><td>master_dark</td>
+<td>(MasterDark, requirement, optional) Master DARK image</td>
+</tr>
+<tr class="row-even"><td>master_fiberflat</td>
+<td>(MasterFiberFlat, requirement) Master fiber flat calibration</td>
+</tr>
+<tr class="row-odd"><td>master_slitflat</td>
+<td>(MasterSlitFlat, requirement, optional) Master slit flat calibration</td>
+</tr>
+<tr class="row-even"><td>master_twilight</td>
+<td>(MasterSlitFlat, requirement) Master slit flat calibration</td>
+</tr>
+<tr class="row-odd"><td>obresult</td>
+<td>(ObservationResultType, requirement) Observation Result</td>
+</tr>
+<tr class="row-even"><td>tracemap</td>
+<td>(TraceMap, requirement) Trace information of the Apertures</td>
+</tr>
+<tr class="row-odd"><td>wlcalib</td>
+<td>(WavelengthCalibration, requirement) Wavelength calibration table</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="megaradrp.recipes.scientific.mosstdstar.MOSStandardRecipe.MegaraBaseRecipeResult">
+<em class="property">class </em><code class="descclassname">MOSStandardRecipe.</code><code class="descname">MegaraBaseRecipeResult</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.scientific.mosstdstar.MOSStandardRecipe.MegaraBaseRecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>MegaraBaseRecipeResult documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="91%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>qc</td>
+<td>(QualityControlProduct, product)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.recipes.scientific.mosstdstar.MOSStandardRecipe.RecipeInput">
+<code class="descclassname">MOSStandardRecipe.</code><code class="descname">RecipeInput</code><a class="headerlink" href="#megaradrp.recipes.scientific.mosstdstar.MOSStandardRecipe.RecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ImageRecipeInput</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.recipes.scientific.mosstdstar.MOSStandardRecipe.RecipeResult">
+<code class="descclassname">MOSStandardRecipe.</code><code class="descname">RecipeResult</code><a class="headerlink" href="#megaradrp.recipes.scientific.mosstdstar.MOSStandardRecipe.RecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">MegaraBaseRecipeResult</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="megara-flux-calibration">
+<h2>MEGARA_FLUX_CALIBRATION<a class="headerlink" href="#megara-flux-calibration" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body">Offline</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Key:</th><td class="field-body">MEGARA_FLUX_CALIBRATION</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Recipe:</th><td class="field-body"><a class="reference internal" href="#megaradrp.recipes.calibration.fluxcal.PseudoFluxCalibrationRecipe" title="megaradrp.recipes.calibration.fluxcal.PseudoFluxCalibrationRecipe"><code class="xref py py-class docutils literal"><span class="pre">PseudoFluxCalibrationRecipe</span></code></a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Recipe input:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">PseudoFluxCalibrationRecipeInput</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Recipe result:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">PseudoFluxCalibrationRecipeResult</span></code></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id17">
+<h3>Recipe, inputs and results<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="megaradrp.recipes.calibration.fluxcal.PseudoFluxCalibrationRecipe">
+<em class="property">class </em><code class="descclassname">megaradrp.recipes.calibration.fluxcal.</code><code class="descname">PseudoFluxCalibrationRecipe</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.calibration.fluxcal.PseudoFluxCalibrationRecipe" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="class">
+<dt id="megaradrp.recipes.calibration.fluxcal.PseudoFluxCalibrationRecipe.PseudoFluxCalibrationRecipeInput">
+<em class="property">class </em><code class="descname">PseudoFluxCalibrationRecipeInput</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.calibration.fluxcal.PseudoFluxCalibrationRecipe.PseudoFluxCalibrationRecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>PseudoFluxCalibrationRecipeInput documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>master_bias</td>
+<td>(MasterBias, requirement) Master BIAS image</td>
+</tr>
+<tr class="row-even"><td>master_fiberflat</td>
+<td>(MasterFiberFlat, requirement) Master fiber flat calibration</td>
+</tr>
+<tr class="row-odd"><td>obresult</td>
+<td>(ObservationResultType, requirement) Observation Result</td>
+</tr>
+<tr class="row-even"><td>reference_spectrum</td>
+<td>(MasterFiberFlat, requirement) Reference spectrum</td>
+</tr>
+<tr class="row-odd"><td>traces</td>
+<td>(TraceMap, requirement) Trace information of the Apertures</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="megaradrp.recipes.calibration.fluxcal.PseudoFluxCalibrationRecipe.PseudoFluxCalibrationRecipeResult">
+<em class="property">class </em><code class="descclassname">PseudoFluxCalibrationRecipe.</code><code class="descname">PseudoFluxCalibrationRecipeResult</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.calibration.fluxcal.PseudoFluxCalibrationRecipe.PseudoFluxCalibrationRecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>PseudoFluxCalibrationRecipeResult documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>calibration</td>
+<td>(ProcessedFrame, product)</td>
+</tr>
+<tr class="row-even"><td>calibration_rss</td>
+<td>(ProcessedRSS, product)</td>
+</tr>
+<tr class="row-odd"><td>qc</td>
+<td>(QualityControlProduct, product)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.recipes.calibration.fluxcal.PseudoFluxCalibrationRecipe.RecipeInput">
+<code class="descclassname">PseudoFluxCalibrationRecipe.</code><code class="descname">RecipeInput</code><a class="headerlink" href="#megaradrp.recipes.calibration.fluxcal.PseudoFluxCalibrationRecipe.RecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">PseudoFluxCalibrationRecipeInput</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.recipes.calibration.fluxcal.PseudoFluxCalibrationRecipe.RecipeResult">
+<code class="descclassname">PseudoFluxCalibrationRecipe.</code><code class="descname">RecipeResult</code><a class="headerlink" href="#megaradrp.recipes.calibration.fluxcal.PseudoFluxCalibrationRecipe.RecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">PseudoFluxCalibrationRecipeResult</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="megara-extinction-star">
+<h2>MEGARA_EXTINCTION_STAR<a class="headerlink" href="#megara-extinction-star" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body">Offline</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Key:</th><td class="field-body">MEGARA_MOS_STD_STAR</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Recipe:</th><td class="field-body"><a class="reference internal" href="#megaradrp.recipes.scientific.extinctionstar.ExtinctionStarRecipe" title="megaradrp.recipes.scientific.extinctionstar.ExtinctionStarRecipe"><code class="xref py py-class docutils literal"><span class="pre">ExtinctionStarRecipe</span></code></a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Recipe input:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">ExtinctionStarRecipeInput</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Recipe result:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">ExtinctionStarRecipeResult</span></code></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id18">
+<h3>Recipe, inputs and results<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="megaradrp.recipes.scientific.extinctionstar.ExtinctionStarRecipe">
+<em class="property">class </em><code class="descclassname">megaradrp.recipes.scientific.extinctionstar.</code><code class="descname">ExtinctionStarRecipe</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.scientific.extinctionstar.ExtinctionStarRecipe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process Extinction Star Recipe.</p>
+<dl class="class">
+<dt id="megaradrp.recipes.scientific.extinctionstar.ExtinctionStarRecipe.ImageRecipeInput">
+<em class="property">class </em><code class="descname">ImageRecipeInput</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.scientific.extinctionstar.ExtinctionStarRecipe.ImageRecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>ImageRecipeInput documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>master_bias</td>
+<td>(MasterBias, requirement) Master BIAS image</td>
+</tr>
+<tr class="row-even"><td>master_bpm</td>
+<td>(MasterBPM, requirement, optional) Master Bad Pixel Mask</td>
+</tr>
+<tr class="row-odd"><td>master_dark</td>
+<td>(MasterDark, requirement, optional) Master DARK image</td>
+</tr>
+<tr class="row-even"><td>master_fiberflat</td>
+<td>(MasterFiberFlat, requirement) Master fiber flat calibration</td>
+</tr>
+<tr class="row-odd"><td>master_slitflat</td>
+<td>(MasterSlitFlat, requirement, optional) Master slit flat calibration</td>
+</tr>
+<tr class="row-even"><td>master_twilight</td>
+<td>(MasterSlitFlat, requirement) Master slit flat calibration</td>
+</tr>
+<tr class="row-odd"><td>obresult</td>
+<td>(ObservationResultType, requirement) Observation Result</td>
+</tr>
+<tr class="row-even"><td>tracemap</td>
+<td>(TraceMap, requirement) Trace information of the Apertures</td>
+</tr>
+<tr class="row-odd"><td>wlcalib</td>
+<td>(WavelengthCalibration, requirement) Wavelength calibration table</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="megaradrp.recipes.scientific.extinctionstar.ExtinctionStarRecipe.MegaraBaseRecipeResult">
+<em class="property">class </em><code class="descclassname">ExtinctionStarRecipe.</code><code class="descname">MegaraBaseRecipeResult</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.scientific.extinctionstar.ExtinctionStarRecipe.MegaraBaseRecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>MegaraBaseRecipeResult documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="91%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>qc</td>
+<td>(QualityControlProduct, product)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.recipes.scientific.extinctionstar.ExtinctionStarRecipe.RecipeInput">
+<code class="descclassname">ExtinctionStarRecipe.</code><code class="descname">RecipeInput</code><a class="headerlink" href="#megaradrp.recipes.scientific.extinctionstar.ExtinctionStarRecipe.RecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ImageRecipeInput</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.recipes.scientific.extinctionstar.ExtinctionStarRecipe.RecipeResult">
+<code class="descclassname">ExtinctionStarRecipe.</code><code class="descname">RecipeResult</code><a class="headerlink" href="#megaradrp.recipes.scientific.extinctionstar.ExtinctionStarRecipe.RecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">MegaraBaseRecipeResult</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="megara-sensitivity-star">
+<h2>MEGARA_SENSITIVITY_STAR<a class="headerlink" href="#megara-sensitivity-star" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body">Offline</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Key:</th><td class="field-body">MEGARA_FLUX_CALIBRATION</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Recipe:</th><td class="field-body"><a class="reference internal" href="#megaradrp.recipes.scientific.sensivitystar.SensivityStarRecipe" title="megaradrp.recipes.scientific.sensivitystar.SensivityStarRecipe"><code class="xref py py-class docutils literal"><span class="pre">SensivityStarRecipe</span></code></a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Recipe input:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">SensivityStarRecipeInput</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Recipe result:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">SensivityStarRecipeResult</span></code></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id19">
+<h3>Recipe, inputs and results<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="megaradrp.recipes.scientific.sensivitystar.SensivityStarRecipe">
+<em class="property">class </em><code class="descclassname">megaradrp.recipes.scientific.sensivitystar.</code><code class="descname">SensivityStarRecipe</code><a class="headerlink" href="#megaradrp.recipes.scientific.sensivitystar.SensivityStarRecipe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process Sensivity Star Recipe.</p>
+<dl class="class">
+<dt id="megaradrp.recipes.scientific.sensivitystar.SensivityStarRecipe.ImageRecipeInput">
+<em class="property">class </em><code class="descname">ImageRecipeInput</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.scientific.sensivitystar.SensivityStarRecipe.ImageRecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>ImageRecipeInput documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>master_bias</td>
+<td>(MasterBias, requirement) Master BIAS image</td>
+</tr>
+<tr class="row-even"><td>master_bpm</td>
+<td>(MasterBPM, requirement, optional) Master Bad Pixel Mask</td>
+</tr>
+<tr class="row-odd"><td>master_dark</td>
+<td>(MasterDark, requirement, optional) Master DARK image</td>
+</tr>
+<tr class="row-even"><td>master_fiberflat</td>
+<td>(MasterFiberFlat, requirement) Master fiber flat calibration</td>
+</tr>
+<tr class="row-odd"><td>master_slitflat</td>
+<td>(MasterSlitFlat, requirement, optional) Master slit flat calibration</td>
+</tr>
+<tr class="row-even"><td>master_twilight</td>
+<td>(MasterSlitFlat, requirement) Master slit flat calibration</td>
+</tr>
+<tr class="row-odd"><td>obresult</td>
+<td>(ObservationResultType, requirement) Observation Result</td>
+</tr>
+<tr class="row-even"><td>tracemap</td>
+<td>(TraceMap, requirement) Trace information of the Apertures</td>
+</tr>
+<tr class="row-odd"><td>wlcalib</td>
+<td>(WavelengthCalibration, requirement) Wavelength calibration table</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="megaradrp.recipes.scientific.sensivitystar.SensivityStarRecipe.MegaraBaseRecipeResult">
+<em class="property">class </em><code class="descclassname">SensivityStarRecipe.</code><code class="descname">MegaraBaseRecipeResult</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.scientific.sensivitystar.SensivityStarRecipe.MegaraBaseRecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>MegaraBaseRecipeResult documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="91%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>qc</td>
+<td>(QualityControlProduct, product)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.recipes.scientific.sensivitystar.SensivityStarRecipe.RecipeInput">
+<code class="descclassname">SensivityStarRecipe.</code><code class="descname">RecipeInput</code><a class="headerlink" href="#megaradrp.recipes.scientific.sensivitystar.SensivityStarRecipe.RecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ImageRecipeInput</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.recipes.scientific.sensivitystar.SensivityStarRecipe.RecipeResult">
+<code class="descclassname">SensivityStarRecipe.</code><code class="descname">RecipeResult</code><a class="headerlink" href="#megaradrp.recipes.scientific.sensivitystar.SensivityStarRecipe.RecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">MegaraBaseRecipeResult</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Scientific Modes</a><ul>
+<li><a class="reference internal" href="#lcb-ifu-scientific-observation">LCB IFU scientific observation</a><ul>
+<li><a class="reference internal" href="#requirements">Requirements</a></li>
+<li><a class="reference internal" href="#procedure">Procedure</a></li>
+<li><a class="reference internal" href="#products">Products</a></li>
+<li><a class="reference internal" href="#recipe-inputs-and-results">Recipe, inputs and results</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lcb-ifu-fast-mapping">LCB IFU fast mapping</a><ul>
+<li><a class="reference internal" href="#id1">Requirements</a></li>
+<li><a class="reference internal" href="#id2">Procedure</a></li>
+<li><a class="reference internal" href="#id3">Products</a></li>
+<li><a class="reference internal" href="#id4">Recipe, inputs and results</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#fiber-mos-scientific-observation">Fiber MOS scientific observation</a><ul>
+<li><a class="reference internal" href="#id5">Requirements</a></li>
+<li><a class="reference internal" href="#id6">Procedure</a></li>
+<li><a class="reference internal" href="#id7">Products</a></li>
+<li><a class="reference internal" href="#id8">Recipe, inputs and results</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#standard-star-with-the-lcb-ifu">Standard star with the LCB IFU</a><ul>
+<li><a class="reference internal" href="#id9">Requirements</a></li>
+<li><a class="reference internal" href="#id10">Procedure</a></li>
+<li><a class="reference internal" href="#id11">Products</a></li>
+<li><a class="reference internal" href="#id12">Recipe, inputs and results</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#standard-star-with-the-fiber-mos">Standard star with the Fiber MOS</a><ul>
+<li><a class="reference internal" href="#id13">Requirements</a></li>
+<li><a class="reference internal" href="#id14">Procedure</a></li>
+<li><a class="reference internal" href="#id15">Products</a></li>
+<li><a class="reference internal" href="#id16">Recipe, inputs and results</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#megara-flux-calibration">MEGARA_FLUX_CALIBRATION</a><ul>
+<li><a class="reference internal" href="#id17">Recipe, inputs and results</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#megara-extinction-star">MEGARA_EXTINCTION_STAR</a><ul>
+<li><a class="reference internal" href="#id18">Recipe, inputs and results</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#megara-sensitivity-star">MEGARA_SENSITIVITY_STAR</a><ul>
+<li><a class="reference internal" href="#id19">Recipe, inputs and results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="auxiliary.html"
+                        title="previous chapter">Auxiliary Modes</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="recipes.html"
+                        title="next chapter">Reduction Recipes</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/scientific.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="recipes.html" title="Reduction Recipes"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="auxiliary.html" title="Auxiliary Modes"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MEGARA Data Reduction Pipeline 0.6.dev1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modes.html" >Observing modes</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013-2017, Universidad Complutense de Madrid.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

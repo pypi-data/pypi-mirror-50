@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>megaradrp.instrument — Static configuration &#8212; MEGARA Data Reduction Pipeline 0.6.dev1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.6.dev1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="MEGARA Data Reduction Pipeline 0.6.dev1 documentation" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="megaradrp.products — Data products of the MEGARA pipeline" href="products.html" />
+    <link rel="prev" title="megaradrp.core — Base classes for processing" href="core.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="products.html" title="megaradrp.products — Data products of the MEGARA pipeline"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="core.html" title="megaradrp.core — Base classes for processing"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MEGARA Data Reduction Pipeline 0.6.dev1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-megaradrp.instrument">
+<span id="megaradrp-instrument-static-configuration"></span><h1><a class="reference internal" href="#module-megaradrp.instrument" title="megaradrp.instrument: Static configuration"><code class="xref py py-mod docutils literal"><span class="pre">megaradrp.instrument</span></code></a> &#8212; Static configuration<a class="headerlink" href="#module-megaradrp.instrument" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="module-megaradrp.instrument.configs">
+<span id="megaradrp-instrument-configs-static-configuration"></span><h1><a class="reference internal" href="#module-megaradrp.instrument.configs" title="megaradrp.instrument.configs: Static configuration"><code class="xref py py-mod docutils literal"><span class="pre">megaradrp.instrument.configs</span></code></a> &#8212; Static configuration<a class="headerlink" href="#module-megaradrp.instrument.configs" title="Permalink to this headline">¶</a></h1>
+<p>Documention of the module</p>
+</div>
+<div class="section" id="module-megaradrp.processing.wavecalibration">
+<span id="megaradrp-processing-wavecalibration"></span><h1><a class="reference internal" href="#module-megaradrp.processing.wavecalibration" title="megaradrp.processing.wavecalibration"><code class="xref py py-mod docutils literal"><span class="pre">megaradrp.processing.wavecalibration</span></code></a> &#8212;<a class="headerlink" href="#module-megaradrp.processing.wavecalibration" title="Permalink to this headline">¶</a></h1>
+<p>Corrector for wavecalibration</p>
+<dl class="class">
+<dt id="megaradrp.processing.wavecalibration.WavelengthCalibrator">
+<em class="property">class </em><code class="descclassname">megaradrp.processing.wavecalibration.</code><code class="descname">WavelengthCalibrator</code><span class="sig-paren">(</span><em>solutionwl</em>, <em>datamodel=None</em>, <em>dtype='float32'</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.processing.wavecalibration.WavelengthCalibrator" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Node that applies wavelength calibration.</p>
+<dl class="method">
+<dt id="megaradrp.processing.wavecalibration.WavelengthCalibrator.map_borders">
+<code class="descname">map_borders</code><span class="sig-paren">(</span><em>wls</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.processing.wavecalibration.WavelengthCalibrator.map_borders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute borders of pixels for interpolation.</p>
+<p>The border of the pixel is assumed to be midway of the wls</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="docutils literal"><span class="pre">megaradrp.instrument</span></code> &#8212; Static configuration</a></li>
+<li><a class="reference internal" href="#module-megaradrp.instrument.configs"><code class="docutils literal"><span class="pre">megaradrp.instrument.configs</span></code> &#8212; Static configuration</a></li>
+<li><a class="reference internal" href="#module-megaradrp.processing.wavecalibration"><code class="docutils literal"><span class="pre">megaradrp.processing.wavecalibration</span></code> &#8212;</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="core.html"
+                        title="previous chapter"><code class="docutils literal"><span class="pre">megaradrp.core</span></code> &#8212; Base classes for processing</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="products.html"
+                        title="next chapter"><code class="docutils literal"><span class="pre">megaradrp.products</span></code> &#8212; Data products of the MEGARA pipeline</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/reference/instrument.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="products.html" title="megaradrp.products — Data products of the MEGARA pipeline"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="core.html" title="megaradrp.core — Base classes for processing"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MEGARA Data Reduction Pipeline 0.6.dev1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013-2017, Universidad Complutense de Madrid.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

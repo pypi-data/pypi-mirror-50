@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Bias Image &#8212; MEGARA Data Reduction Pipeline 0.6.dev1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.6.dev1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="MEGARA Data Reduction Pipeline 0.6.dev1 documentation" href="../index.html" />
+    <link rel="up" title="Calibration Modes" href="index.html" />
+    <link rel="next" title="Dark Image" href="dark.html" />
+    <link rel="prev" title="Calibration Modes" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="dark.html" title="Dark Image"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Calibration Modes"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MEGARA Data Reduction Pipeline 0.6.dev1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../modes.html" >Observing modes</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Calibration Modes</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="bias-image">
+<h1>Bias Image<a class="headerlink" href="#bias-image" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Bias Image</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body">Offline, Online</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Key:</th><td class="field-body">MEGARA_BIAS_IMAGE</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Product:</th><td class="field-body"><a class="reference internal" href="../reference/products.html#megaradrp.types.MasterBias" title="megaradrp.types.MasterBias"><code class="xref py py-class docutils literal"><span class="pre">MasterBias</span></code></a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Recipe:</th><td class="field-body"><a class="reference internal" href="#megaradrp.recipes.calibration.bias.BiasRecipe" title="megaradrp.recipes.calibration.bias.BiasRecipe"><code class="xref py py-class docutils literal"><span class="pre">BiasRecipe</span></code></a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Recipe input:</th><td class="field-body"><a class="reference internal" href="#megaradrp.recipes.calibration.bias.BiasRecipe.RecipeInput" title="megaradrp.recipes.calibration.bias.BiasRecipe.RecipeInput"><code class="xref py py-class docutils literal"><span class="pre">RecipeInput</span></code></a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Recipe result:</th><td class="field-body"><a class="reference internal" href="#megaradrp.recipes.calibration.bias.BiasRecipe.RecipeResult" title="megaradrp.recipes.calibration.bias.BiasRecipe.RecipeResult"><code class="xref py py-class docutils literal"><span class="pre">RecipeResult</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Before the Analog-to-Digital conversion is performed a pedestal (electronic)
+level is added to all images obtained with the MEGARA CCD. This is a standard
+procedure in CCD imaging and spectroscopy applications for Astronomy and is
+intended to minimize the ADC errors produced when very low analog values are
+converted to DUs.</p>
+<div class="section" id="requirements-of-the-mode">
+<h2>Requirements of the mode<a class="headerlink" href="#requirements-of-the-mode" title="Permalink to this headline">¶</a></h2>
+<p>The sequence for this observing mode should include the actions to calibrate
+the pedestal level of the detectors and associated control electronics by
+taking images with null integration time. This mode requires having the shutter
+closed and to readout the detector in a series of exposures with null
+integration time, being this series the bias image set.</p>
+</div>
+<div class="section" id="procedure">
+<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<p>The frames in the observed block are stacked together using the median of them
+as the final result. The variance of the result frame is computed using two
+different methods. The first method computes the variance across the pixels in
+the different frames stacked. The second method computes the variance in each
+channel in the result frame.</p>
+</div>
+<div class="section" id="products">
+<h2>Products<a class="headerlink" href="#products" title="Permalink to this headline">¶</a></h2>
+<p>Bias image sets are to be obtained both as part of the activities related to
+the verification of the instrument status and for processing data for
+scientific exploitation.</p>
+</div>
+<div class="section" id="recipe-inputs-and-results">
+<h2>Recipe, inputs and results<a class="headerlink" href="#recipe-inputs-and-results" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="megaradrp.recipes.calibration.bias.BiasRecipe">
+<em class="property">class </em><code class="descclassname">megaradrp.recipes.calibration.bias.</code><code class="descname">BiasRecipe</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.calibration.bias.BiasRecipe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process BIAS images and create a MASTER_BIAS product.</p>
+<p>This recipe process a set of bias images obtained in
+<strong>Bias Image</strong> mode and returns a combined product image,
+trimmed to the physical size of the detector.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="../reference/products.html#megaradrp.types.MasterBias" title="megaradrp.types.MasterBias"><code class="xref py py-obj docutils literal"><span class="pre">megaradrp.types.MasterBias</span></code></a></dt>
+<dd>description of the MasterBias product</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Images are corrected from overscan and trimmed to the physical size of the detector.
+Then, they corrected from Bad Pixel Mask, if the BPM is available,
+Finally, images are stacked using the median.</p>
+<dl class="class">
+<dt id="megaradrp.recipes.calibration.bias.BiasRecipe.BiasRecipeInput">
+<em class="property">class </em><code class="descname">BiasRecipeInput</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.calibration.bias.BiasRecipe.BiasRecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>BiasRecipeInput documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>master_bpm</td>
+<td>(MasterBPM, requirement, optional) Master Bad Pixel Mask</td>
+</tr>
+<tr class="row-even"><td>obresult</td>
+<td>(ObservationResultType, requirement) Observation Result</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="megaradrp.recipes.calibration.bias.BiasRecipe.BiasRecipeResult">
+<em class="property">class </em><code class="descclassname">BiasRecipe.</code><code class="descname">BiasRecipeResult</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.calibration.bias.BiasRecipe.BiasRecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>BiasRecipeResult documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>master_bias</td>
+<td>(MasterBias, product)</td>
+</tr>
+<tr class="row-even"><td>qc</td>
+<td>(QualityControlProduct, product)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.recipes.calibration.bias.BiasRecipe.RecipeInput">
+<code class="descclassname">BiasRecipe.</code><code class="descname">RecipeInput</code><a class="headerlink" href="#megaradrp.recipes.calibration.bias.BiasRecipe.RecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">BiasRecipeInput</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.recipes.calibration.bias.BiasRecipe.RecipeResult">
+<code class="descclassname">BiasRecipe.</code><code class="descname">RecipeResult</code><a class="headerlink" href="#megaradrp.recipes.calibration.bias.BiasRecipe.RecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">BiasRecipeResult</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.recipes.calibration.bias.BiasRecipe.run">
+<code class="descclassname">BiasRecipe.</code><code class="descname">run</code><span class="sig-paren">(</span><em>rinput</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.calibration.bias.BiasRecipe.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute the recipe.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>rinput</strong> : BiasRecipe.RecipeInput</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">BiasRecipe.RecipeResult</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Bias Image</a><ul>
+<li><a class="reference internal" href="#requirements-of-the-mode">Requirements of the mode</a></li>
+<li><a class="reference internal" href="#procedure">Procedure</a></li>
+<li><a class="reference internal" href="#products">Products</a></li>
+<li><a class="reference internal" href="#recipe-inputs-and-results">Recipe, inputs and results</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Calibration Modes</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dark.html"
+                        title="next chapter">Dark Image</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/calibration/bias.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="dark.html" title="Dark Image"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Calibration Modes"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MEGARA Data Reduction Pipeline 0.6.dev1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../modes.html" >Observing modes</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Calibration Modes</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013-2017, Universidad Complutense de Madrid.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+setuptools>=36.2.1
+numpy
+astropy>=2
+scipy
+numina>=0.21
+scikit-image
+
+[:python_version < "3.4"]
+enum34
+
+[:python_version < "3.5"]
+contextlib2
+
+[DB]
+sqlalchemy
+numinadb

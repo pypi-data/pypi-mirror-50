@@ -1,0 +1,354 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Arc Calibration &#8212; MEGARA Data Reduction Pipeline 0.6.dev1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.6.dev1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="MEGARA Data Reduction Pipeline 0.6.dev1 documentation" href="../index.html" />
+    <link rel="up" title="Calibration Modes" href="index.html" />
+    <link rel="next" title="Fiber-flat" href="fiberflat.html" />
+    <link rel="prev" title="Trace" href="trace.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="fiberflat.html" title="Fiber-flat"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="trace.html" title="Trace"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MEGARA Data Reduction Pipeline 0.6.dev1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../modes.html" >Observing modes</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Calibration Modes</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="arc-calibration">
+<h1>Arc Calibration<a class="headerlink" href="#arc-calibration" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Arc Calibration</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body">Offline</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Key:</th><td class="field-body">MEGARA_ARC_CALIBRATION</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Product:</th><td class="field-body"><a class="reference internal" href="../reference/products.html#megaradrp.products.wavecalibration.WavelengthCalibration" title="megaradrp.products.wavecalibration.WavelengthCalibration"><code class="xref py py-class docutils literal"><span class="pre">WavelengthCalibration</span></code></a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Recipe:</th><td class="field-body"><a class="reference internal" href="#megaradrp.recipes.calibration.arc.ArcCalibrationRecipe" title="megaradrp.recipes.calibration.arc.ArcCalibrationRecipe"><code class="xref py py-class docutils literal"><span class="pre">ArcCalibrationRecipe</span></code></a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Recipe input:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">ArcCalibrationRecipeInput</span></code></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Recipe result:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">ArcCalibrationRecipeResult</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>This mode sequence includes the required actions to translate the geometrical
+position of each point in the detector into physical units of wavelength. The
+calibration is performed by means of using reference calibration lamps
+(arc lamps) that should be part of the Instrument Calibration Module (ICM) at
+F-C. Note that the optical distortions in the spectrograph will lead to
+different wavelength calibrations from each individual fiber, therefore the
+entire focal plane should be illuminated by the corresponding arc lamp of
+choice. Given the relatively high spectral resolution and broad wavelength
+coverage of MEGARA we anticipate that more than one arc lamp will be needed at
+the ICM. The lamps at ICM have to deliver enough bright spectral lines for
+calibrating the whole range of MEGARA spectral resolutions and wavelength
+ranges (for HR modes only two VPHs shall be provided by MEGARA but more
+gratings could come funded by GTC users). MEGARA has provided a whole review of
+the possible illumination systems in the document TEC/MEG/151, but the
+responsibility of the development of the ICM module is on the GTC side.</p>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>The entire focal plane should be illuminated with light from the ICM arc lamp
+with the required  input focal ratio. This mode requires having the ICM turned
+on, one of the arc lamps at the ICM also turned on, the focal-plane cover
+configured (at least one of the sides should be open), the instrument shutter
+open, to move the pseudo-slit to that of the instrument mode of choice, to
+configure the VPH wheel mechanism in order to select the grating to be used, to
+move the focusing mechanism to the position pre-defined for the specific VPH of
+choice and to expose a certain time and to readout the detector a series of
+exposures, being this series the arc image set.</p>
+</div>
+<div class="section" id="procedure">
+<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<p>The &#8220;User&#8221; processes an observing block obtained in the observing mode Arc.
+This mode includes the required actions to translate the geometrical position
+of each point in the detector into physical units of wavelength. The wavelength
+calibration generated is used in other stages of the data processing.</p>
+</div>
+<div class="section" id="products">
+<h2>Products<a class="headerlink" href="#products" title="Permalink to this headline">¶</a></h2>
+<p>Arc image sets are to be obtained both as part of the activities related to the
+verification of the instrument status and for processing data for scientific
+exploitation and are part of the &#8220;Daily Calibration Modes&#8221;.</p>
+<p>A data structure containing information about wavelength calibrations
+(the format is TBD), a QA flag, a text log file of the processing and a
+structured text file containing information about the processing.</p>
+</div>
+<div class="section" id="recipe-inputs-and-results">
+<h2>Recipe, inputs and results<a class="headerlink" href="#recipe-inputs-and-results" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="megaradrp.recipes.calibration.arc.ArcCalibrationRecipe">
+<em class="property">class </em><code class="descclassname">megaradrp.recipes.calibration.arc.</code><code class="descname">ArcCalibrationRecipe</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.calibration.arc.ArcCalibrationRecipe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides wavelength calibration information from arc images.</p>
+<p>This recipes process a set of arc images obtained in
+<em>Arc Calibration</em> mode and returns the information required
+to perform wavelength calibration and resampling in other recipes,
+in the form of a WavelengthCalibration object. The recipe also returns
+a 2D map of the FWHM of the arc lines used for the calibration,
+the result images up to dark correction, and the result of the processing
+up to aperture extraction.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><code class="xref py py-obj docutils literal"><span class="pre">megaradrp.products.WavelengthCalibration</span></code></dt>
+<dd>description of WavelengthCalibration product</dd>
+<dt><code class="xref py py-obj docutils literal"><span class="pre">megaradrp.products.LinesCatalog</span></code></dt>
+<dd>description of the catalog of lines</dd>
+<dt><code class="xref py py-obj docutils literal"><span class="pre">megaradrp.processing.aperture</span></code></dt>
+<dd>aperture extraction</dd>
+<dt><a class="reference external" href="http://numina.readthedocs.io/en/latest/reference/array.html#module-numina.array.wavecalib.arccalibration" title="(in Numina v0.15)"><code class="xref py py-obj docutils literal"><span class="pre">numina.array.wavecalib.arccalibration</span></code></a></dt>
+<dd>wavelength calibration algorithm</dd>
+<dt><a class="reference internal" href="../reference/instrument.html#module-megaradrp.instrument.configs" title="megaradrp.instrument.configs: Static configuration"><code class="xref py py-obj docutils literal"><span class="pre">megaradrp.instrument.configs</span></code></a></dt>
+<dd>instrument configuration</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Images provided in <cite>obresult</cite> are trimmed and corrected from overscan,
+bad pixel mask (if <cite>master_bpm</cite> is not None), bias and dark current
+(if <cite>master_dark</cite> is not None).
+Images thus corrected are the stacked using the median.</p>
+<p>The result of the combination is saved as an intermediate result, named
+&#8216;reduced_image.fits&#8217;. This combined image is also returned in the field
+<cite>reduced_image</cite> of the recipe result.</p>
+<p>The apertures in the 2D image are extracted, using the information in
+<cite>master_traces</cite>. the result of the extraction is saved as an intermediate
+result named &#8216;reduced_rss.fits&#8217;. This RSS is also returned in the field
+<cite>reduced_rss</cite> of the recipe result.</p>
+<p>For each fiber in the reduced RSS, the peaks are detected and sorted
+by peak flux. <cite>nlines</cite> is used to select the brightest peaks. If it is a
+list, then the peaks are divided, by their position, in as many groups as
+elements in the list and <cite>nlines[0]</cite> peaks are selected in the first
+group, <cite>nlines[1]</cite> peaks in the second, etc.</p>
+<p>The selected peaks are matched against the catalog of lines in <cite>lines_catalog</cite>.
+The matched lines, the quality of the match and other relevant information is
+stored in the product WavelengthCalibration object. The wavelength of the matched
+features is fitted to a polynomial
+of degree <cite>polynomial_degree</cite>. The coefficients of the polynomial are
+stored in the final <cite>master_wlcalib</cite> object for each fiber.</p>
+<dl class="class">
+<dt id="megaradrp.recipes.calibration.arc.ArcCalibrationRecipe.ArcCalibrationRecipeInput">
+<em class="property">class </em><code class="descname">ArcCalibrationRecipeInput</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.calibration.arc.ArcCalibrationRecipe.ArcCalibrationRecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>ArcCalibrationRecipeInput documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>lines_catalog</td>
+<td>(LinesCatalog, requirement) Catalog of lines</td>
+</tr>
+<tr class="row-even"><td>master_bias</td>
+<td>(MasterBias, requirement) Master BIAS image</td>
+</tr>
+<tr class="row-odd"><td>master_bpm</td>
+<td>(MasterBPM, requirement, optional) Master Bad Pixel Mask</td>
+</tr>
+<tr class="row-even"><td>master_dark</td>
+<td>(MasterDark, requirement, optional) Master DARK image</td>
+</tr>
+<tr class="row-odd"><td>master_traces</td>
+<td>(TraceMap, requirement) Trace information of the Apertures</td>
+</tr>
+<tr class="row-even"><td>nlines</td>
+<td>(int, requirement, optional, default=20) Use the &#8216;nlines&#8217; brigthest lines of the spectrum</td>
+</tr>
+<tr class="row-odd"><td>obresult</td>
+<td>(ObservationResultType, requirement) Observation Result</td>
+</tr>
+<tr class="row-even"><td>polynomial_degree</td>
+<td>(int, requirement, optional, default=5) Polynomial degree of arc calibration</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="megaradrp.recipes.calibration.arc.ArcCalibrationRecipe.ArcCalibrationRecipeResult">
+<em class="property">class </em><code class="descclassname">ArcCalibrationRecipe.</code><code class="descname">ArcCalibrationRecipeResult</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.calibration.arc.ArcCalibrationRecipe.ArcCalibrationRecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>ArcCalibrationRecipeResult documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>fwhm_image</td>
+<td>(DataFrameType, product)</td>
+</tr>
+<tr class="row-even"><td>master_wlcalib</td>
+<td>(WavelengthCalibration, product)</td>
+</tr>
+<tr class="row-odd"><td>qc</td>
+<td>(QualityControlProduct, product)</td>
+</tr>
+<tr class="row-even"><td>reduced_image</td>
+<td>(ProcessedFrame, product)</td>
+</tr>
+<tr class="row-odd"><td>reduced_rss</td>
+<td>(ProcessedRSS, product)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.recipes.calibration.arc.ArcCalibrationRecipe.RecipeInput">
+<code class="descclassname">ArcCalibrationRecipe.</code><code class="descname">RecipeInput</code><a class="headerlink" href="#megaradrp.recipes.calibration.arc.ArcCalibrationRecipe.RecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ArcCalibrationRecipeInput</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.recipes.calibration.arc.ArcCalibrationRecipe.RecipeResult">
+<code class="descclassname">ArcCalibrationRecipe.</code><code class="descname">RecipeResult</code><a class="headerlink" href="#megaradrp.recipes.calibration.arc.ArcCalibrationRecipe.RecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ArcCalibrationRecipeResult</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.recipes.calibration.arc.ArcCalibrationRecipe.calc_fwhm_of_line">
+<code class="descclassname">ArcCalibrationRecipe.</code><code class="descname">calc_fwhm_of_line</code><span class="sig-paren">(</span><em>row</em>, <em>peak_int</em>, <em>lwidth=20</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.calibration.arc.ArcCalibrationRecipe.calc_fwhm_of_line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute FWHM of lines in spectra</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.recipes.calibration.arc.ArcCalibrationRecipe.run">
+<code class="descclassname">ArcCalibrationRecipe.</code><code class="descname">run</code><span class="sig-paren">(</span><em>rinput</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.calibration.arc.ArcCalibrationRecipe.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute the recipe.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>rinput</strong> : ArcCalibrationRecipe.RecipeInput</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">ArcCalibrationRecipe.RecipeResult</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Arc Calibration</a><ul>
+<li><a class="reference internal" href="#requirements">Requirements</a></li>
+<li><a class="reference internal" href="#procedure">Procedure</a></li>
+<li><a class="reference internal" href="#products">Products</a></li>
+<li><a class="reference internal" href="#recipe-inputs-and-results">Recipe, inputs and results</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="trace.html"
+                        title="previous chapter">Trace</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="fiberflat.html"
+                        title="next chapter">Fiber-flat</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/calibration/arc.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="fiberflat.html" title="Fiber-flat"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="trace.html" title="Trace"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MEGARA Data Reduction Pipeline 0.6.dev1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../modes.html" >Observing modes</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Calibration Modes</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013-2017, Universidad Complutense de Madrid.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Linearity tests &#8212; MEGARA Data Reduction Pipeline 0.6.dev1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.6.dev1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="MEGARA Data Reduction Pipeline 0.6.dev1 documentation" href="../index.html" />
+    <link rel="up" title="Calibration Modes" href="index.html" />
+    <link rel="next" title="Auxiliary Modes" href="../auxiliary.html" />
+    <link rel="prev" title="Bad-pixels mask" href="bpm.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../auxiliary.html" title="Auxiliary Modes"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="bpm.html" title="Bad-pixels mask"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MEGARA Data Reduction Pipeline 0.6.dev1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../modes.html" >Observing modes</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Calibration Modes</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="linearity-tests">
+<h1>Linearity tests<a class="headerlink" href="#linearity-tests" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Linearity tests</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body">Offline</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Key:</th><td class="field-body">MEGARA_LINEARITY_TEST</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Product:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Recipe:</th><td class="field-body"><a class="reference internal" href="#megaradrp.recipes.calibration.linearity.LinearityTestRecipe" title="megaradrp.recipes.calibration.linearity.LinearityTestRecipe"><code class="xref py py-class docutils literal"><span class="pre">LinearityTestRecipe</span></code></a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Recipe input:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">LinearityTestRecipeInput</span></code></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Recipe result:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">LinearityTestRecipeResult</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>Although the linearity of the MEGARA CCD are well characterized at the LICA lab
+already, it might be advisable to generate linearity test frames both as part
+of the AIV activities and after changes in the MEGARA DAS.</p>
+<p>The MEGARA e2V 231-84 CCD offers a full-well capacity of 350,000 ke-. Linearity
+tests carried out in instruments already using this type of CCD indicate a
+linearity better than ±0.4% at 100 kpix/sec in the range between 140 to 40,000
+e- (Reiss et al. 2009 for <a class="reference external" href="mailto:MUSE&#37;&#52;&#48;VLT">MUSE<span>&#64;</span>VLT</a>). Given these good linearity results (up to
+40,000 e-) and considering the fact that at the spectral resolutions of MEGARA
+we will rarely reach those signals from astronomical targets linearity can be
+considered negligible. Despite these facts, it is advisable to carry out this
+kind of tests both at the lab and at the telescope on the MEGARA CCD itself.</p>
+<p>While Linearity tests will be generated as part of the characterization
+activities at the lab, the use of the ICM would also allow carrying them out as
+part of AIV activities and routinely as part of the &#8220;System Calibration Modes&#8221;.
+Therefore, we define here an observing mode that the observatory staff could
+use to generate updated Linearity tests should these be needed.</p>
+<p>In the case of fiber-fed spectrographs the fiber flats (either lamp or twilight
+flats) are not optimal for carrying out Linearity tests as these leave many
+regions in the CCD not exposed to light. The whole CCD should be illuminated at
+different intensity levels in order for properly carrying out these tests.</p>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>In the case of MEGARA we will offset the pseudo-slit from its optical focus
+position to ensure that the gaps between fibers are also illuminated when a
+continuum (halogen) lamp at the ICM is used. The NSC zemax model of the
+spectrograph indicates that by offsetting 3mm the pseudo-slit we would already
+obtain a homogenous illumination of the CCD. A series of images with different
+count levels would be obtained.</p>
+<p>This mode requires having the ICM halogen lamp on, the instrument shutter open,
+to move the pseudo-slit to the open position, to configure the VPH wheel
+mechanism in order to select the grating to be used, to move the focusing
+mechanism to the position pre-defined for the specific VPH of choice and to
+expose a certain time and to readout the detector a series of exposures, being
+this series the slit-flat image set. Note that the Linearity test will be done
+using only one spectral setup as this is independent of the VPH of use. The
+specific choice for the VPH will depend on the actual color of the ICM halogen
+lamp and on the actual response of the VPHs. In principle, we should choose the
+VPH at the peak of the lamp spectral energy distribution but we</p>
+</div>
+<div class="section" id="procedure">
+<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="products">
+<h2>Products<a class="headerlink" href="#products" title="Permalink to this headline">¶</a></h2>
+<p>This Linearity-test observing mode will be used only sporadically as it is
+considered part of the &#8220;System Calibration Modes&#8221;.</p>
+</div>
+<div class="section" id="recipe-inputs-and-results">
+<h2>Recipe, inputs and results<a class="headerlink" href="#recipe-inputs-and-results" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="megaradrp.recipes.calibration.linearity.LinearityTestRecipe">
+<em class="property">class </em><code class="descclassname">megaradrp.recipes.calibration.linearity.</code><code class="descname">LinearityTestRecipe</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.calibration.linearity.LinearityTestRecipe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process LINTEST images and create LINEARITY_CORRECTON.</p>
+<dl class="class">
+<dt id="megaradrp.recipes.calibration.linearity.LinearityTestRecipe.MegaraBaseRecipeInput">
+<em class="property">class </em><code class="descname">MegaraBaseRecipeInput</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.calibration.linearity.LinearityTestRecipe.MegaraBaseRecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>MegaraBaseRecipeInput documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>obresult</td>
+<td>(ObservationResultType, requirement) Observation Result</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="megaradrp.recipes.calibration.linearity.LinearityTestRecipe.MegaraBaseRecipeResult">
+<em class="property">class </em><code class="descclassname">LinearityTestRecipe.</code><code class="descname">MegaraBaseRecipeResult</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.recipes.calibration.linearity.LinearityTestRecipe.MegaraBaseRecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>MegaraBaseRecipeResult documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="91%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>qc</td>
+<td>(QualityControlProduct, product)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.recipes.calibration.linearity.LinearityTestRecipe.RecipeInput">
+<code class="descclassname">LinearityTestRecipe.</code><code class="descname">RecipeInput</code><a class="headerlink" href="#megaradrp.recipes.calibration.linearity.LinearityTestRecipe.RecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">MegaraBaseRecipeInput</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.recipes.calibration.linearity.LinearityTestRecipe.RecipeResult">
+<code class="descclassname">LinearityTestRecipe.</code><code class="descname">RecipeResult</code><a class="headerlink" href="#megaradrp.recipes.calibration.linearity.LinearityTestRecipe.RecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">MegaraBaseRecipeResult</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Linearity tests</a><ul>
+<li><a class="reference internal" href="#requirements">Requirements</a></li>
+<li><a class="reference internal" href="#procedure">Procedure</a></li>
+<li><a class="reference internal" href="#products">Products</a></li>
+<li><a class="reference internal" href="#recipe-inputs-and-results">Recipe, inputs and results</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="bpm.html"
+                        title="previous chapter">Bad-pixels mask</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../auxiliary.html"
+                        title="next chapter">Auxiliary Modes</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/calibration/linearity.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../auxiliary.html" title="Auxiliary Modes"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="bpm.html" title="Bad-pixels mask"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MEGARA Data Reduction Pipeline 0.6.dev1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../modes.html" >Observing modes</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Calibration Modes</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013-2017, Universidad Complutense de Madrid.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

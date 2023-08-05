@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Observing modes &#8212; MEGARA Data Reduction Pipeline 0.6.dev1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.6.dev1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="MEGARA Data Reduction Pipeline 0.6.dev1 documentation" href="index.html" />
+    <link rel="next" title="Calibration Modes" href="calibration/index.html" />
+    <link rel="prev" title="Running the pipeline" href="running.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="calibration/index.html" title="Calibration Modes"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="running.html" title="Running the pipeline"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MEGARA Data Reduction Pipeline 0.6.dev1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="observing-modes">
+<h1>Observing modes<a class="headerlink" href="#observing-modes" title="Permalink to this headline">¶</a></h1>
+<p>Observing modes are prescribed method of observing with MEGARA.
+Each observing mode is processed with one reduction recipe. In the following
+we describe the observing modes and its corresponding recipe. The <strong>Usage</strong> field
+describes if the mode is to be used in the telescope (<em>Online</em>, DFP Mode) or after
+the observation by the user (<em>Offline</em>, DRP Mode).</p>
+<p>Observing modes are described in full detail elsewhere (document TEC/MEG/05)</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="calibration/index.html">Calibration Modes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="calibration/bias.html">Bias Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration/dark.html">Dark Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration/slitflat.html">Slit-flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration/trace.html">Trace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration/arc.html">Arc Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration/fiberflat.html">Fiber-flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration/twilight.html">Twilight fiber-flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration/bpm.html">Bad-pixels mask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration/linearity.html">Linearity tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="auxiliary.html">Auxiliary Modes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="auxiliary.html#telescope-focus">Telescope focus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auxiliary.html#spectrograph-focus">Spectrograph focus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auxiliary.html#fine-acquisition-with-the-lcb-ifu">Fine acquisition with the LCB IFU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auxiliary.html#fine-acquisition-with-the-fiber-mos">Fine acquisition with the Fiber MOS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scientific.html">Scientific Modes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scientific.html#lcb-ifu-scientific-observation">LCB IFU scientific observation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scientific.html#lcb-ifu-fast-mapping">LCB IFU fast mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scientific.html#fiber-mos-scientific-observation">Fiber MOS scientific observation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scientific.html#standard-star-with-the-lcb-ifu">Standard star with the LCB IFU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scientific.html#standard-star-with-the-fiber-mos">Standard star with the Fiber MOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scientific.html#megara-flux-calibration">MEGARA_FLUX_CALIBRATION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scientific.html#megara-extinction-star">MEGARA_EXTINCTION_STAR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scientific.html#megara-sensitivity-star">MEGARA_SENSITIVITY_STAR</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="running.html"
+                        title="previous chapter">Running the pipeline</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="calibration/index.html"
+                        title="next chapter">Calibration Modes</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/modes.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="calibration/index.html" title="Calibration Modes"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="running.html" title="Running the pipeline"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MEGARA Data Reduction Pipeline 0.6.dev1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013-2017, Universidad Complutense de Madrid.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

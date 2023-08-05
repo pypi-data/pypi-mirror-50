@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>FITS Keywords &#8212; MEGARA Data Reduction Pipeline 0.6.dev1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.6.dev1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="MEGARA Data Reduction Pipeline 0.6.dev1 documentation" href="index.html" />
+    <link rel="up" title="Data Products" href="products.html" />
+    <link rel="next" title="Raw Image data products" href="rawimages.html" />
+    <link rel="prev" title="Data Products" href="products.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="rawimages.html" title="Raw Image data products"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="products.html" title="Data Products"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MEGARA Data Reduction Pipeline 0.6.dev1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="products.html" accesskey="U">Data Products</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="fits-keywords">
+<h1>FITS Keywords<a class="headerlink" href="#fits-keywords" title="Permalink to this headline">¶</a></h1>
+<p>The FITS keywords used by MEGARA are described in full detail
+elsewhere (document TEC/MEG/146).</p>
+<p>In the following sections, we describe the keywords that are used by the pipeline.</p>
+<p>TBD</p>
+<div class="section" id="primary-header">
+<h2>Primary header<a class="headerlink" href="#primary-header" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="10%" />
+<col width="30%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type</th>
+<th class="head">Keyword</th>
+<th class="head">Example</th>
+<th class="head">Explanation</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>L</td>
+<td>SIMPLE</td>
+<td>T</td>
+<td>Standard FITS format</td>
+</tr>
+<tr class="row-odd"><td>I</td>
+<td>BITPIX</td>
+<td>16</td>
+<td>One of -64,-32,8,16,32</td>
+</tr>
+<tr class="row-even"><td>I</td>
+<td>NAXIS</td>
+<td>2</td>
+<td># of axes in frame</td>
+</tr>
+<tr class="row-odd"><td>I</td>
+<td>NAXIS1</td>
+<td>2048</td>
+<td># of pixels per row</td>
+</tr>
+<tr class="row-even"><td>I</td>
+<td>NAXIS2</td>
+<td>2048</td>
+<td># of rows</td>
+</tr>
+<tr class="row-odd"><td>S</td>
+<td>ORIGIN</td>
+<td>&#8216;GTC&#8217;</td>
+<td>FITS originator</td>
+</tr>
+<tr class="row-even"><td>S</td>
+<td>OBSERVAT</td>
+<td>&#8216;ORM&#8217;</td>
+<td>Observatory</td>
+</tr>
+<tr class="row-odd"><td>S</td>
+<td>TELESCOP</td>
+<td>&#8216;GTC&#8217;</td>
+<td>The telescope</td>
+</tr>
+<tr class="row-even"><td>S</td>
+<td>INSTRUME</td>
+<td>&#8216;MEGARA&#8217;</td>
+<td>The instrument</td>
+</tr>
+<tr class="row-odd"><td>S</td>
+<td>OBJECT</td>
+<td>&#8216;NGC 4594&#8217;</td>
+<td>Target designation</td>
+</tr>
+<tr class="row-even"><td>S</td>
+<td>OBSERVER</td>
+<td>&#8216;OBSERVER&#8217;</td>
+<td>Who adquired the data</td>
+</tr>
+<tr class="row-odd"><td>S</td>
+<td>DATE-OBS</td>
+<td>&#8216;2012-09-20T12:00:11.50&#8217;</td>
+<td>Date of the start of the observation</td>
+</tr>
+<tr class="row-even"><td>S</td>
+<td>DATE</td>
+<td>&#8216;2012-09-20T12:14:12.78&#8217;</td>
+<td>Date the file was written</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="required-by-the-pipeline">
+<h2>Required by the pipeline<a class="headerlink" href="#required-by-the-pipeline" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="10%" />
+<col width="30%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type</th>
+<th class="head">Keyword</th>
+<th class="head">Example</th>
+<th class="head">Explanation</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>R</td>
+<td>AIRMASS</td>
+<td>1.1908</td>
+<td>Mean airmass of the observation</td>
+</tr>
+<tr class="row-odd"><td>R</td>
+<td>MJD-OBS</td>
+<td>72343.34324</td>
+<td>Modified JD of the start of the observation</td>
+</tr>
+<tr class="row-even"><td>S</td>
+<td>IMAGETYP</td>
+<td>&#8216;FLAT&#8217;</td>
+<td>Type of the image</td>
+</tr>
+<tr class="row-odd"><td>S</td>
+<td>VPH</td>
+<td>&#8216;LR-R&#8217;</td>
+<td>Type of VPH</td>
+</tr>
+<tr class="row-even"><td>S</td>
+<td>OBSTYPE</td>
+<td>&#8216;SLITFLAT&#8217;</td>
+<td>Type of observation</td>
+</tr>
+<tr class="row-odd"><td>R</td>
+<td>EXPOSED</td>
+<td>&nbsp;</td>
+<td>Photometric time?</td>
+</tr>
+<tr class="row-even"><td>R</td>
+<td>DARKTIME</td>
+<td>&nbsp;</td>
+<td>TBD</td>
+</tr>
+<tr class="row-odd"><td>R</td>
+<td>EXPTIME</td>
+<td>&nbsp;</td>
+<td>TBD</td>
+</tr>
+<tr class="row-even"><td>R</td>
+<td>ELAPSED</td>
+<td>&nbsp;</td>
+<td>Time between resets?</td>
+</tr>
+<tr class="row-odd"><td>S</td>
+<td>OBSMODE</td>
+<td>&#8216;SLITFLAT</td>
+<td>Identifier of the observing mode</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">FITS Keywords</a><ul>
+<li><a class="reference internal" href="#primary-header">Primary header</a></li>
+<li><a class="reference internal" href="#required-by-the-pipeline">Required by the pipeline</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="products.html"
+                        title="previous chapter">Data Products</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="rawimages.html"
+                        title="next chapter">Raw Image data products</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/keywords.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="rawimages.html" title="Raw Image data products"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="products.html" title="Data Products"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MEGARA Data Reduction Pipeline 0.6.dev1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="products.html" >Data Products</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013-2017, Universidad Complutense de Madrid.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

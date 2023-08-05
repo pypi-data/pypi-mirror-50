@@ -1,0 +1,423 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>megaradrp.core — Base classes for processing &#8212; MEGARA Data Reduction Pipeline 0.6.dev1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.6.dev1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="MEGARA Data Reduction Pipeline 0.6.dev1 documentation" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="megaradrp.instrument — Static configuration" href="instrument.html" />
+    <link rel="prev" title="Reference" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="instrument.html" title="megaradrp.instrument — Static configuration"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Reference"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MEGARA Data Reduction Pipeline 0.6.dev1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-megaradrp.core">
+<span id="megaradrp-core-base-classes-for-processing"></span><h1><a class="reference internal" href="#module-megaradrp.core" title="megaradrp.core: Base classes"><code class="xref py py-mod docutils literal"><span class="pre">megaradrp.core</span></code></a> &#8212; Base classes for processing<a class="headerlink" href="#module-megaradrp.core" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe">
+<em class="property">class </em><code class="descclassname">megaradrp.core.recipe.</code><code class="descname">MegaraBaseRecipe</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base clase for all MEGARA Recipes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>intermediate_results</strong> : bool, optional</p>
+<blockquote class="last">
+<div><p>If True, save intermediate results of the Recipe</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>obresult</td>
+<td>(ObservationResult, requirement)</td>
+</tr>
+<tr class="row-even"><td>qc</td>
+<td>(QualityControl, result, QC.GOOD by default)</td>
+</tr>
+<tr class="row-odd"><td>logger :</td>
+<td>recipe logger</td>
+</tr>
+<tr class="row-even"><td>datamodel</td>
+<td>(MegaraDataModel)</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.MegaraBaseRecipeInput">
+<em class="property">class </em><code class="descname">MegaraBaseRecipeInput</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.MegaraBaseRecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>MegaraBaseRecipeInput documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>obresult</td>
+<td>(ObservationResultType, requirement) Observation Result</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.MegaraBaseRecipeInput.attrs">
+<code class="descname">attrs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.MegaraBaseRecipeInput.attrs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.MegaraBaseRecipeInput.obresult">
+<code class="descname">obresult</code><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.MegaraBaseRecipeInput.obresult" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Recipe requires the result of an observation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.MegaraBaseRecipeInput.stored">
+<code class="descname">stored</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.MegaraBaseRecipeInput.stored" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.MegaraBaseRecipeInput.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.MegaraBaseRecipeInput.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate myself.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.MegaraBaseRecipeResult">
+<em class="property">class </em><code class="descclassname">MegaraBaseRecipe.</code><code class="descname">MegaraBaseRecipeResult</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.MegaraBaseRecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>MegaraBaseRecipeResult documentation.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="91%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>qc</td>
+<td>(QualityControlProduct, product)</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.MegaraBaseRecipeResult.attrs">
+<code class="descname">attrs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.MegaraBaseRecipeResult.attrs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.MegaraBaseRecipeResult.qc">
+<code class="descname">qc</code><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.MegaraBaseRecipeResult.qc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Product holder for RecipeResult.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.MegaraBaseRecipeResult.store_to">
+<code class="descname">store_to</code><span class="sig-paren">(</span><em>where</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.MegaraBaseRecipeResult.store_to" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.MegaraBaseRecipeResult.stored">
+<code class="descname">stored</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.MegaraBaseRecipeResult.stored" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.MegaraBaseRecipeResult.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.MegaraBaseRecipeResult.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate myself.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.RecipeInput">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">RecipeInput</code><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.RecipeInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">MegaraBaseRecipeInput</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.RecipeResult">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">RecipeResult</code><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.RecipeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">MegaraBaseRecipeResult</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.add_wcs">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">add_wcs</code><span class="sig-paren">(</span><em>hdr</em>, <em>wlr0</em>, <em>delt</em>, <em>crpix=1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.add_wcs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.bias_process_common">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">bias_process_common</code><span class="sig-paren">(</span><em>obresult</em>, <em>img</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.bias_process_common" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.buildRI">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">buildRI</code><span class="sig-paren">(</span><em>ob</em>, <em>dal</em>, <em>pipeline='default'</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.buildRI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a RecipeInput object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.build_recipe_input">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">build_recipe_input</code><span class="sig-paren">(</span><em>ob</em>, <em>dal</em>, <em>pipeline='default'</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.build_recipe_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a RecipeInput object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.configure">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">configure</code><span class="sig-paren">(</span><em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.configure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.create_input">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">create_input</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.create_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pass the result arguments to the RecipeInput constructor</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.create_result">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">create_result</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.create_result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pass the result arguments to the RecipeResult constructor</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.datamodel">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">datamodel</code><em class="property"> = &lt;megaradrp.processing.datamodel.MegaraDataModel object&gt;</em><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.datamodel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.gather_info">
+<em class="property">classmethod </em><code class="descclassname">MegaraBaseRecipe.</code><code class="descname">gather_info</code><span class="sig-paren">(</span><em>recipeinput</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.gather_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.getHeaderList">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">getHeaderList</code><span class="sig-paren">(</span><em>image_list</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.getHeaderList" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.get_parameters">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">get_parameters</code><span class="sig-paren">(</span><em>rinput</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.get_parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.hdu_creation">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">hdu_creation</code><span class="sig-paren">(</span><em>obresult</em>, <em>params=None</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.hdu_creation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.init_filters">
+<em class="property">classmethod </em><code class="descclassname">MegaraBaseRecipe.</code><code class="descname">init_filters</code><span class="sig-paren">(</span><em>rinput</em>, <em>ins</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.init_filters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.init_filters_generic">
+<em class="property">classmethod </em><code class="descclassname">MegaraBaseRecipe.</code><code class="descname">init_filters_generic</code><span class="sig-paren">(</span><em>rinput</em>, <em>getters</em>, <em>ins</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.init_filters_generic" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.load_getters">
+<em class="property">classmethod </em><code class="descclassname">MegaraBaseRecipe.</code><code class="descname">load_getters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.load_getters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.logger">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">logger</code><em class="property"> = &lt;logging.Logger object&gt;</em><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.map_borders">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">map_borders</code><span class="sig-paren">(</span><em>wls</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.map_borders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute borders of pixels for interpolation.</p>
+<p>The border of the pixel is assumed to be midway of the wls</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.products">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">products</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.products" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.requirements">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">requirements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.requirements" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.resample_rss_flux">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">resample_rss_flux</code><span class="sig-paren">(</span><em>rss_old</em>, <em>wcalib</em>, <em>wvpar_dict</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.resample_rss_flux" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>rss_old</strong> &#8211; rss image</li>
+<li><strong>wcalib</strong> &#8211; ndarray of the coefficients</li>
+<li><strong>wvpar_dict</strong> &#8211; dictionary containing wavelength calibration parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.run">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">run</code><span class="sig-paren">(</span><em>recipe_input</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.run_qc">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">run_qc</code><span class="sig-paren">(</span><em>recipe_input</em>, <em>recipe_result</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.run_qc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run Quality Control checks.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.save_intermediate_img">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">save_intermediate_img</code><span class="sig-paren">(</span><em>img</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.save_intermediate_img" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save intermediate FITS objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.set_base_headers">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">set_base_headers</code><span class="sig-paren">(</span><em>hdr</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.set_base_headers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set metadata in FITS headers.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.types_getter">
+<em class="property">classmethod </em><code class="descclassname">MegaraBaseRecipe.</code><code class="descname">types_getter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.types_getter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.validate_input">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">validate_input</code><span class="sig-paren">(</span><em>recipe_input</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.validate_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to customize recipe input validation.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://numina.readthedocs.io/en/latest/reference/core.html#numina.core.validator.validate" title="(in Numina v0.15)"><code class="xref py py-obj docutils literal"><span class="pre">numina.core.validator.validate</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="megaradrp.core.recipe.MegaraBaseRecipe.validate_result">
+<code class="descclassname">MegaraBaseRecipe.</code><code class="descname">validate_result</code><span class="sig-paren">(</span><em>recipe_result</em><span class="sig-paren">)</span><a class="headerlink" href="#megaradrp.core.recipe.MegaraBaseRecipe.validate_result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate the result of the recipe</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Reference</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="instrument.html"
+                        title="next chapter"><code class="docutils literal"><span class="pre">megaradrp.instrument</span></code> &#8212; Static configuration</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/reference/core.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="instrument.html" title="megaradrp.instrument — Static configuration"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Reference"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MEGARA Data Reduction Pipeline 0.6.dev1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013-2017, Universidad Complutense de Madrid.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

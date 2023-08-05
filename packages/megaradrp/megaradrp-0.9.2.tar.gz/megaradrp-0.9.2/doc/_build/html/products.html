@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Data Products &#8212; MEGARA Data Reduction Pipeline 0.6.dev1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.6.dev1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="MEGARA Data Reduction Pipeline 0.6.dev1 documentation" href="index.html" />
+    <link rel="next" title="FITS Keywords" href="keywords.html" />
+    <link rel="prev" title="Reduction Recipes" href="recipes.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="keywords.html" title="FITS Keywords"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="recipes.html" title="Reduction Recipes"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MEGARA Data Reduction Pipeline 0.6.dev1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="data-products">
+<h1>Data Products<a class="headerlink" href="#data-products" title="Permalink to this headline">¶</a></h1>
+<p>Each recipe of the MEGARA Pipeline produces a set of predefined results, known
+as <em>data products</em>. In turn, the recipes may request different data products
+as computing requirements, effectively chaining the recipes.</p>
+<p>For example, the requirements of the <span class="xref std std-ref">ff-mode-label</span> recipe include a
+<code class="xref py py-class docutils literal"><span class="pre">MasterDark</span></code> object. This object is produced by
+the recipe <code class="xref py py-class docutils literal"><span class="pre">DarkRecipe</span></code>, which in turn requires a
+<code class="xref py py-class docutils literal"><span class="pre">MasterBias</span></code> object.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="keywords.html">FITS Keywords</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="keywords.html#primary-header">Primary header</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keywords.html#required-by-the-pipeline">Required by the pipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rawimages.html">Raw Image data products</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rawimages.html#readout-modes">Readout modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rawimages.html#image-types">Image types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rawimages.html#bias">Bias</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rawimages.html#dark">Dark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rawimages.html#flat">Flat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rawimages.html#object">Object</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="images.html">Data products</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="images.html#master-bias-frames">Master Bias frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images.html#master-dark-frames">Master Dark frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images.html#master-bad-pixel-mask">Master Bad Pixel Mask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images.html#master-traces">Master Traces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images.html#master-weights">Master Weights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images.html#master-wavelength-calibration">Master Wavelength Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images.html#master-fiber-flat">Master Fiber Flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images.html#master-slit-flat">Master Slit Flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images.html#master-twilight-flat">Master Twilight Flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images.html#master-lcb">Master LCB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images.html#master-mos">Master MOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images.html#master-lcb-fast-mapping">Master LCB Fast Mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images.html#master-lcb-std-star">Master LCB std Star</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images.html#master-mos-std-star">Master MOS std Star</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images.html#master-sensitivity-star">Master Sensitivity Star</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images.html#master-extinction-star">Master Extinction Star</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="recipes.html"
+                        title="previous chapter">Reduction Recipes</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="keywords.html"
+                        title="next chapter">FITS Keywords</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/products.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="keywords.html" title="FITS Keywords"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="recipes.html" title="Reduction Recipes"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MEGARA Data Reduction Pipeline 0.6.dev1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013-2017, Universidad Complutense de Madrid.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>
