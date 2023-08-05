@@ -1,0 +1,16 @@
+gasofo/__init__.py,sha256=WWA0a7EAhaOpEBP7RCidQblGGdCimmX7sxzI05-la_Q,592
+gasofo/convenience.py,sha256=3YMUiJvFAaL3c3hQ88kcHNw1d-KGR-jUBuNnWhy4zG8,2802
+gasofo/discoverable.py,sha256=k8dQb_OLq7kXvutqIH7yy8jLRp67C4qHJpOdeqDRySw,5183
+gasofo/domain.py,sha256=qmaav6gKD6ADkHP79WrW7avsLhSbKJq4jZVhuhOjwE8,11596
+gasofo/exceptions.py,sha256=20Cg15OVe4au1XP2gWCmx-v1i7_qma5kgmD8BPMe0rk,1605
+gasofo/ports.py,sha256=KGv_cKUpK5F7CINShAygX0z_CeUJxMuYwHHofZz1dh0,4366
+gasofo/service.py,sha256=3oBhFxDLy0Sfa0WH_0dG4-mQuukJqWdAsN9fCYFBczI,7530
+gasofo/service_needs.py,sha256=UUAXVvn52L_ycPBRqO68WGcnHYRchA-Qeg1cuJ-fUPs,2520
+gasofo/testing/__init__.py,sha256=3lFVwywylvy_k6pe-ldKbcG3gFq9IQ7Wh8hW8m7YiYo,284
+gasofo/testing/adapters.py,sha256=__2napH-svFxf7a41SlcCVnIBeOa7rswOSTSQ8ATVZY,1283
+gasofo/testing/patchers.py,sha256=le-n32L6WAYy6IWjDxOppxkoEh6bjbYAcs0XzSc3z90,4994
+gasofo/testing/testcase_base.py,sha256=zS9id5JCyZuS3HSmEQpIxMTWhAKb71IJBFR92MjCMOM,2744
+gasofo-1.0.3.dist-info/METADATA,sha256=QhxlR7746i3oOrXT7_gt6stplRqls1O1cOVFh7V7nU0,22984
+gasofo-1.0.3.dist-info/WHEEL,sha256=Ph_z28wTcU7HnQwSQ6yCQ-zkcGK4h4ehDfP8b6UoHVE,92
+gasofo-1.0.3.dist-info/top_level.txt,sha256=DbHEUPEidFyZBDwqYPrhM0Fl36nnWBW7yrvqrp33yN8,7
+gasofo-1.0.3.dist-info/RECORD,,
