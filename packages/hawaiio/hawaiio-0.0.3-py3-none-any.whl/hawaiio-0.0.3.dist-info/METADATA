@@ -1,0 +1,74 @@
+Metadata-Version: 2.1
+Name: hawaiio
+Version: 0.0.3
+Summary: A library of shiny concurrency building blocks for Python
+Home-page: https://github.com/florimondmanca/hawaiio.git
+Author: Florimond Manca
+Author-email: florimond.manca@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Provides-Extra: ci
+Requires-Dist: pytest ; extra == 'ci'
+Requires-Dist: pytest-cov ; extra == 'ci'
+Requires-Dist: codecov ; extra == 'ci'
+Requires-Dist: mypy ; extra == 'ci'
+Provides-Extra: dev
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Requires-Dist: codecov ; extra == 'dev'
+Requires-Dist: mypy ; extra == 'dev'
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: pylint ; extra == 'dev'
+Requires-Dist: rope ; extra == 'dev'
+Requires-Dist: bumpversion ; extra == 'dev'
+
+# hawaiio
+
+[![build status](https://travis-ci.com/florimondmanca/hawaiio.svg?branch=master)](https://travis-ci.com/florimondmanca/hawaiio)
+[![codecov](https://codecov.io/gh/florimondmanca/hawaiio/branch/master/graph/badge.svg)](https://codecov.io/gh/florimondmanca/hawaiio)
+[![code style](https://img.shields.io/badge/code_style-black-black)](https://github.com/psf/black)
+![license](https://img.shields.io/badge/license-MIT-green)
+
+**hawaiio** is an experimental library of building blocks for concurrent Python programs. It relies on the async/await syntax, and nothing more. Shamelessly combines ideas from [trio](https://github.com/python-trio/trio) and [curio](https://github.com/dabeaz/curio).
+
+## Installation
+
+```bash
+pip install hawaiio
+```
+
+## Usage
+
+```python
+import hawaiio
+
+async def greet(name: str):
+    await hawaiio.sleep(1)
+    return f"Hello, {name}"
+
+message = hawaiio.run(greet("world"))
+print(message)  # 'Hello, world'
+```
+
+## Changelog
+
+See [CHANGELOG.md](https://github.com/florimondmanca/hawaiio/tree/master/CHANGELOG.md).
+
+## Contributing
+
+See [Contributing guidelines](https://github.com/florimondmanca/hawaiio/tree/master/CONTRIBUTING.md).
+
+## License
+
+MIT
+
+
