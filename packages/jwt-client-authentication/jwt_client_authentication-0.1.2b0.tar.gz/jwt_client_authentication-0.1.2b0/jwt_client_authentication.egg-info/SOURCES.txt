@@ -1,0 +1,9 @@
+setup.py
+jwt_client_authentication/__init__.py
+jwt_client_authentication/authentication.py
+jwt_client_authentication/settings.py
+jwt_client_authentication.egg-info/PKG-INFO
+jwt_client_authentication.egg-info/SOURCES.txt
+jwt_client_authentication.egg-info/dependency_links.txt
+jwt_client_authentication.egg-info/requires.txt
+jwt_client_authentication.egg-info/top_level.txt
