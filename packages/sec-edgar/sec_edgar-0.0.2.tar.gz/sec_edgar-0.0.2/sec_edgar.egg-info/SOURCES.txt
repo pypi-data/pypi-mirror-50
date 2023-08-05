@@ -1,0 +1,14 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+sec_edgar/__init__.py
+sec_edgar.egg-info/PKG-INFO
+sec_edgar.egg-info/SOURCES.txt
+sec_edgar.egg-info/dependency_links.txt
+sec_edgar.egg-info/top_level.txt
+sec_edgar/financial_statements/__init__.py
+sec_edgar/financial_statements/financial_statements.py
+sec_edgar/utils/__init__.py
+sec_edgar/utils/data_log.py
