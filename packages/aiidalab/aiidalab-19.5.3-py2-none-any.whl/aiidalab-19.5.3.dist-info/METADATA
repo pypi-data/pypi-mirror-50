@@ -1,0 +1,289 @@
+Metadata-Version: 2.1
+Name: aiidalab
+Version: 19.5.3
+Summary: Meta package for the AiiDA Lab python environment.
+Home-page: https://github.com/aiidalab/aiidalab-metapkg
+Author: The AiiDA team
+Author-email: aiidalab@materialscloud.org
+License: MIT License
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Description-Content-Type: text/markdown
+Requires-Dist: aiida-ase (==1.0.1)
+Requires-Dist: aiida-codtools (==1.0.1)
+Requires-Dist: aiida-core[atomic_tools,docs,jupyter,rest] (==0.12.4)
+Requires-Dist: aiida-cp2k (==0.10)
+Requires-Dist: aiida-fleur (==0.6.3)
+Requires-Dist: aiida-gudhi (==0.1.0a3)
+Requires-Dist: aiida-nwchem (==1.0.2)
+Requires-Dist: aiida-phtools (==0.1.0a1)
+Requires-Dist: aiida-quantumespresso (==2.1.0)
+Requires-Dist: aiida-raspa (==0.3.1)
+Requires-Dist: aiida-siesta (==0.9.10)
+Requires-Dist: aiida-vasp (==0.2.4)
+Requires-Dist: aiida-wannier90 (==1.0.0)
+Requires-Dist: aiida-yambo (==0.2.5)
+Requires-Dist: aiida-zeopp (==0.2.1)
+Requires-Dist: aiida (==0.12.4)
+Requires-Dist: aiidalab-widgets-base (==0.4.0b2)
+Requires-Dist: alabaster (==0.7.12)
+Requires-Dist: aldjemy (==0.8.0)
+Requires-Dist: alembic (==0.9.9)
+Requires-Dist: amqp (==1.4.9)
+Requires-Dist: aniso8601 (==7.0.0)
+Requires-Dist: anyjson (==0.3.3)
+Requires-Dist: appmode-aiidalab (==0.5.0.1)
+Requires-Dist: arrow (==0.14.3)
+Requires-Dist: ase (==3.17.0)
+Requires-Dist: asn1crypto (==0.24.0)
+Requires-Dist: atomicwrites (==1.3.0)
+Requires-Dist: attrs (==19.1.0)
+Requires-Dist: babel (==2.7.0)
+Requires-Dist: bcrypt (==3.1.7)
+Requires-Dist: billiard (==3.3.0.23)
+Requires-Dist: binaryornot (==0.4.4)
+Requires-Dist: bleach (==3.1.0)
+Requires-Dist: bokeh (==1.0.4)
+Requires-Dist: bqplot (==0.11.6)
+Requires-Dist: bump2version (==0.5.10)
+Requires-Dist: celery (==3.1.25)
+Requires-Dist: certifi (==2019.6.16)
+Requires-Dist: cffi (==1.12.3)
+Requires-Dist: chainmap (==1.0.3)
+Requires-Dist: chardet (==3.0.4)
+Requires-Dist: click-plugins (==1.0.3)
+Requires-Dist: click-spinner (==0.1.7)
+Requires-Dist: click (==6.7)
+Requires-Dist: cookiecutter (==1.6.0)
+Requires-Dist: coverage (==4.5.4)
+Requires-Dist: cryptography (==2.7)
+Requires-Dist: cycler (==0.10.0)
+Requires-Dist: decorator (==4.4.0)
+Requires-Dist: defusedxml (==0.6.0)
+Requires-Dist: django-extensions (==1.5.0)
+Requires-Dist: django (==1.7.11)
+Requires-Dist: docutils (==0.14)
+Requires-Dist: dulwich (==0.19.11)
+Requires-Dist: ecdsa (==0.13)
+Requires-Dist: entrypoints (==0.3)
+Requires-Dist: ete3 (==3.1.1)
+Requires-Dist: fileupload (==0.1.5)
+Requires-Dist: flask-cache (==0.13.1)
+Requires-Dist: flask-cors (==3.0.4)
+Requires-Dist: flask-httpauth (==3.2.3)
+Requires-Dist: flask-marshmallow (==0.9.0)
+Requires-Dist: flask-restful (==0.3.6)
+Requires-Dist: flask-sqlalchemy (==2.3.2)
+Requires-Dist: flask (==1.0.2)
+Requires-Dist: frozendict (==1.2)
+Requires-Dist: future (==0.16.0)
+Requires-Dist: h5py (==2.9.0)
+Requires-Dist: html5lib (==1.0.1)
+Requires-Dist: idna (==2.8)
+Requires-Dist: imagesize (==1.1.0)
+Requires-Dist: importlib-metadata (==0.19)
+Requires-Dist: ipydatawidgets (==4.0.1)
+Requires-Dist: ipykernel (==4.10.0)
+Requires-Dist: ipympl (==0.2.1)
+Requires-Dist: ipython-genutils (==0.2.0)
+Requires-Dist: ipython (==5.8.0)
+Requires-Dist: ipywidgets (==7.5.1)
+Requires-Dist: itsdangerous (==0.24)
+Requires-Dist: jinja2-time (==0.2.0)
+Requires-Dist: jinja2 (==2.10)
+Requires-Dist: jsonschema (==3.0.1)
+Requires-Dist: jupyter-client (==5.3.1)
+Requires-Dist: jupyter-core (==4.5.0)
+Requires-Dist: kiwisolver (==1.1.0)
+Requires-Dist: kombu (==3.0.37)
+Requires-Dist: lxml (==4.3.5)
+Requires-Dist: mako (==1.0.14)
+Requires-Dist: markdown (==3.0.1)
+Requires-Dist: markupsafe (==1.1.1)
+Requires-Dist: marshmallow-sqlalchemy (==0.13.2)
+Requires-Dist: marshmallow (==2.19.5)
+Requires-Dist: masci-tools (==0.3.6)
+Requires-Dist: matplotlib (==2.2.4)
+Requires-Dist: meld3 (==1.0.2)
+Requires-Dist: mistune (==0.8.4)
+Requires-Dist: monty (==2.0.4)
+Requires-Dist: mpmath (==1.1.0)
+Requires-Dist: nbconvert (==5.5.0)
+Requires-Dist: nbformat (==4.4.0)
+Requires-Dist: networkx (==2.2)
+Requires-Dist: nglview (==1.1.9)
+Requires-Dist: nose (==1.3.7)
+Requires-Dist: notebook (==5.7.8)
+Requires-Dist: numpy (==1.15.4)
+Requires-Dist: packaging (==19.1)
+Requires-Dist: palettable (==3.2.0)
+Requires-Dist: pandas (==0.24.2)
+Requires-Dist: pandocfilters (==1.4.2)
+Requires-Dist: paramiko (==2.4.2)
+Requires-Dist: parsevasp (==0.2.23)
+Requires-Dist: passlib (==1.7.1)
+Requires-Dist: pattern (==2.6)
+Requires-Dist: pbr (==5.4.1)
+Requires-Dist: pg8000 (==1.12.5)
+Requires-Dist: pgtest (==1.3.0)
+Requires-Dist: pickleshare (==0.7.5)
+Requires-Dist: pillow (==6.1.0)
+Requires-Dist: pluggy (==0.12.0)
+Requires-Dist: plumpy (==0.7.12)
+Requires-Dist: portalocker (==1.1.0)
+Requires-Dist: poyo (==0.5.0)
+Requires-Dist: prometheus-client (==0.7.1)
+Requires-Dist: prompt-toolkit (==1.0.16)
+Requires-Dist: psutil (==5.4.5)
+Requires-Dist: psycopg2-binary (==2.7.4)
+Requires-Dist: py (==1.8.0)
+Requires-Dist: pyasn1 (==0.4.5)
+Requires-Dist: pycifrw (==4.2.1)
+Requires-Dist: pycparser (==2.19)
+Requires-Dist: pydispatcher (==2.0.5)
+Requires-Dist: pygments (==2.3.1)
+Requires-Dist: pymatgen (==2018.12.12)
+Requires-Dist: pymysql (==0.8.0)
+Requires-Dist: pynacl (==1.3.0)
+Requires-Dist: pyparsing (==2.2.0)
+Requires-Dist: pyrsistent (==0.15.4)
+Requires-Dist: pytest-cov (==2.7.1)
+Requires-Dist: pytest-mpl (==0.10)
+Requires-Dist: pytest (==4.6.4)
+Requires-Dist: python-dateutil (==2.7.2)
+Requires-Dist: python-editor (==1.0.4)
+Requires-Dist: python-memcached (==1.59)
+Requires-Dist: python-mimeparse (==1.6.0)
+Requires-Dist: pythreejs (==2.0.2)
+Requires-Dist: pytz (==2018.4)
+Requires-Dist: pyyaml (==3.12)
+Requires-Dist: pyzmq (==18.0.2)
+Requires-Dist: qe-tools (==1.1.0)
+Requires-Dist: reentry (==1.2.2)
+Requires-Dist: requests-cache (==0.4.13)
+Requires-Dist: requests (==2.22.0)
+Requires-Dist: ruamel.yaml (==0.16.0)
+Requires-Dist: scipy (==1.2.2)
+Requires-Dist: seekpath (==1.8.1)
+Requires-Dist: send2trash (==1.5.0)
+Requires-Dist: simplegeneric (==0.8.1)
+Requires-Dist: six (==1.11.0)
+Requires-Dist: snowballstemmer (==1.9.0)
+Requires-Dist: spglib (==1.10.3.65)
+Requires-Dist: sphinx-rtd-theme (==0.4.3)
+Requires-Dist: sphinx (==1.8.4)
+Requires-Dist: sphinxcontrib-contentui (==0.2.2)
+Requires-Dist: sphinxcontrib-websupport (==1.1.2)
+Requires-Dist: sqlalchemy-migrate (==0.11.0)
+Requires-Dist: sqlalchemy-utils (==0.33.0)
+Requires-Dist: sqlalchemy (==1.0.19)
+Requires-Dist: sqlparse (==0.3.0)
+Requires-Dist: subprocess32 (==3.5.4)
+Requires-Dist: sympy (==1.4)
+Requires-Dist: tabulate (==0.8.2)
+Requires-Dist: tempita (==0.5.2)
+Requires-Dist: terminado (==0.8.2)
+Requires-Dist: testpath (==0.4.2)
+Requires-Dist: tornado (==4.5.3)
+Requires-Dist: traitlets (==4.3.2)
+Requires-Dist: traittypes (==0.2.1)
+Requires-Dist: tzlocal (==1.5.1)
+Requires-Dist: ujson (==1.35)
+Requires-Dist: uritools (==2.1.0)
+Requires-Dist: urllib3 (==1.25.3)
+Requires-Dist: validate-email (==1.3)
+Requires-Dist: voluptuous (==0.11.1)
+Requires-Dist: wcwidth (==0.1.7)
+Requires-Dist: webencodings (==0.5.1)
+Requires-Dist: werkzeug (==0.15.5)
+Requires-Dist: whichcraft (==0.6.0)
+Requires-Dist: widgetsnbextension (==3.5.1)
+Requires-Dist: zipp (==0.5.2)
+Requires-Dist: ptyprocess (==0.6.0) ; os_name != "nt"
+Requires-Dist: ruamel.yaml.clib (==0.1.0) ; platform_python_implementation == "CPython" and python_version < "3.8"
+Requires-Dist: ruamel.ordereddict (==0.4.14) ; platform_python_implementation == "CPython" and python_version <= "2.7"
+Requires-Dist: configparser (==3.7.4) ; python_version < "3"
+Requires-Dist: contextlib2 (==0.5.5) ; python_version < "3"
+Requires-Dist: enum34 (==1.1.6) ; python_version < "3"
+Requires-Dist: functools32 (==3.2.3.post2) ; python_version < "3"
+Requires-Dist: ipaddress (==1.0.22) ; python_version < "3"
+Requires-Dist: singledispatch (==3.4.0.3) ; python_version < "3"
+Requires-Dist: funcsigs (==1.0.2) ; python_version < "3.0"
+Requires-Dist: futures (==3.3.0) ; python_version < "3.2"
+Requires-Dist: scandir (==1.10.0) ; python_version < "3.5"
+Requires-Dist: typing (==3.7.4) ; python_version < "3.5"
+Requires-Dist: more-itertools (==5.0.0) ; python_version <= "2.7"
+Requires-Dist: backports.functools-lru-cache (==1.5) ; python_version == "2.7"
+Requires-Dist: backports.shutil-get-terminal-size (==1.0.0) ; python_version == "2.7"
+Requires-Dist: pathlib2 (==2.3.0) ; python_version in "2.6 2.7 3.2 3.3"
+Requires-Dist: pexpect (==4.7.0) ; sys_platform != "win32"
+
+[![Build Status](https://travis-ci.org/aiidalab/aiidalab-metapkg.svg?branch=master)](https://travis-ci.org/aiidalab/aiidalab-metapkg)
+
+# aiidalab-metapkg
+
+The `aiidalab` metapackage sets up the python environment found on the 
+[AiiDA lab](https://aiidalab.materialscloud.org).
+Amongst others, this includes
+
+ * aiida-core
+ * a wide range of aiida plugins
+ * jupyter
+ * ...
+
+Note: The relevant jupyter notebook extensions are enabled automatically.
+
+## Installation
+
+```
+# install latest version from pypi
+pip install aiidalab
+# note: pip can *enable* nbextensions [1,2], but not install them
+jupyter nbextension install --sys-prefix --py fileupload        
+```
+[1] See the [jupyter-notebook documentation](http://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Distributing%20Jupyter%20Extensions%20as%20Python%20Packages.html#Automatically-enabling-a-server-extension-and-nbextension)  
+[2] http://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html
+
+## Testing
+
+```
+# install latest version from github
+pip install git+https://github.com/aiidalab/aiidalab-metapkg
+jupyter nbextension install --sys-prefix --py fileupload        
+```
+
+Note: `pip install -e .` does *not* process the `data_files` and thus does not enable the jupyter extensions.
+
+## Updating requirements
+
+Start by adjusting the [`Pipfile`](Pipfile) according to the latest releases.
+Then do:
+```
+pip install pipenv
+pipenv lock --requirements > requirements.txt
+```
+
+Note: We try to keep the number of explicit dependencies in the `Pipfile` to a minimum.
+Consider using [pipdeptree](https://pypi.org/project/pipdeptree/) to figure out the dependency tree and which dependencies are actually needed.
+
+## License
+
+MIT
+
+## Contact
+
+aiidalab@materialscloud.org
+
+## Acknowledgements
+
+This work is supported by the [MARVEL National Centre for Competency in Research](<http://nccr-marvel.ch>)
+funded by the [Swiss National Science Foundation](<http://www.snf.ch/en>), as well as by the [MaX
+European Centre of Excellence](<http://www.max-centre.eu/>) funded by the Horizon 2020 EINFRA-5 program,
+Grant No. 676598.
+
+![MARVEL](miscellaneous/logos/MARVEL.png)
+![MaX](miscellaneous/logos/MaX.png)
+
+
+
