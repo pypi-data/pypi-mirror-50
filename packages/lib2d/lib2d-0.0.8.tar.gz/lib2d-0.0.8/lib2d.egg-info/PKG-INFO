@@ -1,0 +1,25 @@
+Metadata-Version: 1.1
+Name: lib2d
+Version: 0.0.8
+Summary: A fast and simple 2D sprite rendering library for games
+Home-page: http://lib2d.com
+Author: Joseph Marshall
+Author-email: jlmrshl@gmail.com
+License: MIT
+Description: Lib2D is not a standalone game engine. A graphics context will need to be
+        created before instantiating lib2d.
+        
+        Lib2D isn't meant to be a game engine or anything close to one. It does one
+        thing and one thing only, efficiently render hardware accelerated sprites to
+        the screen.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: C
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Multimedia :: Graphics
+Classifier: Topic :: Software Development :: Libraries :: Python Modules

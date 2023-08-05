@@ -1,0 +1,6 @@
+Lib2D is not a standalone game engine. A graphics context will need to be
+created before instantiating lib2d.
+
+Lib2D isn't meant to be a game engine or anything close to one. It does one
+thing and one thing only, efficiently render hardware accelerated sprites to
+the screen.

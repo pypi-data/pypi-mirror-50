@@ -1,0 +1,3 @@
+graft src/
+exclude src/*.swp
+exclude src/*.swo
