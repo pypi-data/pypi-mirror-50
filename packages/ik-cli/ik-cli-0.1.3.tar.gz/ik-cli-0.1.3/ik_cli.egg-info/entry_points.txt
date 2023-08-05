@@ -1,0 +1,3 @@
+[console_scripts]
+ik_cli = ik_cli.cli:cli
+
