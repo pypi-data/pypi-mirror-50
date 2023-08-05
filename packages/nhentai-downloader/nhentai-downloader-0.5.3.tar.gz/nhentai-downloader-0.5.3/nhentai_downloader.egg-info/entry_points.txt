@@ -1,0 +1,3 @@
+[console_scripts]
+nhentai-downloader = nhentai_downloader.nhentai:main
+
