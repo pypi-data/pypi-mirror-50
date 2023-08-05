@@ -1,0 +1,67 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.1'
+      jupytext_version: 1.1.1
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+```{python nbsphinx=hidden}
+import pandas as pd
+pd.set_option("display.max_rows", 5)
+```
+
+## Joins
+
+```{python}
+from siuba import _, inner_join, left_join, full_join
+
+df1 = pd.DataFrame({'id': [1,2], 'x': ['a', 'b']})
+df2 = pd.DataFrame({'id': [2,2,3], 'y': ['l', 'm', 'n']})
+```
+
+```{python}
+df1
+```
+
+```{python}
+df2
+```
+
+### Inner join
+
+```{python}
+inner_join(df1, df2, on = "id")
+```
+
+### Left join 
+
+```{python}
+left_join(df1, df2, on = "id")
+```
+
+### Full join
+
+```{python}
+# TODO: fix
+#full_join(df1, df2, on = "id")
+```
+
+### Semi and anti join
+
+```{python}
+from siuba import semi_join, anti_join
+
+semi_join(df1, df2, on = "id")
+```
+
+```{python}
+# TODO: implement
+#anti_join(df1, df2, on = "id")
+```

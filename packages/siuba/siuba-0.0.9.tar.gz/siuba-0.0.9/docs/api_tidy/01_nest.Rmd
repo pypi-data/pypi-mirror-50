@@ -1,0 +1,87 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.1'
+      jupytext_version: 1.1.1
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+```{python nbsphinx=hidden}
+import pandas as pd
+pd.set_option("display.max_rows", 20)
+```
+
+## Nest
+
+```{python}
+from siuba import _, nest, unnest, group_by
+from gapminder import gapminder
+```
+
+### Specifying column to exclude
+
+```{python}
+gap_country = nest(gapminder, -_.country)
+gap_country
+```
+
+```{python}
+# unnest is its inverse (except for some sorting!)
+unnest(gap_country, "data")
+```
+
+### Specifying column to include
+
+```{python}
+# specifying columns to nest directly
+df = pd.DataFrame({
+    'group': ['a', 'a', 'b', 'b'],
+    'value': [1,2,3,4]
+})
+
+df >> nest(_.value)
+```
+
+### Group by and nesting
+
+```{python}
+# equivalent to
+# gapminder >> nest(-_.country, -_.continent)
+
+(gapminder
+  >> group_by(_.country, _.continent)
+  >> nest()
+  )
+```
+
+### Unnesting lists
+
+
+For context, see [this Stack Overflow post](https://stackoverflow.com/questions/30885005/pandas-series-of-lists-to-one-series).
+
+```{python}
+from siuba import _, unnest, mutate
+
+sent = pd.DataFrame({
+    'id': ['1', '2'],
+    'sentence': ['a b c d e', 'x y z']
+})
+
+sent
+```
+
+```{python}
+split_sent = sent >> mutate(data = _.sentence.str.split(" "))
+
+split_sent
+```
+
+```{python}
+split_sent >> unnest()
+```

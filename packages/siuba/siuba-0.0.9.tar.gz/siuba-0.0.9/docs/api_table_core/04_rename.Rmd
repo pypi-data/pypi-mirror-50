@@ -1,0 +1,41 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.1'
+      jupytext_version: 1.1.1
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+```{python nbsphinx=hidden}
+import pandas as pd
+pd.set_option("display.max_rows", 2)
+```
+
+## Rename
+
+This function gives one or more columns new names. It returns a DataFrame with the renamed and original columns.
+
+```{python}
+from siuba import _, rename, select
+from siuba.data import mtcars
+
+small_cars = mtcars[["mpg", "cyl", "hp"]]
+```
+
+For example, the code below renames `mpg` to be uppercase, while keeping the other columns of data.
+
+```{python}
+small_cars >> rename(MPG = "mpg")
+```
+
+It is equivalent to renaming in a select, while also selecting all other columns.
+
+```{python}
+small_cars >> select(_.MPG == _.mpg, _.cyl, _.hp)
+```

@@ -1,0 +1,64 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.1'
+      jupytext_version: 1.1.1
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+```{python nbsphinx=hidden}
+import pandas as pd
+pd.set_option("display.max_rows", 5)
+```
+
+## Count
+
+This function counts the number of rows that exist when grouping by one or more columns. It is equivalent to a group by followed by a summarize counting the rows of each group.
+
+```{python}
+from siuba import _, group_by, summarize, count
+from siuba.data import mtcars
+```
+
+### Specifying column to count
+
+```{python}
+# longer approach
+mtcars >> group_by(_.cyl) >> summarize(n = _.cyl.size)
+
+# shorter approach
+mtcars >> count(_.cyl)
+```
+
+### Counting multiple columns and sorting
+
+```{python}
+mtcars >> count(_.cyl, _.gear, sort = True)
+```
+
+Note that since it's common to want to see the groups with the highest counts, passing `sort = True` returns counts in **descending** order.
+
+
+### Counting expressions
+
+As is the case with `group_by`, the `count` function accepts complex expressions, as long are they are passed as keyword arguments.
+
+```{python}
+mtcars >> count(_.cyl, many_gears = _.gear > 3)
+```
+
+### Mutating and counting with `add_count`
+
+While `count` is equivalent to a group by and summarize, `add_count` is equivalent to group by and mutate. This means that it keeps the original data, but adds on a new column of counts.
+
+```{python}
+from siuba import add_count
+
+mtcars >> add_count(_.cyl)
+```
