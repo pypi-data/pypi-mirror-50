@@ -1,0 +1,14 @@
+setup.cfg
+setup.py
+known_side_effects/__init__.py
+known_side_effects/argument_matcher.py
+known_side_effects/exceptions.py
+known_side_effects/types.py
+known_side_effects.egg-info/PKG-INFO
+known_side_effects.egg-info/SOURCES.txt
+known_side_effects.egg-info/dependency_links.txt
+known_side_effects.egg-info/requires.txt
+known_side_effects.egg-info/top_level.txt
+known_side_effects/matchers/__init__.py
+known_side_effects/matchers/parameter_matchers.py
+known_side_effects/matchers/types.py
