@@ -1,0 +1,33 @@
+Metadata-Version: 1.2
+Name: emlib
+Version: 0.3.2
+Summary: Utilities for sound, music notation, acoustics, etc.
+Home-page: https://github.com/gesellkammer/emlib
+Author: Eduardo Moguillansky
+Author-email: eduardo.moguillansky@gmail.com
+License: BSD
+Description: emlib
+        =====
+        
+        emlib is a set of modules with miscelaneous functionality:
+        
+        -  midi: utilities to read midi files, notify when new midi devices are
+           plugged, etc.
+        -  snd: utilities to read and process soundfiles
+        -  wrap: wrappers around other software, like csound, sonic-visualizer,
+           reaper
+        -  acoustics: formulas for helmholtz resonators, speed of sound, etc.
+        -  other topics:
+        -  combinatorics
+        -  number theory
+        -  stochastic
+        -  pitch converstions
+        -  etc.
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.6
