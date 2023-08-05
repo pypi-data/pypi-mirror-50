@@ -1,0 +1,66 @@
+{% extends 'admin/base_site.html' %}
+
+{% block title %}SQL Debug{% endblock %}
+
+{% block branding %}
+  <h1 id="site-name">SQL Debug</h1>
+{% endblock %}
+
+{% block content_title %}<h1>Requests</h1>{% endblock %}
+
+{% block breadcrumbs %}
+{% endblock %}
+
+{% block content %}
+  <div id="content-main">
+    <div class="module" id="changelist">
+      <form id="changelist-form" method="post" novalidate>
+        {% csrf_token %}
+        <div class="results">
+          <table>
+            <thead>
+            <tr>
+              <th>
+                <div class="text">
+                  <a href="#">UUID</a>
+                </div>
+              </th>
+              <th>
+                <div class="text">
+                  <a href="#">Path</a>
+                </div>
+              </th>
+              <th>
+                <div class="text">
+                  <a href="#">Total sql-queries</a>
+                </div>
+              </th>
+              <th>
+                <div class="text">
+                  <a href="#">Total sql-time</a>
+                </div>
+              </th>
+              <th>
+                <div class="text">
+                  <a href="#">Date</a>
+                </div>
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for request in requests %}
+              <tr class="{% cycle 'row1' 'row2' %}">
+                <td><a href="{% url 'sql_debug:detail' request.id %}">{{ request.id }}</a></td>
+                <td> {{ request.path }} </td>
+                <td> {{ request.total_sql_queries }} </td>
+                <td> {{ request.total_time }} </td>
+                <td> {{ request.load_date|date:"d.m.Y H:i:s" }} </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
