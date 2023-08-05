@@ -1,0 +1,3 @@
+[console_scripts]
+realpython = visen.__main__:main
+

@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: visen
+Version: 0.0.1
+Summary: Format Vietnamese string tone
+Home-page: https://github.com/nguyenvulebinh/visen
+Author: Binh Nguyen
+Author-email: nguyenvulebinh@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Requires-Dist: ftfy (==5.5.1)
+Requires-Dist: bogo (==1.1)
+
+# ViSen
+ViSen is library to format tone of Vietnamese sentences
+
+## Install
+```bash
+pip install visen
+```
+
+
+## Usage
+```python
+>>> import visen
+>>> visen.clean_tone('gía cả thị trừơng?')
+'giá cả thị trường?'
+>>> visen.remove_tone('công việc')
+'cong viec'
+```
+
