@@ -1,0 +1,16 @@
+dask_gateway/__init__.py,sha256=FgEOiFD_6hNfyVvP3x-9nGlZr7tr9OWiqKdv91DViBU,305
+dask_gateway/_version.py,sha256=tqg5AwRPRdUi3sK3hUP_CIXp3w8ayVZ9YlPZ0vzdbg8,497
+dask_gateway/auth.py,sha256=DPXOyHhDjfOoV850XeIV4gwXG4mRGEolRQsVz_FvxMo,5023
+dask_gateway/client.py,sha256=9DthnwX3UQ6jmoqDtO3EFLkXjJqxTMb0CwwRraQqPdM,25360
+dask_gateway/comm.py,sha256=KB86amZcdvbIQNluX8uKFyoZ98l2UCLycxyQinBhT_k,2931
+dask_gateway/config.py,sha256=-4v1VJ7WwEea16NFJCk7dMRXbgAMxJzeP1q4JTjHYFA,292
+dask_gateway/cookiejar.py,sha256=TbjvJErd4GW4mARyQh6ZmvNU3W0B32DGv1J-jC_OxKY,9659
+dask_gateway/dask_cli.py,sha256=CkqeMKGhDWu6pixTNxzyQHv7mffApAsvBUwGc4EutdU,12944
+dask_gateway/gateway.yaml,sha256=GXWltbMJjta3WeZOb5F6CIoI74fwMlYRyX9ZeTlXmxM,561
+dask_gateway/options.py,sha256=NR7gLFNuQ-yf1Qo5y_Es8vl4pMjjgEO7gkAtVoV8Fhc,9334
+dask_gateway-0.3.0.dist-info/LICENSE,sha256=hX4mV__1DsGOagtHPyEbWaNSWNrWaU987eXCtmlkQCE,1492
+dask_gateway-0.3.0.dist-info/METADATA,sha256=GSedAoz6VPCjU8h7z-iYZrgpK7hSRgjDp35p4xMhGMQ,731
+dask_gateway-0.3.0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+dask_gateway-0.3.0.dist-info/entry_points.txt,sha256=WjuLv1UTfVqhpRdwCbP6MP-GhQBe3XtVhSjs_X35MJ8,127
+dask_gateway-0.3.0.dist-info/top_level.txt,sha256=rDv-HQxX43Mr8X6_z9jZPST1LPj8oaRMKII6nGjaWhU,13
+dask_gateway-0.3.0.dist-info/RECORD,,
