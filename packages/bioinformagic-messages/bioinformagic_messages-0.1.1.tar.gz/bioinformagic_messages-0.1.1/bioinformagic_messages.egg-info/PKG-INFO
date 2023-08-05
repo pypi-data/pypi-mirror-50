@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: bioinformagic-messages
+Version: 0.1.1
+Summary: Randomly generate completely useless bioinformatics-related loading messages
+Home-page: https://github.com/joemahon89/bioinformagic_messages
+Author: Joseph Mahon
+Author-email: joemahon89@gmail.com
+License: MIT
+Download-URL: https://github.com/joemahon89/bioinformagic_messages/archive/v_01.1.tar.gz
+Description: # Bioinformagic Messages
+        
+        Generate completely useless bioinformatics-related loading messages.  
+        Insert into any project to show users just how _advanced_ and 
+        _clever_ your application is!
+        
+        #### Use
+        ```python
+        import bioinformagic_messages as bm
+        
+        message = bm.Message()
+        
+        for i in range(0,10):
+        	print(message.random_message())
+        ```
+        #### Output
+        ```python
+        "Inspecting algorithms"
+        "Shaking domains"
+        "Hand-crafting the cloud"
+        "Splurging 00010111001"
+        "Generating nucleotides"
+        "Shaking URLs"
+        "Synthesizing AI"
+        "Parsing URLs"
+        "Reticulating extensions"
+        "Downloading sequences"
+        ```
+        
+Keywords: bioinformatics,random,messages
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
