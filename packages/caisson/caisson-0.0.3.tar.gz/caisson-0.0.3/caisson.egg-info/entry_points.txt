@@ -1,0 +1,3 @@
+[console_scripts]
+caisson = caisson.__main__:main
+

@@ -1,0 +1,16 @@
+README.rst
+setup.cfg
+setup.py
+caisson/__init__.py
+caisson/__main__.py
+caisson/configuration.py
+caisson/constants.py
+caisson/decompressors.py
+caisson/io.py
+caisson/parser.py
+caisson.egg-info/PKG-INFO
+caisson.egg-info/SOURCES.txt
+caisson.egg-info/dependency_links.txt
+caisson.egg-info/entry_points.txt
+caisson.egg-info/top_level.txt
+caisson.egg-info/zip-safe
