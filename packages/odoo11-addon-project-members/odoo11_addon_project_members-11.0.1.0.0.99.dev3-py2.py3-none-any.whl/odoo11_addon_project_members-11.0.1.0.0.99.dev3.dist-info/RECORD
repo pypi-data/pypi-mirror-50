@@ -1,0 +1,15 @@
+odoo/addons/project_members/README.rst,sha256=7ybI6Bo1RHCAJ6UWr-YXHWwZ77Qku4V0_79YKZb5q7o,2919
+odoo/addons/project_members/__init__.py,sha256=X9EJGOE2GtZbS0G82PtSXmWSZ_R8jEM0rlJTDliQjp4,21
+odoo/addons/project_members/__manifest__.py,sha256=tNxiuNlOkzXlWwGekT1_rkYyu3oQnedqtwEhxQAd-3E,573
+odoo/addons/project_members/models/__init__.py,sha256=QljBamIjwrNvPPJB5ngFhBV9v1oMWKP4XBKs33SH9VQ,22
+odoo/addons/project_members/models/project.py,sha256=AyNtEAp8aTskK-X8zLsLHrs01aPDu5XcshSUyBFF3hA,427
+odoo/addons/project_members/readme/CONTRIBUTORS.rst,sha256=ARNsu4cmjNHcS80h7LQO4vctvOwDhwBmQqrO6NunRcQ,192
+odoo/addons/project_members/readme/DESCRIPTION.rst,sha256=7Ulm0U7YvQVmaYOX_FpqLTWRD5Pw5JlWN0RRsTNn8Uk,99
+odoo/addons/project_members/readme/USAGE.rst,sha256=KlaG5aYSxHVpaCHeFgORx5zkbDLOM7tNM6tvqjzmtIw,64
+odoo/addons/project_members/static/description/icon.png,sha256=6xBPJauaFOF0KDHfHgQopSc28kKvxMaeoQFQWZtfZDo,9455
+odoo/addons/project_members/static/description/index.html,sha256=PwcHpv7qotSkEMXCbAmpY4Knr-hHNYhgpRUtFQSLeOg,12598
+odoo/addons/project_members/views/project.xml,sha256=-FhOgkSjLHe3ac8x3PeaT4DGSuHYmdSpYeY3Hi9ztWo,516
+odoo11_addon_project_members-11.0.1.0.0.99.dev3.dist-info/METADATA,sha256=gF7KvXpS2upC9GSdvjMr3VDSP3uQaMSHMVBX47qocs0,3510
+odoo11_addon_project_members-11.0.1.0.0.99.dev3.dist-info/WHEEL,sha256=h_aVn5OB2IERUjMbi2pucmR_zzWJtk303YXvhh60NJ8,110
+odoo11_addon_project_members-11.0.1.0.0.99.dev3.dist-info/top_level.txt,sha256=qBj40grFkGOfDZ2WDSw3y1RnDlgG0u8rP8pvGNdbz4w,5
+odoo11_addon_project_members-11.0.1.0.0.99.dev3.dist-info/RECORD,,
