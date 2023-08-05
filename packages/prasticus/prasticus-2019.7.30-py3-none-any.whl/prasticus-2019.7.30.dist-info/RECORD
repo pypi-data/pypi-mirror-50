@@ -1,0 +1,17 @@
+prasticus/__init__.py,sha256=tt899jNWvizZn7RI0FAfc9uMumn6ajTW6fds5njX3lQ,158
+prasticus/catchall/__init__.py,sha256=wPrfbhzFN8tGeQ6ZA5QIU3IYoj1sE1c2gnk1VcOkTuA,641
+prasticus/configure/__init__.py,sha256=FqT84K6TM1uA4cPNFXO-VvB5PLSiTDcRdZCySVWrgtI,456
+prasticus/configure/__main__.py,sha256=ZX7usPBS5SV5Uh2W9kASA8SOb0a68OIjq6vIIRZlr1Y,7103
+prasticus/configure/engine.py,sha256=nqXFeuciFWpgaAl4sj6zLo0HMneWfv4GeCDjaQkNTGc,1840
+prasticus/configure/util.py,sha256=c3yCulc99xsQtaqpSwJQMa_E-8f49Ko9eXXb6VRMf4w,344
+prasticus/configure/autoconfig/__init__.py,sha256=zzVPolZ4XYSuumeBlibLCmYIUW4y6EQUnstV6zw3CNA,931
+prasticus/configure/autoconfig/manageroot.py,sha256=JZe_uBqekut0BUNaLV8-6ihK4tG9MEeRN2NevMaY_ws,1645
+prasticus/configure/lib/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+prasticus/configure/lib/base.py,sha256=YLaUr26KaqYKhDvlGyhpYyeUuBqC3QC3Gz9QGxxx6bU,3890
+prasticus/configure/lib/extend_module_path.py,sha256=YsvY7B7AHDlrgWXAd67HJZOtusW_eqjIUawKnA6s54E,956
+prasticus/configure/loaded/__init__.py,sha256=Z1_8YiW7I49PeKSLIMQBqfBcvkA_9QTfyqzR7PKQXvY,84
+prasticus-2019.7.30.dist-info/LICENSE,sha256=o1tO3PWIvWa884pJpzRM3CtJjz_wJKD61nwX1AHCSv0,1081
+prasticus-2019.7.30.dist-info/METADATA,sha256=-kyzMAqmhg8o3hV2OHBeOg9OHAb7Fejkw5rX_5UUQRU,1486
+prasticus-2019.7.30.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+prasticus-2019.7.30.dist-info/top_level.txt,sha256=5yAFbdCTKPryntxRHmH8fbPLk74QS6U8MTU74oDwM7I,10
+prasticus-2019.7.30.dist-info/RECORD,,
