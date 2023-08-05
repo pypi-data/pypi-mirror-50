@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        parse_nidb_metadata=nidb_to_bids.parse_nidb_metadata:extract_nidb_metadata
+    
