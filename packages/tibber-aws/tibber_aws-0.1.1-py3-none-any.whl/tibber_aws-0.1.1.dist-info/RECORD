@@ -1,0 +1,11 @@
+tibber_aws/__init__.py,sha256=2TgexPP9Y5vG5kGrjOwOd7Lk5kl_thWfZA_i1lT3z4o,137
+tibber_aws/aws_queue.py,sha256=pIr-pcscu4mhUO2MCpKmZxEvmwFFhEtGkVAne1ReotY,3012
+tibber_aws/aws_topic.py,sha256=Z_dUhfK2V_I5xcX9vcRM2XRwIwNY4f0bXVF4vqrhhfQ,658
+tibber_aws/lambda.py,sha256=jV0_fapbCFNDYiB4K2TwUnDWLMwIyTkdWOHLyQy9g-c,2416
+tibber_aws/s3.py,sha256=X6kY0TDvcYG7czCTeUldK09ZIBFZ9qxMwvM4TziUFBk,1706
+tibber_aws/secret_manager.py,sha256=oW4xE76MolXuoXwxuDWIEk5dZxeMiQrSjCkEhj0kbao,2093
+tibber_aws-0.1.1.dist-info/LICENSE,sha256=yZjOOBHmBb-K2cJ5bsd8MZnIn0DzIZ_MhXytfQE0PeU,1063
+tibber_aws-0.1.1.dist-info/METADATA,sha256=eyfzQbL1tSdQy6RvLmXaEgQ05OtCKGZ3ZPcEWQJUiyU,547
+tibber_aws-0.1.1.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+tibber_aws-0.1.1.dist-info/top_level.txt,sha256=PZKZrD510zFoNnMGoHARsu8gJjcaec6jR8YUsP6ytUs,11
+tibber_aws-0.1.1.dist-info/RECORD,,
