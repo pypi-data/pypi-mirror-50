@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: name-generator
+Version: 0.1.1
+Summary: Generates a random name/username.
+Home-page: https://github.com/Rapciu/name-generator
+Author: Rapciu
+Author-email: mrapczewski711@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 5 - Production/Stable
+Description-Content-Type: text/markdown
+
+# name_generator
+Generates a random name/username.
+
+
