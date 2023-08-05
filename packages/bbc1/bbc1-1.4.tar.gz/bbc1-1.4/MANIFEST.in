@@ -1,0 +1,13 @@
+include AUTHORS
+include INSTALL
+include LICENSE
+include LICENSE.python
+include MANIFEST.in
+include package.json
+include *.rst
+include prepare.py
+graft scripts
+prune tests
+prune docs
+global-exclude __pycache__
+global-exclude *.py[co]
