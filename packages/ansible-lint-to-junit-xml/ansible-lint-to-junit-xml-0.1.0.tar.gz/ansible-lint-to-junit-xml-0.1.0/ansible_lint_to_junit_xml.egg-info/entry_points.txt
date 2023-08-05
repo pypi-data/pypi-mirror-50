@@ -1,0 +1,3 @@
+[console_scripts]
+ansible-lint-to-junit-xml = ansiblelinttojunitxml.ansiblelinttojunitxml:main
+
