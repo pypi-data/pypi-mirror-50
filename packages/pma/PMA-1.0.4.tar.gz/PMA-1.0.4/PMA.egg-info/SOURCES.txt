@@ -1,0 +1,15 @@
+MANIFEST.in
+README.md
+setup.py
+PMA.egg-info/PKG-INFO
+PMA.egg-info/SOURCES.txt
+PMA.egg-info/dependency_links.txt
+PMA.egg-info/entry_points.txt
+PMA.egg-info/requires.txt
+PMA.egg-info/top_level.txt
+pma/__init__.py
+pma/__main__.py
+pma/classes.py
+pma/cli.py
+pma/exceptions.py
+pma/plcs.json
