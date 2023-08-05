@@ -1,0 +1,12 @@
+Metadata-Version: 1.2
+Name: usbrip
+Version: 2.1.3.post3
+Summary: USB device artifacts tracker
+Home-page: https://github.com/snovvcrash/usbrip
+Author: Sam Freeside (@snovvcrash)
+Author-email: snovvcrash@protonmail.ch
+License: GPL-3.0
+Description: Simple command line forensics tool for tracking USB device artifacts (history of USB events) on GNU/Linux.
+Keywords: forensics cybersecurity infosec usb-history usb-devices
+Platform: UNKNOWN
+Requires-Python: >=3.6
