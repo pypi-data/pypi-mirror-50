@@ -1,0 +1,13 @@
+README.md
+setup.py
+rudi/__init__.py
+rudi/cli.py
+rudi.egg-info/PKG-INFO
+rudi.egg-info/SOURCES.txt
+rudi.egg-info/dependency_links.txt
+rudi.egg-info/entry_points.txt
+rudi.egg-info/requires.txt
+rudi.egg-info/top_level.txt
+rudi/utils/__init__.py
+rudi/utils/augmentor.py
+rudi/utils/converter.py
