@@ -1,0 +1,7 @@
+Metadata-Version: 1.1
+Name: bmrs
+Version: 1.2.2
+Summary: This package enables you receive BMRS data as json instead of the default XML
+Home-page: https://github.com/SimiCode/bmrs-json-api
+Author: Edison Abahurire
+Author-email: abahedison@gmail.com
