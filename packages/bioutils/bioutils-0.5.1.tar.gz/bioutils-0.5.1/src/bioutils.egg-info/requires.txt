@@ -1,0 +1,13 @@
+attrs
+requests
+
+[dev]
+ipython>=7.5
+jupyter>=1.0
+pyyaml
+restview
+tox
+yapf
+
+[docs]
+sphinx
