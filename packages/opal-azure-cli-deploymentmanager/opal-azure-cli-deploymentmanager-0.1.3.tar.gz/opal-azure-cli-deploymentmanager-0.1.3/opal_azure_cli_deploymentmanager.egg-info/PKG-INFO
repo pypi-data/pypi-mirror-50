@@ -1,0 +1,36 @@
+Metadata-Version: 1.1
+Name: opal-azure-cli-deploymentmanager
+Version: 0.1.3
+Summary: Microsoft Azure Command-Line Tools Deployment Manager Command Module
+Home-page: https://github.com/Azure/azure-cli
+Author: Microsoft Corporation
+Author-email: azpycli@microsoft.com
+License: MIT
+Description: Microsoft Azure CLI 'deploymentmanager' Command Module
+        ======================================================
+        
+        This package is for the 'deploymentmanager' module.
+        i.e. 'az deploymentmanager'
+        
+        
+        
+        .. :changelog:
+        
+        Release History
+        ===============
+        0.1.0
+        +++++++++++++++++++++
+        * Preview release. Create and manage artifacts that support rollouts.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: MIT License
