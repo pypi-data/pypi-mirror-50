@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: theorem10
+Version: 1.0
+Summary: This repository includes a computer program for a mathematical theorem paper titled A theorem on numbers of the form 10^x
+Home-page: https://github.com/mr-ravin/theorem10
+Author: Ravin Kumar
+Author-email: mr.ravin_kumar@hotmail.com
+License: UNKNOWN
+Description: # Theorem10 [A theorem in Mathematics]
+        This repository includes a computer program for a mathematical theorem paper titled "A theorem on numbers of the form 10^x"
+        
+        Author: [Ravin Kumar](https://mr-ravin.github.io)
+        
+        ### Demonstration
+        
+        ```python
+        import theorem10
+        x=4 # we took x=4 as an example, for number of form 10^x 
+        num_bits=theorem10.get_bits(x)  # here, we pass x to get_bits function, and it returns number of bits 
+                                        # that will always represent total numbers greater than 10^x
+        ```
+        
+        ### PyPi package installation
+        
+        ```
+        pip3 install theorem10
+        ```
+        ##### Note: This computer program is made available free to use. Please use this code at your own risk.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
