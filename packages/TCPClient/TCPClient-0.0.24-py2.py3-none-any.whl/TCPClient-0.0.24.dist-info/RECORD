@@ -1,0 +1,13 @@
+TCPClient/TCPClient.py,sha256=FmHFPjYhYu3lk3D3jGG8WBsXCBcHreuDOF_hOPLmpe8,2587
+TCPClient/__init__.py,sha256=sE45w-zCTIpVQyXYRbP5E390wIU6bNzRFuAh6ySoc1w,22
+libs/__init__.py,sha256=hW8nfzUMkseKj0v3g2zNtd_4yyES4DWpeFxs0-LvjLk,19
+libs/clientAbstract.py,sha256=N7KyoRsCwQouLd74Ywol6ZoRB0QPO5i_dCfTFqYeHlE,2039
+libs/clientQt.py,sha256=cR41I2JJ3twnF0SJI1EIv9S1l_YuXjRGAJV-B67qcJA,4391
+libs/clientSocket.py,sha256=BhLaQWFk04Of0qkOxf8DoVtUl4Q2w2LS96dYVc1EdKw,3096
+libs/frontend.py,sha256=CcqFGToTM0oQV5deM1Wlzt0S_XsoERzOwCP1zrPSmAQ,3353
+TCPClient-0.0.24.dist-info/LICENSE,sha256=7EI8xVBu6h_7_JlVw-yPhhOZlpY9hP8wal7kHtqKT_E,1074
+TCPClient-0.0.24.dist-info/METADATA,sha256=sWxo9G-Z67KF8DRavm_omHPzEDUqcUUYYdQ1u_ZrlJo,985
+TCPClient-0.0.24.dist-info/WHEEL,sha256=h_aVn5OB2IERUjMbi2pucmR_zzWJtk303YXvhh60NJ8,110
+TCPClient-0.0.24.dist-info/entry_points.txt,sha256=SAwfWj5NZAJoTB_YSsz3Slpm2k0BLoY55rGB99qcEMo,56
+TCPClient-0.0.24.dist-info/top_level.txt,sha256=aDDclWZydO9gQDOuZpW1E2EpvC71DVKCKVhcFtnpDFg,15
+TCPClient-0.0.24.dist-info/RECORD,,
