@@ -1,0 +1,13 @@
+indra
+boto3
+jsonpickle
+kappy==4.0.0rc1
+pygraphviz
+fnvhash
+sqlalchemy
+inflection
+
+[test]
+nose
+coverage
+python-coveralls
