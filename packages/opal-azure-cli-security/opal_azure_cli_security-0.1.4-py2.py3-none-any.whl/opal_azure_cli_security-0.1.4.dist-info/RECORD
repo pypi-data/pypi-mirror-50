@@ -1,0 +1,14 @@
+azure/__init__.py,sha256=jwUpEftyp-71KJZRiDO8VY0bF3pPg2gQauDzBT8mzRc,409
+azure/cli/__init__.py,sha256=jwUpEftyp-71KJZRiDO8VY0bF3pPg2gQauDzBT8mzRc,409
+azure/cli/command_modules/__init__.py,sha256=jwUpEftyp-71KJZRiDO8VY0bF3pPg2gQauDzBT8mzRc,409
+azure/cli/command_modules/security/__init__.py,sha256=T0n_V3FXP1IzVX70ZU_0fPROtrvi5ZnP50D_rdPaPk8,1215
+azure/cli/command_modules/security/_client_factory.py,sha256=mmn3IzGd8aYGTyt2fdlX0JMDuU4UaWIE6nXw_mVUCV8,1987
+azure/cli/command_modules/security/_help.py,sha256=lpojN0qQ17vorL705QUwy1Zt4iRcEVEMlGqdKTYpHOU,12916
+azure/cli/command_modules/security/_params.py,sha256=z5JsL8jIjTHZ9kKxUZe_qJMd-_1COaBGt0JLs-BcJW4,4916
+azure/cli/command_modules/security/_validators.py,sha256=NWR2PIoDFrqbz-ZAq8hB2gCYlXMD7R-5mhHHWc6YW0s,1030
+azure/cli/command_modules/security/commands.py,sha256=1vWpryR3b3CJ4satKfDjgXhHTipPXbwlaylbb6zCBwQ,8565
+azure/cli/command_modules/security/custom.py,sha256=hJAWinSut6DrK7DjEcOuM_3-ZnowRybKNz60Ney_nc4,9546
+opal_azure_cli_security-0.1.4.dist-info/METADATA,sha256=JLO_4H1SvYK1KdMLDX0tSh-48vfJdesGA7cCZ0qOi-s,1285
+opal_azure_cli_security-0.1.4.dist-info/WHEEL,sha256=h_aVn5OB2IERUjMbi2pucmR_zzWJtk303YXvhh60NJ8,110
+opal_azure_cli_security-0.1.4.dist-info/top_level.txt,sha256=S7DhWV9m80TBzAhOFjxDUiNbKszzoThbnrSz5MpbHSQ,6
+opal_azure_cli_security-0.1.4.dist-info/RECORD,,
