@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: pyprowl
+Version: 3.0.0
+Summary: Prowl API wrapper for Python
+Home-page: https://github.com/toddrob99/pyprowl
+Author: Todd Roberts
+Author-email: todd@toddrob.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# pyprowl
+
+Python module for sending Prowl notifications
+
+Created by Todd Roberts
+
+https://github.com/toddrob99/pyprowl
+
+## Usage
+
+	import pyprowl
+
+	p = pyprowl.Prowl('YOUR_PROWL_API_KEY')
+
+	try:
+		p.verify_key()
+		print "Prowl API key successfully verified!"
+	except Exception, e:
+		print "Error verifying Prowl API key:",e
+		exit()
+
+	try:
+		p.notify('Event name', 'Description of event', 
+				 priority=0, url='http://www.example.com', appName='Name of app sending the notification')
+		print "Notification successfully sent to Prowl!"
+	except Exception, e:
+		print "Error sending notification to Prowl:",e
+
+## Changelog
+
+### v3.0.0
+* Added support for python 3 using requests module
+
+### v1.0.2
+* Fixed package layout (moved code from `pyprowl.py` to `__init__.py` to support importing of module)
+
+### v1.0.1
+* Updated package layout for submission to PyPI
+
+### v1.0
+* Supports verification of API key and sending of notifications
+* API key can be set at instantiation and left out of subsequent calls, or it can be set on each call
+* App name can be set at instantiation and left out of subsequent calls, or it can be set on each call to notify()
+
+
