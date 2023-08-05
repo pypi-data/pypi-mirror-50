@@ -1,0 +1,1122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.1 -->
+<interface domain="vocball">
+  <requires lib="gtk+" version="3.16"/>
+  <!-- interface-local-resource-path ../pixmaps -->
+  <!-- interface-css-provider-path vocball.css -->
+  <object class="GtkAdjustment" id="adjTimerLenght">
+    <property name="lower">3</property>
+    <property name="upper">10</property>
+    <property name="value">1</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkImage" id="imgOpenOptions">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="margin_left">6</property>
+    <property name="icon_name">document-open-symbolic</property>
+    <property name="use_fallback">True</property>
+  </object>
+  <object class="GtkListStore" id="listPlayerNr">
+    <columns>
+      <!-- column-name PlayerNr -->
+      <column type="gint"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0">4</col>
+      </row>
+      <row>
+        <col id="0">5</col>
+      </row>
+      <row>
+        <col id="0">6</col>
+      </row>
+      <row>
+        <col id="0">7</col>
+      </row>
+      <row>
+        <col id="0">8</col>
+      </row>
+      <row>
+        <col id="0">9</col>
+      </row>
+      <row>
+        <col id="0">10</col>
+      </row>
+      <row>
+        <col id="0">11</col>
+      </row>
+      <row>
+        <col id="0">12</col>
+      </row>
+      <row>
+        <col id="0">13</col>
+      </row>
+      <row>
+        <col id="0">14</col>
+      </row>
+      <row>
+        <col id="0">15</col>
+      </row>
+      <row>
+        <col id="0">16</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="listScoreA">
+    <columns>
+      <!-- column-name ScoreA -->
+      <column type="gint"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0">0</col>
+      </row>
+      <row>
+        <col id="0">1</col>
+      </row>
+      <row>
+        <col id="0">2</col>
+      </row>
+      <row>
+        <col id="0">3</col>
+      </row>
+      <row>
+        <col id="0">4</col>
+      </row>
+      <row>
+        <col id="0">5</col>
+      </row>
+      <row>
+        <col id="0">6</col>
+      </row>
+      <row>
+        <col id="0">7</col>
+      </row>
+      <row>
+        <col id="0">8</col>
+      </row>
+      <row>
+        <col id="0">9</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="listScoreB">
+    <columns>
+      <!-- column-name ScoreB -->
+      <column type="gint"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0">0</col>
+      </row>
+      <row>
+        <col id="0">1</col>
+      </row>
+      <row>
+        <col id="0">2</col>
+      </row>
+      <row>
+        <col id="0">3</col>
+      </row>
+      <row>
+        <col id="0">4</col>
+      </row>
+      <row>
+        <col id="0">5</col>
+      </row>
+      <row>
+        <col id="0">6</col>
+      </row>
+      <row>
+        <col id="0">7</col>
+      </row>
+      <row>
+        <col id="0">8</col>
+      </row>
+      <row>
+        <col id="0">9</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="listTeamA">
+    <columns>
+      <!-- column-name TeamA -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkEntryCompletion" id="compTeamA">
+    <property name="model">listTeamA</property>
+    <property name="text_column">0</property>
+    <child>
+      <object class="GtkCellRendererText" id="cellTeamA"/>
+      <attributes>
+        <attribute name="text">0</attribute>
+      </attributes>
+    </child>
+  </object>
+  <object class="GtkListStore" id="listTeamB">
+    <columns>
+      <!-- column-name TeamB -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkEntryCompletion" id="compTeamB">
+    <property name="model">listTeamB</property>
+    <property name="text_column">0</property>
+    <child>
+      <object class="GtkCellRendererText" id="cellTeamB"/>
+      <attributes>
+        <attribute name="text">0</attribute>
+      </attributes>
+    </child>
+  </object>
+  <object class="GtkListStore" id="listUnits">
+    <columns>
+      <!-- column-name UnitChecked -->
+      <column type="gboolean"/>
+      <!-- column-name UnitName -->
+      <column type="gchararray"/>
+      <!-- column-name UnitNumber -->
+      <column type="gint"/>
+    </columns>
+  </object>
+  <object class="GtkAboutDialog" id="abtdlg">
+    <property name="can_focus">False</property>
+    <property name="resizable">False</property>
+    <property name="modal">True</property>
+    <property name="window_position">center-on-parent</property>
+    <property name="type_hint">dialog</property>
+    <property name="skip_taskbar_hint">True</property>
+    <property name="gravity">center</property>
+    <property name="transient_for">winGame</property>
+    <property name="program_name">Vocabulary Football (VocBall)</property>
+    <property name="copyright" translatable="yes">Copyright © 2017-2019 Thomas Dähnrich
+
+Simpleaudio:
+Copyright © 2015 Joe Hamilton</property>
+    <property name="comments" translatable="yes">Vocabulary Football (VocBall) is a simple application to play vocabulary football in class.</property>
+    <property name="website">https://gitlab.com/romaaeterna/vocball</property>
+    <property name="authors">Thomas Dähnrich &lt;develop@tdaehnrich.de&gt;</property>
+    <property name="artists">https://flaticon.com/authors/popcorns-arts
+https://freesound.org/people/audiosmedia/
+https://freesound.org/people/litz0815/
+https://freesound.org/people/Pablo-F/
+https://openclipart.org/user-detail/alex8664
+https://openclipart.org/user-detail/Firkin
+https://openclipart.org/user-detail/jean_victor_balin
+https://openclipart.org/user-detail/rduris</property>
+    <property name="logo">../pixmaps/logo_128x128.png</property>
+    <property name="license_type">gpl-3-0</property>
+    <child>
+      <placeholder/>
+    </child>
+    <child internal-child="vbox">
+      <object class="GtkBox" id="boxAbout">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox" id="areaAbout">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkPopover" id="popOptions">
+    <property name="can_focus">False</property>
+    <property name="relative_to">btnGame</property>
+    <child>
+      <object class="GtkGrid" id="gridOptions">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="margin_left">18</property>
+        <property name="margin_right">18</property>
+        <property name="margin_top">18</property>
+        <property name="margin_bottom">18</property>
+        <child>
+          <object class="GtkButton" id="btnVocabulary">
+            <property name="label" translatable="yes">Load Vocabulary List</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="has_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="margin_right">18</property>
+            <property name="image">imgOpenOptions</property>
+            <property name="image_position">right</property>
+            <property name="always_show_image">True</property>
+            <signal name="clicked" handler="on_btnVocabulary_clicked" swapped="no"/>
+            <style>
+              <class name="buttonL"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow" id="scrlUnits">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="margin_right">18</property>
+            <property name="margin_top">18</property>
+            <property name="hscrollbar_policy">never</property>
+            <property name="shadow_type">in</property>
+            <property name="min_content_width">225</property>
+            <property name="overlay_scrolling">False</property>
+            <child>
+              <object class="GtkTreeView" id="treeUnits">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="model">listUnits</property>
+                <property name="headers_visible">False</property>
+                <property name="headers_clickable">False</property>
+                <property name="enable_search">False</property>
+                <property name="search_column">0</property>
+                <property name="fixed_height_mode">True</property>
+                <property name="show_expanders">False</property>
+                <property name="enable_grid_lines">horizontal</property>
+                <property name="activate_on_single_click">True</property>
+                <signal name="row-activated" handler="on_treeUnits_row_activated" swapped="no"/>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection"/>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn" id="treecolUnits">
+                    <property name="sizing">fixed</property>
+                    <child>
+                      <object class="GtkCellRendererToggle" id="cellToggleUnits"/>
+                      <attributes>
+                        <attribute name="active">0</attribute>
+                      </attributes>
+                    </child>
+                    <child>
+                      <object class="GtkCellRendererText" id="cellNameUnits"/>
+                      <attributes>
+                        <attribute name="text">1</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <style>
+              <class name="treeunitsXL"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">1</property>
+            <property name="height">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lblOptionsTeamA">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="margin_right">18</property>
+            <property name="margin_bottom">12</property>
+            <property name="label" translatable="yes">Team A</property>
+            <style>
+              <class name="labelXXL"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkColorButton" id="colbtnTeamA">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Color of first team</property>
+            <property name="halign">start</property>
+            <property name="valign">center</property>
+            <property name="margin_bottom">12</property>
+            <property name="hexpand">True</property>
+            <property name="title" translatable="yes">Choose Color for Team A</property>
+            <property name="rgba">rgb(32,74,135)</property>
+          </object>
+          <packing>
+            <property name="left_attach">2</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lblOptionsScoreA">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">end</property>
+            <property name="margin_bottom">12</property>
+            <property name="label" translatable="yes">Goals</property>
+            <property name="xalign">1</property>
+            <style>
+              <class name="labelXXL"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">3</property>
+            <property name="top_attach">0</property>
+            <property name="width">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="entTeamA">
+            <property name="width_request">325</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="margin_bottom">18</property>
+            <property name="max_length">20</property>
+            <property name="max_width_chars">20</property>
+            <property name="secondary_icon_name">edit-clear-symbolic</property>
+            <property name="secondary_icon_tooltip_text" translatable="yes">Clear name</property>
+            <property name="placeholder_text" translatable="yes">Name of first team</property>
+            <property name="completion">compTeamA</property>
+            <signal name="icon-press" handler="on_entTeam_icon_press" swapped="no"/>
+            <style>
+              <class name="entryXL"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">1</property>
+            <property name="width">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkComboBox" id="cmbScoreA">
+            <property name="width_request">75</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="tooltip_text" translatable="yes">Goals scored by first team</property>
+            <property name="halign">end</property>
+            <property name="margin_left">24</property>
+            <property name="margin_bottom">18</property>
+            <property name="model">listScoreA</property>
+            <property name="active">0</property>
+            <child>
+              <object class="GtkCellRendererText" id="cellScoreA"/>
+              <attributes>
+                <attribute name="text">0</attribute>
+              </attributes>
+            </child>
+            <style>
+              <class name="comboboxL"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">4</property>
+            <property name="top_attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lblOptionsTeamB">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="margin_right">18</property>
+            <property name="margin_bottom">12</property>
+            <property name="label" translatable="yes">Team B</property>
+            <style>
+              <class name="labelXXL"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkColorButton" id="colbtnTeamB">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Color of second team</property>
+            <property name="halign">start</property>
+            <property name="valign">center</property>
+            <property name="margin_bottom">12</property>
+            <property name="hexpand">True</property>
+            <property name="title" translatable="yes">Choose Color for Team B</property>
+            <property name="rgba">rgb(164,0,0)</property>
+          </object>
+          <packing>
+            <property name="left_attach">2</property>
+            <property name="top_attach">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lblOptionsScoreB">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">end</property>
+            <property name="margin_bottom">12</property>
+            <property name="label" translatable="yes">Goals</property>
+            <property name="xalign">1</property>
+            <style>
+              <class name="labelXXL"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">3</property>
+            <property name="top_attach">2</property>
+            <property name="width">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="entTeamB">
+            <property name="width_request">325</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="margin_bottom">18</property>
+            <property name="max_length">20</property>
+            <property name="max_width_chars">20</property>
+            <property name="secondary_icon_name">edit-clear-symbolic</property>
+            <property name="secondary_icon_tooltip_text" translatable="yes">Clear name</property>
+            <property name="placeholder_text" translatable="yes">Name of second team</property>
+            <property name="completion">compTeamB</property>
+            <signal name="icon-press" handler="on_entTeam_icon_press" swapped="no"/>
+            <style>
+              <class name="entryXL"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">3</property>
+            <property name="width">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkComboBox" id="cmbScoreB">
+            <property name="width_request">75</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="tooltip_text" translatable="yes">Goals scored by second team</property>
+            <property name="halign">end</property>
+            <property name="margin_left">18</property>
+            <property name="margin_bottom">18</property>
+            <property name="model">listScoreB</property>
+            <property name="active">0</property>
+            <child>
+              <object class="GtkCellRendererText" id="cellScoreB"/>
+              <attributes>
+                <attribute name="text">0</attribute>
+              </attributes>
+            </child>
+            <style>
+              <class name="comboboxL"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">4</property>
+            <property name="top_attach">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lblPlayerNr">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">end</property>
+            <property name="margin_bottom">18</property>
+            <property name="label" translatable="yes">Number of Players</property>
+            <style>
+              <class name="labelXXL"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">4</property>
+            <property name="width">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btnOptionsApply">
+            <property name="label" translatable="yes">Apply</property>
+            <property name="width_request">175</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Apply changes</property>
+            <property name="halign">end</property>
+            <signal name="clicked" handler="on_btnOptionsApply_clicked" swapped="no"/>
+            <style>
+              <class name="buttonXL"/>
+              <class name="suggested-action"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">5</property>
+            <property name="width">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkComboBox" id="cmbPlayerNr">
+            <property name="width_request">75</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="tooltip_text" translatable="yes">Select number of players</property>
+            <property name="halign">end</property>
+            <property name="margin_left">24</property>
+            <property name="margin_bottom">18</property>
+            <property name="model">listPlayerNr</property>
+            <property name="active">7</property>
+            <child>
+              <object class="GtkCellRendererText" id="cellPlayerNr"/>
+              <attributes>
+                <attribute name="text">0</attribute>
+              </attributes>
+            </child>
+            <style>
+              <class name="comboboxL"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">4</property>
+            <property name="top_attach">4</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkPopoverMenu" id="popmenGame">
+    <property name="can_focus">False</property>
+    <property name="relative_to">btnMenu</property>
+    <child>
+      <object class="GtkBox" id="boxMenu">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="margin_left">6</property>
+        <property name="margin_right">6</property>
+        <property name="margin_top">6</property>
+        <property name="margin_bottom">6</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkModelButton" id="menuNew">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="text" translatable="yes">New Game</property>
+            <signal name="clicked" handler="on_menuNew_clicked" swapped="no"/>
+            <style>
+              <class name="buttonL"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="menuGameOptions">
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="text" translatable="yes">Game Options</property>
+            <signal name="clicked" handler="on_menuGameOptions_clicked" swapped="no"/>
+            <style>
+              <class name="buttonL"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator" id="sep1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="menuSettings">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="text" translatable="yes">Settings</property>
+            <signal name="clicked" handler="on_menuSettings_clicked" swapped="no"/>
+            <style>
+              <class name="buttonL"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="menuEditor">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="text" translatable="yes">Vocabulary Editor</property>
+            <signal name="clicked" handler="on_menuEditor_clicked" swapped="no"/>
+            <style>
+              <class name="buttonL"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator" id="sep2">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="menuHelp">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="text" translatable="yes">Help</property>
+            <signal name="clicked" handler="on_menuHelp_clicked" swapped="no"/>
+            <style>
+              <class name="buttonL"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">6</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="menuAbout">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="text" translatable="yes">About</property>
+            <signal name="clicked" handler="on_menuAbout_clicked" swapped="no"/>
+            <style>
+              <class name="buttonL"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">7</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator" id="sep3">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">8</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="menuQuit">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="text" translatable="yes">Quit</property>
+            <signal name="clicked" handler="on_menuQuit_clicked" swapped="no"/>
+            <style>
+              <class name="buttonL"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">9</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="submenu">main</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+  </object>
+  <object class="GtkWindow" id="winGame">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon">../pixmaps/logo_128x128.png</property>
+    <signal name="delete-event" handler="on_winGame_delete_event" swapped="no"/>
+    <signal name="destroy" handler="on_winGame_destroy" swapped="no"/>
+    <child type="titlebar">
+      <object class="GtkHeaderBar" id="headGame">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="spacing">10</property>
+        <property name="show_close_button">True</property>
+        <child>
+          <object class="GtkButton" id="btnGame">
+            <property name="label" translatable="yes">New Game</property>
+            <property name="width_request">150</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="has_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="halign">start</property>
+            <signal name="clicked" handler="on_btnGame_clicked" swapped="no"/>
+            <signal name="key-release-event" handler="on_btnGame_key_release_event" swapped="no"/>
+            <style>
+              <class name="buttonXL"/>
+            </style>
+          </object>
+        </child>
+        <child type="title">
+          <object class="GtkBox" id="boxHeaderBar">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkLabel" id="lblTeamA">
+                <property name="width_request">425</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">end</property>
+                <property name="margin_right">10</property>
+                <property name="justify">right</property>
+                <property name="ellipsize">start</property>
+                <property name="single_line_mode">True</property>
+                <property name="max_width_chars">20</property>
+                <property name="xalign">1</property>
+                <style>
+                  <class name="labelXXL"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkImage" id="imgScoreA">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">start</property>
+                <property name="margin_right">6</property>
+                <property name="pixbuf">../pixmaps/scoreoff_30x50_dark.png</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="lblScore">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="label">:</property>
+                <property name="single_line_mode">True</property>
+                <style>
+                  <class name="labelXXL"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkImage" id="imgScoreB">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">end</property>
+                <property name="margin_left">6</property>
+                <property name="pixbuf">../pixmaps/scoreoff_30x50_dark.png</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="lblTeamB">
+                <property name="width_request">425</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">start</property>
+                <property name="margin_left">10</property>
+                <property name="ellipsize">end</property>
+                <property name="single_line_mode">True</property>
+                <property name="max_width_chars">20</property>
+                <property name="xalign">0</property>
+                <style>
+                  <class name="labelXXL"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">4</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkMenuButton" id="btnMenu">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="receives_default">True</property>
+            <property name="halign">end</property>
+            <property name="direction">none</property>
+            <property name="popover">popmenGame</property>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="pack_type">end</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox" id="boxGame">
+        <property name="width_request">1382</property>
+        <property name="height_request">838</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkFixed" id="fix">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkImage" id="imgFootballField">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="pixbuf">../pixmaps/footballfield_1382x838.svg</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImage" id="imgFootball">
+                <property name="can_focus">False</property>
+                <property name="pixbuf">../pixmaps/football_100x100.png</property>
+              </object>
+              <packing>
+                <property name="x">641</property>
+                <property name="y">369</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="lblVocabulary">
+                <property name="width_request">600</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="justify">center</property>
+                <property name="ellipsize">middle</property>
+                <property name="single_line_mode">True</property>
+                <style>
+                  <class name="labelXXL"/>
+                </style>
+              </object>
+              <packing>
+                <property name="x">391</property>
+                <property name="y">11</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="lblGoalLeft">
+                <property name="width_request">300</property>
+                <property name="height_request">100</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">G</property>
+                <property name="single_line_mode">True</property>
+                <property name="lines">3</property>
+                <property name="xalign">1</property>
+                <style>
+                  <class name="labelGoal"/>
+                </style>
+              </object>
+              <packing>
+                <property name="x">331</property>
+                <property name="y">369</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="lblGoalRight">
+                <property name="width_request">300</property>
+                <property name="height_request">100</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">AL</property>
+                <property name="single_line_mode">True</property>
+                <property name="lines">6</property>
+                <property name="xalign">0</property>
+                <style>
+                  <class name="labelGoal"/>
+                </style>
+              </object>
+              <packing>
+                <property name="x">751</property>
+                <property name="y">369</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEventBox" id="evntArrowLeft">
+                <property name="width_request">75</property>
+                <property name="height_request">75</property>
+                <property name="can_focus">False</property>
+                <property name="visible_window">False</property>
+                <property name="above_child">True</property>
+                <signal name="button-press-event" handler="on_evntArrowLeft_button_press_event" swapped="no"/>
+                <child>
+                  <object class="GtkImage" id="imgArrowLeft">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="pixbuf">../pixmaps/arrowupleft_75x75.png</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="x">566</property>
+                <property name="y">294</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEventBox" id="evntArrowRight">
+                <property name="width_request">75</property>
+                <property name="height_request">75</property>
+                <property name="can_focus">False</property>
+                <property name="visible_window">False</property>
+                <property name="above_child">True</property>
+                <signal name="button-press-event" handler="on_evntArrowRight_button_press_event" swapped="no"/>
+                <child>
+                  <object class="GtkImage" id="imgArrowRight">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="pixbuf">../pixmaps/arrowdownright_75x75.png</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="x">741</property>
+                <property name="y">469</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkImage" id="imgShirtA">
+                <property name="can_focus">False</property>
+                <property name="pixbuf">../pixmaps/shirt_75x75.png</property>
+              </object>
+              <packing>
+                <property name="x">741</property>
+                <property name="y">294</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="lblShirtA">
+                <property name="width_request">75</property>
+                <property name="height_request">75</property>
+                <property name="can_focus">False</property>
+                <property name="yalign">0.34999999403953552</property>
+                <style>
+                  <class name="labelXXL"/>
+                </style>
+              </object>
+              <packing>
+                <property name="x">741</property>
+                <property name="y">294</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkImage" id="imgShirtB">
+                <property name="can_focus">False</property>
+                <property name="pixbuf">../pixmaps/shirt_75x75.png</property>
+              </object>
+              <packing>
+                <property name="x">566</property>
+                <property name="y">469</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="lblShirtB">
+                <property name="width_request">75</property>
+                <property name="height_request">75</property>
+                <property name="can_focus">False</property>
+                <property name="yalign">0.34999999403953552</property>
+                <style>
+                  <class name="labelXXL"/>
+                </style>
+              </object>
+              <packing>
+                <property name="x">566</property>
+                <property name="y">469</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkDrawingArea" id="drawB">
+                <property name="width_request">31</property>
+                <property name="height_request">88</property>
+                <property name="can_focus">False</property>
+                <signal name="draw" handler="on_drawB_draw" swapped="no"/>
+              </object>
+              <packing>
+                <property name="x">7</property>
+                <property name="y">375</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkDrawingArea" id="drawA">
+                <property name="width_request">31</property>
+                <property name="height_request">88</property>
+                <property name="can_focus">False</property>
+                <signal name="draw" handler="on_drawA_draw" swapped="no"/>
+              </object>
+              <packing>
+                <property name="x">1344</property>
+                <property name="y">375</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <style>
+          <class name="bgcolor"/>
+        </style>
+      </object>
+    </child>
+  </object>
+</interface>
