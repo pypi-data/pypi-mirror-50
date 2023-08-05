@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: bifacial-radiance
+Version: 0.3.1
+Summary: Tools to interface with Radiance
+Home-page: https://github.com/NREL/bifacial_radiance
+Author: Chris Deline
+Author-email: chris.deline@nrel.gov
+License: BSD License (3 clause)
+Requires-Dist: pvlib
+Requires-Dist: pytest
+Requires-Dist: pytest-cov
+Requires-Dist: configparser
+
+# bifacial_radiance
+
+
