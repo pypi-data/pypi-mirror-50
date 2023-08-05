@@ -1,0 +1,5 @@
+-r tox.txt
+bumpversion
+flake8
+flake8-bugbear
+twine
