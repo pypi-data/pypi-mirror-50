@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: python-outfit
+Version: 0.0.1.post2
+Summary: UNKNOWN
+Home-page: https://github.com/situkangsayur/python-outfit
+Author: Hendri Karisma
+Author-email: situkangsayur@gmail.com
+Maintainer: Hendri Karisma
+Maintainer-email: situkangsayur@gmail.com
+License: MIT
+Download-URL: https://github.com/situkangsayur/python-outfit
+Description: # python-outfit
+        utilities for distributed environment
+        
+        Python Cloud is set of dependencies across a range of python standard package for software development. 
+        
+        
+Platform: any
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Environment :: Plugins
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Framework :: Flask
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Provides-Extra: dev
+Provides-Extra: docs
