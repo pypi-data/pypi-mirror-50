@@ -1,0 +1,17 @@
+fasvaorm/__init__.py,sha256=VV1VpY_yBgHRfR2xSV3ZqgJQeERxR581_w6fxY4HECY,6805
+fasvaorm/models.py,sha256=d4GEGQDFKdfrLBeLqRP27dBVBYo1KGArzOuJ4AfIDSw,19829
+fasvaorm/schema.py,sha256=jEp0hin1YblGjgvFjOpPtO6rkk0iFpIuQb4xcPMDstw,9195
+fasvaorm/signal.py,sha256=Fh7sm1bErFcUdprP7cirJQiR-KJxwtzr-RpJ1G5bnMs,4180
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/base.py,sha256=v4N0Y3f9aYiAo8cK881eI6M9pWneiS87zcpzxnBRbH8,1280
+tests/test_marshalling.py,sha256=0biOkauFB5iTzQnF-KFU97u2PLPsKnxMMsJazBhcVDA,684
+tests/test_model_module.py,sha256=yf3MOXpuWYXTd__XrKDKtEhRsFxmUb5wo-uOI5xS7RA,9339
+tests/test_models.py,sha256=Vt160nO4ak_o1g9xDTv3uyppWoS8_DdG6z8ZPQc-Cqk,12681
+tests/test_orm.py,sha256=j_MTmOguJ1OwYAghzh_X5OFe2_EwMRQr07XrWeVIWBs,1480
+tests/test_serialization.py,sha256=2QW6BdfcKHUu-qWkO3dkvCPacCavhXgbDg-6G0DuWIw,710
+fasvaorm-0.2.14.dist-info/LICENSE,sha256=JX4r-gQ_hfg_GrZ_IDowFUSGO2_Ad5oPxwvAQ8NpLx0,35057
+fasvaorm-0.2.14.dist-info/METADATA,sha256=pReSSm0pfdVghpLcPCsRb44GwlUhAOaSJux6_hsFf8k,3560
+fasvaorm-0.2.14.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+fasvaorm-0.2.14.dist-info/entry_points.txt,sha256=jdfzR3N0E3eI3fw25exbZQkIEUeGvOvrp7vJJs2_RQ8,59
+fasvaorm-0.2.14.dist-info/top_level.txt,sha256=5_dCaBuHVUzf_0uYkrQk10d0P9a9KFbM3CKp6sxgwlQ,15
+fasvaorm-0.2.14.dist-info/RECORD,,
