@@ -1,0 +1,8 @@
+setuptools
+eventlet
+raven
+
+[test]
+plone.app.testing
+
+[zope2]
