@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: enpyronments
+Version: 0.1.2
+Summary: A settings loading library inspired by Django and Node.js
+Home-page: https://github.com/stephen1000/enpyronments
+Keywords: python,environment,settings,enpyronments
+Author: Stephen Lowery
+Author-email: slowery@markelcorp.com
+Requires-Python: >=3.6,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Project-URL: Repository, https://github.com/stephen1000/enpyronments
