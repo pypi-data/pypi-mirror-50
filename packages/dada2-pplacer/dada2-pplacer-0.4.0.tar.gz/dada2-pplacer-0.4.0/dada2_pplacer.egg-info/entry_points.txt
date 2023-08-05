@@ -1,0 +1,5 @@
+[console_scripts]
+dada2-seqtab-to-pplacer = dada2_pplacer.dada2_seqtab_to_pplacer:main
+dada2-seqtab-to-sharefile = dada2_pplacer.dada2_seqtab_to_pplacer:main
+dada2-taxonomy-to-tallies-wide = dada2_pplacer.dada2_taxonomy_to_tallies_wide:main
+

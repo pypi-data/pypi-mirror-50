@@ -1,0 +1,12 @@
+README.md
+setup.py
+dada2_pplacer/__init__.py
+dada2_pplacer/dada2_seqtab_to_pplacer.py
+dada2_pplacer/dada2_taxonomy_to_tallies_wide.py
+dada2_pplacer.egg-info/PKG-INFO
+dada2_pplacer.egg-info/SOURCES.txt
+dada2_pplacer.egg-info/dependency_links.txt
+dada2_pplacer.egg-info/entry_points.txt
+dada2_pplacer.egg-info/not-zip-safe
+dada2_pplacer.egg-info/requires.txt
+dada2_pplacer.egg-info/top_level.txt
