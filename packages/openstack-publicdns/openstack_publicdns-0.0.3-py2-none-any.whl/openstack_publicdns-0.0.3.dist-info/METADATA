@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: openstack-publicdns
+Version: 0.0.3
+Summary: OpenStack public DNS plugins
+Home-page: https://github.com/unipartdigital/openstack_publicdns
+Author: Unipart Digital
+Author-email: sysadmins@unipart.io
+License: Apache
+Platform: UNKNOWN
+Classifier: Environment :: OpenStack
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Requires-Dist: neutron
+
+OpenStack public DNS plugins
+============================
+
+This package provides a collection of plugins to simplify the use of
+public DNS names for OpenStack virtual machine instances.
+
+Each OpenStack network can have a configured `dns_domain`.  Virtual
+machine instances launched within that network will have a hostname
+constructed from the network's `dns_domain`, and appropriate DNS
+records will be created automatically.
+
+For example: if an instance named `testvm` is launched in a network
+with the DNS domain `example.org` then the instance will be given the
+DHCP hostname `testvm.example.org` and the DNS A and AAAA records for
+`testvm.example.org` will be added to the DNS zone.
+
+
