@@ -1,0 +1,7 @@
+pybel>=0.13.0
+tqdm
+pandas
+click
+
+[:python_version < "3.7"]
+dataclasses
