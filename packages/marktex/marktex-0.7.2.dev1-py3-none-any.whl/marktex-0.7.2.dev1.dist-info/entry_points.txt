@@ -1,0 +1,3 @@
+[console_scripts]
+marktex = marktex.marktex:main
+
