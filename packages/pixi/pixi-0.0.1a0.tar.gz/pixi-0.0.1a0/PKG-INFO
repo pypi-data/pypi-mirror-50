@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: pixi
+Version: 0.0.1a0
+Summary: A command line tool to download images from Pixiv.
+Home-page: https://github.com/dazuling/pixi
+License: Apache-2.0
+Author: dazzler
+Author-email: dazzler@riseup.net
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: appdirs (>=1.4,<2.0)
+Requires-Dist: click (>=7.0,<8.0)
+Requires-Dist: pixiv-api (>=0.1.0,<0.2.0)
+Project-URL: Repository, https://github.com/dazuling/pixi
+Description-Content-Type: text/markdown
+
+# pixi
+
+A command line tool to download images from Pixiv.
+
