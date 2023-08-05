@@ -1,0 +1,17 @@
+flattentool/__init__.py,sha256=-pg86Ht3sQkuagnF7lqI6L3wUi2zliw10xgJo-GaAFM,11232
+flattentool/cli.py,sha256=JxkdDuCFETj_tpOeVrVUMtV6udWjnSpbE_9q1QyVA4c,12206
+flattentool/exceptions.py,sha256=VYW-pxIQFUQgeYjInUudtrflYZWlCWUttEmYx1dhY0g,140
+flattentool/input.py,sha256=jpwpV5Bw5dDfbdDi_xIyIM6BIcALl6N6vHujySWpO44,38773
+flattentool/json_input.py,sha256=gUCS1kwhRt3VWZygu0D4puJ4zl5P6PcLe3eZVnI0GLk,18053
+flattentool/lib.py,sha256=BD07pUQ3F9RMsbnzlxyhSmDXrs4pERUF1IrEw1rtA0k,1166
+flattentool/output.py,sha256=4CAtRCD9o_f3Nne5kFmdyaJEz7SxJiRfeswY-fpydY8,3551
+flattentool/schema.py,sha256=H8kAFerbQTJKuhRqCmcZfTp5oV1hr9rhrl6Y8syrWs0,14233
+flattentool/sheet.py,sha256=KhuCCmdSoSpwsmZccT5pmY-JUw1AYuE1AOi2HA0F6Ig,795
+flattentool/sort_xml.py,sha256=jNsvsiNYP_VCvglED2L9FWuNJfzrI9yU173XLyAL8mc,5440
+flattentool/xml_output.py,sha256=UiitBs8BB5Ct8gv9epogCTxqMxe-QHjYTVWwIJwomsQ,3409
+flattentool-0.8.0.data/scripts/flatten-tool,sha256=4GMQgEmWeZjRcE8fVBvGHPnNkI2gajjuPckaZoHtZ1w,55
+flattentool-0.8.0.dist-info/LICENSE,sha256=tm7bamzZjCYWtwnoUgP775ZgTYsOhb4_zrE5dh4XcLI,1111
+flattentool-0.8.0.dist-info/METADATA,sha256=lpgPqzemnwH1W8Z5HkwMelTwdgHrejipLo2vSnFJxmM,530
+flattentool-0.8.0.dist-info/WHEEL,sha256=U88EhGIw8Sj2_phqajeu_EAi3RAo8-C6zV3REsWbWbs,92
+flattentool-0.8.0.dist-info/top_level.txt,sha256=YbvhPPA01RuacbLw1DqumX9bM2MujcFaw5LWaDHXaGY,12
+flattentool-0.8.0.dist-info/RECORD,,

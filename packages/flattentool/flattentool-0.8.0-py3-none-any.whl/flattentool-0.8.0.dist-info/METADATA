@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: flattentool
+Version: 0.8.0
+Summary: Tools for generating CSV and other flat versions of the structured data
+Home-page: https://github.com/OpenDataServices/flatten-tool
+Author: Open Data Services
+Author-email: code@opendataservices.coop
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: jsonref
+Requires-Dist: schema
+Requires-Dist: openpyxl (>=2.6)
+Requires-Dist: six
+Requires-Dist: pytz
+Requires-Dist: xmltodict
+Requires-Dist: lxml
+Provides-Extra: http
+Requires-Dist: requests ; extra == 'http'
+
+UNKNOWN
+
+
