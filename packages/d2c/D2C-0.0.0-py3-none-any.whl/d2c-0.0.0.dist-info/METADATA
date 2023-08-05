@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: d2c
+Version: 0.0.0
+Summary: Convert discrete dislocation data to continuous fields.
+License: MIT
+Author: Dominik Steinberger
+Author-email: d2c@steinberger.io
+Requires-Python: >=3.5,<4.0
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering :: Physics
+Description-Content-Type: text/markdown
+
+D2C
+===
+
+Convert discrete dislocation data to continuous fields.
+
