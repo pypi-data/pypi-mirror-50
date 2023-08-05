@@ -1,0 +1,15 @@
+odooup/__init__.py,sha256=N_VW1OLHEnOQUQkYC4OaxPlYVd0f0d17gsmqpuzYVDE,152
+odooup/_cache.py,sha256=drgnFNAz7Gk-smeKYVxZgQ-gLlxQZ1upFRjJvy25zRk,1029
+odooup/_helpers.py,sha256=EYrq9T3TL3e8qnSshGKuv7pIYwQNf23UsZ6bmGCWVUE,2054
+odooup/_installers.py,sha256=cJSvksxHk80ojL9EYv1w3pTo0LWsiIJ7uZTBl9RPSWE,4155
+odooup/_modulegraph.py,sha256=M3vr2tUrgHywz4yvfRACF34iEupiyzbZFT1UPd-dgpw,2110
+odooup/cli.py,sha256=mjHwuMBMPn56FTzz1fT-nSOnEqK54x3FZqjAK00Qhrw,799
+odooup/clone.py,sha256=pXHNuFKjqeDb-wRy_Q26GPtAjAUlXWASuoiCxrcOQ-g,3762
+odooup/init.py,sha256=YuaqAV0STlp5VyK1QGavUmcvs2bpzh0Wjs1o5Y2cqeA,4847
+odooup/patches.py,sha256=8zhY0TfQ4qzFRRIppTotA2Ea4BKFNmePRztIJrp9yxw,13036
+odooup/whitelist.py,sha256=naMyU3ws9xk70dseA0PUH47sneozZdPVZN_qVYQKq1I,9504
+odooup-0.0.23.dist-info/METADATA,sha256=f1sOfwlpqhbDed5F4QiUUu7TNnFPLYjT702d0vwfhOg,2572
+odooup-0.0.23.dist-info/WHEEL,sha256=h_aVn5OB2IERUjMbi2pucmR_zzWJtk303YXvhh60NJ8,110
+odooup-0.0.23.dist-info/entry_points.txt,sha256=FXC1OH1uo7nD3PvBHEl0hAinoOFUQb3SPhz3HeOURpU,279
+odooup-0.0.23.dist-info/top_level.txt,sha256=UAcGpCyuhnBPa72hKKxrGC-fMiPyU6CEMcrHP0u782A,7
+odooup-0.0.23.dist-info/RECORD,,
