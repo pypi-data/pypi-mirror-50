@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: silk-ml
+Version: 0.0.0
+Summary: Simple Intelligent Learning Kit (SILK) for Machine learning
+Home-page: https://github.com/resuelve/silk-ml
+Author: Miguel Asencio
+Author-email: maasencioh@gmail.com
+License: UNKNOWN
+Description: # silk-ml
+        Simple Intelligent Learning Kit (SILK) for Machine learning
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
