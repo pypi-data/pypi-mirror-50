@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: tinyos3
+Version: 2.1.2.3
+Summary: Highly experimental TinyOS python tools (Unofficial Packaging)
+Home-page: https://github.com/gollum18/tinyos3
+Author: TinyOS Contributors
+Author-email: UNKNOWN
+Maintainer: Christen Ford
+Maintainer-email: c.t.ford@vikes.csuohio.edu
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: pyserial
+
+UNKNOWN
+
+
