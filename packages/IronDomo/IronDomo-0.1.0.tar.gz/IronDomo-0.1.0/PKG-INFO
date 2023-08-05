@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: IronDomo
+Version: 0.1.0
+Summary: UNKNOWN
+Home-page: https://github.com/desmoteo/IronDomo
+Author: Matteo Ferrabone
+Author-email: matteo.ferrabone@gmail.com
+License: UNKNOWN
+Description: IronDomo
+        ========
+        
+        ZeroMQ Majordomo Pattern with CURVE authentication
+        
+        | Extends ZMQ Majordomo (https://rfc.zeromq.org/spec:7/MDP) pattern with
+          CURVE authentication and encription
+        | It provides a Broker with two endpoints for client connection,
+          providing both a clear and a trusted communication channels.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Requires: zmq
+Description-Content-Type: text/markdown
