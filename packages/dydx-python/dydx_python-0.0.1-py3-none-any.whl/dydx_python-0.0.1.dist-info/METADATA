@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: dydx-python
+Version: 0.0.1
+Summary: dYdX Python REST API for Limit Orders
+Home-page: https://github.com/dydxprotocol/dydx-python
+Author: dYdX Trading Inc.
+Author-email: contact@dydx.exchange
+License: Apache 2.0
+Keywords: dydx exchange rest api defi ethereum eth
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: requests (>=2.5)
+Requires-Dist: six (==1.12)
+Requires-Dist: web3 (==4.9.2)
+Requires-Dist: pytest (<5.0.0,>=4.4.0)
+Requires-Dist: tox (==3.13.2)
+Requires-Dist: setuptools
+Requires-Dist: eth-keys
+
+UNKNOWN
+
+
