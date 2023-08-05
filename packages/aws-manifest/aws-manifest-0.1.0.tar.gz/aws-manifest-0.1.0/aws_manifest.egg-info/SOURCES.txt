@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+setup.py
+aws_manifest.egg-info/PKG-INFO
+aws_manifest.egg-info/SOURCES.txt
+aws_manifest.egg-info/dependency_links.txt
+aws_manifest.egg-info/not-zip-safe
+aws_manifest.egg-info/requires.txt
+aws_manifest.egg-info/top_level.txt
+awsmanifest/__init__.py
+awsmanifest/policies.js
