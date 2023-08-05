@@ -1,0 +1,12 @@
+attrs>=18.2.0
+sortedcontainers
+async_generator>=1.9
+idna
+outcome
+sniffio
+
+[:os_name == 'nt']
+cffi>=1.12
+
+[:python_version < '3.7']
+contextvars>=2.1
