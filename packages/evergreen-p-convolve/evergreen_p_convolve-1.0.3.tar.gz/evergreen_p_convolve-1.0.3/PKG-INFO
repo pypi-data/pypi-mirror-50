@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: evergreen_p_convolve
+Version: 1.0.3
+Summary: A python p_convolve package based on evergreenforest
+Home-page: https://github.com/SeanSRice/evergreen_fft.git
+Author: Rice
+Author-email: mrseanrice@gmail.com
+License: UNKNOWN
+Description: #evergreen_p_convolve
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
