@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: tfkerassurgeon
+Version: 0.2.1
+Summary: A library for performing network surgery on trained tf.Keras models. Useful for deep neural network pruning.
+Home-page: https://github.com/Raukk/tf-keras-surgeon
+Maintainer: Raukk
+Maintainer-email: raukk@raukk.me
+License: MIT
+Description: A library for performing network surgery on trained tf.Keras models for network pruning.
+Platform: UNKNOWN
+Requires-Python: >=3
+Provides-Extra: examples
