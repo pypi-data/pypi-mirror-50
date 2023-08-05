@@ -1,0 +1,6 @@
+aigpy>=2019.7.30.1
+requests
+ffmpeg
+futures
+pycryptodome
+pydub
