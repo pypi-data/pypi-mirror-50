@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: architect.sdk
+Version: 0.2.0
+Summary: Architect Python SDK
+Home-page: https://github.com/architect-team/python-sdk
+Author: architect.io
+Author-email: packages@architect.io
+License: GPL-3.0
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+
+# Architect Python SDK
+
+## Building
+```bash
+$ pip install .
+```
+
+## Usage
+```python
+import architect.sdk as architect
+
+
+architect.service('example')
+```
+
+
