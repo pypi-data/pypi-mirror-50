@@ -1,0 +1,28 @@
+// See https://aka.ms/vscode-remote/devcontainer.json for format details.
+{
+	"name": "Python 3",
+	"context": "..",
+	"dockerFile": "Dockerfile",
+
+	// Uncomment the next line if you want to publish any ports.
+	// "appPort": [],
+
+	// Uncomment the next line to run commands after the container is created.
+	// "postCreateCommand": "python --version",
+
+	"extensions": [
+		"ms-python.python"
+	],
+	"settings": {
+		"python.pythonPath": "/usr/local/bin/python",
+		"python.linting.pylintEnabled": true,
+		"python.linting.enabled": true
+	},
+	// Mount your .ssh folder to /root/.ssh-localhost so we can copy its contents
+	"runArgs": [ 
+		"-v", "${env:HOME}${env:USERPROFILE}/.ssh:/root/.ssh-localhost:ro",
+		"-v", "${env:HOME}${env:USERPROFILE}/:/root/host" ],
+
+	// Copy the contents to the correct location and set permissions
+	"postCreateCommand": "mkdir -p ~/.ssh && cp -r ~/.ssh-localhost/* ~/.ssh && chmod 700 ~/.ssh && chmod 600 ~/.ssh/* && cp ~/host/.pypirc ~/.pypirc"
+}
