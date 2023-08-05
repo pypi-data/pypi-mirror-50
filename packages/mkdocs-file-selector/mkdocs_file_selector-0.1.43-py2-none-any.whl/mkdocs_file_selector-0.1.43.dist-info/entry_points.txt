@@ -1,0 +1,3 @@
+[mkdocs.plugins]
+file-selector = mkdocs_file_selector.plugin:FileSelector
+
