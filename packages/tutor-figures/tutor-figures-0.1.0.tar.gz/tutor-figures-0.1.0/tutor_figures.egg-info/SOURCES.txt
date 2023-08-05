@@ -1,0 +1,15 @@
+MANIFEST.in
+README.rst
+setup.py
+tutor_figures.egg-info/PKG-INFO
+tutor_figures.egg-info/SOURCES.txt
+tutor_figures.egg-info/dependency_links.txt
+tutor_figures.egg-info/entry_points.txt
+tutor_figures.egg-info/requires.txt
+tutor_figures.egg-info/top_level.txt
+tutorfigures/__init__.py
+tutorfigures/plugin.py
+tutorfigures/patches/k8s-deployments
+tutorfigures/patches/local-docker-compose-services
+tutorfigures/patches/openedx-dockerfile-pre-assets
+tutorfigures/patches/openedx-lms-common-settings

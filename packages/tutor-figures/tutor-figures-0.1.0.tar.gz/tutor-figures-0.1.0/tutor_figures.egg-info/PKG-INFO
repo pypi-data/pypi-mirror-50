@@ -1,0 +1,59 @@
+Metadata-Version: 1.2
+Name: tutor-figures
+Version: 0.1.0
+Summary: A Tutor plugin for Figures, the Open edX reporting and data retrieval app
+Home-page: https://docs.tutor.overhang.io/
+Author: Overhang.io
+Author-email: contact@overhang.io
+License: AGPLv3
+Project-URL: Documentation, https://docs.tutor.overhang.io/
+Project-URL: Code, https://github.com/overhangio/tutor-figures
+Project-URL: Issue tracker, https://github.com/overhangio/tutor-figures/issues
+Project-URL: Community, https://discuss.overhang.io
+Description: Figures plugin for `Tutor <https://docs.tutor.overhang.io>`_
+        ============================================================
+        
+        `Figures <https://github.com/appsembler/figures>`_ is a data retrieval and reporting app for Open edX; this is a plugin for Tutor that allows quick and easy integration in an Open edX platform. It works both locally and on a Kubernetes-based platform.
+        
+        .. image:: https://overhang.io/images/clients/e-ducation.jpg
+            :alt: E-ducation
+            :target: https://www.e-ducation.cn/
+        
+        This plugin was developed and open sourced to the community thanks to the generous support of `E-ducation <https://www.e-ducation.cn/>`_. Thank you!
+        
+        Installation
+        ------------
+        
+        This plugin requires tutor>=3.5.0. Also, you should have installed tutor from source, and not from a pre-compiled binary.
+        
+        ::
+          
+            pip install tutor-figures
+        
+        Then, to enable this plugin, run::
+          
+            tutor plugins enable figures
+        
+        You will have to re-generate the environment and rebuild the "openedx" docker image::
+          
+            tutor config save
+            tutor images build openedx
+        
+        You will then have to run LMS migrations. To do so, run::
+          
+            tutor local init
+        
+        This last step is unnecessary if you run instead ``tutor local quickstart``.
+        
+        You should then be able to access the Figures dashboard at ``http://<your lms host>/figures``. On a local instance, you should be able to access it at http://localhost/figures.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.5
