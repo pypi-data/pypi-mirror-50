@@ -1,0 +1,3 @@
+[console_scripts]
+csv_to_geojson = csv_to_geojson.command_line:main
+
