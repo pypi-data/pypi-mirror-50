@@ -1,0 +1,12 @@
+trio<0.13,>=0.12
+click<8,>=7
+python-json-logger
+
+[dev]
+pytest
+pytest-cov
+codecov
+black
+pylint
+rope
+mypy
