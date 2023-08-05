@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: urdubiometer
+Version: 0.2.1
+Summary: An Urdu-Hindi metrical scanner inspired by bioinformatics
+Home-page: https://github.com/urdubiometer/urdubiometer
+Author: A. Sean Pue
+Author-email: a@seanpue.com
+License: BSD license
+Keywords: urdubiometer
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+Requires-Dist: Click (>=6.0)
+Requires-Dist: graphtransliterator
+
+.. mdinclude:: ../README.md
+
+
+.. mdinclude:: ../CHANGELOG.md
+
+
+

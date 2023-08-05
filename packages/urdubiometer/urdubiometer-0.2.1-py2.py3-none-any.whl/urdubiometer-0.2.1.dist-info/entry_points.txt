@@ -1,0 +1,3 @@
+[console_scripts]
+urdubiometer = urdubiometer.cli:main
+
