@@ -1,0 +1,6 @@
+keras==2.1.*
+absl-py==0.7.*
+tensorflow==1.14.*
+pillow==5.0.*
+plac==1.0.0
+boto3==1.5.*
