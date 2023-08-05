@@ -1,0 +1,3 @@
+[console_scripts]
+folders2json = folders2json.folders2json:main
+
