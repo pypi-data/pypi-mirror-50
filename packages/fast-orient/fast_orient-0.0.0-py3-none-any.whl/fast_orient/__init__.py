@@ -1,0 +1,1 @@
+name = 'hikvision_scrapper'

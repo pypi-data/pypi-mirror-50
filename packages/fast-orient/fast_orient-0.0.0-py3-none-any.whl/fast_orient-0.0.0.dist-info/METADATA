@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: fast-orient
+Version: 0.0.0
+Summary: Fast OrientDB Client
+Home-page: https://github.com/arcus-team/fast_orient
+Author: r2d2
+Author-email: freeridik.ed@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Description-Content-Type: text/markdown
+Requires-Dist: requests (==2.22.0)
+Requires-Dist: Autologging (==1.3.2)
+
+# Fast OritentDB Client
+
+
