@@ -1,0 +1,8 @@
+README.md
+setup.py
+Simple_CLI.egg-info/PKG-INFO
+Simple_CLI.egg-info/SOURCES.txt
+Simple_CLI.egg-info/dependency_links.txt
+Simple_CLI.egg-info/top_level.txt
+simple_cli/__init__.py
+simple_cli/menu.py
