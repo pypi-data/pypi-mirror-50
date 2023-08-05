@@ -1,0 +1,23 @@
+"""{{app}} URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+https://docs.djangoproject.com/en/{{django_version}}/topics/http/urls/
+
+The `djx.urls:load_urls` utility is used to automatically include all
+url patterns from `urls.py` modules in project subdirectories.
+
+For example, `{{app}}.api.urls:urlpatterns` will be routed
+under the "/api" prefix.
+"""
+
+from django.conf.urls import url
+from django.contrib import admin
+from django.conf import settings
+from djx.urls import load_urls
+
+urlpatterns = load_urls(__file__)
+if 'django.contrib.admin' in settings.INSTALLED_APPS:
+    urlpatterns.append(
+        url(r'^admin/', admin.site.urls)
+    )
+
