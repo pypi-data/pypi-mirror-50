@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: clearshare
+Version: 0.0.5
+Summary: Data management REST API for ClearSHARE.
+Home-page: https://gitlab.com/clearos/clearfoundation/clearshare
+Author: ClearFoundation
+Author-email: developer@clearfoundation.com
+License: GPL-3.0
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
