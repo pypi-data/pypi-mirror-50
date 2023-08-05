@@ -1,0 +1,16 @@
+polyaxon-schemas==0.5.5
+polystores>=0.2.4
+psutil>=5.4.7
+requests>=2.20.0
+requests-toolbelt>=0.8.0
+websocket-client>=0.53.0
+
+[azure]
+azure-storage
+
+[gcs]
+google-cloud-storage
+
+[s3]
+boto3
+botocore
