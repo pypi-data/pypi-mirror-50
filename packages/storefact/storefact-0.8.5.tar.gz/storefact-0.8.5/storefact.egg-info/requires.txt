@@ -1,0 +1,9 @@
+simplekv>=0.13.0
+uritools
+toolz
+
+[azure]
+azure-storage-blob
+
+[s3]
+boto
