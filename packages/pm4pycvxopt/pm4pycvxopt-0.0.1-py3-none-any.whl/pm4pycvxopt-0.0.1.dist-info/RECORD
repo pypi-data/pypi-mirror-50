@@ -1,0 +1,11 @@
+pm4pycvxopt/__init__.py,sha256=E-I3mczkGS0Sfl4TG04dq7vzMIbJH5UerrGlGZLCa08,1351
+pm4pycvxopt/util/__init__.py,sha256=Cj6Sg5zBK6ARqEYWFBmRDdAPMGKanM3EmwapIjADnZE,33
+pm4pycvxopt/util/lp/__init__.py,sha256=d5KNuHhXejprr9VgdtJZOsDnUxMeyKleWcwH2gM_C0A,42
+pm4pycvxopt/util/lp/versions/__init__.py,sha256=_-Xi7cR-F7CzmQccgz-NtId5fhVtIQLHB20tEDasRiU,84
+pm4pycvxopt/util/lp/versions/cvxopt_solver.py,sha256=8Isu-SADZ_VXAmHyeuBolisxuYdTofOpY-O8AJa1oQ4,2801
+pm4pycvxopt/util/lp/versions/cvxopt_solver_custom_align.py,sha256=511jPW6iK7yugWPxP4YE2IzcB1WCGcfIaBf42UN0W_k,2482
+pm4pycvxopt-0.0.1.dist-info/LICENSE,sha256=IwGE9guuL-ryRPEKi6wFPI_zOhg7zDZbTYuHbSt_SAk,35823
+pm4pycvxopt-0.0.1.dist-info/METADATA,sha256=eT_t9G9jfHfGqEq4x83bhaxM0wqkau6RmpeZeS6rCT4,526
+pm4pycvxopt-0.0.1.dist-info/WHEEL,sha256=QBOOAdG2icRHGBs2s94rfaUlHrdfNBp-TceubUYCwOE,97
+pm4pycvxopt-0.0.1.dist-info/top_level.txt,sha256=khxIEVg8E-wz3a4offar4iqUEgMx8uzdhVIG8C970mM,12
+pm4pycvxopt-0.0.1.dist-info/RECORD,,
