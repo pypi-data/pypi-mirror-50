@@ -1,0 +1,10 @@
+neo4j
+Pillow-SIMD
+requests
+paramiko
+pysftp
+django-compressor
+bcrypt
+
+[django-libsass]
+django-libsass
