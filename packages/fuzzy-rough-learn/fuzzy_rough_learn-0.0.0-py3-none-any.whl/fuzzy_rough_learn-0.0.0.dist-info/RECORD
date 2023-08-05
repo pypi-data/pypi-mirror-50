@@ -1,0 +1,17 @@
+frlearn/__init__.py,sha256=XnjM4WAWEnAHcl657tWo8iqxg1KSzI40Ud9k6p4OGLA,225
+frlearn/_version.py,sha256=7Mp8iqklf3_AKmDXbtfWFufmP2NUURhE5CXW4A0vn-c,22
+frlearn/neighbours/__init__.py,sha256=-l9yueLXl6H-T4F5rcy_oyM1ti4udqG8NubCdTO59TE,221
+frlearn/neighbours/classification.py,sha256=yAshPc2XoKTm2k8wCRz3_TudSD58rgWvRhrDQlczfSE,9957
+frlearn/neighbours/neighbour_search.py,sha256=5a1T5y4EzOemfjtQgJtdXvAUSyxL7riK6zP8ZefDF20,3771
+frlearn/neighbours/owa_operators.py,sha256=I_zDyAVKyT9IqF_BVTukEfQxBunQizfcVh6N4nzmCM4,5659
+frlearn/neighbours/tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+frlearn/neighbours/tests/test_neighbours.py,sha256=E5G3V-_flpfxLcnIkhTbQapVXWZMJ_f132yCMSKKi4M,1060
+frlearn/tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+frlearn/tests/test_common.py,sha256=eNdm7-QgmV0qks7BVP7tw2tjNERTdQWfAYwKc31m3ZE,374
+frlearn/utils/__init__.py,sha256=NnI26eImlp2gJTupMtBpMkJyWJaMGkJtwQOUsNax3gI,154
+frlearn/utils/np_utils.py,sha256=rzAhqKgc4X-5hzU78qwkcIc5vJ0y8c1t3AuusTSYphQ,512
+fuzzy_rough_learn-0.0.0.dist-info/LICENSE,sha256=QVX_G-ZOM6eR7EJLSHy3ZjiVLyddD2u5guBCD3CSSPc,1082
+fuzzy_rough_learn-0.0.0.dist-info/METADATA,sha256=2aY9xTSqAzLfOuQQMBNelwx0GbXWEoIKXi6MYZFNDJI,2590
+fuzzy_rough_learn-0.0.0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+fuzzy_rough_learn-0.0.0.dist-info/top_level.txt,sha256=PCkkVQ0t5e7zuzHViChWuwd_jqEynAwGRVGFa0FvjVs,8
+fuzzy_rough_learn-0.0.0.dist-info/RECORD,,
