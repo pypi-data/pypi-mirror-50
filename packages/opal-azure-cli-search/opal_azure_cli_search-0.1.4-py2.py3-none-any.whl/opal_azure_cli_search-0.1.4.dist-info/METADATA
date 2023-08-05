@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: opal-azure-cli-search
+Version: 0.1.4
+Summary: Microsoft Azure Command-Line Tools Search Command Module
+Home-page: https://github.com/Azure/azure-cli
+Author: Microsoft Corporation
+Author-email: azpycli@microsoft.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Requires-Dist: opal-azure-cli-core (>=2.0.68)
+Requires-Dist: azure-mgmt-search (==2.0.0)
+Requires-Dist: azure-cli-command-modules-nspkg (>=2.0.0)
+
+Microsoft Azure CLI 'search' Command Module
+===========================================
+
+
+
+.. :changelog:
+
+Release History
+===============
+
+0.1.1
++++++
+* Minor fixes
+
+0.1.0
++++++
+* Initial release of module.
+
+
