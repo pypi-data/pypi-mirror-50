@@ -1,0 +1,9 @@
+MANIFEST.in
+README.md
+setup.py
+django_maskpostgresdata.egg-info/PKG-INFO
+django_maskpostgresdata.egg-info/SOURCES.txt
+django_maskpostgresdata.egg-info/dependency_links.txt
+django_maskpostgresdata.egg-info/not-zip-safe
+django_maskpostgresdata.egg-info/requires.txt
+django_maskpostgresdata.egg-info/top_level.txt

@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: django-maskpostgresdata
+Version: 0.1
+Summary: Creates a pg_dumpish output which masks data without saving changes to the source database.
+Home-page: https://github.com/developersociety/django-maskpostgresdata
+Author: Developer Society
+Author-email: hello@dev.ngo
+License: BSD
+Description: UNKNOWN
+Platform: UNKNOWN
