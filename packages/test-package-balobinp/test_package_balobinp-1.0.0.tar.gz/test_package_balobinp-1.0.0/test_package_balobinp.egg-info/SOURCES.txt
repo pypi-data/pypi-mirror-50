@@ -1,0 +1,8 @@
+setup.py
+test_package_balobinp/__init__.py
+test_package_balobinp/hello.py
+test_package_balobinp.egg-info/PKG-INFO
+test_package_balobinp.egg-info/SOURCES.txt
+test_package_balobinp.egg-info/dependency_links.txt
+test_package_balobinp.egg-info/requires.txt
+test_package_balobinp.egg-info/top_level.txt
