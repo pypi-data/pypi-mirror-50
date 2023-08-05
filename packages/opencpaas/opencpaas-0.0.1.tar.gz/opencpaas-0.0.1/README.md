@@ -1,0 +1,98 @@
+# OpenCpaas Python SDK
+
+OpenCpaas allows customers to switch between CpaaS providers without having to rewrite code.
+
+Currently supports:
+
+- Bandwidth
+- Twilio
+
+See our [full documentation]().
+
+## Requirements
+
+- [Python](https://www.python.org/downloads/) 3.5+
+
+## Installation
+
+```python
+pip install opencpaas
+```
+	
+## Getting Started
+
+### Client Initialization
+
+Begin by initializing a new CpaaS client. This example uses the BandwidthClient for initialization. Specifics for each client can be found in each client's repository.
+
+```python
+import opencpaas
+
+auth = 	{
+	'api_token': '789',
+	'api_secret':'1011',
+	'account_id': 'myaccount' ,
+	'application_id': 'myapplication',
+	'user': 'username',
+	'pass': 'password',
+	'site_id': '12345' 
+	}
+
+client = BandwidthClient(auth)
+
+```
+
+Each type of CpaaS client will require different authentications. Refer to our documentation for a complete list.
+
+### Send an SMS
+
+```python
+message = client.send_sms(to="+12223334444"
+                          from_="+12223334445"
+                          text="Hello there!")
+
+print(message['id'])
+```
+
+### Send an MMS
+
+```python
+message = client.send_mms(to="+12223334444"
+                          from_="+12223334445"
+                          text="Take a look at this!"
+                          media_url="www.media.com/cute-cat")
+
+print(message['id'])
+```
+
+### Order a phone number
+```python
+result = client.order_number(phone_number="+12223334444")
+
+print(result['order_status'])
+```
+
+### Order multiple phone numbers
+```python
+result = client.order_numbers(area_code="410"
+                              quantity=10)
+
+print(result['order_status'])
+```
+
+### Make an outgoing phone call
+```python
+parameters = {
+          'url':"http://mycallbackurl.com/123",
+          'status_callback':"http://mystatuscallbackurl.com/123",
+          'answer_url':"http://myanswerurl.com/123"
+          }
+
+call_id = client.create_call(to="+12223334444",
+                             from_="+12223334445",
+                             **parameters
+                             )
+                             
+print(call_id)
+```
+CpaaS clients require different callback urls. Please check our documentation for specific information on these urls.

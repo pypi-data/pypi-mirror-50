@@ -1,0 +1,10 @@
+README.md
+setup.cfg
+setup.py
+opencpaas/__init__.py
+opencpaas/cpaas.py
+opencpaas/exceptions.py
+opencpaas.egg-info/PKG-INFO
+opencpaas.egg-info/SOURCES.txt
+opencpaas.egg-info/dependency_links.txt
+opencpaas.egg-info/top_level.txt
