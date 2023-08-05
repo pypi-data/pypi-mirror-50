@@ -1,0 +1,15 @@
+README.md
+setup.py
+motiffinder/__init__.py
+motiffinder/__main__.py
+motiffinder/_version.py
+motiffinder/mf_generate.py
+motiffinder/mf_main.py
+motiffinder/mf_query.py
+motiffinder/mf_utils.py
+motiffinder.egg-info/PKG-INFO
+motiffinder.egg-info/SOURCES.txt
+motiffinder.egg-info/dependency_links.txt
+motiffinder.egg-info/entry_points.txt
+motiffinder.egg-info/requires.txt
+motiffinder.egg-info/top_level.txt
