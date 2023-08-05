@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: dropbox-csp
+Version: 1.0.1
+Summary: Dropbox wrapper client to upload data files to a folder
+Home-page: UNKNOWN
+Author: EddyMM
+Author-email: mwendaeddy@gmail.com
+License: UNKNOWN
+Description: ## Dropbox Cloud Storage Provider
+        
+        A Python Wrapper Client for dropbox
+        - Upload data files to a specific folder
+        
+        ## Author
+        - Eddy Mwenda Mwiti (mwendaeddy@gmail.com)
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
