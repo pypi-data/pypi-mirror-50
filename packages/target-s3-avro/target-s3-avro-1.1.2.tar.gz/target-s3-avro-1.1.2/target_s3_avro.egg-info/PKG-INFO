@@ -1,0 +1,11 @@
+Metadata-Version: 1.1
+Name: target-s3-avro
+Version: 1.1.2
+Summary: Singer.io target for extracting data into s3 stored as AVRO
+Home-page: https://github.com/faumel/target-s3-avro
+Author: Froilan A. Umel
+Author-email: froilan.umel@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3 :: Only
