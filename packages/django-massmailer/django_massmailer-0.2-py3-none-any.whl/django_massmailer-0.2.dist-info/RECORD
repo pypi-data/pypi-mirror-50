@@ -1,0 +1,14 @@
+massmailer/__init__.py,sha256=xsoDnI0WYEDcnkv-6Xgr4B_wS-n8cp5nV0cEph6AdYI,281
+massmailer/admin.py,sha256=G20UoDl7NaKwbTFsRxKMuAIxfPbUdBkJyCntS_N2_6U,1428
+massmailer/forms.py,sha256=hpOjCpuXIl2dzoLljPwKTH2LpdUZex47MSHqx5551Ts,5680
+massmailer/models.py,sha256=CZ5QZv91SmTM3b1vBkWLUxFWk51vp0fsV_H_DbLVL38,12990
+massmailer/query_parser.py,sha256=WwDeAIAE92EEkvGdba99ZSDrnXkhFeEUmqOt3BX2LEc,13672
+massmailer/tasks.py,sha256=DJrhPyNDmfndjfbldi5KtR0wxzja648HM1lPwzsTZiw,1500
+massmailer/urls.py,sha256=RfKXsPAXVNosYUtAdbY-8RXxPdAIHuK4hUW_hmVKtnE,1803
+massmailer/views.py,sha256=dKtzGWaHMZ4vjYkoOYs3WPCX-Vr61V5xBzGT8cTWzn8,13040
+django_massmailer-0.2.dist-info/AUTHORS,sha256=wo8-VOCdNDTsdJXRk9Q3B0guaWnfRWaMqlDDOWCc_cs,98
+django_massmailer-0.2.dist-info/LICENSE,sha256=OXLcl0T2SZ8Pmy2_dmlvKuetivmyPd5m1q-Gyd-zaYY,35149
+django_massmailer-0.2.dist-info/METADATA,sha256=PQ-GI3_8jaDkDOYCO8zEfeVUhMZ9K6U5ChrN-kHrx-c,7546
+django_massmailer-0.2.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+django_massmailer-0.2.dist-info/top_level.txt,sha256=9Ag5llNNA5DCbjvyzIo-xfvKsHll71-AOY3EYnLyDZ4,11
+django_massmailer-0.2.dist-info/RECORD,,
