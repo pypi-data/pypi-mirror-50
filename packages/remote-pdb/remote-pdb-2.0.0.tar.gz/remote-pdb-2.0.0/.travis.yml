@@ -1,0 +1,109 @@
+language: python
+dist: xenial
+env:
+  global:
+    - LD_PRELOAD=/lib/x86_64-linux-gnu/libSegFault.so
+    - SEGFAULT_SIGNALS=all
+matrix:
+  include:
+    - python: '3.6'
+      env:
+        - TOXENV=check
+    - python: '3.6'
+      env:
+        - TOXENV=docs
+    - env:
+        - TOXENV=py27-plain-cover,codecov
+      python: '2.7'
+    - env:
+        - TOXENV=py27-plain-nocov
+      python: '2.7'
+    - env:
+        - TOXENV=py27-pdbpp-cover,codecov
+      python: '2.7'
+    - env:
+        - TOXENV=py27-pdbpp-nocov
+      python: '2.7'
+    - env:
+        - TOXENV=py35-plain-cover,codecov
+      python: '3.5'
+    - env:
+        - TOXENV=py35-plain-nocov
+      python: '3.5'
+    - env:
+        - TOXENV=py35-pdbpp-cover,codecov
+      python: '3.5'
+    - env:
+        - TOXENV=py35-pdbpp-nocov
+      python: '3.5'
+    - env:
+        - TOXENV=py36-plain-cover,codecov
+      python: '3.6'
+    - env:
+        - TOXENV=py36-plain-nocov
+      python: '3.6'
+    - env:
+        - TOXENV=py36-pdbpp-cover,codecov
+      python: '3.6'
+    - env:
+        - TOXENV=py36-pdbpp-nocov
+      python: '3.6'
+    - env:
+        - TOXENV=py37-plain-cover,codecov
+      python: '3.7'
+    - env:
+        - TOXENV=py37-plain-nocov
+      python: '3.7'
+    - env:
+        - TOXENV=py37-pdbpp-cover,codecov
+      python: '3.7'
+    - env:
+        - TOXENV=py37-pdbpp-nocov
+      python: '3.7'
+    - env:
+        - TOXENV=pypy-plain-cover,codecov
+      python: 'pypy2.7-6.0'
+    - env:
+        - TOXENV=pypy-plain-nocov
+      python: 'pypy2.7-6.0'
+    - env:
+        - TOXENV=pypy-pdbpp-cover,codecov
+      python: 'pypy2.7-6.0'
+    - env:
+        - TOXENV=pypy-pdbpp-nocov
+      python: 'pypy2.7-6.0'
+    - env:
+        - TOXENV=pypy3-plain-cover,codecov
+        - TOXPYTHON=pypy3
+      python: 'pypy3.5-6.0'
+    - env:
+        - TOXENV=pypy3-plain-nocov
+        - TOXPYTHON=pypy3
+      python: 'pypy3.5-6.0'
+    - env:
+        - TOXENV=pypy3-pdbpp-cover,codecov
+        - TOXPYTHON=pypy3
+      python: 'pypy3.5-6.0'
+    - env:
+        - TOXENV=pypy3-pdbpp-nocov
+        - TOXPYTHON=pypy3
+      python: 'pypy3.5-6.0'
+before_install:
+  - python --version
+  - uname -a
+  - lsb_release -a
+install:
+  - pip install tox
+  - virtualenv --version
+  - easy_install --version
+  - pip --version
+  - tox --version
+script:
+  - tox -v
+after_failure:
+  - more .tox/log/* | cat
+  - more .tox/*/log/* | cat
+notifications:
+  email:
+    on_success: never
+    on_failure: always
