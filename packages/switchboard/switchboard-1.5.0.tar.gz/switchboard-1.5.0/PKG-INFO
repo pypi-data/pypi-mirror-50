@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: switchboard
+Version: 1.5.0
+Summary: Feature flipper for Pyramid, Pylons, or TurboGears apps.
+Home-page: https://github.com/switchboardpy/switchboard/
+Author: Kyle Adams
+Author-email: kadams54@users.noreply.github.com
+License: Apache License
+Download-URL: https://github.com/switchboardpy/switchboard/releases
+Description: UNKNOWN
+Keywords: s,w,i,t,c,h,e,s, ,f,e,a,t,u,r,e, ,f,l,i,p,p,e,r, ,p,y,r,a,m,i,d, ,p,y,l,o,n,s, ,t,u,r,b,o,g,e,a,r,s
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules

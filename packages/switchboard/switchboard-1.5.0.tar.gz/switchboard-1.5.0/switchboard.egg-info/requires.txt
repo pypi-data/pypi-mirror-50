@@ -1,0 +1,9 @@
+pymongo>=2.4
+blinker>=1.2
+WebOb>=0.9
+Mako>=0.9
+bottle>=0.12.8
+six
+
+[:python_version<'3.3']
+ipaddress
