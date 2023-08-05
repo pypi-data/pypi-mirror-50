@@ -1,0 +1,15 @@
+mlbot/__init__.py,sha256=0VaNH_aUmmhfoHFQyAT9yDE9sJXSd-fMD88ZHPQybXc,1026
+mlbot/handlers.py,sha256=eseINZt7JApR7f18x86t-hdFYkCnm-10rZlS6UFg9rk,2531
+mlbot/mlflow_handlers.py,sha256=8Pwf4bDkrSWcjDlgZk5Le3XnufUFMNad9Wa3XuODr_Y,7810
+mlbot/utils.py,sha256=jVT-16DrXX52lD1hlt6aqwMWyBhTcNu9ADMVzjjtMao,4899
+mlbot/static/handlers.js,sha256=SQAybfu7zaKlTGaE2LMNr82NjI4Dlz_W8BhF8AdumFE,7184
+mlbot/static/main.js,sha256=E__PUlFeoyS98OBW0-iW4vJ5EVYP6oYAeabPXUpxjBA,3221
+mlbot-0.0.1a1.dev15.data/data/etc/jupyter/jupyter_notebook_config.d/mlbot.json,sha256=-b8F6HlZ_wpIyEZK1aFyLWmIbJhB8oPlldVGok-_6KA,93
+mlbot-0.0.1a1.dev15.data/data/etc/jupyter/nbconfig/notebook.d/mlbot.json,sha256=GTFk67oNNr8QeBNqYWwfzYM_CUbmfSwLNH8Ht95y7f0,53
+mlbot-0.0.1a1.dev15.data/data/share/jupyter/nbextensions/mlbot/handlers.js,sha256=SQAybfu7zaKlTGaE2LMNr82NjI4Dlz_W8BhF8AdumFE,7184
+mlbot-0.0.1a1.dev15.data/data/share/jupyter/nbextensions/mlbot/main.js,sha256=E__PUlFeoyS98OBW0-iW4vJ5EVYP6oYAeabPXUpxjBA,3221
+mlbot-0.0.1a1.dev15.dist-info/LICENSE,sha256=ZfS9uzUT2Gd5Yvhrw2UnroU6-0ALHsaGmMKUhoQX4IM,1344
+mlbot-0.0.1a1.dev15.dist-info/METADATA,sha256=2o9M1YLFtQHloJp2fswJsJToI2ySizk1HqIbKvnkS8c,908
+mlbot-0.0.1a1.dev15.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+mlbot-0.0.1a1.dev15.dist-info/top_level.txt,sha256=sNoCZFYgCsFNnA6zeWvR04oOkLJtTtA1WwKSfhhS8g8,6
+mlbot-0.0.1a1.dev15.dist-info/RECORD,,

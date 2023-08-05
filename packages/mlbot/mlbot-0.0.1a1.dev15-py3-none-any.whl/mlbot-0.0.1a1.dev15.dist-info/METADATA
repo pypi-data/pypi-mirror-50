@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: mlbot
+Version: 0.0.1a1.dev15
+Summary: Version control, experiment tracking, script exporting, etc. for Jupyter notebooks
+Home-page: https://github.com/selko-technologies/MLbot
+Author: Sirong Huang
+Author-email: sirong.huang@selko.io
+License: BSD-2-Clause
+Keywords: IPython,Jupyter,notebook,version control,experiment tracking,script export
+Platform: Any
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: JavaScript
+Classifier: Programming Language :: Python
+Classifier: Topic :: Utilities
+Requires-Dist: mlflow (==1.0.0)
+Requires-Dist: notebook (>=4.0)
+Requires-Dist: tornado
+Requires-Dist: boto3
+
+UNKNOWN
+
+
