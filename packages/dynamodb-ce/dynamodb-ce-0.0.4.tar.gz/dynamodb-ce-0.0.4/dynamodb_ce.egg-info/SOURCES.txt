@@ -1,0 +1,10 @@
+README.rst
+setup.py
+dynamodb_ce/__init__.py
+dynamodb_ce/celexer.py
+dynamodb_ce/ceparser.py
+dynamodb_ce.egg-info/PKG-INFO
+dynamodb_ce.egg-info/SOURCES.txt
+dynamodb_ce.egg-info/dependency_links.txt
+dynamodb_ce.egg-info/requires.txt
+dynamodb_ce.egg-info/top_level.txt
