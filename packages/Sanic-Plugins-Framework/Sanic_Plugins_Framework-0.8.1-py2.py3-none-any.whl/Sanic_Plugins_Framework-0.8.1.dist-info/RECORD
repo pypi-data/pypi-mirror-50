@@ -1,0 +1,13 @@
+spf/__init__.py,sha256=oTXhGhBHsTDXZG-F21k348nPjFcmAE6UtzxHwXsnWxE,237
+spf/config.py,sha256=GHXs-Kq_7ao0SySgdl0r4oy4v4u2o5PQNRv57jypwbc,4238
+spf/context.py,sha256=bkG4qpjHMVM_-nClB-ZyxWgYlFxnS3vjJFrwOfgpaks,8185
+spf/framework.py,sha256=XQgQHKkoEzt-6fLvqhg0J_cN3vnDcZi-SPN-7k6h5h8,34675
+spf/plugin.py,sha256=M36PGATYKY5oxxdqlj4tF_Hn3bauytUW_3IGmctwM3M,19049
+spf/plugins/__init__.py,sha256=9YXGSdHMwWUgu4HhYkLs2ybeJ-3dNxZ6t6qEaJuxK0g,83
+spf/plugins/contextualize.py,sha256=zkdfb_PaHjl8eVHzRRcrRM3iazs1EaOkRvoORCQxgFc,11213
+Sanic_Plugins_Framework-0.8.1.dist-info/LICENSE,sha256=LWne2x0_S_TyrKXoBTHI2Dp2V-NHkp5jOcHeodUYvWU,1070
+Sanic_Plugins_Framework-0.8.1.dist-info/METADATA,sha256=15andNyNyhWtcf2WR178IxMN2FFwBrKjRumqH9zayXM,9169
+Sanic_Plugins_Framework-0.8.1.dist-info/WHEEL,sha256=h_aVn5OB2IERUjMbi2pucmR_zzWJtk303YXvhh60NJ8,110
+Sanic_Plugins_Framework-0.8.1.dist-info/entry_points.txt,sha256=0XcdA8inqxRWKVAmIbhsNFOW9QVAOTZfAXLacyO9_Yc,68
+Sanic_Plugins_Framework-0.8.1.dist-info/top_level.txt,sha256=izAYSRYFnvErnezhjKqmERyaXXMiE8fwzzdgzG6vgxY,4
+Sanic_Plugins_Framework-0.8.1.dist-info/RECORD,,
