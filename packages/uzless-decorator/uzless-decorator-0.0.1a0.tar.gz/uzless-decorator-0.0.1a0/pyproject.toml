@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "uzless-decorator"
+version = "0.0.1a0"
+description = "this project aim to simplify architecture description using decorators"
+authors = ["Tigran Tchougourian <nargitinthenight@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.0"
+
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist = py36
+skipsdist = True
+isolated_build = True
+
+[testenv]
+whitelist_externals = poetry
+commands =
+    poetry install -vvv
+    pytest tests
+"""
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
