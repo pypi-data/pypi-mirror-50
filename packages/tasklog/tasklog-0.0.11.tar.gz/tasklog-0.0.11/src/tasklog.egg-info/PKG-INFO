@@ -1,0 +1,144 @@
+Metadata-Version: 2.1
+Name: tasklog
+Version: 0.0.11
+Summary: CLI to submit tasklogs to Jira
+Home-page: https://github.com/davidandreoletti/tasklog-cli
+Author: David Andreoletti
+Author-email: david.andreoletti.dev@gmail.com
+License: UNKNOWN
+Description: tasklog: a terminal based application to submit work/task logs to JIRA issues, to Slack channels
+        
+        Compatible with Python versions
+        ====================
+        
+        - Python 3.7.3+
+        
+        Basic Setup
+        ===========
+        
+        Install for all users, from Pypi
+        
+        ```
+        sudo bash make.sh --install-package-globally-from-source
+        tasklog -h
+        ```
+        
+        Install + run app (for development):
+        
+        ```
+        source make.sh --enable-development-env
+        bash make.sh --install-dependencies
+        bash make.sh --install-package-in-development-mode
+        bash make.sh --show-tasklog-options
+        ````
+        
+        Install for all users, from source
+        
+        ```
+        sudo bash make.sh --install-package-globally-from-source
+        tasklog -h
+        ```
+        
+        Setup/Run the application:
+        
+        ```
+        bash make.sh --show-tasklog-options
+        OR
+        bash make.sh --show-tasklog-submit-worklog-cli-sample
+        bash make.sh --show-tasklog-submit-daily-cli-sample
+        ```
+        
+        Run the test suite:
+        
+        _Requirement: App is installed for development purpose_
+        
+        ```
+        bash make.sh --install-test-dependencies
+        bash make.sh --run-tests
+        ```
+        
+        
+         Sample Config file:  
+        
+         ```yaml 
+        
+        # Slack Server
+        slack:
+          # API Token
+          apiToken: "FOOBAR"
+          # Channel to post to, without # prefix
+          channel: "daily"
+        # JIRA Server
+        jira:
+          # Server URL
+          serverURL: "http://.example.com"
+          # Account Username
+          username: "me"
+          # Account Password
+          password: "you"
+          # HTTPS connection must be with a valid server certificate. boolean: true / false
+          verifyCertificate: false
+        # JIRA Issue Preferences
+        issue:
+          # Issue Creation Preferences
+          creation:
+            # Prefered Issue Type when creating issues
+            # (list of issue type name, sorted in descending order)
+            typePreferedOrder:
+              - Task
+              - Improvement
+              - Bug
+              - New Feature
+              - Sub-Task
+              - Epic
+              - Story
+              - Technical Task
+              - Question
+        # New JIRA Issue prefered title as a numbered title
+        dayX:
+          # Starting title keyword
+          prefixPreferedOrder:
+            - Day
+            - Jour
+        # CLI Logging
+        logging:
+          # Logging level. Enum: DEBUG, INFO, WARN, ERROR, CRITICAL
+          severity: "INFO"
+          # Log file name
+          file: "tasklog.cli.log"
+        
+        
+        
+        
+        ```
+        
+         Sample tasklog file:  
+        
+         ```WORKLOG#
+        MOCKTEST-1
+        23-05-2019
+        4.5h
+        This log will be created against an existing JIRA issue named "MOCKTEST-1"
+        
+        WORKLOG#
+        MOCKTEST
+        22-05-2019
+        8h
+        This is log will be logged against a brand new JIRA issue in project with key MOCKTEST
+        - and an extra line
+        - and an extra line 2
+        -- and an extra line 3
+        
+        WORKLOG#
+        MOCKTEST
+        23-05-2019
+        4.5h
+        This is a multiline description
+        it is cool is not it ?
+        ```
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7.3
+Description-Content-Type: text/markdown
