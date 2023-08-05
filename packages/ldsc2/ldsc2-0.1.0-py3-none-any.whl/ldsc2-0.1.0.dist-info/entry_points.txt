@@ -1,0 +1,5 @@
+[console_scripts]
+ldsc2-build-on-baseline = ldsc2.build_on_baseline:main
+ldsc2-download = ldsc2.download:main
+ldsc2-strat = ldsc2.strat:main
+
