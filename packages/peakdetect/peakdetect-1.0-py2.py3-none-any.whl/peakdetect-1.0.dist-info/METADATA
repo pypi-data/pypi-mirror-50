@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: peakdetect
+Version: 1.0
+Summary: Analytic peak finder
+Home-page: https://github.com/Anaxilaus/peakdetect
+Author: Anaxilaus
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: matplotlib
+
+Peakdetect
+==========
+|PyPI|
+|build|
+
+Read, `Markdown Documentation`_.
+
+
+.. |PyPI| image:: https://badge.fury.io/py/peakdetect.svg
+    :target: https://pypi.org/project/peakdetect
+.. |build| image:: https://travis-ci.org/Anaxilaus/peakdetect.svg?branch=master
+    :target: https://travis-ci.org/Anaxilaus/peakdetect
+.. _`Markdown Documentation`: https://github.com/Anaxilaus/peakdetect/tree/master/README.md
+
+
