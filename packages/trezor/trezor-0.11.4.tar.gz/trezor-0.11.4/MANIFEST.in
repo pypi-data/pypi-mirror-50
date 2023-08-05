@@ -1,0 +1,6 @@
+recursive-include bash_completion.d *.sh
+include tools/*
+recursive-include trezorlib *
+
+include AUTHORS README.md COPYING CHANGELOG.md
+include requirements*.txt
