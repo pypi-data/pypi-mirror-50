@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: tisdk
+Version: 0.0.3
+Summary: python sdk of taiqiyun
+Home-page: UNKNOWN
+License: UNKNOWN
+Description: 
+        ```
+        pip install tisdk
+        tireq to_9012345678_grs 3292a4f76c0d46bf post http://taiqiyun.wowfintech.cn/grs/v1/open_match name:美团,foo:bar
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
