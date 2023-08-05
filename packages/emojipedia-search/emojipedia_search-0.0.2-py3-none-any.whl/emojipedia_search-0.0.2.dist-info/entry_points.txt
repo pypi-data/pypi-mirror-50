@@ -1,0 +1,3 @@
+[console_scripts]
+emojipedia = emojipedia_search.__main__:cli
+
