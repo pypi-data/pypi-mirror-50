@@ -1,0 +1,11 @@
+[console_scripts]
+
+
+[intake.drivers]
+bluesky-event-stream = intake_bluesky.core:BlueskyEventStream
+bluesky-jsonl-catalog = intake_bluesky.jsonl:BlueskyJSONLCatalog
+bluesky-mongo-embedded-catalog = intake_bluesky.mongo_embedded:BlueskyMongoCatalog
+bluesky-mongo-normalized-catalog = intake_bluesky.mongo_normalized:BlueskyMongoCatalog
+bluesky-msgpack-catalog = intake_bluesky.msgpack:BlueskyMsgpackCatalog
+bluesky-run = intake_bluesky.core:BlueskyRun
+
