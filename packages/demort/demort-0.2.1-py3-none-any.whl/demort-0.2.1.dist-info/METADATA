@@ -1,0 +1,21 @@
+Metadata-Version: 2.0
+Name: demort
+Version: 0.2.1
+Summary: DEmultiplexing MOnitoring Report Tool
+Home-page: https://github.com/Grelot/demort
+Author: Pierre-Edouard GUERIN
+Author-email: pierre-edouard.guerin@cefe.cnrs.fr
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Dist: argparse
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+Requires-Dist: biopython
+Requires-Dist: joblib
+
+DEMORT DEMORT evaluates demultiplexing fastq files by computing various metrics. The tool accepts compressed files, and handle multithreading.
+
+
