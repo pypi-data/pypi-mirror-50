@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: ortools-utils
+Version: 0.0.1
+Summary: Python utilities for ortools
+Home-page: https://github.com/stradivari96/or-tools-utils
+Author: Xiang Chen
+Author-email: xiangchenchen96@gmail.com
+License: UNKNOWN
+Description: # or-tools-utils
+        Set of python utilities for CP-SAT
+        
+        ## Upload with Twine
+        ```
+        python setup.py sdist
+        ```
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
