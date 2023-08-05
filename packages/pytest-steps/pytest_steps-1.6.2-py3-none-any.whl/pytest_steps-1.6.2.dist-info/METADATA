@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: pytest-steps
+Version: 1.6.2
+Summary: Create step-wise / incremental tests in pytest.
+Home-page: https://github.com/smarie/python-pytest-steps
+Maintainer: Sylvain MARIE
+Maintainer-email: sylvain.marie@schneider-electric.com
+License: BSD 3-Clause
+Download-URL: https://github.com/smarie/python-pytest-steps/tarball/1.6.2
+Keywords: pytest test step incremental decorator parametrize parameter state share result modular
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Testing
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Framework :: Pytest
+Requires-Dist: makefun (>=1.5)
+Requires-Dist: wrapt
+Requires-Dist: six
+Requires-Dist: functools32 ; python_version < "3.2"
+Requires-Dist: funcsigs ; python_version < "3.3"
+
+pytest-steps
+============
+
+|Python versions| |Build Status| |Tests Status| |codecov|
+
+|Documentation| |PyPI| |Downloads| |Downloads per week| |GitHub stars|
+
+Create step-wise / incremental tests in ``pytest``.
+
+The documentation for users is available here:
+https://smarie.github.io/python-pytest-steps/
+
+A readme for developers is available here:
+https://github.com/smarie/python-pytest-steps
+
+.. |Python versions| image:: https://img.shields.io/pypi/pyversions/pytest-steps.svg
+   :target: https://pypi.python.org/pypi/pytest-steps/
+.. |Build Status| image:: https://travis-ci.org/smarie/python-pytest-steps.svg?branch=master
+   :target: https://travis-ci.org/smarie/python-pytest-steps
+.. |Tests Status| image:: https://smarie.github.io/python-pytest-steps/junit/junit-badge.svg?dummy=8484744
+   :target: https://smarie.github.io/python-pytest-steps/junit/report.html
+.. |codecov| image:: https://codecov.io/gh/smarie/python-pytest-steps/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/smarie/python-pytest-steps
+.. |Documentation| image:: https://img.shields.io/badge/doc-latest-blue.svg
+   :target: https://smarie.github.io/python-pytest-steps/
+.. |PyPI| image:: https://img.shields.io/pypi/v/pytest-steps.svg
+   :target: https://pypi.python.org/pypi/pytest-steps/
+.. |Downloads| image:: https://pepy.tech/badge/pytest-steps
+   :target: https://pepy.tech/project/pytest-steps
+.. |Downloads per week| image:: https://pepy.tech/badge/pytest-steps/week
+   :target: https://pepy.tech/project/pytest-steps
+.. |GitHub stars| image:: https://img.shields.io/github/stars/smarie/python-pytest-steps.svg
+   :target: https://github.com/smarie/python-pytest-steps/stargazers
+
+
