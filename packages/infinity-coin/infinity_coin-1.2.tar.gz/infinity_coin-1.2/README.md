@@ -1,0 +1,80 @@
+infinity_coin
+=================================================================================================================================================================================
+**infinity_coin** - это python модуль для работы с монетой Infinity Сoin (Infinity Сoin API wrapper) 
+
+* [Примеры использования](./examples) (python3)
+* [Документация по методам API](https://vk.com/@infinity_coin-informaciya-po-rabote-s-api)
+
+**Использование:**
+
+Для начала нужно получить api ключ, для этого отправьте [боту](vk.com/write-181372751) сообщений с текстом «!api»
+```python
+from infinity_coin import *
+
+InfinityCoinObj = InfinityCoin('API_KEY')
+```  
+
+
+Данная функция возвращает значение равное балансу вашего аккаунта:
+```python
+score = InfinityCoinObj.score()
+```  
+
+
+Данная функция возвращает информацию о 100 последних платежных операциях, совершенных с участием вашего аккаунта:
+```python
+for payment in InfinityCoinObj.history():
+    print(payment)
+```  
+
+
+Данная функция используется для перевода Infinity Coin с вашего баланса на баланс пользователя, id которого указан в параметре 'toid', а сумма в параметре 'amount':
+```python
+InfinityCoinObj.transfer(toid=139858119, amount=1000)
+```  
+
+
+Данная функция генерирует быструю ссылку для перевода пользователю:
+```python
+fast_link = InfinityCoinObj.get_fast_link(toid=139858119)
+```  
+
+
+Данная функция генерирует быструю ссылку для перевода пользователю фиксированной суммы:
+```python
+fast_link = InfinityCoinObj.get_fast_link(toid=139858119, amount=1000)
+```  
+
+
+Из коробки Infinity Coin не предоставляет longpoll/callback, но infinity_coin предоставляет небольшой костыль, аля longpoll:
+```python
+longpoll = InfinityCoinPoll(InfinityCoinObj)
+    
+for event in longpoll.listen():
+    print(event)
+```
+
+
+InfinityCoinPoll будет обновлять историю и возвращать новые транзакции каждые 3 секунды, но это можно изменить передав в него параметр timeout:
+```python
+longpoll = InfinityCoinPoll(InfinityCoinObj)
+    
+for event in longpoll.listen(timeout=10):  # обновление будет происходить каждые 10 секунд
+    print(event)
+```
+
+
+Установка:
+------------
+    $ pip install infinity_coin
+
+
+
+Важно!
+------------
+Я не являюсь разработчиком Infinity Coin и не знаком с ними. Модуль infinity_coin не гарантирует постоянную и стабильную работу.
+
+
+Связь:
+------------
+ВКонтакте: [vk.com/mrsmitix](https://vk.com/mrsmitix)

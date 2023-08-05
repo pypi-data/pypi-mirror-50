@@ -1,0 +1,11 @@
+README.md
+setup.py
+infinity_coin/__init__.py
+infinity_coin/exceptions.py
+infinity_coin/infinity_coin.py
+infinity_coin/longpoll.py
+infinity_coin.egg-info/PKG-INFO
+infinity_coin.egg-info/SOURCES.txt
+infinity_coin.egg-info/dependency_links.txt
+infinity_coin.egg-info/requires.txt
+infinity_coin.egg-info/top_level.txt
