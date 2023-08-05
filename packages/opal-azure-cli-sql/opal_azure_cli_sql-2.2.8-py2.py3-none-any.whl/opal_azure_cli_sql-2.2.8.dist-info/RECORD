@@ -1,0 +1,15 @@
+azure/__init__.py,sha256=jwUpEftyp-71KJZRiDO8VY0bF3pPg2gQauDzBT8mzRc,409
+azure/cli/__init__.py,sha256=jwUpEftyp-71KJZRiDO8VY0bF3pPg2gQauDzBT8mzRc,409
+azure/cli/command_modules/__init__.py,sha256=jwUpEftyp-71KJZRiDO8VY0bF3pPg2gQauDzBT8mzRc,409
+azure/cli/command_modules/sql/__init__.py,sha256=-dpWKe-zoZA5cpHmjZ62wxMQlhDwojVgUIYQT8yHnyI,1376
+azure/cli/command_modules/sql/_format.py,sha256=fLztAIRBqa2C6fMUU5hfMpq8SKhPcUUAqFb7Ou-WU4o,10268
+azure/cli/command_modules/sql/_help.py,sha256=XnUqNt-zCajYqftMiAQ8aCWGi2wz1ZCYgB15bv0eqI8,26629
+azure/cli/command_modules/sql/_params.py,sha256=vuGIEvi_QLphE-xRlkOlU1cO2lEgkv_1DcbL1cDvKY0,52067
+azure/cli/command_modules/sql/_util.py,sha256=nUKrgGt4GlkrgGt6S3kEKSm6M40vxwE4s6Uys_-jB94,4556
+azure/cli/command_modules/sql/_validators.py,sha256=VvRx9qm4_ghpGfPmo0FNhtij-TfxYZajPWVlgBWsiCI,4979
+azure/cli/command_modules/sql/commands.py,sha256=GzS0DS1UXMd8F8iOUqad1z3G1OZUzPAFjVIuV2wl0Ec,22722
+azure/cli/command_modules/sql/custom.py,sha256=x4Rb4eiXiW8Kr4J69w9nmCg5KYZwRFtw_r66Fx0Qphg,75350
+opal_azure_cli_sql-2.2.8.dist-info/METADATA,sha256=Vk0Fxo3jjeUmR6S_A5VhG3HsPPisnvyjfbGN9CtPU7I,9319
+opal_azure_cli_sql-2.2.8.dist-info/WHEEL,sha256=h_aVn5OB2IERUjMbi2pucmR_zzWJtk303YXvhh60NJ8,110
+opal_azure_cli_sql-2.2.8.dist-info/top_level.txt,sha256=S7DhWV9m80TBzAhOFjxDUiNbKszzoThbnrSz5MpbHSQ,6
+opal_azure_cli_sql-2.2.8.dist-info/RECORD,,
