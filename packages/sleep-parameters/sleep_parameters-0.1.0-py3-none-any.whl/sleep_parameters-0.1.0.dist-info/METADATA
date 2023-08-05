@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: sleep-parameters
+Version: 0.1.0
+Summary: Calculates common sleep parameters defined by AASM
+Home-page: https://cbmi.htw-berlin.de/
+License: LGPL-3.0
+Author: Dagmar Krefting
+Author-email: dagmar.krefting@htw-berlin.de
+Requires-Python: >=3.6,<4.0
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Project-URL: Repository, https://github.com/somnonetz/sleep-parameters/
+Description-Content-Type: text/markdown
+
+# sleep-parameters
+Calculates common sleep parameters defined by AASM
+
