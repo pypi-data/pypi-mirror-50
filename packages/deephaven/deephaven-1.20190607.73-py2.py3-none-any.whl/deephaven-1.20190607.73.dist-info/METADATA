@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: deephaven
+Version: 1.20190607.73
+Summary: Python integrations for Deephaven
+Home-page: https://www.deephaven.io/
+Author: Deephaven Data Labs
+Author-email: python@deephaven.io
+License: Apache 2.0
+Requires-Dist: deephaven-jpy (==1.20190607.73)
+Requires-Dist: numpy
+Requires-Dist: dill (>=0.2.8)
+Requires-Dist: wrapt
+Requires-Dist: pandas
+
+Deephaven Python Package
+
+
