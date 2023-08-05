@@ -1,0 +1,12 @@
+requests
+requests-cache
+bs4
+fake-useragent
+jinja2
+pandas
+pymysql
+sqlalchemy
+
+[dev]
+
+[test]
