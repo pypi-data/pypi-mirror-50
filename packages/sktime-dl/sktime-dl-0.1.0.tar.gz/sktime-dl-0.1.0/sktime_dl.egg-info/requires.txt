@@ -1,0 +1,14 @@
+sktime>=0.2.0
+keras>=2.2.4
+tensorflow>=1.8.0
+
+[docs]
+sphinx
+sphinx-gallery
+sphinx_rtd_theme
+numpydoc
+matplotlib
+
+[tests]
+pytest
+pytest-cov
