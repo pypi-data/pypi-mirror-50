@@ -1,0 +1,41 @@
+Metadata-Version: 2.0
+Name: Gstreamer-Timelapse-RTSP-Server
+Version: 0.0.1.post1
+Summary: Utility for serving a timelapse over RTSP
+Home-page: https://github.com/desmoteo/gst-timelapse-rtsp-server
+Author: Matteo Ferrabone
+Author-email: matteo.ferrabone@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+gst-timelapse-rtsp-server
+=========================
+
+Serves an RTSP stream of a timelapse obtained from static images.
+
+Basic Usage
+-----------
+
+Start a server as follows, where "path to folder" is the path to a
+folder containing the images you want to use in the timelapse stream:
+
+.. code:: python
+
+    from GstTimelapseRtspServer.Servers import GstTimelapseServer
+
+
+    gts = GstTimelapseServer("path to folder")
+
+    gts.run()
+
+play the stream:
+
+.. code:: bash
+
+    ffplay rtsp://localhost:9994/timelapse
+
+
