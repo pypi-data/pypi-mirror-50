@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: bonapity
+Version: 0.1.13
+Summary: Get a simple HTTP (REST) API with only this simple decorator : @bonapity !
+Home-page: https://vievie31.github.io/bonapity/
+Author: Olivier RISSER-MAROIX
+Author-email: orissermaroix@gmail.com
+License: CC-BY
+Description: bonAPIty is a python3 package allowing you to create simple API (GET) for your functions without writing any complicated line of server code and it is even simpler than Flask !
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
