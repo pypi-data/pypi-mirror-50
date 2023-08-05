@@ -1,0 +1,14 @@
+packaging
+spdx_lookup
+
+[backends]
+upt-fedora
+upt-freebsd
+upt-guix
+upt-nix
+upt-openbsd
+
+[frontends]
+upt-cpan
+upt-pypi
+upt-rubygems
