@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: squtil
+Version: 0.0.1
+Summary: A small util package
+Home-page: https://github.com/sunqiang85/squtil
+Author: Qiang Sun
+Author-email: sunqiang85@gmail.com
+License: UNKNOWN
+Description: # squtil
+        This a util used as code snippet. You can visit [squtil](https://github.com/sunqiang85/squtil) on GitHub.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
