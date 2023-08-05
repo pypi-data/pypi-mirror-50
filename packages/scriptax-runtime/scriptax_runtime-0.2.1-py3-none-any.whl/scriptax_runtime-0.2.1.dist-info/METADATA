@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: scriptax-runtime
+Version: 0.2.1
+Summary: Scriptax is a powerful driver for the Apitax framework which exposes an automation first language used to quickly script together automation.
+Home-page: https://github.com/Apitax/Scriptax-Runtime
+Author: Shawn Clake
+Author-email: shawn.clake@gmail.com
+License: UNKNOWN
+Keywords: scriptax
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: apitaxcore (==3.0.9)
+Requires-Dist: click
+Requires-Dist: pytest
+Requires-Dist: scriptax (==4.0.1)
+
+# Scriptax-Runtime
+A means to run Scriptax on its own without the need for the Apitax framework around it.
+
+## Usage
+* `pip install scriptax-runtime`
+* `pip install scriptaxstd`
+* `spm install scriptaxstd`
+* `scriptax <file>`
+
+
