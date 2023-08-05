@@ -1,0 +1,4 @@
+[console_scripts]
+dhunt = dhunter.hunter.hunter:Hunter.start
+dscan = dhunter.scanner.scanner:Scanner.start
+
