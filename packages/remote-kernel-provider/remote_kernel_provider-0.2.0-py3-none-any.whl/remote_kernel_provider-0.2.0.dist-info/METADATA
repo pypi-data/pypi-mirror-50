@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: remote-kernel-provider
+Version: 0.2.0
+Summary: Jupyter protocol implementation and client libraries
+Home-page: https://jupyter.org
+Author: Jupyter Development Team
+Author-email: jupyter@googlegroups.com
+License: BSD
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.4
+Requires-Dist: ipython-genutils (>=0.2.0)
+Requires-Dist: jupyter-core (>=4.4.0)
+Requires-Dist: jupyter-kernel-mgmt (>=0.4.0)
+Requires-Dist: paramiko (>=2.4.0)
+Requires-Dist: pexpect (>=4.2.0)
+Requires-Dist: pycrypto (>=2.6.1)
+Requires-Dist: tornado (>=5.1)
+Requires-Dist: traitlets (>=4.3.2)
+
+UNKNOWN
+
+
