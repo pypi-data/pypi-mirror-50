@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: beward
+Version: 0.8.0
+Summary: Python API for Beward Cameras and Doorbells.
+Home-page: https://github.com/Limych/python-beward
+Author: Andrey "Limych" Khrolenok
+Author-email: andrey@khrolenok.ru
+License: Creative Commons BY-NC-SA License
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: Other/Proprietary License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Home Automation
+Classifier: Topic :: Security
+Classifier: Topic :: Multimedia :: Video :: Capture
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+
+# py-beward
+
+[![Build Status](https://img.shields.io/travis/Limych/py-beward.svg?style=popout)](https://travis-ci.org/Limych/py-beward)
+[![](https://img.shields.io/github/last-commit/Limych/py-beward.svg?style=popout)](https://github.com/Limych/py-beward/commits/master)
+[![](https://img.shields.io/github/issues/Limych/py-beward/bug.svg?colorB=red&label=bugs&style=popout)](https://github.com/Limych/py-beward/issues?q=is%3Aopen+is%3Aissue+label%3ABug)
+
+Python API for Beward Cameras and Doorbells. This is used in [Home Assistant](https://home-assistant.io) but should be generic enough that can be used elsewhere.
+
+
