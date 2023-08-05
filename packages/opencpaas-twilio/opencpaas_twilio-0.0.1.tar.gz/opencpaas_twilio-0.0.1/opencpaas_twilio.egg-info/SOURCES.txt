@@ -1,0 +1,9 @@
+README.md
+setup.cfg
+setup.py
+opencpaas_twilio/__init__.py
+opencpaas_twilio/twilio.py
+opencpaas_twilio.egg-info/PKG-INFO
+opencpaas_twilio.egg-info/SOURCES.txt
+opencpaas_twilio.egg-info/dependency_links.txt
+opencpaas_twilio.egg-info/top_level.txt
