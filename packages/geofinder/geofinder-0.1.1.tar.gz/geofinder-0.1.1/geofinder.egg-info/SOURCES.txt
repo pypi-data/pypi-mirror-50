@@ -1,0 +1,11 @@
+README.md
+setup.py
+geofinder.egg-info/PKG-INFO
+geofinder.egg-info/SOURCES.txt
+geofinder.egg-info/dependency_links.txt
+geofinder.egg-info/entry_points.txt
+geofinder.egg-info/top_level.txt
+images/__init__.py
+test/Test.py
+test/TestGeodata.py
+test/__init__.py

@@ -1,0 +1,3 @@
+[geofinder_group_id]
+geofinder = geofinder.GeoFinder:entry
+
