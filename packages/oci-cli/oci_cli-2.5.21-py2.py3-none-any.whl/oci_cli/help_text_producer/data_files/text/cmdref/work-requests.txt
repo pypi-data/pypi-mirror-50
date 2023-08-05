@@ -1,0 +1,26 @@
+work-requests
+*************
+
+
+Description
+===========
+
+A description of the work requests CLI
+
+
+Available Commands
+==================
+
+* work-request
+
+  * get
+
+  * list
+
+* work-request-error
+
+  * list
+
+* work-request-log-entry
+
+  * list
