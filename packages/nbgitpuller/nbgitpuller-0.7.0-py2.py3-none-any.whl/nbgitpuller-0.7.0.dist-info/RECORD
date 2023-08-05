@@ -1,0 +1,15 @@
+nbgitpuller/__init__.py,sha256=DUGAzP2MKmlnvDwymlWArtkA8wtuivY-oVd-Qkm3A4M,1058
+nbgitpuller/handlers.py,sha256=iBQOmQssijwjXdwgdJYOdMFuBVDyzYeaVvengJYOe_Y,7085
+nbgitpuller/pull.py,sha256=AnA5zgBcmeEPwwPS6n3Q8thM4cVEk3kuCu6HSkWPQVs,8937
+nbgitpuller/version.py,sha256=-gVjLO1dogbbtidqI6t8mLe8tBRhzjgwJHkKAT8uMBg,74
+nbgitpuller/etc/nbgitpuller.json,sha256=sYZj_vvoXCI1wti3P2YwMWKExYB8BBQAU6eb0zQEqzY,89
+nbgitpuller/static/index.js,sha256=08J3ASJMKOI50DHXWc6rTu7Z4eFGHcek6aCcmNC6k-o,9630
+nbgitpuller/templates/status.html,sha256=SXsXP9gwqA4BeA23UC8uycCk-42X3GS6Z0aype1rYB0,1889
+nbgitpuller-0.7.0.data/data/etc/jupyter/jupyter_notebook_config.d/nbgitpuller.json,sha256=sYZj_vvoXCI1wti3P2YwMWKExYB8BBQAU6eb0zQEqzY,89
+nbgitpuller-0.7.0.dist-info/DESCRIPTION.rst,sha256=OCTuuN6LcWulhHS3d5rfjdsQtW22n7HENFRh6jC6ego,10
+nbgitpuller-0.7.0.dist-info/METADATA,sha256=6zR0KYXJRraRCW1tp1q9GpShEet8EzmvuqvKo25uCWE,688
+nbgitpuller-0.7.0.dist-info/RECORD,,
+nbgitpuller-0.7.0.dist-info/WHEEL,sha256=kdsN-5OJAZIiHN-iO4Rhl82KyS0bDWf4uBwMbkNafr8,110
+nbgitpuller-0.7.0.dist-info/entry_points.txt,sha256=3nq4ntqYoy6wrO1Goe4oUrGeVimOSmHOWyKpN9e2VyQ,53
+nbgitpuller-0.7.0.dist-info/metadata.json,sha256=PUmioCtdG3d0KHfZwdZepHtcDm6qfnLy2KqzDD5kJwI,1021
+nbgitpuller-0.7.0.dist-info/top_level.txt,sha256=p6zNmcuf8b-9aLdnjnxpoYmGxlK8O69NemENjv5QZmA,12
