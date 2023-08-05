@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: dynamicgem
+Version: 0.0.1
+Summary: A Python library for Dynamic Graph Embedding Methods
+Home-page: https://github.com/Sujit-O/dynamicgem.git
+Author: Sujit Rokka Chhetri, Palash Goyal, Martinez Canedo, Arquimedes
+Author-email: sujitchhetri@gmail.com
+License: UNKNOWN
+Description: # dyngem
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
