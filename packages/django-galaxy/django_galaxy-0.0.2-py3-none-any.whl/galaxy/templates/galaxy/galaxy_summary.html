@@ -1,0 +1,70 @@
+{% extends 'gfiles/table_with_filter_above.html' %}
+{% block sb_admin_title %} Galaxy Summary {% endblock sb_admin_title %}
+{% block sb_admin_subheading %}  {% endblock sb_admin_subheading %}
+{% block sb_admin_breadcrumb %} <a href="{% url "index" %}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a> {% endblock sb_admin_breadcrumb %}
+{% block sb_admin_breadcrumb_active %} / Galaxy summary {% endblock sb_admin_breadcrumb_active %}
+{% block panel_title %}Galaxy Instances Summary{% endblock panel_title %}
+{% block preamble %}
+<blockquote class="blockquote-footer">
+    <p class="mb-0"> Galaxy is an open, web-based platform for accessible, reproducible, and transparent computational biomedical research.
+        <ul >
+            <li>
+                <b>Accessible:</b> Users without programming experience can easily specify parameters and run tools and workflows
+            </li>
+            <li>
+                <b>Reproducible:</b> Galaxy captures information so that any user can repeat and understand a complete computational analysis.
+            </li>
+            <li>
+                <b>Transparent:</b> Users share and publish analyses via the web and create Pages, interactive, web-based documents that describe a complete analysis.
+            </li>
+        </ul >
+        </p>
+        <footer class="blockquote-footer">Galaxy <cite title="Source Title">https://galaxyproject.org/</cite></footer>
+</blockquote>
+{% endblock preamble %}
+
+{% block postamble %}
+<hr>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Register </h3>
+                </div>
+                <div class="panel-body">
+                   <div class="list-group">
+                    <a href="{% url "add_galaxy_instance" %}" class="list-group-item">Register Galaxy Instance</a>
+                    <a href="{% url "list_galaxy_user" %}" class="list-group-item">Galaxy Users</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">General </h3>
+                </div>
+                <div class="panel-body">
+                   <div class="list-group">
+                        <a href="{% url "workflow_summary" %}" class="list-group-item">View & Run Workflows</a>
+                        <a href="{% url "history_status" %}" class="list-group-item">History Status</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">ISA </h3>
+                </div>
+                <div class="panel-body">
+                   <div class="list-group">
+                        <a href="{% url "files_to_galaxy_datalib" %}"  class="list-group-item">Upload files to Galaxy Data Library</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock postamble %}
