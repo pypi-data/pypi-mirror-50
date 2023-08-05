@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: raiden-client
+Version: 0.0.3
+Summary: Python client library Raiden API
+Home-page: https://github.com/maddevsio/raiden-python-client
+Author: Aleksandr Sobolev
+Author-email: thesobolev@gmail.com
+License: MIT
+Description: UNKNOWN
+Keywords: raiden
+Platform: UNKNOWN
+Provides-Extra: docs
+Provides-Extra: raiden
+Provides-Extra: dev
