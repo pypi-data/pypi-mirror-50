@@ -1,0 +1,19 @@
+# Misc
+include .coveragerc
+include Makefile
+include tox.ini
+
+# Test suite
+recursive-include caspyr/tests *.py
+
+# Sub-packages
+recursive-include cuda *.py
+recursive-include io *.py
+recursive-include multiprocessing *.py
+recursive-include plotting *.py
+recursive-include scripts *.py
+recursive-include utils *.py
+
+# Examples/Documentation
+recursive-include examples *.py
+include README.rst
