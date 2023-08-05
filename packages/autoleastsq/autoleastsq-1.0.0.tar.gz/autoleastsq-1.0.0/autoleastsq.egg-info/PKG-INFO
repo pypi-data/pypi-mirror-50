@@ -1,0 +1,72 @@
+Metadata-Version: 2.1
+Name: autoleastsq
+Version: 1.0.0
+Summary: 自动化拟合多项式，并自动判断最佳次幂
+Home-page: UNKNOWN
+Author: sheerfish
+Author-email: first@sheerfish.top
+License: UNKNOWN
+Description: 
+        ## Install
+        ```
+        # only for python3
+        # need: sqlite3
+        
+        pip install autoleastsq
+        
+        ```
+        
+        ## Usage
+        
+        ```
+        # -*- coding: utf-8 -*-  
+        
+        import autoleastsq
+        
+        ### 从文件获取数据到 list   其他数据源只要符合数据类型和对齐就行了
+        
+        filename="./test.xlsx"
+        lists=autoleastsq.excel_col2list(filename,["a","b","result"])
+        
+        
+        ################# 多元多项式回归样例
+        
+        # 挑选所需要的因子  注意append 因子次序决定了拟合的公式，和后续使用时的入口次序, append 几个因子多项式就有几元，可灵活使用
+        
+        factor=[]  # factor自由多个因子的二维list
+        factor.append(lists[0])
+        factor.append(lists[1])
+        y = lists[2]
+        
+        ##################### 拟合得到多项式模型
+        
+        # 返回：多项式的参数列表、 幂次，并可根据新输入的因子list 进行预测
+        
+        """
+        支持的参数：
+        pows_start=1	# pows_start 起始拟合的幂次(默认为1)
+        loss_min=0.01		# loss 起始误差率要求（默认0.01, 达到即拟合结束）, 过程中会自动判断最可能的误差率
+        leastsq_mult(factor,y,pows_start,loss_min)
+        """
+        
+        model=autoleastsq.leastsq_mult(factor,y)
+        
+        print(model.args,model.pows)  ## 最终的多项式参数 按高次向低次逐个因子排列 ; 最终的多项式参数最高幂次
+        print(model.func)  ##  模型公式
+        
+        ################# 根据拟合后结果多项式，按顺序输入得到结果
+        
+        factor=[29,101]
+        
+        result=model.leastsq_result(factor)
+        
+        print(result)
+        
+        
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
