@@ -1,0 +1,3 @@
+[console_scripts]
+m8tricks = m8tricks.m8tricks:main
+
