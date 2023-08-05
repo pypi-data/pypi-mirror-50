@@ -1,0 +1,15 @@
+pyclosure/__init__.py,sha256=E2CtKjM8GVacQG4wehk_hCcoj7JlQU73PsZT0Ve6JH4,30
+pyclosure/__main__.py,sha256=C8Y76Ljjb6b5gMiq3n6StL1uU-OAtEQEmOrlYXJGg4U,767
+pyclosure/compiler.py,sha256=1xfnoGQJ3PvMKcI7heeIeTnRMdu3LZfW2rV9ExEArUE,2341
+src/__init__.py,sha256=E2CtKjM8GVacQG4wehk_hCcoj7JlQU73PsZT0Ve6JH4,30
+src/compiler.py,sha256=1xfnoGQJ3PvMKcI7heeIeTnRMdu3LZfW2rV9ExEArUE,2341
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_basic.py,sha256=ggVWXnPVjuoQYnnnuUbj8yqHtmtAMleU8LD2rRWtIJM,3325
+utils/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+utils/constants.py,sha256=UxtkgcvcFKWPL3XJus1HWLGn1sPuI5Ai23f2a3hS39U,887
+PyClosure-0.0.1.dist-info/LICENSE.txt,sha256=4mRdcnkheu3Yk2hrULqEBQmqAEVtFpbE1HgBECFd_SM,1070
+PyClosure-0.0.1.dist-info/METADATA,sha256=L7fkFmiAA2UsceaQZTnq7qcEriwiEhczi3wqF-88EH0,1746
+PyClosure-0.0.1.dist-info/WHEEL,sha256=QBOOAdG2icRHGBs2s94rfaUlHrdfNBp-TceubUYCwOE,97
+PyClosure-0.0.1.dist-info/entry_points.txt,sha256=nB0E3wx9lgJ1E9O7PUf38JepmP9qnp1PCxJvooXK-gI,55
+PyClosure-0.0.1.dist-info/top_level.txt,sha256=ovarnSrIOqPbXgZ-a-Pj0ZQDK6WBYrJQGoVx0elU6F4,22
+PyClosure-0.0.1.dist-info/RECORD,,

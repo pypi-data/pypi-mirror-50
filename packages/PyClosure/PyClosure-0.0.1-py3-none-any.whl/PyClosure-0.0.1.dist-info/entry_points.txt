@@ -1,0 +1,3 @@
+[console_scripts]
+pyclosure = pyclosure.__main__:main
+
