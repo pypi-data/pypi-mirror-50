@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: nsb
+Version: 0.4.0
+Summary: ('Draws nightsky allskymaps',)
+Home-page: https://pypi.python.org/pypi/nsb
+Author: Matthias Buechele
+Author-email: matthias.buechele@fau.de
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Classifier: Topic :: Scientific/Engineering :: Atmospheric Science
+Classifier: Topic :: Scientific/Engineering :: Physics
+Requires-Dist: healpy
+Requires-Dist: tqdm
+Requires-Dist: ephem
+Requires-Dist: astropy
+Requires-Dist: scipy
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+Requires-Dist: http
+Requires-Dist: urllib
+Requires-Dist: xml
+
+Draws nightsky allskymaps corresponding to KRISCIUNAS Model of the Brightness of Moonlight,
+together with star data obtained from the GAIA public data release catalog.
+The result is a 2D Pixel array with physical brightness values for each sky position.
+
+Or estimate the brightness for a given source over a timespann. The GAIA Data will we automatically downloaded via an query to the corresponding ESA server. The User has just decide how much to get. For calling sources 'by name' and storing their positions, nsb includes a sub packages 'mypycat'. Therefore a catalog is needed, which is not provided. Only a dummy file will be created and the user is free to add any source coordinates to  ~/.nsb/mypycat.txt
+
