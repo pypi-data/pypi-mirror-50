@@ -1,0 +1,17 @@
+motiffinder/__init__.py,sha256=dNKkd6uTDrj386EOg1nCcXaU0TPY_3BUUpQTcrL_ZW8,102
+motiffinder/__main__.py,sha256=12s6FhOIRPR1oPu4XK5j_SraybmFUiVs6HigC2h-Vdg,911
+motiffinder/_version.py,sha256=QvlVh4JTl3JL7jQAja76yKtT-IvF4631ASjWY1wS6AQ,22
+motiffinder/mf_generate.py,sha256=GP5RPFN_QkuEZLa73tiUx2ZxScmSRBfwxcebDF6Ocxw,16679
+motiffinder/mf_main.py,sha256=CYs0nu0PABenht5F9XoT3lffrCroFZVIMaCHrgc8Lrg,10406
+motiffinder/mf_query.py,sha256=yf3V8V0y8UNxFGDvSgShY2OLRQRcE1EcO1xZrnDxcqw,38895
+motiffinder/mf_utils.py,sha256=NBuNw9jDol7xPClC2wN1BFa4pDcTsI33TlrcY2QweNE,373
+motiffinder/static/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+motiffinder/static/blosum.json,sha256=yoTonoRzB7da0FlLEyU3UPFy2YD5w2Di72tcekix3bE,8942
+motiffinder/static/flex.json,sha256=_wpj8v4MxufJtaPShCsRh8b3y9JziL9FvvxmuUegcB4,2245
+motiffinder-0.0.2.dist-info/LICENSE,sha256=POrb8yvNp7hTEUrTDfMP0Vc3PEj5SpVsdCTrfLil3OU,1070
+motiffinder-0.0.2.dist-info/METADATA,sha256=IQmoVl2vK9FWPRybUjo7WPyjqULSXTmu6pTPl62-u8o,1787
+motiffinder-0.0.2.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+motiffinder-0.0.2.dist-info/entry_points.txt,sha256=wOuoZJUsukDZOne2jmn4T84XHgk44D7Hu3ewXhaNqKc,59
+motiffinder-0.0.2.dist-info/top_level.txt,sha256=0yK3j6rDCVVvOhoatHWmWN0kSe7dEEOHbQphiOjNNgM,12
+motiffinder-0.0.2.dist-info/zip-safe,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
+motiffinder-0.0.2.dist-info/RECORD,,
