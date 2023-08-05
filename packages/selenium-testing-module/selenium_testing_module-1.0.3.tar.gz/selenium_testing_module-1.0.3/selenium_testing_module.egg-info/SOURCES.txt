@@ -1,0 +1,10 @@
+README.md
+setup.cfg
+setup.py
+selenium_testing_module/STM.py
+selenium_testing_module/__init__.py
+selenium_testing_module.egg-info/PKG-INFO
+selenium_testing_module.egg-info/SOURCES.txt
+selenium_testing_module.egg-info/dependency_links.txt
+selenium_testing_module.egg-info/requires.txt
+selenium_testing_module.egg-info/top_level.txt

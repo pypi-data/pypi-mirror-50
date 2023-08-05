@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: selenium_testing_module
+Version: 1.0.3
+Summary: A module to be used with Selenium; helps make test scripts easier to write.
+Home-page: https://github.com/navaz-alani/selenium-testing-module/
+Author: Navaz Alani
+Author-email: nalani@uwaterloo.ca
+License: MIT
+Download-URL: https://github.com/navaz-alani/selenium-testing-module/archive/v1.0.2Beta.tar.gz
+Description: # Selenium Testing Module
+        
+        This is a module which can be used with Selenium to make testing scripts easier to read and write. The module automates some hectic parts of testing such as browser initiation and styles command line output for better, more understandable test results.
+        
+        For more information about this project, please visit https://projects.navaz.me/selenium-testing-module.
+        
+Keywords: testing,selenium,webdriver,automation
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
