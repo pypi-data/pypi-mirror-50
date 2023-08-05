@@ -1,0 +1,12 @@
+static_compressor/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+static_compressor/apps.py,sha256=RB8440AWsxGigd_f61PWlIYFykYWhpUjb5biPtLr2xY,113
+static_compressor/compressors.py,sha256=BMTxeIw2M-VYYse3j1NnLKGun0JJ3qxzN-7Ml4sCguk,623
+static_compressor/middleware.py,sha256=vUI8xSKG3z5YeaVehESxgAwzSkKMHPlYvUBe6gWuWo0,2853
+static_compressor/mixin.py,sha256=JoQ5CTVJc6VE2aCHh_w-Kwz_TXe_ZAcEzw0JfpOJqoI,21429
+static_compressor/staticfiles_storage.py,sha256=m0RLxcNkb1eG1BMkJWX4XaPc9ewkqccEq23d2PvniMc,588
+static_compressor/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_static_class_minifier-0.0.9.dist-info/LICENCE,sha256=SpDebKfWzuhhEAH7nYqwhX5OKxKAXpX0yOmLARNTkj4,1092
+django_static_class_minifier-0.0.9.dist-info/METADATA,sha256=smv1yB_Qd-kmCyB5VXiGJtiVA6hJapcHHfU90K146S0,7554
+django_static_class_minifier-0.0.9.dist-info/WHEEL,sha256=QBOOAdG2icRHGBs2s94rfaUlHrdfNBp-TceubUYCwOE,97
+django_static_class_minifier-0.0.9.dist-info/top_level.txt,sha256=wJyYVsSEWMjFKNT9vjbnnyZwzfZ450ndfus6Ij_yCzk,18
+django_static_class_minifier-0.0.9.dist-info/RECORD,,
