@@ -1,0 +1,47 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#: ../browser/controlpanel.py:23
+msgid "Configuration for collective.defaultexcludedfromnav product"
+msgstr "Configuration pour le produit collective.defaultexcludedfromnav"
+
+#: ../profiles/default/controlpanel.xml
+msgid "DefaultExcludedFromNav Settings"
+msgstr "DefaultExcludedFromNav configuration"
+
+#: ../configure.zcml:29
+msgid "Installs the collective.defaultexcludedfromnav add-on."
+msgstr ""
+
+#: ../browser/controlpanel.py:14
+msgid "Portal type"
+msgstr "Type de contenu"
+
+#: ../browser/controlpanel.py:12
+msgid "Portal types"
+msgstr "Types de contenu"
+
+#: ../configure.zcml:38
+msgid "Uninstalls the collective.defaultexcludedfromnav add-on."
+msgstr ""
+
+#: ../configure.zcml:29
+msgid "collective.defaultexcludedfromnav"
+msgstr ""
+
+#: ../configure.zcml:38
+msgid "collective.defaultexcludedfromnav (uninstall)"
+msgstr ""

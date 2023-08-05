@@ -1,0 +1,38 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="collective.defaultexcludedfromnav">
+
+  <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
+  <include package="z3c.jbot" file="meta.zcml" />
+  <browser:jbot
+      directory="overrides"
+      layer="collective.defaultexcludedfromnav.interfaces.ICollectiveDefaultexcludedfromnavLayer"
+      />
+
+  <!-- Publish static files -->
+  <plone:static
+      name="collective.defaultexcludedfromnav"
+      type="plone"
+      directory="static"
+      />
+
+  <browser:page
+    name="defaultexcludedfromnav_settings"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    class=".controlpanel.DefaultExcludedFromNavControlPanel"
+    permission="cmf.ManagePortal"
+    />
+
+  <adapter
+      for="plone.dexterity.interfaces.IDexterityContent"
+      factory=".adapters.default_exclude"
+      />
+
+  <adapter
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      factory=".adapters.default_exclude"
+      />
+
+</configure>
