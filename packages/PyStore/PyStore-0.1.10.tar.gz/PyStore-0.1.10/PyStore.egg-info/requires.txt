@@ -1,0 +1,9 @@
+python-snappy
+toolz
+partd
+cloudpickle
+distributed
+pandas
+numpy
+fastparquet
+dask
