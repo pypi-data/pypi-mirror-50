@@ -1,0 +1,16 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.py
+PyClosure.egg-info/PKG-INFO
+PyClosure.egg-info/SOURCES.txt
+PyClosure.egg-info/dependency_links.txt
+PyClosure.egg-info/entry_points.txt
+PyClosure.egg-info/top_level.txt
+pyclosure/__init__.py
+pyclosure/__main__.py
+pyclosure/compiler.py
+tests/__init__.py
+tests/test_basic.py
+utils/__init__.py
+utils/constants.py
