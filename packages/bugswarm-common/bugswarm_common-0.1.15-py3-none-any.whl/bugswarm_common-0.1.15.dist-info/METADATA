@@ -1,0 +1,18 @@
+Metadata-Version: 2.0
+Name: bugswarm-common
+Version: 0.1.15
+Summary: Library of modules used throughout the BugSwarm toolset
+Home-page: https://github.com/BugSwarm/common
+Author: BugSwarm
+Author-email: dev.bugswarm@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: BSD License
+Requires-Dist: CacheControl (==0.12.3)
+Requires-Dist: requests (>=2.20.0)
+Requires-Dist: requests-cache (==0.4.13)
+
+Library of modules used throughout the BugSwarm toolset
+
+
