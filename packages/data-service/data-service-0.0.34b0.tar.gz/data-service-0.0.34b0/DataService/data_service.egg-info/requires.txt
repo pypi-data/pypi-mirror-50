@@ -1,0 +1,5 @@
+flask>=1.0.0
+flask_cors
+apscheduler>=3.0.0
+pendulum
+pymysql>0.9.0

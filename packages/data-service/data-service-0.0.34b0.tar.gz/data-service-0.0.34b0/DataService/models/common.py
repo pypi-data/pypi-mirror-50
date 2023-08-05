@@ -1,0 +1,2 @@
+class DetailWithDate(object):
+    pass
