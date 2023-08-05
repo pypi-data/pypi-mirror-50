@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: gcandy
+Version: 1.0.0
+Summary: Python wrapper for Google Drive REST API.
+Home-page: https://github.com/Marco-Christiani/drive-candy
+Author: Marco Christiani
+Author-email: mchristiani2017@gmail.com
+License: GPLv3
+Description: # drive-candy 
+        ### Python wrapper for Google Drive v3 API
+        To set up, you have 2 authorization options:
+        1. Using service account: 
+        
+           Create a service account and save the email address and private key and set as environment variables "ISS" and "KEY" or pass to drive constructor.
+        2. Using your own account **not yet supported**
+        
+           Create oauth2 credentials from Google Console
+        ```python
+        from drivecandy import drive
+        my_drive = drive.Drive()
+        ```
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
