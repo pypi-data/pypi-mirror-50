@@ -1,0 +1,6 @@
+cached-property==1.*
+dicttoxml==1.*
+requests==2.*
+xmltodict==0.*
+hgtools==6.0
+backports.functools-lru-cache==1.*
