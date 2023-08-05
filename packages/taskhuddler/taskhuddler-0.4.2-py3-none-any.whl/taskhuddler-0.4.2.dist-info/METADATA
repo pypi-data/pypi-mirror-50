@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: taskhuddler
+Version: 0.4.2
+Summary: taskcluster-client wrapper
+Home-page: https://github.com/mozilla-releng/taskhuddler
+Author: Mozilla Release Engineering
+Author-email: release+python@mozilla.com
+License: MPL 2.0
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: aiobotocore[awscli]
+Requires-Dist: aiofiles
+Requires-Dist: aiohttp
+Requires-Dist: async-timeout
+Requires-Dist: asyncinit
+Requires-Dist: boto3 (==1.9.91)
+Requires-Dist: idna
+Requires-Dist: idna-ssl
+Requires-Dist: python-dateutil
+Requires-Dist: taskcluster
+Provides-Extra: pandas
+Requires-Dist: pandas; extra == 'pandas'
+
+UNKNOWN
+
+
