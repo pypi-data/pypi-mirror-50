@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: gns3fy
+Version: 0.1.0
+Summary: Python wrapper around GNS3 Server API
+License: MIT
+Author: David Flores
+Author-email: davidflores7_8@hotmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: pydantic (>=0.31.0,<0.32.0)
+Requires-Dist: requests (>=2.22,<3.0)
