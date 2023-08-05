@@ -1,0 +1,4 @@
+include tests/*
+include bohra/utils/*
+include bohra/templates/*
+
