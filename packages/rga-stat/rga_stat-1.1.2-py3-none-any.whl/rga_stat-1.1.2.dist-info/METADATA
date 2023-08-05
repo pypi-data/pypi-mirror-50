@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: rga-stat
+Version: 1.1.2
+Summary: A Python package to get statistical functions.
+Home-page: https://github.com/arpit12011995/rga-stat
+Author: rga packages 
+Author-email: rgapackages@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Requires-Dist: pandas
+Requires-Dist: numpy
+
+# Example Package
+
+This is a simple example package. You can use
+[Github-flavored Markdown](https://guides.github.com/features/mastering-markdown/)
+to write your content.
+
