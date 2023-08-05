@@ -1,0 +1,9 @@
+mocr/__init__.py,sha256=MKgrf-YNutEPF-Ab6BNBdNe6GrzqG2ZnhzX2TBgibDk,656
+mocr/__main__.py,sha256=Uu6sYK3jECJauwuFcBLxquXtriDioNtYEdzgyR_h2Xk,2300
+mocr/face_detection.py,sha256=yotiu65_9bPG4JbTs9B3khx2t0JeiFWB9gnKLWaYPEg,1217
+mocr/text_recognition.py,sha256=7Dqu1sofPUzzWEewD0mVqGs-dhA97CZwjVfmx-1wCIc,10682
+mocr/haarcascades/haarcascade_frontalface_default.xml,sha256=D31FJ4ROtRTUpJSOgi2pD7sWo0oLu7xq3GSYdHpar7A,930127
+mocr-0.2.1.dist-info/METADATA,sha256=y4XVrWxAnJrxGLfZ02XZN1u1LPMMXUlu9c_CpN1i3yY,5009
+mocr-0.2.1.dist-info/RECORD,,
+mocr-0.2.1.dist-info/WHEEL,sha256=J3CsTk7Mf2JNUyhImI-mjX-fmI4oDjyiXgWT4qgZiCE,110
+mocr-0.2.1.dist-info/top_level.txt,sha256=iA1QMbWppEbiebEfMt-RCAsT4o82ejnIIGg2iR8k_bM,5
