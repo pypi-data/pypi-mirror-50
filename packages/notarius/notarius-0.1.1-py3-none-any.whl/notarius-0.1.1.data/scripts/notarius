@@ -1,0 +1,5 @@
+#!python
+
+from lib.logging import info
+
+info('test')
