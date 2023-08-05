@@ -1,0 +1,3 @@
+[console_scripts]
+makec = makec.__main__:main
+
