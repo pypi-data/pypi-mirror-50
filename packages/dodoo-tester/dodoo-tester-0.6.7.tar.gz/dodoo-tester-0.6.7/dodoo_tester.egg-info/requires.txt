@@ -1,0 +1,9 @@
+dodoo>=2.0.0.rc6
+future
+pytest
+
+[:python_version < "3.7"]
+pyyaml==3.12
+
+[:python_version >= "3.7"]
+pyyaml==3.13
