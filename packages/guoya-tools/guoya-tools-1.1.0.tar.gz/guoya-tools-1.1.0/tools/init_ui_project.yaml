@@ -1,0 +1,51 @@
+init_ui:
+  chromedriver:
+    type: exe
+    url: http://chromedriver.storage.googleapis.com/75.0.3770.90/chromedriver_win32.zip
+    save_path: chrome_driver/
+    save_name: chromedriver_win32.zip
+    unzip_name: chromedriver.exe
+  files:
+    -
+      url: https://raw.githubusercontent.com/LudvikWoo/guoya-ui-test/master/config/config.py
+      save_path: config/
+      save_name: config.py
+    -
+      url: https://raw.githubusercontent.com/LudvikWoo/guoya-ui-test/master/data/demo/test_case_demo.yaml
+      save_path: data/demo/
+      save_name: test_case_demo.yaml
+    -
+      url: https://raw.githubusercontent.com/LudvikWoo/guoya-ui-test/master/reports/xml/categories.json
+      save_path: reports/xml/
+      save_name: categories.json
+    -
+      url: https://raw.githubusercontent.com/LudvikWoo/guoya-ui-test/master/reports/xml/environment.properties
+      save_path: reports/xml/
+      save_name: environment.properties
+    -
+      url: https://raw.githubusercontent.com/LudvikWoo/guoya-ui-test/master/test_case/conftest.py
+      save_path: test_case/
+      save_name: conftest.py
+    -
+      url: https://raw.githubusercontent.com/LudvikWoo/guoya-ui-test/master/test_case/demo/test_baidu.py
+      save_path: test_case/demo/
+      save_name: test_baidu.py
+    -
+      url: https://raw.githubusercontent.com/LudvikWoo/guoya-ui-test/master/run.py
+      save_path: /
+      save_name: run.py
+    -
+      url: https://raw.githubusercontent.com/LudvikWoo/guoya-ui-test/master/README.md
+      save_path: /
+      save_name: README.md
+    -
+      url: https://raw.githubusercontent.com/LudvikWoo/guoya-ui-test/master/.gitignore
+      save_path: /
+      save_name: .gitignore
+    -
+      url: https://raw.githubusercontent.com/LudvikWoo/guoya-ui-test/master/tools/base_ui.py
+      save_path: tools/
+      save_name: base_ui.py
+  dirs:
+    - reports/html/
+    - logs/
