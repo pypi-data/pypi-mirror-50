@@ -1,0 +1,3 @@
+[nbconvert.exporters]
+xls = nb2xls:XLSExporter
+
