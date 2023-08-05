@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: PyCDTS
+Version: 0.2.0
+Summary: A Python based Carrier and Defect Transport Solver
+Home-page: https://gitlab.com/abdul529/pycdts
+Author: Abdul Rawoof Shaik
+Author-email: arshaik@asu.edu
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: numpy (>=1.16.3)
+Requires-Dist: scipy (>=1.2.1)
+Requires-Dist: matplotlib (>=3.0.3)
+Requires-Dist: PyQt5 (>=5.9.2)
+Requires-Dist: scikit-umfpack (>=0.3.1)
+Requires-Dist: pyqtgraph (>=0.10.0)
+Requires-Dist: h5py (>=2.9.0)
+Requires-Dist: PyOpenGL (>=3.1.0)
+
+===========
+PyCDTS
+===========
+
+A Python based Carrier and Defect Transport Solver.
+
+
