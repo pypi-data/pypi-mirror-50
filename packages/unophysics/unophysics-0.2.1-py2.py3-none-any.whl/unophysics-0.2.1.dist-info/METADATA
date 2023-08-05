@@ -1,0 +1,72 @@
+Metadata-Version: 2.1
+Name: unophysics
+Version: 0.2.1
+Summary: Tools for physics from UNO.
+Home-page: https://github.com/micha2718l/unophysics
+Author: Michael Haas
+Author-email: mjhaas@uno.edu
+License: MIT license
+Keywords: unophysics
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Requires-Dist: Click (>=6.0)
+Requires-Dist: requests
+Requires-Dist: sshtunnel
+Requires-Dist: pymongo
+Requires-Dist: sympy
+Requires-Dist: jupyter
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+Requires-Dist: scipy
+Requires-Dist: PyWavelets
+Requires-Dist: pandas
+
+# UNO Physics Tools
+-------------------
+- Python tools collected from data analysis projects at the University of New Orleans.
+- Some of these will be useful in general, some will be specific to our internal systems.
+  - TODO: seperate the generally useful parts from the specific parts.
+- TODO: add in proper badges
+
+## Tools for physics from UNO.
+------------------------------
+- Free software: MIT license
+- Documentation: TODO
+
+## Features
+--------
+- Wavelet noise cleaning function
+- Various quantum mechanics formulas implemented
+- Jupyter Notebook helper functions for displaying math
+- Can load LADC GEMM data, for the data access functions to work, credentials for the servers are needed. Contact us if that is desired. 
+- Can work with the LADC GEMM data to display spectrographic information
+- Data on various marine mammal species built into the library (currently has Bryde's whale information, in progress to fill in with Fin whale data).
+- TODO: Examples
+
+## Credits
+-------
+- Most of this work has been done by various students and professors at the University of New Orleans Physics department.
+- Special thanks to the [LADC GEMM Consortium](http://www.ladcgemm.org/) for data to work with and inspire us.
+- This package was created with:
+  - [Cookiecutter](https://github.com/audreyr/cookiecutter) and the
+  - [audreyr/cookiecutter-pypackage](https://github.com/audreyr/cookiecutter-pypackage) project template.
+  - relies heavily on numpy, PyWavelets, scipy, etc...
+
+
+History
+=======
+
+0.1.0 (2018-09-06)
+------------------
+
+-   First release on PyPI.
+
+
+
