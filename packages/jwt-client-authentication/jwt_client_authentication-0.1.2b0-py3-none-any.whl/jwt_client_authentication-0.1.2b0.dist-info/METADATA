@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: jwt-client-authentication
+Version: 0.1.2b0
+Summary: Pip package for authenticating a JWT token with a remote jwt backend
+Home-page: UNKNOWN
+Author: kobededecker
+Author-email: UNKNOWN
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Requires-Dist: pyjwt
+
+UNKNOWN
+
+
