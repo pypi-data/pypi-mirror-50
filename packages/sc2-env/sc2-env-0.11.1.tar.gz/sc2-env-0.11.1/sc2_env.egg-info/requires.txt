@@ -1,0 +1,6 @@
+aiohttp
+portpicker
+gym
+async-timeout<4.0,>=3.0
+pyglet
+s2clientprotocol
