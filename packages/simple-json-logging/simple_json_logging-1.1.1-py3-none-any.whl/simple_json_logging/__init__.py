@@ -1,0 +1,109 @@
+import json
+import logging
+import sys
+from typing import Dict, Optional, Set
+
+
+class LoggerWithFlexibleArgsAdapter(logging.LoggerAdapter):
+    """
+        This class just add any keyword argument of the standard logging functions to 'data' key
+        of the extra argument of LogRecord constructor. This is very useful with structured logging
+        because extra argument will be passed as is to a formatter. In conjunction with
+        JsonFormatter this will result that the keyword arguments will appears in a JSON document
+        in "data" key.
+    """
+
+    def process(self, msg, kwargs):
+        new_kwargs = {'extra': {**self.extra, **{'data': kwargs}}}
+
+        # Save any real argument of Logger._log() except 'extra'
+        _log_method_args = {'level', 'msg', 'args', 'exc_info', 'stack_info'}
+        for arg in _log_method_args:
+            if arg in kwargs:
+                new_kwargs[arg] = kwargs[arg]
+                del kwargs[arg]
+
+        return msg, new_kwargs
+
+    # Unfortunately Python community still don't use Decorator patter for LoggerAdapter class
+    # and I should implement this method by hand
+    def addHandler(self, hdlr):
+        return self.logger.addHandler(hdlr)
+
+
+class JsonFormatter(logging.Formatter):
+    def __init__(
+        self,
+        fmt=None,
+        datefmt=None,
+        style='%',
+        skip_fields_calculation: Optional[Set[str]] = None,
+        drop_fields_from_json: Optional[Set[str]] = None,
+        simplify_exception_text: bool = True,
+        json_dumps_args: Optional[Dict] = None,
+    ):
+        super().__init__(fmt, datefmt, style)
+        self._skip_fields_calculation = set(skip_fields_calculation) if skip_fields_calculation \
+            else set()
+        self._drop_fields_from_json = set(drop_fields_from_json) if drop_fields_from_json else set()
+        self._simplify_exception_text = bool(simplify_exception_text)
+        self._json_dumps_args = json_dumps_args if json_dumps_args else {}
+
+    def format(self, record: logging.LogRecord):
+        record.message = record.getMessage()
+        if self.usesTime():
+            record.asctime = self.formatTime(record, self.datefmt)
+        if record.exc_info:
+            record.exceptionClass = record.exc_info[0].__name__
+            record.exceptionMessage = str(record.exc_info[1])
+            # Cache the traceback text to avoid converting it multiple times (it's constant anyway)
+            if not record.exc_text and 'exc_text' not in self._skip_fields_calculation:
+                record.exc_text = self.formatException(record.exc_info)
+        if 'messageFormatted' not in self._skip_fields_calculation:
+            record.messageFormatted = self.formatMessage(record)
+
+        data = record.__dict__
+
+        del data['msg'], data['args']
+        # We can't serialize exc_info to JSON be default thus drop it.
+        del data['exc_info']
+
+        for field in self._drop_fields_from_json:
+            if field in data:
+                del data[field]
+
+        return json.dumps(data, **self._json_dumps_args)
+
+
+def init_flexible_logger(name: str) -> logging.LoggerAdapter:
+    result = logging.getLogger(name)
+    # Using logging.LoggerAdapter instead of implementing own Logger subclass solve an issue with
+    # multi-threads programs in case of temporary changing of logging.getLoggerClass() to hack
+    # the logging.getLogger(name) call
+    return LoggerWithFlexibleArgsAdapter(result, {})
+
+
+def init_json_logger(
+    name: str,
+    drop_formatted_message: bool = True,
+    drop_old_exception_text: bool = True,
+    stream=sys.stdout,
+    formatter: Optional[JsonFormatter] = None
+) -> logging.Logger:
+    if not formatter:
+        skip_fields = set()
+        if drop_formatted_message:
+            skip_fields.add('messageFormatted')
+        if drop_old_exception_text:
+            skip_fields.add('exc_text')
+        formatter = JsonFormatter(
+            skip_fields_calculation=skip_fields,
+            drop_fields_from_json=skip_fields
+        )
+
+    result = init_flexible_logger(name)
+    handler = logging.StreamHandler(stream)
+    handler.setFormatter(formatter)
+    result.addHandler(handler)
+
+    return result
