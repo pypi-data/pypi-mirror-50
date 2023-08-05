@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: vebits-api
+Version: 1.1.5
+Summary: High-level deep learning package for Object Detection API
+Home-page: https://github.com/hnt4499/vebits_api
+Author: Hoang Nghia Tuyen
+Author-email: hnt4499@gmail.com
+License: MIT
+Download-URL: https://github.com/hnt4499/vebits_api/archive/1.0.tar.gz
+Keywords: augmentation,image,deep learning,neural network,CNN,machine learning,computer vision,object detection api,tensorflow,data preprocessing,data manipulation,data visualization
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: tqdm
+Requires-Dist: imutils
+Requires-Dist: protobuf
+Requires-Dist: matplotlib
+Requires-Dist: imgaug
+Requires-Dist: opencv-python
+
+A package for data manipulation, data preprocessing, data
+visualization in computer vision projects, particularly Tensorflow's Object
+Detection API-based projects. Supports multiple advanced techniques for data
+preprocessing and especially can be used seamlessly with Object Detection API.
+

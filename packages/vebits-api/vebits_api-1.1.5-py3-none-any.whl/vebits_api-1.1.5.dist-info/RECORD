@@ -1,0 +1,15 @@
+vebits_api/__init__.py,sha256=TcVv3f6m3PeBhAEmBKZiwrgL_HRM6r0ABLBx5ktdQXY,277
+vebits_api/bbox_util.py,sha256=gw9ntgP-PZiyBHbxakR0AVn92VNIk1HC-DdeE3GUjik,11683
+vebits_api/detector_util.py,sha256=25iXkb1Rqisy2SNpg7c7pDW1nH4aXQ2zSrFRMde63BU,30986
+vebits_api/detector_utils.py,sha256=ci7UFXZWbAPGUMlSvSpIoGDoVXtwYKOOWea-ecDHHo4,5076
+vebits_api/im_util.py,sha256=99PXk6Lx_il4gndOOkBiWlCM-eydCKrD26JIZx58VR0,2466
+vebits_api/labelmap_util.py,sha256=DFor9xtEgJ2_I_FtdagolkxRU6SuGrlki7klQaFFGqE,5666
+vebits_api/others_util.py,sha256=r--CteLdoKqk_v4CsOK1TPw92qK52pTHKYY8LXvJvKs,3778
+vebits_api/string_int_label_map_pb2.py,sha256=0fOIXVj5yLEfiT6DH04F7CCDwxNj3_pwZjaTQX0vlQc,4505
+vebits_api/vis_util.py,sha256=cu5SMGOkkqmakDnCIJUYk3HnoSlvrG1Y08GRXzJNwyY,5954
+vebits_api/xml_util.py,sha256=7xRnKuMGxsEJwfnWwM4SKev_9JMfI1-6tSAn5rSDi1M,4302
+vebits_api-1.1.5.dist-info/LICENSE,sha256=cY7JDtAUtv2SJYU8sxzTbTEgXhWkz1VabL9y35YcqBE,1072
+vebits_api-1.1.5.dist-info/METADATA,sha256=yLCBT1WLTDRZApkbaMISXJO7CDYmw5zYEaOtAIzIRKw,1138
+vebits_api-1.1.5.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+vebits_api-1.1.5.dist-info/top_level.txt,sha256=OiKtMjr89X0Zd4eiDw_2uyZNLuJOXFQncKiYDLHIU8s,11
+vebits_api-1.1.5.dist-info/RECORD,,
