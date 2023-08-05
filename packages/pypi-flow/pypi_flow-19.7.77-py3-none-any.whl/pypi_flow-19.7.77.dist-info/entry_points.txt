@@ -1,0 +1,3 @@
+[console_scripts]
+waterfall = pypi_flow.CLS_waterfall:main
+
