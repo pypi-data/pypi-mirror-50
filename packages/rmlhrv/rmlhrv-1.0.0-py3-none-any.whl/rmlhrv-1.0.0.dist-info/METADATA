@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: rmlhrv
+Version: 1.0.0
+Summary: Python toolbox for Heart Rate Variability and Stress Level Analysis.
+Home-page: https://github.com/rehmanzafar/rmlhrv.git
+Author: Ryerson Multimedia Lab (RML)
+Author-email: rml@ryerson.ca
+License: UNKNOWN
+Keywords: Heart Rate Variability,HRV
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=2.7
+Description-Content-Type: text/markdown
+Requires-Dist: matplotlib
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: nolds
+
+# Python toolbox for Heart Rate Variability and Stress Level Analysis.
+## Getting Started
+
+### Installation
+This toolbox can be installed using the ```pip``` package manager.
+```
+pip install rmlhrv
+```
+
+### Dependencies
+- numpy
+- scipy
+- matplotlib
+- nolds
+
+### Disclaimer
+This program is distributed in the hope it will be useful and provided to you "as is", but WITHOUT ANY WARRANTY, without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. This program is NOT intended for medical diagnosis. We expressly disclaim any liability whatsoever for any direct, indirect, consequential, incidental or special damages, including, without limitation, lost revenues, lost profits, losses resulting from business interruption or loss of data, regardless of the form of action or legal theory under which the liability may be asserted, even if advised of the possibility of such damages.
+
+
