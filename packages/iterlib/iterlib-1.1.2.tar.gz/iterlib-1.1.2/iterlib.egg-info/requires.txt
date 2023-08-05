@@ -1,0 +1,9 @@
+loguru
+
+[dev]
+check-manifest
+
+[test]
+coveralls
+pytest-cov
+pydocstyle

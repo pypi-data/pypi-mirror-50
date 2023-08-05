@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: iterlib
+Version: 1.1.2
+Summary: Parallel and concurrent iterators
+Home-page: https://github.com/rohits2/iterlib
+Author: Rohit Singh
+Author-email: singhrohit2@hotmail.com
+License: BSD
+Description: UNKNOWN
+Keywords: iterators,generators,threading,multiprocessing,map
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Provides-Extra: test
+Provides-Extra: dev
