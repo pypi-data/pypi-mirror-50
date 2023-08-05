@@ -1,0 +1,11 @@
+LICENSE
+README.md
+setup.cfg
+setup.py
+goop/__init__.py
+goop/goop.py
+goop.egg-info/PKG-INFO
+goop.egg-info/SOURCES.txt
+goop.egg-info/dependency_links.txt
+goop.egg-info/requires.txt
+goop.egg-info/top_level.txt
