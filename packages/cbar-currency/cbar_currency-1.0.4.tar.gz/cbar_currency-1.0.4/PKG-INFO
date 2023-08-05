@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: cbar_currency
+Version: 1.0.4
+Summary: Getting currencies and differencies from CBAR
+Home-page: https://github.com/KenanSultan/Django-cbar-currency
+Author: KENAN SULTAN
+Author-email: kenansultan@yahoo.com
+License: MIT
+Download-URL: https://github.com/KenanSultan/Django-cbar-currency/archive/v_1.0.4.tar.gz
+Description: UNKNOWN
+Keywords: CBAR,CURRENCY
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
