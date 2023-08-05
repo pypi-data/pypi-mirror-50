@@ -1,0 +1,12 @@
+README.md
+setup.py
+drf_multiple_serializer/__init__.py
+drf_multiple_serializer/mixins.py
+drf_multiple_serializer.egg-info/PKG-INFO
+drf_multiple_serializer.egg-info/SOURCES.txt
+drf_multiple_serializer.egg-info/dependency_links.txt
+drf_multiple_serializer.egg-info/requires.txt
+drf_multiple_serializer.egg-info/top_level.txt
+tests/__init__.py
+tests/settings.py
+tests/test.py
