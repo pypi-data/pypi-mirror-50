@@ -1,0 +1,15 @@
+azure/__init__.py,sha256=jwUpEftyp-71KJZRiDO8VY0bF3pPg2gQauDzBT8mzRc,409
+azure/cli/__init__.py,sha256=jwUpEftyp-71KJZRiDO8VY0bF3pPg2gQauDzBT8mzRc,409
+azure/cli/command_modules/__init__.py,sha256=jwUpEftyp-71KJZRiDO8VY0bF3pPg2gQauDzBT8mzRc,409
+azure/cli/command_modules/signalr/__init__.py,sha256=XFx7RSA8y9RkC_NCjsKZspMaBxx6SoldRTJU3XMisk8,1108
+azure/cli/command_modules/signalr/_client_factory.py,sha256=tCIXbGqJ7wYDN0nOZVYEZjgONCOxV_VhY26WM8iGRKs,680
+azure/cli/command_modules/signalr/_constants.py,sha256=xEn_vPGJneqYwA6nWmExSWElJ5WtWZ0drC3Gaop-jT8,450
+azure/cli/command_modules/signalr/_help.py,sha256=JzIzsxK1a0EDw_z2vX1htFMKN8CnaZe6H8Fi-97Ha2E,2414
+azure/cli/command_modules/signalr/_params.py,sha256=2LztUA9n3OvqCrjmcipzszj7-J9ejOTjRBFVNpnRgws,1735
+azure/cli/command_modules/signalr/commands.py,sha256=01X_8AXbyp6FDEmGybIHNAL38SCzWRprpqp5jvBzqJs,1262
+azure/cli/command_modules/signalr/custom.py,sha256=zHqBo5iZqdvOAxm6s-kERf7W9XacIyjCKjOv3G7Otmc,1443
+azure/cli/command_modules/signalr/key.py,sha256=ilINjlLoKhAh4-aMgsGELM0Gwm4-wSxsLzK0yKWDj48,806
+opal_azure_cli_signalr-1.0.3.dist-info/METADATA,sha256=BprNNmnZoJ2nSw1pIUNh9CIp97_2rxFODMKv8A1J5B4,1219
+opal_azure_cli_signalr-1.0.3.dist-info/WHEEL,sha256=h_aVn5OB2IERUjMbi2pucmR_zzWJtk303YXvhh60NJ8,110
+opal_azure_cli_signalr-1.0.3.dist-info/top_level.txt,sha256=S7DhWV9m80TBzAhOFjxDUiNbKszzoThbnrSz5MpbHSQ,6
+opal_azure_cli_signalr-1.0.3.dist-info/RECORD,,
