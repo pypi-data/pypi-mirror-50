@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: startkit
+Version: 1.0.1
+Summary: A skeleton generator for python projects.
+Home-page: https://github.com/niemingzhao/startkit
+Author: Nie Mingzhao
+Author-email: 1432440963@qq.com
+License: MIT
+Download-URL: https://github.com/niemingzhao/startkit/archive/master.zip
+Keywords: skeleton project development
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.6
+Requires-Python: ~=3.6
+Description-Content-Type: text/markdown
+
+# startkit
+
+A skeleton generator for python projects.
+
+## Installation
+```cmd
+pip install startkit
+```
+
+## Demo
+```cmd
+cd C:\workspace (workspace)
+startkit
+
+> Create the project under which path [C:\workspace]?
+> Please enter your project name [myproject]:
+> Please enter main package name [myproject]:
+> Please enter your project version [0.0.1]:
+> Please enter your project description:demo
+> Please enter your name [***]:******
+> Please enter your email:******@***.com
+The project has been successfully created!
+
+cd myproject
+python -m venv venv
+venv\Scripts\activate.bat (cmd.exe)
+venv\Scripts\Activate.ps1 (PowerShell)
+source venv/bin/activate (bash/zsh)
+pip install -r requirements.txt
+pip freeze > requirements.txt
+python -m myproject (package name)
+...
+deactivate
+```
+
+**warning**: The text in "()" is just explanatory text. Don't paste them to run.
+
+**warning**: For more executable commands, refer to the "Makefile" file.
+
+## Bug Reports
+If you have any bugs to report, you're welcome to file an [issue](https://github.com/niemingzhao/startkit/issues).
+
+

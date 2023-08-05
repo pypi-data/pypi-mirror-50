@@ -1,0 +1,3 @@
+[console_scripts]
+startkit = startkit.__main__:main
+
