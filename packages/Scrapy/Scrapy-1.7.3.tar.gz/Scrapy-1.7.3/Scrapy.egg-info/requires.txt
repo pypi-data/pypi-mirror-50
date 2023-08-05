@@ -1,0 +1,19 @@
+w3lib>=1.17.0
+queuelib
+pyOpenSSL
+cssselect>=0.9
+six>=1.5.2
+parsel>=1.5
+PyDispatcher>=2.0.5
+service_identity
+
+[:platform_python_implementation == "PyPy"]
+PyPyDispatcher>=2.1.0
+
+[:python_version != "3.4"]
+Twisted>=13.1.0
+lxml
+
+[:python_version == "3.4"]
+Twisted<=19.2.0,>=13.1.0
+lxml<=4.3.5
