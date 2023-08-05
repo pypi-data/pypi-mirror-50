@@ -1,0 +1,12 @@
+README.md
+setup.py
+django_fakeredis/__init__.py
+django_fakeredis/fakeredis.py
+django_fakeredis/tests.py
+django_fakeredis.egg-info/PKG-INFO
+django_fakeredis.egg-info/SOURCES.txt
+django_fakeredis.egg-info/dependency_links.txt
+django_fakeredis.egg-info/requires.txt
+django_fakeredis.egg-info/top_level.txt
+example/__init__.py
+example/settings.py
