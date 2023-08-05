@@ -1,0 +1,4 @@
+[console_scripts]
+make-input-terms = tripsweb.inputterms:main
+trips-web = tripsweb.query:main
+
