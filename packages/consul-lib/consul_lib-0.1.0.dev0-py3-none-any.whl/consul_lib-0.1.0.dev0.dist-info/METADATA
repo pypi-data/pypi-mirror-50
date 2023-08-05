@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: consul-lib
+Version: 0.1.0.dev0
+Summary: UNKNOWN
+Home-page: https://github.com/syseleven/consul_lib
+Maintainer: Syseleven Cloudstackers
+Maintainer-email: cloudstackers@syseleven.de
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: python-consul
+Requires-Dist: requests
+
+UNKNOWN
+
+
