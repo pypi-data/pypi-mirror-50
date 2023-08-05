@@ -1,0 +1,14 @@
+janis/__init__.py,sha256=PbCmqN4LIi_MmVgmQSWOmZYJT9pa9DNqjTb3i8jcmAY,1665
+janis/__meta__.py,sha256=zS12CQ6830LhDh5Nv_1xJLDWvdsPdpqUjgeeiwOakd4,141
+toolbuilder/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+toolbuilder/cltconvert.py,sha256=R5TkIidw1qETbRnDi_lzc-SaHLq9IIyT9Xgez8jZ4is,3864
+toolbuilder/main.py,sha256=R90SWk9rnL0qSxX1i2ex8oqrQqxbYetpP839lCqzcIA,2201
+toolbuilder/parse_cwl.py,sha256=ebwCfCio_-r8VKeOQsAYX5zssT8rtatdCRzOiOUfcTg,131
+toolbuilder/parse_help.py,sha256=pkq_ccV2H7-chD4GPN5E8L9fVfzCGnfdHi6VX0XMHyU,6123
+toolbuilder/test_cltbuilder.py,sha256=MwQB5OxkjPL8oKFI_p_Ecx4zsRuSGGJPtGzQQcbrgG0,1887
+janis_pipelines-0.5.0.dist-info/LICENSE,sha256=OXLcl0T2SZ8Pmy2_dmlvKuetivmyPd5m1q-Gyd-zaYY,35149
+janis_pipelines-0.5.0.dist-info/METADATA,sha256=I0-PJG6G7q1_8tK1j7bQKfM2G8P-8qTwSiYhiSysQbg,7546
+janis_pipelines-0.5.0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+janis_pipelines-0.5.0.dist-info/entry_points.txt,sha256=7WaMzT--TJzc8BOeJnEwHRYJQR27dMTFDhE1LqV8iYI,64
+janis_pipelines-0.5.0.dist-info/top_level.txt,sha256=DxsNlnw5RFy0M0plN00Byu_kn_6O0YR3LwXc0-4Kxsw,18
+janis_pipelines-0.5.0.dist-info/RECORD,,
