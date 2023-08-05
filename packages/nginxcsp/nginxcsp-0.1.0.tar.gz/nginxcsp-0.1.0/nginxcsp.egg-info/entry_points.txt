@@ -1,0 +1,3 @@
+[console_scripts]
+nginxcsp = nginxcsp.__main__:main
+
