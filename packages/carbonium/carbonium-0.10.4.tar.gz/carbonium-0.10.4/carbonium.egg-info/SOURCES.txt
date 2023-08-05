@@ -1,0 +1,15 @@
+.gitignore
+LICENSE
+README.md
+main.py
+setup.cfg
+setup.py
+carbonium/__init__.py
+carbonium/name.py
+carbonium/structure.py
+carbonium/version.py
+carbonium.egg-info/PKG-INFO
+carbonium.egg-info/SOURCES.txt
+carbonium.egg-info/dependency_links.txt
+carbonium.egg-info/not-zip-safe
+carbonium.egg-info/top_level.txt
