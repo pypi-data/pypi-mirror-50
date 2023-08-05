@@ -1,0 +1,8 @@
+MANIFEST.in
+README.md
+setup.py
+src/Epsexec.py
+src/Enhanced_PsExec.egg-info/PKG-INFO
+src/Enhanced_PsExec.egg-info/SOURCES.txt
+src/Enhanced_PsExec.egg-info/dependency_links.txt
+src/Enhanced_PsExec.egg-info/top_level.txt
