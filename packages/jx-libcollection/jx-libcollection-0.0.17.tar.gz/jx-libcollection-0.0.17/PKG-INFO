@@ -1,0 +1,66 @@
+Metadata-Version: 2.1
+Name: jx-libcollection
+Version: 0.0.17
+Summary: Jiao's collection libs
+Home-page: https://github.com/caser789/libcollection
+Author: jiao.xue
+Author-email: jiao.xuejiao@gmail.com
+License: UNKNOWN
+Description: # libcollection
+        common data structures
+        
+        [![PyPI version](https://badge.fury.io/py/jx-libcollection.svg)](https://badge.fury.io/py/jx-libcollection)
+        
+        
+        ## stack
+        
+        * ResizingArrayStack
+        * LinkedStack
+        
+        ## queue
+        
+        * LinkedQueue
+        * SimpleLinkedQueue
+        * ResizingArrayQueue
+        * FixedCapacityArrayQueue
+        
+        ## Search
+        
+        * SequentialSearchKVStore
+        * BinarySearchKVStore
+        * SeparateChainingHashKVStore
+        * LinearProbingKVStore
+        * BSTKVStore
+        
+        ## Sort
+        
+        * bubble sort
+        * quick bubble sort
+        * selection sort
+        * quick selection sort
+        * recursive selection sort
+        * insertion sort
+        * shell sort
+        * merge sort
+        * quick sort
+        * heap sort
+        
+        ## Priority queue
+        
+        * fixed size min priority queue
+        * fixed size max priority queue
+        * min priority queue
+        * max priority queue
+        
+        ## Union Find
+        
+        * quick find union find
+        * quick union union find
+        * weighted union find
+        * union find
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
