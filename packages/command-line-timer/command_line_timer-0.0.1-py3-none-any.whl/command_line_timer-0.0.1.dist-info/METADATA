@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: command-line-timer
+Version: 0.0.1
+Summary: count down from HH:MM:SS and then sound an alarm (la cucaracha!).
+Home-page: https://gitlab.com/shindagger/command-line-timer
+Author: Andy Klier
+Author-email: andyklier@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: setuptools
+Requires-Dist: pygame
+
+# command line timer
+
+installs a command line tool called `timer` which counts down from given HH:MM:SS, and then sounds an alarm. 
+
+# usage 
+
+`$ timer 5` # set timer for 5 seconds. counts down from 00:00:05
+
+`$ timer 5:00` # set timer for 5 minutes.
+
+# expected output
+
+```
+
+```
+
+
