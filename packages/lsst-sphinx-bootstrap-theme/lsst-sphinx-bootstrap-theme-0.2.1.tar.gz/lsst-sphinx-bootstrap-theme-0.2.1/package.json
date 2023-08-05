@@ -1,0 +1,41 @@
+{
+  "name": "lsst-sphinx-bootstrap-theme",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Sphinx theme for LSST docs, based on Bootstrap and Astropy.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretty": "pretty-quick"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lsst-sqre/lsst-sphinx-bootstrap-theme.git"
+  },
+  "author": "Association of Universities for Research in Astronomy",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/lsst-sqre/lsst-sphinx-bootstrap-theme/issues"
+  },
+  "homepage": "https://github.com/lsst-sqre/lsst-sphinx-bootstrap-theme#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "autoprefixer": "^9.6.1",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-noop": "^1.0.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-run": "^1.7.1",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "husky": "^3.0.2",
+    "minimist": "^1.2.0",
+    "prettier": "1.18.2",
+    "pretty-quick": "^1.11.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
+}

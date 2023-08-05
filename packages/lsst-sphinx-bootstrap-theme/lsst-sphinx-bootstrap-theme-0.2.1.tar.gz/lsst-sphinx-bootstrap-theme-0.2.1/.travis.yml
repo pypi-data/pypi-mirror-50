@@ -1,0 +1,35 @@
+sudo: false
+language: python
+matrix:
+  include:
+    # Use the Python 3.6 build for PyPI deployments and doc uploads
+    - python: '3.6'
+      env: PYPI_DEPLOY=true LTD_SKIP_UPLOAD=false
+install:
+  - 'nvm install node' # latest version of node
+  - 'nvm use node'
+  - 'npm install gulp-cli -g'
+  - 'npm install'
+script:
+  - 'gulp scss --env prod'
+  - 'python setup.py build'
+  # npm can change package-lock.json (competing with Prettier). Stashing
+  # ensures that the git repo is clean to make a release with setuptools_scm
+  # versioning.
+  - 'git stash'
+env:
+  global:
+    - PYPI_DEPLOY=false # disable PyPI pushes in regular matrix
+deploy:
+  provider: pypi
+  user: sqre-admin
+  skip_upload_docs: true
+  skip_cleanup: true
+  distributions: sdist
+  password:
+    # PyPI deployment credentials for sqre-admin
+    secure: 'zHfawqxZk5OMniSni2FpvkKrn0KQt/RVSWayquJ3UL/aHXIV1YAZy6gS4PX6JaftRcg2NSE83D64gezh0MaWfjBx15ke8J2q5YDp9B1zlPQygVaHL9my1md26LNVPy1nu/2qxzh7P7J4CTFF6wKmUBCN1JhY/J/662fq8bWk5LTTNSxGqOnh6Cz3PHJksjG8T2KGOe8t2xVROyjKSZKl2FFzAZO3l4yDAj7oOD2dXgV5CYgZcrJE6ks1GpUx07cFhQHN0iDcPlaE3PihAomP8CliyoWFfMLTpT6UXJ9VAvDhNpe+Sva2gF65mgMWr3/gXnPei1GlInL8HGRpP+GaI31d8atH5RETNR7qeRqQohbDtTIV6+3xI2y9R0+ZhrJx22mVWyw0rtGVZgK1vW81Q3Js2d7U9LMzmVJCM6eHvN5eiOxl2aeidtWxP7XvnO64hltZNTrTXsMa5mTaFNtifbBLgvQXCn8ttqrxS6Zh/jrdCC5J+lyS5EkCpzSV/2p2O0JM+K4W3mE1KvbMRsq8bGZUy/4Dg2gLm9kPis58PkTj4O8OSjC8etmGH9s6FzSu8JHTNG1u9tzPouY3EDZefbUmPORnkuRr8iJMuxZkwJz6ID3Py6mNkr82nJMMzIOlAcoscuREZLCD+OI4QS7ZlxrwdthWmTaeV2Zb6ZrUtns='
+  on:
+    tags: true
+    repo: lsst-sqre/lsst-sphinx-bootstrap-theme
+    condition: '$PYPI_DEPLOY = true'
