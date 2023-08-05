@@ -1,0 +1,25 @@
+{% extends 'django_pdf_overlay/base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+    {% if object.pk %}
+        <h1>{{ object }}</h1>
+    {% endif %}
+    <hr />
+
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        {% bootstrap_form form %}
+        <div class="form-actions">
+            {% if object.pk %}
+                <input type="submit" name="submit" value="Upload Image" class="btn btn-primary">
+            {% endif %}
+            <a href="{{ object.document.get_absolute_url }}" class="btn btn-warning">Cancel</a>
+        </div>
+    </form>
+
+    <br />
+
+    <p><a href="{{ object.get_image_regen_url }}" class="btn btn-primary">System Regenerate Image</a></p>
+
+{% endblock %}
