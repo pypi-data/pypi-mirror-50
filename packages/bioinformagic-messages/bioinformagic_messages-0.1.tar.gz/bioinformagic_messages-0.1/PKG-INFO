@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: bioinformagic_messages
+Version: 0.1
+Summary: Randomly generate completely useless bioinformatics-related loading messages
+Home-page: https://github.com/joemahon89/bioinformagic_messages
+Author: Joseph Mahon
+Author-email: joemahon89@gmail.com
+License: MIT
+Download-URL: https://github.com/joemahon89/bioinformagic_messages/archive/v_01.tar.gz
+Description: UNKNOWN
+Keywords: bioinformatics,random,messages
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
