@@ -1,0 +1,9 @@
+README.md
+setup.py
+ascii_canvas/__init__.py
+ascii_canvas/canvas.py
+ascii_canvas/item.py
+ascii_canvas.egg-info/PKG-INFO
+ascii_canvas.egg-info/SOURCES.txt
+ascii_canvas.egg-info/dependency_links.txt
+ascii_canvas.egg-info/top_level.txt
