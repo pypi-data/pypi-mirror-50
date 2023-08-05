@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: teidocument
+Version: 1.0.8
+Summary: Extract text and metadata from TEI-documents
+Author: proprefenetre
+Author-email: proprefenetre@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: lxml (>=4.3,<5.0)
+Requires-Dist: xmltodict (>=0.12.0,<0.13.0)
