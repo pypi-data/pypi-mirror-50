@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: dask-gateway
+Version: 0.3.0
+Summary: A client library for interacting with a dask-gateway server
+Home-page: http://github.com/jcrist/dask-gateway/
+Maintainer: Jim Crist
+Maintainer-email: jiminy.crist@gmail.com
+License: BSD
+Description: dask-gateway
+        ============
+        
+        A client library for interacting with a dask-gateway server. See `the
+        documentation <https://jcrist.github.io/dask-gateway/>`__ for more information.
+        
+Platform: UNKNOWN
+Provides-Extra: kerberos
