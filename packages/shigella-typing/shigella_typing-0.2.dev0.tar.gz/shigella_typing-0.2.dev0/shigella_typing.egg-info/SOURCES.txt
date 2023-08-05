@@ -1,0 +1,12 @@
+README.md
+setup.py
+shigella_typing/__init__.py
+shigella_typing/example.py
+shigella_typing/parse_shigatype.py
+shigella_typing.egg-info/PKG-INFO
+shigella_typing.egg-info/SOURCES.txt
+shigella_typing.egg-info/dependency_links.txt
+shigella_typing.egg-info/entry_points.txt
+shigella_typing.egg-info/requires.txt
+shigella_typing.egg-info/top_level.txt
+shigella_typing/data/example_data.csv

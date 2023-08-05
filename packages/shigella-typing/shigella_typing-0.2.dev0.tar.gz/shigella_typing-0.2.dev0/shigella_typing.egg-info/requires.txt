@@ -1,0 +1,9 @@
+pandas
+
+[dev]
+pre-commit
+pipenv
+
+[test]
+pytest
+pytest-cov

@@ -1,0 +1,62 @@
+# shigella_typing
+
+Based on AGS' python dev repo template for MDU.
+
+[![CircleCI](https://circleci.com/gh/MDU-PHL/shigella_typing/tree/master.svg?style=svg)](https://circleci.com/gh/MDU-PHL/shigella_typing/tree/master)
+
+
+## Scope
+
+The scripts presented in this repository are to be used to perform *in silico* ID and serotyping of *Shigella* species. This tool takes as input a pair of `..fastq` readfiles containing Illumina short reads.  
+This tool is intended to (eventually) be `pip`-installable, and to (optionally) to run from within a Singularity container for portability/repeatability. It should also self-document updates and track its version...
+
+---
+
+### Glossary
+
+    * Serotype: A form of classification of bacteria below the species level. Usually involves some sort of reactive between specific sera and antigens on the bacteria's wall?Shahnai2018PLOSOne_ShigellaFlexneriZ.pdf
+        - what about lineage, 'biotype', 'form'?
+    * Serogroup: A group of serovars with common antigens.
+    * WGS: whole-genome sequence data. Usually, DNA sequence data comprised of short reads (between 35 and 300 bp in length) coded in the FASTQ format.
+
+---
+
+## Background
+
+*Shigella* emerges from an *E. coli* background through acquisition of an invasion plasmid and then subsequent gene loss (thought to be adaptation to being a human pathogen). Due to this 
+*Shigella* species are (currently) classified as three serogroups and one serotype:
+
+**Table A. [Classification](https://www.cdc.gov/ncezid/dfwed/PDFs/Shigella-Overview-508.pdf)**
+
+subgroup | species  | no. serotypes | fermentation of D-mannitol
+--------|-----------|:-------------:|:----------------------------:
+A | **S. dysenteriae** | 15  | -
+B | **S. flexneri** | 8†  | +
+C | **S. boydii** | 19ª | +
+D | **S. sonnei** | 1 | + 
+
+† Group B serotypes 1–5 are subdivided into 11 subserotypes
+ª Although the numbering scheme for Group C serotypes extends to serotype 20, there are only 19 serotypes because *S. boydii* 13 is now reclassified as *Escherichia albertii*, and has been removed from the scheme
+
+---
+
+## ShigaTyper
+
+>  [ShigaTyper](https://github.com/CFSAN-Biostatistics/shigatyper) is a quick and easy tool designed to determine Shigella serotype using Illumina paired end reads with low computation requirement. It has been tested on an Ubuntu 16.04.3 LTS guest addition on VMware Player version 14.1.1 in a Windows 7 and Virtual Box version 5.2.4 in a Windows 10 operating system.  
+
+
+---
+
+### *References*
+
+Beld, M. J. C., and F. A. G. Reubsaet. 2011. Differentiation between Shigella, enteroinvasive Escherichia coli (EIEC) and noninvasive Escherichia coli. Eur J Clin Microbiol Infect Dis 31:899–904.
+
+van den Beld, M. J. C., A. W. Friedrich, E. van Zanten, F. A. G. Reubsaet, M. A. M. D. Kooistra-Smid, J. W. A. Rossen, and O. B. O. P. M. M. Laboratories. 2016. Multicenter evaluation of molecular and culture-dependent diagnostics for Shigella species and Entero-invasive Escherichia coli in the Netherlands. Journal of Microbiological Methods 131:10–15. Elsevier B.V.
+
+Chattaway, M. A., D. R. Greig, A. Gentle, H. B. Hartman, T. J. Dallman, and C. Jenkins. 2017a. Whole-Genome Sequencing for National Surveillance of Shigella flexneri. Front. Microbiol. 8:913–6.
+
+Chattaway, M. A., U. Schaefer, R. Tewolde, T. J. Dallman, and C. Jenkins. 2017b. Identification of Escherichia coli and Shigella Species from Whole-Genome Sequences. J. Clin. Microbiol. 55:616–623.
+
+Ingle, D. J., M. Easton, M. Valcanis, T. Seemann, J. C. Kwong, N. Stephens, G. P. Carter, A. Gonçalves da Silva, J. Adamopoulos, S. L. Baines, K. E. Holt, E. P. F. Chow, C. K. Fairley, M. Y. Chen, M. D. Kirk, B. P. Howden, and D. A. Williamson. 2019. Co-circulation of Multidrug-resistant ShigellaAmong Men Who Have Sex With Men in Australia. Clin Infect Dis. 391:801–10.
+
+Wu, Y., H. K. Lau, T. Lee, D. K. Lau, and J. Payne. 2019. In Silico Serotyping Based on Whole-Genome Sequencing Improves the Accuracy of Shigella Identification. Appl Environ Microb 85:1291–21. American Society for Microbiology.
