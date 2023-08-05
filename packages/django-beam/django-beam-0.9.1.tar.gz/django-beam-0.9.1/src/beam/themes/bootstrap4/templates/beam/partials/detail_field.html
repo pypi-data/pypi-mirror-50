@@ -1,0 +1,33 @@
+{% load i18n %}
+{% load beam_tags %}
+
+{% get_attribute object field as value %}
+{% if value|is_queryset %}
+    {% for related in value %}
+        {% get_url_for_related related "detail" as related_url %}
+        {% if related_url %}<a href="{{ related_url }}">{{ related }}</a>{% else %}{{ related }}{% endif %}{% if not forloop.last %}, {% endif %}
+        {% empty %}
+            &nbsp;
+    {% endfor %}
+{% elif value.pk %}
+    {% get_url_for_related value "detail" as related_url %}
+    {% if related_url %}
+        <a href="{{ related_url }}">{{ value }}</a>
+    {% else %}
+        {{ value }}
+    {% endif %}
+{% elif value|is_image %}
+    {% if value %}
+        <img class="img-fluid" src="{{ value.url }}"/>
+    {% else %}
+        &nbsp;
+    {% endif %}
+{% elif value|is_file %}
+    {% if value %}
+        <a href="{{ value.url }}">{% trans "download" %}</a>
+    {% else %}
+        &nbsp;
+    {% endif %}
+{% else %}
+    {{ value|default:"&nbsp;" }}
+{% endif %}

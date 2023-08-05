@@ -1,0 +1,31 @@
+{% extends "beam/base.html" %}
+{% load i18n beam_tags %}
+
+
+{% block content %}
+    {% for entry in grouped_by_app %}
+        <section>
+            <div class="container">
+                <h2>{{ entry.app_config.verbose_name|capfirst }}</h2>
+                <div class="card-columns">
+                {% for viewset in entry.viewsets %}
+                    <div class="card">
+                        <div class="card-header">
+                            {% get_options viewset.model as options %}
+                            <h3 class="card-title">{{ options.verbose_name_plural|capfirst }}</h3>
+                        </div>
+                        <div class="card-body">
+                            {% if viewset.links.list.reverse %}
+                            <a class="btn btn-primary" href="{{ viewset.links.list.reverse }}">{% trans "List" %}</a>
+                            {% endif %}
+                            {% if viewset.links.create.reverse %}
+                            <a class="btn btn-secondary" href="{{ viewset.links.create.reverse }}">{% trans "Create" %}</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endfor %}
+{% endblock %}

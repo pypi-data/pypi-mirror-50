@@ -1,0 +1,31 @@
+{% extends "beam/base.html" %}
+{% load beam_tags %}
+{% load i18n %}
+
+{% block body_classes %}{{ block.super }} beam-delete{% if component.model %}{% get_options component.model as options %} beam-delete-{{ options.app_label }}-{{ options.model_name }}{% endif %}{% endblock %}
+
+{% block content %}
+    <section class="beam-main">
+        <div class="container">
+            {% block heading %}
+                <h1>
+                    {% if heading %}{{ heading }}{% else %}
+                    {% get_options component.model as options %}
+                    {% blocktrans %}Delete {{ object }}{% endblocktrans %}
+                    <small class="text-muted">{{ options.verbose_name|capfirst }}</small>
+                    {% endif %}
+                </h1>
+            {% endblock %}
+
+            <p>
+                {% trans "Are you sure you want to delete this object:" %} {{ object }}?
+            </p>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-danger float-left">{% trans "Yes, I'm sure" %}</button>
+            </form>
+            <button class="btn btn-default float-left" onclick="window.history.back()">{% trans "No, go back." %}</button>
+        </div>
+    </section>
+{% endblock %}

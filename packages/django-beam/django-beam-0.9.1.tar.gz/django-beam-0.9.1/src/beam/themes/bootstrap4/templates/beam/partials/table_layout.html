@@ -1,0 +1,48 @@
+{% load beam_tags %}
+{% load i18n %}
+
+{% if not layout %}
+    {% fields_to_layout fields as layout %}
+{% endif %}
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        {% for row in layout %}
+            {% for col in row %}
+                {% for field in col %}
+                    <th scope="col">
+                        {{ component.model|field_verbose_name:field|capfirst }}
+                    </th>
+                {% endfor %}
+            {% endfor %}
+        {% endfor %}
+        <th>{% trans "Actions" %}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for object in object_list %}
+        <tr>
+
+            {% for row in layout %}
+                {% for col in row %}
+                    {% for field in col %}
+                        {% for field in component.fields %}
+                            <td>
+                                {% include "beam/partials/detail_field.html" with object=object field=field %}
+                            </td>
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+            {% endfor %}
+
+
+            {% block list_item_links %}
+                <td class="pt-2">
+                    {% include "beam/partials/list_links.html" with links=viewset.links link_layout=component.list_item_link_layout object=object %}
+                </td>
+            {% endblock %}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
