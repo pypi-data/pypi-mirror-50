@@ -1,0 +1,64 @@
+MANIFEST.in
+README.md
+setup.py
+chipgr8/VERSION.txt
+chipgr8/__init__.py
+chipgr8/__main__.py
+chipgr8/assembler.py
+chipgr8/autogen_Chip8VMStruct.py
+chipgr8/chipgr8.py
+chipgr8/consoleModule.py
+chipgr8/controlModule.py
+chipgr8/core.py
+chipgr8/disModule.py
+chipgr8/disassembler.py
+chipgr8/gameModule.py
+chipgr8/games.py
+chipgr8/generateWallpaper.py
+chipgr8/module.py
+chipgr8/namedList.py
+chipgr8/observer.py
+chipgr8/query.py
+chipgr8/regModule.py
+chipgr8/repeatAction.py
+chipgr8/statusModule.py
+chipgr8/test_asm.py
+chipgr8/test_window.py
+chipgr8/util.py
+chipgr8/vm.py
+chipgr8/vms.py
+chipgr8/window.py
+chipgr8.egg-info/PKG-INFO
+chipgr8.egg-info/SOURCES.txt
+chipgr8.egg-info/dependency_links.txt
+chipgr8.egg-info/requires.txt
+chipgr8.egg-info/top_level.txt
+chipgr8/data/icon.png
+chipgr8/data/roms/15 Puzzle.ch8
+chipgr8/data/roms/Airplane.ch8
+chipgr8/data/roms/Animal Race.ch8
+chipgr8/data/roms/Astro Dodge.ch8
+chipgr8/data/roms/Blinky.ch8
+chipgr8/data/roms/Breakout.ch8
+chipgr8/data/roms/Brix.ch8
+chipgr8/data/roms/Cave.ch8
+chipgr8/data/roms/Filter.ch8
+chipgr8/data/roms/Hidden.ch8
+chipgr8/data/roms/Lunar Lander.ch8
+chipgr8/data/roms/Pong (1 player).ch8
+chipgr8/data/roms/Pong (2 player).ch8
+chipgr8/data/roms/Space Invaders.ch8
+chipgr8/data/roms/Squash.ch8
+chipgr8/data/roms/Tetris.ch8
+chipgr8/data/roms/Tron.ch8
+chipgr8/data/roms/Worm.ch8
+chipgr8/data/sound/pureTone.mp3
+includes/autogen_Chip8VMStruct.h
+includes/chip8.h
+includes/debug.h
+includes/instructions.h
+includes/ops.h
+includes/pinttypes.h
+includes/test.h
+src/chip8.c
+src/ops.c
