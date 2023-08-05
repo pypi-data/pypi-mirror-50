@@ -1,0 +1,2 @@
+include _p_convolve.so
+include evergreen_p_convolve/_p_convolve.so
