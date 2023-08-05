@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: qcrit
+Version: 0.0.9
+Summary: Quantitative Criticism Lab
+Home-page: https://www.qcrit.org
+Author: Tim Gianitsos
+Author-email: contact@qcrit.org
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+Utilities for The Quantitative Criticism Lab
+https://www.qcrit.org
+
+## Installation
+
+```bash
+pip install qcrit
+```
+
+## Submission
+```bash
+python setup.py bdist_wheel sdist
+twine upload dist/*
+```
+
+## Development
+```bash
+pipenv shell
+pipenv install --dev
+```
+
+
