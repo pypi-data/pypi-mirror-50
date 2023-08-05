@@ -1,0 +1,10 @@
+README.md
+setup.py
+jsonseq/__init__.py
+jsonseq/decode.py
+jsonseq/encode.py
+jsonseq.egg-info/PKG-INFO
+jsonseq.egg-info/SOURCES.txt
+jsonseq.egg-info/dependency_links.txt
+jsonseq.egg-info/requires.txt
+jsonseq.egg-info/top_level.txt
