@@ -1,0 +1,6 @@
+
+remotes: {{ webscaff_host }}
+
+project:
+    name: {{ module_name }}
+    repo: {{ vcs_remote }}
