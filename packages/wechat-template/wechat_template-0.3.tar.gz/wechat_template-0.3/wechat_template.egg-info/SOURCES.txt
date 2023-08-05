@@ -1,0 +1,13 @@
+README.rst
+setup.cfg
+setup.py
+wechat_template.egg-info/PKG-INFO
+wechat_template.egg-info/SOURCES.txt
+wechat_template.egg-info/dependency_links.txt
+wechat_template.egg-info/top_level.txt
+whchat_template/__init__.py
+whchat_template/apps.py
+whchat_template/common.py
+whchat_template/method.py
+whchat_template/models.py
+whchat_template/migrations/__init__.py
