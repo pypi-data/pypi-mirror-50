@@ -1,0 +1,12 @@
+README.md
+setup.py
+ldsc2/__init__.py
+ldsc2/build_on_baseline.py
+ldsc2/download.py
+ldsc2/env.py
+ldsc2.egg-info/PKG-INFO
+ldsc2.egg-info/SOURCES.txt
+ldsc2.egg-info/dependency_links.txt
+ldsc2.egg-info/entry_points.txt
+ldsc2.egg-info/requires.txt
+ldsc2.egg-info/top_level.txt
