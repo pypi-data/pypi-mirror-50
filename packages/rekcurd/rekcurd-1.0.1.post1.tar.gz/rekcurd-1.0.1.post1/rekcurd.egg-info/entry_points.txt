@@ -1,0 +1,3 @@
+[console_scripts]
+rekcurd = rekcurd.console_scripts:main
+
