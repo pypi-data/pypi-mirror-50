@@ -1,0 +1,10 @@
+requests>=2.11.1
+beautifulsoup4>=4.6.3
+ricecooker>=0.6.31
+le_utils>=0.1.19
+cssutils>=1.0.2
+google-api-python-client>=1.7.9
+google-auth-oauthlib>=0.4.0
+oauthlib>=3.0.1
+requests-oauthlib>=1.2.0
+youtube_dl>=2019.7.2
