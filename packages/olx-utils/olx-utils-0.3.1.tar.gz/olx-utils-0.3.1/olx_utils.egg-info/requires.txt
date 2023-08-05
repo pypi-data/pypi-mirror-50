@@ -1,0 +1,6 @@
+Mako>=1.0.3
+Pygments>=2.0.1
+markdown2>=2.3.0
+python-swiftclient>=2.2.0
+requests
+xmltodict

@@ -1,0 +1,7 @@
+-r base.txt
+mock
+tox
+coverage
+gitpython
+invoke
+requests-mock
