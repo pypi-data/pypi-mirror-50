@@ -1,0 +1,56 @@
+Metadata-Version: 2.1
+Name: djangorave
+Version: 0.0.1
+Summary: Django flutterwave rave
+Home-page: https://github.com/bdelate/django-rave.git
+License: MIT
+Keywords: flutterwave,rave,django
+Author: Brendon Delate
+Author-email: brendon.delate@gmail.com
+Requires-Python: >=3.6,<4
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 2.2
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Utilities
+Requires-Dist: django (>=2.2,<3.0)
+Requires-Dist: djangorestframework (>=3.10,<4.0)
+Requires-Dist: requests (>=2.22,<3.0)
+Project-URL: Repository, https://github.com/bdelate/django-rave.git
+Description-Content-Type: text/markdown
+
+# Django Rave
+
+## Project Description
+
+This project provides Django integration with the [Flutterwave](https://flutterwave.com/) API.
+
+The project is currently being developed and is considered pre-alpha.
+
+# Installation
+
+```bash
+pip install djangorave
+```
+
+# Development and Contribution
+
+### Running the example:
+
+```bash
+make build
+make dup
+```
+
+### Building for publication (to PyPI)
+
+```bash
+poetry build
+```

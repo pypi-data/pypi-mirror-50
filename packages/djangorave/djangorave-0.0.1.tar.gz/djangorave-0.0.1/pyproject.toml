@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "djangorave"
+version = "0.0.1"
+description = "Django flutterwave rave"
+authors = ["Brendon Delate <brendon.delate@gmail.com>"]
+license = "MIT"
+repository = "https://github.com/bdelate/django-rave.git"
+homepage = "https://github.com/bdelate/django-rave.git"
+readme = "README.md"
+
+keywords=[
+    "flutterwave",
+    "rave",
+	"django",
+]
+
+classifiers=[
+    "Development Status :: 1 - Planning",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Utilities",
+    "Environment :: Web Environment",
+    "Framework :: Django",
+    "Framework :: Django :: 2.2",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.6 <4"
+django = "^2.2"
+requests = "^2.22"
+djangorestframework = "^3.10"
+
+[tool.poetry.dev-dependencies]
+black = {version = "=19.3b0",allows-prereleases = true}
+mypy = "^0.720.0"
+twine = "^1.13"
+coverage = "^4.5"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
