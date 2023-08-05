@@ -1,0 +1,42 @@
+Metadata-Version: 1.1
+Name: opal-azure-cli-security
+Version: 0.1.4
+Summary: Microsoft Azure Command-Line Tools Azure Security Center
+Home-page: https://github.com/Azure/azure-cli
+Author: Microsoft Corporation
+Author-email: azpycli@microsoft.com
+License: MIT
+Description: Microsoft Azure CLI 'Security' Command Module
+        ===================================================
+        
+        This package is for the 'security' module.
+        i.e. 'az security task' and 'az security alert'
+        
+        
+        
+        
+        .. :changelog:
+        
+        Release History
+        ===============
+        0.1.1
+        ++++++++++++++++++
+        * Minor fixes
+        
+        0.1.0
+        ++++++++++++++++++
+        
+        * Initial Release
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: MIT License
