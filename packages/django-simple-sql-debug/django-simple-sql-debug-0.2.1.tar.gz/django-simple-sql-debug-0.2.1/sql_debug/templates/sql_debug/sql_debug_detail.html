@@ -1,0 +1,40 @@
+{% extends 'admin/base_site.html' %}
+{% load static %}
+
+{% block title %}SQL Debug{% endblock %}
+
+{% block extrastyle %}
+  <link href="{% static 'sql_debug/default.css' %}" type="text/css" rel="stylesheet">
+  <style>
+    code {
+      font-size: 15px;
+    }
+  </style>
+  <script src="{% static 'sql_debug/highlight.pack.js' %}"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+{% endblock %}
+
+{% block breadcrumbs %}
+  <div class="breadcrumbs">
+    <a href="{% url 'sql_debug:list' %}">Requests</a> &rsaquo; {{ uuid }}
+  </div>
+{% endblock %}
+
+{% block branding %}
+  <h1 id="site-name">SQL Debug | Request {{ uuid }}</h1>
+{% endblock %}
+
+{% block content_title %}<h1>Queries</h1>{% endblock %}
+
+{% block content %}
+  <div id="content-main">
+    <div class="module" id="changelist">
+      {% for query in request_debug.json_queries %}
+        <pre class="hljs-wrapper">
+          <code class="sql">{{ query.sql }}</code>
+          <p class="hljs-time">{{ query.time }} sec.</p>
+        </pre>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
