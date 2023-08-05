@@ -1,0 +1,12 @@
+known_side_effects/__init__.py,sha256=jXIcJnyvGqi_5lzfed2MtWI86rjNsA7pNTOIf3BHBUs,1910
+known_side_effects/argument_matcher.py,sha256=mJ0i60pptPhURuPs2YvCxfmvZPDlfIH7H47kG6vmV8s,1898
+known_side_effects/exceptions.py,sha256=IDmA5W5n-cK69Pkelgy05n6QpWtN-BYFh-uLjiEbA1o,1392
+known_side_effects/types.py,sha256=EKf4eVj6D891m1wPOmPEXg5ykky05Z3jS27fPi542JU,3429
+known_side_effects/matchers/__init__.py,sha256=FKSU84rr7dd5KCA8btpDcJOubI0HVvqJpWSQKZo_hQs,1074
+known_side_effects/matchers/parameter_matchers.py,sha256=TsXf9-cRMG3XOOI_A71vdRdsthEHCM4y8qOcQJfTZ-8,3062
+known_side_effects/matchers/types.py,sha256=r5Af8cLa-EJLl94MKe93Afz6zLfFJaIQwVIyLqcmR58,2485
+known_side_effects-0.1.1.dist-info/LICENSE,sha256=qsEemU2tBaynYanX4Z6VWsdeXwof05oYrFZ4Gkarrdw,1066
+known_side_effects-0.1.1.dist-info/METADATA,sha256=W-3mqTsc8iCJ3xuz2n6JCLna3mVM3NTheptATeaQvwE,6968
+known_side_effects-0.1.1.dist-info/WHEEL,sha256=h_aVn5OB2IERUjMbi2pucmR_zzWJtk303YXvhh60NJ8,110
+known_side_effects-0.1.1.dist-info/top_level.txt,sha256=SLyj9lLJrWXt_J9ADrxyIZ00gOAva48dDqR3Ylt8tiE,19
+known_side_effects-0.1.1.dist-info/RECORD,,
