@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: cscribe
+Version: 0.1.0
+Summary: cmlkit plugin for the dscribe package
+Home-page: https://github.com/sirmarcel/cscribe
+Author: Marcel Langer
+Author-email: dev@sirmarcel.com
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: cmlkit (>=2.0.0a14)
+Requires-Dist: dscribe
+Requires-Dist: numpy (>=1.15)
+Project-URL: Repository, https://github.com/sirmarcel/cscribe
