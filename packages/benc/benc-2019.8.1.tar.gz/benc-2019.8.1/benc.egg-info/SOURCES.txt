@@ -1,0 +1,10 @@
+README.md
+setup.cfg
+setup.py
+benc/__init__.py
+benc/__main__.py
+benc/benc.py
+benc.egg-info/PKG-INFO
+benc.egg-info/SOURCES.txt
+benc.egg-info/dependency_links.txt
+benc.egg-info/top_level.txt
