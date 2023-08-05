@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: urban-dictionary-parser-py
+Version: 0.1
+Summary: A python parser for urban dictionary rest api.
+Home-page: https://github.com/Rapciu/urban-dictionary-rest-api-py
+Author: Rapciu
+Author-email: mrapczewski711@gmail.com
+License: UNKNOWN
+Description: # urban_dictionary_parser_py
+        A python parser for urban dictionary rest api.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 5 - Production/Stable
+Description-Content-Type: text/markdown
