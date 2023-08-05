@@ -1,0 +1,15 @@
+azure/__init__.py,sha256=jwUpEftyp-71KJZRiDO8VY0bF3pPg2gQauDzBT8mzRc,409
+azure/cli/__init__.py,sha256=jwUpEftyp-71KJZRiDO8VY0bF3pPg2gQauDzBT8mzRc,409
+azure/cli/command_modules/__init__.py,sha256=jwUpEftyp-71KJZRiDO8VY0bF3pPg2gQauDzBT8mzRc,409
+azure/cli/command_modules/sqlvm/__init__.py,sha256=IdzeMk4MyQ36sU7meEPBoG1iv__DwMsLgwtAgml5xRE,1864
+azure/cli/command_modules/sqlvm/_format.py,sha256=XDAbQrVvyNKRfsRfHsOtJy2NhOkVFKB8Y6DtPC3DIlI,13963
+azure/cli/command_modules/sqlvm/_help.py,sha256=katdlzP3MshCbKbzBHfMwUNd5BY_CoTrX8TB8-A_E2Y,7853
+azure/cli/command_modules/sqlvm/_params.py,sha256=HEQlbhZtHMyxVjixWeRehI_8AsMVlz6idN47GloXuRI,15681
+azure/cli/command_modules/sqlvm/_util.py,sha256=3t2csn6qLzE6Imuef_eV7kiHHkr3zAibsviDZ3GAHL0,1286
+azure/cli/command_modules/sqlvm/_validators.py,sha256=lu6XDNSwzq5Bnkum60qK3uk56z0X3U4jfu2Lfo1czcw,4146
+azure/cli/command_modules/sqlvm/commands.py,sha256=At6qzWLFKwFzUKtWTimIX4UG6nq0RKKO7cMxhg3XrYI,4676
+azure/cli/command_modules/sqlvm/custom.py,sha256=f2CHwBEP8hH-kft6BcvQ5DAZhChH5z5LdZIrMMZVg5E,23740
+opal_azure_cli_sqlvm-0.2.3.dist-info/METADATA,sha256=gIoe3UFHO90D9tElHLq7g2pgOwWTLFdzBzHyFy2QVt0,1513
+opal_azure_cli_sqlvm-0.2.3.dist-info/WHEEL,sha256=h_aVn5OB2IERUjMbi2pucmR_zzWJtk303YXvhh60NJ8,110
+opal_azure_cli_sqlvm-0.2.3.dist-info/top_level.txt,sha256=S7DhWV9m80TBzAhOFjxDUiNbKszzoThbnrSz5MpbHSQ,6
+opal_azure_cli_sqlvm-0.2.3.dist-info/RECORD,,
