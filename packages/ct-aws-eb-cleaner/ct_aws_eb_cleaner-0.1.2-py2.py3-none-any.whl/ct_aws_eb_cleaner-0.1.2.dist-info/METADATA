@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: ct-aws-eb-cleaner
+Version: 0.1.2
+Summary: Python project to clear all applications versions from an ElasticBeanstalk environment that are not implemented.
+Home-page: https://bitbucket.org/cinnecta/ct-aws-eb-cleaner/
+Author: Cinnecta
+Author-email: cinnecta.dev@gmail.com
+License: UNKNOWN
+Keywords: ct_aws_eb_cleaner
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+
+========================================
+Cinnecta - AWS Elastic Beanstalk Cleaner
+========================================
+
+
+
+
+
+
+Python project to clear all applications versions from an ElasticBeanstalk environment that are not implemented.
+
+
+Requirements
+------------
+* AWS client (https://aws.amazon.com/pt/cli/) installed and configured in the host machine where the application will run.
+
+
+Features
+--------
+
+* ct_aws_eb_cleaner --application-name APPLICATION_NAME
+    Main module to execute the cleaner procudere.
+
+Credits
+-------
+
+This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+
+
+=======
+History
+=======
+
+0.1.0 (2019-07-30)
+------------------
+
+* First release on PyPI.
+
+
