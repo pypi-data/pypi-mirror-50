@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: rtfx
+Version: 0.1
+Summary: rtfx - Rich Text Format Document Generation
+Home-page: UNKNOWN
+Author: David Barrat
+Author-email: david.barrat@protonmail.com
+License: http://www.gnu.org/licenses/gpl.html
+Keywords: RTF,Rich Text,Rich Text Format,documentation,reports
+Platform: Any
+Classifier: Topic :: Text Editors :: Text Processing
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+
+rtfx is a fork of PyRTF, pure python module for the efficient generation of rich text format
+documents. Supports styles, tables, cell merging, jpg and png images and tries
+to maintain compatibility with as many RTF readers as possible. 
+
