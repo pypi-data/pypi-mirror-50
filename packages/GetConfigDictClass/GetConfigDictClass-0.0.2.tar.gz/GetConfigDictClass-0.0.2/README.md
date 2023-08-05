@@ -1,0 +1,1 @@
+ cf = GetConfigDictClass("test.cfg")
