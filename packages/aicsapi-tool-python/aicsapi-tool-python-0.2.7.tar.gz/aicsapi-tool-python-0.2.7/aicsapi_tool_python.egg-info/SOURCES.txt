@@ -1,0 +1,12 @@
+README.md
+setup.py
+aicsapi_tool_python/__init__.py
+aicsapi_tool_python/appinsight_transport.py
+aicsapi_tool_python/keyvault_certgen.py
+aicsapi_tool_python/keyvault_tokenCache.py
+aicsapi_tool_python/keyvault_utils.py
+aicsapi_tool_python.egg-info/PKG-INFO
+aicsapi_tool_python.egg-info/SOURCES.txt
+aicsapi_tool_python.egg-info/dependency_links.txt
+aicsapi_tool_python.egg-info/requires.txt
+aicsapi_tool_python.egg-info/top_level.txt

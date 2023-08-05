@@ -1,0 +1,57 @@
+# aicsapi-tool-python
+```
+|   .gitignore
+|   .kvvars    # specifies environment variables needed by "keyvault_certgen.py" & "keyvault_utils.py"
+|   LICENSE   
+|   README.md
+|   requirements.txt    # package dependencies
+|   requirements_dev.txt    # required for packaging
+|   setup.py    # for wrapping into a PyPI package
+|
++---aicsapi_tool_python    # actual codes
+        appinsight_transport.py    # for logging custom events to Azure Appinsights
+        keyvault_certgen.py    # provides utilities to generate X509v3 cert and upload to Azure KV
+        keyvault_tokenCache.py    # for caching credentials to save login time
+        keyvault_utils.py    # device-code sign in to Azure, get/import secret & cert to Azure KV
+        __init__.py  
+```
+## Description
+A package to help Python API template in:  
+ * Logging to Azure Application Insights 
+ * Fetching secret from Azure Key Vault 
+ * Generating self-signed certificate and upload it to Azure Key Vault
+ * Caching credential token to save login time
+
+## Installation
+This package has been published to PyPI, so you can use  
+`pip install aicsapi-tool-python`
+
+## Note
+When calling methods in `keyvault_utils` or `keyvault_certgen`, be sure to have the following environment variables set:  
+~~~
+KEY_VAULT_URL 
+KEY_VAULT_SECRET_NAME 
+KEY_VAULT_CERT_NAME
+~~~
+
+## Example: Generate Self-signed Certification and Upload to Azure KV
+  * Ensure required env. variables are loaded, create `.kvvars` under current working directory
+~~~
+KEY_VAULT_URL="https://[your keyvault name].vault.azure.net"  
+KEY_VAULT_CERT_NAME="certificate name"  
+~~~
+
+ * Run the following code snippet with  
+`python certgen.py [your ASUS account name] [filename of generated key & cert]`
+```python
+# certgen.py
+
+from aicsapi_tool_python.keyvault_certgen import generate_v3cert, upload_v3cert_to_kv
+import sys
+
+asus_account = sys.argv[1]
+cert_name = sys.argv[2]
+
+generate_v3cert( asus_account, cert_name )
+upload_v3cert_to_kv( cert_name + '.pfx' )
+```
