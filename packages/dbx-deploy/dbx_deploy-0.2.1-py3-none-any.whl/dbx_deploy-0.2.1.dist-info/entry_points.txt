@@ -1,0 +1,4 @@
+[console_scripts]
+dbx-deploy = DbxDeploy.DeployerCommand:DeployerCommand.run
+dbx-deploy-submit-job = DbxDeploy.DeployerJobSubmitterCommand:DeployerJobSubmitterCommand.run
+
