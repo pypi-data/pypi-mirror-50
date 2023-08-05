@@ -1,0 +1,7 @@
+requests<3,>=2.22.0
+boltons<20,>=19.1.0
+
+[for_tests]
+pytest<5.1,>=5.0
+pytest-cov<=3
+pytest-xdist<2,>=1.29.0
