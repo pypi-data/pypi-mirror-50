@@ -1,0 +1,9 @@
+requests
+GitPython
+setuptools
+configparser
+progressbar
+PyMySQL
+lxml
+sqlalchemy
+redis
