@@ -1,0 +1,11 @@
+README.md
+setup.py
+iterlib/__init__.py
+iterlib/map.py
+iterlib/preloader.py
+iterlib.egg-info/PKG-INFO
+iterlib.egg-info/SOURCES.txt
+iterlib.egg-info/dependency_links.txt
+iterlib.egg-info/not-zip-safe
+iterlib.egg-info/requires.txt
+iterlib.egg-info/top_level.txt
