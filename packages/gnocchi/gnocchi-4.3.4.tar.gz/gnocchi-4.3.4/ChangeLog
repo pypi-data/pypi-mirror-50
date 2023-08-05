@@ -1,0 +1,75 @@
+CHANGES
+=======
+
+
+4.3.4
+-----
+
+* try forcing newer version of six on to travis image
+* cleanup README.rst to upload to pypi
+* fix gendoc
+
+4.3.3
+-----
+
+* don't fail everything if one group missing metric
+* Allow rate:XXX aggregations
+* ignore update\_capabilites if unsupported
+* Hide username/password in indexer \_\_str\_\_ representation
+
+4.3.2
+-----
+
+* redis: fix sentinel Lua script registrations
+* Fix computation for metrics with multiple granularities
+* Fix splits update statistics dictionary key
+* docs: use remove sphinx < 1.6 limitation, disable gnocchi.xyz doc job
+* Don't require setuptools as runtime
+* Change the way to mimic pbr version
+* Disable Web doc build on stable/4.3 branch
+
+4.3.1
+-----
+
+* setuptools: Fix gnocchi-api sheban in wheel
+* Don't use xattr 0.9.4
+
+4.3.0
+-----
+
+* storage: move MeasureQuery in REST API
+* storage: remove find\_measures
+* storage: make find\_measures batched
+* Remove unused tox venv
+* tests: disable warning for py27-mysql-ceph-upgrade-from-4.0
+* doc: fix some syntax mistakes in Ceph paragraph
+* Update mergify configuration
+* Test against python3.7
+* redis: fix list\_split\_keys with multiple metrics
+* use fromiter to build array
+* Docs: add reference to a Go SDK
+* support resampling on calendar dates
+* api: avoid some indexer queries
+* Add automatic backport labels
+* storage: get\_aggregated\_measures can retrieve multiple metrics
+* new requests lib released
+* Use rebase strategy to merge PR
+* gate fix
+* deps: fix min requirement of cradox
+* storage: allow to list split keys for different metric at the same time
+* redis: use hiredis parser
+* file: allow to create a subdir to create less root directory
+* Replace Pastamaker by Mergify
+* swift: avoid Connection aborted
+* injector: cleanup
+* Update mergify configuration
+* Enable mergify
+* storage: allow to batch splits retrieval for multiple metrics
+* indexer: drop/create missing constraint in slash reencoding migration script
+* swift: pass the project domain
+* Add gnocchi-injector
+* metricd: fix typo in update\_capabilities
+* incoming: provide group\_metrics\_by\_sack method
+* tests: Fix debug logging
+* tests: refresh metric instead of polling
+* speed up iteration over ts
