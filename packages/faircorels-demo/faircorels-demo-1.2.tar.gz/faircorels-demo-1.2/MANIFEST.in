@@ -1,0 +1,7 @@
+include LICENSE
+include faircorels-demo/README.txt
+include faircorels-demo/_corels.cpp
+include faircorels-demo/*.py
+include faircorels-demo/src/utils*
+include faircorels-demo/src/corels/src/*.hh
+include faircorels-demo/src/corels/src/*.cpp
