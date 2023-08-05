@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "TEIDocument"
+version = "1.0.8"
+description = "Extract text and metadata from TEI-documents"
+authors = ["proprefenetre <proprefenetre@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+lxml = "^4.3"
+xmltodict = "^0.12.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
