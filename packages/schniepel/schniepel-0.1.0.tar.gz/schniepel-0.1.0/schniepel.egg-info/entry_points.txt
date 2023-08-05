@@ -1,0 +1,4 @@
+[console_scripts]
+schniepel = schniepel.schniepel:main
+schniepel-analysis = schniepel.analysis:main
+

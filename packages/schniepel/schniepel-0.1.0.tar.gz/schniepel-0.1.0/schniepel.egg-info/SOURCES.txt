@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+schniepel/__init__.py
+schniepel/__main__.py
+schniepel/analysis.py
+schniepel/schniepel.py
+schniepel.egg-info/PKG-INFO
+schniepel.egg-info/SOURCES.txt
+schniepel.egg-info/dependency_links.txt
+schniepel.egg-info/entry_points.txt
+schniepel.egg-info/requires.txt
+schniepel.egg-info/top_level.txt
+test/test_cmdline_schniepel.py
