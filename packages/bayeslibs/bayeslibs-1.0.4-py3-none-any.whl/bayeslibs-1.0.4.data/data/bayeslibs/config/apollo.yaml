@@ -1,0 +1,35 @@
+access_auth:
+  appid: u0001
+  appkey: As2sdded
+apollo_t200:
+  ip: 192.168.0.107
+  network: good
+  port: 5000
+motion:
+  max_angle: 360
+  max_dist: 10
+nav_pos:
+  p_12table:
+    x: 0.312
+    y: 6.148
+  p_el:
+    x: -1.195
+    y: 7.257
+  p_elroom:
+    x: 4.183
+    y: 6.664
+  p_fnroom:
+    x: 0.373
+    y: 0.213
+  p_food:
+    x: 4.668
+    y: 7.275
+  p_hr:
+    x: 6.861
+    y: 6.389
+  p_origin:
+    x: 0
+    y: 0
+  test:
+    x: 0
+    y: 0
