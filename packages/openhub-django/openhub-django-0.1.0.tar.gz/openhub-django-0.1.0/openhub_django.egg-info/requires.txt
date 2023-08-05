@@ -1,0 +1,4 @@
+django-model-utils>=2.0
+xmltodict
+python-decouple
+django-distill
