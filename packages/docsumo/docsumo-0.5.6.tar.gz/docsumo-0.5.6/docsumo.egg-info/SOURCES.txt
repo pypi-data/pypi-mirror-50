@@ -1,0 +1,12 @@
+README.md
+setup.py
+docsumo/Docsumo.py
+docsumo/__init__.py
+docsumo/config.py
+docsumo/error.py
+docsumo.egg-info/PKG-INFO
+docsumo.egg-info/SOURCES.txt
+docsumo.egg-info/dependency_links.txt
+docsumo.egg-info/not-zip-safe
+docsumo.egg-info/requires.txt
+docsumo.egg-info/top_level.txt
