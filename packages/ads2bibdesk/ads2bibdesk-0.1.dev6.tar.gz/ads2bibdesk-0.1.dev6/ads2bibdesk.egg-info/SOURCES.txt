@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.rst
+ads2bibdesk.cfg.default
+ads2bibdesk.py
+setup.cfg
+setup.py
+ads2bibdesk.egg-info/PKG-INFO
+ads2bibdesk.egg-info/SOURCES.txt
+ads2bibdesk.egg-info/dependency_links.txt
+ads2bibdesk.egg-info/entry_points.txt
+ads2bibdesk.egg-info/requires.txt
+ads2bibdesk.egg-info/top_level.txt
+service/Add to BibDesk.workflow/Contents/Info.plist
+service/Add to BibDesk.workflow/Contents/document.wflow
+service/Add to BibDesk.workflow/Contents/QuickLook/Thumbnail.png
