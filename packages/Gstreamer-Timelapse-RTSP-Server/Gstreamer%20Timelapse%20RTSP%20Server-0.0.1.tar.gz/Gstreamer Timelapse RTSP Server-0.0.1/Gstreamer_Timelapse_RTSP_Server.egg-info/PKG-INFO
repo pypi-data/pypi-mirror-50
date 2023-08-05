@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: Gstreamer-Timelapse-RTSP-Server
+Version: 0.0.1
+Summary: Utility for serving a timelapse over RTSP
+Home-page: https://github.com/desmoteo/gst-timelapse-rtsp-server
+Author: Matteo Ferrabone
+Author-email: matteo.ferrabone@gmail.com
+License: UNKNOWN
+Description: # gst-timelapse-rtsp-server
+        Serves an RTSP stream of a timelapse obtained from static images.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown

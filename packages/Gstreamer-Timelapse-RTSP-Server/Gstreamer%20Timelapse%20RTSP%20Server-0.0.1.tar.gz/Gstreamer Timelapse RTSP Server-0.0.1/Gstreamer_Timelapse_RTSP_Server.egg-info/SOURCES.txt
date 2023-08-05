@@ -1,0 +1,10 @@
+README.md
+setup.py
+GstTimelapseRtspServer/Generators.py
+GstTimelapseRtspServer/Servers.py
+GstTimelapseRtspServer/__init__.py
+Gstreamer_Timelapse_RTSP_Server.egg-info/PKG-INFO
+Gstreamer_Timelapse_RTSP_Server.egg-info/SOURCES.txt
+Gstreamer_Timelapse_RTSP_Server.egg-info/dependency_links.txt
+Gstreamer_Timelapse_RTSP_Server.egg-info/top_level.txt
+test/test.py
