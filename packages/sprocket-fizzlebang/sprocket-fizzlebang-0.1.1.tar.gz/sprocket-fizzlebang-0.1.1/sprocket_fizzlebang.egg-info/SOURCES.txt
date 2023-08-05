@@ -1,0 +1,14 @@
+README.md
+setup.py
+sprocket/__init__.py
+sprocket/__main__.py
+sprocket/sprocket.py
+sprocket/cogs/__init__.py
+sprocket/cogs/base.py
+sprocket/cogs/dice.py
+sprocket_fizzlebang.egg-info/PKG-INFO
+sprocket_fizzlebang.egg-info/SOURCES.txt
+sprocket_fizzlebang.egg-info/dependency_links.txt
+sprocket_fizzlebang.egg-info/entry_points.txt
+sprocket_fizzlebang.egg-info/requires.txt
+sprocket_fizzlebang.egg-info/top_level.txt

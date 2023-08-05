@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: sprocket-fizzlebang
+Version: 0.1.1
+Summary: UNKNOWN
+Home-page: https://github.com/gnullbyte/sprocket
+Author: Chase Franklin
+Author-email: gnullbyte@gmail.com
+License: UNKNOWN
+Description: # Sprocket
+        version 0.1.1
+        
+        ## Description
+        A simple discord bot for rolling dice.
+        
+        ## Installation
+        ```bash
+        pip install sprocket-fizzlebang
+        ```
+        
+        ## Running
+        ```bash
+        python -m sprocket
+        ```
+        or simply
+        ```bash
+        sprocket
+        ```
+        
+        ## Commands
+        ```
+        !roll <expression>
+        !reroll
+        !reroll list
+        !reroll <selection>
+        ```
+        
+        ### Examples
+        ```
+        !roll 1d20 + 1d4 - 1
+        !roll 1d100
+        !roll 2d8 + 3 - 1d10
+        
+        !reroll list
+        !reroll 2
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Description-Content-Type: text/markdown

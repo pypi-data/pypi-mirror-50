@@ -1,0 +1,3 @@
+[console_scripts]
+sprocket = sprocket.__main__:run
+
