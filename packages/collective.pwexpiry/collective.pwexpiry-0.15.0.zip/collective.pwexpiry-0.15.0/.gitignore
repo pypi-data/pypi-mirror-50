@@ -1,0 +1,17 @@
+*.egg-info
+*.pyc
+*.mo
+.installed.cfg
+.mr.developer.cfg
+pip-selfcheck.json
+.coverage
+htmlcov/
+bin/
+develop-eggs/
+include/
+lib/
+parts/
+var/
+.idea/
+local/
+share/
