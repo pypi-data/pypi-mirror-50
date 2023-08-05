@@ -1,0 +1,5 @@
+stripe
+trytond_account<4.5,>=4.4
+trytond_account_payment<4.5,>=4.4
+trytond_party<4.5,>=4.4
+trytond<4.5,>=4.4
