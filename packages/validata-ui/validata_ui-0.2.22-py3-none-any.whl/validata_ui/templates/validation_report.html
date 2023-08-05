@@ -1,0 +1,190 @@
+{% extends "base_template.html" %}
+
+{% import 'schema_info_macros.html' as schema_info_macros %}
+{% import 'validation_macros.html' as macros %}
+
+{% block title %}{{ section_title }} – {{ schema_info.title }}{% endblock %}
+
+{% block head %}
+{{ super() }}
+<style>
+  .popover .popover-body h2 {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  #table-errors td h2 {
+    font-size: 1em;
+    font-weight: bold;
+  }
+
+  @media print {
+    .hidden-print {
+      display: none;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <p class="text-muted">Validation effectuée {{ validation_date }}</p>
+
+    {% if source.type == 'url' %}
+    <p class="hidden-print">
+        <a class="btn btn-outline-secondary" href="{{ pdf_report_url }}" target="_blank">
+            Télécharger en PDF
+        </a>
+    </p>
+    {% endif %}
+
+    {# Schema info #}
+    <div class="row my-4">
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    {{ schema_info_macros.html(schema_info, None, None, schema_current_version, doc_url) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">
+                        Fichier {% if report.error_count == 0 %}valide{% else %}invalide{% endif %}
+                    </h2>
+
+                    {% if display_badge %}
+                    <p><img src="{{ badge_url }}" alt="{{ badge_msg }}" /></p>
+                    {% endif %}
+
+                    <p>
+                        <code>
+                        {% if source.type == 'file' %}
+                            {{ source.filename }}
+                        {% elif source.type == 'url' %}
+                            <a href="{{source.url}}" target="_blank">{{source.filename}}</a>
+                        {% endif %}
+                        </code>
+                        ({{ report.table.col_count }} colonnes × {{ report.table.row_count }} lignes)
+                    </p>
+
+                    {% if report.error_count == 0 %}
+                    <p>Aucune erreur détectée</p>
+                    {% else %}
+                    {{ macros.error_statistics(report) }}
+                    <p>
+                        {% set error_count = report.table['error-stats']['count'] %}
+                        Total :
+                        {% if error_count == 1 %}
+                        1 erreur détectée
+                        {% else %}
+                        {{ error_count }} erreurs détectées
+                        {% endif %}
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if report.error_count > 0 %}
+        {% if report.table.errors.structure %}
+            <h3 class="my-4">Erreurs de structure</h3>
+            {# Non-column errors #}
+            {% for err in report.table.errors.structure %}
+                {% if not err.in_column_comp %}
+                    {{ err.content | safe }}
+                {% endif %}
+            {% endfor %}
+
+            {# Column errors #}
+            {% for err in report.table.errors.structure %}
+                {% if err.in_column_comp %}
+                    {{ err.content | safe }}
+                {% endif %}
+            {% endfor %}
+
+
+            {# Afficher un tableau de comparaison des colonnes #}
+            {% if report.table.column_comparison_needed %}
+                <table class="table table-bordered table-sm table-striped table-hover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Colonnes du fichier</th>
+                            <th scope="col">Colonnes attendues</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for elt in report.table.column_comparison_info.table %}
+                            <tr{% if elt[2] == 'ko' %} class="table-danger"{% endif %}>
+                                <td>{{ elt[0] }}</td>
+                                <td>{{ elt[1] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                {% if report.table.column_comparison_info.has_missing %}
+                <p>Attention : toutes les colonnes attendues doivent être présentes dans le fichier à valider.<p>
+                {% endif %}
+
+                {% if report.table.column_comparison_info.has_case_errors %}
+                <p>Attention : la casse (minuscules/majuscules) doit être respectée dans les noms de colonne.<p>
+                {% endif %}
+
+            {% endif %}
+        {% endif %}
+    {% endif %}
+</div>
+
+{% if report.table.do_display_body_errors %} {# We do display body errors! #}
+    <div class="mx-4">
+        {% if report.table.errors.body %}
+            <h3 class="my-4">Erreurs de contenu</h3>
+            {{ macros.body_errors(report, source_data, print_mode) }}
+        {% else %}
+            {{ macros.preview(source_data) }}
+        {% endif %}
+    </div>
+{% else %} {# do not display errors #}
+    <p>Veuillez corriger ces erreurs pour visualiser les éventuelles erreurs de contenu.</p>
+{% endif %}
+{% endblock %}
+
+{% block page_scripts %}
+<script>
+// Popovers that stays while on popover bubble
+// https://stackoverflow.com/questions/15989591/how-can-i-keep-bootstrap-popover-alive-while-the-popover-is-being-hovered
+$('[data-toggle="popover"]').popover({
+    trigger: 'manual',
+    html: true,
+    animation: false,
+    placement: 'auto'
+})
+.on('mouseenter', function () {
+    var _this = this;
+    $(this).popover('show');
+    $('.popover').on('mouseleave', function () {
+        $(_this).popover('hide');
+    });
+}).on('mouseleave', function () {
+    var _this = this;
+    setTimeout(function () {
+        if (!$('.popover:hover').length) {
+            $(_this).popover('hide');
+        }
+    }, 100);
+});
+
+// Open links found in error description in a new window/tab
+$('body').on('mouseover', 'div.popover a', function() {
+    $(this).prop('title', 'Ouvrir dans une nouvelle fenêtre');
+});
+$('body').on('click', 'div.popover a', function() {
+    var url = $(this).prop('href');
+    window.open(url, '_blank')
+    return false;
+});
+</script>
+{% endblock %}
