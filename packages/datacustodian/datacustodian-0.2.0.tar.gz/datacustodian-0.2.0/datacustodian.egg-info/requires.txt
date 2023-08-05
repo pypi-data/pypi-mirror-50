@@ -1,0 +1,10 @@
+argparse
+pyparsing
+termcolor
+tqdm
+jinja2
+flask
+flask-restful
+flask_restplus
+pyyaml
+attrdict
