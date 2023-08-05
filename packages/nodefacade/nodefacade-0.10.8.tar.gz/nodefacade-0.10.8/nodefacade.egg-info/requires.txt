@@ -1,0 +1,6 @@
+six
+cysystemd
+nmoscommon
+requests
+gevent
+mdnsbridge>=0.7.0
