@@ -1,0 +1,11 @@
+# Include the README
+include *.md
+
+# Include the license file
+include LICENSE.txt
+
+# Include all python files
+recursive-include . *.py
+
+# Exclude MacOS files
+recursive-exclude . .DS_Store
