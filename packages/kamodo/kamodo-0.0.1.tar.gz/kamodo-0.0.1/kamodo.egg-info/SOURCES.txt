@@ -1,0 +1,13 @@
+LICENSE
+README.md
+setup.cfg
+setup.py
+kamodo/__init__.py
+kamodo/kamodo.py
+kamodo/plotting.py
+kamodo/util.py
+kamodo.egg-info/PKG-INFO
+kamodo.egg-info/SOURCES.txt
+kamodo.egg-info/dependency_links.txt
+kamodo.egg-info/requires.txt
+kamodo.egg-info/top_level.txt
