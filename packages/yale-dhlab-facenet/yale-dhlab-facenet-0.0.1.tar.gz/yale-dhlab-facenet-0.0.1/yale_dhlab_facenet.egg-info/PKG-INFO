@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: yale-dhlab-facenet
+Version: 0.0.1
+Summary: Python implementation of the facenet model
+Home-page: https://github.com/yaledhlab/yale-facenet
+Author: David Sandberg, packaged by Douglas Duhaime
+Author-email: douglas.duhaime@gmail.com
+License: MIT
+Description: UNKNOWN
+Keywords: machine-learning,tensorflow,facenet,computer-vision
+Platform: UNKNOWN

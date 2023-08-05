@@ -1,0 +1,5 @@
+glob2>=0.6
+numpy>=1.16.4
+scipy==1.1.0
+six>=1.11.0
+tensorflow==1.7

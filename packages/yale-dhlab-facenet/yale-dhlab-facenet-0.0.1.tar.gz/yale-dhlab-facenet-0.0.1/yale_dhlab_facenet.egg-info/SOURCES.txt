@@ -1,0 +1,17 @@
+MANIFEST.in
+README.md
+setup.py
+facenet/__init__.py
+facenet/align/__init__.py
+facenet/align/align_dataset_mtcnn.py
+facenet/align/detect_face.py
+facenet/align/model/det1.npy
+facenet/align/model/det2.npy
+facenet/align/model/det3.npy
+facenet/utils/__init__.py
+facenet/utils/utils.py
+yale_dhlab_facenet.egg-info/PKG-INFO
+yale_dhlab_facenet.egg-info/SOURCES.txt
+yale_dhlab_facenet.egg-info/dependency_links.txt
+yale_dhlab_facenet.egg-info/requires.txt
+yale_dhlab_facenet.egg-info/top_level.txt
