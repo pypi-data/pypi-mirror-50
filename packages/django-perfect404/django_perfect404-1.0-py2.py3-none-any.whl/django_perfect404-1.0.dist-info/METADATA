@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: django-perfect404
+Version: 1.0
+Summary: Simple but perfect 404 page for django projects.
+Home-page: http://github.com/richardbarran/django-perfect404/
+Author: Alexander Artemenko
+Author-email: svetlyak.40wt@gmail.com
+License: New BSD License
+Keywords: django apps webdev
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+
+UNKNOWN
+
+
