@@ -1,0 +1,12 @@
+{
+	'version'    : '1.0.0',
+	
+	'homepage'   : 'https://audiomath.readthedocs.io',
+	'repository' : 'https://bitbucket.org/snapproject/audiomath-hg',
+	'tracker'    : 'https://bitbucket.org/snapproject/audiomath-hg/issues',
+	#'forum'      : 'https://groups.google.com/d/forum/audiomath-project',
+	
+	'year'       : '2017-2019',
+	'author'     : 'Jeremy Hill',
+	'email'      : 'jezhill@gmail.com',
+}

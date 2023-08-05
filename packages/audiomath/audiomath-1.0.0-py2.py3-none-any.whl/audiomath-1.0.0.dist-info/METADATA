@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: audiomath
+Version: 1.0.0
+Summary: TODO
+Home-page: https://audiomath.readthedocs.io
+Author: Jeremy Hill
+Author-email: jezhill@gmail.com
+License: GPL v3+
+Platform: UNKNOWN
+Requires-Python: >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, <4
+Description-Content-Type: text/x-rst
+Provides-Extra: plotting
+Requires-Dist: numpy
+Provides-Extra: plotting
+Requires-Dist: matplotlib; extra == 'plotting'
+
+TODO
+
+
