@@ -1,0 +1,27 @@
+redis>=3.2
+StrEnum>=0.4
+
+[all]
+redislite>=5.0
+flask
+click
+tqdm
+
+[all:python_version >= "3.6" and python_version < "3.8"]
+pickle5
+
+[cli]
+click
+tqdm
+
+[http]
+click
+flask
+
+[pickle]
+
+[pickle:python_version >= "3.6" and python_version < "3.8"]
+pickle5
+
+[redislite]
+redislite>=5.0
