@@ -1,0 +1,11 @@
+bcforms/VERSION,sha256=y-NTX1iTRVRydKI09GknkRSUGWd6Z3N7bhfzcbY_3e0,5
+bcforms/__init__.py,sha256=AAtoNsTP4GVDNU0fzWYEWgk-OrO1oK3rUoM8yxl2P0o,197
+bcforms/__main__.py,sha256=Q9vOSItOTeBK9LzCJvdU4_orJJuOexXT0sokjMJZKAU,6958
+bcforms/core.py,sha256=RecOAQWaUvF0-QFPpYefpbTzB16lLzfG_DPZnyN35uI,50233
+bcforms/grammar.lark,sha256=_RHhlYIjOYkIejY2miePpX0bN3X7tv7VgfNHJuM0-fE,862
+bcforms/rest.py,sha256=Lim1ImkErInqzPG0ra9IaLwZIx8U447fHvwnJyLHwV4,9488
+bcforms-0.0.2.dist-info/METADATA,sha256=4VidNYxRaj-PEBkTJgC7_H0-a2sGWYFQKxB9vIdks-k,5544
+bcforms-0.0.2.dist-info/RECORD,,
+bcforms-0.0.2.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+bcforms-0.0.2.dist-info/entry_points.txt,sha256=2Z1ELzEQJlS0Eo9IObvkoxynUkKTrFED1JlYfSBzN7s,51
+bcforms-0.0.2.dist-info/top_level.txt,sha256=nVuARLlKvWyRstglF4jBaqep_cKOOc2P1jYdx0szV0k,8
