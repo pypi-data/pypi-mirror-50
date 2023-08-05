@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: inferelator
+Version: 0.3.0
+Summary: Inferelator: Network Inference
+Home-page: https://github.com/flatironinstitute/inferelator
+Author: Chris Jackson
+Author-email: cj59@nyu.edu
+Maintainer: Chris Jackson
+Maintainer-email: cj59@nyu.edu
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 4 - Beta
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: pandas
+Requires-Dist: scikit-learn
+Requires-Dist: matplotlib
+
+# inferelator 
+
+[![Travis](https://travis-ci.org/flatironinstitute/inferelator.svg?branch=master)](https://travis-ci.org/flatironinstitute/inferelator)
+[![codecov](https://codecov.io/gh/flatironinstitute/inferelator/branch/master/graph/badge.svg)](https://codecov.io/gh/flatironinstitute/inferelator)
+
+The inferelator package for python; a fork of the currently-inactive [inferelator_ng](https://github.com/simonsfoundation/inferelator_ng) repository that works for both single-cell and bulk transcriptome experiments. Currently includes [AMuSR](https://github.com/simonsfoundation/multitask_inferelator/tree/AMuSR/inferelator_ng) [(Castro et al 2019)](https://doi.org/10.1371/journal.pcbi.1006591) and elements of [InfereCLaDR](https://github.com/simonsfoundation/inferelator_ng/tree/InfereCLaDR) [(Tchourine et al 2018)](https://doi.org/10.1016/j.celrep.2018.03.048).
+
+To install the python packages needed for the inferelator, run `pip install -r requirements.txt`. To install the python packages needed for the inferelator multiprocessing functionality, run `pip install -r requirements-multiprocessing.txt`. To install this package, run `python setup.py install`
+
+Basic workflows for ***Bacillus subtilis*** and ***Saccharomyces cerevisiae*** are included with a tutorial.
+
+All current example data and scripts are available from Zenodo [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3355524.svg)](https://doi.org/10.5281/zenodo.3355524)
+
+
