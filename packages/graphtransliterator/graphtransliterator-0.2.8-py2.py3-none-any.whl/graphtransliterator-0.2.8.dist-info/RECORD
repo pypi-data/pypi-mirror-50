@@ -1,0 +1,14 @@
+graphtransliterator/__init__.py,sha256=x-XaX9K_VcghQjLE8M8DD9tRIvkv0mGXzNgQ4PNX1Sk,1433
+graphtransliterator/core.py,sha256=gmcnEnzkGLAsa9iU2uMh6_EZlauhz1mlLrAadymLL4k,45178
+graphtransliterator/exceptions.py,sha256=zAoTQ2m0BCVdYnZTq_UJ612uap3Op167UQm-RugtCtE,1058
+graphtransliterator/graphs.py,sha256=D9zhE-0edSEtczLvkNYwHJtSsXzYJOounmIyg1D-rh4,4744
+graphtransliterator/initialize.py,sha256=u8y1edqcx53tWG2khEPl-W4hKhSqnBqa2zznGC0QMcA,8310
+graphtransliterator/process.py,sha256=zEIXTBeyte7bK54zn0SQMFNaVjqN0N54NoxBIaskmII,3660
+graphtransliterator/rules.py,sha256=xuEOb_W1rjaHGL-GDEvYslEOgTLdTAkavxVEtwoHS1c,2782
+graphtransliterator/validate.py,sha256=2LajVUwArKZnJ77urLtRvane5RoerALvzPNc0wI22ZI,6478
+graphtransliterator-0.2.8.dist-info/AUTHORS.rst,sha256=KM07oxdDwqarEcZt2MW7C27OiO126qHo58FHekXl8W4,148
+graphtransliterator-0.2.8.dist-info/LICENSE,sha256=3YgzZsLebbPqCnaR8Ymb-_u9IDD7rSpOmzajKJCPA1Q,1083
+graphtransliterator-0.2.8.dist-info/METADATA,sha256=1KgfTU5XQb722D9-QKzVjhPL2A2F2Uhl3SWn88RK7i4,5310
+graphtransliterator-0.2.8.dist-info/WHEEL,sha256=h_aVn5OB2IERUjMbi2pucmR_zzWJtk303YXvhh60NJ8,110
+graphtransliterator-0.2.8.dist-info/top_level.txt,sha256=wRsgyjNH85AlRlO-dk_j5fz9FQwZPI5kzmvQcP30Sdg,20
+graphtransliterator-0.2.8.dist-info/RECORD,,
