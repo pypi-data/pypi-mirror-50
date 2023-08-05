@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: faostats
+Version: 0.116
+Summary: A package to download faostat data to a postgres database and then analyse it
+Home-page: https://github.com/daniel-risi/faostats
+Author: Daniel Risi
+Author-email: risi.dj@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: pandas
+Requires-Dist: sqlalchemy
+
+UNKNOWN
+
+
