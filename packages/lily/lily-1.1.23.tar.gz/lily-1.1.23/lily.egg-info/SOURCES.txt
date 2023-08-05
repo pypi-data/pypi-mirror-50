@@ -1,0 +1,14 @@
+README.md
+requirements.txt
+setup.cfg
+setup.py
+.lily/config.json
+lily/__init__.py
+lily/manage.py
+lily.egg-info/PKG-INFO
+lily.egg-info/SOURCES.txt
+lily.egg-info/dependency_links.txt
+lily.egg-info/entry_points.txt
+lily.egg-info/requires.txt
+lily.egg-info/top_level.txt
+lily/cli/base.makefile
