@@ -1,0 +1,7 @@
+__pycache__
+/src/embedded_jubatus.cpp
+/build
+/dist
+/*.egg-info
+/*.so
+*.pyc
