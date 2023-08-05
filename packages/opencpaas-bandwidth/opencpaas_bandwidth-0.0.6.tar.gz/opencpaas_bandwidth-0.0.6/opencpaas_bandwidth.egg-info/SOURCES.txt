@@ -1,0 +1,12 @@
+README.md
+setup.cfg
+setup.py
+opencpaas_bandwidth/__init__.py
+opencpaas_bandwidth/bandwidth.py
+opencpaas_bandwidth/bandwidth_response_handler.py
+opencpaas_bandwidth/bandwidth_xml_request.py
+opencpaas_bandwidth.egg-info/PKG-INFO
+opencpaas_bandwidth.egg-info/SOURCES.txt
+opencpaas_bandwidth.egg-info/dependency_links.txt
+opencpaas_bandwidth.egg-info/requires.txt
+opencpaas_bandwidth.egg-info/top_level.txt

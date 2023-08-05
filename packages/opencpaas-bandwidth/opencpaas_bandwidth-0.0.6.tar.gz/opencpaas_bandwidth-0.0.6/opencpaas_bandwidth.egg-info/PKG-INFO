@@ -1,0 +1,64 @@
+Metadata-Version: 2.1
+Name: opencpaas-bandwidth
+Version: 0.0.6
+Summary: A Bandwidth implementation of OpenCpaas, an SDK that allows flexibility between CPaaS providers.
+Home-page: https://github.com/Bandwidth/OpenCpaas/
+Author: Perri Smith
+Author-email: dx@bandwidth.com
+License: UNKNOWN
+Description: # opencpaas-bandwidth
+        
+        This is the Bandwidth implementation of OpenCpaas.
+        
+        See our [full documentation]().
+        
+        ## Requirements
+        
+        - [Python](https://www.python.org/downloads/) 3.5+
+        
+        ## Installation
+        
+        ```python
+        pip install opencpaas-bandwidth
+        ```
+        
+        ## Testing
+        
+        Run the following command in the project directory:
+        
+        ```python
+        python -m unittest discover
+        ```
+        
+        
+        ## Getting Started
+        
+        ### Client Initialization
+        
+        Begin by initializing a new Bandwidth client. 
+        
+        ```python
+        from opencpaas_bandwidth import BandwidthClient
+        
+        auth = 	{
+        	'api_token': '789',
+        	'api_secret':'1011',
+        	'account_id': 'myaccount' ,
+        	'application_id': 'myapplication',
+        	'user': 'username',
+        	'pass': 'password',
+        	'site_id': '12345' 
+        	}
+        
+        client = BandwidthClient(auth)
+        
+        ```
+        
+        Bandwidth requires several different authorizations in order to perform voice, messaging, or number functions.
+        In order to initialize a new Bandwidth Client you MUST include an account_id or a CpaasAuthenticationException will be thrown.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
