@@ -1,0 +1,90 @@
+Metadata-Version: 1.1
+Name: slacktastic
+Version: 0.2.1
+Summary: Package to send Statistics over a Slack Incoming Webhook
+Home-page: https://github.com/imperatus/slacktastic
+Author: Jurgen Buisman
+Author-email: jurgen@labela.nl
+License: MIT license
+Description: ===========
+        slackistics
+        ===========
+        
+        Package to send Statistics over a Slack Incoming Webhook
+        
+        
+        * Free software: MIT license
+        * Documentation: https://slackistics.readthedocs.io.
+        
+        
+        Features
+        --------
+        
+        * TODO
+        
+        Credits
+        -------
+        
+        This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+        
+        .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+        .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+        
+        
+        Usage
+        -----
+        .. code-block:: python
+        
+            from slacktastic.client import SlackClient
+            from slacktastic.template import Attachment, PieChart, Message
+        
+            client = SlackClient(webhook_url='YOUR WEBHOOK URL')
+            attachment = Attachment(
+                title='Cool block title',
+                title_link='https://labela.nl',
+                text='Some awesome text')
+        
+            chart = PieChart(
+                    title="Test data",
+                    labels=['Ride', 'Reservation'],
+                    values=[22, 55]
+                )
+        
+            another_chart = BarChart(
+                    "Test data", labels=['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                    data={
+                        'Test 1': [1, 2, 4, 8, 16],
+                        'Test 2': [7, 3, 45, 1, 12],
+                    }
+            )
+        
+            message = Message(
+                text="I want to show you some *magic* :sparkles:",
+                attachments=[attachment, chart]
+            )
+            client.send_message(message)
+        
+        
+        
+        =======
+        History
+        =======
+        
+        0.2.1 (2019-07-30)
+        ------------------
+        
+        * Added support for Donut, Bar, Line and Radar charts
+        * Updated documentation
+        
+        0.1.0 (2019-07-25)
+        ------------------
+        
+        * First release on PyPI.
+        
+Keywords: slacktastic
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.7
