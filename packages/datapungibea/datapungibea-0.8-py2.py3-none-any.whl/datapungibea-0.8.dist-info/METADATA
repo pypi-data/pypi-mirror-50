@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: datapungibea
+Version: 0.8
+Summary: Connects to BEA API and enriches data output; get vintage BEA data
+Home-page: https://github.com/jjotterson/datapungibea
+License: UNKNOWN
+Author: James Otterson
+Author-email: jjotterson@gmail.com
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
