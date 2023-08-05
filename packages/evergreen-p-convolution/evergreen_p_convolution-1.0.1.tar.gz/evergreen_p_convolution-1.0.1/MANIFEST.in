@@ -1,0 +1,2 @@
+include _p_convolution.so
+include evergreen_p_convolution/_p_convolution.so
