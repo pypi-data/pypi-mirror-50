@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: smart-pipeline
+Version: 0.0.2
+Summary: Data Pipeline for your Python projects
+Home-page: https://github.com/kirillovmr/python-pipeline
+Author: Viktor Kirillov
+Author-email: kirillovmr@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: tqdm (>=4.31.1)
+
+# Example Package
+
+This is a simple example package. You can use
+[Github-flavored Markdown](https://guides.github.com/features/mastering-markdown/)
+to write your content.
+
