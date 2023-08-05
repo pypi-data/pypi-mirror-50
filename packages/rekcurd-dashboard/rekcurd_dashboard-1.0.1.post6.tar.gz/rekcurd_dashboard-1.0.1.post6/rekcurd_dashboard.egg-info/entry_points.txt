@@ -1,0 +1,3 @@
+[console_scripts]
+rekcurd_dashboard = rekcurd_dashboard.console_scripts:main
+
