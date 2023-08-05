@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: aws-es-query
+Version: 0.1.0
+Summary: Query tool for AWS ElasticSearch using IAM
+Home-page: https://www.github.com/labd/aws-es-query/
+Author: Lab Digital B.V.
+Author-email: opensource@labdigital.nl
+License: MIT
+Description: # aws-es-query
+        
+        Really 'dumb' utility command to query AWS elasticsearch endpoints which use
+        IAM policies.
+        
+        
+            aws-es-query --role-arn=<iam-role> <endpoint>
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+Provides-Extra: test
