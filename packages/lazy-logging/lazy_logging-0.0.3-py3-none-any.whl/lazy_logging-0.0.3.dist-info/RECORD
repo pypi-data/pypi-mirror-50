@@ -1,0 +1,10 @@
+lazy_logging/__init__.py,sha256=OZT-ppGq3adYRTglDtv6mMbg9RSYyEclEsx7qDGWFng,209
+lazy_logging/configure_django_logging.py,sha256=Ys1Dy53G3Ipuibw-_V2qwPZHBOmQ1CYYP8Bk5hnfjrw,1151
+lazy_logging/log_colorlog_formatter.py,sha256=Oq4edh5Asik2zZVA29_IQSvqq6QhyBUx251ndOt2f8M,8786
+lazy_logging/log_json_formatter.py,sha256=kQ_seO9Ceu1nJEFofdg0f9gId-Lw9twJFTACpAaPMs8,11440
+lazy_logging/logger_factory.py,sha256=__2Jjliyir2zuPo3U4nzz7iOIkIxOPxDeO5_aUh1Zn8,1901
+lazy_logging-0.0.3.dist-info/LICENSE,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+lazy_logging-0.0.3.dist-info/METADATA,sha256=o8HQkxza4Hke4aobhafZu2ybp1FfgMx2hcWES9kOJKE,968
+lazy_logging-0.0.3.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+lazy_logging-0.0.3.dist-info/top_level.txt,sha256=0IrHnYsIPHCsLW698QXYmCmkQtOuP_yMM12U_aPfT1Y,13
+lazy_logging-0.0.3.dist-info/RECORD,,
