@@ -1,0 +1,10 @@
+README.rst
+setup.py
+firestore/__init__.py
+firestore/connection.py
+firestore/exceptions.py
+firestore/validators.py
+firestore.egg-info/PKG-INFO
+firestore.egg-info/SOURCES.txt
+firestore.egg-info/dependency_links.txt
+firestore.egg-info/top_level.txt
