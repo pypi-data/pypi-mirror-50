@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: dsdobjects
+Version: 0.7
+Summary: Base classes for DSD design
+Home-page: https://github.com/DNA-and-Natural-Algorithms-Group/dsdobjects
+Author: Stefan Badelt
+Author-email: badelt@caltech.edu
+License: MIT
+Download-URL: https://github.com/DNA-and-Natural-Algorithms-Group/dsdobjects/archive/v0.7.tar.gz
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 2.7
+Requires-Dist: future
+
+
+This Python module provides a library of protype objects and base classes for
+domain-level strand displacement (DSD) programming. There are two types of
+usage: 1) ready-to-go prototype objects, 2) tweak-em-yourself core objects.
+
+from dsdobjects import SequenceConstraint, LogicDomain, Domain, Complex, Reaction, Macrostate, StrandOrder
+
+
