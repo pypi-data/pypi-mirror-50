@@ -1,0 +1,10 @@
+boto3>=1.5.32
+psycopg2>=2.8.2
+psycopg2-binary>=2.7.4numpy>=1.16.3
+pandas==0.24.2
+sqlparse>=0.2.4
+awscli>=1.16.32
+snowflake-connector-python>=1.7.3
+mysql-connector-python>=8.0.15
+pyodbc>=4.0.26
+jinja2>=2.10.1
