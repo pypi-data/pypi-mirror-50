@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: b2b-rms-sdk
+Version: 0.0.4
+Summary: Helper SDK for b2b_rms apis
+Home-page: https://github.com/shuttl-tech/b2b_rms_sdk
+Author: Jayesh Hathila
+Author-email: jayesh.hathila@shuttl.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Provides-Extra: test
