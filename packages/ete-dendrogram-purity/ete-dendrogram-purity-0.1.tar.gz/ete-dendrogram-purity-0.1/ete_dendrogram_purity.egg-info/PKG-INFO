@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: ete-dendrogram-purity
+Version: 0.1
+Summary: implement dengram purity for ete.Tree structure
+Home-page: https://github.com/zhaofeng-shu33/ete-dendrogram-purity
+Author: zhaofeng-shu33
+Author-email: 616545598@qq.com
+Maintainer: zhaofeng-shu33
+Maintainer-email: 616545598@qq.com
+License: Apache License Version 2.0
+Description: dendrogram purity
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
