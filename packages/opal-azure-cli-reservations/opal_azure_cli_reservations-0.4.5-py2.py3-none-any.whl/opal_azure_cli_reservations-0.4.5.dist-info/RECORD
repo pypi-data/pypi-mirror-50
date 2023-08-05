@@ -1,0 +1,14 @@
+azure/__init__.py,sha256=jwUpEftyp-71KJZRiDO8VY0bF3pPg2gQauDzBT8mzRc,409
+azure/cli/__init__.py,sha256=jwUpEftyp-71KJZRiDO8VY0bF3pPg2gQauDzBT8mzRc,409
+azure/cli/command_modules/__init__.py,sha256=jwUpEftyp-71KJZRiDO8VY0bF3pPg2gQauDzBT8mzRc,409
+azure/cli/command_modules/reservations/__init__.py,sha256=FpvH4kpbxZaDJ5Y9bNBKrG2ODAxglHcc3MkiLk0jEKY,1834
+azure/cli/command_modules/reservations/_client_factory.py,sha256=mHe0qI5cfwlnUbaZANnxY6ui4a-kucdKpMjiKSr5-qg,969
+azure/cli/command_modules/reservations/_exception_handler.py,sha256=flvf-S3pDWMpWy3LRQQSuswk6fKkafggmpUFbMHYvWg,657
+azure/cli/command_modules/reservations/_help.py,sha256=sMfsa2W1AKhDq2ueNgLUMh3rpnK4wKoeRJa3UL9nyh8,5689
+azure/cli/command_modules/reservations/_params.py,sha256=7OjZ8zo1xpxUJHatKUB8FDs_cBIkmw1xZwE0UC-hVCI,1614
+azure/cli/command_modules/reservations/commands.py,sha256=qyIbztoxy0E3Chv51nRNHe9uKpijAJegF9MguTdgm8Q,2388
+azure/cli/command_modules/reservations/custom.py,sha256=0KIK892lHT13PSJoYaexdSBwp33Z-7Jzl3YC795rYY0,1939
+opal_azure_cli_reservations-0.4.5.dist-info/METADATA,sha256=7Z2AVhnML1vGKYtl2KmsVFU712T3W_4FwbDUQHVm8Xo,2203
+opal_azure_cli_reservations-0.4.5.dist-info/WHEEL,sha256=h_aVn5OB2IERUjMbi2pucmR_zzWJtk303YXvhh60NJ8,110
+opal_azure_cli_reservations-0.4.5.dist-info/top_level.txt,sha256=S7DhWV9m80TBzAhOFjxDUiNbKszzoThbnrSz5MpbHSQ,6
+opal_azure_cli_reservations-0.4.5.dist-info/RECORD,,
