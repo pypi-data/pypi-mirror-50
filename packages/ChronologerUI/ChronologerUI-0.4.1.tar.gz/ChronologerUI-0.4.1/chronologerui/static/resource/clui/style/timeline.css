@@ -1,0 +1,35 @@
+svg.timeline .axis path, svg.timeline .axis line {
+  fill            : none;
+  stroke          : #000;
+  shape-rendering : crispEdges;
+}
+
+svg.timeline .axis path {
+  display : none;
+}
+
+svg.timeline .bar {
+	fill    : steelblue;
+	opacity : 1;
+}
+
+svg.timeline .bar:hover {
+	fill    : steelblue;
+	opacity : 0.75;
+}
+
+svg.timeline .tick text {
+  font-size : 13px;
+}
+
+svg.timeline .brush .extent {
+  stroke          : #fff;
+  fill            : #aaa;
+  fill-opacity    : .2;
+  shape-rendering : crispEdges;
+}
+
+svg.timeline .highlight line {
+	stroke       : orange;
+	stroke-width : 2px;
+}
