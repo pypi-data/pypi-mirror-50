@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: fyda
+Version: 0.4.5
+Summary: General data interface for Python 3
+Home-page: https://github.com/renzmann/fyda
+Author: Robert Enzmann
+Author-email: runningwithrobb@gmail.com
+License: MIT
+Description: # fyda - The "interface For Your DAta"
+        
+        ## Features
+        
+        Easily interact with your data using as little python code as possible. Control
+        the available data in the ``input`` folder, and use fyda's built-in api to
+        load it, transform it, and model it. 
+        
+        
+        ## Installation
+        
+        ```sh
+        pip install fyda
+        ```
+        
+        
+        ## User guide
+        
+        You should [Read The Docs](https://fyda.readthedocs.io/en/latest/) for all
+        the goodies!
+        
+Keywords: Python,Data,Interface,Data Science,python 3
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
