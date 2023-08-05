@@ -1,0 +1,3 @@
+[console_scripts]
+TCPClient = TCPClient.TCPClient:main
+
