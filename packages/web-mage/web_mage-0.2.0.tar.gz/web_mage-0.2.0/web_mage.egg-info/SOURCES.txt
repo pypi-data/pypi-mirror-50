@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+web_mage/__init__.py
+web_mage/__main__.py
+web_mage/formats.py
+web_mage/web_mage.py
+web_mage.egg-info/PKG-INFO
+web_mage.egg-info/SOURCES.txt
+web_mage.egg-info/dependency_links.txt
+web_mage.egg-info/requires.txt
+web_mage.egg-info/top_level.txt
