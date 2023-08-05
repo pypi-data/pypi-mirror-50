@@ -1,0 +1,8 @@
+[console_scripts]
+awsaccounts = awsorgs.accounts:main
+awsauth = awsorgs.auth:main
+awsloginprofile = awsorgs.loginprofile:main
+awsorgs = awsorgs.orgs:main
+awsorgs-accessrole = awsorgs.tools.accessrole:main
+awsorgs-spec-init = awsorgs.tools.spec_init:main
+
