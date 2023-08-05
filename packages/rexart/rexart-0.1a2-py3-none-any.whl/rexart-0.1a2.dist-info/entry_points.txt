@@ -1,0 +1,3 @@
+[console_scripts]
+rexart = rexart._app:cli
+
