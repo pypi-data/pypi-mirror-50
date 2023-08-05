@@ -1,0 +1,5 @@
+
+        [console_scripts]
+        supersearch=crashstats_tools.cmd_supersearch:main
+        fetch-data=crashstats_tools.cmd_fetch_data:main
+    
