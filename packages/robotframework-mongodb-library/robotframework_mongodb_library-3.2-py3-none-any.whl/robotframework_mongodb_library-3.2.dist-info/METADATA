@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: robotframework-mongodb-library
+Version: 3.2
+Summary: Mongo Database utility library for Robot Framework
+Home-page: https://github.com/robotframework-thailand/robotframework-mongodb-library
+Author: Akkharaphon Tangpaopong
+Author-email: akkharaphon.tpp@gmail.com
+License: UNKNOWN
+Keywords: mongodb,robotframework,robotframework-mongodb-library,MongoDBLibrary
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: Public Domain
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Testing
+Requires-Dist: tox (>=3.0.0)
+Requires-Dist: coverage
+Requires-Dist: robotframework (>=3.0)
+Requires-Dist: pymongo (>=3.8.0)
+Requires-Dist: bson (>=0.5.8)
+
+UNKNOWN
+
+
