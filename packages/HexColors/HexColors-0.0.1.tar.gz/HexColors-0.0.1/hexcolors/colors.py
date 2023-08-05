@@ -1,0 +1,189 @@
+from enum import Enum
+
+# DATA FROM https://www.rapidtables.com/web/color/html-color-codes.html August 2nd 2019
+
+
+class Red(Enum):
+    LIGHT_SALMON = (255, 160, 122)
+    SALMON = (250, 128, 114)
+    DARK_SALMON = (233, 150, 122)
+    LIGHT_CORAL = (240, 128, 128)
+    INDIAN_RED = (205, 92, 92)
+    CRIMSON = (220, 20, 60)
+    FIREBRICK = (178, 34, 34)
+    RED = (255, 0, 0)
+    DARK_RED = (139, 0, 0)
+
+
+class Orange(Enum):
+    CORAL = (255, 127, 80)
+    TOMATO = (255, 99, 71)
+    ORANGE_RED = (255, 69, 0)
+    GOLD = (255, 215, 0)
+    ORANGE = (255, 165, 0)
+    DARK_ORANGE = (255, 140, 0)
+
+
+class Yellow(Enum):
+    LIGHT_YELLOW = (255, 255, 224)
+    LEMON_CHIFFON = (255, 250, 205)
+    LIGHT_GOLDENROD_YELLOW = (250, 250, 210)
+    PAPAYA_WHIP = (255, 239, 213)
+    MOCCASIN = (255, 228, 181)
+    PEACH_PUFF = (255, 218, 185)
+    PALE_GOLDENROD = (238, 232, 170)
+    KHAKI = (240, 230, 140)
+    DARK_KHAKI = (189, 183, 107)
+    YELLOW = (255, 255, 0)
+
+
+class Green(Enum):
+    LAWN_GREEN = (124, 252, 0)
+    CHARTREUSE = (127, 255, 0)
+    LIME_GREEN = (50, 205, 50)
+    LIME = (0, 255, 0)
+    FOREST_GREEN = (34, 139, 34)
+    GREEN = (0, 128, 0)
+    DARK_GREEN = (0, 100, 0)
+    GREEN_YELLOW = (173, 255, 47)
+    YELLOW_GREEN = (154, 205, 50)
+    SPRING_GREEN = (0, 255, 127)
+    MEDIUM_SPRING_GREEN = (0, 250, 154)
+    LIGHT_GREEN = (144, 238, 144)
+    PALE_GREEN = (152, 251, 152)
+    DARK_SEA_GREEN = (143, 188, 143)
+    MEDIUM_SEA_GREEN = (60, 179, 113)
+    SEA_GREEN = (46, 139, 87)
+    OLIVE = (128, 128, 0)
+    DARK_OLIVE_GREEN = (85, 107, 47)
+    OLIVE_DRAB = (107, 142, 35)
+
+
+class Cyan(Enum):
+    LIGHT_CYAN = (224, 255, 255)
+    CYAN = (0, 255, 255)
+    AQUA = (0, 255, 255)
+    AQUAMARINE = (127, 255, 212)
+    MEDIUM_AQUAMARINE = (102, 205, 170)
+    PALE_TURQUOISE = (175, 238, 238)
+    TURQUOISE = (64, 224, 208)
+    MEDIUM_TURQUOISE = (72, 209, 204)
+    DARK_TURQUOISE = (0, 206, 209)
+    LIGHT_SEA_GREEN = (32, 178, 170)
+    CADET_BLUE = (95, 158, 160)
+    DARK_CYAN = (0, 139, 139)
+    TEAL = (0, 128, 128)
+
+
+class Blue(Enum):
+    POWDER_BLUE = (176, 224, 230)
+    LIGHT_BLUE = (173, 216, 230)
+    LIGHT_SKY_BLUE = (135, 206, 250)
+    SKY_BLUE = (135, 206, 235)
+    DEEP_SKY_BLUE = (0, 191, 255)
+    LIGHT_STEEL_BLUE = (176, 196, 222)
+    DODGER_BLUE = (30, 144, 255)
+    CORN_FLOWER_BLUE = (100, 149, 237)
+    STEEL_BLUE = (70, 130, 180)
+    ROYAL_BLUE = (65, 105, 225)
+    BLUE = (0, 0, 255)
+    MEDIUM_BLUE = (0, 0, 205)
+    DARK_BLUE = (0, 0, 139)
+    NAVY = (0, 0, 128)
+    MIDNIGHT_BLUE = (25, 25, 112)
+    MEDIUM_SLATE_BLUE = (123, 104, 238)
+    SLATE_BLUE = (106, 90, 205)
+    DARK_SLATE_BLUE = (72, 61, 139)
+
+
+class Purple(Enum):
+    LAVENDER = (230, 230, 250)
+    THISTLE = (216, 191, 216)
+    PLUM = (221, 160, 221)
+    VIOLET = (238, 130, 238)
+    ORCHID = (218, 112, 214)
+    FUCHSIA = (255, 0, 255)
+    MAGENTA = (255, 0, 255)
+    MEDIUM_ORCHID = (186, 85, 211)
+    MEDIUM_PURPLE = (147, 112, 219)
+    BLUE_VIOLET = (138, 43, 226)
+    DARK_VIOLET = (148, 0, 211)
+    DARK_ORCHID = (153, 50, 204)
+    DARK_MAGENTA = (139, 0, 139)
+    PURPLE = (128, 0, 128)
+    INDIGO = (75, 0, 130)
+
+
+class Pink(Enum):
+    PINK = (255, 192, 203)
+    LIGHT_PINK = (255, 182, 193)
+    HOT_PINK = (255, 105, 180)
+    DEEP_PINK = (255, 20, 147)
+    PALE_VIOLET_RED = (219, 112, 147)
+    MEDIUM_VIOLET_RED = (199, 21, 133)
+
+
+class White(Enum):
+    WHITE = (255, 255, 255)
+    SNOW = (255, 250, 250)
+    HONEYDEW = (240, 255, 240)
+    MINT_CREAM = (245, 255, 250)
+    AZURE = (240, 255, 255)
+    ALICE_BLUE = (240, 248, 255)
+    GHOST_WHITE = (248, 248, 255)
+    WHITE_SMOKE = (245, 245, 245)
+    SEASHELL = (255, 245, 238)
+    BEIGE = (245, 245, 220)
+    OLD_LACE = (253, 245, 230)
+    FLORAL_WHITE = (255, 250, 240)
+    IVORY = (255, 255, 240)
+    ANTIQUE_WHITE = (250, 235, 215)
+    LINEN = (250, 240, 230)
+    LAVENDER_BRUSH = (255, 240, 245)
+    MISTY_ROSE = (255, 228, 225)
+
+
+class Grey(Enum):
+    GAINS_BORO = (220, 220, 220)
+    LIGHT_GRAY = (211, 211, 211)
+    SILVER = (192, 192, 192)
+    DARK_GRAY = (169, 169, 169)
+    GRAY = (128, 128, 128)
+    DIM_GRAY = (105, 105, 105)
+    LIGHT_SLATE_GRAY = (119, 136, 153)
+    SLATE_GRAY = (112, 128, 144)
+    DARK_SLATE_GRAY = (47, 79, 79)
+    BLACK = (0, 0, 0)
+
+
+class Brown(Enum):
+    CORN_SILK = (255, 248, 220)
+    BLANCHED_ALMOND = (255, 235, 205)
+    BISQUE = (255, 228, 196)
+    NAVAJO_WHITE = (255, 222, 173)
+    WHEAT = (245, 222, 179)
+    BURLY_WOOD = (222, 184, 135)
+    TAN = (210, 180, 140)
+    ROSY_BROWN = (188, 143, 143)
+    SANDY_BROWN = (244, 164, 96)
+    GOLDENROD = (218, 165, 32)
+    PERU = (205, 133, 63)
+    CHOCOLATE = (210, 105, 30)
+    SADDLE_BROWN = (139, 69, 19)
+    SIENNA = (160, 82, 45)
+    BROWN = (165, 42, 42)
+    MAROON = (128, 0, 0)
+
+
+class Colors(Enum):
+    RED = Red
+    ORANGE = Orange
+    YELLOW = Yellow
+    GREEN = Green
+    CYAN = Cyan
+    BLUE = Blue
+    PURPLE = Purple
+    PINK = Pink
+    WHITE = White
+    GREY = Grey
+    BROWN = Brown
