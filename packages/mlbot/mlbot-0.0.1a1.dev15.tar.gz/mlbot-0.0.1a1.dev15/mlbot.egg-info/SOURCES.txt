@@ -1,0 +1,17 @@
+MANIFEST.in
+README.md
+setup.py
+jupyter-config/jupyter_notebook_config.d/mlbot.json
+jupyter-config/nbconfig/notebook.d/mlbot.json
+mlbot/__init__.py
+mlbot/handlers.py
+mlbot/mlflow_handlers.py
+mlbot/utils.py
+mlbot.egg-info/PKG-INFO
+mlbot.egg-info/SOURCES.txt
+mlbot.egg-info/dependency_links.txt
+mlbot.egg-info/not-zip-safe
+mlbot.egg-info/requires.txt
+mlbot.egg-info/top_level.txt
+mlbot/static/handlers.js
+mlbot/static/main.js
