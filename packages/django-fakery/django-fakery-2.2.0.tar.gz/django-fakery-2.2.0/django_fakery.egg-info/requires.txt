@@ -1,0 +1,6 @@
+Faker<2.1,>=2.0
+Django>=1.11
+six>=1.10.1
+
+[:python_version<="3.5"]
+typing
