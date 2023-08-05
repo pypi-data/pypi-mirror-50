@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: pattmatch
+Version: 0.0.0
+Summary: Implementation of pattern matching algorithms
+Home-page: https://github.com/monzita/pattmatch
+Author: Monika Ilieva
+Author-email: hidden@hidden.com
+License: GNU General Public License v3 or later (GPLv3+)
+Description: Under construction
+Keywords: pattern-matching text string pattern python3
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3.6
