@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: blaster-logger
+Version: 0.1.0
+Summary: 
+Home-page: https://github.com/Blasterai/blaster-logger
+Author: MB
+Author-email: mb@blaster.ai
+Requires-Python: >=3.7,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: loguru (>=0.3.2,<0.4.0)
+Description-Content-Type: text/markdown
+
+## Blaster Logger
+Turn-key logging solution based on [loguru](https://github.com/Delgan/loguru)
+
+### Installation
+
+```bash
+pip install blaster_logger
+```
+
+### Usage
+
+#### As logger
+```python
+from blaster_logger import log
+
+log.debug('This is DEBUG level message')
+log.info('This is INFO level message')
+log.warning('This is a warning')
+log.error('This is an error message')
+log.critical('This is a critical level message')
+
+try:
+    raise RuntimeError('Error message')
+except RuntimeError as e:
+    log.trace(e) # This is a traceback log
+```
+
+#### As decorator
+```python
+from blaster_logger import log
+
+@log.this
+def some_func(x):
+    return x * 2
+```
+
+
