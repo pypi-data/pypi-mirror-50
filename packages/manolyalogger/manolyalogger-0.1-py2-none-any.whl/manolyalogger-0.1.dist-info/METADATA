@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: manolyalogger
+Version: 0.1
+Summary: The simplest logger the world
+Home-page: http://github.com/storborg/funniest
+Author: Umut Ucok
+Author-email: ucok.umut@gmail.com
+License: MIT
+Keywords: simplest logger
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Text Processing :: Linguistic
+Requires-Dist: markdown
+
+Really, the simplest around.
+
+
