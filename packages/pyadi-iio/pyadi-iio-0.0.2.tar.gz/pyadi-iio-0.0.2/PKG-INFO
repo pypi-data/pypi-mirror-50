@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: pyadi-iio
+Version: 0.0.2
+Summary: Interfaces to stream data from ADI hardware
+Home-page: https://github.com/analogdevicesinc/pyadi-iio
+Author: Travis Collins
+Author-email: travis.collins@analog.com
+License: UNKNOWN
+Description: # pyadi-iio: [BETA] Analog Devices python interfaces for hardware with Industrial I/O drivers
+        
+        ## Still in beta and feedback is appreciated
+        
+        [[Docs](http://analogdevicesinc.github.io/pyadi-iio/)]
+        [[Support](http://ez.analog.com)]
+        [[Wiki](https://wiki.analog.com/resources/tools-software/linux-software/pyadi-iio)]
+        
+        ### Currently supported hardware
+        - AD936X (Pluto, FMComms, ADRV936X)
+        - AD9371
+        
+        ### Dependencies
+        - libiio with python bindings
+        - numpy
+        
+        ### Installing from source
+        ```
+        tcollins@jeeves:~$ git clone https://github.com/analogdevicesinc/pyadi-iio.git
+        tcollins@jeeves:~$ cd pyadi-iio
+        tcollins@jeeves:~$ (sudo) python setup.py install
+        ```
+        ### Installing from pip
+        
+        ```
+        tcollins@jeeves:~$ (sudo) pip install pyadi-iio
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown

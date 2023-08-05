@@ -1,0 +1,16 @@
+README.md
+setup.py
+adi/__init__.py
+adi/ad9361.py
+adi/ad9371.py
+adi/attribute.py
+adi/context_manager.py
+adi/dds.py
+adi/rx_tx.py
+pyadi_iio.egg-info/PKG-INFO
+pyadi_iio.egg-info/SOURCES.txt
+pyadi_iio.egg-info/dependency_links.txt
+pyadi_iio.egg-info/requires.txt
+pyadi_iio.egg-info/top_level.txt
+test/__init__.py
+test/pluto.py
