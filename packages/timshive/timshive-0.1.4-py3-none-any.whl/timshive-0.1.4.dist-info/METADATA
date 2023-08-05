@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: timshive
+Version: 0.1.4
+Summary: Program for creating simple hive plots in python using multidimensional arrays.
+Home-page: UNKNOWN
+Author: Tim Crimmins
+Author-email: tim.g.crimmins@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+Requires-Dist: matplotlib
+Requires-Dist: numpy
+
+----------------------------------------
+Tim's Hive (timshive)
+----------------------------------------
+
+----------------------------------------
+By TimC July 2019
+Version 1.0.0
+----------------------------------------
+Use:
+create class 'hive' with inputs:
+
+ points: a two dimensional list where the first dimension represents each axis you wish to draw and the second represents the points on each axes. eg. to plot a hive with three axes each containing points 2 and 3, you would use [[2,3],[2,3],[2,3]] as the input value for points
+
+ colors: one dimensional list of all colors that corresponds to the first, second third, point in each list. Using the last example, if ['green','red'] was entered in the color field given the same points input, all of the twos would show up as green and the threes as red. If the length of any axes exceed the length of colors, all points will be filled in as black
+
+ kwargs:
+
+  range: this gives the value to which the axes should be drawn. Assumed to round up to the nearest 10 unless another value is given
+
+  labels: used to give the text associated with each color if a key is desired. Entering labels = ['Set 1','Set 2'] for the previous example would produce a key in which green is labeled as 'Set 1' and red is labeled as 'Set 2'
+
+  axlab: the label given to each axis. If string, will be applied in order as string 1 , string etc. if it is a list, each item in the list will be used in order. if not enough conditions are given, axes will be unlabeled
+
+function 'hive.show(title,name)' takes two string inputs:
+
+ title: what words should appear at the top of the graph
+
+ name: what the file should be called. Do not include extensions
+
+---------------------------------------
+Output examples at PyPI.
+
+
