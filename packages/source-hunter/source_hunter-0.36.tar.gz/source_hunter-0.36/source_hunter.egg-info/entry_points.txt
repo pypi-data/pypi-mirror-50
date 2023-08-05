@@ -1,0 +1,3 @@
+[console_scripts]
+hunt = source_hunter.hunter:hunt
+
