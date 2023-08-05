@@ -1,0 +1,11 @@
+click<8,>=7
+python-json-logger
+
+[dev]
+pytest
+pytest-cov
+codecov
+black
+pylint
+rope
+mypy
