@@ -1,0 +1,73 @@
+Metadata-Version: 1.2
+Name: moose-frank
+Version: 3.0
+Summary: A Python package packed with tools that are commonly used in Moose projects.
+Home-page: https://gitlab.com/mediamoose/moose-frank/tree/v3.0
+Author: Sven Groot (Mediamoose)
+Author-email: sven@mediamoose.nl
+License: MIT
+Download-URL: https://gitlab.com/mediamoose/moose-frank/repository/v3.0/archive.tar.gz
+Description: Moose Frank
+        ===========
+        
+        A Python package packed with tools that are commonly used in Moose projects.
+        
+        
+        Installation
+        ++++++++++++
+        
+        .. code-block:: sh
+        
+            pip install moose-frank
+        
+        
+        Local testing
+        -------------
+        
+        isort
+        
+        .. code-block:: console
+        
+            docker-compose run --rm --no-deps python isort [module/path] [options]
+        
+        -------------
+        
+        flake8
+        
+        .. code-block:: console
+        
+            docker-compose run --rm --no-deps python flake8 [module/path]
+        
+        -------------
+        
+        black
+        
+        .. code-block:: console
+        
+            docker-compose run --rm --no-deps python black [module/path]
+        
+        -------------
+        
+        pytest
+        
+        .. code-block:: console
+        
+            docker-compose run --rm --no-deps python coverage run ./runtests.py
+        
+Keywords: moose,frank,frankenstein
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.11
+Classifier: Framework :: Django :: 2.0
+Classifier: Framework :: Django :: 2.1
+Classifier: Framework :: Django :: 2.2
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.6
