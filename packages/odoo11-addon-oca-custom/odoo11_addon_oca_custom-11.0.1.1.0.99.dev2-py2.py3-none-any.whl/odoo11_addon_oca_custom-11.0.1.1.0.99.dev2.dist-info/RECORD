@@ -1,0 +1,15 @@
+odoo/addons/oca_custom/README.rst,sha256=LXuUd9kEYkAVrNtflDdaSYGoR1B2GCO-a_dkvecGR3M,2900
+odoo/addons/oca_custom/__init__.py,sha256=X9EJGOE2GtZbS0G82PtSXmWSZ_R8jEM0rlJTDliQjp4,21
+odoo/addons/oca_custom/__manifest__.py,sha256=7css4XavVolfoTRU4bRANwS8KyN0HGUBD9bfvNVUglo,592
+odoo/addons/oca_custom/models/__init__.py,sha256=g-Dp2ZwN6oB4CqdQfgRInNSzdMWAVQg1vjWL7S-ZODM,26
+odoo/addons/oca_custom/models/res_partner.py,sha256=5gFtuYKNwgqkr8mam_AWbwCqsjyBStwLn7CQf8WjBGo,335
+odoo/addons/oca_custom/readme/CONTRIBUTORS.rst,sha256=pKjWoVXtyLkEaTiWBU2xUDj12q7wCh_iOpAX_tn9PLo,194
+odoo/addons/oca_custom/readme/DESCRIPTION.rst,sha256=osAUHIgEHDBALyhAEc6VKKwvJmjHtArRmM4f5EldoiM,32
+odoo/addons/oca_custom/readme/ROADMAP.rst,sha256=v7MQvHKwWdKDcC4OIeBNyfRNHM7UAdebaq7w82buIks,121
+odoo/addons/oca_custom/static/description/icon.png,sha256=soy8F9dpb8OgIRjYGcqIkPkLqL4r4LfBwPm6EPYpdpM,16821
+odoo/addons/oca_custom/static/description/index.html,sha256=VQuAWomI2iM7yOlwLq6qBBzQJNxExX_CEGngqP5ndjw,12495
+odoo/addons/oca_custom/views/res_partner.xml,sha256=KHSUZFE3FK6PM2_kQXIoxamCmAAkMyDoB2vKpEExuPQ,581
+odoo11_addon_oca_custom-11.0.1.1.0.99.dev2.dist-info/METADATA,sha256=8Y2ILUb_EZ0k345V70OkZiR__xwqcwl1Q0O-IyqfeE0,3477
+odoo11_addon_oca_custom-11.0.1.1.0.99.dev2.dist-info/WHEEL,sha256=h_aVn5OB2IERUjMbi2pucmR_zzWJtk303YXvhh60NJ8,110
+odoo11_addon_oca_custom-11.0.1.1.0.99.dev2.dist-info/top_level.txt,sha256=qBj40grFkGOfDZ2WDSw3y1RnDlgG0u8rP8pvGNdbz4w,5
+odoo11_addon_oca_custom-11.0.1.1.0.99.dev2.dist-info/RECORD,,
