@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: neonpy
+Version: 0.0.1
+Summary: add a little neon to your python
+Home-page: https://github.com/mrmechko/neon
+Author: Rik Bose
+Author-email: rbose@cs.rochester.edu
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# Welcome to **neonpy**
+
+## Warning
+
+**neonpy** is an entirely experimental library consisting largely of decorators I think will be useful to me.
+I may be very wrong.  **neonpy** comes with no warranty.
+
+## Basic philosophy
+
+1. Per function logging
+2. Distinguish between mutable and immutable
+3. Fix code quickly
+
+
+## @normalize_fields
+
+```
+@normalize_fields(bar=lambda x: x.lower())
+@normalize_fields(foo=lambda x: x.lower(), quux=lambda x: x.upper())
+def myfunction(foo, bar="PET", quux="motor"):
+    x = 5
+    print(foo, bar, quux)
+
+
+myfunction("my", "PIGEON", "Pie")
+myfunction("MY")
+myfunction("MY", "CAT")
+myfunction("my", "CAT")
+myfunction("MY", "dog")
+```
+
+## @memoize
+
+WARNING: Do not use this if you are using objects that are hashable but not immutable
+
+```
+@memoize
+def fib(a):
+    if a < 2:
+        return 1
+    return fib(a-1) + fib(a-2)
+```
+
+
