@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: redial
+Version: 0.4
+Summary: SSH Connection Manager
+Home-page: https://github.com/taypo/redial
+Author: Bahadır Yağan
+Author-email: bahadir.yagan@gmail.com
+License: gpl3
+Description: # redial
+        
+        redial is a simple shell application that manages your SSH sessions.
+        
+        ![redial](https://github.com/taypo/redial/blob/master/doc/redial.png?raw=true)
+        
+        You can install it with pip.
+        
+        `pip3 install redial` 
+        
+        Features
+        - [x] Manage your connections in folders/groups
+        - [x] Open a file manager to your remote host (Midnight Commander should be installed)
+        - [ ] Edit/Move/Delete connection
+        - [ ] Copy SSH Key to remote host
+        
+        More features coming soon..
+        
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+Provides-Extra: testing
