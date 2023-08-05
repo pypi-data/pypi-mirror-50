@@ -1,0 +1,5 @@
+flotils<0.6,>=0.5
+beautifulsoup4<4.9,>=4.6.0
+portalocker<1.6,>=0.5.5
+requests<3.0,>=2.18.4
+html2text>=2017.10.4
