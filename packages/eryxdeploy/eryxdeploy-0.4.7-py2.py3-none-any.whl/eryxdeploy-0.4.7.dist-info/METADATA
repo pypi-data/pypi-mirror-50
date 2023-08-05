@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: eryxdeploy
+Version: 0.4.7
+Summary: A tool to assist deployments for Eryx infraestructure
+Home-page: https://gitlab.com/eryx/eryxdeploy
+Author: Eryx Team
+Author-email: info@eryx.co
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: Fabric3 (==1.13.1.post1)
+
+UNKNOWN
+
+
