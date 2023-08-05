@@ -1,0 +1,15 @@
+README.md
+setup.py
+gorgonzola/__init__.py
+gorgonzola/aws_boto_session.py
+gorgonzola/aws_dynamodb_table.py
+gorgonzola/aws_iam_roles.py
+gorgonzola/aws_lambda_function.py
+gorgonzola/aws_organizations.py
+gorgonzola/aws_s3_buckets.py
+gorgonzola/aws_ssm_global_parameters.py
+gorgonzola/aws_sts_credentials.py
+gorgonzola.egg-info/PKG-INFO
+gorgonzola.egg-info/SOURCES.txt
+gorgonzola.egg-info/dependency_links.txt
+gorgonzola.egg-info/top_level.txt
