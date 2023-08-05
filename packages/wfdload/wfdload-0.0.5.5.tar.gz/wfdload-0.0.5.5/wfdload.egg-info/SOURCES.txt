@@ -1,0 +1,12 @@
+README.md
+setup.py
+wfdload/__init__.py
+wfdload/chordsplit.py
+wfdload/label.py
+wfdload/loader.py
+wfdload/wfd.py
+wfdload.egg-info/PKG-INFO
+wfdload.egg-info/SOURCES.txt
+wfdload.egg-info/dependency_links.txt
+wfdload.egg-info/requires.txt
+wfdload.egg-info/top_level.txt
