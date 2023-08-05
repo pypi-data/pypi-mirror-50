@@ -1,0 +1,30 @@
+#!python
+
+import sys
+import logging
+
+import argparse
+
+import resumejson_converter.utils.json as ujson
+
+from resumejson_converter.generators.html import generate as generate_html
+from resumejson_converter.generators.pdf import generate as generate_pdf
+
+logging.basicConfig(level=logging.INFO)
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--resume", help="JSON Resume file to transform", default="resume.json")
+    parser.add_argument("--template", help="Specifie an jijna2 template file", default="templates/template.html")
+    parser.add_argument("--html", help="Html file output")
+    parser.add_argument("--nopdf", help="Don't generate pdf", action="store_true")
+    args = parser.parse_args()
+
+    resume = ujson.load(args.resume)
+    html = generate_html(resume, args.template, args.html)
+
+    if not args.nopdf:
+        generate_pdf(html)
+
+if __name__ == "__main__":
+    main()
