@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: rlclientbdr
+Version: 1.0
+Summary: Client for the reinforcement learning knowledge sharing
+Home-page: https://github.com/javatechy/dokr
+Author: Robbert van der Gugten
+Author-email: robbert.van.der.gugten@bigdatarepublic.nl
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# aiws-api
+API for the AI at the Webscale course (SOW-MKI51)
+
+
