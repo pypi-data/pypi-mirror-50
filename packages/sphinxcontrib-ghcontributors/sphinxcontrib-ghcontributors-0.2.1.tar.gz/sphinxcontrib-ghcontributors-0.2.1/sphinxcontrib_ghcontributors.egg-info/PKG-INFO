@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: sphinxcontrib-ghcontributors
+Version: 0.2.1
+Summary: Sphinx extension to render GitHub contributors
+Home-page: https://github.com/dgarcia360/sphinxcontrib-ghcontributors
+Author: David Garcia
+Author-email: dgarcia360@outlook.com
+License: MIT
+Download-URL: http://pypi.python.org/pypi/sphinxcontrib-ghcontributors
+Description: UNKNOWN
+Platform: any
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Documentation
+Classifier: Topic :: Utilities
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
