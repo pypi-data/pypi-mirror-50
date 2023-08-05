@@ -1,0 +1,12 @@
+HISTORY.rst
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+azure/cli/__init__.py
+opal_azure_cli_nspkg.egg-info/PKG-INFO
+opal_azure_cli_nspkg.egg-info/SOURCES.txt
+opal_azure_cli_nspkg.egg-info/dependency_links.txt
+opal_azure_cli_nspkg.egg-info/not-zip-safe
+opal_azure_cli_nspkg.egg-info/requires.txt
+opal_azure_cli_nspkg.egg-info/top_level.txt
