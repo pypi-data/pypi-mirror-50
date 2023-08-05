@@ -1,0 +1,16 @@
+The isoenum-webgui GUI Reference
+================================
+
+Home View
+~~~~~~~~~
+
+
+
+InChI Table View
+~~~~~~~~~~~~~~~~
+
+
+NMR-specific InChI Tables View
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
