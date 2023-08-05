@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: cbmpy
+Version: 0.7.25
+Summary: CBMPy (http://cbmpy.sourceforge.net) is a platform for constraint based modelling and analysis. CBMPy implements popular analyses such as FBA, FVA, element/charge balancing, network analysis and model editing as well as advanced methods developed specifically for the ecosystem modelling.
+Home-page: http://cbmpy.sourceforge.net
+Author: Brett G. Olivier
+Author-email: b.g.olivier@vu.nl
+Maintainer: Brett G. Olivier
+Maintainer-email: bgoli@users.sourceforge.net
+License: GNU General Public License (GPL)
+Download-URL: http://sourceforge.net/projects/cbmpy/files/release/0.7/
+Keywords: computational systems biology,modelling,simulation,genome scale models,sbml,constraint-based modelling,fbc,linear programming,groups,standard
+Platform: Windows
+Platform: Linux
+Platform: Mac
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Requires: numpy
+Requires: sympy
+Requires: libsbml
+Requires: nose
+
+UNKNOWN
+
+
