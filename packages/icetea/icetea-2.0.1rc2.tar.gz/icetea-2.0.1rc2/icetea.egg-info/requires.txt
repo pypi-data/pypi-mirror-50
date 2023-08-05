@@ -1,0 +1,12 @@
+prettytable<1.0
+requests
+yattag<2.0,>=1.0
+pyserial>2.5
+jsonmerge<2.0,>=1.4.0
+jsonschema<3.0.0
+mbed-ls<2.0,>=1.5.1
+semver<3.0,>=2.0
+mbed-flasher<0.11,>=0.10.1
+six<2.0,>=1.0
+pydash<5.0,>=4.0
+transitions<1.0
