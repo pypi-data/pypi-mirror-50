@@ -1,0 +1,2 @@
+include _evergreen_fft.so
+include evergreen_fft/_evergreen_fft.so
