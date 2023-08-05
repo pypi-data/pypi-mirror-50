@@ -1,0 +1,46 @@
+Metadata-Version: 2.0
+Name: python-outfit
+Version: 0.0.1.post1
+Summary: UNKNOWN
+Home-page: https://github.com/situkangsayur/python-outfit
+Author: Hendri Karisma
+Author-email: situkangsayur@gmail.com
+Maintainer: Hendri Karisma
+Maintainer-email: situkangsayur@gmail.com
+License: MIT
+Download-URL: https://github.com/situkangsayur/python-outfit
+Platform: any
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Environment :: Plugins
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Framework :: Flask
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Provides-Extra: dev
+Provides-Extra: docs
+Requires-Dist: python-consul (==1.1.0)
+Requires-Dist: hvac (==0.9.5)
+Requires-Dist: pyyaml (==5.1.1)
+Provides-Extra: dev
+Requires-Dist: coverage; extra == 'dev'
+Requires-Dist: sphinx; extra == 'dev'
+Requires-Dist: pallets-sphinx-themes; extra == 'dev'
+Requires-Dist: sphinxcontrib-log-cabinet; extra == 'dev'
+Requires-Dist: sphinx-issues; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: sphinx; extra == 'docs'
+Requires-Dist: pallets-sphinx-themes; extra == 'docs'
+Requires-Dist: sphinxcontrib-log-cabinet; extra == 'docs'
+Requires-Dist: sphinx-issues; extra == 'docs'
+
+# python-outfit
+utilities for distributed environment
+
+Python Cloud is set of dependencies across a range of python standard package for software development. 
+
+
+
