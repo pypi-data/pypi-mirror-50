@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: dlatk
+Version: 1.1.6
+Summary: DLATK is an end to end human text analysis package, specifically suited for social media and social scientific applications. It is written in Python 3 and developed by the World Well-Being Project at the University of Pennsylvania and Stony Brook University. 
+Home-page: http://dlatk.wwbp.org
+Author: H. Andrew Schwartz, Salvatore Giorgi, Maarten Sap, Patrick Crutchley, Lukasz Dziurzynski and Megha Agrawal
+Author-email: has@cs.stonybrook.edu, sgiorgi@sas.upenn.edu
+License: GNU General Public License v3 (GPLv3)
+Download-URL: https://github.com/dlatk/dlatk
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Natural Language :: English
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Scientific/Engineering
