@@ -1,0 +1,7 @@
+[yafowil.plugin]
+configure = yafowil.plone:configure
+register = yafowil.plone:register
+
+[z3c.autoinclude.plugin]
+target = plone
+
