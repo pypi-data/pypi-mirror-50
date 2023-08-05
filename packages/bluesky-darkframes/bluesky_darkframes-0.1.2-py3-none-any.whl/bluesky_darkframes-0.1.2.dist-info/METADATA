@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: bluesky-darkframes
+Version: 0.1.2
+Summary: Tools for acquiring and subtracting darkframes
+Home-page: https://github.com/bluesky/bluesky-darkframes
+Author: Brookhaven National Lab
+Author-email: dallan@bnl.gov
+License: BSD (3-clause)
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6
+Requires-Dist: bluesky (>=1.6.0rc1)
+Requires-Dist: event-model
+Requires-Dist: frozendict
+Requires-Dist: numpy
+
+===============================
+Bluesky Darkframes
+===============================
+
+.. image:: https://img.shields.io/travis/bluesky/bluesky-darkframes.svg
+        :target: https://travis-ci.org/bluesky/bluesky-darkframes
+
+.. image:: https://img.shields.io/pypi/v/bluesky-darkframes.svg
+        :target: https://pypi.python.org/pypi/bluesky-darkframes
+
+
+Tools for acquiring and subtracting darkframes
+
+* Free software: 3-clause BSD license
+* Documentation: (COMING SOON!) https://bluesky.github.io/bluesky-darkframes.
+
+Features
+--------
+
+* TODO
+
+
