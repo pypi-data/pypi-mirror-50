@@ -1,0 +1,3 @@
+[mkdocs.plugins]
+image-localization = mkdocs_image_localization.plugin:ImageLocalization
+
