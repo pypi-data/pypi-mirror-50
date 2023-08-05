@@ -1,0 +1,10 @@
+Metadata-Version: 2.1
+Name: find-missing
+Version: 1.0.3
+Summary: 
+Author: MB
+Author-email: mb@m1k.pw
+Requires-Python: >=3.7,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: click (>=7.0,<8.0)
