@@ -1,0 +1,25 @@
+Metadata-Version: 1.2
+Name: dfviz
+Version: 0.1.0
+Summary: dataframe interactive visualisation interface
+Home-page: https://github.com/intake/dfviz
+Maintainer: Martin Durant
+Maintainer-email: mdurant@anaconda.com
+License: BSD
+Description: DFVIZ
+        =====
+        
+        A simple general-purpose interactive plotting tool for dataframes
+        
+        For documentation, please go to [ReadTheDocs](https://fdfviz.readthedocs.io/)
+        
+Keywords: dataframe,plotting,visualization,interactive
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >= 3.5
