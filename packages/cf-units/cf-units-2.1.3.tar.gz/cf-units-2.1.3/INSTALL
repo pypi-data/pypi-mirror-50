@@ -1,0 +1,106 @@
+You can either install cf-units using the conda package manager or from source.
+
+Installing using conda
+----------------------
+
+cf-units is available using conda for the following platforms:
+ * Linux 32-bit and 64-bit,
+ * Mac OSX 64-bit, and
+ * Windows 32-bit and 64-bit.
+
+To install cf-units using conda, you must first download and install conda,
+for example from https://conda.io/miniconda.html.
+
+Once conda is installed, you can install cf-units using conda on any platform with
+the following command::
+
+  conda install -c conda-forge cf-units
+
+Further documentation on using conda and the features it provides can be found
+at https://conda.io/docs/.
+
+
+Installing from source
+----------------------
+
+The latest cf-units source release is available from
+https://github.com/SciTools/cf-units/releases.
+
+cf-units makes use of cftime, cython, numpy, setuptools, six and udunits2.
+These dependencies must be in place before you can successfully install
+cf-units. Once you have satisfied the requirements detailed below,
+extract the cf-units source package, change to the new directory, and enter::
+
+  python setup.py install
+
+For non-standard locations, additional build lib & include paths
+can be provided as per-usual at build_ext phase::
+
+  python setup.py build_ext -I/path/to/include -L/path/to/lib
+  python setup.py install
+
+
+Build and runtime requirements
+==============================
+These are external packages which you will need to have installed before
+installing and running cf-units.
+
+Many of these packages are available in Linux package managers
+such as aptitude and yum. For example, it may be possible to install
+Numpy using::
+
+  apt-get install python-numpy
+
+If you are installing dependencies with a package manager on Linux,
+you may need to install the development packages (look for a "-dev"
+postfix) in addition to the core packages.
+
+python 2.7 or later (https://www.python.org/)
+    cf-units is compatible with Python 2 and Python 3.
+
+cftime 1.0.0 or later (https://unidata.github.io/cftime/)
+    Python package for decoding time units conforming to
+    Climate and Forecasting (CF) netCDF conventions.
+
+cython (https://pypi.org/project/Cython/)
+    Optimising static compiler for Python and the extended Cython
+    programming language.
+
+numpy 1.14 or later (https://pypi.org/project/numpy/)
+    Python package for scientific computing including a powerful N-dimensional
+    array object.
+
+udunits2 2.2.26 or later (https://www.unidata.ucar.edu/downloads/udunits/index.jsp)
+    C library for units of physical quantities.
+
+setuptools (https://pypi.org/project/setuptools/)
+    Python package for installing/removing python packages.
+
+six (https://pypi.org/project/six/)
+    Python 2 and 3 compatibility library.
+
+
+Optional
+''''''''
+These packages are required for the full cf-units test suite to run.
+
+pep8 1.4.6* (https://pypi.org/project/pep8/)
+    Python package for software testing.
+
+pytest (https://pypi.org/project/pytest/)
+    Python testing framework.
+
+* Those packages have been tested with a specific build.
+
+
+Custom site configuration
+=========================
+The default site configuration values can be overridden by creating the file
+``cf_units/etc/site.cfg``. For example, the following snippet can be used to
+specify a non-standard location for your udunits xml database::
+
+  [System]
+  udunits2_xml_path = /path/to/udunits2.xml
+
+An example configuration file is available in ``cf_units/etc/site.cfg.template``.
+See :py:func:`cf_units.config` for further configuration options.
