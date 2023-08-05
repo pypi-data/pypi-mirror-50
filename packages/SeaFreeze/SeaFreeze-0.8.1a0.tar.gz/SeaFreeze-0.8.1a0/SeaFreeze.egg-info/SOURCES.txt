@@ -1,0 +1,11 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.py
+SeaFreeze.egg-info/PKG-INFO
+SeaFreeze.egg-info/SOURCES.txt
+SeaFreeze.egg-info/dependency_links.txt
+SeaFreeze.egg-info/requires.txt
+SeaFreeze.egg-info/top_level.txt
+seafreeze/__init__.py
+seafreeze/seafreeze.py
