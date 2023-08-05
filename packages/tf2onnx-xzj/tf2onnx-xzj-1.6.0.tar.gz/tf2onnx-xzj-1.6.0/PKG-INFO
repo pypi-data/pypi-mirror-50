@@ -1,0 +1,11 @@
+Metadata-Version: 1.2
+Name: tf2onnx-xzj
+Version: 1.6.0
+Summary: Tensorflow to ONNX converter
+Home-page: https://github.com/onnx/tensorflow-onnx
+Author: onnx@microsoft.com
+Author-email: onnx@microsoft.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.7
