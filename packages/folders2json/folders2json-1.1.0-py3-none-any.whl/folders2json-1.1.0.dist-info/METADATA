@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: folders2json
+Version: 1.1.0
+Summary: file extension info
+Home-page: https://github.com/jamesacampbell/folders2json
+Author: James Campbell
+Author-email: jc@normail.co
+License: GPL
+Download-URL: https://github.com/        jamesacampbell/folders2json/archive/1.1.0.tar.gz
+Keywords: folders,json,files,directories,data-structuring
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Dist: argparse
+Requires-Dist: pathlib
+
+UNKNOWN
+
+
