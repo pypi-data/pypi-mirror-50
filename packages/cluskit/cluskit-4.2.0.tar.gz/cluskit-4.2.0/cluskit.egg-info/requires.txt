@@ -1,0 +1,4 @@
+numpy>=1.14.2
+scipy
+dscribe>=0.2.7
+ase
