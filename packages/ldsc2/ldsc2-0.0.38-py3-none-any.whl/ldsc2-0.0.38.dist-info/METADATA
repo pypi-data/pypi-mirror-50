@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: ldsc2
+Version: 0.0.38
+Summary: Simplify stratified LD score regression
+Home-page: https://github.com/anthony-aylward/ldsc2.git
+Author: Anthony Aylward
+Author-email: aaylward@eng.ucsd.edu
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: gitpython
+
+# ldsc2
+
+Simplify stratified LD score regression
+
+## Installation
+```sh
+pip3 install ldsc2
+```
+or
+```sh
+pip3 install --user ldsc2
+```
+
+Followed by 
+
+```sh
+ldsc2-download
+```
+
+
