@@ -1,0 +1,7 @@
+beautifulsoup4<4.8,>4.7
+lxml
+
+[dev]
+pre-commit
+mock
+pytest
