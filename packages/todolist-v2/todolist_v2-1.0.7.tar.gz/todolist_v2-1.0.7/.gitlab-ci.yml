@@ -1,0 +1,29 @@
+image: python:3.6
+
+stages:
+  - test
+  - deploy
+
+python_test:
+  stage: test
+  script:
+    - pip install virtualenv
+    - virtualenv --python=python3 ve
+    - source ve/bin/activate
+    - pip3 install -rrequirements.txt --quiet --upgrade
+    - tox -r
+
+deploy_to_pypi:
+  stage: deploy
+  only:
+    - master
+  script:
+    - mkdir -p $HOME
+    - cp ./.pypirc $HOME/.pypirc
+    - pip3 install virtualenv
+    - virtualenv --python=python3 ve
+    - source ve/bin/activate
+    - pip3 install -r requirements.txt --quiet --upgrade
+    - python setup.py sdist bdist_wheel
+    - twine upload dist/*
+    - rm dist/*
