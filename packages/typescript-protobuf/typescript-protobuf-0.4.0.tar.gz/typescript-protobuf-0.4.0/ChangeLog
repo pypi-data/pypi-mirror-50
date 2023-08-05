@@ -1,0 +1,26 @@
+CHANGES
+=======
+
+v0.4
+----
+
+* Handle well known types Duration and FieldMask as well. (#5)
+
+v0.3.1
+------
+
+* Use PBR to release easily. (#3)
+
+v0.3
+----
+
+* Update version for release. (#2)
+* Only use readonly arrays for repeated fields. (#1)
+
+v0.2
+----
+
+* Add required protobuf package
+* Add config for PyPi
+* Make a d.ts generator from python stub generator
+* First commit

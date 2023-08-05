@@ -1,0 +1,15 @@
+AUTHORS
+ChangeLog
+Dockerfile
+README.md
+requirements.txt
+setup.cfg
+setup.py
+src/protoc-gen-json-ts
+typescript_protobuf.egg-info/PKG-INFO
+typescript_protobuf.egg-info/SOURCES.txt
+typescript_protobuf.egg-info/dependency_links.txt
+typescript_protobuf.egg-info/not-zip-safe
+typescript_protobuf.egg-info/pbr.json
+typescript_protobuf.egg-info/requires.txt
+typescript_protobuf.egg-info/top_level.txt
