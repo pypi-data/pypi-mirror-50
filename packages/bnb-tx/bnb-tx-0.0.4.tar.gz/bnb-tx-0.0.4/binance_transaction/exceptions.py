@@ -1,0 +1,2 @@
+class UnsupportedBnbMessage(Exception):
+    pass
