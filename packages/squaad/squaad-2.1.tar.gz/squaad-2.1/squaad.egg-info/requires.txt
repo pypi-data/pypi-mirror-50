@@ -1,0 +1,13 @@
+psycopg2-binary
+xlwt
+GitPython
+SQLAlchemy
+imbalanced-learn
+imblearn
+matplotlib
+numpy
+pandas
+python-dateutil
+scipy
+seaborn
+sklearn
