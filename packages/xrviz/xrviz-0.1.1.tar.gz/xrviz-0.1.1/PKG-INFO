@@ -1,0 +1,30 @@
+Metadata-Version: 1.2
+Name: xrviz
+Version: 0.1.1
+Summary: Interactive visualisations for xarrays
+Home-page: UNKNOWN
+Maintainer: Martin Durant
+Maintainer-email: mdurant@anaconda.com
+License: BSD
+Description: # xrviz
+        Interactive visualisation interface for Xarrays
+        
+        ## Installation
+        
+        ### Using Conda
+        ```
+        conda install -c conda-forge xrviz
+        pip install git+https://github.com/intake/xrviz --no-deps
+        ```
+        
+        ### Using Pip
+        ```
+        pip install git+https://github.com/intake/xrviz
+        ```
+        
+        ### Usage
+        ```
+        python -c "import xrviz; xrviz.example()"
+        ```
+        
+Platform: UNKNOWN
