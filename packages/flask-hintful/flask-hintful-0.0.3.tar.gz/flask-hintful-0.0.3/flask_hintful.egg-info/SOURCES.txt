@@ -1,0 +1,12 @@
+README.md
+setup.py
+flask_hintful/__init__.py
+flask_hintful/flask_hintful.py
+flask_hintful/serializing.py
+flask_hintful/utils.py
+flask_hintful/wrappers.py
+flask_hintful.egg-info/PKG-INFO
+flask_hintful.egg-info/SOURCES.txt
+flask_hintful.egg-info/dependency_links.txt
+flask_hintful.egg-info/requires.txt
+flask_hintful.egg-info/top_level.txt
