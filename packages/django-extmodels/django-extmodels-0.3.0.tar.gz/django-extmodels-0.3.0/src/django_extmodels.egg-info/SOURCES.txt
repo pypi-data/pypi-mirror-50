@@ -1,0 +1,14 @@
+README.md
+setup.cfg
+setup.py
+src/django_extmodels/__init__.py
+src/django_extmodels/manager.py
+src/django_extmodels/models.py
+src/django_extmodels/options.py
+src/django_extmodels/query.py
+src/django_extmodels/settings.py
+src/django_extmodels/utils.py
+src/django_extmodels.egg-info/PKG-INFO
+src/django_extmodels.egg-info/SOURCES.txt
+src/django_extmodels.egg-info/dependency_links.txt
+src/django_extmodels.egg-info/top_level.txt
