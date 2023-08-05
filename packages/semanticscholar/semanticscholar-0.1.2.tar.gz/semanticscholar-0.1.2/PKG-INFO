@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: semanticscholar
+Version: 0.1.2
+Summary: A python library that aims to retrieve data from Semantic Scholar API
+Home-page: http://danielnsilva.com/semanticscholar
+Author: Daniel Silva
+Author-email: danielnsilva@gmail.com
+License: MIT
+Description: # semanticscholar
+        A python library that aims to retrieve data from Semantic Scholar API<sup>1</sup>.
+        
+        # How to install
+        ```
+        pip install semanticscholar
+        ```
+        ---
+        <sup>1</sup>Semantic Scholar is a free academic search engine. API: https://api.semanticscholar.org/
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
