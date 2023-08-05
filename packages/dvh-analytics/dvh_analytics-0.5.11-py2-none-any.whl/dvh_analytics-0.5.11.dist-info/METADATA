@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: dvh-analytics
+Version: 0.5.11
+Summary: Create a database of DVHs, views with Bokeh
+Home-page: https://github.com/cutright/DVH-Analytics
+Author: Dan Cutright
+Author-email: dan.cutright@gmail.com
+License: MIT License
+Download-URL: https://github.com/cutright/DVH-Analytics/archive/master.zip
+Keywords: dvh,radiation therapy,research,dicom,dicom-rt,bokeh,analytics
+Platform: UNKNOWN
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: pydicom (>=0.9.9)
+Requires-Dist: matplotlib
+Requires-Dist: six (>=1.5)
+Requires-Dist: dicompyler-core
+Requires-Dist: Jinja2
+Requires-Dist: Requests
+Requires-Dist: Tornado (==4.4.2)
+Requires-Dist: PyYaml
+Requires-Dist: bokeh (>=1.0.4)
+Requires-Dist: python-dateutil
+Requires-Dist: psycopg2-binary
+Requires-Dist: shapely[vectorized]
+Requires-Dist: freetype-py
+Requires-Dist: statsmodels
+Requires-Dist: future
+
+DVH Database for Clinicians and Researchers
+
+DVH Analytics is a software application to help radiation oncology departments build an in-house database of 
+treatment planning data for the purpose of historical comparisons and statistical analysis. This code is still in 
+development. Please contact the developer if you are interested in testing or collaborating.
+
+The application builds a SQL database of DVHs and various planning parameters from DICOM files (i.e., Plan, Structure, 
+Dose). Since the data is extracted directly from DICOM files, we intend to accommodate an array of treatment planning 
+system vendors.
+
+
