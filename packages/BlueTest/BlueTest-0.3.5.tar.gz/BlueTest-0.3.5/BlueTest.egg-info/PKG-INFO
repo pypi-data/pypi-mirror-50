@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: BlueTest
+Version: 0.3.5
+Summary: My short description for my project.
+Home-page: https://github.com/liufeng3486/BlueTest.git
+Author: Adol liu
+Author-email: 34862933@qq.com
+License: MIT
+Description: My short description for my project.
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
