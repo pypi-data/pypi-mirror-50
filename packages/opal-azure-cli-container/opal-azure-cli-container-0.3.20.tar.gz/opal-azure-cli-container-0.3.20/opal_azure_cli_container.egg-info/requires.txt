@@ -1,0 +1,8 @@
+azure-mgmt-containerinstance==1.4.0
+azure-mgmt-loganalytics==0.2.0
+azure-mgmt-network==3.0.0
+azure-mgmt-authorization==0.50.0
+opal-azure-cli-core>=2.0.68
+pyyaml
+colorama
+websocket-client
