@@ -1,0 +1,8 @@
+Flask==1.0.2
+Flask-AutoIndex
+python-socketio==4.1.0
+firexapp
+eventlet==0.21.0
+firex_flame_ui<0.22
+requests
+beautifulsoup4
