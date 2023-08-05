@@ -1,0 +1,13 @@
+dask_labextension/__init__.py,sha256=qpFSLMpd79YKeby3HIYKwI-BpqawMrcF0i-yTZSTk-I,1198
+dask_labextension/_version.py,sha256=2plzdEEb24FLjE2I2XyBBcJEPYWHccNL4SgtLC_6erg,22
+dask_labextension/clusterhandler.py,sha256=RYdrIfcKLPjnLbG8FyxTikCJ6KyygTqikgYf0pi_vRQ,2858
+dask_labextension/config.py,sha256=8ca30GqmU3nn0dJ53xDC0F-bcbLcpcAd2xrljXuinys,297
+dask_labextension/dashboardhandler.py,sha256=rHBInWEvozYR125yNYAggBgNcdSY8tiZTGmZszdHP6U,3527
+dask_labextension/labextension.yaml,sha256=wqoYd0iueE6uqXor9yXmqVbYDPv-Nh1TKa7fQU6wA0g,351
+dask_labextension/manager.py,sha256=84Pj3PZK424O4q6DaQ5k00txXTgH7g7Fp4WQtp_iyJA,9236
+dask_labextension-1.0.3.data/data/etc/jupyter/jupyter_notebook_config.d/dask_labextension.json,sha256=8rfUG0QtZKFXdtPOzA3TSY47REqeWfeCMCn3_f8KyDw,94
+dask_labextension-1.0.3.dist-info/LICENSE,sha256=KdiLEYEAIjlSUxipzQwQXt4v7ZWThdnAsvQIHXPSwqM,1532
+dask_labextension-1.0.3.dist-info/METADATA,sha256=bgkEgU7joirZ65s9R9X1_Qc4D4Zs49L0YAKrdkZIVX8,927
+dask_labextension-1.0.3.dist-info/WHEEL,sha256=_NOXIqFgOaYmlm9RJLPQZ13BJuEIrp5jx5ptRD5uh3Y,92
+dask_labextension-1.0.3.dist-info/top_level.txt,sha256=kcNyLbpo9yXwFHEM7tTZ0QQJacclWrp3AVszyDbHZ6I,18
+dask_labextension-1.0.3.dist-info/RECORD,,
