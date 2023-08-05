@@ -1,0 +1,26 @@
+Metadata-Version: 1.1
+Name: sloth_import
+Version: 0.2.3
+Summary: A module for lazy loading of Python modules
+Home-page: https://github.com/matthewsmith/lazy_import
+Author: Manuel Nuno Melo, Matthew Smith
+Author-email: matthew_smith@outlook.com
+License: GPL
+Description: lazy_import
+        ===========
+        
+        This is a fork of the project https://github.com/mnmelo/lazy_import
+        
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Operating System :: OS Independent
