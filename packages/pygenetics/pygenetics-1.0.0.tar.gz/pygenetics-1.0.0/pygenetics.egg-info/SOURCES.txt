@@ -1,0 +1,12 @@
+README.md
+setup.py
+pygenetics/__init__.py
+pygenetics/member.py
+pygenetics/parameter.py
+pygenetics/population.py
+pygenetics/utils.py
+pygenetics.egg-info/PKG-INFO
+pygenetics.egg-info/SOURCES.txt
+pygenetics.egg-info/dependency_links.txt
+pygenetics.egg-info/not-zip-safe
+pygenetics.egg-info/top_level.txt
