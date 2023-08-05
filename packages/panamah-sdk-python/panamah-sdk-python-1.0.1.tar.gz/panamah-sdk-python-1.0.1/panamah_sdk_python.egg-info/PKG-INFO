@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: panamah-sdk-python
+Version: 1.0.1
+Summary: Panamah Software Development Kit for Python
+Home-page: https://github.com/casamagalhaes/panamah-sdk-python
+Author: Casa Magalhães
+Author-email: contato@casamagalhaes.com.br
+License: UNKNOWN
+Description: APIs and models for Panamah services
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
