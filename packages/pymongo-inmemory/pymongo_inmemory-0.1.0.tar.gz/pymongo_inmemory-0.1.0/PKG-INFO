@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: pymongo_inmemory
+Version: 0.1.0
+Summary: Pymongo Mocking Tool with in memory MongoDB running.
+Home-page: UNKNOWN
+Author: Kaizen Dorks
+Author-email: kaizendorks@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Topic :: Database :: Database Engines/Servers
+Classifier: Topic :: Software Development :: Testing
+Classifier: Topic :: Utilities
