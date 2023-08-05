@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: ctec-consumer2
+Version: 0.0.2
+Summary: 189 rabbitMQ consumer
+Home-page: http://www.189.cn
+Author: Zhouziqiang
+Author-email: zhouzq0823@163.com
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: kombu (>=3.0.33)
+Requires-Dist: gevent (>=1.0.1)
+
+UNKNOWN
+
+
