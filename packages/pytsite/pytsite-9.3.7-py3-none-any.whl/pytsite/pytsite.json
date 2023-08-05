@@ -1,0 +1,40 @@
+{
+  "name": "PytSite",
+  "version": "9.3.7",
+  "url": "https://pytsite.xyz",
+  "description": {
+    "en": "The Rapid Web Application Development Framework",
+    "ru": "Фреймворк для быстрой разработки веб-приложений на Python",
+    "uk": "Фреймворк для швидкої розробки веб-додатків на Python"
+  },
+  "author": {
+    "name": "Oleksandr Shepetko",
+    "email": "a@shepetko.com",
+    "url": "https://shepetko.com"
+  },
+  "license": {
+    "name": "MIT",
+    "url": "https://opensource.org/licenses/MIT"
+  },
+  "requires": {
+    "packages": {
+      "dateparser": "^0.7",
+      "dicmer": "^0.1",
+      "frozendict": "^1.2",
+      "htmler": "^0.1",
+      "htmlmin": "^0.1",
+      "jsmin": "^2.2",
+      "jinja2": "^2.10",
+      "lxml": "^4.4",
+      "pymongo": "^3.8",
+      "python-magic": "^0.4",
+      "pytz": "^2019.1",
+      "pyyaml": "^5.1",
+      "requests": "^2.22",
+      "semaver": "^0.1",
+      "uwsgi": "^2.0",
+      "werkzeug": "^0.15",
+      "xxhash": "^1.3"
+    }
+  }
+}
