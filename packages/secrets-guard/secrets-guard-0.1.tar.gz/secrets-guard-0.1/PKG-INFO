@@ -1,0 +1,12 @@
+Metadata-Version: 1.2
+Name: secrets-guard
+Version: 0.1
+Summary: Encrypts and decrypts private information
+Home-page: https://github.com/Docheinstein/secrets
+Author: Stefano Dottore
+Author-email: docheinstein@gmail.com
+License: MIT
+Description: UNKNOWN
+Keywords: pass password private key encrypt decrypt crypt
+Platform: UNKNOWN
+Requires-Python: >=3
