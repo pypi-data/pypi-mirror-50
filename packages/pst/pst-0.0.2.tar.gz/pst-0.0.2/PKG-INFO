@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: pst
+Version: 0.0.2
+Summary: A light-weight version of pstree
+Home-page: https://github.com/mixedconnections/pst
+Author: mixed.connections
+Author-email: mixed.connections2@gmail.com
+License: MIT
+Description: A light-weight version of pstree.
+        Try::
+        
+            $ pst
+        
+        and you can display the output of your running processes as a tree.
+        
+        Full details at https://github.com/mixedconnections/pst
+Keywords: shell pstree
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
