@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: fiddler-client
+Version: 0.3.0
+Summary: Python client for Fiddler Service
+Home-page: https://fiddler.ai
+Author: Fiddler Labs
+License: UNKNOWN
+Description: Fiddler Client
+        =============
+        
+        Python client for interacting with Fiddler. Provides a user-friendly interface to our REST API and enables event
+        publishing for use with our monitoring features.
+        
+        Installation
+        ------------
+        
+            $ pip3 install fiddler
+        
+        
+        API Example Usage
+        -------------
+        For examples of interacting with our APIs, please check out the tutorial notebooks:
+        
+        [Tutorial 01: Uploading Datasets and Models](https://nbviewer.jupyter.org/urls/gist.githubusercontent.com/lukemerrick/bec58454502ec82984bfbded505cc78f/raw/d0ca64ee2704b202ee5448fd08fbf4268ccf6c78/tutorial_01_uploading.ipynb)
+        
+        [Tutorial 02: Controlling Fiddler from the Notebook](https://nbviewer.jupyter.org/urls/gist.githubusercontent.com/lukemerrick/76a6e8ce383431c0c6f9ad076ca087bd/raw/9dc2c1659b5eb7b6d29d8df62e28d757ec455b99/tutorial_02_using.ipynb)
+        
+        
+        Event Publisher Example Usage
+        -------------
+        
+            import fiddler as fdl
+        
+            fiddler_publisher = fiddler.Fiddler(token, org, project, model)
+        
+            # Publish and event. An event is a dictionary of fields where fields correspond to
+            # input and output schema of the model.
+            fiddler_publisher.publish_event({
+                "feature_a": 10.5,
+                "feature_b": 3.2,
+                "predicttion": 0.72
+            })
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
