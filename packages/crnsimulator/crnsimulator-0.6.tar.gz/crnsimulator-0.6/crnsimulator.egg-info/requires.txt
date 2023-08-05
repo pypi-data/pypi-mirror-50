@@ -1,0 +1,8 @@
+future
+scipy>=0.16.1
+sympy>=0.7.6.1
+pyparsing
+numpy
+matplotlib
+seaborn
+networkx>=1.1
