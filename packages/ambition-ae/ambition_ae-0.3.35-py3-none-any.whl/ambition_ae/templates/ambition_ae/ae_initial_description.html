@@ -1,0 +1,17 @@
+
+<b>Site aware:</b> {{ ae_initial.ae_awareness_date }}
+<BR>Grade:</b> {{ ae_initial.get_ae_grade_display }}
+<BR>Classification:</b> 
+{% if ae_initial.ae_classification == OTHER %}
+	Other: {{ ae_initial.ae_classification_other }}
+{% else %}
+	{{ ae_initial.get_ae_classification_display }}
+{% endif %}
+<BR>SUSAR?:</b>
+{% if ae_initial.susar_reported == YES %}
+	Yes. {% if ae_initial.susar_reported == YES %}Reported{% else %}<font color="red">Not reported</font>{% endif %}
+{% else %}
+	{{ ae_initial.get_susar_display }}
+{% endif %}
+<BR><b>Description:</b>
+<BR>{{ ae_initial.ae_description }}
