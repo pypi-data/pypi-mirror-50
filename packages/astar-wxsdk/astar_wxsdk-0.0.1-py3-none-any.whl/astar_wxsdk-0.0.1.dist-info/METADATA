@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: astar-wxsdk
+Version: 0.0.1
+Summary: toolkit for wechat pay
+Home-page: http://www.astar.ltd:10010/python/astar-wxsdk-python
+Author: A.Star
+Author-email: astar@snowland.ltd
+Maintainer: A.Star
+Maintainer-email: astar@snowland.ltd
+License: Apache v2.0
+Platform: all
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: Implementation
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Libraries
+Requires-Dist: astartool (>=0.0.2)
+Requires-Dist: requests
+Requires-Dist: snowland-smx (>=0.3.1)
+Requires-Dist: beautifulsoup4
+Requires-Dist: shove (>=0.6.6)
+Requires-Dist: six
+Requires-Dist: optionaldict (>=0.1.1)
+Requires-Dist: xmltodict
+
+==============
+astar-wxpaysdk
+==============
+
+toolkit for wechat pay.
+
+
