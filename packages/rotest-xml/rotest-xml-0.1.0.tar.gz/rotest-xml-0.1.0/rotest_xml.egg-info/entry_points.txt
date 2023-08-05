@@ -1,0 +1,3 @@
+[rotest.result_handlers]
+xml = rotest_xml:XmlHandler
+
