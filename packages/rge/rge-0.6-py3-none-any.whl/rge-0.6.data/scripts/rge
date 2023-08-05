@@ -1,0 +1,8 @@
+#!python
+
+from rge import Engine
+import sys
+
+run = Engine(sys.argsv[1], sys.argsv[2], sys.argsv[3])
+
+# bash -c  "/anaconda3/bin/python Engine.py $1"
