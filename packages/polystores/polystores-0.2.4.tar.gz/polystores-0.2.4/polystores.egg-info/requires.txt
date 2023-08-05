@@ -1,0 +1,11 @@
+rhea>=0.5.4
+
+[azure]
+azure-storage
+
+[gcs]
+google-cloud-storage
+
+[s3]
+boto3
+botocore
