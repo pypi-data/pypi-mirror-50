@@ -1,0 +1,84 @@
+Metadata-Version: 1.1
+Name: AIOrqlite
+Version: 0.1.4
+Summary: Ayncio-based Python client for rqlite.
+Home-page: https://github.com/superloach/aiorqlite
+Author: Terra Brown
+Author-email: superloach42@gmail.com
+License: UNKNOWN
+Description: =========
+        aiorqlite
+        =========
+        This package contains an asynchronous, pure-Python rqlite client library. (based on the official pyrqlite library)
+        
+        .. contents::
+        
+        Requirements
+        -------------
+        
+        * Python -- one of the following:
+        
+          - CPython >= 3.5 (3.4 may pose some difficulties)
+        
+        * rqlite Server
+        
+        
+        Example
+        -------
+        
+        The following code creates a connection and executes some statements:
+        
+        .. code:: python
+        
+        	import aiorqlite
+        
+        	@aiorqlite.arun
+        	async def main():
+        		# Connect to the database
+        		async with aiorqlite.connect(':memory:') as db:
+        			async with db.cursor() as cursor:
+        				await cursor.execute('CREATE TABLE foo (id integer not null primary key, name text)')
+        				await cursor.executemany('INSERT INTO foo(name) VALUES(?)', seq_of_parameters=(('a',), ('b',)))
+        
+        			async with db.cursor() as cursor:
+        				# Read a single record with qmark parameter style
+        				sql = "SELECT `id`, `name` FROM `foo` WHERE `name`=?"
+        				await cursor.execute(sql, ('a',))
+        				result = await cursor.fetchone()
+        				print(result)
+        				# Read a single record with named parameter style
+        				sql = "SELECT `id`, `name` FROM `foo` WHERE `name`=:name"
+        				await cursor.execute(sql, {'name': 'b'})
+        				result = await cursor.fetchone()
+        				print(result)
+        
+        	main()
+        
+        
+        
+        This example will print:
+        
+        .. code:: python
+        
+        	OrderedDict([('id', 1), ('name', 'a')])
+        	OrderedDict([('id', 2), ('name', 'b')])
+        
+        
+        	
+        Paramstyle
+        ----------
+        
+        Only qmark and named paramstyles (as defined in PEP 249) are supported. 
+        
+        Limitations
+        -----------
+        Transactions are not supported.
+        
+        License
+        -------
+        pyrqlite (and subsequently aiorqlite) is released under the MIT License. See LICENSE for more information.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
