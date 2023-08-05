@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: easy-postgres
+Version: 0.0.1
+Summary: Lightweight psycopg2 wrapper focused on ease of use
+Home-page: http://github.com/natiiix/easy_postgres
+Author: Ivo Meixner
+Author-email: natiwastaken@gmail.com
+License: MIT
+Description: # PostgreSQL
+        
+        Lightweight psycopg2 wrapper focused on ease of use
+        
+Keywords: postgresql postgres pgsql psql database psycopg2
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Database
+Description-Content-Type: text/markdown
