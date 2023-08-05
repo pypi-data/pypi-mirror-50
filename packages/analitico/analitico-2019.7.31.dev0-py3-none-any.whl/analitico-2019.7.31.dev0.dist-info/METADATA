@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: analitico
+Version: 2019.7.31.dev0
+Summary: A Python package for Analitico.ai
+Home-page: https://github.com/analitico/analitico-sdk
+Author: Analitico Labs Inc.
+Author-email: info@analitico.ai
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Financial and Insurance Industry
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Description-Content-Type: text/markdown
+Requires-Dist: catboost (==0.11.1)
+Requires-Dist: numpy (>=1.14.6)
+Requires-Dist: pandas (>=0.22.0)
+Requires-Dist: simplejson (==3.16.0)
+
+
+## Analitico SDK
+
+This package contains plugins and classes used to access analitico.ai cloud services and machine learning models. The package can be installed in Jupyter notebooks, Colaboratory notebooks or other Python environments. To access assets stored in Analitico you will need an API token.
+
+### Installation
+
+To install in Python:  
+`pip install analitico`
+
+To install on Jupyter, Colaboratory, etc:  
+`!pip install analitico`
+
+### Usage
+
+```python
+import analitico
+import pandas as pd
+
+# authorize calls with developer token
+sdk = analitico.authorize_sdk(token="tok_xxx")
+
+# download a dataset from analitico
+dataset = sdk.get_dataset("ds_xxx")
+
+# convert dataset to a typed pandas dataframe
+df = dataset.get_dataframe()
+```
+
+### Testing
+
+To run tests:  
+`python -m pytest`
+
+### Documenting code
+
+Please use docstrings, see:  
+https://www.datacamp.com/community/tutorials/docstrings-python
+
+
