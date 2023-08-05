@@ -1,0 +1,12 @@
+README.md
+setup.cfg
+setup.py
+PanaceaMobile/PanaceaMobile.py
+PanaceaMobile/__init__.py
+PanaceaMobile/const.py
+PanaceaMobile/secrets.py
+PanaceaMobile.egg-info/PKG-INFO
+PanaceaMobile.egg-info/SOURCES.txt
+PanaceaMobile.egg-info/dependency_links.txt
+PanaceaMobile.egg-info/requires.txt
+PanaceaMobile.egg-info/top_level.txt
