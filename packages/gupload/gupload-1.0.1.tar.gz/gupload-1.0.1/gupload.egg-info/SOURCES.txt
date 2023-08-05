@@ -1,0 +1,14 @@
+CONTRIBUTING.md
+LICENSE
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+gupload/__init__.py
+gupload/__main__.py
+gupload.egg-info/PKG-INFO
+gupload.egg-info/SOURCES.txt
+gupload.egg-info/dependency_links.txt
+gupload.egg-info/entry_points.txt
+gupload.egg-info/requires.txt
+gupload.egg-info/top_level.txt
