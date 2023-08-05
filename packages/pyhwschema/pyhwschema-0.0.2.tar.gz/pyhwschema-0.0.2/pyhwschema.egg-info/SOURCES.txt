@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+requirements.txt
+setup.cfg
+setup.py
+pyhwschema/__init__.py
+pyhwschema/avrotospark.py
+pyhwschema/connection.py
+pyhwschema/schema.py
+pyhwschema.egg-info/PKG-INFO
+pyhwschema.egg-info/SOURCES.txt
+pyhwschema.egg-info/dependency_links.txt
+pyhwschema.egg-info/requires.txt
+pyhwschema.egg-info/top_level.txt
