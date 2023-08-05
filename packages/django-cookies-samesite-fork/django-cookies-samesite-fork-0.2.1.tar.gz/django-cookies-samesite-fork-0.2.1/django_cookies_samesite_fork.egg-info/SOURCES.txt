@@ -1,0 +1,15 @@
+AUTHORS.rst
+CONTRIBUTING.rst
+HISTORY.rst
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+django_cookies_samesite/__init__.py
+django_cookies_samesite/middleware.py
+django_cookies_samesite/models.py
+django_cookies_samesite_fork.egg-info/PKG-INFO
+django_cookies_samesite_fork.egg-info/SOURCES.txt
+django_cookies_samesite_fork.egg-info/dependency_links.txt
+django_cookies_samesite_fork.egg-info/not-zip-safe
+django_cookies_samesite_fork.egg-info/top_level.txt
