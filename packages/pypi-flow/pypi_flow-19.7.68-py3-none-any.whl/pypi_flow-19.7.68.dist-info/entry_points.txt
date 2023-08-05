@@ -1,0 +1,4 @@
+[console_scripts]
+cascade = pypiflow.CLS_cascade:main
+gabeisawesome = pypiflow.CLS_gabeisawesome:main
+
