@@ -1,0 +1,17 @@
+speckle/SpeckleClient.py,sha256=AVrgEHV3ZtTqXvvsyesiMbcvz53mhubHb35DB-cuRU0,15713
+speckle/__init__.py,sha256=wsg0v6PHjsINk7osVnAqth1_W9NbTKgUrTfx3vNJ72E,52
+speckle/base/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+speckle/base/client.py,sha256=DU_akxTTKI-fDokw5axrxS_C8aY7OCZIH_E0NXZirr8,9077
+speckle/base/resource.py,sha256=6Y4h28kAf4kMe5GSFKmCYWTfYSyF34ZRtIcSqFDRrbk,4279
+speckle/resources/__init__.py,sha256=H-ztP-Tc0HTC09gtXbxVoaeymJhS0cdac0CLKHaAqMo,396
+speckle/resources/accounts.py,sha256=hnG2CnE30sPN35sytJ4bObtTpzC-UlqOq-C_SanUXVY,8769
+speckle/resources/api_clients.py,sha256=pRP8byGp_Svl2Nldl1b3szhcP9eBMjjLLH5JnWp85eg,5947
+speckle/resources/comments.py,sha256=31psMhqBG3SsLsHMmlweHksLtlpWibHuCyzMyc98Uuk,2708
+speckle/resources/objects.py,sha256=8JDjtRb2N-fcvyqh6TWt7lqStbMi8HIVPYM54gklpKc,4971
+speckle/resources/projects.py,sha256=174ijbF0Q7iOyuEBpqKWHDvZU-NiohsUhFjwt7zXiew,6478
+speckle/resources/streams.py,sha256=zbHrZkKZ2CCJ4mL7GOX7ppkRq2_nKyOnAF1vHGnyB5M,5833
+speckle-1.2.0.dist-info/LICENSE,sha256=aElDaW9a8jJQEhs1zbdw0jn5CyTESDYy-qRsI0H9BkQ,1070
+speckle-1.2.0.dist-info/METADATA,sha256=VSzenrFhNWxNX8EdoB6AunyEejaWplq4hB-uWUVZdGg,3187
+speckle-1.2.0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+speckle-1.2.0.dist-info/top_level.txt,sha256=giUVj5cskpih8x_njXs57pTOffGrsGSaHMdEbcfY1oQ,8
+speckle-1.2.0.dist-info/RECORD,,
