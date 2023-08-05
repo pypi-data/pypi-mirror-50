@@ -1,0 +1,13 @@
+README.md
+setup.py
+ai_tool/__init__.py
+ai_tool/bbox.py
+ai_tool/img_slide.py
+ai_tool.egg-info/PKG-INFO
+ai_tool.egg-info/SOURCES.txt
+ai_tool.egg-info/dependency_links.txt
+ai_tool.egg-info/requires.txt
+ai_tool.egg-info/top_level.txt
+test/__init__.py
+test/test.py
+test/test_bbox.py
