@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: pypex
+Version: 0.1.0
+Summary: python libray for works with polygon in 2D
+Home-page: https://github.com/mikecokina/pypex.git
+Author: mikecokina
+Author-email: UNKNOWN
+License: UNKNOWN
+Requires-Dist: numpy
+Provides-Extra: dev
+
+Examples
+
+
