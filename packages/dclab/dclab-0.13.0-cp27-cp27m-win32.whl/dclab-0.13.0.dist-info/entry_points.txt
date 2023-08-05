@@ -1,0 +1,5 @@
+[console_scripts]
+dclab-join = dclab.cli:join
+dclab-tdms2rtdc = dclab.cli:tdms2rtdc [tdms]
+dclab-verify-dataset = dclab.cli:verify_dataset
+
