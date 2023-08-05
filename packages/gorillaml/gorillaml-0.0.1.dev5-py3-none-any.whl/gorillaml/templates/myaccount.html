@@ -1,0 +1,24 @@
+{% import '_widget.html' as widget %}
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% set footer %}
+    <button type="Create" class="btn btn-primary" frmtarget="#form_change_password">Change Password</button>
+    {% endset %}
+
+    {% set fields_content %}
+    <button type="submit" class="btn btn-danger btn-primary">Recreate</button>
+    {% endset %}
+
+    {% call widget.gcard('Create new user', footer, '') %}
+    {{ widget.gform('form_change_password', url_for('myaccount'), form, ['current_password','password','confirm']) }}
+    {% endcall %}
+
+    {% if role == 'admin' %}
+        {% call widget.gcard('Recreate Plugins Cache') %}
+        {{ widget.gform('form_plugins_recreate', url_for('plugins_cache_recreate'), form_methods='GET', fields_content=fields_content) }}
+        {% endcall %}
+    {% endif %}
+
+{% endblock %}
