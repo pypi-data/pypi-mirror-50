@@ -1,0 +1,59 @@
+Metadata-Version: 2.1
+Name: opencpaas-twilio
+Version: 0.0.1
+Summary: A Twilio implementation of OpenCpaas, an SDK that allows flexibility between CPaaS providers.
+Home-page: https://github.com/Bandwidth/OpenCpaas/
+Author: Perri Smith
+Author-email: dx@bandwidth.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# opencpaas-twilio
+
+This is the Twilio implementation of OpenCpaas.
+
+See our [full documentation]().
+
+## Requirements
+
+- [Python](https://www.python.org/downloads/) 3.5+
+
+## Installation
+
+```python
+pip install opencpaas-twilio
+```
+
+## Testing
+
+Run the following command in the project directory:
+
+```python
+python -m unittest discover
+```
+
+## Getting Started
+
+### Client Initialization
+
+Begin by initializing a new Twilio client. 
+
+```python
+from opencpaas_twilio import TwilioClient
+
+auth = 	{
+      'account_sid': "12345"
+      'auth_token': "678910"
+	}
+
+client = TwilioClient(auth)
+
+```
+
+In order to initialize a new Twilio Client you MUST include an account_sid and auth_token a CpaasAuthenticationException will be thrown.
+
+
