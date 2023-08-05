@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: imagehelper
+Version: 0.5.0
+Summary: simple utilites for image resizing and uploading and stuff like that
+Home-page: http://github.com/jvanasco/imagehelper
+Author: Jonathan Vanasco
+Author-email: jonathan@findmeon.com
+License: UNKNOWN
+Description: The `imagehelper` package offers a simple interface for image resizing, optimizing and uploading. Core image resizing operations are handled by the `Pillow` (PIL) package; S3 uploading is handled by `boto`, and there are hooks for optimizing the images with the commandline tools: `advpng`,  `gifsicle`, `jpegtran`, `jpegoptim`, `optipng` and `pngcrush.`
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Multimedia :: Graphics :: Graphics Conversion
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
