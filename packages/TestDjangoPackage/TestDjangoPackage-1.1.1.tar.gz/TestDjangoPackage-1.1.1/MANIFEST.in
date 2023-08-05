@@ -1,0 +1,7 @@
+recursive-include LICENSE
+recursive-include README.rst
+recursive-include personal_portfolio/templates/*.html
+recursive-include blog/templates/*.html
+recursive-include projects/templates/*.html
+recursive-include projects/static/*
+recursive-include docs
