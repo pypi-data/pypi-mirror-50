@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: WhPy
+Version: 0.0.2
+Summary: A Python 3 webhook module.
+Home-page: https://github.com/MichaelCduBois/WhPy
+Author: Michael duBois
+Author-email: mdubois@mcduboiswebservices.com
+License: UNKNOWN
+Description: # WhPy
+        
+        Python 3 webhook module for interacting with various chat applications via established webhooks.
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 1 - Planning
+Description-Content-Type: text/markdown
