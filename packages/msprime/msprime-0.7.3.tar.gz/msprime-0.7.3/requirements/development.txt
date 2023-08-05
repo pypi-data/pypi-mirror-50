@@ -1,0 +1,19 @@
+codecov
+coverage
+flake8
+mock
+nose
+numpy
+tskit
+scipy
+# TODO we're pinning the version here because of problems on Travis.
+# versions weren't correctly being set for v1.12.1
+setuptools_scm == 1.11.1
+sphinx
+sphinx-argparse
+sphinx_rtd_theme
+sphinx-issues
+
+newick
+# We use JSON-schema to test out metadata handling.
+python_jsonschema_objects
