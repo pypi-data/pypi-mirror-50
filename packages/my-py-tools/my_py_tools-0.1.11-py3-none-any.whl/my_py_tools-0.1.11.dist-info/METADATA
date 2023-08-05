@@ -1,0 +1,62 @@
+Metadata-Version: 2.1
+Name: my-py-tools
+Version: 0.1.11
+Summary: py_tools is a modern python library
+Home-page: https://github.com/DerThorsten/py_tools
+Author: Thorsten Beier
+Author-email: derthorstenbeier@gmail.com
+License: UNKNOWN
+Keywords: py_tools
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: click (>=6.0)
+
+=================================================
+py_tools
+=================================================
+
+.. image:: https://readthedocs.org/projects/py_tools/badge/?version=latest
+        :target: http://py_tools.readthedocs.io/en/latest/?badge=latest
+        :alt: Documentation Status               
+
+.. image:: https://img.shields.io/travis/DerThorsten/py_tools.svg
+        :target: https://travis-ci.org/DerThorsten/py_tools
+
+.. image:: https://travis-ci.org/DerThorsten/py_tools.svg?branch=master
+    :target: https://travis-ci.org/DerThorsten/py_tools
+
+.. image:: https://circleci.com/gh/DerThorsten/py_tools/tree/master.svg?style=svg
+    :target: https://circleci.com/gh/DerThorsten/py_tools/tree/master
+
+.. image:: https://dev.azure.com/derthorstenbeier/py_tools/_apis/build/status/DerThorsten.py_tools?branchName=master
+    :target: https://dev.azure.com/derthorstenbeier/py_tools/_build/latest?definitionId=1&branchName=master
+
+
+
+
+
+
+
+
+Features
+--------
+
+Current features include: 
+  * conda ready
+  * pytest unit test
+  * continous integration
+
+  * coverall code coverage
+  * documentation with sphinx
+  * documentation on readthedocs
+
+
+
+
+
+
