@@ -1,0 +1,10 @@
+[console_scripts]
+leo-c = leo.core.runLeo:run_console
+leo-console = leo.core.runLeo:run_console
+
+[distutils.commands]
+clean = setupext_janitor.janitor:CleanCommand
+
+[gui_scripts]
+leo = leo.core.runLeo:run
+
