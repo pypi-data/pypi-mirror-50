@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: JiraXrayRobot
+Version: 0.8
+Summary: Robot Framework Library to Interact with JIRA XRAY
+Home-page: https://github.com/esauray/JiraXrayRobot
+Author: Santanu Ray
+Author-email: santanukrray1982@gmail.com
+License: GNU General Public License family
+Download-URL: https://github.com/esauray/JiraXrayRobot/archive/v_08.tar.gz
+Description: UNKNOWN
+Keywords: JIRA,XRAY,ROBOT FRAMEOWRK
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
