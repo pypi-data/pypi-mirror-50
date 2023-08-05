@@ -1,0 +1,10 @@
+setup.py
+dopetools/__init__.py
+dopetools/database.py
+dopetools/msg.py
+dopetools.egg-info/PKG-INFO
+dopetools.egg-info/SOURCES.txt
+dopetools.egg-info/dependency_links.txt
+dopetools.egg-info/not-zip-safe
+dopetools.egg-info/requires.txt
+dopetools.egg-info/top_level.txt
