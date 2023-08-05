@@ -1,0 +1,3 @@
+[console_scripts]
+okta-aws-cred-helper = okta_aws_cred_helper.helper:cli
+
