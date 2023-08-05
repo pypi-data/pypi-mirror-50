@@ -1,0 +1,16 @@
+cloud_storage_provider/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+cloud_storage_provider/constants.py,sha256=lPatpnZGlM_iiPBz5_NsvHaiAJ4J-WCI_kQSPoaglA0,25
+cloud_storage_provider/utils.py,sha256=tFH5mcZzUXCzrvvdAj4a3bm7XA6_tsGTiOkiuvhxdQg,1073
+cloud_storage_provider/base/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+cloud_storage_provider/base/csp.py,sha256=oUduKM5x8XpIWBGBKD9LS6LfwrVTmaL1FB_PONndA6w,655
+cloud_storage_provider/dropbox_csp/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+cloud_storage_provider/dropbox_csp/dropbox_cloud_storage_provider.py,sha256=Lvt466Bs_I_PXjwSlmPdG7Ffe0jKsNAXCuy93VkIIxc,3286
+cloud_storage_provider/ibm/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+cloud_storage_provider/ibm/constants.py,sha256=N0bi38KCHVgoEFZBFwRyBYPJyEiQcMSdxg3LLCiIYiw,273
+cloud_storage_provider/ibm/ibm_cloud_storage_provider.py,sha256=kx9LtFuTrqyT82aCnBl9QA47nOO77AeUSmU9NyuRW2c,4456
+cloud_storage_provider/ibm/injector_utils.py,sha256=aSDxttCMe4UClMiArCl2nVPQvixGV01lu30C2IAr1sk,775
+dropbox_csp-1.0.2.dist-info/LICENSE,sha256=8SuZGXhDdy_Sf5pav0RhlAXjRpsM_cqN-IZ-PwURKP4,11349
+dropbox_csp-1.0.2.dist-info/METADATA,sha256=TWDHpWi_Q5zpDYAwzowSUSZZF7AV_7M9J4JC99kX2mQ,1223
+dropbox_csp-1.0.2.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+dropbox_csp-1.0.2.dist-info/top_level.txt,sha256=_nir1gv4mG3bHkYsjRpARq6jA7SjISfTBLI-1WXOW1A,23
+dropbox_csp-1.0.2.dist-info/RECORD,,
