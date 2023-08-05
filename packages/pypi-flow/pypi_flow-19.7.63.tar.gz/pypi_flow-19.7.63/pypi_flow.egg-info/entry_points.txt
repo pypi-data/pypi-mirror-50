@@ -1,0 +1,3 @@
+[console_scripts]
+cascade = pypi_flow.console_scripts.cascade:main
+
