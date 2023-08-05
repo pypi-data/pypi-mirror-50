@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: toasty
+Version: 0.0.2
+Summary: Generate TOAST image tile pyramids from FITS files
+Home-page: https://github.com/WorldWideTelescope/toasty/
+Author: Chris Beaumont, AAS WorldWide Telescope Team
+Author-email: wwt@aas.org
+License: MIT
+Description: UNKNOWN
+Platform: Linux
+Platform: Mac OS X
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Provides-Extra: test
+Provides-Extra: docs
