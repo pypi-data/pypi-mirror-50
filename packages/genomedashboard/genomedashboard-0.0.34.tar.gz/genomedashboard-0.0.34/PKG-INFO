@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: genomedashboard
+Version: 0.0.34
+Summary: Genome Dashboard is the logic behind a web-based prototype of a genomics dashboard, specifically designed to integrate informatics and 4D material studies of chromatin. Genome Dashboard unites our Interactive Chromatin Modeling (ICM) tools with the Biodalliance genome browser and the JSMol molecular viewer to rapidly fold any DNA sequence into atomic or coarse-grained models of DNA, nucleosomes or chromatin.
+
+Home-page: https://github.com/genomeDashboard/genomedashboard
+Author: Zilong Li, Ran Sun, Thomas C. Bishop
+Author-email: zli007@latech.edu, rsu007@latech.edu, bishop@latech.edu
+License: MIT license
+Description: THIS DOESNT WORK IN BUILD
+Keywords: python biology genomics genome dashboard
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Healthcare Industry
+Classifier: Intended Audience :: Education
+Classifier: Topic :: Software Development :: Libraries
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.5
+Description-Content-Type: text/x-rst
+Provides-Extra: test
+Provides-Extra: dev
