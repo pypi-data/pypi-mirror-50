@@ -1,0 +1,4 @@
+logilab-common>=1.4.0
+logilab-database>=1.11
+setuptools
+six>=1.4.0
