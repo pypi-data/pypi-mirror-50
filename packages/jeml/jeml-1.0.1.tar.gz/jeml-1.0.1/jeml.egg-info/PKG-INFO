@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: jeml
+Version: 1.0.1
+Summary: A Python Library for JEML (Just Enough Markup Language)
+Home-page: https://github.com/jeml-lang/jeml-py
+Author: Judah Caruso-Rodriguez
+Author-email: judah@tuta.io
+License: MIT
+Description: A Python Library for JEML (Just Enough Markup Language)
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
