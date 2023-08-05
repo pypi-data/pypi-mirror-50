@@ -1,0 +1,18 @@
+Metadata-Version: 1.2
+Name: pyvn
+Version: 1.5
+Summary: Python3 Ivnosys Utils
+Home-page: https://ivnosys.com/
+Author: Ivnosys Soluciones S.L.
+Author-email: jbiosca@ivnosys.com
+License: MIT
+Description: UNKNOWN
+Keywords: utils
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.5
