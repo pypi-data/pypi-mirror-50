@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: flexi_splitter
+Version: 1.0.0
+Summary: Sort reads into different fastq files from a barcode list
+Home-page: https://github.com/LBMC/rmi_splitter
+Author: Laurent Modolo, Emmanuel, Labaronne
+Author-email: laurent.modolo@ens-lyon.fr
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: CEA CNRS Inria Logiciel Libre License, version 2.1 (CeCILL-2.1)
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 4 - Beta
+Description-Content-Type: text/markdown

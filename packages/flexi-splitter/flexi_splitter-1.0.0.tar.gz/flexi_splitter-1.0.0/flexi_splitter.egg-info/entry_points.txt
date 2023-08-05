@@ -1,0 +1,3 @@
+[console_scripts]
+flexi_splitter = flexi_splitter.flexi_splitter:main
+

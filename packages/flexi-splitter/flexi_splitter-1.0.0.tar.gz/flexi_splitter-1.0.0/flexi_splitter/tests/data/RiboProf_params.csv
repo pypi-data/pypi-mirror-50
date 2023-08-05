@@ -1,0 +1,50 @@
+										
+	files location	/Xnfs/lbmcdb/Ricci_team/HIV_project/data/RNAseq							Molecular Barcode	
+	single/paired ends	paired end							start read1	position
+	reads length	150							6 nt	longueur
+	adaptor position	3’ read1							^(\w{6})	code
+	adaptor sequence	AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC								
+	expected insert size									
+	min insert size	50								
+										
+	Library name	File nick-name	Barcode1 name	Barcode2 name		Barcode1		Barcode2		
+	U937_RNAseq_0h_rep1	LineU937CHX	Bcd1	RT3		end header	(\w{6})$	after 6 nt read1	^\w{6}(\w{7})	position
+	U937_RNAseq_3h_rep1	LineU937CHX	Bcd2	RT4		Name1	Seq1	Name2	Seq2	
+	U937_RNAseq_6h_rep1	LineU937CHX	Bcd3	RT1		Bcd1	ATCACG	RT1	TAGTG	
+	U937_RNAseq_9h_rep1	LineU937CHX	Bcd4	RT2		Bcd2	CGATGT	RT2	GCTAC	
+	U937_RNAseq_12h_rep1	LineU937CHX	Bcd5	RT3		Bcd3	TTAGGC	RT3	ATCGA	
+	U937_RNAseq_15h_rep1	LineU937CHX	Bcd6	RT4		Bcd4	TGACCA	RT4	CGACT	
+	U937_RNAseq_18h_rep1	LineU937CHX	Bcd7	RT1		Bcd5	ACAGTG			
+	U937_RNAseq_24h_rep1	LineU937CHX	Bcd8	RT2		Bcd6	GCCAAT			
+	U937_RNAseq_0h_rep2	LineU937CHX	Bcd9	RT3		Bcd7	CAGATC			
+	U937_RNAseq_3h_rep2	LineU937CHX	Bcd10	RT4		Bcd8	ACTTGA			
+	U937_RNAseq_6h_rep2	LineU937CHX	Bcd11	RT1		Bcd9	GATCAG			
+	U937_RNAseq_9h_rep2	LineU937CHX	Bcd12	RT2		Bcd10	GGCTAC			
+	U937_RNAseq_12h_rep2	LineU937CHX	Bcd13	RT3		Bcd11	CTTGTA			
+	U937_RNAseq_15h_rep2	LineU937CHX	Bcd14	RT4		Bcd12	ACTGAT			
+	U937_RNAseq_18h_rep2	LineU937CHX	Bcd15	RT1		Bcd13	ATGAGC			
+	U937_RNAseq_24h_rep2	LineU937CHX	Bcd16	RT2		Bcd14	ATTCCT			
+	U937_RNAseq_0h_rep3	LineU937CHX	Bcd17	RT3		Bcd15	CAAAAG			
+	U937_RNAseq_3h_rep3	LineU937CHX	Bcd18	RT4		Bcd16	CAACTA			
+	U937_RNAseq_6h_rep3	LineU937CHX	Bcd19	RT1		Bcd17	CACCGG			
+	U937_RNAseq_9h_rep3	LineU937CHX	Bcd20	RT2		Bcd18	CACGAT			
+	U937_RNAseq_12h_rep3	LineU937CHX	Bcd21	RT3		Bcd19	CACTCA			
+	U937_RNAseq_15h_rep3	LineU937CHX	Bcd22	RT4		Bcd20	CAGGCG			
+	U937_RNAseq_18h_rep3	LineU937CHX	Bcd23	RT1		Bcd21	CATGGC			
+	U937_RNAseq_24h_rep3	LineU937CHX	Bcd24	RT2		Bcd22	CATTTT			
+						Bcd23	CCAACA			
+						Bcd24	GATGCT			
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+	File nick-name	File name								
+	LineU937CHX	U937_R1_001.fastq								

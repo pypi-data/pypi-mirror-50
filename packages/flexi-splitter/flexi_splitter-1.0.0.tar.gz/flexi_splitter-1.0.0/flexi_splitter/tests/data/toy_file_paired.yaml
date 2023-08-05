@@ -1,0 +1,50 @@
+PCR:
+  coords:
+    reads: 3
+    start: 1
+    stop: 6
+    header: False
+  samples:
+    - name : PCR1
+      seq: NCAGTG
+    - name : PCR2
+      seq : CGATGT
+    - name : PCR3
+      seq: TTAGGC
+    - name : PCR4
+      seq : TGACCA
+    - name: PCR5
+      seq: NGAACG
+    - name: PCR6
+      seq: NCAACA
+RT:
+  coords:
+    reads: 1
+    start: 6
+    stop: 13
+    header: False
+  samples:
+    - name : RT1
+      seq: TAGTGCC
+    - name : RT2
+      seq: GCTACCC
+    - name: RT3
+      seq: ATCGACC
+    - name: RT4
+      seq: CGACTCC
+UMI:
+  coords:
+    reads: 1
+    start: 1
+    stop: 6
+    header: False
+conditions:
+  wt:
+    - RT1
+    - PCR1
+  ko:
+    - RT2
+    - PCR2
+  sample_paired:
+    - RT2
+    - PCR6
