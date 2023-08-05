@@ -1,0 +1,3 @@
+[console_scripts]
+dataprep = dataprep.__main__:main
+
