@@ -1,0 +1,3 @@
+[console_scripts]
+timer = timer.main:main
+
