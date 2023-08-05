@@ -1,0 +1,7 @@
+flask
+plotly
+speedtest_reader
+
+[testing]
+pytest
+pytest-cov

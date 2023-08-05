@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Index</title>
+    <link rel="icon" type="image/x-icon" href="/data/_favicon.ico">
+    <link rel="stylesheet" href="https://codepen.io/chriddyp/pen/bWLwgP.css">
+    <style>
+    .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    background: #1f77b4;
+    text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <div>
+        <div>
+            <h3>Speedtest - {{ sitename }}</h3>
+            <ul>
+                <li><a href="/lineplot_today">Line plot</a> - today</li>
+            </ul>
+        </div>
+        <div>
+            <h5>More details</h5>
+            <ul>
+                <li><a href="/lineplot_last24hours">Line plot</a> - last 24 hours</li>
+                <li><a href="/heatmap_last30days">Heatmap</a> - last 30 days</li>
+            </ul>
+        </div>
+        <div>
+            <h5>Experimental</h5>
+            <ul>
+                <li><a href="/density_last30days">Speed density</a> - last 30 days</li>
+                <li><a href="/density_all">Speed density</a> - all time</li>
+                <li><a href="/lineplot_selectable">Line plot</a> - last 30 days, selectable</li>
+            </ul>
+        </div>
+        <div class="footer">
+            <p>Version {{ version }}, License MIT, Copyright (c) 2019 Tobias Frei</p>
+        </div>
+    </div>
+</body>
+</html>

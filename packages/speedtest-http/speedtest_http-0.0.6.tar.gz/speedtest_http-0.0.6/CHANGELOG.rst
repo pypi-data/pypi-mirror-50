@@ -1,0 +1,5 @@
+=========
+Changelog
+=========
+
+See README.rst
