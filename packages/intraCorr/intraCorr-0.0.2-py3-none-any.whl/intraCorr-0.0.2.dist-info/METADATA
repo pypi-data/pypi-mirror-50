@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: intraCorr
+Version: 0.0.2
+Summary: This package calculates the correlation within subjects for repeated observations
+Home-page: https://github.com/JNandez/intraCorr
+Author: Erika Munoz, Jose Nandez
+Author-email: erika.munoz.datascientist@gmail.com, jose.nandez.ds@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: numpy (>=0.15)
+Requires-Dist: pandas (>=0.23)
+Requires-Dist: scipy (>=1.1)
+Requires-Dist: matplotlib (>=3.0)
+Requires-Dist: scikit-learn (>=0.19)
+
+# Correlation for Repeated Observation within Subjects in Python
+
+This package applied the statistical technique for estimating the correlation for paired measures assessed on two or more ocassions for multiple subjects.
+Pearson correlation is applied when each paired of measurements is independent of one another. This is not the case when you have an observation for the same subject at different times. 
+
+## Installing
+
+You can use PyPi to do so,
+
+```shell
+pip install intraCorr
+```
+
+
+## Contributing
+
+You can contribute to this project by forking it through github. 
+
+## Licensing
+
+The code in this project is licensed under MIT license.
+
+## Authors
+
+* Erika Munoz
+* Jose Nandez
+
