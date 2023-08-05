@@ -1,0 +1,11 @@
+README.md
+setup.py
+scriptax_jupyter_kernel/__init__.py
+scriptax_jupyter_kernel/__main__.py
+scriptax_jupyter_kernel/install.py
+scriptax_jupyter_kernel/kernel.py
+scriptax_jupyter_kernel.egg-info/PKG-INFO
+scriptax_jupyter_kernel.egg-info/SOURCES.txt
+scriptax_jupyter_kernel.egg-info/dependency_links.txt
+scriptax_jupyter_kernel.egg-info/requires.txt
+scriptax_jupyter_kernel.egg-info/top_level.txt
