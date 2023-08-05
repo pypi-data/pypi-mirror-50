@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: resumejson-converter
+Version: 0.1
+Summary: A small package for convert json resume with templating to html and pdf
+Home-page: https://git.neodarz.net/neodarz/resumejson_converter.git
+Author: neodarz
+Author-email: neodarz@neodarz.net
+License: UNKNOWN
+Description: # JSON Resume Converter
+        
+        A small package for convert json resume with templating to html and pdf.
+        
+        # Input
+        
+        About the JSON resume standard: [https://jsonresume.org/schema/](https://jsonresume.org/schema/).
+        
+        # Template
+        
+        About the jinja2 template: [https://jinja.palletsprojects.com/en/2.10.x/](https://jinja.palletsprojects.com/en/2.10.x/)
+        
+        # Output
+        
+        PDF file generated in out folder where you launch the code.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Description-Content-Type: text/markdown
