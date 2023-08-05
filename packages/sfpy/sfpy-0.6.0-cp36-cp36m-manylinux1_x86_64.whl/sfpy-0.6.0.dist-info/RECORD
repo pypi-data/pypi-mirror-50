@@ -1,0 +1,13 @@
+sfpy/__init__.py,sha256=-K4ZfqwAAjg9eNa1NNvziezc_L_Q2v8FUjMVFRNRlmM,351
+sfpy/posit.cpython-36m-x86_64-linux-gnu.so,sha256=GhU9BnD4C-yVshnBqynTtPpo7IQ_cT8Ts58pwYWi670,2163464
+sfpy/float.cpython-36m-x86_64-linux-gnu.so,sha256=HEE4AsqdZMy4h0aWani8LKmXHDL8sYaFMnQTgx7H2Ns,2180176
+sfpy/lib/softfloat.a,sha256=z2snK8px9gbPW2xWGhkq7CpBOfy9-UAAaz0FnpD-r6E,517094
+sfpy/lib/softposit.a,sha256=l2Fo_a_HIz3KbhlXreVrw8FUbCxRzbrgOFCw6-tydxA,208734
+sfpy/include/softfloat_types.h,sha256=7Dp7HjFPzf5uD1WBmab0ZvMdguCjrJ-oKHsN1U6HXNI,4046
+sfpy/include/softposit_types.h,sha256=WCZDyBJ8FilHAm8xoom4PlXGEjtsouhbNmX341IPOTU,5109
+sfpy/include/softfloat.h,sha256=J8XznCHhDh55hFfN-toRHMLkQKF6y6iATmorCh14M_w,17434
+sfpy/include/softposit.h,sha256=T_8VSPFbETaXNK_-bu8RcabZOpzL0y_m34-VvcwU1_U,16727
+sfpy-0.6.0.dist-info/top_level.txt,sha256=Ub1gTgFr_qx7a5lcR7ECh67Vr69px4-sxBtU2R906dM,5
+sfpy-0.6.0.dist-info/RECORD,,
+sfpy-0.6.0.dist-info/WHEEL,sha256=d2ILPScH-y2UwGxsW1PeA2TT-KW0Git4AJ6LeOK8sQo,109
+sfpy-0.6.0.dist-info/METADATA,sha256=wWGmrWnC7zFz8Uovg9BvJYhsg5GPbiaS-CG1daxbWjM,2147
