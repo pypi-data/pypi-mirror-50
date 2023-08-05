@@ -1,0 +1,4 @@
+super-csv
+django-model-utils
+edx-opaque-keys
+Django<2.0,>=1.11
