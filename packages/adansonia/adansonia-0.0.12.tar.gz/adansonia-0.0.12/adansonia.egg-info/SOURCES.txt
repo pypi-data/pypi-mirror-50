@@ -1,0 +1,11 @@
+README.md
+setup.py
+adansonia/__init__.py
+adansonia/bigquery.py
+adansonia/mails.py
+adansonia/utils.py
+adansonia.egg-info/PKG-INFO
+adansonia.egg-info/SOURCES.txt
+adansonia.egg-info/dependency_links.txt
+adansonia.egg-info/requires.txt
+adansonia.egg-info/top_level.txt
