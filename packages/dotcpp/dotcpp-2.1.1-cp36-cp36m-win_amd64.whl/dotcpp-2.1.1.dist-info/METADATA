@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: dotcpp
+Version: 2.1.1
+Summary: Python extension for dotcpp.
+Home-page: https://github.com/datacentricorg/datacentric-py
+Author: The DataCentric Authors
+Author-email: author@example.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: Microsoft :: Windows
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: pybind11 (>=2.3)
+
+# dotcpp Package
+
+Python wrapper for DotCpp project.
+
