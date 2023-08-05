@@ -1,0 +1,16 @@
+cloudstorageio/__init__.py,sha256=QcQFCVoZ9j_pN7Hiq1zFhPEZ6LkbNZwFvpJUXLj-Vuk,88
+cloudstorageio/service/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+cloudstorageio/service/cloud_interface.py,sha256=hnFU420moHqBc_erNUuJguuTkmFcw_ylxLEg-kOnS2s,9525
+cloudstorageio/service/dropbox_interface.py,sha256=V2B1x1bfBrK-iLHLX6giQl6Y2kvU3BPptZCUNnY0ruE,8442
+cloudstorageio/service/google_storage_interface.py,sha256=krVTsPCAyS7RQkv4ECGxA-PopX3B3kkuZ0Z6cdnfDBM,8752
+cloudstorageio/service/local_storage_interface.py,sha256=wmInDwykXoI2wnjTFhV9KAgz43YtN1ccQgHwvyAh5Es,5459
+cloudstorageio/service/s3_interface.py,sha256=yE_SfB2nf7oc77rnDF20cSMrmeIs2zvAoSj10lR6BA8,9450
+cloudstorageio/utils/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+cloudstorageio/utils/interface.py,sha256=vN3Obgvsjuovq0JgF2XpzH7u2iGle_DXYZxMwTSORx4,102
+cloudstorageio/utils/logger.py,sha256=kuJ9uNJbLBOyxUXSkygWMYMcr81lSSKcQSY8GWaKdiw,236
+cloudstorageio/utils/timer.py,sha256=MKhlmE7HXQ0MZGNOY5IgPtsT_5Za4H9_HBk1CoaJM78,326
+cloudstorageio-1.0.8.dist-info/LICENSE,sha256=pAZXnNE2dxxwXFIduGyn1gpvPefJtUYOYZOi3yeGG94,1068
+cloudstorageio-1.0.8.dist-info/METADATA,sha256=JCwNwFiDgX8AlQaEeh6v0LGm3V0J2PjIjz8nTP3dHHQ,3685
+cloudstorageio-1.0.8.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+cloudstorageio-1.0.8.dist-info/top_level.txt,sha256=aalq9qTB11mPEd4LTBB0vMYr76aIYRO7QLXS8koqChY,15
+cloudstorageio-1.0.8.dist-info/RECORD,,
