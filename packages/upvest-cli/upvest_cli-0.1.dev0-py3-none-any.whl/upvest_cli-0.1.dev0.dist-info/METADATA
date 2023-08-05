@@ -1,0 +1,86 @@
+Metadata-Version: 2.1
+Name: upvest-cli
+Version: 0.1.dev0
+Summary: Upvest CLI: CLI for using the Upvest CLI
+Home-page: https://cli.upvest.co
+Author: upvest.co
+Author-email: tech@upvest.co
+License: MIT
+Keywords: upvest blockchain api cli
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: MIT License
+Requires-Dist: upvest (>=0.0.6)
+Provides-Extra: dev
+Requires-Dist: pre-commit (==1.10.5) ; extra == 'dev'
+Requires-Dist: prospector (==1.1.6.2) ; extra == 'dev'
+
+Upvest CLI
+**********
+
+Use the Upvest API from the command line!
+
+Installation
+------------
+
+To install the Upvest CLI, clone this repository and then using python >= 3.7,
+run::
+
+  pip install .
+
+or alternatively without cloning::
+
+  pip install git+ssh://git@github.com/toknapp/upvest-cli
+
+Basic usage
+-----------
+
+There are three 'layers' of the upvest CLI commands.
+
+- :code:`upvest` the starting point for commands to configure which endpoint to talk to
+- :code:`app` or :code:`user` to decide between using the application (tenant) API or the user (clientele) API and include the necessary credentials
+- commands : such as 'createuser' or 'listassets' or 'createwallet'
+
+For example:
+
+Create a user::
+
+  upvest -e https://api.playground.upvest.co/ app -K keyid -S keysecret -P keypassphrase createuser username password
+
+Configuration file
+------------------
+
+A configuration file will help to fill in most command line arguments, thus avoiding
+having to repeat several credentials and ensuring secrets and passwords do not linger
+in your bash history.
+
+:code:`--help` on each subcommand will show which environment variables to set in place
+of commandline arguments, however a configuration file can also be used.
+
+This will be loaded by default from :code:`upvest.yaml` or :code:`.upvest.yaml` however
+this can be configured using the :code:`--configfile` or :code:`-c` flag to pass in the path
+to the configuration file.
+
+The configuration file should take the following form::
+
+  endpoints:
+    my_playground_name:
+      base_url: https://api.playground.upvest.co/
+      api_key: ...
+      api_key_secret: ...
+      api_key_passphrase: ...
+      oauth_client_id: ...
+      oauth_client_secret: ...
+
+This can then be referenced from the command line to switch between
+environments or applications as you define them::
+
+  upvest -e my_playground_name user -l username -w password listwallets
+
+
