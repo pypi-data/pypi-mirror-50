@@ -1,0 +1,3 @@
+[console_scripts]
+tungsten-prometheus-exporter = tungsten_prometheus_exporter.main:main
+

@@ -1,0 +1,17 @@
+Metadata-Version: 1.2
+Name: tungsten-prometheus-exporter
+Version: 0.1.2
+Summary: Scrape TungstenFabric/OpenContrail analytics UVEs and provide prometheus endpoint
+Home-page: http://www.github.com/cloudwatt/tungsten-prometheus-exporter
+Author: Jean-Philippe Braun
+Author-email: jean-philippe.braun@orange.com
+Maintainer: Jean-Philippe Braun
+Maintainer-email: jean-philippe.braun@orange.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: System Administrators
+Classifier: Topic :: System :: Monitoring
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.7
