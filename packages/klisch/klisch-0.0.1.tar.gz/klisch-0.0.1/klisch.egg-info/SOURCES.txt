@@ -1,0 +1,9 @@
+README.md
+setup.py
+klisch.egg-info/PKG-INFO
+klisch.egg-info/SOURCES.txt
+klisch.egg-info/dependency_links.txt
+klisch.egg-info/requires.txt
+klisch.egg-info/top_level.txt
+klishe/__init__.py
+klishe/config_system.py
