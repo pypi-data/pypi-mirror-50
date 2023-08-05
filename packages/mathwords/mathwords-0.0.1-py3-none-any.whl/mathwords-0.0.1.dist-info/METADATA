@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: mathwords
+Version: 0.0.1
+Summary: A calculator that uses words
+Home-page: https://gitlab.com/playfulpachyderm/mathwords
+Author: playfulpachyderm
+Author-email: playful.pachyderm@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# Math-Words
+Most people use words.  Many people also use calculators.  It seems logical, then, that calculators should also be able to use words.  This project is aimed at working in that direction.
+
+To launch in interactive mode (with a really crappy REPL), use `python -m mathwords`.
+
+## Sample queries:
+* `twelve plus three` -> `fifteen`
+* `six raised to the power of three` -> `two hundred sixteen`
+* `eight minus a billion` -> `negative nine hundred ninety nine million nine hundred ninety nine thousand nine hundred ninety two`
+* `one hundred and forty four divided by two to the three` -> `eighteen`
+* `eight divided by five` -> `one point six`
+* `square root of the common log of ten quadrillion` -> `four`
+
+
