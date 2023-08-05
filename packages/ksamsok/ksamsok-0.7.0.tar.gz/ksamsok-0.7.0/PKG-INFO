@@ -1,0 +1,22 @@
+Metadata-Version: 1.2
+Name: ksamsok
+Version: 0.7.0
+Summary: API library for the cultural heritage K-Samsök(SOCH) aggregator.
+Home-page: https://github.com/Abbe98/ksamsok-py
+Author: Albin Larsson
+Author-email: albin.post@gmail.com
+License: MIT
+Download-URL: https://github.com/Abbe98/ksamsok-py/tarball/0.7.0
+Description: UNKNOWN
+Keywords: SOCH,K-Samsök,heritage,cultural,API
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Requires-Python: >=3.4.0
