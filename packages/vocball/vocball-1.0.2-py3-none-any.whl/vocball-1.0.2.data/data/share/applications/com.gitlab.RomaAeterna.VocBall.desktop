@@ -1,0 +1,16 @@
+[Desktop Entry]
+Name[de]=Vokabelfußball
+Name[en_GB]=Vocabulary Football
+Name[va]=Pediludium verbale
+Name=Vocabulary Football
+Comment[de]=Vokabelfußball im Unterricht spielen
+Comment[en_GB]=Play vocabulary football in class
+Comment[va]=Lude pediludium verbale in schola
+Comment=Play vocabulary football in class
+Exec=vocball
+# Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+Icon=com.gitlab.RomaAeterna.VocBall
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Education;Game;GTK;

@@ -1,0 +1,48 @@
+.bgcolor {
+  /* green background for football field in fullscreen mode */
+  background-color: #008000;
+}
+
+.buttonL {
+  font-size: 125%;
+  font-weight: Bold;
+}
+
+.buttonXL {
+  font-size: 150%;
+  font-weight: Bold;
+}
+
+.comboboxL {
+  font-size: 125%;
+  padding: 0;
+}
+
+.entryXL {
+  font-size: 150%;
+}
+
+.labelGoal {
+  font-size: 600%;
+  font-weight: Bold;
+}
+
+.labelL {
+  font-size: 125%;
+  font-weight: Bold;
+}
+
+.labelXL {
+  font-size: 150%;
+  font-weight: Bold;
+}
+
+.labelXXL {
+  font-size: 200%;
+  font-weight: Bold;
+}
+
+.treeunitsXL {
+  font-size: 150%;
+  padding: 0;
+}
