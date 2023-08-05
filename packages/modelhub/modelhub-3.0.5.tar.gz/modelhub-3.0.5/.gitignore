@@ -1,0 +1,11 @@
+build/*
+dist/*
+.DS_Store
+*.egg-info
+test_model
+.idea
+ENV/*
+modelhub/__pycache__/*
+modelhub/commands/__pycache__/*
+.gitignore
+

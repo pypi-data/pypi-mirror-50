@@ -1,0 +1,3 @@
+protoc --python_out=modelhub/ -I../tensorflow/ -Imodelhub/ modelhub/core/protos/*.proto
+protoc --python_out=. -I../tensorflow/ -I../serving/ ../serving/tensorflow_serving/config/*.proto
+protoc --python_out=. -I../tensorflow/ -I../serving/ ../serving/tensorflow_serving/sources/storage_path/*.proto

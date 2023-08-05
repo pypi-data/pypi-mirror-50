@@ -1,0 +1,269 @@
+# Change Log
+
+# 3.0.3
+
+Add CICD support 
+
+# 3.0.3
+
+Bug fixes
+
+1. fixed invalid local model error.
+
+# 3.0.2
+
+Bug fixes
+
+1. remove the auto installment and model_name check when modelhub inspect.
+
+New features
+
+1. add modelhub push, allow user to reupload the existed model data, which comes from the remote via 'checkout'.
+
+
+# 3.0.1
+
+1. auto_discovery: add register mode
+
+# 3.0.0
+
+Breaking change
+
+1. model_name is required for all model when deploy, all ApiModel will checkout model when model_version is set and put the path to self.model_path. For ApiModel that has no model to load, set model_version as None, for TFApiModel, either local_model_path or model_version has to set
+
+Bug Fixes:
+
+1. delete: a.verify file exist before model save. b. when delete remote, remote file before save
+
+# 2.1.6
+
+Bug fixes:
+
+1. runserver: kill tensorflow_model_server when run under supervisord and python receive sigterm
+
+
+# 2.1.5
+
+Bug Fixes:
+
+1.tfapimodel: handle unknown shape placeholder
+
+# 2.1.4
+
+Bug Fixes:
+1. runserver not quit loop and kill server when register redis failed
+2. proper log runserver
+
+# 2.1.3
+
+Bug Fixes:
+
+1. add protobuf requirements
+
+# 2.1.2
+
+Bug Fixes:
+
+1. TFApiModel: be able to not split by copy output for each item from outputs_not_unpack
+
+# 2.1.1
+
+runserver: watch dog
+
+# 2.1.0
+
+New features
+
+1. runserver now support run model@version
+2. server model version on TFApiModel
+
+
+## 2.0.3
+
+Bug fixes
+
+1. add numpy dependency
+
+## 2.0.2
+
+Bug fixes
+
+1. refactor inspect
+2. config data_dir does not affect model_dir
+
+## 2.0.0
+
+Breaking change:
+
+1. Change modelhub.framework.BaseModel/TFBaseModel -> ApiModel/ TFApiModel, BaseModel/TFBaseModel marked as deprecated and will be removed at version 3.0.0
+
+New Features:
+
+1. add ParentModel as router for combine different models
+
+Bug fixes:
+
+1. runserver: add proper stderr forward by threading
+
+## 1.2.1
+
+Bug fixes:
+
+1. putup: when specify -tf, add requirement for tensorflow
+
+## 1.2.0
+
+New Features:
+
+1. putup: add -tf option for TFBaseModel.
+
+## 1.1.1
+
+Bug fixes
+
+1. fix putup api_model.py model_name without quote.
+
+## 1.1.0
+
+New Features
+
+1. putup: simple create new api model project structure tool
+
+## 1.0.2
+
+Bug fixes
+
+1. inspect: error when import pip
+
+## 1.0.1
+
+Bug fixes
+
+1. fix ValueError from model been muted by TFBaseModel
+
+## 1.0.0
+
+New Features:
+
+1. add TensorFlow model GraphDef/MetaGraphDef export functionality
+
+2. Command runserver now can supervisor and registrate the server on redis
+
+3. New command: inspect, inspect api_model module before submission, must run at root dir of project (same dir where setup.py locate)
+
+Bug fixes
+
+1. fix TFBaseModel <_Rendezvous of RPC that terminated with (StatusCode.RESOURCE_EXHAUSTED, Received message larger than max (xxx vs. 4194304))>, max message body now is 1GB
+
+## 0.2.0
+
+New Features:
+
+1. remove TensorFlow dependency, speed of command info, list, submit has been 2X-8X
+
+## 0.1.6,0.1.7
+
+New Features:
+
+1. add runserver command to run model with tensorflow_model_server
+
+## 0.1.5
+
+Bug Fixes:
+
+1. error when auto discovery get a None version
+
+## 0.1.4
+New Features:
+
+1. TFBaseModel now support hostport be a callable which accept model_name and version as parameter, and return the string of hostport, so that tensorflow_model_server dynamic discovery is possible
+
+2. TFBaseModel:when run_mode is remote, now it verify and set dtype and shape of the input data.
+
+## 0.1.3
+
+Bug Fixes:
+
+1. ValueError: No op named `ops under tf.contrib (eg. ValueError: StatelessRandomUniform)` in defined operations
+
+## 0.1.1
+New Features:
+
+1. new simlified docstring api
+2. TF serving auto-discovery
+
+Bug Fixes:
+
+1. TFBaseModel.local_model_version property been overwrite by parameters
+
+## 0.1.0
+New Features:
+
+1. add zip_path to checkout command
+2. add install location to version command
+3. add tf_timeline to TFBaseModel initializer, when set to True, will generate /tmp/timeline-{uuid}.json on each run, can be use to profile in chrome://tracing
+
+Bug Fixes:
+1. Not copy zip when checkout model
+2. Fix typo of error message `~/.modelhubrc`
+
+## 0.0.14
+Bug Fixes:
+
+1. will not rewrite tensorflow-gpu if already installed. Also if you need install tensorflow with gpu support, install tensorflow-gpu seperately.
+
+## 0.0.13
+New Features:
+
+1. Python 2 support
+2. Add optimize graph flow
+
+## 0.0.12
+New Features:
+
+1. Add copy command
+2. For command "list", add option --local_only\-l to only show local checkouted models
+3. [framework] now model_name is required for ALL BaseModel
+4. Add path command
+5. [framework] Add log function
+
+Bug Fixes:
+
+1. create command error message format
+2. list command show the versions now in asc order
+3. [framework] now TFBaseModel prepare is not required
+4. model_name for all commands now follow python identifier convention.
+
+## 0.0.9,0.0.10,0.0.11
+New Features:
+    pass
+
+Bug fixes:
+
+1. Fix validation NTF models when submit
+2. Fix local manifest cache creation
+3. Fix ensure modelhub version compare
+
+## 0.0.8
+New Features:
+
+1. Support submit NTF models. Folder layout comply to SavedModel standard.
+2. Cache model manifest file locally when checkout and submit
+
+Bug fixes:
+    pass
+
+
+## 0.0.7
+New Features:
+
+1. When submit, will hard link the uploading model to the app's model folder. So no need to checkout localy after submit.
+2. Added NTF_exmple.py in example folder
+3. New command version
+4. submit now require modelhub version greater than 0.0.7
+5. add modelhub version in ModelVersion info
+
+Bug fixes:
+
+1. Fix signature_def missing when parse Saved Model
+2. Updated modelhub.framework.base parameter names to be more consitant

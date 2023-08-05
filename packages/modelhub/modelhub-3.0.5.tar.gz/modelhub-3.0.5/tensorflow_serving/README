@@ -1,0 +1,1 @@
+python -m grpc.tools.protoc --python_out=. --grpc_python_out=. -I../serving/ -I../serving/tensorflow ../serving/tensorflow_serving/apis/*.proto
