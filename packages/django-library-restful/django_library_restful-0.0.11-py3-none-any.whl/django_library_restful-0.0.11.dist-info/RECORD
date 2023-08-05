@@ -1,0 +1,17 @@
+django_library_restful/__init__.py,sha256=wSrfuBOIbvItgQ-IPJq-B5HMWzh971jz4U0bJFtr5Wg,33
+django_library_restful/admin.py,sha256=tv-LuZFeD8bPYkbnWKIKyBs7N9go_GRE6dVFdQtCmr0,1849
+django_library_restful/apps.py,sha256=Iq6TOs0qaAtuJhb9PVnkPOxzn_yUfi6XHT-xqPLEk9A,98
+django_library_restful/models.py,sha256=OhWkDXZ3yLYiNY5F2fDcbw6_DPi6XiBmx7Wk_kKRtas,4441
+django_library_restful/permisions.py,sha256=jGvVUKyywu1TC7ecWLDztGHUDiOWnh_Ugko21yS9I7I,287
+django_library_restful/router.py,sha256=mamUxXKiacpzUjQHX_pMxpyViKikbKLNAdJQOZsn7fU,524
+django_library_restful/serializer.py,sha256=_AM5RLAUTNfBBXjYs8-njalV-JLi4U15JbKbu4ecKH0,2297
+django_library_restful/tests.py,sha256=2uDafv3Ns6f7Vy1ekUtgYxCZEi1KRyesZDTAFhYcX-E,63
+django_library_restful/views.py,sha256=KnhJUPLqx6V93_DJTAAtKvDfhIEQIWPaGUvnsVOSxk0,1404
+django_library_restful/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_library_restful/static/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_library_restful/templates/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_library_restful-0.0.11.dist-info/LICENSE,sha256=4kOYcfO7kWoeW5y4mF1JS1hWqPIQ3UnjuzwS3uCNkR8,1346
+django_library_restful-0.0.11.dist-info/METADATA,sha256=hf0ecbmvPDd0DA6p2vNjKYP_rc396xv4LLgXCiqJAT8,2262
+django_library_restful-0.0.11.dist-info/WHEEL,sha256=QBOOAdG2icRHGBs2s94rfaUlHrdfNBp-TceubUYCwOE,97
+django_library_restful-0.0.11.dist-info/top_level.txt,sha256=fO3Tk0LtFLtvozSDc4yf9o9o2DUirxNK3HFOPu1CWBQ,23
+django_library_restful-0.0.11.dist-info/RECORD,,
