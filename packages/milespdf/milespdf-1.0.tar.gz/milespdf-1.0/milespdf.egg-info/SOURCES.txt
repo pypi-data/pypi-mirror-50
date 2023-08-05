@@ -1,0 +1,8 @@
+README.md
+setup.py
+milespdf.egg-info/PKG-INFO
+milespdf.egg-info/SOURCES.txt
+milespdf.egg-info/dependency_links.txt
+milespdf.egg-info/top_level.txt
+moshpdf/__init__.py
+moshpdf/pdf2text.py
