@@ -1,0 +1,15 @@
+gophish/__init__.py,sha256=PTqERxqKcUUZ2v3XV4h_tDR_-0FLVF--blTdcb9Ya-Q,28
+gophish/client.py,sha256=m69vrPmGYyeh0NttPeBkHaEx50ecnQZE2WhLzQnM0uU,1328
+gophish/models.py,sha256=A7WNLSHiL2CzHp0AD_kWcMdY00YUXAVYs0TEItO1DkE,12472
+gophish/api/__init__.py,sha256=xUlpj7nt9A6jWJ9CM8IxKcrQuQJ59501DwuBiFl_6uU,29
+gophish/api/api.py,sha256=0IxKZpWV5E9-O3O757Cv3OiQTh0EMab_ZvvXPlY-qH0,3814
+gophish/api/campaigns.py,sha256=nZ2EarOjRiNRCh5FY1IOpFCgCrGZ5ZgV3Q_RPKH8vzs,1839
+gophish/api/groups.py,sha256=Y00evRhpWp2Wvpl-tEoQWz3SSBAJs09BvmEHX6ImcwA,678
+gophish/api/pages.py,sha256=42QCRyes7nZHgoTFoSkWoWyvqC4lIuPDFVxZmRgG3kE,667
+gophish/api/smtp.py,sha256=Cske1xO1Qt7j5g4OX2BYNl3z7NHfnyRQCe7FjhGzTe4,732
+gophish/api/templates.py,sha256=1YO41RpGpSgpz4ps6Ro4oytEtxxqGTd9Dr1SH97oXdg,727
+gophish-0.3.0.dist-info/LICENSE,sha256=8P9OfFRZRiRY4C0l5AcWd3LhNKfsWRFLokYAjj77_FE,1064
+gophish-0.3.0.dist-info/METADATA,sha256=qWNP-ndyWlDWGDoh04JMWnWkBsQ4PzFICtA2s3e31Hc,865
+gophish-0.3.0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+gophish-0.3.0.dist-info/top_level.txt,sha256=AdelJKStISZw9MABTzzhyTsP2MOYJuqJQl_Ec3nIWXM,8
+gophish-0.3.0.dist-info/RECORD,,
