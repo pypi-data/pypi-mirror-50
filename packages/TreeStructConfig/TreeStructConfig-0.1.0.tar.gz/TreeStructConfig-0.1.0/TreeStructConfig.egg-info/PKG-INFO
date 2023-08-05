@@ -1,0 +1,141 @@
+Metadata-Version: 1.2
+Name: TreeStructConfig
+Version: 0.1.0
+Summary: Tree Struct Config - A Tree Struct Configuration module for python, support dump from/to JSON
+Home-page: https://github.com/rexzhang/tree-struct-config
+Author: Rex Zhang
+Author-email: rex.zhang@gmail.com
+License: MIT
+Description: ================
+        TreeStructConfig
+        ================
+        
+        .. image:: https://img.shields.io/pypi/v/TreeStructConfig.svg
+            :target: https://pypi.org/project/TreeStructConfig/
+        .. image:: https://img.shields.io/pypi/pyversions/TreeStructConfig.svg
+            :target: https://pypi.org/project/TreeStructConfig/
+        .. image:: https://img.shields.io/pypi/dm/TreeStructConfig.svg
+            :target: https://pypi.org/project/TreeStructConfig/
+        
+        
+        A Tree Struct Configuration module for python, support dump from/to JSON/TOML(todo).
+        
+        
+        Install
+        =======
+        
+        .. code-block:: console
+        
+            pip install TreeStructConfig
+        
+        
+        Usage
+        =====
+        
+        .. code-block:: python
+        
+            from tree_view_config import RootNode, BranchNode, StringLeaf, IntLeaf, BooleanLeaf
+        
+        
+            class Config(RootNode):
+                username = StringLeaf('admin')
+                password = StringLeaf('password')
+        
+                class Auth(BranchNode):
+                    username = StringLeaf('admin')
+                    password = StringLeaf('password')
+        
+                class Wireless(BranchNode):
+                    class AP(BranchNode):
+                        enabled = BooleanLeaf(True)
+        
+                        interface = StringLeaf('uap0')  # DON'T CHANGE IT
+                        ssid = StringLeaf('PiRouter')
+                        password = StringLeaf('password')
+                        hw_mode = StringLeaf('n')
+                        channel = IntLeaf(1)
+        
+                    class Client(BranchNode):
+                        enabled = BooleanLeaf(False)
+        
+                        ssid = StringLeaf('ssid')
+                        password = StringLeaf('password')
+        
+        
+            data = '''
+            {
+              "Auth": {
+                "password": "xxxxxxxx",
+                "username": "admin"
+              },
+              "Wireless": {
+                "AP": {
+                  "channel": 1,
+                  "enabled": true,
+                  "hw_mode": "n",
+                  "interface": "uap0",
+                  "password": "xxxxxxxx",
+                  "ssid": "PiRouter"
+                },
+                "Client": {
+                  "enabled": false,
+                  "password": "xxxxxxxx",
+                  "ssid": "ssid"
+                }
+              }
+            }
+        
+            '''
+        
+            config = Config()
+            print(config.dumps())
+        
+            print('--------')
+            config.loads(data)
+            print(config.Wireless.AP.password)
+        
+        
+        .. code-block:: bash
+        
+            {
+              "Auth": {
+                "password": "password",
+                "username": "admin"
+              },
+              "Wireless": {
+                "AP": {
+                  "channel": 1,
+                  "enabled": true,
+                  "hw_mode": "n",
+                  "interface": "uap0",
+                  "password": "password",
+                  "ssid": "PiRouter"
+                },
+                "Client": {
+                  "enabled": false,
+                  "password": "password",
+                  "ssid": "ssid"
+                }
+              },
+              "password": "password",
+              "username": "admin"
+            }
+            --------
+            xxxxxxxx
+        
+        
+        Alternative
+        ===========
+        
+        * https://gitlab.com/alelec/structured_config
+        
+Keywords: configuration json
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.4
