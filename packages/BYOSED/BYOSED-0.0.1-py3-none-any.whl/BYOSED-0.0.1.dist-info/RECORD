@@ -1,0 +1,17 @@
+byosed/__init__.py,sha256=kdL3vVFj9Ti_HC4wxF5YhxO1bY5pE4Cx0EKebs1DQsU,3394
+byosed/distributions.py,sha256=v70AFBoGb0MTkrq_qKn13BokrqEDby9GKmtxm2k_ruk,3087
+byosed/effectio.py,sha256=Se_hjDtdch8yqsx8Cjv2K6e_gIeIOXhtseaTI3nmnkY,1774
+byosed/effects.py,sha256=qgYPcz8UyMZrS5NfbTIM94zvZ5IoA5tlHkCjTERj5AU,3995
+byosed/gen_BYOSED.py,sha256=hsopnAe1FRKLA9ZAZpynzn_oBerkKQQ-j0QyzRJYKd4,14288
+byosed/genmag_BYOSED.py,sha256=AuTYakdyfd0ZtvD7TRLYV-8VIO7yQVQ42XlIM_T0E8E,22197
+byosed/initfiles/BYOSED.params,sha256=Uz7ivjEWqIy3yI73LxBOkMmzZPkXQGBvwupJaGD3cIE,1364
+byosed/initfiles/Hsiao07.dat,sha256=a9AyAE7Mx7W1L3wCHwxLVB2AGnAZUCi_WvCiV49VTXg,8907710
+byosed/initfiles/gridded_mass.dat,sha256=epJxmJuiId_lYaIkPHpBzCrw8Jtv45KQ5ISRGlKUPR4,90
+byosed/initfiles/gridded_metallicity.dat,sha256=g1CS5J-WyxjewWF6vpD_nK7wt9BNrj85dhw511Sn8zo,5374
+byosed/initfiles/gridded_sfr.dat,sha256=m4bkb6O-t26MyL_TMqnvW_84uo6atk6SeR4D1gp_xK8,13794
+byosed/initfiles/gridded_stretch.dat,sha256=VLjn3H0IaBEdtTzCglqkqZVrGUBYmvOLiJDeHW37FiI,1310677
+byosed/initfiles/gridded_velocity.dat,sha256=Rl8hyodJ0ObAXHhPVSUvOFGrD3kbUuYY9YJoWEhYp5A,449849
+BYOSED-0.0.1.dist-info/METADATA,sha256=XOW6FO6LmLjl0F5GB2Mham2ofgAAacf3Z-TPng10RwI,369
+BYOSED-0.0.1.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+BYOSED-0.0.1.dist-info/top_level.txt,sha256=OoqjZ8Dj-MkveNg7ZaEdzl_f8_sEmABpp_XCWV-Hpac,7
+BYOSED-0.0.1.dist-info/RECORD,,
