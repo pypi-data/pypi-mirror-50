@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: activity-trace
+Version: 0.0.1
+Summary: A small example package
+Home-page: https://github.com/mjlomeli/Activity-Trace
+Author: Mauricio Lomeli
+Author-email: mjlomeli@uci.edu
+License: UNKNOWN
+Description: # Example Package
+        
+        This is a simple example package. You can use
+        [Github-flavored Markdown](https://guides.github.com/features/mastering-markdown/)
+        to write your content.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
