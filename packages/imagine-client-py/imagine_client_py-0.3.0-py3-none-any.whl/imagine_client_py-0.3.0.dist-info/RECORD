@@ -1,0 +1,13 @@
+imagine_client_py/__init__.py,sha256=2tCR_c7Su8x7k5KrxMS01ASrAMvZp_GJYE91ACB__3c,81
+imagine_client_py/client.py,sha256=qzNhhVhpiLZVoFoy32ZTQ2m9OcJeba0SreZgKVUWctM,747
+imagine_client_py/image_based_model.py,sha256=NIX7iAWgwGuI6cIhe3kFrZU14ywoPH88YMl52NfDFbI,4901
+imagine_client_py/utils.py,sha256=aMJlnQYdymEtmcA7n9ziblRz20C0XOjF2X0jw9LaZqs,628
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_client.py,sha256=hkazorlkFMXg8AkhG_GG5vAWJpjMG3X1d-grVVF4604,694
+tests/test_models.py,sha256=wJ1hpAW07VkBOqHWGEt-czBicaRPSAOaMxGV08iklsI,4392
+tests/test_utils.py,sha256=vl8MAu2WsLF_WJT1bSFPaiPeEbRTMFYYxIGgBCExeSo,750
+imagine_client_py-0.3.0.dist-info/LICENSE,sha256=TkVPrLwIxeEX9NX1TY-8ZabCOBXnTrPYTx8gQhZsazE,550
+imagine_client_py-0.3.0.dist-info/METADATA,sha256=vW7lO7yD5fd_rHqYiZnMZb7IpF-uE-Vbr57rDfOuyq8,2414
+imagine_client_py-0.3.0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+imagine_client_py-0.3.0.dist-info/top_level.txt,sha256=Vo6zxZsIsTsboDeyQS_NVei2LtFI8mHlETR5VIR9n-o,24
+imagine_client_py-0.3.0.dist-info/RECORD,,
