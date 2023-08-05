@@ -1,0 +1,11 @@
+hmmdb
+hmmdb/models
+metagenomi
+metagenomi/models
+metagenomi/parsers
+metagenomi/scripts
+metagenomi/tasks
+tests
+tests/factories
+tests/factories/providers
+tests/models
