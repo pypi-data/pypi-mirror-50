@@ -1,0 +1,44 @@
+[aiida.calculations]
+crystal17.basic = aiida_crystal17.calculations.cry_basic:CryBasicCalculation
+crystal17.doss = aiida_crystal17.calculations.cry_doss:CryDossCalculation
+crystal17.fermi = aiida_crystal17.calculations.cry_fermi:CryFermiCalculation
+crystal17.main = aiida_crystal17.calculations.cry_main:CryMainCalculation
+gulp.fitting = aiida_crystal17.gulp.calculations.gulp_fitting:GulpFittingCalculation
+gulp.optimize = aiida_crystal17.gulp.calculations.gulp_optimize:GulpOptCalculation
+gulp.single = aiida_crystal17.gulp.calculations.gulp_single:GulpSingleCalculation
+
+[aiida.cmdline.data]
+crystal17.basis = aiida_crystal17.cmndline.basis_set:basisset
+crystal17.parse = aiida_crystal17.cmndline.cmd_parser:parse
+crystal17.symmetry = aiida_crystal17.cmndline.symmetry:symmetry
+gulp.potentials = aiida_crystal17.gulp.cmndline.potentials:potentials
+
+[aiida.data]
+crystal17.basisset = aiida_crystal17.data.basis_set:BasisSetData
+crystal17.kinds = aiida_crystal17.data.kinds:KindData
+crystal17.parameters = aiida_crystal17.data.input_params:CryInputParamsData
+crystal17.symmetry = aiida_crystal17.data.symmetry:SymmetryData
+gulp.potential = aiida_crystal17.gulp.data.potential:EmpiricalPotential
+
+[aiida.parsers]
+crystal17.doss = aiida_crystal17.parsers.cry_doss:CryDossParser
+crystal17.fermi = aiida_crystal17.parsers.cry_fermi:CryFermiParser
+crystal17.main = aiida_crystal17.parsers.cry_main:CryMainParser
+gulp.fitting = aiida_crystal17.gulp.parsers.parse_fitting:GulpFittingParser
+gulp.optimize = aiida_crystal17.gulp.parsers.parse_opt:GulpOptParser
+gulp.single = aiida_crystal17.gulp.parsers.parse_single:GulpSingleParser
+
+[aiida.workflows]
+crystal17.main.base = aiida_crystal17.workflows.crystal_main.base:CryMainBaseWorkChain
+crystal17.properties = aiida_crystal17.workflows.crystal_props.cry_doss:CryPropertiesWorkChain
+crystal17.sym3d = aiida_crystal17.workflows.symmetrise_3d_struct:Symmetrise3DStructure
+
+[console_scripts]
+mock_crystal17 = aiida_crystal17.tests.mock_crystal17:main
+mock_gulp = aiida_crystal17.tests.mock_gulp:main
+mock_properties17 = aiida_crystal17.tests.mock_properties17:main
+
+[gulp.potentials]
+lj = aiida_crystal17.gulp.potentials.lj:PotentialWriterLJ
+reaxff = aiida_crystal17.gulp.potentials.reaxff:PotentialWriterReaxff
+
