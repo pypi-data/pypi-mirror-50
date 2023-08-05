@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: be-proxy-ip
+Version: 1.0.0
+Summary: Proxy IP Object definition.
+Home-page: https://github.com/Gatsby-Lee/be-proxy-ip
+Author: Gatsby Lee
+License: GPL-3.0
+Description: 
+        .. image:: https://img.shields.io/badge/License-GPL%20v3-blue.svg
+           :target: https://www.gnu.org/licenses/gpl-3.0
+        
+        .. image:: https://badge.fury.io/py/be-proxy-ip.svg
+            :target: https://pypi.org/project/be-proxy-ip/
+        
+        .. image:: https://img.shields.io/travis/Gatsby-Lee/be-proxy-ip.svg
+           :target: https://travis-ci.org/Gatsby-Lee/be-proxy-ip
+        
+        
+        BE Proxy IP
+        ===========
+        
+        Defining Proxy IP object
+        
+Keywords: proxy ip
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+Provides-Extra: test
+Provides-Extra: dev
