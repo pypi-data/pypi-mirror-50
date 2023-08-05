@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: LineService
+Version: 0.10.0
+Summary: Line Messaging protocol for Python
+Home-page: https://github.com/dyseo/LineService
+Author: Dyseo
+Author-email: katro.coplax@gmail.com
+License: UNKNOWN
+Description: # Line Thrift Protocol for Python
+        
+        ## Features
+        - Request Headers
+        - Request Multiplexing
+        - Request Interceptors
+        - Thread-safe client
+        - per-request timeouts
+        - support for python (2.7 or 3.5 or higher)
+        
+        ## Required
+        - [frugal](https://pypi.org/project/frugal/)
+Keywords: frugal thrift line lineservice
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
