@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: polyaxon-cli
+Version: 0.5.5
+Summary: Command Line Interface (CLI) for Polyaxon.
+Home-page: https://github.com/polyaxon/polyaxon-cli
+Author: Mourad Mourafiq
+Author-email: mourad@polyaxon.com
+Maintainer: Mourad Mourafiq
+Maintainer-email: mourad@polyaxon.com
+License: MIT
+Description: [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+        [![Build Status](https://travis-ci.org/polyaxon/polyaxon-cli.svg?branch=master)](https://travis-ci.org/polyaxon/polyaxon-cli)
+        [![PyPI version](https://badge.fury.io/py/polyaxon-cli.svg)](https://badge.fury.io/py/polyaxon-cli)
+        [![Codacy Badge](https://api.codacy.com/project/badge/Grade/71ac59d072a241e8aa25d01dd45773a0)](https://www.codacy.com/app/polyaxon/polyaxon-cli?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=polyaxon/polyaxon-cli&amp;utm_campaign=Badge_Grade)
+        [![Slack](https://img.shields.io/badge/chat-on%20slack-aadada.svg?logo=slack&longCache=true)](https://join.slack.com/t/polyaxon/shared_invite/enQtMzQ0ODc2MDg1ODc0LWY2ZTdkMTNmZjBlZmRmNjQxYmYwMTBiMDZiMWJhODI2ZTk0MDU4Mjg5YzA5M2NhYzc5ZjhiMjczMDllYmQ2MDg)
+        
+        # Polyaxon-cli
+        
+        Command line tool for Polyaxon.
+        
+        
+        ## Install
+        
+        ```bash
+        $ pip install -U polyaxon-cli
+        ```
+        
+        ## Polyaxon CLI documentation
+        
+        Please check the [polyaxon cli reference](https://docs.polyaxon.com/references/polyaxon-cli/)
+        
+        
+        ## Commands References
+        
+        Please run:
+        
+        ```python
+        polyaxon -h
+        ```
+        
+        ## Install polyaxon
+        
+        Please check [polyaxon installation guide](https://docs.polyaxon.com/setup/)
+        
+        
+        ## Quick start
+        
+        Please check our [quick start guide](https://docs.polyaxon.com/concepts/quick-start/) to start training your first experiment.
+        
+        ## License
+        
+        [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpolyaxon%2Fpolyaxon-cli.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpolyaxon%2Fpolyaxon-cli?ref=badge_large)
+        
+Keywords: polyaxon,tensorFlow,deep-learning,machine-learning,data-science,neural-networks,artificial-intelligence,ai,reinforcement-learning,kubernetes
+Platform: any
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*
+Description-Content-Type: text/markdown
