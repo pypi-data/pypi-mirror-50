@@ -1,0 +1,3 @@
+[console_scripts]
+ARGE = ARGE.ARGE:entry_point
+
