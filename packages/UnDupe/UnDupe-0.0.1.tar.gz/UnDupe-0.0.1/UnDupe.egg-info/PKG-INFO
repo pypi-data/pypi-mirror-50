@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: UnDupe
+Version: 0.0.1
+Summary: Remove duplicate texts from a .txt file
+Home-page: https://github.com/andrewsx/undupe.git
+Author: Andrew Xiao, Rajat Bapuri, Sean Nordquist
+Author-email: 
+License: UNKNOWN
+Description: Remove duplicate texts from a .txt file by using cosine similarity to compare texts.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
