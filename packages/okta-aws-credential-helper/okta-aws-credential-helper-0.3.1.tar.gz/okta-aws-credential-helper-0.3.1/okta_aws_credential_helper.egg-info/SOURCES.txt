@@ -1,0 +1,14 @@
+LICENSE.txt
+README.md
+setup.cfg
+setup.py
+okta_aws_cred_helper/__init__.py
+okta_aws_cred_helper/helper.py
+okta_aws_cred_helper/data/__init__.py
+okta_aws_cred_helper/data/data.yaml
+okta_aws_credential_helper.egg-info/PKG-INFO
+okta_aws_credential_helper.egg-info/SOURCES.txt
+okta_aws_credential_helper.egg-info/dependency_links.txt
+okta_aws_credential_helper.egg-info/entry_points.txt
+okta_aws_credential_helper.egg-info/requires.txt
+okta_aws_credential_helper.egg-info/top_level.txt
