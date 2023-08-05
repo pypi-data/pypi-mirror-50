@@ -1,0 +1,9 @@
+README.md
+setup.py
+tortoise/__init__.py
+tortoise/tortoise.py
+tortoise.egg-info/PKG-INFO
+tortoise.egg-info/SOURCES.txt
+tortoise.egg-info/dependency_links.txt
+tortoise.egg-info/requires.txt
+tortoise.egg-info/top_level.txt

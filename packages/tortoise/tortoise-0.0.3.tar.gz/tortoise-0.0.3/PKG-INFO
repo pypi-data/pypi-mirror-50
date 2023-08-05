@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: tortoise
+Version: 0.0.3
+Summary: Turtle graphics on the web.
+Home-page: https://github.com/epeios-q37/tortoise-python
+Author: Claude SIMON
+License: UNKNOWN
+Description: # Tortoise: [turtle graphics](https://q37.info/s/3dwhcdfm) on the web in *Python*
+        
+        [![Version 0.0.3](https://img.shields.io/static/v1.svg?&color=90b4ed&label=Version&message=0.0.3)](https://pypi.org/project/tortoise/) [![License](https://img.shields.io/pypi/l/atlastk.svg?style=plastic)](https://github.com/epeios-q37/tortoise-python/blob/master/LICENSE)
+        
+        Cloning the repository (or retrieving the corresponding ZIP file) is sufficient to use this module. The `main.py` file is an example of use of this library. Simply launch `python main.py` from the root of the repository.
+        
+        The module is also available from *Pypi*: <https://pypi.org/project/tortoise/>. Simply launch `pip install tortoise` to install it.
+        
+        You can also test the library with nothing to install by using [*Repl.it*](https://q37.info/s/mxmgq3qm):
+        
+        - Go to <https://q37.info/s/srnnb7hj>,
+        - click on the `+ new repl` button,
+        - select *Python* as language,
+        - put the address of this repository (<https://github.com/epeios-q37/tortoise-python>) in the dedicated field,
+        - click on the ``Create repl`` button,
+        - click on the green button, and then on the [QR code](https://q37.info/s/3pktvrj7) to launch the example.
+        
+        Available methods:
+        
+        - `getAngle()`: returns the current angel,
+        - `up()`: put the pen up,
+        - `down()`: puts the pen down,
+        - `setAutoDraw(value)`: the drawing is automatically rendered each `values` movements (`0` will diable tge auto draw); call `draw()` to render remaining movements,
+        - `setPosition(x,y)`: the turtle jumps to `x` and `y`, relatively of the center of the drawing area,
+        - `forward(distance)`: the tortoise moves by the specified `distance`,
+        - `right(angle)`: the tortoise turns clockwise from `angle` degrees,
+        - `right(angle)`: the tortoise turns *counter* clockwise from `angle` degrees,
+        - `setColorRGB(r,g,b)`: sets the color of the pen following the RGB color model,
+        - `setColorHSL(h,s,l)`: sets the color of the pen following the HSL color model, (`h`: 0 - 360; `s`, `l`: 0 - 100%),
+        - `draw()`; draws remaining movements.
+        
+        
+Keywords: turtle,web
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Other Audience
+Classifier: License :: OSI Approved :: MIT License 
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Education
+Description-Content-Type: text/markdown
