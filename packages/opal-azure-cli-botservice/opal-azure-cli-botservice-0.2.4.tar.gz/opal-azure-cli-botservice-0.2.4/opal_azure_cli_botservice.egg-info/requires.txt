@@ -1,0 +1,5 @@
+opal-azure-cli-core>=2.0.68
+azure-mgmt-web==0.42.0
+azure-mgmt-botservice
+cryptography
+requests
