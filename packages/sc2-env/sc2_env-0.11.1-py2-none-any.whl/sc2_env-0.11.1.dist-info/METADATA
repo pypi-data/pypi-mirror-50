@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: sc2-env
+Version: 0.11.1
+Summary: A StarCraft II bot gym env library over python-sc2
+Home-page: https://github.com/gillesdami/python-sc2
+Author: Damien GILLES
+Author-email: damien.gilles.pro@gmail.com
+License: MIT
+Keywords: StarCraft,StarCraft 2,StarCraft II,AI,Bot
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Games/Entertainment
+Classifier: Topic :: Games/Entertainment :: Real Time Strategy
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: aiohttp
+Requires-Dist: portpicker
+Requires-Dist: gym
+Requires-Dist: async-timeout (<4.0,>=3.0)
+Requires-Dist: pyglet
+Requires-Dist: s2clientprotocol
+
+UNKNOWN
+
+
