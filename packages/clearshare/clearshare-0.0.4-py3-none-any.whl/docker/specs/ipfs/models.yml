@@ -1,0 +1,70 @@
+#Models are defined using the JSON schema (https://json-schema.org/learn/), but
+#with YAML syntax.
+- name: IFile
+  properties:
+    did:
+      type: String
+      description: 'DID of this message being sent/received.'
+    url:
+      type: String
+      description: 'URL to `put` the message to when sending.'
+    isdir:
+      type: Boolean
+      description: 'True if this IFile entry is actually a directory.'
+  #This is also assumed as the default type when 'type' is not specified.
+  type: object
+- :../global/model-pagination
+- name: DirectoryLs
+  inherit: [Pagination]
+  properties:
+    items:
+      type: List
+      nest: IFile
+- name: IPFSAddResult
+  properties:
+    size:
+      type: Integer
+      description: Size of the added data in bytes.
+    cid:
+      type: String
+      description: CID of the file in the IPFS system.
+    name:
+      type: String
+      description: >
+        Name of the file that was added, or `bytes` if the file name is unknown.
+- name: IPFSUnpinResult
+  properties:
+    replication_factor_min:
+      type: Integer
+      description: Minimum replication factor in the cluster.
+    replication_factor_max:
+      type: Integer
+      description: Maximum replicatior factor across the cluster.
+    shard_size:
+      type: Integer
+      description: Not well documented in reference IPFS cluster implementation...
+    user_allocations:
+      type: String
+      description: Not well documented in reference IPFS cluster implementation...
+    metadata:
+      type: String
+      description: Additional metadata about the cid that was unpinned.
+    pintype:
+      type: Integer
+      description: Not well documented in reference IPFS cluster implementation...
+    allocations:
+      type: List
+      nest: String
+    max_depth:
+      type: Integer
+      description: Maximum depth of the DAG that was removed by this CID.
+    reference:
+      type: String
+      description: Not well documented in reference IPFS cluster implementation...
+    cid:
+      type: String
+      description: CID of the file in the IPFS system.
+    name:
+      type: String
+      description: >
+        Name of the file that was added, or `bytes` if the file name is unknown.

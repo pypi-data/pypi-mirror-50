@@ -1,0 +1,85 @@
+version: "3.7"
+services:
+
+  ipfs:
+    image: ipfs/go-ipfs:latest
+    ports:
+      - "4001:4001"
+      - "5001:5001"
+    networks:
+      - backend
+    volumes:
+      - ~/ipfs/ipfs:/data/ipfs
+
+  ipfs_cluster:
+    image: ipfs/ipfs-cluster:latest
+    ports:
+      - "9094:9094"
+      - "9095:9094"
+      - "9096:9096"
+    volumes:
+      - ~/ipfs/ipfs-cluster:/data/ipfs-cluster
+    networks:
+      - backend
+    depends_on:
+      - ipfs
+    environment:
+      - CLUSTER_IPFSHTTP_NODEMULTIADDRESS=/dns4/ipfs/tcp/5001
+      - CLUSTER_IPFSPROXY_NODEMULTIADDRESS=/dns4/ipfs/tcp/5001
+
+  clearshare:
+    image: clearfoundation/clearshare:0.0.4
+    ports:
+      - "8095:8095"
+    networks:
+      - backend
+    depends_on:
+      - ipfs_cluster
+
+  # broker:
+  #   image: rabbitmq
+  #   hostname: keepermq
+  #   domainname: datakeeper.org
+  #   ports:
+  #     - "5462:5462"
+  #     - "15672:15672"
+  #   volumes:
+  #     - ~/ipfs/rabbitmq:/var/lib/rabbitmq
+  #     - ~/ipfs/config/rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins
+  #   networks:
+  #     - backend
+  #   environment:
+  #     - RABBITMQ_DEFAULT_USER_FILE=/run/secrets/rabbitmq_user
+  #     - RABBITMQ_DEFAULT_PASS_FILE=/run/secrets/rabbitmq_pass
+  #   secrets:
+  #     - rabbitmq_user
+  #     - rabbitmq_pass
+  #
+  # db:
+  #   image: couchdb
+  #   ports:
+  #     - "5984:5984"
+  #   volumes:
+  #     - ~/ipfs/couchdb/etc:/opt/couchdb/etc/local.d
+  #     - ~/ipfs/couchdb/data:/opt/couchdb/data
+  #   environment:
+  #     - COUCHDB_USER=admin
+  #     - COUCHDB_PASSWORD=password
+  #     #- COUCHDB_SECRET=/run/secrets/couchdb_cluster_secret
+  #   networks:
+  #     - backend
+
+networks:
+  backend:
+
+secrets:
+  rabbitmq_user:
+    file: ~/ipfs/config/rabbitmq/user_secret
+  rabbitmq_pass:
+    file: ~/ipfs/config/rabbitmq/pass_secret
+  couchdb_user:
+    file: ~/ipfs/config/couchdb/user_secret
+  couchdb_pass:
+    file: ~/ipfs/config/couchdb/pass_secret
+  couchdb_cluster_secret:
+    file: ~/ipfs/config/couchdb/cluster_secret
