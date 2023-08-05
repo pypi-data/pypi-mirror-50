@@ -1,0 +1,17 @@
+arduino_board_collection/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+arduino_board_collection/board_collection.py,sha256=dIjJ6hj2V4EcN-FVvdT9wVv8cFWcoNt8Sc8l_r-gxNw,153
+arduino_board_collection/create_board.py,sha256=wuRrjbzMWM-8cp46TWifrs9n1LtgAsZKVw005haYIcs,2364
+arduino_board_collection/boards/__init__.py,sha256=7RLzb2HDvprVpRuuu-AaRMXxIHLn6QjXpFwf3Xhrjps,218
+arduino_board_collection/boards/sensor_boards/__init__.py,sha256=7RLzb2HDvprVpRuuu-AaRMXxIHLn6QjXpFwf3Xhrjps,218
+arduino_board_collection/boards/signal_boards/__init__.py,sha256=7RLzb2HDvprVpRuuu-AaRMXxIHLn6QjXpFwf3Xhrjps,218
+arduino_board_collection/boards/signal_boards/light/__init__.py,sha256=7RLzb2HDvprVpRuuu-AaRMXxIHLn6QjXpFwf3Xhrjps,218
+arduino_board_collection/boards/signal_boards/light/led/__init__.py,sha256=7RLzb2HDvprVpRuuu-AaRMXxIHLn6QjXpFwf3Xhrjps,218
+arduino_board_collection/boards/signal_boards/light/led/rgb_led/__init__.py,sha256=7RLzb2HDvprVpRuuu-AaRMXxIHLn6QjXpFwf3Xhrjps,218
+arduino_board_collection/boards/signal_boards/light/led/rgb_led/board.py,sha256=EsZ1ngoIba7MCcy2a0D9Mvlqyj4nBon6r20NAmEVyM0,1858
+arduino_board_collection/boards/signal_boards/pulses/__init__.py,sha256=7RLzb2HDvprVpRuuu-AaRMXxIHLn6QjXpFwf3Xhrjps,218
+arduino_board_collection/boards/signal_boards/pulses/simple_pulse_board/__init__.py,sha256=7RLzb2HDvprVpRuuu-AaRMXxIHLn6QjXpFwf3Xhrjps,218
+arduino_board_collection/boards/signal_boards/pulses/simple_pulse_board/board.py,sha256=X4agK0tZsjZPK_ngAaWv-AZAi05JOip8QXNUfYVdnm8,4572
+ArduinoBoardCollection-0.1.1564588125.dist-info/METADATA,sha256=EnQjHpTiZolMPeVuJxzU7eyw4MXz5IwPK6ZiXQtVaKw,509
+ArduinoBoardCollection-0.1.1564588125.dist-info/WHEEL,sha256=QBOOAdG2icRHGBs2s94rfaUlHrdfNBp-TceubUYCwOE,97
+ArduinoBoardCollection-0.1.1564588125.dist-info/top_level.txt,sha256=2TkiN4KJkxVkaK1v1OQOZZ0wHuOLmeQHqdqiCau0d0Y,25
+ArduinoBoardCollection-0.1.1564588125.dist-info/RECORD,,
