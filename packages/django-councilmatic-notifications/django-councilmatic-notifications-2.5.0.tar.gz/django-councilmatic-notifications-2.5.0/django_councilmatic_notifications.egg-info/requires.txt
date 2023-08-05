@@ -1,0 +1,8 @@
+django-councilmatic>=2.5
+django-rq>=0.9.3
+django-password-reset>=2.0
+
+[tests]
+pytest
+pytest-django
+pytest-mock
