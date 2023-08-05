@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: Chem-I-Calc
+Version: 0.1
+Summary: UNKNOWN
+Home-page: UNKNOWN
+Author: Nathan Sandford
+Author-email: nathan_sandford@berkeley.edu
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: tqdm
+Requires-Dist: requests
+Requires-Dist: dash
+Requires-Dist: flask
+Requires-Dist: mendeleev
+Requires-Dist: matplotlib
+Requires-Dist: plotly
+Requires-Dist: scipy
+Requires-Dist: mechanicalsoup
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: tables
+
+# chemicalc
+
+
