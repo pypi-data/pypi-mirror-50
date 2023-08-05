@@ -1,0 +1,10 @@
+README.md
+setup.cfg
+setup.py
+bgs/__init__.py
+bgs/gs.py
+bgs.egg-info/PKG-INFO
+bgs.egg-info/SOURCES.txt
+bgs.egg-info/dependency_links.txt
+bgs.egg-info/requires.txt
+bgs.egg-info/top_level.txt

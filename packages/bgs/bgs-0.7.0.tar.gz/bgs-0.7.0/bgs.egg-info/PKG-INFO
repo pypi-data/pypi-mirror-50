@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: bgs
+Version: 0.7.0
+Summary: Ghostscript (gs) interface
+Home-page: https://github.com/BlackEarth/bgs
+Author: Sean Harrison
+Author-email: sah@bookgenesis.com
+License: MPL 2.0
+Description: # bgs
+        Ghostscript (gs-command) interface
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Provides-Extra: dev
+Provides-Extra: test
