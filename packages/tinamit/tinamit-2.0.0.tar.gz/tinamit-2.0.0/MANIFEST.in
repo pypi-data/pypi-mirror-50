@@ -1,0 +1,5 @@
+recursive-include tinamit *.vpm *.json *.txt *.g *.py *.odc *.csv *.mo *.out *.mdl *.py *.inp *.tmpl
+
+graft tinamit/ejemplos
+graft pruebas/recursos
+graft tinamit/_local/_fuente
