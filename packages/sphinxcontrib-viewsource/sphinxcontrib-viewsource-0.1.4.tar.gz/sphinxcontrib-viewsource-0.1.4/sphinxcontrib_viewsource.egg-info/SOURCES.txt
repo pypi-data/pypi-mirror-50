@@ -1,0 +1,13 @@
+LICENSE.md
+MANIFEST.in
+README.rst
+setup.py
+sphinxcontrib/__init__.py
+sphinxcontrib/viewsource.py
+sphinxcontrib_viewsource.egg-info/PKG-INFO
+sphinxcontrib_viewsource.egg-info/SOURCES.txt
+sphinxcontrib_viewsource.egg-info/dependency_links.txt
+sphinxcontrib_viewsource.egg-info/namespace_packages.txt
+sphinxcontrib_viewsource.egg-info/requires.txt
+sphinxcontrib_viewsource.egg-info/top_level.txt
+sphinxcontrib_viewsource.egg-info/zip-safe
