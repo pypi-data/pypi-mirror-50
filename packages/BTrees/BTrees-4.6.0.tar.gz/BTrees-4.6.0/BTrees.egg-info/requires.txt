@@ -1,0 +1,14 @@
+persistent>=4.1.0
+zope.interface
+
+[ZODB]
+ZODB
+
+[docs]
+Sphinx
+repoze.sphinx.autointerface
+
+[test]
+persistent>=4.4.3
+transaction
+zope.testrunner
