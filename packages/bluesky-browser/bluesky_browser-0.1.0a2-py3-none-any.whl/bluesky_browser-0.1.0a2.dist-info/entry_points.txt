@@ -1,0 +1,3 @@
+[console_scripts]
+bluesky-browser = bluesky_browser.main:main
+
