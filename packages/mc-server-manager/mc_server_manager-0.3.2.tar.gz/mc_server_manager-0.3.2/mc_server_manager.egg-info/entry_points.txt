@@ -1,0 +1,3 @@
+[console_scripts]
+mc-manager = mc_server_manager.mc_server_manager:main
+

@@ -1,0 +1,1 @@
+boto3>=1.9.188botocore>=1.12.188docutils>=0.14jmespath>=0.9.4python-dateutil>=2.8.0s3transfer>=0.2.1six>=1.12.0urllib3>=1.25.3
