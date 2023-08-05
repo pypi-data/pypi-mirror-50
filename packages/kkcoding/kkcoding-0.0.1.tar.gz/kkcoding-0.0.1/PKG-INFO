@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: kkcoding
+Version: 0.0.1
+Summary: Command-line Interface for KKCoding.net
+Home-page: https://github.com/wangxinhe2006/kkcoding-cli
+Author: 汪心禾
+Author-email: wangxinhe06@gmail.com
+License: UNKNOWN
+Description: # kkcoding-cli
+        [![Build Status](https://www.travis-ci.org/wangxinhe2006/kkcoding-cli.svg)](https://www.travis-ci.org/wangxinhe2006/kkcoding-cli)
+        [![License](https://img.shields.io/github/license/wangxinhe2006/kkcoding-cli.svg)](LICENSE)
+        
+        Command-line Interface for KKCoding.net
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
