@@ -1,0 +1,13 @@
+LIST = '[]'
+AND = '&'
+OR = '|'
+ANY = 'Any'
+INT = 'Int'
+STR = 'Str'
+STRING = 'String'
+REGEX = '//'
+FLOAT = 'Float'
+NULL = 'null'
+BOOL = 'Bool'
+ELLIPSIS = '...'
+
