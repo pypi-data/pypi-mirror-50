@@ -1,0 +1,98 @@
+Metadata-Version: 2.1
+Name: yarqueue
+Version: 0.3.0
+Summary: Yet Another python queue backed by redis; but modern and compliant
+Home-page: https://github.com/clbarnes/yarqueue
+Author: Chris L. Barnes
+Author-email: barnesc@janelia.hhmi.org
+License: MIT license
+Keywords: yarqueue queue multiprocessing hotqueue redis redislite
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: redis (>=3.2)
+Requires-Dist: StrEnum (>=0.4)
+Provides-Extra: all
+Requires-Dist: redislite (>=5.0) ; extra == 'all'
+Requires-Dist: flask ; extra == 'all'
+Requires-Dist: click ; extra == 'all'
+Requires-Dist: tqdm ; extra == 'all'
+Requires-Dist: pickle5 ; (python_version >= "3.6" and python_version < "3.8") and extra == 'all'
+Provides-Extra: cli
+Requires-Dist: click ; extra == 'cli'
+Requires-Dist: tqdm ; extra == 'cli'
+Provides-Extra: http
+Requires-Dist: click ; extra == 'http'
+Requires-Dist: flask ; extra == 'http'
+Provides-Extra: pickle
+Requires-Dist: pickle5 ; (python_version >= "3.6" and python_version < "3.8") and extra == 'pickle'
+Provides-Extra: redislite
+Requires-Dist: redislite (>=5.0) ; extra == 'redislite'
+
+=======================
+Yet Another Redis Queue
+=======================
+
+.. image:: https://img.shields.io/pypi/v/yarqueue.svg
+        :target: https://pypi.python.org/pypi/yarqueue
+
+.. image:: https://img.shields.io/travis/clbarnes/yarqueue.svg
+        :target: https://travis-ci.org/clbarnes/yarqueue
+
+.. image:: https://readthedocs.org/projects/yarqueue/badge/?version=latest
+        :target: https://yarqueue.readthedocs.io/en/latest/?badge=latest
+        :alt: Documentation Status
+
+Yet Another python queue backed by redis; but modern and compliant
+
+* Free software: MIT license
+* Documentation: https://yarqueue.readthedocs.io.
+
+Heavily inspired by hotqueue_.
+
+Features
+--------
+
+* Compatible with the API of `multiprocessing.Queue`_
+* LIFO, FIFO and Double-Ended variants
+
+  - Each has a non-joinable and a joinable form (compatible with ``multiprocessing.JoinableQueue``)
+
+* Additional convenience methods:
+
+  - ``get_many()``, ``put_many()``, ``clear()`` for all queues
+  - ``n_tasks()`` and ``n_in_progress()`` for joinable queues
+
+* Can be used as a context manager
+
+  - Deletes the queue on exit
+  - For Joinable variants, first waits for all tasks to be done
+
+* Can use custom serializers, or none at all
+
+  - By default, uses the highest pickle protocol available, using the pickle5 backport if possible.
+
+* As thread-safe as the `underlying Redis client instance <https://github.com/andymccurdy/redis-py#thread-safety>`_
+
+* Simple queue watchers
+
+  - ``yarqwatch``: command-line progress bars for given queues
+  - ``yarqserve``: simple REST API and browser page for given queues
+
+Credits
+-------
+
+This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+
+.. _hotqueue: https://github.com/richardhenry/hotqueue
+.. _multiprocessing.Queue: https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Queue
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+
+

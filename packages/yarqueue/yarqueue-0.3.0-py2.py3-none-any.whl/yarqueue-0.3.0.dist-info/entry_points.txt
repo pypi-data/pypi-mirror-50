@@ -1,0 +1,4 @@
+[console_scripts]
+yarqserve = yarqueue.watch.http:yarqserve
+yarqwatch = yarqueue.watch.cli:yarqwatch
+
