@@ -1,0 +1,16 @@
+graft src
+graft tests
+
+include .coveragerc
+include .editorconfig
+include setup.cfg
+
+include README.md
+include icon.jpg
+include LICENSE
+
+include tox.ini
+
+global-exclude *.py[cod] __pycache__ *.so *.dylib
+exclude .circleci
+exclude .circleci/config.yml
