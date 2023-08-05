@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: tisdk
+Version: 0.0.8
+Summary: python sdk of taiqiyun
+Home-page: UNKNOWN
+License: UNKNOWN
+Description: 
+        ```shell
+        pip install tisdk
+        tireq --help
+        
+        tireq username secret_key method url [foo:bar,foo2:bar2...]
+        
+        tireq to_9012345678_grs 3292a4f76c0d46bf post http://taiqiyun.wowfintech.cn/grs/v1/open_match name:美团
+        
+        ```
+        
+        ```python
+        import tisdk
+        
+        res = tisdk.ti_request(username, secret_key, method, url)
+        print(res)
+        
+        data = {'foo': 'bar'}
+        tisdk.ti_request(username, secret_key, method, url, data)
+        
+        ```
+        
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
