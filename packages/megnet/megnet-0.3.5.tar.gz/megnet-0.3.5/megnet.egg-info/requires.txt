@@ -1,0 +1,13 @@
+keras
+numpy
+tensorflow
+scikit-learn
+pymatgen
+monty
+
+[model_saving]
+h5py
+
+[molecules]
+openbabel
+rdkit
