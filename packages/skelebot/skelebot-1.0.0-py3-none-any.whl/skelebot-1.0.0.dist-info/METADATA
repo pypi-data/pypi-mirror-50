@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: skelebot
+Version: 1.0.0
+Summary: ML Build Tool
+Home-page: UNKNOWN
+Author: Sean Shookman
+Author-email: sshookman@cars.com
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: pyyaml
+Requires-Dist: artifactory
+Requires-Dist: coverage
+Requires-Dist: pytest
+
+UNKNOWN
+
+
