@@ -1,0 +1,4 @@
+[console_scripts]
+hl = hl.hl_cli:main_entry
+hl-db = hl.hl_cli:db_entry
+
