@@ -1,0 +1,14 @@
+Metadata-Version: 1.2
+Name: rifle
+Version: 1.2.0
+Summary: RISC-V Featrue Legalizer by Incoresemi Ltd.
+Home-page: https://gitlab.com/incoresemi/rifle
+Author: InCore Semiconductors Pvt. Ltd.
+Author-email: neelgala@incoresemi.com
+License: BSD-3-Clause
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Development Status :: 4 - Beta
+Requires-Python: >=3.7.0
