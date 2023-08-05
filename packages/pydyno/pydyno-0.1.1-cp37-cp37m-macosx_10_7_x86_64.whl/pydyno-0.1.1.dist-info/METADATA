@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: pydyno
+Version: 0.1.1
+Summary: Dynamic analysis of systems biology models
+Home-page: UNKNOWN
+Author: Oscar Ortega
+Author-email: oscar.ortega@vanderbilt.edu
+License: UNKNOWN
+Keywords: systems,biology,model
+Platform: UNKNOWN
+Requires-Dist: pysb
+Requires-Dist: matplotlib
+Requires-Dist: anytree
+Requires-Dist: scikit-learn
+Requires-Dist: pydot
+Requires-Dist: editdistance
+Requires-Dist: pandas
+Requires-Dist: networkx
+
+UNKNOWN
+
+
