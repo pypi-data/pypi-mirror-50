@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: ligo.skymap
+Version: 0.1.9
+Summary: Tools for reading, writing, manipulating, and making LIGO and Virgo sky maps
+Home-page: https://lscsoft.docs.ligo.org/ligo.skymap/
+Author: Leo Singer
+Author-email: leo.singer@ligo.org
+License: BSD 3-Clause
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Classifier: Topic :: Scientific/Engineering :: Physics
