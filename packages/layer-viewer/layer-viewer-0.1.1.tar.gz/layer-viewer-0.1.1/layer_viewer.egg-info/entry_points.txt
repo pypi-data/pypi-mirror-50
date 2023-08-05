@@ -1,0 +1,3 @@
+[console_scripts]
+layer_viewer = layer_viewer.cli.main:cli
+
