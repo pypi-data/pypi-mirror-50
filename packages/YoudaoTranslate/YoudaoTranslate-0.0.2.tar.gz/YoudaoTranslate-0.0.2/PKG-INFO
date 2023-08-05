@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: YoudaoTranslate
+Version: 0.0.2
+Summary: PyPI YoudaoTranslate
+Home-page: https://github.com/laughterGod
+Author: hanziguo
+Author-email: hanziguo@foxmail.com
+License: UNKNOWN
+Description: import YoudaoTranslateClass
+         
+        youdao = YoudaoTranslateClass.YoudaoTranslate()
+        
+        content = input("请输入翻译语句：")
+         
+        result = youdao.youdaoTranslate(content)
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
