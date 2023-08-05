@@ -1,0 +1,6 @@
+click>=7.0
+jnrbase[colour,iso_8601]>=1.1.0
+tabulate>=0.8.2
+
+[:python_version < "3.7"]
+importlib_resources>=1.0.2
