@@ -1,0 +1,13 @@
+license.txt
+setup.cfg
+setup.py
+siosocks/__init__.py
+siosocks/__main__.py
+siosocks/interface.py
+siosocks/protocol.py
+siosocks/sansio.py
+siosocks.egg-info/PKG-INFO
+siosocks.egg-info/SOURCES.txt
+siosocks.egg-info/dependency_links.txt
+siosocks.egg-info/requires.txt
+siosocks.egg-info/top_level.txt

@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: siosocks
+Version: 0.0.1
+Summary: sans-io socks proxy client/server with couple io backends
+Home-page: https://github.com/pohmelie/siosocks
+Author: pohmelie
+Author-email: multisosnooley@gmail.com
+License: WTFPL
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >= 3.6
+Provides-Extra: tests
+Provides-Extra: trio
