@@ -1,0 +1,14 @@
+requests
+packaging
+cachecontrol
+lockfile
+appdirs
+
+[tests]
+requests
+packaging
+cachecontrol
+lockfile
+appdirs
+pytest
+flake8
