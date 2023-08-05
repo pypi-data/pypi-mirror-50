@@ -1,0 +1,10 @@
+MANIFEST.in
+README.rst
+setup.py
+saltclass/__init__.py
+saltclass/saltclass.py
+saltclass.egg-info/PKG-INFO
+saltclass.egg-info/SOURCES.txt
+saltclass.egg-info/dependency_links.txt
+saltclass.egg-info/not-zip-safe
+saltclass.egg-info/top_level.txt
