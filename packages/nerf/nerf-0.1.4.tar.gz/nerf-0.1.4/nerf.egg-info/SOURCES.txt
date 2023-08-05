@@ -1,0 +1,10 @@
+setup.py
+nerf/__init__.py
+nerf/flatforest.py
+nerf/nerf_reg.py
+nerf/nerftab.py
+nerf.egg-info/PKG-INFO
+nerf.egg-info/SOURCES.txt
+nerf.egg-info/dependency_links.txt
+nerf.egg-info/requires.txt
+nerf.egg-info/top_level.txt
