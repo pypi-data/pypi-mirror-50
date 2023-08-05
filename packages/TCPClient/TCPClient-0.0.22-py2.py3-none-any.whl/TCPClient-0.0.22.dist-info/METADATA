@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: TCPClient
+Version: 0.0.22
+Summary: TCPClient is a graphical client for TCP Client
+Home-page: https://github.com/SilvioGiancola/TCPClient
+Author: Silvio Giancola
+Author-email: silvio.giancola@gmail.com
+License: MIT license
+Keywords: TCPClient
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.0.0
+Requires-Dist: pyqt5
+Requires-Dist: lxml
+Requires-Dist: numpy
+
+# TCP communication using QTCPSocket
+
+install with `pip install TCPClient`
+
+# Update pip:
+
+`python setup.py upload`
+
+
+
+
