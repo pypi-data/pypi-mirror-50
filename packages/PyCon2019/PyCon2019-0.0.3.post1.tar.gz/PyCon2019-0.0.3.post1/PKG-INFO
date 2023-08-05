@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: PyCon2019
+Version: 0.0.3.post1
+Summary: My first package
+Home-page: https://github.com/crwilcox/my-pypi-package
+Author: Chris Wilcox
+Author-email: pypi@crwilcox.com
+License: Apache 2.0
+Description: `mypackage` is a sample package made to demonstrate how to create a package of your own
+        
+        # Quick Start
+        
+        ## Supported Python Versions
+        
+        Python >= 3.5
+        
+        ## Mac/Linux
+        
+        ```
+        pip install virtualenv
+        virtualenv <your-env>
+        source <your-env>/bin/activate
+        <your-env>/bin/pip install google-cloud-firestore
+        ```
+        
+        ## Windows
+        
+        ```
+        pip install virtualenv
+        virtualenv <your-env>
+        <your-env>\Scripts\activate
+        <your-env>\Scripts\pip.exe install google-cloud-firestore
+        ```
+        
+        # Example Usage
+        
+        ```
+        import mypackage
+        mypackage.MyPackage().spam()
+        ```
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
