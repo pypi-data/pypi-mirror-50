@@ -1,0 +1,17 @@
+calkulate/__init__.py,sha256=-GcHOhODETtKsWb-ss_tzaHYQ5yRr_jExlpHVs3Y2Uc,1284
+calkulate/calibrate.py,sha256=AwALx6Rfs_8vVySinVQ5-9LcOS79SVXRuJpLKU18V0U,1079
+calkulate/concentrations.py,sha256=aaLSN9v9QIPev8Ri66VSIv7G-eTUz_To7gWxTHPN5bQ,1311
+calkulate/constants.py,sha256=-gRgALcHLl9oSSNVjEzkrOvEWLRhqrZ94bSLVzl09oY,462
+calkulate/density.py,sha256=uZ1aROeDeNOFstE7brFZnfWFBfcPg59IAzANIlh68_A,2591
+calkulate/dissociation.py,sha256=pFjDuaq0bZq5tL0WLBAQprIsMKeMzMi3gy9_wcGOAp8,5409
+calkulate/io.py,sha256=VXZCnQFSdn3gJ5p6VNTetaHMSePbf_9hFj4Sv43wUFU,3695
+calkulate/meta.py,sha256=x7NrFSby55v4PSRjLxswF69CRmA-cHAt8HzKksyMaV0,167
+calkulate/plot.py,sha256=7uGipG72DR0oPt7lg0sSkCB3aO_jhBRHqT0jNO1JD0c,8340
+calkulate/simulate.py,sha256=m7nLdr6SmBaCyybdyZsrCEQ1YjhlajoyO_ueB3ue0xA,2659
+calkulate/solve.py,sha256=J-581jRump0YjyXk26sT2VODMSSYHyLWVs4XIQ5s7jw,8488
+calkulate/vindta.py,sha256=hPiDoNs8iLuNWCl7qLPnO9gpXhzzu-Xep8eoLfP-DmI,2977
+Calkulate-2.1.0.dist-info/LICENSE,sha256=LoV48WtuomVBIWbotLHaBF_MEfKNsD1mSQhBASSi8B4,35801
+Calkulate-2.1.0.dist-info/METADATA,sha256=qwrjHZYVL52in248nCAOgk16ARz4Qx9NZBlvv-VOQgM,1874
+Calkulate-2.1.0.dist-info/WHEEL,sha256=qB97nP5e4MrOsXW5bIU5cUn_KSVr10EV0l-GCHG9qNs,97
+Calkulate-2.1.0.dist-info/top_level.txt,sha256=CIVkveAelTyrtw5SwrSqwe5MALIwK4W2KbFbApFHsww,10
+Calkulate-2.1.0.dist-info/RECORD,,
