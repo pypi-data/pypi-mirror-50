@@ -1,0 +1,6 @@
+Jinja2 >= 2.10.1 #import jinja2
+moretools >= 0.1.12
+#py2 path.py ~= 11.5.0 #import path
+#py3 path.py >= 11.5.0 #import path
+six >= 1.12.0
+zetup >= 0.2.60
