@@ -1,0 +1,16 @@
+dsn/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+dsn/main.py,sha256=mnreEKJCSuB6lbjeIzSw17snMJtKn25vTKFHwxXE_LQ,352
+dsn/bitgrit/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+dsn/bitgrit/datasets/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+dsn/bitgrit/datasets/dataset.py,sha256=Gwpk36wwGH1Pbd2nOvGEnn014iWC7cuPpr2Np-vuAZU,2752
+dsn/bitgrit/datasets/helper.py,sha256=_td3HQAGotdFHbczQK2_wf5Gi7n8Y8XwDINa85pqVyQ,151
+dsn/bitgrit/gcp/__init__.py,sha256=4fmEhF9NhJMwoVcjyJKoUQAcPCTG1FPcPYTMThk8IfU,818
+dsn/bitgrit/gcp/create_dataset_pd.py,sha256=-mqFe_KzOFcX-GJBzWycxEDo65sFVdSKBci9l0-4yAg,5418
+dsn/bitgrit/gcp/dataset_api.py,sha256=wUu_uQQ9SwkeeDDC0jsi83LeqRRRkJ0wVB7n06pStj8,6607
+dsn/bitgrit/gcp/tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+dsn/bitgrit/gcp/tests/test_dataset_api.py,sha256=zoE3FGTTaUAasBJ7FoRnjkDBAmFGfGnaAPSxQKnZM-E,5772
+bitgrit_cloud-0.0.3.dist-info/LICENSE,sha256=Xjouww1u6nujdeR-L3Gk2K8HudNhTiQp6sehykcRVlk,1082
+bitgrit_cloud-0.0.3.dist-info/METADATA,sha256=Z13llUPM0MMBAc8lC5re8zi1eGt7IDEsj-5nI9xXQqk,1157
+bitgrit_cloud-0.0.3.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+bitgrit_cloud-0.0.3.dist-info/top_level.txt,sha256=N5AgJSwf7m_8_jJ3mpXjP8-cv3jX1qkOYRtKK7eI8mU,4
+bitgrit_cloud-0.0.3.dist-info/RECORD,,
