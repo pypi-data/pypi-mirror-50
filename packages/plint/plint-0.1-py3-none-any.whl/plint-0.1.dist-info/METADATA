@@ -1,0 +1,179 @@
+Metadata-Version: 2.1
+Name: plint
+Version: 0.1
+Summary: French poetry validator
+Home-page: https://gitlab.com/a3nm/plint
+Author: Antoine Amarilli
+Author-email: a3nm@a3nm.net
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+
+plint -- a French poetry validator
+Copyright (C) 2011-2019 by Antoine Amarilli
+Repository URL: https://gitlab.com/a3nm/plint
+
+== 0. Licence ==
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, version 3.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program (see file "COPYING").  If not, see <http://www.gnu.org/licenses/>.
+
+bottle.py is a third-party file, its license is in file LICENSE_bottle.
+
+test/boileau and test/andromaque are from Wikisource and test/baudelaire and
+test/mithridate are from Project Gutenberg. Both of them are in the public
+domain.
+
+== 1. Features ==
+
+plint is a tool to check French poetry. Specifically, it validates metric,
+rhymes and rhyme genres against an unexpressive template language. It features a
+command-line interface, an IRC wrapper (for use with irctk) and a web interface.
+It depends on haspirater <https://gitlab.com/a3nm/haspirater> and frhyme
+<https://gitlab.com/a3nm/frhyme>, and the web interface requires CherryPy.
+
+The full documentation of plint's features is available in views/about.html.
+
+== 2. Getting started ==
+
+This section provides a quick summary of how to get started with setting up and
+using plint. If these instructions do not work for you, please let me know.
+
+0. Basic setup
+
+Make sure that you have a working python3 installation and that you have unzip
+(Debian packages: python3, unzip).
+
+1. Clone the plint repository
+
+If you haven't done so already:
+
+  git clone https://gitlab.com/a3nm/plint.git
+  cd plint
+
+2. Retrieve the dependencies
+
+In the directory where plint has been cloned, run:
+
+  git clone https://gitlab.com/a3nm/frhyme.git
+  git clone https://gitlab.com/a3nm/haspirater.git
+
+3. Generate frhyme.json
+
+Run:
+
+  cd frhyme
+  lexique/lexique_retrieve.sh > lexique.txt
+  ./make.sh 4 lexique.txt additions > frhyme.json
+  cd ..
+
+4. Generate the occurrences file
+
+Run:
+
+  ./lexique_occurrences_retrieve.sh > data/occurrences
+
+5. Locales
+
+For locale support, install gettext (Debian package: gettext) and run:
+
+  make
+
+6. Running plint
+
+If you want to check a poem that consists of classical alexandrines with flat
+rhyme (like the file test/mithridate), write the contents of the poem to check
+into a file poem.txt. Then run:
+
+  ./plint.py test/mithridate.tpl < poem.txt
+
+Plint will display the errors (if any) and exit.
+
+7. Customizing the template
+
+If you want to customize the template of the poem, you can look at examples on
+the online tool (https://plint.a3nm.net/fr/) or files ending in ".tpl" in the
+source repository. You can then write your template into a file called
+template.tpl and run:
+
+  ./plint.py template.tpl < poem.txt
+
+The file format for templates is tersely documented on
+https://plint.a3nm.net/en/about#template
+
+== 3. Detailed usage ==
+
+To use the program's command-line interface, run:
+
+  ./plint.py TEMPLATE
+
+where TEMPLATE is the template file, and provide the poem on stdin. Errors are
+reported on stderr.
+
+To run the web interface on port 5000, run plint_web.py. CherryPy is required
+(but the code is easy to adapt), see
+http://bottlepy.org/docs/dev/tutorial.html#deployment
+Beware, if you use CherryPy under Debian, simply installing python-cherrypy3
+might not work ("no module named cherrypy"). In this case, you need to install
+CherryPy by hand from source (sudo python3 setup.py install).
+
+An undocumented IRC interface for use with irctk is available (plint_irc.py).
+The poem that it produces can be compiled to HTML automatically using something
+along the lines of:
+
+  while true
+  do
+    inotifywait poem_file
+    # www/ should contain style.css
+    poem2html/make_poem.sh poem_file > www/poem.html
+  done
+
+To run plint on some provided test files, you can use test.sh. However, because
+of known bugs, some errors will be reported on the test files. To run a very
+simple test suite, run ./versetest.py; they should all pass.
+
+== 4. Training ==
+
+The diaeresis pattern "diaeresis.json" is trained by calling
+
+  ./train_diaeresis.sh > data/diaeresis.json
+
+You can also train a specific pattern for _Cyrano de Bergerac_ with:
+
+  ./train_diaeresis.sh _full ../additions_cyrano > data/diaeresis_cyrano.json
+
+This is currently undocumented. The plint folder should contain a copy of the
+haspirater code (possibly as a symlink) in "haspirater/".
+
+== 5. Updating the localization ==
+
+When the code is changed, to update the localization information to French, do:
+
+  cd plint
+  pygettext *.py ../plint.py
+  msgmerge -U res/messages_fr.po messages.pot
+  poedit res/messages_fr.po
+  cd ..
+  make
+
+== 6. Related work ==
+
+* http://pentametron.com/
+* http://virga.org/cvf/alexanql.php
+* http://hal.archives-ouvertes.fr/docs/00/37/73/48/PDF/1.Rythme_et_rime_de_l_alexandrin_classique_-_V_Beaudouin_2000.pdf
+* http://www.oulipo.net/docannexe/file/16251/MetreenregleRFLA-Beaudouin200405.pdf
+* http://images.math.cnrs.fr/Je-demeurai-longtemps-errant-dans.html
+* Beaudouin V. & Yvon F. (1996). "The Metrometer : a Tool for Analysing French Verse", Literary & Linguistic Computing, vol. 11, n°1, p. 23-32.
+* http://corpus.revues.org/290
+
+
+
