@@ -1,0 +1,14 @@
+Metadata-Version: 2.0
+Name: resource-graph
+Version: 1.0.0
+Summary: Support for querying Azure resources with Resource Graph.
+Home-page: https://github.com/Azure/azure-cli-extensions/tree/master/src/resource-graph
+Author: Ilia Demianenko
+Author-email: ilidemi@microsoft.com
+Maintainer: Azure Resource Graph
+Maintainer-email: earc@microsoft.com
+License: MIT
+
+Commands for working with Azure Resource Graph
+
+
