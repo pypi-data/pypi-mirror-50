@@ -1,0 +1,84 @@
+Metadata-Version: 2.1
+Name: voteview
+Version: 0.1.0
+Summary: Voteview command-line interface.
+Home-page: https://github.com/voteview/vvtool
+Author: Adam Boche
+Author-email: adamboche@gmail.com
+License: UNKNOWN
+Description: ========
+        Overview
+        ========
+        
+        
+        
+        Voteview command-line interface.
+        
+        * Free software: GNU General Public License v3 (GPLv3)
+        
+        Installation
+        ============
+        
+        ::
+        
+            pip install voteview
+        
+        Documentation
+        =============
+        
+        
+        https://vvtool.readthedocs.io/
+        
+        
+        Development
+        ===========
+        
+        To run the all tests run::
+        
+            tox
+        
+        Note, to combine the coverage data from all the tox environments run:
+        
+        .. list-table::
+            :widths: 10 90
+            :stub-columns: 1
+        
+            - - Windows
+              - ::
+        
+                    set PYTEST_ADDOPTS=--cov-append
+                    tox
+        
+            - - Other
+              - ::
+        
+                    PYTEST_ADDOPTS=--cov-append tox
+        
+        Changelog
+        =========
+        
+        0.1.0 (2019-08-03)
+        ------------------
+        
+        Changes
+        ^^^^^^^
+        
+        - First release on PyPI.
+        
+        ---
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Utilities
+Provides-Extra: dev
