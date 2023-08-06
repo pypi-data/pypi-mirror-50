@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: hub
+Version: 0.0.1
+Summary: Snark Hub
+Home-page: https://github.com/snarkai/hub
+Author: Snark AI Inc.
+Author-email: support@snark.ai
+License: UNKNOWN
+Keywords: snark-hub
+Platform: UNKNOWN
+Requires-Python: >=3
+Requires-Dist: click (<7,>=6.7)
+Requires-Dist: cloud-volume (==0.56.2)
+
+UNKNOWN
+
+
