@@ -1,0 +1,31 @@
+Environment variables
+
+ELASTICSEARCH_QUERY_RESULTS_NAME
+Name of prometheus gauge (default: 'elasticsearch_query_results')
+
+ELASTICSEARCH_QUERY_RESULTS_TEXT
+Text of prometheus gauge (default: 'Results from Elasticsearch query')
+
+ES_QUERY_TIME_NAME
+Name of total Elasticsearch query time summary (default: 'es_query_time_seconds')
+
+ES_QUERY_TIME_TEXT
+Text of total Elasticsearch query time summary (default: 'Time spent Querying Elasticsearchi')
+
+ES_HOST_LIST
+Comma-separated list of Elasticsearch endpoints (default: 'http://elasticsearch.jamiehouse:9200')
+
+ES_MAX_CONNECTIONS
+Max connections (default: 25)
+
+ES_SEARCH_INDEX
+Elasticsearch search index (default: tempsensor-\*)
+
+ES_SEARCH_BODY
+Elasticsearch search body (default: '{"query":{"range":{"@timestamp":{"gt":"now-15m"}}},"aggs":{"avg_temp":{"avg":{"field":"temp"}}}}')
+
+ES_SEARCH_RESULT_FIELD_PATH
+Dot-separated path to index result JSON for single-value to store in ELASTICSEARCH_QUERY_RESULTS gauge (default: 'aggregations.avg_temp.value')
+
+SLEEP_TIME
+Seconds to sleep between queries (default: 10)
