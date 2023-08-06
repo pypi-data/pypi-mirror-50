@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: plantlabeller
+Version: 0.0.3
+Summary: label plants
+Home-page: http://zzlab.net/yanghu/index.html
+Author: yangh
+Author-email: yang.hu@wsu.edu
+License: MIT Licence
+Keywords: pip,plantlabeller,droneimage,yangh
+Platform: any
+Requires-Dist: tkinter
+Requires-Dist: PIL
+Requires-Dist: cv2
+Requires-Dist: csv
+Requires-Dist: gdal
+Requires-Dist: matplotlib
+Requires-Dist: scipy
+Requires-Dist: sklearn
+Requires-Dist: functools
+Requires-Dist: time
+Requires-Dist: skimage
+
+label plants in drone images
+
+
