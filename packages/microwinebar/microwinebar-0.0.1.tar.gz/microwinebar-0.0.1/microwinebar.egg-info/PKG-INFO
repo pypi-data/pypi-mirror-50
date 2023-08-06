@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: microwinebar
+Version: 0.0.1
+Summary: MicroWineBar
+Home-page: https://github.com/klincke/microwinebar
+Author: klincke
+Author-email: franziska.klincke@bio.ku.dk
+License: UNKNOWN
+Description: # microwinebar
+        
+        MicroWineBar is a graphical tool for analysing metagenomic sequencing samples.
+        
+        For more information go to the Github page [MicroWineBar](https://github.com/klincke/MicroWineBar).
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Description-Content-Type: text/markdown
