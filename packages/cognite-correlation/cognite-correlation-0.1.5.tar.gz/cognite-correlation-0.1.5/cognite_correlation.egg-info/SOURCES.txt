@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+setup.py
+cognite/correlation/__init__.py
+cognite/correlation/correlation.py
+cognite/correlation/plot.py
+cognite_correlation.egg-info/PKG-INFO
+cognite_correlation.egg-info/SOURCES.txt
+cognite_correlation.egg-info/dependency_links.txt
+cognite_correlation.egg-info/requires.txt
+cognite_correlation.egg-info/top_level.txt
