@@ -1,0 +1,66 @@
+Metadata-Version: 2.1
+Name: ll-la
+Version: 0.11
+Summary: Python API for LivingApps
+Home-page: http://github.com/LivingLogic/LivingApps.Python.LivingAPI
+Author: Walter Doerwald
+Author-email: walter@livinglogic.de
+License: MIT
+Keywords: LivingApps
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.6
+Requires-Dist: ll-xist (>=5.50)
+Requires-Dist: requests (>=2.21.0)
+Requires-Dist: geocoder (>=1.30.1)
+
+``ll.la`` provides a Python API for the LivingApps system
+(see http://www.living-apps.de/ or http://www.living-apps.com/ for more info).
+
+``ll.la`` allows you to fetch the configured data sources from a template,
+create new records, and update and delete existing records all from your Python
+prompt (or script).
+
+For more info about LivingApps and this Python SDK, see
+https://my.living-apps.de/docs/PythonSDK.html (in german).
+
+
+0.11 (2019-08-15)
+-----------------
+
+* The ``HTTPHandler`` now delays logging into LivingApps until the first real
+  request. Furthermore it automatically appends ``gateway/`` to the base URL
+  and omits that part when constructing request URLs. The result of that it
+  that it's possible to replace to base URL with something else after the
+  ``HTTPHandler`` has been created and before the first request is made.
+  (This makes it possible to talk to the gateway host directly on custom
+  LivingApps installations.)
+
+* Added a ``force`` argument to the method ``Record.save()``. With
+  ``force=False`` (the default) any errors on the record or any of the fields
+  will raise an exception. The ``force=True`` the record will be saved anyway.
+  The return way indicated whether the record was really saved or the database
+  or gateway returned an error. Referencing unsaved records or files now now be
+  handled in a similar way: ``force=False`` will raise an exception and
+  ``force=True`` will replace those references with ``None`` and add an error
+  messsage to the field.
+
+* It is now possible to create a ``File`` object and pass the content to the
+  constructor. This is useful when a file has to be uploaded but none of the
+  supported methods for creating one via ``Handler.file`` do the right thing.
+  If a content is passed, the mime type is ``image`` and the arguments
+  ``width`` and ``height`` are ``None`` the image size will be calculated
+  automatically from the data (using ``Pillow``).
+
+
+
+
