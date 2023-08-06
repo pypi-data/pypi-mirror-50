@@ -1,0 +1,17 @@
+README.md
+README.rst
+setup.cfg
+setup.py
+dephell_versioning/__init__.py
+dephell_versioning/_core.py
+dephell_versioning/_cached_property.py
+dephell_versioning/_schemes/_calver.py
+dephell_versioning/_schemes/_semver.py
+dephell_versioning/_schemes/_serial.py
+dephell_versioning/_schemes/__init__.py
+dephell_versioning/_schemes/_romver.py
+dephell_versioning/_schemes/_roman.py
+dephell_versioning/_schemes/_zerover.py
+dephell_versioning/_schemes/_pep.py
+dephell_versioning/_schemes/_comver.py
+dephell_versioning/_schemes/_base.py
