@@ -1,0 +1,33 @@
+Metadata-Version: 1.1
+Name: rattail-tutorial
+Version: 0.1.0
+Summary: Rattail Development Tutorial
+Home-page: https://rattailproject.org
+Author: Lance Edgar
+Author-email: lance@edbob.org
+License: GNU GPL v3
+Description: .. -*- mode: rst -*-
+        
+        rattail-tutorial
+        ================
+        
+        This project is intended for use as a "tutorial" for Rattail app development.
+        
+        It contains documentation for the tutorial itself, but also contains
+        code for the tutorial app, which users may run locally for testing.
+        
+        See the `Rattail website`_ for more info.
+        
+        .. _`Rattail website`: https://rattailproject.org/
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Pyramid
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Office/Business

@@ -1,0 +1,12 @@
+[console_scripts]
+rattail_tutorial = rattail_tutorial.commands:main
+
+[paste.app_factory]
+main = rattail_tutorial.web.app:main
+
+[rattail.config.extensions]
+rattail_tutorial = rattail_tutorial.config:Rattail_tutorialConfig
+
+[rattail_tutorial.commands]
+hello = rattail_tutorial.commands:HelloWorld
+

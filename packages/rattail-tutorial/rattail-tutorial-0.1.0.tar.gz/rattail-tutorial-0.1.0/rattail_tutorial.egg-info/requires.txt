@@ -1,0 +1,5 @@
+invoke
+psycopg2
+rattail[auth,bouncer,db]
+Tailbone
+tox
