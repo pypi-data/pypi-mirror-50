@@ -1,0 +1,10 @@
+setup.py
+ursa/__init__.py
+ursa/bls.py
+ursa/indy_error.py
+ursa/lib.py
+ursacl.egg-info/PKG-INFO
+ursacl.egg-info/SOURCES.txt
+ursacl.egg-info/dependency_links.txt
+ursacl.egg-info/requires.txt
+ursacl.egg-info/top_level.txt
