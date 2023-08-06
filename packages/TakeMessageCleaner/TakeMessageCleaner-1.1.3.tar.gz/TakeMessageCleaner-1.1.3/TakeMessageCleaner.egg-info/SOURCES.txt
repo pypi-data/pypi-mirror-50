@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+setup.py
+MessageCleaner/__init__.py
+MessageCleaner/cleaner.py
+MessageCleaner/preprocessor.py
+MessageCleaner/smalltalks.py
+MessageCleaner/dictionaries/abbreviations.json
+MessageCleaner/dictionaries/portuguese_errors.json
+TakeMessageCleaner.egg-info/PKG-INFO
+TakeMessageCleaner.egg-info/SOURCES.txt
+TakeMessageCleaner.egg-info/dependency_links.txt
+TakeMessageCleaner.egg-info/requires.txt
+TakeMessageCleaner.egg-info/top_level.txt
