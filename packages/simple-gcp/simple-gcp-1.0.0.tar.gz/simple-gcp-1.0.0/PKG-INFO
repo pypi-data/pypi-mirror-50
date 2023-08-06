@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: simple-gcp
+Version: 1.0.0
+Summary: Google Cloud Utilities for Python 3
+Home-page: http://gitlab.ingaia.com.br/jose.almeida/chargebee-operations-api
+Author: Jose Armando de Almeida Neto
+Author-email: jose@armandoalmeida.com.br
+License: MIT
+Description: # gcloud-utils
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
