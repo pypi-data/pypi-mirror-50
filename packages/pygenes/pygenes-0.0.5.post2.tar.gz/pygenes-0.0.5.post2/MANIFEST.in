@@ -1,0 +1,8 @@
+include LICENSE.TXT
+include README.md
+include setup.cfg
+include setup.py
+recursive-include src *
+recursive-include tests *include versioneer.py
+include pygenes/_version.py
+include versioneer.py
