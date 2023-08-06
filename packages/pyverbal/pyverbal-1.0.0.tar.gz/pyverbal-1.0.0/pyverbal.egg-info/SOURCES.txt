@@ -1,0 +1,16 @@
+README.md
+setup.py
+pyverbal/__init__.py
+pyverbal.egg-info/PKG-INFO
+pyverbal.egg-info/SOURCES.txt
+pyverbal.egg-info/dependency_links.txt
+pyverbal.egg-info/requires.txt
+pyverbal.egg-info/top_level.txt
+pyverbal/conjugation/__init__.py
+pyverbal/conjugation/base.py
+pyverbal/conjugation/langs.py
+pyverbal/conjugation/ptbr.py
+pyverbal/data/pt-Br/conjugation.yaml
+pyverbal/lang/__init__.py
+pyverbal/lang/ptbr.py
+test/test_ptbr_conjugation.py
