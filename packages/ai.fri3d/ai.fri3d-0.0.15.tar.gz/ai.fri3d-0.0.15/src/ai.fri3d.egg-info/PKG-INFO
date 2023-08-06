@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: ai.fri3d
+Version: 0.0.15
+Summary: FRi3D model of coronal mass ejections
+Home-page: https://bitbucket.org/isavnin/ai.fri3d
+Author: Alexey Isavnin
+Author-email: alexey.isavnin@gmail.com
+License: MIT
+Description: UNKNOWN
+Keywords: research space solar physics science model coronal mass ejection flare CME
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
