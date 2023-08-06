@@ -1,0 +1,66 @@
+Metadata-Version: 1.1
+Name: pyehik
+Version: 0.1.5
+Summary: Python binding hikvision sdk
+Home-page: https://efossils.somxslibres.net/fossil/user/bit4bit/repository/pyehik/index
+Author: Jovany Leandro G.C
+Author-email: bit4bit@riseup.net
+License: MIT license
+Description: ======
+        pyehik
+        ======
+        
+        
+        .. image:: https://img.shields.io/pypi/v/pyehik.svg
+                :target: https://pypi.python.org/pypi/pyehik
+        
+        .. image:: https://img.shields.io/travis/bit4bit/pyehik.svg
+                :target: https://travis-ci.org/bit4bit/pyehik
+        
+        .. image:: https://readthedocs.org/projects/pyehik/badge/?version=latest
+                :target: https://pyehik.readthedocs.io/en/latest/?badge=latest
+                :alt: Documentation Status
+        
+        
+        
+        * Free software: MIT license
+        * Documentation: https://pyehik.readthedocs.io.
+        * Source Code: https://efossils.somxslibres.net/fossil/user/bit4bit/repository/pyehik/index
+        
+        Features
+        --------
+        
+        * A lot functiones implemented.
+        
+        Credits
+        -------
+        
+        This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+        
+        .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+        .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+        
+        
+        
+        =======
+        History
+        =======
+        
+        0.1.0 (2019-07-09)
+        ------------------
+        
+        * First release on PyPI.
+        
+Keywords: pyehik
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7

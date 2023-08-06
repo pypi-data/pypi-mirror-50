@@ -1,0 +1,3 @@
+[console_scripts]
+pyehik = pyehik.cli:main
+
