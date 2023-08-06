@@ -1,0 +1,3 @@
+[console_scripts]
+m3u8tool = m3u8tool.app:main
+
