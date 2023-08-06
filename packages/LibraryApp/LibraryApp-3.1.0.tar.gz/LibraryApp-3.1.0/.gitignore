@@ -1,0 +1,9 @@
+.tox/
+.cache/
+myenv/
+.pytest_cache/
+htmlcov/
+*.pyc
+*.sqlite3
+dist/
+coverage_html_report/

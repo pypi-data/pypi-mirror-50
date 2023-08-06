@@ -1,0 +1,38 @@
+Templates
+==========
+
+Templates are used to generate html dynamically. 
+It contains the static parts of the desired HTML output as well as some special syntax describing how dynamic content will be inserted.
+
+Templates engines are configured with the TEMPLATES setting.
+
+
+Migrations
+===========
+Migrations are Django’s way of propagating changes you make to your models (adding a field, deleting a model, etc.) into your database schema.
+
+There are several commands which you will use to interact with migrations and Django’s handling of database schema:
+
+- migrate, which is responsible for applying and unapplying migrations.
+
+- makemigrations, which is responsible for creating new migrations based on the changes you have made to your models.
+
+- sqlmigrate, which displays the SQL statements for a migration.
+
+- showmigrations, which lists a project’s migrations and their status.
+
+Without migrations, you would have to connect to your database and type in a bunch of SQL commands
+ORM allows us to forget about SQL when writing queries to the database,
+
+we “lose control” over a critical part of our infrastructure, we don’t know how to write SQL anymore when needed
+
+Python @property
+================
+its the pythonic way to use getters and setters.
+
+
+get_absolute_url()
+==================
+This tells Django how to calculate the URL for an object. Django uses this in its admin interface, and any time it needs to figure out a URL for an object.
+
+Any object that has a URL that uniquely identifies it should define this method.

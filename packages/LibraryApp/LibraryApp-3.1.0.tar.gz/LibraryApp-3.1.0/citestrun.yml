@@ -1,0 +1,64 @@
+# Python CircleCI 2.0 configuration file
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3
+
+    environment:
+      - ANSIBLE_HOST_KEY_CHECKING: False
+    working_directory: ~/repo
+
+    steps:
+      # Step 1: obtain repo from GitHub
+      - checkout
+      # Step 2: create virtual env and install dependencies
+      - run:
+          name: install dependencies
+          command: |
+            pip install --upgrade setuptools
+            sudo apt-get install python3-venv
+            python3 -m venv myenv
+            . myenv/bin/activate
+            pip install tox
+            
+      # Step 3: run linter and tests (will all be run by tox command)
+      - run:
+          name: run tests
+          command: |          
+            # Run tox
+            . myenv/bin/activate
+            # Whenever we change the project dependencies we have to tell tox to recreate our environments 
+            tox --recreate # Force tox to recreate the venv
+            
+      - run:
+          name: init .pypirc
+          command: |
+            echo -e "[pypi]" >> ~/.pypirc
+            echo -e "username = kevinlm" >> ~/.pypirc
+            echo -e "password = $PYPI_PASSWORD" >> ~/.pypirc      
+
+      - run:
+          name: create packages
+          command: |
+            python3 setup.py sdist bdist_wheel
+           # python setup.py sdist
+
+      - run:
+          name: upload to pypi
+          command: |
+            . venv/bin/activate
+            pip install twine
+            twine upload dist/*
+      
+      - add_ssh_keys:
+          fingerprints:
+              - "15:37:1a:a9:07:ab:cb:2a:fc:4f:fd:ca:b0:79:d9:a7"
+     
+      - run:
+          name: executing ansible to a remote server
+          command: |
+            . venv/bin/activate
+            pip install ansible
+            ansible-playbook ansible/playbook.yml  -i ansible/hosts
+  

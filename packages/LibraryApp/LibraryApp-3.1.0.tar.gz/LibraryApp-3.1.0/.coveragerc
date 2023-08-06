@@ -1,0 +1,14 @@
+[run]
+branch = True 
+omit = /home/kevin/Documents/LibraryApp/LibAppDjango/catalog/apps.py
+       
+[report]
+# a target coverage percentage
+fail_under = 100 
+
+# number of digits after the decimal point to display for reported coverage
+precision = 2  
+
+[html]
+directory = coverage_html_report
+

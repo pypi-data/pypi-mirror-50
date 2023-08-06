@@ -1,0 +1,12 @@
+include LICENSE
+include README.md
+recursive-include catalog/static *
+recursive-include templates *.html
+recursive-include templates *
+recursive-include catalog/templates *
+recursive-include catalog *
+recursive-include feedback *
+recursive-include feedback/templates *
+recursive-include LibAppDjango/templates *.html
+recursive-include include static *
+recursive-include include templates/templates *
