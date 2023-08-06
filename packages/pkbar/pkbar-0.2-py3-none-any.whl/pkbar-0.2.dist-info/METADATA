@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: pkbar
+Version: 0.2
+Summary: Keras Progress Bar for PyTorch
+Home-page: https://github.com/yueyericardo/pkbar
+Author: Richard Xue
+Author-email: yueyericardo@gmail.com
+License: Apache License 2.0
+Platform: UNKNOWN
+Requires-Dist: numpy
+
+UNKNOWN
+
+
