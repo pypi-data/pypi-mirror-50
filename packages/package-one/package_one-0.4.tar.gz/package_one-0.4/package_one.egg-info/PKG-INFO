@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: package-one
+Version: 0.4
+Summary: First package created and uploaded to pypi
+Home-page: https://github.com/bh4r4th/python_package_one
+Author: Bharath Yadavally
+Author-email: bharath.yadavally@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/bh4r4th/python_package_one/tarball/0.4
+Description: # python_package_one
+        This is my first python package to try how to package a project to pypi
+        
+Keywords: bh4r4th,pypi,package
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
