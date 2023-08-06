@@ -1,0 +1,9 @@
+README.rst
+setup.py
+download/__init__.py
+download/download.py
+download.egg-info/PKG-INFO
+download.egg-info/SOURCES.txt
+download.egg-info/dependency_links.txt
+download.egg-info/not-zip-safe
+download.egg-info/top_level.txt
