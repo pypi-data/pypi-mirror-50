@@ -1,0 +1,10 @@
+setup.py
+sherdistrib/Binomialdistribution.py
+sherdistrib/Gaussiandistribution.py
+sherdistrib/Generaldistribution.py
+sherdistrib/__init__.py
+sherdistrib.egg-info/PKG-INFO
+sherdistrib.egg-info/SOURCES.txt
+sherdistrib.egg-info/dependency_links.txt
+sherdistrib.egg-info/not-zip-safe
+sherdistrib.egg-info/top_level.txt
