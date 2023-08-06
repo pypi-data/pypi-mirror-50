@@ -1,0 +1,11 @@
+geometry_designer/__init__.py,sha256=WsU6drwj5IChHm1z5wknX29WIGI769YlLAnQlCgRqPA,316
+geometry_designer/__main__.py,sha256=abp7i92HkR-u9WyYLQOnNZJjrxoQz9W042iSKTpY-rM,809
+geometry_designer/modules/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+geometry_designer/modules/geometry_from_threshold/GeometryFromThreshold.py,sha256=j2JUuKWEd7Ietm2HEgdAr1cTgIUyUucW3B0DD2ROlu0,2801
+geometry_designer/modules/geometry_from_threshold/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+geometry_designer/modules/geometry_manual_designer/GeometryManualDesigner.py,sha256=RJAfORXte3CEuxSVCK6oQY0e5OFmYDev1z1DwXM2YG8,11167
+geometry_designer/modules/geometry_manual_designer/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+geometry_designer-0.4.38.dist-info/METADATA,sha256=BOX4P3o0MXLIUrsHMI0xRhFCzGfelLD8vJtcLMDst30,267
+geometry_designer-0.4.38.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+geometry_designer-0.4.38.dist-info/top_level.txt,sha256=36TGP3DKJ3U1FzVGhR1UyqgAmmCa01uc34iaQ7eydPI,18
+geometry_designer-0.4.38.dist-info/RECORD,,
