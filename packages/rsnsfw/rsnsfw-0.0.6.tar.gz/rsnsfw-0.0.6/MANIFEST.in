@@ -1,0 +1,3 @@
+recursive-include rsnsfw/data
+# graft rsnsfw/data
+# graft rsnsfw/data/variables
