@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+setup.py
+dxql/__init__.py
+dxql/grammar.lark
+dxql/search.py
+dxql.egg-info/PKG-INFO
+dxql.egg-info/SOURCES.txt
+dxql.egg-info/dependency_links.txt
+dxql.egg-info/not-zip-safe
+dxql.egg-info/requires.txt
+dxql.egg-info/top_level.txt
+tests/__init__.py
+tests/test_search.py
