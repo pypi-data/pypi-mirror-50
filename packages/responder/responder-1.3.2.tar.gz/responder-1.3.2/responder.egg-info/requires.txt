@@ -1,0 +1,22 @@
+starlette==0.12.*
+uvicorn<0.9,>=0.7
+aiofiles
+pyyaml
+requests
+graphene
+graphql-server-core>=1.1
+jinja2
+parse
+rfc3986
+python-multipart
+chardet
+apispec>=1.0.0b1
+marshmallow
+whitenoise
+docopt
+itsdangerous
+requests-toolbelt
+apistar
+
+[:sys_platform != "win32" and sys_platform != "cygwin" and sys_platform != "cli"]
+uvloop
