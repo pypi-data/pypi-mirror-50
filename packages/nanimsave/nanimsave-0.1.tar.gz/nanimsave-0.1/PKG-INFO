@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: nanimsave
+Version: 0.1
+Summary: Save images that contain nan values
+Home-page: https://github.com/sdrdis/nanimsave
+Author: Sebastien Drouyer
+Author-email: sdrdis@gmail.com
+License: UNKNOWN
+Description: # NanImsave
+        
+        Save images that contain nan values so that they appear beautifully.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
