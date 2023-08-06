@@ -1,0 +1,12 @@
+README.rst
+setup.cfg
+setup.py
+certbot_dns_ispconfig/__init__.py
+certbot_dns_ispconfig/dns_ispconfig.py
+certbot_dns_ispconfig/dns_ispconfig_test.py
+certbot_dns_ispconfig.egg-info/PKG-INFO
+certbot_dns_ispconfig.egg-info/SOURCES.txt
+certbot_dns_ispconfig.egg-info/dependency_links.txt
+certbot_dns_ispconfig.egg-info/entry_points.txt
+certbot_dns_ispconfig.egg-info/requires.txt
+certbot_dns_ispconfig.egg-info/top_level.txt
