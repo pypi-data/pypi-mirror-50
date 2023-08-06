@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: fastrank
+Version: 0.3.0
+Summary: A set of learning-to-rank algorithms.
+Home-page: https://github.com/jjfiv/fastrank
+Author: John Foley
+Author-email: jjfoley@smith.edu
+License: UNKNOWN
+Platform: any
+Classifier: Programming Language :: Python :: 3.5
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Dist: cfastrank (==0.3.0)
+Requires-Dist: attrs
+Requires-Dist: cffi
+Requires-Dist: numpy
+Requires-Dist: scikit-learn
+Requires-Dist: ujson
+
+UNKNOWN
+
+
