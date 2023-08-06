@@ -1,0 +1,16 @@
+README.md
+setup.py
+pyppeteer_stealth/__init__.py
+pyppeteer_stealth/chrome_runtime.py
+pyppeteer_stealth/console_debug.py
+pyppeteer_stealth/navigator_languages.py
+pyppeteer_stealth/navigator_permissions.py
+pyppeteer_stealth/navigator_plugins.py
+pyppeteer_stealth/navigator_webdriver.py
+pyppeteer_stealth/user_agent.py
+pyppeteer_stealth/webgl_vendor.py
+pyppeteer_stealth/window_outerdimensions.py
+pyppeteer_stealth.egg-info/PKG-INFO
+pyppeteer_stealth.egg-info/SOURCES.txt
+pyppeteer_stealth.egg-info/dependency_links.txt
+pyppeteer_stealth.egg-info/top_level.txt
