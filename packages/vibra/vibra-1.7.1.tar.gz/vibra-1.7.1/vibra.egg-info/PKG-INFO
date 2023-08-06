@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: vibra
+Version: 1.7.1
+Summary: A non-finished add-on to Tensorflow
+Home-page: https://github.com/PerceptronV/vibra
+Author: PerceptronV
+Author-email: perceptronv@gmail.com
+License: MIT
+Download-URL: https://github.com/PerceptronV/vibra/archive/v1.7.1.tar.gz
+Description: UNKNOWN
+Keywords: Tensorflow,add-on
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
