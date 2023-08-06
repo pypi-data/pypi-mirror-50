@@ -1,0 +1,18 @@
+Metadata-Version: 1.2
+Name: ZhongZhuProject
+Version: 0.0.1
+Summary: ZhongZhuProject
+Home-page: https://developer.zhujianyun.com
+Author: tianlianpei
+Author-email: tianlianpei@zhongzhudata.com
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: projectclient
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Requires-Python: >=3.4.0
