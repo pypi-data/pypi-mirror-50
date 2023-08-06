@@ -1,0 +1,10 @@
+setup.py
+polygmsh/__init__.py
+polygmsh/__main__.py
+polygmsh/core.py
+polygmsh.egg-info/PKG-INFO
+polygmsh.egg-info/SOURCES.txt
+polygmsh.egg-info/dependency_links.txt
+polygmsh.egg-info/entry_points.txt
+polygmsh.egg-info/requires.txt
+polygmsh.egg-info/top_level.txt
