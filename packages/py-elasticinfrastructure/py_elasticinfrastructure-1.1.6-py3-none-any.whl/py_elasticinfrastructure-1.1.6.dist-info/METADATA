@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: py-elasticinfrastructure
+Version: 1.1.6
+Summary: A small utilty to index infrastructure metrics to elasticsearch
+Home-page: UNKNOWN
+Author: NullConvergence
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: psutil (==5.6.1)
+Requires-Dist: numpy (==1.16.2)
+Requires-Dist: elasticsearch (==7.0.2)
+Requires-Dist: setuptools (==41.0.1)
+Requires-Dist: GPUtil (==1.4.0)
+
+UNKNOWN
+
+
