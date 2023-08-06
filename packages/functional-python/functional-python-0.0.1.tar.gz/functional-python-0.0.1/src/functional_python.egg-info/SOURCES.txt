@@ -1,0 +1,12 @@
+README.md
+setup.py
+src/functional/__init__.py
+src/functional/containers.py
+src/functional/monads.py
+src/functional/option.py
+src/functional/predef.py
+src/functional_python.egg-info/PKG-INFO
+src/functional_python.egg-info/SOURCES.txt
+src/functional_python.egg-info/dependency_links.txt
+src/functional_python.egg-info/requires.txt
+src/functional_python.egg-info/top_level.txt
