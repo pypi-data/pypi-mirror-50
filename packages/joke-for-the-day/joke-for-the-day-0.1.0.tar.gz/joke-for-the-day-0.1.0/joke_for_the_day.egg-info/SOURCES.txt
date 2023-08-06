@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+setup.py
+joke_for_the_day.egg-info/PKG-INFO
+joke_for_the_day.egg-info/SOURCES.txt
+joke_for_the_day.egg-info/dependency_links.txt
+joke_for_the_day.egg-info/entry_points.txt
+joke_for_the_day.egg-info/top_level.txt
+jokeoftheday/__init__.py
+jokeoftheday/jokes.txt
+jokeoftheday/cli/main.py
