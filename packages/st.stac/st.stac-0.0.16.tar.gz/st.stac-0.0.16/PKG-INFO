@@ -1,0 +1,15 @@
+Metadata-Version: 1.2
+Name: st.stac
+Version: 0.0.16
+Summary: gRPC Spatio Temporal Asset Catalog library
+Home-page: https://github.com/Swiftera/stac-client-python
+Author: David Raleigh
+Author-email: david@swiftera.co
+License: Apache 2.0
+Description: gRPC Spatio Temporal Asset Catalog library
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Requires-Python: >3.5.2
