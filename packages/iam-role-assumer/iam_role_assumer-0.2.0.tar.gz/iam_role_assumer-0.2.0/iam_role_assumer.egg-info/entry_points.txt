@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        iam_role_assumer=iam_role_assumer.command:cli
+    

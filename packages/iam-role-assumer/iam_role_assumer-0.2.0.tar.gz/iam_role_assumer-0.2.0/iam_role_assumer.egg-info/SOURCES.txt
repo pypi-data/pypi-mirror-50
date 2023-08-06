@@ -1,0 +1,11 @@
+README.md
+setup.cfg
+setup.py
+iam_role_assumer/__init__.py
+iam_role_assumer/command.py
+iam_role_assumer.egg-info/PKG-INFO
+iam_role_assumer.egg-info/SOURCES.txt
+iam_role_assumer.egg-info/dependency_links.txt
+iam_role_assumer.egg-info/entry_points.txt
+iam_role_assumer.egg-info/requires.txt
+iam_role_assumer.egg-info/top_level.txt
