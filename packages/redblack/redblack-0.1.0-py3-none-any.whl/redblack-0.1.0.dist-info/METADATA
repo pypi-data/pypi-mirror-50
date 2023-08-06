@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: redblack
+Version: 0.1.0
+Summary: Red-black trees in Python
+Home-page: https://github.com/lggruspe/redblack
+Author: Levi Gruspe
+Author-email: mail.levig@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+redblack
+========
+
+Provides containers based on red-black trees.
+
+
