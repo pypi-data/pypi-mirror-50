@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: iterextras
+Version: 0.2.0
+Summary: Extra utilities for Python iterables
+Home-page: http://github.com/scanner-research/iterextras
+Author: Will Crichton
+Author-email: wcrichto@cs.stanford.edu
+License: Apache 2.0
+Platform: UNKNOWN
+Requires-Dist: tqdm
+
+UNKNOWN
+
+
