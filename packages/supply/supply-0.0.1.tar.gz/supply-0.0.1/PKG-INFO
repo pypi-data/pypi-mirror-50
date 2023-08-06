@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: supply
+Version: 0.0.1
+Summary: Supply kit for natural language processing
+Home-page: https://gitlab.com/shawnlu25/supply
+Author: Zefu (Shawn) Lu
+Author-email: shawnlu25@gmail.com
+License: UNKNOWN
+Description: # Natural Language Supply Kit
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
