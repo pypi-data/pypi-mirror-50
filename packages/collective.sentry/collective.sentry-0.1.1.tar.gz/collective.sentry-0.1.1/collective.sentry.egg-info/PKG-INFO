@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: collective.sentry
+Version: 0.1.1
+Summary: Policy-package for the main portal-site of Ghent University
+Home-page: UNKNOWN
+Author: Andreas Jung
+Author-email: info@zopyx.com
+License: GPL
+Description: collective.sentry
+        =================
+        
+        Sentry integration with Zope.
+        
+        Requirements
+        ------------
+        
+        * Plone 5.2 (tested)
+        * Python 3.6+ (tested)
+        
+        Installation
+        ------------
+        
+        Add `collective.sentry` to your buildout and re-run buildout. 
+        
+        Configuration
+        -------------
+        
+        Configure the Sentry DSN by setting the environment variable `SENTRY_DSN`.
+        
+        Author
+        ------
+        
+        ZOPYX/Andreas Jung, info@zopyx.com
+        
+        Changelog
+        =========
+        
+        
+        0.1 (2019/08/15)
+        ----------------
+        
+        - initial release
+        
+        Contributors
+        ------------
+        
+        - Andreas Jung <info@zopyx.com>
+        
+Keywords: policy
+Platform: UNKNOWN
+Classifier: Framework :: Plone
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Provides-Extra: tests
