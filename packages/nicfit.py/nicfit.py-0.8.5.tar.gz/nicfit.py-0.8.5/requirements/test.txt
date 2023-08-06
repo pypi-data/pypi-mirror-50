@@ -1,0 +1,6 @@
+babel
+pytest
+pytest-asyncio
+pytest-cov
+pytest-curio
+pytest-runner

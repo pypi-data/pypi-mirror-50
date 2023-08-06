@@ -1,0 +1,13 @@
+deprecation
+attrs
+PyYaml
+
+[cookiecutter]
+cookiecutter
+
+[curio]
+curio
+
+[shell]
+prompt-toolkit
+pygments
