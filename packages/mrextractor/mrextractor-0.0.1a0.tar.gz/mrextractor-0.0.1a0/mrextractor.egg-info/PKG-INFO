@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: mrextractor
+Version: 0.0.1a0
+Summary: A library for binaries feature extraction
+Home-page: https://github.com/malware-revealer/extractor
+Author: Malware Revealer
+Author-email: revealer.malware@gmail.com
+License: MIT
+Description: # Malware Revealer Extractor
+        
+        A library for binaries feature extraction.
+        
+Keywords: malware detection binary analysis feature extraction cyber security
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
