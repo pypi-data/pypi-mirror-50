@@ -1,0 +1,10 @@
+README.rst
+setup.cfg
+setup.py
+TreeStructConfig.egg-info/PKG-INFO
+TreeStructConfig.egg-info/SOURCES.txt
+TreeStructConfig.egg-info/dependency_links.txt
+TreeStructConfig.egg-info/requires.txt
+TreeStructConfig.egg-info/top_level.txt
+tree_struct_config/__init__.py
+tree_struct_config/core.py
