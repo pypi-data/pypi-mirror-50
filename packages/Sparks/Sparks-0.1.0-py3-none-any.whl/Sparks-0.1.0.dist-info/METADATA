@@ -1,0 +1,70 @@
+Metadata-Version: 2.1
+Name: Sparks
+Version: 0.1.0
+Summary: A CLI tool that creates and updates project folders from templates to spark faster project bootstrapping.
+Home-page: https://github.com/binaryart/sparks
+Author: Jill San Luis
+Author-email: jill.devs@gmail.com
+License: MIT
+Project-URL: Code, https://github.com/binaryart/sparks
+Project-URL: Issue tracker, https://github.com/binaryart/sparks/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: click
+Requires-Dist: jinja2
+Requires-Dist: pyyaml
+Provides-Extra: dev
+Requires-Dist: black (==19.3b0) ; extra == 'dev'
+Requires-Dist: pre-commit ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+
+# Sparks
+<!-- insert badges here -->
+Sparks is a minimal command-line tool to manage customizable project folders from templates.
+
+## Features
+* Simple command line usage thanks to [Click](https://click.palletsprojects.com).
+* Customizable folder, files, and file contents thanks to [Jinja2](http://jinja.pocoo.org).
+
+<!--
+## Table of Contents
+Optionally, include a table of contents in order to allow other people to quickly navigate especially long or detailed READMEs.
+-->
+## Installation
+Run the following to install:
+```bash
+pip install sparks
+```
+
+## Usage
+
+### Creating a new project
+```bash
+sparks create --help
+Usage: sparks create [OPTIONS]
+
+Options:
+  --template TEXT  Template folder to generate from
+  --output TEXT    Output folder to create files in
+  --skip-prompt
+  --help           Show this message and exit
+```
+
+<!--
+## Contributing
+For guidance on setting up a development environment and how to make a contribution to Sparks, see the [contributing guidelines](https://github.com/binaryart/sparks).
+-->
+<!--
+## Credits
+Include a section for credits in order to highlight and link to the authors of your project.
+-->
+
+## License
+Sparks is released under the [MIT License](https://opensource.org/licenses/MIT).
+
+
+

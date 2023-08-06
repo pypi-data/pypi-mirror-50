@@ -1,0 +1,3 @@
+[console_scripts]
+sparks = sparks.console.cli:main
+

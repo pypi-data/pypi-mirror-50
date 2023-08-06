@@ -1,0 +1,14 @@
+sparks/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+sparks/console/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+sparks/console/cli.py,sha256=3hi6bupsNnGt-eNxi_6n3Rrx8uKBoIH_EWa3LMi62Cs,330
+sparks/console/prompt.py,sha256=6BZMOCEgze5kYmDNSuIcYBMdRr8YbwHWzKhp2xfCL1Y,1172
+sparks/console/commands/__init__.py,sha256=Ceor1wcVBNnQOuWn0zGIFmn4HzT-iSBzc8s2nDPGVU8,87
+sparks/console/commands/create.py,sha256=tfHw3PkzPpsqrynHr2RTeod5qU0FR44W0qDhB6PjAe0,853
+sparks/core/__init__.py,sha256=W0cp0MMsu2Sai8RZMPpYfm2RkLqCLj7DYctgHEu_Ib8,74
+sparks/core/create.py,sha256=Qc4jfzSlCyTrYqv1AqanXTiMNQIHdQstgJa6hHqsy2E,2318
+Sparks-0.1.0.dist-info/LICENSE,sha256=kFzvwlBN0YKdY73EFBCpn-FoxpNXtIJbzbam_-w-o20,1057
+Sparks-0.1.0.dist-info/METADATA,sha256=ZhN4PeWTmBotxgKDvwSJ48vv0hpD8e5hDQpwzBYAGRw,2079
+Sparks-0.1.0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+Sparks-0.1.0.dist-info/entry_points.txt,sha256=ccy5f2Va0oeNRihgTFDzTRfx9wkDFAIrDGsoLGdCBHs,52
+Sparks-0.1.0.dist-info/top_level.txt,sha256=QVSZf21gHV24c4WUymCvx74RE1NzcBobIjziOPSuYqw,7
+Sparks-0.1.0.dist-info/RECORD,,
