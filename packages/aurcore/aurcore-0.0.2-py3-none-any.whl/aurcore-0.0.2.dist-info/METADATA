@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: aurcore
+Version: 0.0.2
+Summary: Aurora
+Home-page: https://github.com/Zenith00/aurora
+Author: Zenith00
+Author-email: z@zenith.dev
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+Requires-Dist: aursync
+
+# aurora
+
+
