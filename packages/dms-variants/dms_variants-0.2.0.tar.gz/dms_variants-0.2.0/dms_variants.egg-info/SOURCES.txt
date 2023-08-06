@@ -1,0 +1,17 @@
+README.rst
+setup.py
+dms_variants/__init__.py
+dms_variants/_cutils.c
+dms_variants/barcodes.py
+dms_variants/codonvarianttable.py
+dms_variants/constants.py
+dms_variants/fastq.py
+dms_variants/illuminabarcodeparser.py
+dms_variants/plotnine_themes.py
+dms_variants/simulate.py
+dms_variants/utils.py
+dms_variants.egg-info/PKG-INFO
+dms_variants.egg-info/SOURCES.txt
+dms_variants.egg-info/dependency_links.txt
+dms_variants.egg-info/requires.txt
+dms_variants.egg-info/top_level.txt
