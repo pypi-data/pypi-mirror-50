@@ -1,0 +1,14 @@
+advisory_parser/__init__.py,sha256=rU9qzznOTcwdxHI9o8qH4M0BzKYXKQ5Xv9Vb1D1JEs4,181
+advisory_parser/exceptions.py,sha256=N6Axgbk0gRapjQRnHfUsYFUdhCT45wYGekk4qV8LNPk,506
+advisory_parser/flaw.py,sha256=XfpbhpPZ_c8IVYuaM_nlrCPS-2C5IWigtkwlWfP4gOY,1933
+advisory_parser/parser.py,sha256=zhbbgxtSK1Mh8T67TIwQ0WAdzjK_ZTHrfO32a4OqGmI,1122
+advisory_parser/parsers/__init__.py,sha256=UESFuO7mn31B8J2pMaAfUa78XAHfimcJNPzToz8oMv8,254
+advisory_parser/parsers/chrome.py,sha256=eMURIzkQ14enArH13sY5uMy6AzNXJHSXFfJd-LHRBwE,4959
+advisory_parser/parsers/flash.py,sha256=l4kqaIYOSIZ4ofJZ9JmWX6wI_YvxHdy9Z1umTTpoy20,4311
+advisory_parser/parsers/mysql.py,sha256=CuT3yKKz9GRcH9TySyNiMsFnuo3M0AkIW5PngfLhmtc,6664
+advisory_parser/parsers/utils.py,sha256=FdcNufv8qGzZgYhDuKkOpVBWJnXDcj6Q41vX_tI0u5A,1374
+advisory_parser-1.8.dist-info/LICENSE,sha256=2n6rt7r999OuXp8iOqW9we7ORaxWncIbOwN1ILRGR2g,7651
+advisory_parser-1.8.dist-info/METADATA,sha256=Ab3WVkFY1JaBgn97T5Hu5Jg9aoLDEw1zw7D7GSXO1Y8,3415
+advisory_parser-1.8.dist-info/WHEEL,sha256=h_aVn5OB2IERUjMbi2pucmR_zzWJtk303YXvhh60NJ8,110
+advisory_parser-1.8.dist-info/top_level.txt,sha256=d2RToassaqijaf3Od0VT6MP_qpTnj6PkYps8MJRu-Ac,16
+advisory_parser-1.8.dist-info/RECORD,,
