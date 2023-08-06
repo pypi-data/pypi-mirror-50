@@ -1,0 +1,13 @@
+setup.py
+artek/__init__.py
+artek/templates/__init__.py
+artek/templates/apps.py
+artek/templates/management/__init__.py
+artek/templates/management/commands/__init__.py
+artek/templates/management/commands/copy_templates.py
+artek_templates.egg-info/PKG-INFO
+artek_templates.egg-info/SOURCES.txt
+artek_templates.egg-info/dependency_links.txt
+artek_templates.egg-info/not-zip-safe
+artek_templates.egg-info/requires.txt
+artek_templates.egg-info/top_level.txt
