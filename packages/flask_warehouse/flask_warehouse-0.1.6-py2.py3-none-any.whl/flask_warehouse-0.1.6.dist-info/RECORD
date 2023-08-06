@@ -1,0 +1,12 @@
+flask_warehouse/__init__.py,sha256=alwbPQUl1l8ft6iE_Mm8Pa-ZU_4vFdcwJ_Z_9KRd7UM,431
+flask_warehouse/flask_warehouse.py,sha256=vjmmePDPamBle5oE-Lo3jEbule28_Fv-utzS9KQXkNM,2974
+flask_warehouse/backends/__init__.py,sha256=BuscC-mEe5ZcpFr41RGKcHJZxoekc8xzAILMsZRJ1ik,185
+flask_warehouse/backends/file.py,sha256=AUoCyDfXZ59kBnQJY8vGm-_P1W_G-8hZSiTg4TmiOR0,2464
+flask_warehouse/backends/s3.py,sha256=s3Kz49FkGobxpN4oqDbrz-haPXW9IuU6H50LmJKB_qE,5822
+flask_warehouse/backends/service.py,sha256=7vAxuKnByI0qmPhVjnq41heSzlWY99v-YOmnqOQbpJo,4040
+flask_warehouse-0.1.6.dist-info/DESCRIPTION.rst,sha256=n67ZfDiS5YR_B_tidD5LFjrYQvszyzd2sgUbK9FimvU,1550
+flask_warehouse-0.1.6.dist-info/METADATA,sha256=JcV_z-FdeViXvv1_2xUW0DxJfOtTcWXbOAwkTovPpys,2296
+flask_warehouse-0.1.6.dist-info/RECORD,,
+flask_warehouse-0.1.6.dist-info/WHEEL,sha256=o2k-Qa-RMNIJmUdIc7KU6VWR_ErNRbWNlxDIpl7lm34,110
+flask_warehouse-0.1.6.dist-info/metadata.json,sha256=G3P9MOTccyBt3tbP_0BDmtwJF7AjfZKYLSWR5jYEb0w,972
+flask_warehouse-0.1.6.dist-info/top_level.txt,sha256=MEJcwfwf3McfiyfVf2LSuwb34EACExpFndYgWDayb9U,16
