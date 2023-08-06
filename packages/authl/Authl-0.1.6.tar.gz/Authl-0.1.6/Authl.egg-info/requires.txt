@@ -1,0 +1,12 @@
+beautifulsoup4
+requests
+validate_email
+expiringdict
+
+[dev]
+autopep8
+flake8
+flask
+isort
+pylint
+twine
