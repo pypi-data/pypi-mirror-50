@@ -1,0 +1,81 @@
+Metadata-Version: 1.2
+Name: sbpy
+Version: 0.2
+Summary: A Python Module for Small-Body Planetary Astronomy
+Home-page: http://sbpy.org
+Author: sbpy team
+Author-email: sbpy.dev@gmail.com
+License: BSD 3-Clause
+Description-Content-Type: UNKNOWN
+Description: .. image:: logo/sbpy_logo_short.png
+            :width: 400px
+            :align: center	    
+            :alt: sbpy	     
+        	  
+               
+        sbpy is an `Astropy <http://www.astropy.org/>`_ affiliated package for small-body
+        planetary astronomy.
+        
+        .. image:: http://img.shields.io/badge/powered%20by-AstroPy-orange.svg?style=flat
+            :target: http://www.astropy.org
+            :alt: Powered by Astropy Badge
+        
+        .. image:: https://travis-ci.org/NASA-Planetary-Science/sbpy.svg?branch=master
+            :target: https://travis-ci.org/NASA-Planetary-Science/sbpy
+            :alt: Travis-CI status
+        
+        .. image:: https://readthedocs.org/projects/sbpy/badge/?version=latest
+            :target: http://sbpy.readthedocs.io/en/latest/?badge=latest
+            :alt: Documentation status
+        
+        .. image:: http://joss.theoj.org/papers/10.21105/joss.01426/status.svg
+            :target: https://doi.org/10.21105/joss.01426
+            :alt: JOSS documentation
+        
+        .. image:: https://codecov.io/gh/NASA-Planetary-Science/sbpy/branch/master/graph/badge.svg
+            :target: https://codecov.io/gh/NASA-Planetary-Science/sbpy
+            :alt: codecov status
+        	  
+        
+        Overview
+        --------
+        
+        For an overview of the sbpy project please visit this `project
+        overview page <https://sbpy.readthedocs.io/en/latest/about.html>`_ and
+        the `official sbpy website <http://sbpy.org>`_.
+        
+        
+        Installation
+        ------------
+        
+        The current stable version of sbpy can be installed with pip:
+        
+        .. code-block:: bash
+        
+            $ pip install sbpy
+        
+        For details on the installation process, please refer to the `detailed installation guide <https://sbpy.readthedocs.io/en/latest/install.html>`_.
+            
+        
+        Documentation
+        -------------
+        
+        The official documentation and API reference is available `here <http://sbpy.readthedocs.io/en/latest/>`_.
+        
+        Status
+        ------
+        
+        sbpy is still under development, which will be finished in 2021. For an overview on the status of individual features see the `Status Page <https://sbpy.readthedocs.io/en/latest/status.html>`_.
+        
+        
+        Acknowledgements
+        ----------------
+        
+        `sbpy` is supported by NASA PDART Grant No. 80NSSC18K0987.
+        
+        If you use `sbpy` in your work, please acknowledge it by citing
+        
+            `Mommert, Kelley, de-Val Borro, Li et al., (2019). sbpy: A Python module for small-body planetary astronomy. Journal of Open Source Software, 4(38), 1426 <http://joss.theoj.org/papers/8b8e7bb15fb4a14f80f2afd06b6ce060>`_
+        
+Platform: UNKNOWN
+Requires-Python: >=3
