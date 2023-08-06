@@ -1,0 +1,7 @@
+rotest
+future
+xmltodict
+
+[dev]
+flake8
+pylint
