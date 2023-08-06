@@ -1,0 +1,209 @@
+
+--------------------------------------------------------------------------------
+Beginning test at 2019-05-29 18:51:21
+Testing MuscleX version: 1.14.8
+
+SYSTEM INFO
+System: Darwin
+Node: dhcp203.merunorth104.iit.edu
+Processor: i386
+Version: Darwin Kernel Version 18.6.0: Thu Apr 25 23:16:27 PDT 2019; root:xnu-4903.261.4~2/RELEASE_X86_64
+Machine: x86_64
+Architecture: ('64bit', '')
+Python Version: 3.6.8
+OSX Version: 10.14.5
+OSX Info: ('', '', '')
+Windows Release: 
+Windows Version: 
+Windows CSD: 
+Windows OS Type: 
+Linux Distribution Name: 
+Linux Version: 
+Linux ID: 
+
+Package Information
+h5py Version: 2.9.0
+lmfit Version: 0.9.12
+OpenCL Information
+OpenCL Version: OpenCL 1.2 (Apr  7 2019 18:38:19)
+CPUs: [<pyopencl.Device 'Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz' on 'Apple' at 0xffffffff>]
+GPUs: [<pyopencl.Device 'Iris Pro' on 'Apple' at 0x1024500>]
+
+Summary of Test Results
+Equator Image Test: pass
+Quadrant Folder Test: pass
+Diffraction Centroids Test: pass
+Projection Traces Test: pass
+Scanning Diffraction Test: pass
+HDF5 Read Test: pass
+OpenCL GPU Device Test: pass
+pyFAI Integration Test: pass
+Ending test at 2019-05-29 18:53:15
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Beginning test at 2019-05-29 18:57:14
+Testing MuscleX version: 1.14.8
+
+SYSTEM INFO
+System: Darwin
+Node: dhcp203.merunorth104.iit.edu
+Processor: i386
+Version: Darwin Kernel Version 18.6.0: Thu Apr 25 23:16:27 PDT 2019; root:xnu-4903.261.4~2/RELEASE_X86_64
+Machine: x86_64
+Architecture: ('64bit', '')
+Python Version: 3.6.8
+OSX Version: 10.14.5
+OSX Info: ('', '', '')
+Windows Release: 
+Windows Version: 
+Windows CSD: 
+Windows OS Type: 
+Linux Distribution Name: 
+Linux Version: 
+Linux ID: 
+
+Package Information
+h5py Version: 2.9.0
+lmfit Version: 0.9.12
+OpenCL Information
+OpenCL Version: OpenCL 1.2 (Apr  7 2019 18:38:19)
+CPUs: [<pyopencl.Device 'Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz' on 'Apple' at 0xffffffff>]
+GPUs: [<pyopencl.Device 'Iris Pro' on 'Apple' at 0x1024500>]
+
+Summary of Test Results
+OpenCL GPU Device Test: pass
+pyFAI Integration Test: pass
+Ending test at 2019-05-29 18:57:15
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Beginning test at 2019-06-07 17:42:45
+Testing MuscleX version: 1.14.8
+
+SYSTEM INFO
+System: Darwin
+Node: Grants-MacBook-Pro-2.local
+Processor: i386
+Version: Darwin Kernel Version 18.6.0: Thu Apr 25 23:16:27 PDT 2019; root:xnu-4903.261.4~2/RELEASE_X86_64
+Machine: x86_64
+Architecture: ('64bit', '')
+Python Version: 3.6.6
+OSX Version: 10.14.5
+OSX Info: ('', '', '')
+Windows Release: 
+Windows Version: 
+Windows CSD: 
+Windows OS Type: 
+Linux Distribution Name: 
+Linux Version: 
+Linux ID: 
+
+Package Information
+h5py Version: 2.9.0
+lmfit Version: 0.9.12
+OpenCL Information
+OpenCL Version: OpenCL 1.2 (Apr  7 2019 18:38:19)
+CPUs: [<pyopencl.Device 'Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz' on 'Apple' at 0xffffffff>]
+GPUs: [<pyopencl.Device 'Iris Pro' on 'Apple' at 0x1024500>]
+
+Summary of Test Results
+Diffraction Centroids Test: pass
+Equator Image Test: fail
+pyFAI Integration Test: pass
+HDF5 Read Test: fail
+OpenCL GPU Device Test: pass
+Projection Traces Test: pass
+Quadrant Folder Test: pass
+Scanning Diffraction Test: pass
+Ending test at 2019-06-07 17:44:39
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Beginning test at 2019-06-07 17:59:47
+Testing MuscleX version: 1.14.8
+
+SYSTEM INFO
+System: Darwin
+Node: Grants-MacBook-Pro-2.local
+Processor: i386
+Version: Darwin Kernel Version 18.6.0: Thu Apr 25 23:16:27 PDT 2019; root:xnu-4903.261.4~2/RELEASE_X86_64
+Machine: x86_64
+Architecture: ('64bit', '')
+Python Version: 3.6.6
+OSX Version: 10.14.5
+OSX Info: ('', '', '')
+Windows Release: 
+Windows Version: 
+Windows CSD: 
+Windows OS Type: 
+Linux Distribution Name: 
+Linux Version: 
+Linux ID: 
+
+Package Information
+h5py Version: 2.9.0
+lmfit Version: 0.9.12
+OpenCL Information
+OpenCL Version: OpenCL 1.2 (Apr  7 2019 18:38:19)
+CPUs: [<pyopencl.Device 'Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz' on 'Apple' at 0xffffffff>]
+GPUs: [<pyopencl.Device 'Iris Pro' on 'Apple' at 0x1024500>]
+
+Summary of Test Results
+Diffraction Centroids Test: pass
+Equator Image Test: pass
+pyFAI Integration Test: pass
+HDF5 Read Test: pass
+OpenCL GPU Device Test: pass
+Projection Traces Test: pass
+Quadrant Folder Test: pass
+Scanning Diffraction Test: pass
+Ending test at 2019-06-07 18:01:39
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Beginning test at 2019-06-07 18:23:36
+Testing MuscleX version: 1.14.8
+
+SYSTEM INFO
+System: Darwin
+Node: Grants-MacBook-Pro-2.local
+Processor: i386
+Version: Darwin Kernel Version 18.6.0: Thu Apr 25 23:16:27 PDT 2019; root:xnu-4903.261.4~2/RELEASE_X86_64
+Machine: x86_64
+Architecture: ('64bit', '')
+Python Version: 3.6.6
+OSX Version: 10.14.5
+OSX Info: ('', '', '')
+Windows Release: 
+Windows Version: 
+Windows CSD: 
+Windows OS Type: 
+Linux Distribution Name: 
+Linux Version: 
+Linux ID: 
+
+Package Information
+h5py Version: 2.9.0
+lmfit Version: 0.9.12
+OpenCL Information
+OpenCL Version: OpenCL 1.2 (Apr  7 2019 18:38:19)
+CPUs: [<pyopencl.Device 'Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz' on 'Apple' at 0xffffffff>]
+GPUs: [<pyopencl.Device 'Iris Pro' on 'Apple' at 0x1024500>]
+
+Summary of Test Results
+Diffraction Centroids Test: pass
+Equator Image Test: pass
+pyFAI Integration Test: pass
+HDF5 Read Test: pass
+OpenCL GPU Device Test: pass
+Projection Traces Test: pass
+Quadrant Folder Test: pass
+Scanning Diffraction Test: pass
+Ending test at 2019-06-07 18:25:32
+
+--------------------------------------------------------------------------------
