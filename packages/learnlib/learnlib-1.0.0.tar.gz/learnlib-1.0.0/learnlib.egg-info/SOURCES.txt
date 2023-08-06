@@ -1,0 +1,10 @@
+README.md
+setup.py
+learnlib/__init__.py
+learnlib/dazzle.py
+learnlib/numbers.py
+learnlib.egg-info/PKG-INFO
+learnlib.egg-info/SOURCES.txt
+learnlib.egg-info/dependency_links.txt
+learnlib.egg-info/not-zip-safe
+learnlib.egg-info/top_level.txt
