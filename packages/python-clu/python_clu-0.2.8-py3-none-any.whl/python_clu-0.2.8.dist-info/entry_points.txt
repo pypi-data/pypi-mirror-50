@@ -1,0 +1,6 @@
+[console_scripts]
+clu-version = clu.repl.cli.print_version:print_version_command
+
+[pytest11]
+clu-testing = clu.testing.pytest
+
