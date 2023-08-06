@@ -1,0 +1,9 @@
+README.md
+setup.py
+hashver/__init__.py
+hashver/hashver.py
+hashver/test_hashver.py
+hashver.egg-info/PKG-INFO
+hashver.egg-info/SOURCES.txt
+hashver.egg-info/dependency_links.txt
+hashver.egg-info/top_level.txt
