@@ -1,0 +1,6 @@
+pyserial
+requests
+retrying
+cerberus
+six
+pandas>=0.23.0
