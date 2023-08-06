@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: extprint
+Version: 0.0.1
+Summary: prints stuff
+Home-page: https://github.com/cccaaannn/extprint
+Author: Can Kurt
+Author-email: can.kurt.aa@gmail.com
+License: UNKNOWN
+Description: # extprint
+        prints color, prints lists and their indexes.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
