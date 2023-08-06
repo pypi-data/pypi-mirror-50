@@ -1,0 +1,28 @@
+Metadata-Version: 1.2
+Name: django-tasker-exchangerate
+Version: 0.0.1
+Summary: Exchange Rates for Django 2.x
+Home-page: https://github.com/kostya-ten/django_tasker_exchangerate/
+Author: Kostya Ten
+Author-email: kostya@yandex.ru
+License: Apache License 2.0
+Description: # django_tasker_exchangerate
+        Exchange Rates for Django
+        
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Natural Language :: English
+Classifier: Natural Language :: Russian
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 2.1
+Classifier: Framework :: Django :: 2.2
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: License :: OSI Approved :: Apache Software License
+Requires-Python: >=3

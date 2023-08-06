@@ -1,0 +1,2 @@
+Django>=2.2.4
+requests[security]>=2.22.0
