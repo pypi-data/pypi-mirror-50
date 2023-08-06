@@ -1,0 +1,67 @@
+Metadata-Version: 2.1
+Name: pytex2svg
+Version: 0.0.1
+Summary: A simple command line tool to convert TeX equations to SVG.
+Home-page: http://github.com/iuvbio/pytex2svg
+Author: iuvbio
+Author-email: lyndonbjohn@gmail.com
+License: GPLv3+
+Description: 
+        pytex2svg
+        ===
+        
+        A simple command line tool written in Python to convert TeX equations to SVG. Input can be read from `stdin`, provided directly as command line argument, or read from a file.
+        
+        
+        Installation
+        ---
+        
+        `pip install pytex2svg`
+        
+        
+        Dependencies
+        ---
+        
+        - `matplotlib`
+        
+        
+        Usage
+        ---
+        
+        
+        ```
+        usage: pytex2svg [-h] [-o OUTFILE] [-v] [input]
+        
+        converts a TeX string to an SVG file
+        
+        positional arguments:
+          input                 The TeX equation or file to be converted to svg,
+                                defaults to stdin
+        
+        optional arguments:
+          -h, --help            show this help message and exit
+          -o OUTFILE, --outfile OUTFILE
+                                Path or name of the output file, defaults to
+                                "equation.svg". If more than one equation is provided,
+                                the output files are numbered.
+          -v, --verbose         Enable verbose output
+        ```
+        
+        Examples:
+        ```bash
+        # from stdin
+        echo "\log_{2}10 \approx 3.322" | pytex2svg -o whybinary.svg
+        # as command line argument
+        pytex2svg "\log_{2}10 \approx 3.322" -o whybinary.svg
+        # from a file
+        pytex2svg examples/integral.tex -o whybinary.svg
+        ```
+        
+Keywords: svg tex vector graphics convert
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Utilities
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
