@@ -1,0 +1,224 @@
+- job:
+    name: nodepool-zuul-functional
+    parent: tox
+    description: |
+      Test that zuul works with current nodepool sources.
+
+      This test runs the zuul project ``nodepool`` environment.
+    pre-run: playbooks/nodepool-zuul-functional/pre.yaml
+    post-run: playbooks/nodepool-zuul-functional/post.yaml
+    required-projects:
+      - zuul/nodepool
+      - zuul/zuul
+    vars:
+      zuul_work_dir: "{{ zuul.projects['opendev.org/zuul/zuul'].src_dir }}"
+      tox_envlist: nodepool
+
+- job:
+    name: nodepool-functional-openstack-base
+    description: |
+      Test Nodepool with an OpenStack.
+
+      Sets up a working OpenStack system, builds an image, launches a
+      node, and verifies SSH access to the node.
+
+      .. zuul:jobvar:: nodepool_extra_packages
+         :type: list
+
+         A list of extra packages to install at the start of the job
+         (i.e., anything needed for the DIB build).
+
+      .. zuul:jobvar:: nodepool_diskimage
+         :type: dict
+
+         .. zuul:jobvar:: base_element
+
+            The base element to use when building the disk image.
+
+         .. zuul:jobvar:: release
+
+            The release number or name to use with the base element.
+
+         .. zuul:jobvar:: mirror
+
+            The URL for the package mirror to use when building the
+            disk image.  This is optional.
+
+         .. zuul:jobvar:: env-vars
+            :type: dict
+
+            A dictionary of environment variables and values to add
+            to the DIB environment when building the image.
+
+         .. zuul:jobvar:: nodepool_debug
+
+            Boolean flag to enable debug logging for the nodepool builder
+            and launcher services. By default we log at INFO level and
+            higher. This enables DEBUG and higher. This is optional.
+
+    timeout: 5400
+    required-projects:
+      - zuul/nodepool
+    pre-run: playbooks/nodepool-functional-openstack/pre.yaml
+    run: playbooks/nodepool-functional-openstack/run.yaml
+    post-run: playbooks/nodepool-functional-openstack/post.yaml
+    vars:
+      zuul_copy_output:
+        /var/log/nodepool: logs
+
+- job:
+    name: nodepool-functional-openstack
+    description: Test Nodepool with an OpenStack
+    parent: nodepool-functional-openstack-base
+    vars: &nodepool_diskimage_vars
+      nodepool_extra_packages:
+        - rpm
+        - yum-utils
+      nodepool_diskimage:
+        base_element: centos-minimal
+        release: 7
+        mirror: "http://{{ zuul_site_mirror_fqdn }}/centos"
+        env-vars:
+          DIB_SIMPLE_INIT_NETWORKMANAGER: '1'
+
+- job:
+    name: nodepool-functional-openstack-src-base
+    description: Test Nodepool and OpenStack, with some projects from source
+    parent: nodepool-functional-openstack-base
+    required-projects:
+      - name: github.com/sqlalchemy/dogpile.cache
+      - name: opendev/glean
+      - name: zuul/nodepool
+      - name: openstack/diskimage-builder
+      - name: openstack/openstacksdk
+
+- job:
+    name: nodepool-functional-openstack-src
+    description: Test Nodepool and OpenStack, with some projects from source
+    parent: nodepool-functional-openstack-src-base
+    vars: *nodepool_diskimage_vars
+
+- job:
+    description: |
+      Test that nodepool works with kubernetes.
+    name: nodepool-functional-k8s
+    pre-run: playbooks/nodepool-functional-k8s/pre.yaml
+    run: playbooks/nodepool-functional-k8s/run.yaml
+    post-run: playbooks/nodepool-functional-k8s/post.yaml
+    nodeset: ubuntu-xenial
+    required-projects:
+      - zuul/nodepool
+
+- job:
+    description: |
+      Test that nodepool works with openshift.
+    name: nodepool-functional-openshift
+    pre-run: playbooks/nodepool-functional-openshift/pre.yaml
+    run: playbooks/nodepool-functional-openshift/run.yaml
+    nodeset:
+      nodes:
+        - name: cluster
+          label: centos-7
+        - name: launcher
+          label: fedora-28
+    required-projects:
+      - zuul/nodepool
+
+- secret:
+    name: nodepool-dockerhub
+    data:
+      username: zuulzuul
+      password: !encrypted/pkcs1-oaep
+        - VV5m4XbsYvAz0/7T+WoIypvD3ijRsPYrGo4O5JuOHt6TX14s9B1KddeMwnabEEKapPdbb
+          cwqbzFKoHRMi8DdXiDKxrgbTSC1jb3BvKq7XE0/xF4Bq2dM+r3yDnXS6a7BuijSqFSiMG
+          /9bf0jqEAWXWCvbYUAxKOklJIRLjcKywCP5CulmW6EV8f1Iya8Y7UGpjGyL34FVQuc52Y
+          5MLp+Dra95pvBJMgikbu7LtMPCXOMctUFBpwNArCjWKGhz00UZwyAmsbPPHwQWb+884ZP
+          v9zi2FuRAL+rn4DRVwyIw28ZdCEr5F5EkZon3lSIhikhdQIyHPtW8VwMJTL4RxBdmgcEt
+          +zZBbLlOU+0AHPGLlO/yQNvHeSzwY9pe2oIGuqSu3h6zp6Y0NIE/Q0VpiIXWpOAnLOmno
+          uOd3j9tZ1beol2mg4Yk7rOaXu1Fvtfhd1K3LpLzEbiGzCMIEZuFHU2ZInAbUmtm0BtbDa
+          /bYvI9dB/uqA2xgse5rVMa++v3AfWJTJhFY/wBU4fHOWlFBUZKFuSoijUcWMfnfMMyU2B
+          A5CQKhv4Wmtzbvo/oneYkwFOTYaPNj2DS0BcFJFkR8FZDYmTBPnKoBH5wpwwnrzPOpCMa
+          L21z+Vp1Vce1XCsaOduMrmZDvuQcK1YOKIIUeElAQw8GuwTfcXqekoPvp54SeE=
+
+- job:
+    name: nodepool-build-image
+    parent: opendev-build-docker-image
+    description: Build Docker images.
+    vars: &nodepool_image_vars
+      docker_images:
+        - context: .
+          repository: zuul/nodepool
+          target: nodepool
+        - context: .
+          repository: zuul/nodepool-launcher
+          target: nodepool-launcher
+        - context: .
+          repository: zuul/nodepool-builder
+          target: nodepool-builder
+
+- job:
+    name: nodepool-upload-image
+    parent: opendev-upload-docker-image
+    description: Build Docker images and upload to Docker Hub.
+    vars: *nodepool_image_vars
+    secrets:
+      - name: docker_credentials
+        secret: nodepool-dockerhub
+        pass-to-parent: true
+
+- job:
+    name: nodepool-promote-image
+    parent: opendev-promote-docker-image
+    description: Promote previously uploaded Docker images.
+    vars: *nodepool_image_vars
+    secrets:
+      - name: docker_credentials
+        secret: nodepool-dockerhub
+        pass-to-parent: true
+
+- project:
+    check:
+      jobs:
+        - nodepool-build-image
+        - zuul-tox-docs
+        - tox-pep8
+        - tox-py35:
+            nodeset: ubuntu-xenial
+        - tox-py36
+        - nodepool-zuul-functional:
+            voting: false
+        - nodepool-functional-openstack:
+            vars:
+              nodepool_debug: true
+        - nodepool-functional-openstack-src:
+            vars:
+              nodepool_debug: true
+        - nodepool-functional-k8s
+        - nodepool-functional-openshift
+        - zuul-quick-start:
+            dependencies: nodepool-build-image
+        - build-python-release
+    gate:
+      jobs:
+        - nodepool-upload-image
+        - zuul-tox-docs
+        - tox-pep8
+        - tox-py35:
+            nodeset: ubuntu-xenial
+        - tox-py36
+        - nodepool-functional-openstack
+        - nodepool-functional-openstack-src
+        - nodepool-functional-k8s
+        - nodepool-functional-openshift
+        - zuul-quick-start:
+            dependencies: nodepool-upload-image
+        - build-python-release
+    promote:
+      jobs:
+        - nodepool-promote-image
+        - zuul-promote-docs
+        - opendev-promote-python
+    release:
+      jobs:
+        - opendev-release-python
+        - zuul-publish-tox-docs
