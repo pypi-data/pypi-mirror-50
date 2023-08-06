@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: tutti-aisthetics-slim
+Version: 0.1.0
+Summary: A tutti.ch image asthetics AI scorer.
+Home-page: https://tutti.ch
+Author: Oscar Saleta
+Author-email: oscar@tutti.ch
+License: Proprietary
+Keywords: nima,CNN,neural net,MobileNet,aesthetics
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.5.2
+Requires-Dist: absl-py (==0.7.*)
+Requires-Dist: boto3 (==1.9.*)
+Requires-Dist: pillow (==6.1.*)
+Requires-Dist: tensorflow (==1.14.*)
+
+Stripped down version of package tutti-aisthetics for pure Tensorflow inference.
+
+
