@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: sesamutils
+Version: 0.1.2
+Summary: Sesam microservice utils
+Home-page: https://github.com/sesam-community/
+Author: Anders Borud
+License: UNKNOWN
+Description: # SesamUtils
+        
+        **Python module to simplify common tasks when developing microservices for the Sesam integration platform.**
+        
+        
+        ### Usage examples
+        
+        ```bash
+        from sesamutils import VariablesConfig
+        
+        required_env_vars = ["username", "password", "hostname"]
+        optional_env_vars = ["debug"]
+        
+        config = VariablesConfig(required_env_vars, optional_env_vars=optional_env_vars)
+        
+        if not config.validate():
+            sys.exit(1)
+        
+        
+        print(config.username)
+        
+        ```
+        
+        
+        
+        ### Installation
+        
+        ```bash
+        pip install sesamutils
+        ```
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet :: WWW/HTTP
+Description-Content-Type: text/markdown
