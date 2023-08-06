@@ -1,0 +1,3 @@
+[console_scripts]
+taxonomy-match = taxonomy_matcher.__main__:main
+
