@@ -1,0 +1,47 @@
+# PotentialFinder
+PotentialFinder searches through your dataframe and finds high-potential patterns.
+
+Supported patterns:
+  - Exponential growth (find_exponents())
+
+### Installation
+```sh
+pip install potentialfinder
+```
+### Example Usage
+```sh
+import potentialfinder
+import pandas
+df=pd.read_csv('yourtestfile.csv',sep=";")
+resulttable=find_exponents(df,
+                           fractionToAnalyze=1,
+                           outputPath='/outputs',
+                           outputTable=True,
+                           outputPlots=True,
+                           outputTablename='Testtable',
+                           logToScreen=True,
+                           columnFillThreshold=0.5,
+                           exp_threshold=0.1,
+                           r_s_threshold=0.7,
+                           maxrows=5000,
+                           debug=False)
+resulttable
+
+```
+
+### Development
+
+Want to contribute? Great! We're always searching for contributors: 
+* implement the search for new patterns 
+* performance improvements
+* additional quality measures
+* ...
+
+License
+----
+
+Apache 2.0
+
+[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
+
+
