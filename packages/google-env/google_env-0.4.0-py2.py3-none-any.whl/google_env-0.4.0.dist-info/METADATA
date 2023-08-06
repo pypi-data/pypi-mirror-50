@@ -1,0 +1,91 @@
+Metadata-Version: 2.1
+Name: google-env
+Version: 0.4.0
+Summary: Script to populate .env file from a Google Sheet
+Home-page: https://github.com/incountry/google_env
+Author: InCountry
+Author-email: developers@incountry.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=2.7.0
+Description-Content-Type: text/markdown
+Requires-Dist: google-api-python-client
+Requires-Dist: google-auth-httplib2
+Requires-Dist: google-auth-oauthlib
+
+# Google Env
+
+A simple utility which pulls development-time values from a Google spreadsheet. This
+allows you to share dev secrets in a semi-secure way.
+
+## Usage
+
+1. You need an Oauth credentials JSON file. One person needs to register an
+Oauth app in the Google Console and then download the credentials JSON file.
+Place this file in `$HOME/google_env_creds.json`.
+
+2. Now create a `.env` file in your code project. Reference the spreadsheet
+which contains your secrets at the top of the file:
+
+`.env`:
+
+    # GOOGLE_ENV: https://docs.google.com/spreadsheets/d/17fcDBp5tez9JFtRwucDW5-wq3jgmzq8s-oWcnUljyR0!Sheet1
+
+Note that the sheet name should be after the '!' at the end.
+
+3. Install the `google_env` package:
+
+    `pip install google_env`
+
+4. Now run the `google_env` script directory containing your .env file
+
+    `$ google_env`
+
+The first time you run it you will be sent through the Google Oauth flow in the browser.
+Your access key to the spreadsheet will then be cached in a local file in
+`~/.google_env_token`.
+
+Now the contents of your spreadsheet are downloaded and inserted into the `.env`
+file. Your spreadsheet should have 2 columns, the key and the value, with no header.
+
+So if your sheet looks like this:
+
+|   | A          | B            |
+|---|------------|--------------|
+| 1 | key1       | mysecretkey1 |
+| 2 | AWS_ACCESS | foobar       |
+---------------------------------
+
+Then the resulting .env file will be rewritten as:
+
+    # GOOGLE_ENV: https://docs.google.com/spreadsheets/d/17fcDBp5tez9JFtRwucDW5-wq3jgmzq8s-oWcnUljyR0
+    key1=mysecretkey1
+    AWS_ACCESS=foobar
+    # END_GOOGLE_ENV
+
+Note that you should leave the closing comment line. This will allow you to
+re-run `google_env` any time to update keys from the spreadsheet.
+
+If you need to override any values, simply add a second assignment for that
+key lower down in your `.env` file.
+
+## Doing other things with Google Sheets
+
+This package can be used to easily retrieve information from any Google Sheet.
+
+     > import google_env
+     > for row in google_env.read_sheet(sheet_id, sheet_range):
+           # row will be an array of column values for each row in the sheet
+           print(row)
+
+Where `sheet_id` is like `1mhs7mW7dBK_lhNYB4hZFwdF1QXWSEzl6ITsY50DGx9M` and
+`sheet_range` is a Sheets range like `<name>!<range spec>` like
+`Sheet1!A1:G20`.
+
+
