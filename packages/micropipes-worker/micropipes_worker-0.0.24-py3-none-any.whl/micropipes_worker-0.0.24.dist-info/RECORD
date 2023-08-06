@@ -1,0 +1,12 @@
+shared/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+shared/constants.py,sha256=tWptsFvBN94H6N0wTUsaU5FT-LCvMffPITbsyQ2is5Y,1639
+shared/job.py,sha256=KmgWN47NT6mdEFmoFEiTe-qh7eaXuh6Yzy_jzb0uDXs,7016
+shared/namegen.py,sha256=nAQHBt9M5pkuOThdN1n3SmjbRV7n02GeTKYKdQeQ0B8,50259
+shared/shared_files.py,sha256=8cvtcLUtGnHGR_oETOFAPS36JhEGXEmXb0zN01-qlXA,1059
+shared/utils.py,sha256=MG9x1hFBEFdZ_q-I3JL0iUXNBwKtII1edIN2UYKNo1Y,5640
+worker/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+worker/worker.py,sha256=g01PnxD7FO8kLuXrDD0tbHk7NwF8mGwwenmMP3Ti-cE,26311
+micropipes_worker-0.0.24.dist-info/METADATA,sha256=hLT1cugaacUgVjKYrwAzVz9i6XeX1Lmlb6T4z19bsms,333
+micropipes_worker-0.0.24.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+micropipes_worker-0.0.24.dist-info/top_level.txt,sha256=fSZmCtuSGBTBYqfJaoDjAkSr7_DfONVrgWOZhJBhGxE,14
+micropipes_worker-0.0.24.dist-info/RECORD,,
