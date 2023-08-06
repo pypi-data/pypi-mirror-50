@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: iam-role-assumer
+Version: 0.2.0
+Summary: Assume an AWS IAM role
+Home-page: https://github.com/muckamuck/iam-role-assumer
+Author: Chuck Muckamuck
+Author-email: Chuck.Muckamuck@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: boto3 (>=1.4)
+Requires-Dist: Click (>=6.7)
+
+UNKNOWN
+
+
