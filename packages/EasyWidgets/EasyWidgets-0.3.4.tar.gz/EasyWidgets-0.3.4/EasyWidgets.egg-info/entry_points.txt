@@ -1,0 +1,11 @@
+
+      # -*- Entry points: -*-
+      [easy_widgets.engines]
+      json = ew.render:JsonEngine
+      core-ew = ew.render:CoreEngine
+      jinja2 = ew.render:Jinja2Engine
+
+      [paste.filter_factory]
+      easy_widgets = ew.middleware:paste_filter_factory
+
+      
