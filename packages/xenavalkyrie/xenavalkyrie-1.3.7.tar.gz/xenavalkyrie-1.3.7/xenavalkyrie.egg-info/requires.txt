@@ -1,0 +1,10 @@
+future
+requests
+pytest
+pytrafficgen==1.5.5
+
+[:python_version < "3.0"]
+pypacker27==4.2.1
+
+[:python_version >= "3.0"]
+pypacker==4.3
