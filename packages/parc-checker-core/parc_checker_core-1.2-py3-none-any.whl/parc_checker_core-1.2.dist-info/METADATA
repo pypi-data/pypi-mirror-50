@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: parc-checker-core
+Version: 1.2
+Summary: PARC Checker core library
+Home-page: UNKNOWN
+Author: Dovydas Jančauskas
+Author-email: dovydasjan@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: parallel-executor (==1.1)
+Provides-Extra: dev
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+
+# Parc Checker Core
+
+## Name
+parc-checker-core
+
+## Version
+1.2
+
+## History
+- 1.2 Added CommercialFX agreement document type preview, renamed checkers, added new checkers for property array values
+- 1.1 Fixed subpackages missing issue
+- 1.0 Initial release
+
+## Installation
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install parc-checker-core
+
+```bash
+pip install parc-checker-core
+```
+
+## License
+This package is private and not allowed to be used
+
+
