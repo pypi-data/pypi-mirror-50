@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: tcellmatch
+Version: 0.1.0
+Summary: Predicting T-cell to epitope specificity.
+Home-page: UNKNOWN
+Author: David S. Fischer, Yihan Wu
+Author-email: david.fischer@helmholtz-muenchen.de
+License: UNKNOWN
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: tensorflow (>=1.13)
+Requires-Dist: tensorflow-probability (>=0.5)
+Requires-Dist: numpy (>=1.14.0)
+Requires-Dist: scipy
+Requires-Dist: pandas
+Requires-Dist: patsy
+Provides-Extra: docs
+Requires-Dist: sphinx ; extra == 'docs'
+Requires-Dist: sphinx-autodoc-typehints ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme ; extra == 'docs'
+Requires-Dist: jinja2 ; extra == 'docs'
+Requires-Dist: docutils ; extra == 'docs'
+Provides-Extra: tensorflow_gpu
+Requires-Dist: tensorflow-gpu ; extra == 'tensorflow_gpu'
+Requires-Dist: tensorflow-probability-gpu ; extra == 'tensorflow_gpu'
+
+# TcellMatch: Predicting T-cell to epitope specificity.
+
+Code to come soon.
+
