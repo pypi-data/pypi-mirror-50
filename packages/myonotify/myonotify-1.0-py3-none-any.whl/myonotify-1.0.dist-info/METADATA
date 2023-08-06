@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: myonotify
+Version: 1.0
+Summary: UNKNOWN
+Home-page: https://github.com/
+Author: MJ Krakowski
+Author-email: mj.krakowski@myoptiquegroup.com
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >3.6
+Requires-Dist: boto3
+
+UNKNOWN
+
+
