@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "snucovery"
+version = "0.1.3"
+description = "Command Line utility to collect Aws Asset Data and export to Excel Stylesheets"
+authors = ["Johnny Martin <johnny.martin@tylertech.com>"]
+
+[tool.poetry.scripts]
+snucovery = 'snucovery.__init__:main'
+pytest = 'scripts.pyt:py_test'
+
+[tool.poetry.dependencies]
+python = "^3.7"
+boto3 = "^1.9"
+pyjq = "^2.3"
+xlsxwriter = "^1.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.0"
+pylint = "^2.2"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
