@@ -1,0 +1,70 @@
+Metadata-Version: 2.1
+Name: vcard
+Version: 0.13.0
+Summary: vCard validator, class and utility functions
+Home-page: https://gitlab.com/victor-engmark/vcard
+Author: Victor Engmark
+Author-email: victor.engmark@gmail.com
+Maintainer: Victor Engmark
+Maintainer-email: victor.engmark@gmail.com
+License: AGPLv3+
+Download-URL: http://pypi.python.org/pypi/vcard/
+Description: # [vCard module](https://gitlab.com/victor-engmark/vcard)
+        
+        [![pipeline status](https://gitlab.com/victor-engmark/vcard/badges/master/pipeline.svg)](https://gitlab.com/victor-engmark/vcard/commits/master)
+        
+        This program can be used for strict validation and parsing of vCards. It currently supports [vCard 3.0 (RFC 2426)](https://tools.ietf.org/html/rfc2426).
+        
+        Additional scripts:
+        
+        * [`format-TEL.sh`](./format-TEL.sh) - Format phone numbers according to national standards
+        * [`split.sh`](./split.sh) - Split a multiple vCards file into individual files
+        * [`sort-lines.sh`](./sort-lines.sh) - Sort vCard property lines according to a custom key
+        * [`join-lines.sh`](./join-lines.sh) - Join previously split vCard lines
+        * [`split-lines.sh`](./split-lines.sh) - Split long vCard lines
+        
+        ## Installation / upgrade
+        
+            sudo pip install --upgrade vcard
+        
+        ## Examples
+        
+        * [`minimal.vcf`](test/minimal.vcf)
+        * [`maximal.vcf`](test/maximal.vcf)
+        
+        ## Development
+        
+        **Download:**
+        
+            git clone --recurse-submodules git@gitlab.com:victor-engmark/vcard.git
+        
+        **Release:**
+        
+        1. Bump the [version](vcard/__init__.py).
+        2. Commit everything.
+        2. `make clean test-clean test release`
+        3. `git push && git push --tags`
+        
+        Development requirements:
+        
+        - Docker
+        - GNU Make
+        
+        Release requirements:
+        
+        - GnuPG
+        
+Keywords: vCard vCards RFC 2426 RFC2426 validator
+Platform: POSIX
+Platform: Windows
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Text Processing
+Classifier: Topic :: Utilities
+Obsoletes: vcard_module
+Description-Content-Type: text/markdown
