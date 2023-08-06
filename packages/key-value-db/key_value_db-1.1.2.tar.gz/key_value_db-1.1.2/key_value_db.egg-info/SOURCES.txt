@@ -1,0 +1,10 @@
+setup.cfg
+setup.py
+com/azeezadewale/__init__.py
+com/azeezadewale/key_value_db.py
+com/azeezadewale/key_value_object.py
+key_value_db.egg-info/PKG-INFO
+key_value_db.egg-info/SOURCES.txt
+key_value_db.egg-info/dependency_links.txt
+key_value_db.egg-info/not-zip-safe
+key_value_db.egg-info/top_level.txt
