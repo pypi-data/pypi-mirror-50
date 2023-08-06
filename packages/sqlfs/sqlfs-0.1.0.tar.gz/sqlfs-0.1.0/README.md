@@ -1,0 +1,39 @@
+SQLite FUSE filesystem
+======
+
+Stores files and directories in the tables inside the SQLite database:
+ - by default, maximum file size is 16 MB and number of inodes is 2^16,
+ - can create in-memory filesystem without using RAM disk,
+ - "df -h" should be used to estimate the amount of occupied/free inodes only, as reported size is greater than actual.
+
+
+Usage: 
+```
+sqlfs [-h] [--block-size B] [--max-filesize F] [--max-inodes I]
+                [--use-cache C] [--cache-size N] [--log-file L]
+                [--debug | --verbose | --quiet | --silent]
+                path mount
+```
+
+positional arguments: 
+  - **path**              Path to the SQLite v3 database with the filesystem, or
+                    'memory' for the in-memory filesystem 
+  - **mount**             Mount point directory
+
+optional arguments:
+  - *-h, --help*     show this help message and exit
+  - *--debug, -d*     Enable debug logging (default: False)
+  - *--verbose, -v*     Enable verbose logging (default: False)
+  - *--quiet, -q*     Normal logging (default: True)
+  - *--silent, -s*     No logging (default: False)
+
+SQLFS settings:
+  - *--block-size B*    Filesystem block size, in bytes (default: 512)
+  - *--max-filesize F*  Maximum file size, in bytes (default: 16777216)
+  - *--max-inodes I*    Maximum number of inodes (default: 65536)
+  - *--use-cache C*     Use in-memory cache, 'Y' (yes) or 'N' (no) (default: Y)
+  - *--cache-size N*    If above is set to Y, cache size (default: 8192)
+  - *--log-file L*      Log file (default: sqlfs.log)
+
+Run "fusermount -u mount" to unmount.
+
