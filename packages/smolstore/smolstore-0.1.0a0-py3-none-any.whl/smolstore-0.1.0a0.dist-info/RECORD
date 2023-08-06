@@ -1,0 +1,13 @@
+smolstore/__init__.py,sha256=pkw3WlyBmPU319VvAz-aivLxthwf7DKtQjhrv8fNTGg,188
+smolstore/document.py,sha256=Y6jrrr5rPkgJvPu8LQpSvFyTZuv-Qzsou5ED9_SOdTI,2146
+smolstore/exceptions.py,sha256=-mq35B7kmRBCj38nxB4UoJVvg9DOCmXur1MGxjGehqI,227
+smolstore/field.py,sha256=YFTNGwr4TlMvZ_6vZWJB4VA6kZe5wSBAHW89JI_8TLw,1635
+smolstore/fields.py,sha256=r9c86mxZmq0KVcgoe0UaefrSLvDb4hzPDx5uQ6LgDzA,1719
+smolstore/query.py,sha256=rOIePgD4Q1HJwV3_WG4LtzxvkAQGXJ3AwkLwFXqQdrk,327
+smolstore/serializers.py,sha256=dSTyUMDjMLgaHTbuz888ndpBttLdM1SLNF7MZ8tnZhM,442
+smolstore/store.py,sha256=g6xURO4SkvUUW5s_p_dZ4YzzS9JJpjxdhtucsN-y-kE,1342
+smolstore/table.py,sha256=UzxgqBX4YpP17WB4kXA2WD7EHcvcfSScAU4KNR8p1NU,3262
+smolstore-0.1.0a0.dist-info/LICENSE,sha256=HgFeraA0-kQtru2vFH_cXmKE_G9rXae-RgDX8Yn-EHY,35130
+smolstore-0.1.0a0.dist-info/WHEEL,sha256=f_L0I4hqSDuunYLcjib7afhVEQa4uCwremk0_wPx54s,85
+smolstore-0.1.0a0.dist-info/METADATA,sha256=vMneGjATpEuWk8j3X42Bcyqd8BPutDLNhG9h_5TmyMQ,663
+smolstore-0.1.0a0.dist-info/RECORD,,
