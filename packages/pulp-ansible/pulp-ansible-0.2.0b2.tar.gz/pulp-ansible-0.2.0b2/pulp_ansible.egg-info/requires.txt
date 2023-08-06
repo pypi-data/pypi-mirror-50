@@ -1,0 +1,13 @@
+mazer
+packaging
+pulpcore-plugin~=0.1rc3
+
+[test]
+coverage
+flake8
+flake8-docstrings
+flake8-quotes
+flake8-tuple
+mock
+pulp-smash
+pytest
