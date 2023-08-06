@@ -1,0 +1,9 @@
+MANIFEST.in
+README.md
+setup.py
+klv/__init__.py
+klv/klv.py
+klv.egg-info/PKG-INFO
+klv.egg-info/SOURCES.txt
+klv.egg-info/dependency_links.txt
+klv.egg-info/top_level.txt
