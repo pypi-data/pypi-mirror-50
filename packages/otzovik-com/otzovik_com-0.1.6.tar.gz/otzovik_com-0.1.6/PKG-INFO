@@ -1,0 +1,32 @@
+Metadata-Version: 1.1
+Name: otzovik_com
+Version: 0.1.6
+Summary: Scrubber reviews with otzovik.com
+Home-page: https://github.com/NMelis/otzovik_com
+Author: NMelis
+Author-email: melis.zhoroev@gmail.com
+License: MIT license
+Description: 
+        
+        =======
+        History
+        =======
+        
+        0.1.0 (2019-07-18)
+        ------------------
+        
+        * First release on PyPI.
+        
+Keywords: otzovik_com
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
