@@ -1,0 +1,16 @@
+.gitignore
+LICENSE
+README.md
+setup.cfg
+setup.py
+count_money/__init__.py
+count_money/__main__.py
+count_money.egg-info/PKG-INFO
+count_money.egg-info/SOURCES.txt
+count_money.egg-info/dependency_links.txt
+count_money.egg-info/entry_points.txt
+count_money.egg-info/top_level.txt
+count_money/locale/en/LC_MESSAGES/count_money.mo
+count_money/locale/en/LC_MESSAGES/count_money.po
+count_money/locale/pt/LC_MESSAGES/count_money.mo
+count_money/locale/pt/LC_MESSAGES/count_money.po
