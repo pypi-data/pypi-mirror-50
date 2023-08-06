@@ -1,0 +1,71 @@
+Metadata-Version: 2.1
+Name: kbench
+Version: 0.2.1
+Summary: Benchmarking tool for Kubernetes clusters
+Home-page: https://github.com/keichi/kbench/
+License: MIT
+Author: Keichi Takahashi
+Author-email: keichi.t@me.com
+Requires-Python: >=3.7,<4.0
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: System :: Benchmark
+Classifier: Topic :: Utilities
+Requires-Dist: click (>=7.0,<8.0)
+Requires-Dist: kubernetes (>=10.0,<11.0)
+Requires-Dist: loguru (>=0.3.2,<0.4.0)
+Project-URL: Repository, https://github.com/keichi/kbench/
+Description-Content-Type: text/markdown
+
+# kbench [![CircleCI](https://circleci.com/gh/keichi/kbench.svg?style=svg)](https://circleci.com/gh/keichi/kbench)
+
+## Installation
+
+Currently, kbench is available on TestPyPI.
+
+```
+$ pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple kbench
+```
+
+## Usage
+
+### pod-throughput
+
+Launch multiple pods in parallel and measure their startup and cleanup time.
+
+```
+$ kbench pod-throughput
+```
+
+- `-n`, `--num-pods`: Number of pods to launch.
+- `-i`, `--image`: Container image to use.
+
+### pod-latency
+
+Launch multiple pods sequentially and measure their startup and cleanup time.
+
+```
+$ kbench pod-latency
+```
+
+- `-n`, `--num-pods`: Number of pods to launch.
+- `-i`, `--image`: Container image to use.
+
+### deployment-scaling
+
+Create a deployment and measure scale-in/out latency. First, a deployment with
+`m` replicas is created. Then, the deployment is scaled-out to `n` replicas.
+Once the scale-out is completed, the deployment is scaled-in to `m` replicas
+again.
+
+```
+$ kbench deployment-scaling
+```
+
+- `-i`, `--image`: Container image to use.
+- `-m`, `--num-init-replicas`: Initial number of replicas.
+- `-n`, `--num-target-replicas`: Target number of replicas.
+

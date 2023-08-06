@@ -1,0 +1,3 @@
+[console_scripts]
+kbench=kbench.__main__:cli
+
