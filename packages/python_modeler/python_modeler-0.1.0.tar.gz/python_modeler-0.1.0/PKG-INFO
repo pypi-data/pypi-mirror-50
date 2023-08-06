@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: python_modeler
+Version: 0.1.0
+Summary: 3D modeling in Python.
+Home-page: https://github.com/yngtodd/modeler
+Author: Todd Young
+Author-email: youngmt1@ornl.gov
+License: MIT
+Description: UNKNOWN
+Keywords: modeler
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: PyPy

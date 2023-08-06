@@ -1,0 +1,16 @@
+AUTHORS.rst
+CONTRIBUTING.rst
+HISTORY.rst
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+modeler/__init__.py
+modeler/viewer.py
+python_modeler.egg-info/PKG-INFO
+python_modeler.egg-info/SOURCES.txt
+python_modeler.egg-info/dependency_links.txt
+python_modeler.egg-info/not-zip-safe
+python_modeler.egg-info/top_level.txt
+test/test_modeler.py
