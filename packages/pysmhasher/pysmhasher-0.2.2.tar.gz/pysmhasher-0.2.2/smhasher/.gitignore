@@ -1,0 +1,26 @@
+*~
+/.svn
+/build
+/build32
+libSMHasherSupport.a
+/TAGS
+
+SMHasher
+
+README.speed
+YoshimitsuTRIAD/
+Yoshimura/
+crcutil-1.0/
+crcutil/
+doc/FarmHash128.fast
+falkhash/
+fast-hash/
+fsbench-0.14/
+fsbench-density/
+*.bak
+prof.h
+/zlib/
+/clhash/
+
+# Apple artefact
+.DS_Store

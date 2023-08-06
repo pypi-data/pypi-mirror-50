@@ -1,0 +1,8 @@
+include *.in
+include *.md
+include *.py
+include *.sh
+include LICENSE
+include tox.ini
+recursive-include smhasher *
+recursive-include tests *.py
