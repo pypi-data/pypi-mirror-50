@@ -1,0 +1,11 @@
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_wkw.py,sha256=5xdgBjPTGlZ-he2IFSN7X4sxMFKTuY80PgHhhcZ92TQ,5193
+wkw/__init__.py,sha256=yoRIO4TQH1DR03o6ws3djmxAeKbF8nJVXJHzfUnWUr0,83
+wkw/wkw.py,sha256=Heo-tv9VVl95LYKGO4lPsJIh-NuV-9IShLiT7RT_sLw,7359
+wkw/lib/liblz4.dll,sha256=5DRctJne-z0Pd7qTeCNUBEHbL8fTMRkkm4g8ZDkLtIo,567236
+wkw/lib/wkw.dll,sha256=iGrxIKnw3HbTy3jWl2Caop-ohfwBrqqKJWbzkIkOg_0,177664
+wkw/lib/wkw.h,sha256=hBgisdReCtahHGu8RRfAqkm-qFL7vsU8e4FIUq4DG_k,766
+wkw-0.0.7.dist-info/METADATA,sha256=ldentFsqdwAksT0cDmGYh4NdJrLmA_Ikl9cwj80kiDw,280
+wkw-0.0.7.dist-info/WHEEL,sha256=_Sz6FjM2bUZiWAUfLaHhOGhFtQgS8ps7KnQPdvXXXZg,103
+wkw-0.0.7.dist-info/top_level.txt,sha256=0BducfE2ZKmIPqw2P8xo9WUO3JgEEAeX1qreqtWLbaM,10
+wkw-0.0.7.dist-info/RECORD,,
