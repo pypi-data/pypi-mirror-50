@@ -1,0 +1,3 @@
+[console_scripts]
+splunk-saml-cli-auth = splunk_saml_cli_auth:main
+
