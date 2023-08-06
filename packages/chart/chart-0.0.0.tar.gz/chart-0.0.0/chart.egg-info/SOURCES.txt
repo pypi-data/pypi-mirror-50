@@ -1,0 +1,9 @@
+.gitignore
+LICENSE
+README.md
+setup.py
+chart/__init__.py
+chart.egg-info/PKG-INFO
+chart.egg-info/SOURCES.txt
+chart.egg-info/dependency_links.txt
+chart.egg-info/top_level.txt

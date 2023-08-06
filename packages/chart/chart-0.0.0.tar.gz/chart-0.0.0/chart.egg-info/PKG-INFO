@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: chart
+Version: 0.0.0
+Summary: chart
+Home-page: https://github.com/maxhumber/chart
+Author: Max Humber
+Author-email: max.humber@gmail.com
+License: MIT
+Description: # chart
+Keywords: chart
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
