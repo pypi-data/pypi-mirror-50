@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: interactiveafth
+Version: 0.1
+Summary: Interactive environment within Py-EVM for ActorForth Programming language
+Home-page: https://github.com/TheLitvinoff/interactiveafth
+Author: Viacheslav Litvinov
+Author-email: viacheslavlitvinov@gmail.com
+License: MIT
+Download-URL: https://github.com/TheLitvinoff/interactiveafth/archive/0.1.tar.gz
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
