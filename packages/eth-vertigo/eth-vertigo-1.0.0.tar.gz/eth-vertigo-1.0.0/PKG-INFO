@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: eth-vertigo
+Version: 1.0.0
+Summary: Mutation Testing for Ethereum Smart Contracts
+Home-page: https://github.com/joranhonig/vertigo
+Author: Joran Honig
+Author-email: joran.honig@gmail.com
+License: GPLv3
+Description: # vertigo
+        A mutation testing framework for smart contracts
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
