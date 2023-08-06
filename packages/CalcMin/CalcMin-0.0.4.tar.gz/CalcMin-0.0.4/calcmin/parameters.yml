@@ -1,0 +1,14 @@
+input:
+  ts_server: edwprod01
+  ts_database: Hydro
+  ts_table: 'TSDataNumericDaily'
+  ts_summ_table: 'TSDataNumericDailySumm'
+  ts_dataset: 13
+  ts_quality_codes: [200]
+  sites_table: 'ExternalSite'
+  site_feature_table: 'SiteFeature'
+  site_feature_parameters: ['HighestTopScreen', 'LowestBottomScreen', 'WellDepth']
+  well_depth_bins: [0, 15, 50, 100, 10000]
+
+  # wells_server: sql2012prod04
+  # wells_database: Wells
