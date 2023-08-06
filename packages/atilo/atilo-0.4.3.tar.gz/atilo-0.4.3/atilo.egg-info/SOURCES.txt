@@ -1,0 +1,11 @@
+README.md
+setup.cfg
+setup.py
+atilo/__init__.py
+atilo/atilo.py
+atilo.egg-info/PKG-INFO
+atilo.egg-info/SOURCES.txt
+atilo.egg-info/dependency_links.txt
+atilo.egg-info/entry_points.txt
+atilo.egg-info/requires.txt
+atilo.egg-info/top_level.txt
