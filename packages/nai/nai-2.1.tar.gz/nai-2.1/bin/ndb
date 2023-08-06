@@ -1,0 +1,156 @@
+#!/usr/bin/ python2
+from nai import *
+import os
+try:
+ os.system("clear")
+except:
+ pass
+
+ 
+print('''
+{}Nex-DB  {}V1.0
+{}Developer : {}Nasir Ali
+{}FB : {}fb.com/nasir.xo
+
+ {} ~-~-~-~-~-~-~-~-~
+{}  search {}1010101
+ {} ****************
+'''.format(W,G,W,G,W,G,W,G,Y,W))
+
+
+
+help = {
+	'add':'add atom very small',
+	'splitadd':'to add query|value',
+	'upload':'upload data from file to db',
+	'remove':'remove queryname',
+	'info':'Database Information',
+	'search':'search text',
+	'dsearch':'search value in dictionary',
+	'show':'to show all data',
+	'query':'to find a query',
+	'create':'to create a database',
+	'clear':'to clear database',
+	'exit':'to exit'
+	
+}
+
+
+
+dt = []
+while True:
+ try:
+  try:
+   d = ndbconnect(dt[0])
+   #print(W+'STATUS : '+G+" Connected to {}{}".format(Y,dt[0]))
+  except:
+   pass
+   #print(W+"Error : "+R+"Database Loading Failed")
+  cmd = raw_input(SBR+"> ").split(' ')
+  if 'connect' in cmd[0]:
+    if len(dt) > 1:
+      dt = []
+    else:
+      dt.append(cmd[1])
+    try:
+     d = ndbconnect(dt[0])
+     print(SBG+W+'STATUS : '+G+" Connected to {}{}".format(Y,dt[0]))
+    except:
+     print(SBG+W+"Error : "+R+"Database Loading Failed")
+
+    
+  elif 'search' in cmd[0]:
+    print(Y+"-"*30)
+    d.search(cmd[1])
+    print(Y+"-"*30)
+
+  elif 'get' in cmd[0]:
+    print(Y+"-"*30)
+    d.dicsearch(cmd[1])
+    print(Y+"-"*30)
+
+  elif 'show' in cmd[0]:
+   try:
+    print(Y+"-"*30)
+    dprint(d.show())
+    print(Y+"-"*30)
+   except:
+     pass
+
+  elif 'query' in cmd[0]:
+    print(Y+"-"*30)
+    d.searchquery(cmd[1])
+    print(Y+"-"*30)
+  
+  elif 'add' in cmd[0]:
+    d.add(cmd[1],' '.join(cmd[2:]))
+
+  elif 'upload' in cmd[0]:
+   try:
+    d_file = open(cmd[1],"rb").read().split('\n')
+    def add_data(xdata):
+     try:
+      x_data = xdata.split("|")
+      d.add(x_data[0],x_data[1])
+     except:
+       pass   
+    map(add_data,d_file)
+    print(SBG+W+'STATUS :{} {} {}Bytes Uploaded'.format(Y,len(d_file),G))
+   except:
+     print(SBG+W+"Error :{} Invalid File".format(G))
+
+
+  elif 'splitadd' in cmd[0]:
+    d.splitadd(cmd[1])
+    
+  elif 'remove' in cmd[0]:
+    d.remove(cmd[1])
+    
+  elif 'info' in cmd[0]:
+    print(Y+"-"*30)
+    dprint(d.size())
+    print(Y+"-"*30)
+
+  elif 'clear' in cmd[0]:
+    d.clear()
+
+  elif 'databases' in cmd[0]:
+   try:
+    _dbx = ndblist(cmd[1])
+    print(Y+"-"*30)
+    for _data in _dbx:
+      print(W+_data)
+      
+    print(Y+"-"*30)
+   except:
+     pass
+
+  elif 'create' in cmd[0]:
+   try:
+     makedb(cmd[1])
+     print(SBG+W+'STATUS : '+G+"Created {}{}".format(Y,cmd[1]))
+   except:
+     print(SBG+W+"Error : "+R+"Database Creation Failed")
+
+  elif 'exit' in cmd[0]:
+    break
+ 
+  elif 'help' in cmd[0]:
+    print(Y+"-"*30)
+    dprint(help)
+    print(Y+"-"*30)
+
+  elif 'about' in cmd[0]:
+    print(Y+"-"*30)
+    dprint({
+    	'Developer':'Nasir Ali',
+    	'Software Version':'1.0',
+    	'DB Type':'NexEncypted Secure',
+    	'Author Email':'nasiralis1731@gmail.com',
+    	'Github':'github.com/nasirxo'
+    	
+    })
+    print(Y+"-"*30)
+
+ except:
+  pass

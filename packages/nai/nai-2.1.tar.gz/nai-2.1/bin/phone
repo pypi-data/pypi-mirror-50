@@ -1,0 +1,20 @@
+#!/usr/bin/ python2
+from nai.hack import *
+from nai.colours import *
+import sys
+
+print("""
+{}AUTHOR :{} Nasir Ali
+{}FB : {}fb.com/nasir.xo
+{}#I Am Not Responsible for Your Actions
+\n""".format(W,G,W,G,R))
+try:
+ if len(sys.argv[1]) > 9:
+  phonesearch(sys.argv[1])
+ else:
+  print("""
+  {}Type in This Format
+  {}$phone 031xxxxxxxx
+  """.format(Y,G))  
+except:
+  pass
