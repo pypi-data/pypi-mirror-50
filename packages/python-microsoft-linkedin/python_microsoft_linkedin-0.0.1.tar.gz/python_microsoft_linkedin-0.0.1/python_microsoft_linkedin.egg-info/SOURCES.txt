@@ -1,0 +1,12 @@
+README.md
+setup.py
+python_microsoft_linkedin/__init__.py
+python_microsoft_linkedin/api.py
+python_microsoft_linkedin/exceptions.py
+python_microsoft_linkedin/settings.py
+python_microsoft_linkedin/utils.py
+python_microsoft_linkedin.egg-info/PKG-INFO
+python_microsoft_linkedin.egg-info/SOURCES.txt
+python_microsoft_linkedin.egg-info/dependency_links.txt
+python_microsoft_linkedin.egg-info/requires.txt
+python_microsoft_linkedin.egg-info/top_level.txt
