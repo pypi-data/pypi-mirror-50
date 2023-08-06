@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: stash-okta
+Version: 0.4.7
+Summary: Fork of okta-awscli by James Hale
+Home-page: https://github.com/StashInvest/stash-okta/
+Author: Stash DevOps
+Author-email: devops@stashinvest.com
+License: Apache License 2.0
+Platform: UNKNOWN
+Requires-Dist: requests
+Requires-Dist: click
+Requires-Dist: bs4
+Requires-Dist: boto3
+Requires-Dist: ConfigParser
+Requires-Dist: PyYAML
+
+UNKNOWN
+
+

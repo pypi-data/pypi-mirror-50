@@ -1,0 +1,3 @@
+[console_scripts]
+stash-okta = stashokta.okta_awscli:main
+
