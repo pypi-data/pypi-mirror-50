@@ -1,0 +1,15 @@
+setup.py
+generate_cmake/__init__.py
+generate_cmake/bazel.py
+generate_cmake/cmake.py
+generate_cmake/file_system.py
+generate_cmake/graph.py
+generate_cmake/log.py
+generate_cmake/parse.py
+generate_cmake.egg-info/PKG-INFO
+generate_cmake.egg-info/SOURCES.txt
+generate_cmake.egg-info/dependency_links.txt
+generate_cmake.egg-info/requires.txt
+generate_cmake.egg-info/top_level.txt
+generate_cmake.egg-info/zip-safe
+scripts/pymake
