@@ -1,0 +1,9 @@
+
+fact        = word " " pred " " word
+pred        = isa / is
+isa         = "isa"
+is          = "is"
+word        = v_word / __var__
+v_word      = ~"[a-z0-9]+"
+ws          = ~"\s*"
+sc          = ";"
