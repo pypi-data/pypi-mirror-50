@@ -1,0 +1,73 @@
+Metadata-Version: 2.1
+Name: pyverbal
+Version: 1.0.0
+Summary: Verbs conjugation and desconjugation
+Home-page: https://github.com/metadeta96/pyverbal
+Author: metadeta96
+Author-email: metadeta96@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/metadeta96/pyverbal
+Keywords: verbs,grammar,conjugation,pt-br,pt,portugues,portuguese,gramatica,verbal,conjugacao
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: pyyaml
+
+# PyVerbal
+
+Verb conjugator for Brazilian Portuguese
+
+It is compatible with Python 3.6 and above
+
+## Instalation
+
+```batch
+pip install pyverbal
+```
+
+## Usage
+
+### Get the conjugator
+
+```python
+from pyverbal.conjugation import get_language_conjugator
+
+
+conjugator = get_language_conjugator("pt-Br")
+```
+
+### Conjugate a verb
+
+```python
+from pyverbal.lang import PortugueseConjugation
+
+
+people = [
+    "eu",
+    "tu",
+    "ele",
+    "nos",
+    "vos",
+    "eles"
+]
+
+conjugation = PortugueseConjugation.PresenteDoIndicativo
+for person in people:
+    conjugated_verb = conjugator.conjugate(
+        "comer", 
+        conjugation,
+        person=person
+    )
+    print(f"For {person}: {verb} conjugated on {conjuugation} is {conjugated_verb}")
+```
+
+## Future
+
+* Implement conjugation for irregular verbs and other cases
+* Implement verb desconjugation
+* Expand the work for English and other languages
+
+

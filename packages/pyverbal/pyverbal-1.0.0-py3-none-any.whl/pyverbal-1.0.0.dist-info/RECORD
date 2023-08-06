@@ -1,0 +1,13 @@
+pyverbal/__init__.py,sha256=ASgCYhWzjlJPKRiQkaGlZCRJ-yHeu5xzl0jLFCSxghw,32
+pyverbal/conjugation/__init__.py,sha256=SUFHhOO8ahgW-Ex4MBgnaXRl7EJaPo21EnL4GQskdUs,21
+pyverbal/conjugation/base.py,sha256=Hm2stiLvRdCJUzr4ik3CvFXbiD8dhQsJbEoO2QskWy4,629
+pyverbal/conjugation/langs.py,sha256=I6KDCsy5SBdnim8LLtsdYHs1l54nXRL7vlRmYtouR6s,1089
+pyverbal/conjugation/ptbr.py,sha256=M6fvjHIG-Mn8tjyYYLbz0pohg99Zp46VRCokpTk9ASY,2491
+pyverbal/data/pt-Br/conjugation.yaml,sha256=R53gQjzhz9EoXjiveF6lJyBOlRn5zygOkiVZoK_Vzfc,3989
+pyverbal/lang/__init__.py,sha256=8llX2UuFR3yl2-guk9UyKUu3fcnBDFwOj_-ntIgugpo,20
+pyverbal/lang/ptbr.py,sha256=J5aXII6ES-fuDAQ1mxIgq0gwvGyPVHpM10Ox_ReLlCo,863
+pyverbal-1.0.0.dist-info/LICENSE,sha256=jRNTwHZoLY0gmUku4SADBaijD4Meq67WdSK6yLmUO0U,35096
+pyverbal-1.0.0.dist-info/METADATA,sha256=AnjRtDHab0DeZTcGE0QidvaVGCrFmStFXbvn1w1ZHnQ,1558
+pyverbal-1.0.0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+pyverbal-1.0.0.dist-info/top_level.txt,sha256=ipaiWWVYWGD41OTh1pkQJJl0Mq-2TeLLj905rPm3c-c,9
+pyverbal-1.0.0.dist-info/RECORD,,
