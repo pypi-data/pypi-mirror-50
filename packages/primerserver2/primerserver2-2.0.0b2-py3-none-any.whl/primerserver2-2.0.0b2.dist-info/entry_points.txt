@@ -1,0 +1,4 @@
+[console_scripts]
+primerserver-config = primerserver2.web.config:main
+primertool = primerserver2.cmd.primertool:main
+
