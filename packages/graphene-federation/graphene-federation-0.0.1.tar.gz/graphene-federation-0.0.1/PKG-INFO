@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: graphene-federation
+Version: 0.0.1
+Summary: Federation implementation for graphene
+Home-page: https://github.com/erebus1/graphene-federation
+Author: Igor Kasianov
+Author-email: super.hang.glider@gmail.com
+License: MIT
+Download-URL: https://github.com/erebus1/graphene-federation/archive/0.0.1.tar.gz
+Description: UNKNOWN
+Keywords: graphene,gql,federation
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Programming Language :: Python :: 3.6
