@@ -1,0 +1,8 @@
+click
+dropbox>=9.4.0
+watchdog
+blinker
+requests
+u-msgpack-python
+keyring
+keyrings.alt
