@@ -1,0 +1,3 @@
+[console_scripts]
+isodatetime = isodatetime.main:main
+
