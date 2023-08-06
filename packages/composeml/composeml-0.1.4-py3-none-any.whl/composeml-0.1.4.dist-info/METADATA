@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: composeml
+Version: 0.1.4
+Summary: UNKNOWN
+Home-page: http://compose.ml
+Author: Feature Labs, Inc.
+Author-email: support@featurelabs.com
+License: BSD 3-clause
+Platform: UNKNOWN
+Requires-Dist: pandas (>=0.23.0)
+Requires-Dist: numpy (>=1.13.3)
+Requires-Dist: tqdm (>=4.19.2)
+Requires-Dist: matplotlib (>=3.0.2)
+
+UNKNOWN
+
+
