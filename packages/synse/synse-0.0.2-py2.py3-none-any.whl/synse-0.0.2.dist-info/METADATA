@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: synse
+Version: 0.0.2
+Summary: A python HTTP client for Synse Server.
+Home-page: https://github.com/vapor-ware/***
+Author: Vapor IO
+Author-email: vapor@vapor.io
+License: GNU General Public License v3.0
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Requires-Python: >=3.6
+Requires-Dist: iso8601
+Requires-Dist: requests (>=2.21.0)
+
+# synse-client-python
+Python client for the Synse Server HTTP API
+
+**Note: This client is still under development and is not ready to be used**
+
+
