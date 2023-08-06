@@ -1,0 +1,15 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.cfg
+setup.py
+pybluemo/__init__.py
+pybluemo/bluemo_ble.py
+pybluemo/bluemo_msg.py
+pybluemo/bluemo_spec.py
+pybluemo/yasp_specification.json
+pybluemo.egg-info/PKG-INFO
+pybluemo.egg-info/SOURCES.txt
+pybluemo.egg-info/dependency_links.txt
+pybluemo.egg-info/requires.txt
+pybluemo.egg-info/top_level.txt
