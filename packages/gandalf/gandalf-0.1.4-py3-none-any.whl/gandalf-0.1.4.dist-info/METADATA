@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: gandalf
+Version: 0.1.4
+Summary: Blazingly fast & beautifully expressive Web Apps and APIs
+Home-page: http://infrascloudy.io/
+Author: Infrascloudy
+Author-email: support@infrascloudy.io
+Maintainer: Infrascloudy
+Maintainer-email: support@infrascloudy.io
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Documentation
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Installation/Setup
+Classifier: Topic :: System :: Software Distribution
+
+README.rst
+
+

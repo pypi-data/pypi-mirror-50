@@ -1,0 +1,3 @@
+[console_scripts]
+gandalf = gandalf.console.cli
+
