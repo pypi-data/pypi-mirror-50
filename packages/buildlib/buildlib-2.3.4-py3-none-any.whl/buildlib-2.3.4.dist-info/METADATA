@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: buildlib
+Version: 2.3.4
+Summary: A library to create build and deployment scripts.
+Home-page: https://github.com/feluxe/buildlib
+Author: Felix Meyer-Wolters
+Author-email: felix@meyerwolters.de
+Maintainer: Felix Meyer-Wolters
+Maintainer-email: felix@meyerwolters.de
+License: unlicensed
+Download-URL: https://github.com/feluxe/buildlib/tarball/2.3.4
+Keywords: build,library
+Platform: 
+Requires-Dist: headlines
+Requires-Dist: prmt (<5,>=4.0.1)
+Requires-Dist: cmdi (<2,>=1.1.1)
+Requires-Dist: oyaml
+Requires-Dist: sty
+Requires-Dist: requests
+
+# buildlib
+
+## Description
+
+A library to create build and deployment scripts.
+
+
