@@ -1,0 +1,15 @@
+CHANGELOG.md
+LICENSE
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+ionata_django_settings.egg-info/PKG-INFO
+ionata_django_settings.egg-info/SOURCES.txt
+ionata_django_settings.egg-info/dependency_links.txt
+ionata_django_settings.egg-info/requires.txt
+ionata_django_settings.egg-info/top_level.txt
+ionata_settings/__init__.py
+ionata_settings/base.py
+ionata_settings/drf.py
+ionata_settings/storage.py
