@@ -1,0 +1,17 @@
+Metadata-Version: 2.0
+Name: pyXchange
+Version: 0.1
+Summary: Crypto is a Python library providing a streamlined API for interacting with Bitcoin and Altcoin exchanges providing a consistent interface for trading and accessing market data.
+Home-page: https://github.com/gilokimu/pyExchange
+Author: Gilbert Kimuta
+Author-email: gilbertkimutai@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+Crypto is a Python library providing a streamlined API for interacting with Bitcoin and Altcoin exchanges providing a consistent interface for trading and accessing market data.
+
+
