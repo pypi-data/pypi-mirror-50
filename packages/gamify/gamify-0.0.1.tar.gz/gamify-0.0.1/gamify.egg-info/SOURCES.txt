@@ -1,0 +1,10 @@
+MANIFEST.in
+README.md
+setup.py
+gamify/__init__.py
+gamify/gamify.py
+gamify.egg-info/PKG-INFO
+gamify.egg-info/SOURCES.txt
+gamify.egg-info/dependency_links.txt
+gamify.egg-info/requires.txt
+gamify.egg-info/top_level.txt
