@@ -1,0 +1,4 @@
+#!/bin/sh
+DOCKER_STACK_NAME=$1
+docker volume rm -f \
+  $(docker volume ls -q --filter label=com.docker.stack.namespace=$DOCKER_STACK_NAME)
