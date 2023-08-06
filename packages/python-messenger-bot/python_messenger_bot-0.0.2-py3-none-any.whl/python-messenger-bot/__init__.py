@@ -1,0 +1,1 @@
+﻿from messenger_platform import bot
