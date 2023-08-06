@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: xpath-parser
+Version: 0.0.2
+Summary: A xpath expression parser
+Home-page: https://github.com/dytttf/xpath-parser
+Author: dytttf
+Author-email: 1821367759@qq.com
+License: UNKNOWN
+Description: # xpath-parser
+        > a xpath expression parser
+        
+        ## Examples
+        
+        ```python
+        from xpath_parser import XpathExpression
+        
+        xp1 = XpathExpression("//div[@id='list']/a")
+        xp2 = XpathExpression("./a/@href")
+        assert xp1.nodes[-1].name == xp2.nodes[0].name
+        ```
+Keywords: xpath,expression,parser
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
