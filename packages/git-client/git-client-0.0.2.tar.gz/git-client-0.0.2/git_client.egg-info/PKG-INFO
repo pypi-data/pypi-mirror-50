@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: git-client
+Version: 0.0.2
+Summary: `git-client` or `gc` hopes to be an easy to use command line client for using git.
+Home-page: https://gitlab.com/shindagger/git-client
+Author: Andy Klier
+Author-email: andyklier@gmail.com
+License: UNKNOWN
+Description: # gc, git-client
+        
+        under construction.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
