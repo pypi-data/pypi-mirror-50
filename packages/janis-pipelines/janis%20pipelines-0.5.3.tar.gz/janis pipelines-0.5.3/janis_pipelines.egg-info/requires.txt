@@ -1,0 +1,10 @@
+janis-pipelines.core>=v0.5.4
+janis-pipelines.runner>=v0.5.5
+janis-pipelines.unix>=v0.5.1
+janis-pipelines.bioinformatics>=v0.5.2
+
+[bioinformatics]
+janis-pipelines.bioinformatics>=v0.5.2
+
+[runner]
+janis-pipelines.runner>=v0.5.5
