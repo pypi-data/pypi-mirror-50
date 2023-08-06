@@ -1,0 +1,53 @@
+# coding: utf-8
+
+# flake8: noqa
+"""
+/*
+ Copyright 2019 IBM Corp.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
+"""
+
+from __future__ import absolute_import
+
+# import models into model package
+from ibm_security_advisor_findings_api_client.models.api_empty import ApiEmpty
+from ibm_security_advisor_findings_api_client.models.api_list_note_occurrences_response import ApiListNoteOccurrencesResponse
+from ibm_security_advisor_findings_api_client.models.api_list_notes_response import ApiListNotesResponse
+from ibm_security_advisor_findings_api_client.models.api_list_occurrences_response import ApiListOccurrencesResponse
+from ibm_security_advisor_findings_api_client.models.api_list_providers_response import ApiListProvidersResponse
+from ibm_security_advisor_findings_api_client.models.api_note import ApiNote
+from ibm_security_advisor_findings_api_client.models.api_note_kind import ApiNoteKind
+from ibm_security_advisor_findings_api_client.models.api_note_related_url import ApiNoteRelatedUrl
+from ibm_security_advisor_findings_api_client.models.api_occurrence import ApiOccurrence
+from ibm_security_advisor_findings_api_client.models.api_provider import ApiProvider
+from ibm_security_advisor_findings_api_client.models.breakdown_card_element import BreakdownCardElement
+from ibm_security_advisor_findings_api_client.models.card import Card
+from ibm_security_advisor_findings_api_client.models.card_element import CardElement
+from ibm_security_advisor_findings_api_client.models.certainty import Certainty
+from ibm_security_advisor_findings_api_client.models.context import Context
+from ibm_security_advisor_findings_api_client.models.data_transferred import DataTransferred
+from ibm_security_advisor_findings_api_client.models.finding import Finding
+from ibm_security_advisor_findings_api_client.models.finding_count_value_type import FindingCountValueType
+from ibm_security_advisor_findings_api_client.models.finding_type import FindingType
+from ibm_security_advisor_findings_api_client.models.kpi import Kpi
+from ibm_security_advisor_findings_api_client.models.kpi_type import KpiType
+from ibm_security_advisor_findings_api_client.models.kpi_value_type import KpiValueType
+from ibm_security_advisor_findings_api_client.models.network_connection import NetworkConnection
+from ibm_security_advisor_findings_api_client.models.numeric_card_element import NumericCardElement
+from ibm_security_advisor_findings_api_client.models.remediation_step import RemediationStep
+from ibm_security_advisor_findings_api_client.models.reporter import Reporter
+from ibm_security_advisor_findings_api_client.models.section import Section
+from ibm_security_advisor_findings_api_client.models.severity import Severity
+from ibm_security_advisor_findings_api_client.models.socket_address import SocketAddress
+from ibm_security_advisor_findings_api_client.models.time_series_card_element import TimeSeriesCardElement
+from ibm_security_advisor_findings_api_client.models.value_type import ValueType
