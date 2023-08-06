@@ -1,0 +1,58 @@
+Metadata-Version: 1.1
+Name: iskalko-otzyvy-ru
+Version: 0.1.1
+Summary: iskalko_otzyvy_ru reviews site
+Home-page: https://github.com/NMelis/iskalko_otzyvy_ru
+Author: Melis Nurlan
+Author-email: melis.zhoroev@gmail.com
+License: MIT license
+Description: =================
+        iskalko_otzyvy_ru
+        =================
+        
+        
+        .. image:: https://img.shields.io/pypi/v/iskalko_otzyvy_ru.svg
+                :target: https://pypi.python.org/pypi/iskalko_otzyvy_ru
+        
+        
+        
+        
+        iskalko_otzyvy_ru reviews site
+        
+        
+        * Free software: MIT license
+        * Documentation: https://iskalko-otzyvy-ru.readthedocs.io.
+        
+        
+        
+        Credits
+        -------
+        
+        This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+        
+        .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+        .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+        
+        
+        =======
+        History
+        =======
+        
+        0.1.0 (2019-08-06)
+        ------------------
+        
+        * First release on PyPI.
+        
+Keywords: iskalko_otzyvy_ru
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7

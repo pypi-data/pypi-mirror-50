@@ -1,0 +1,16 @@
+HISTORY.rst
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+iskalko_otzyvy_ru/__init__.py
+iskalko_otzyvy_ru/iskalko_otzyvy_ru.py
+iskalko_otzyvy_ru.egg-info/PKG-INFO
+iskalko_otzyvy_ru.egg-info/SOURCES.txt
+iskalko_otzyvy_ru.egg-info/dependency_links.txt
+iskalko_otzyvy_ru.egg-info/not-zip-safe
+iskalko_otzyvy_ru.egg-info/requires.txt
+iskalko_otzyvy_ru.egg-info/top_level.txt
+tests/__init__.py
+tests/test_iskalko_otzyvy_ru.py
