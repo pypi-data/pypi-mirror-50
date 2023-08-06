@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: wttr
+Version: 0.5.1
+Summary: wttr.in wrapper for cli
+Home-page: https://github.com/mendelmaleh/wttr.py
+Author: Mendel E.
+License: UNKNOWN
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: httpx
+Requires-Dist: docopt
+
+# wttr.py
+
+Python async wrapper/cli tool for [wttr.in.](https://wttr.in/)
+```
+pip install wttr
+```
+
+
