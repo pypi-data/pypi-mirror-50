@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: s3-create-user
+Version: 2019.4.13
+Summary: create user and policy for S3 bucke
+Home-page: https://github.com/andrewp-as-is/s3-create-user
+License: UNKNOWN
+Description: <!--
+        https://pypi.org/project/readme-generator/
+        https://pypi.org/project/python-readme-generator/
+        -->
+        
+        [![](https://img.shields.io/badge/OS-Unix-blue.svg?longCache=True)]()
+        
+        #### Installation
+        ```bash
+        $ [sudo] pip install s3-create-user
+        ```
+        
+        #### Pros
+        +   create S3 bucket user, policy and access key
+        
+        #### Scripts usage
+        command|`usage`
+        -|-
+        `s3-create-full-access-user` |`usage: s3-create-full-access-user bucket [username]`
+        `s3-create-read-only-user` |`usage: s3-create-read-only-user bucket [username]`
+        
+        #### Examples
+        ```bash
+        $ s3-create-full-access-user bucket_name
+        $ s3-create-read-only-user bucket_name
+        ```
+        
+        <p align="center">
+            <a href="https://pypi.org/project/python-readme-generator/">python-readme-generator</a>
+        </p>
+Keywords: S3
+Platform: UNKNOWN
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Unix Shell
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
