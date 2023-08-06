@@ -1,0 +1,12 @@
+README.md
+setup.cfg
+setup.py
+tox_monorepo/__init__.py
+tox_monorepo/monorepo.py
+tox_monorepo/version.py
+tox_monorepo.egg-info/PKG-INFO
+tox_monorepo.egg-info/SOURCES.txt
+tox_monorepo.egg-info/dependency_links.txt
+tox_monorepo.egg-info/entry_points.txt
+tox_monorepo.egg-info/requires.txt
+tox_monorepo.egg-info/top_level.txt

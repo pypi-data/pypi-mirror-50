@@ -1,0 +1,3 @@
+[tox]
+monorepo = tox_monorepo:monorepo
+
