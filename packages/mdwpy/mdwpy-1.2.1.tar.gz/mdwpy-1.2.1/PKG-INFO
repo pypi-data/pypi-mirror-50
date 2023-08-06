@@ -1,0 +1,33 @@
+Metadata-Version: 1.1
+Name: mdwpy
+Version: 1.2.1
+Summary: Multi process downloader in python
+Home-page: https://github.com/maazhe/mdwpy
+Author: Matthieu Bossennec
+Author-email: mymail@protonmail.com
+License: BEERWARE
+Description: mdwpy - Multi process downloader in python
+        ========================================================
+        
+        This module is usefull to download files faster than usual.
+        It split the file into parts and download each part on different process
+        
+        ## INSTALL
+        
+            pip install mdwpy
+        
+        ## USAGE
+        
+            >>> from mdwpy.downloader import Downloader
+            >>> downloader = Downloader(url=url, filename=filename, usr= usr, pwd=pwd, directory=directory, progress=True)
+            >>> downloader.run()
+        
+        ![Exemple](out.gif)
+        
+        ## LICENCE
+        
+        Licence [BEERWARE](https://spdx.org/licenses/Beerware.html)
+Platform: UNKNOWN
+Classifier: Natural Language :: French
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.5
