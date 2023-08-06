@@ -1,0 +1,3 @@
+[console_scripts]
+openrpa = robolab.Robolab:main
+

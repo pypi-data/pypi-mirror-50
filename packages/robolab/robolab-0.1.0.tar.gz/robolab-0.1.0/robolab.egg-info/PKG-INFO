@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: robolab
+Version: 0.1.0
+Summary: Open source development tools for Robot Framework RPA developers
+Home-page: http://github.com/robocloud/robolab
+Author: Orlof
+Author-email: orlof@users.noreply.github.com
+License: Apache License 2.0
+Description: # robolab
+        Open source development tools for Robot Framework developers
+        
+Keywords: python,robotframework,rpa
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
