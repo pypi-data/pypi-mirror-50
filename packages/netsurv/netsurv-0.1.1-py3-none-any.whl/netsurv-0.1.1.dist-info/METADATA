@@ -1,0 +1,16 @@
+Metadata-Version: 2.0
+Name: netsurv
+Version: 0.1.1
+Summary: Configure IP cameras.
+Home-page: https://github.com/sofia-client/python-netsurv
+Author: Eliot Woodrich & Ebraheem AlAtari
+Author-email: eliot@woodrich.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+
+Python library for configuring a wide range of IP cameras which use the NETsurveillance ActiveX plugin (aka DVRIP, Sofia)
+
+
