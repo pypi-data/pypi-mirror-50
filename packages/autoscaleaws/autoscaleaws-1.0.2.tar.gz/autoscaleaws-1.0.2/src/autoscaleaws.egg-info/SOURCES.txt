@@ -1,0 +1,16 @@
+README.md
+setup.py
+src/autoscale_aws/__init__.py
+src/autoscale_aws/batch_daemon_autoscale_cli.py
+src/autoscale_aws/batch_daemon_launch_cli.py
+src/autoscale_aws/batch_daemon_monitor_cli.py
+src/autoscale_aws/util_aws.py
+src/autoscale_aws/util_batch.py
+src/autoscale_aws/util_cpu.py
+src/autoscale_aws/util_log.py
+src/autoscaleaws.egg-info/PKG-INFO
+src/autoscaleaws.egg-info/SOURCES.txt
+src/autoscaleaws.egg-info/dependency_links.txt
+src/autoscaleaws.egg-info/entry_points.txt
+src/autoscaleaws.egg-info/requires.txt
+src/autoscaleaws.egg-info/top_level.txt
