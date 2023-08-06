@@ -1,0 +1,1 @@
+Gets the text information in the image captcha.
