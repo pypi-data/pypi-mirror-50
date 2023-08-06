@@ -1,0 +1,216 @@
+{
+    "users": {
+        "mhb": {
+            "schema:givenName": "Melodee",
+            "schema:familyName": "Beals",
+            "schema:sameAS": "https://orcid.org/0000-0002-2907-3313",
+            "schema:worksFor": "Loughborough University",
+            "schema:memberOf": "Nisaba",
+            "schema:email": "m.h.beals@lboro.ac.uk",
+            "foaf:homepage": "http://www.mhbeals.com",
+            "default": 1
+        },
+        "amp": {
+            "schema:givenName": "Albert",
+            "schema:familyName": "Mero\u00f1o",
+            "schema:sameAS": "https://orcid.org/0000-0003-4646-5842",
+            "schema:worksFor": "Vrije Universiteit Amsterdam",
+            "schema:memberOf": "Nisaba",
+            "schema:email": "albert.merono@vu.nk",
+            "foaf:homepage": "https://www.albertmeronyo.org/"
+        }
+    },
+    "0": {
+        "dc:creator": [
+            "Herodotus",
+            "mhb"
+        ],
+        "dc:title": [
+            "The Histories",
+            "mhb"
+        ],
+        "fabio:hasShortTitle": [
+            "Histories",
+            "mhb"
+        ],
+        "prism:volume": [
+            "",
+            "mhb"
+        ],
+        "fabio:hasVolumeCount": [
+            "",
+            "mhb"
+        ],
+        "prism:edition": [
+            "",
+            "mhb"
+        ],
+        "fabio:BookSeries": [
+            "Penguin Classics",
+            "mhb"
+        ],
+        "fabio:hasSequenceIdentifier": [
+            "",
+            "mhb"
+        ],
+        "fabio:hasPlaceOfPublication": [
+            "London",
+            "mhb"
+        ],
+        "dc:publisher": [
+            "Penguin Books",
+            "mhb"
+        ],
+        "dc:date": [
+            "440 BC",
+            "mhb"
+        ],
+        "fabio:hasPageCount": [
+            "716",
+            "mhb"
+        ],
+        "prism:isbn": [
+            "9780134449082",
+            "mhb"
+        ],
+        "prism:doi": [
+            "",
+            "mhb"
+        ],
+        "fabio:Abstract": [
+            "",
+            "mhb"
+        ],
+        "dc:language": [
+            "",
+            "mhb"
+        ],
+        "items": {
+            "0": {
+                "item_type": "t",
+                "fabio_type": [
+                    "Section",
+                    "mhb"
+                ],
+                "fabio:hasSequenceIdentifier": [
+                    "0",
+                    "mhb"
+                ],
+                "fabio:pageRange": [
+                    "",
+                    "mhb"
+                ],
+                "transcription": [
+                    "This is the Showing forth of the Inquiry of Herodotus of Halicarnassos, to the end that neither the deeds of men may be forgotten by lapse of time, nor the works great and marvellous, which have been produced some by Hellenes and some by Barbarians, may lose their renown; and especially that the causes may be remembered for which these waged war with one another.\n\n",
+                    "mhb"
+                ],
+                "segments": {
+                    "0": {
+                        "start": 0,
+                        "end": 65,
+                        "annotations": [
+                            "Memorial-Justice-Hero_Teleology_of_History",
+                            "Memorial-Justice-Victim_Teleology_of_History",
+                            "Memorial-Justice_Teleology_of_History",
+                            "Memorial_Teleology_of_History",
+                            "Teleology_of_History",
+                            "Teleology"
+                        ],
+                        "dc:description": [
+                            "",
+                            "mhb"
+                        ]
+                    }
+                },
+                "annotations": [
+                    "Memorial-Justice-Hero_Teleology_of_History",
+                    "Memorial-Justice_Teleology_of_History",
+                    "Memorial_Teleology_of_History",
+                    "Teleology_of_History",
+                    "Teleology"
+                ]
+            },
+            "1": {
+                "item_type": "t",
+                "fabio_type": [
+                    "Section",
+                    "mhb"
+                ],
+                "fabio:hasSequenceIdentifier": [
+                    "1",
+                    "mhb"
+                ],
+                "fabio:pageRange": [
+                    "",
+                    "mhb"
+                ],
+                "transcription": [
+                    "Those of the Persians who have knowledge of history declare that the Phenicians first began the quarrel. These, they say, came from that which is called the Erythraian Sea to this of ours; and having settled in the land where they continue even now to dwell, set themselves forthwith to make long voyages by sea. And conveying merchandise of Egypt and of Assyria they arrived at other places and also at Argos; now Argos was at that time in all points the first of the States within that land which is now called Hellas; the Phenicians arrived then at this land of Argos, and began to dispose of their ship's cargo: and on the fifth or sixth day after they had arrived, when their goods had been almost all sold, there came down to the sea a great company of women, and among them the daughter of the king; and her name, as the Hellenes also agree, was Io the daughter of Inachos. These standing near to the stern of the ship were buying of the wares such as pleased them most, when of a sudden the Phenicians, passing the word from one to another, made a rush upon them; and the greater part of the women escaped by flight, but Io and certain others were carried off. So they put them on board their ship, and forthwith departed, sailing away to Egypt.\n",
+                    "mhb"
+                ],
+                "segments": {
+                    "0": {
+                        "start": 0,
+                        "end": 17,
+                        "annotations": [
+                            "Secondary_Evidence",
+                            "Evidence",
+                            "Ontology"
+                        ],
+                        "dc:description": [
+                            "",
+                            ""
+                        ]
+                    }
+                },
+                "annotations": [
+                    "Explanatory-Descriptive_Teleology_of_History",
+                    "Tertiary_Evidence",
+                    "Explanatory_Teleology_of_History",
+                    "Evidence",
+                    "Teleology_of_History",
+                    "Ontology",
+                    "Teleology"
+                ]
+            },
+            "2": {
+                "item_type": "i",
+                "image_file": "sample.jpg",
+                "fabio_type": [
+                    "StillImage",
+                    ""
+                ],
+                "fabio:hasSequenceIdentifier": [
+                    "1",
+                    ""
+                ],
+                "fabio:pageRange": [
+                    "",
+                    ""
+                ],
+                "segments": {
+                    "0": {
+                        "top": 0,
+                        "right": 50,
+                        "bottom": 100,
+                        "left": 0,
+                        "annotations": [
+                            "Primary_Evidence",
+                            "Evidence",
+                            "Ontology"
+                        ],
+                        "dc:description": [
+                            "",
+                            ""
+                        ]
+                    }
+                },
+                "annotations": [
+                    "Tertiary_Evidence",
+                    "Evidence",
+                    "Ontology"
+                ]
+            }
+        }
+    }
+}
