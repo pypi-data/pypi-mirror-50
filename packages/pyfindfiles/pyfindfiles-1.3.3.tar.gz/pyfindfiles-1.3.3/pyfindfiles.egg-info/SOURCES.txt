@@ -1,0 +1,16 @@
+README.md
+findtext.py
+findvid.py
+setup.cfg
+setup.py
+pyfindfiles/__init__.py
+pyfindfiles/runner.py
+pyfindfiles/text.py
+pyfindfiles/vid.py
+pyfindfiles.egg-info/PKG-INFO
+pyfindfiles.egg-info/SOURCES.txt
+pyfindfiles.egg-info/dependency_links.txt
+pyfindfiles.egg-info/entry_points.txt
+pyfindfiles.egg-info/not-zip-safe
+pyfindfiles.egg-info/requires.txt
+pyfindfiles.egg-info/top_level.txt
