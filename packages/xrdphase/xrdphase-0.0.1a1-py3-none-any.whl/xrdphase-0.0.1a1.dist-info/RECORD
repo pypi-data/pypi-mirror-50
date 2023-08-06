@@ -1,0 +1,16 @@
+xrdphase/__init__.py,sha256=IxduHQ84IKCjeKDh1jNf4VEgBWPlitoZccmEHgzsEfw,887
+xrdphase/_version.py,sha256=GhF-xzbSDT2zhjQknKWdICe-gCxwsP8TUyr7sUxlUWA,499
+xrdphase/free_pdf.py,sha256=rrFIaOKP9PlyrPnnuLZYFcnu2w1z3UB8EUYN451uPsY,45613
+xrdphase/phase_id_functions.py,sha256=GPRF0tSorVDyp2E7fxLiJ8y6cSudqiSzI5PUNxrdzuE,22372
+xrdphase/phase_id_script.py,sha256=1u1RChsEYkoa_7NfbFpFB0eQEzY741RIgjpxeCYock8,4293
+xrdphase/training_NN_funcs.py,sha256=5q9jhHwx2wfmeaMON4BF5EJKSNNKjuXvVkgIEmg4wtg,3387
+xrdphase/tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+xrdphase/tests/conftest.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+xrdphase/tests/test_find_phase.py,sha256=CevQufTyAnYTIqfyRzWFdUBXnneY5BCqp6MrXfbrXBI,941
+xrdphase-0.0.1a1.dist-info/AUTHORS.rst,sha256=B86qyo0jkvvV8fDA40Cp29rWy-Y-FwF5x6oxKeKYDN0,175
+xrdphase-0.0.1a1.dist-info/LICENSE,sha256=F_Rb4SCJPNralkrAiM3GXn2PmiKkvkhAqW-eZlBY_0c,1557
+xrdphase-0.0.1a1.dist-info/METADATA,sha256=v39H7QBCxo7QAaLAF3msyaXIYPtjqUDJ0S0iJlbrErI,891
+xrdphase-0.0.1a1.dist-info/WHEEL,sha256=-ZFxwj8mZJPIVcZGLrsQ8UGRcxVAOExzPLVBGR7u7bE,92
+xrdphase-0.0.1a1.dist-info/entry_points.txt,sha256=eqGnTHtEVMYwfXVk1Z9MhC8O2N8wuqAbr0lisLmrkxs,20
+xrdphase-0.0.1a1.dist-info/top_level.txt,sha256=QX8Ll6MK5Gu2dvdonA8fwC0JG_M7WWneVbR2kWY0HTo,9
+xrdphase-0.0.1a1.dist-info/RECORD,,

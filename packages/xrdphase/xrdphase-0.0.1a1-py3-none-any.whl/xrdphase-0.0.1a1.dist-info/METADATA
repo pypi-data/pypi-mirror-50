@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: xrdphase
+Version: 0.0.1a1
+Summary: Python package for doing science.
+Home-page: https://github.com/gwbischof/xrdphase
+Author: Brookhaven National Lab
+Author-email: gbischof@bnl.gov
+License: BSD (3-clause)
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6
+
+===============================
+xrdphase
+===============================
+
+.. image:: https://img.shields.io/travis/gwbischof/xrdphase.svg
+        :target: https://travis-ci.org/gwbischof/xrdphase
+
+.. image:: https://img.shields.io/pypi/v/xrdphase.svg
+        :target: https://pypi.python.org/pypi/xrdphase
+
+
+Python package for doing science.
+
+* Free software: 3-clause BSD license
+* Documentation: (COMING SOON!) https://gwbischof.github.io/xrdphase.
+
+Features
+--------
+
+* TODO
+
+
