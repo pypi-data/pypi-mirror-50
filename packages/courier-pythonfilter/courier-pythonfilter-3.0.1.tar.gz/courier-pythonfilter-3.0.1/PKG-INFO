@@ -1,0 +1,15 @@
+Metadata-Version: 1.0
+Name: courier-pythonfilter
+Version: 3.0.1
+Summary: Python filtering architecture for the Courier MTA.
+Home-page: https://bitbucket.org/gordonmessmer/courier-pythonfilter
+Author: Gordon Messmer
+Author-email: gordon@dragonsdawn.net
+License: GPL
+Description: pythonfilter is a collection of useful filters for the Courier MTA,
+        and a framework for developing new filters in Python.
+        
+        pythonfilter can be used to filter spam and viruses, as well as
+        implement other local mail policies.
+        
+Platform: UNKNOWN
