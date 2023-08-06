@@ -1,0 +1,23 @@
+Metadata-Version: 1.1
+Name: wait_for_it_to
+Version: 0.0.3
+Summary: helper library which waits
+Home-page: https://github.com/studioj/wait_for_it/
+Author: Jef Neefs
+Author-email: neefsj@gmail.com
+License: GPL
+Description: 
+        This is a library for letting you python code wait for a certain action top complete
+Platform: Posix; MacOS X; Windows
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Utilities
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
