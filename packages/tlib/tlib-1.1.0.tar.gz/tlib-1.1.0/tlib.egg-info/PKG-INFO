@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: tlib
+Version: 1.1.0
+Summary: Some own/observed great lib/ideas,common useful python libs
+Home-page: https://github.com/txu2008/TLIB
+Author: tao.xu2008@outlook.com
+Author-email: tao.xu2008@outlook.com
+Maintainer: tao.xu2008@outlook.com
+License: UNKNOWN
+Description: # TLIB
+        Some own/observed great lib/ideas,common useful python libs.
+        
+Keywords: library common baselib framework,stress runnner
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
