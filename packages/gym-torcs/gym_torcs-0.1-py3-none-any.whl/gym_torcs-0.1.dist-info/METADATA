@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: gym-torcs
+Version: 0.1
+Summary: A pip package for the Gym Torcs environment
+Home-page: https://github.com/dosssman/GymTorcs.git
+Author: Rousslan F. J. Dossa
+Author-email: dosssman@hotmail.fr
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Dist: psutil
+Requires-Dist: gym
+
+# Gym Torcs environment for Pip
+
+More to come ...
+
+# Dependencies
+Coming soon: Installing vtorcs-RL-color with scripts for Ubuntu, CentOS and Arch Linux (masterace)
+
+# Installation
+## Manual
+Clone this repository:
+```
+git clone https://github.com/dosssman/GymTorcs.git && cd GymTorcs
+```
+Install as a python dependency:
+```
+pip install -e .
+```
+
+## Using Pip
+
+# Usage
+
+# References:
+- Creating your own Gym environment (https://github.com/openai/gym/blob/master/docs/creating-environments.md)
+- How to build your own pip package (https://dzone.com/articles/executable-package-pip-install)
+
+
