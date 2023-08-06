@@ -1,0 +1,11 @@
+__version__ = "1.0.9.post2"
+__git_commiter_name__ = "Arnon Yaari"
+__git_commiter_email__ = "arnony@infinidat.com"
+__git_branch__ = u'develop'
+__git_remote_tracking_branch__ = u'origin/develop'
+__git_remote_url__ = u'git@git.infinidat.com:host-opensource/infi.projector.git'
+__git_head_hash__ = 'f689b74aba51616c8a9c4287e2cd7565e3d2569e'
+__git_head_subject__ = u'HOSTDEV-3201 fix devenv build'
+__git_head_message__ = u''
+__git_dirty_diff__ = u''
+__git_commit_date__ = '2019-07-09 12:23:08'
