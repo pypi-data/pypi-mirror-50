@@ -1,0 +1,12 @@
+Metadata-Version: 1.1
+Name: lineworks
+Version: 0.0.1
+Summary: It is a package that implements the server API and the Talk Bot API among the LINE WORKS APIs.
+Home-page: https://github.com/0yan/lineworks-api
+Author: Rei Suzuki
+Author-email: re1yanwork@gmail.com
+License: MIT
+Description: UNKNOWN
+Keywords: LINE WORKS
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
