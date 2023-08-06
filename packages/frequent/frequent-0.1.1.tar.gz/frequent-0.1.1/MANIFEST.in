@@ -1,0 +1,24 @@
+include AUTHORS LICENSE* README*
+include CHANGELOG.*
+
+exclude .editorconfig
+exclude *.env
+exclude .envrc
+exclude .coveragerc
+exclude .readthedocs.yml
+exclude .travis.yml
+exclude Makefile
+exclude Pipfile*
+exclude pyproject.toml
+exclude pytest.ini
+exclude requirements*.txt
+exclude tox.ini
+
+prune .githooks
+prune .github
+prune docs
+prune changes
+prune examples
+prune tasks
+prune tests
+prune todos
