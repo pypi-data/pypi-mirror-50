@@ -1,0 +1,3 @@
+[console_scripts]
+pal-tsne = tsne.cli:main_cli
+
