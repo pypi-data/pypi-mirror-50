@@ -1,0 +1,40 @@
+Metadata-Version: 1.1
+Name: aioiliad
+Version: 0.2.0
+Summary: A python package that can be installed with pip.
+Home-page: https://github.com/eliseomartelli/aioiliad
+Author: Eliseo Martelli
+Author-email: me@eliseomartelli.it
+License: BSD
+Description: AioIliad
+        ===============================
+        
+        [![Build Status](https://travis-ci.org/eliseomartelli/AioIliad.svg?branch=master)](https://travis-ci.org/eliseomartelli/AioIliad)
+        
+        version number: 0.1.3
+        author: Eliseo Martelli
+        
+        Overview
+        --------
+        
+        A python package that can be installed with pip.
+        
+        Installation / Usage
+        --------------------
+        
+        To install use pip:
+        
+            $ pip install aioiliad
+        
+        
+        Or clone the repo:
+        
+            $ git clone https://github.com/eliseomartelli/aioiliad.git
+            $ python setup.py install
+            
+        Feel free to fork!
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
