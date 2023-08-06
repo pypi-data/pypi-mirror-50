@@ -1,0 +1,56 @@
+Metadata-Version: 2.1
+Name: speedmonitor
+Version: 0.0.2
+Summary: Monitor internet speed
+Home-page: https://github.com/samuelsinayoko/speedmonitor
+Author: Sam Sinayoko
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Requires-Dist: pandas
+Requires-Dist: speedtest-cli
+Requires-Dist: flask
+
+
+# Speed Monitor
+
+Monitor internet speed.
+
+Server listens for measurements. Post speed measurements to server to persist them. Clients conduct measurements speedtest-cli and post to server.
+
+# Get started
+
+```
+pip install -r requirements.txt
+pip install -r requirements-dev.txt
+python setup.py develop
+```
+
+To start server
+```
+./serve.sh
+```
+
+Running tests
+
+```
+py.test
+```
+
+
+# Local measurements
+Conducting measurements
+
+```
+SPEEDMONITOR_LOCATION='top_bedroom' SPEEDMONITOR_INTERVAL_SECONDS=60 SPEEDMONITOR_FILENAME='speedmonitor.hdf' python -m speedmonitor
+```
+
+
