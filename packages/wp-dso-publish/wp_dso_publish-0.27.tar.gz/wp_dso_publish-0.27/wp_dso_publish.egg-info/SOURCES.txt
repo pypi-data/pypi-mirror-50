@@ -1,0 +1,14 @@
+README.md
+setup.py
+wp-dso-publish.py
+wp_dso_publish/__init__.py
+wp_dso_publish/app_gui.py
+wp_dso_publish/local_settings.py
+wp_dso_publish/safe_helper.py
+wp_dso_publish/saved-settings.py
+wp_dso_publish/style.css
+wp_dso_publish.egg-info/PKG-INFO
+wp_dso_publish.egg-info/SOURCES.txt
+wp_dso_publish.egg-info/dependency_links.txt
+wp_dso_publish.egg-info/requires.txt
+wp_dso_publish.egg-info/top_level.txt
