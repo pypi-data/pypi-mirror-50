@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: aligi
+Version: 0.0.0
+Summary: 为阿里无服务函数提供API网关的协议解析
+Home-page: https://github.com/abersheeran/aligi
+Author: AberSheeran
+Author-email: abersheeran@qq.com
+License: MIT
+Keywords: aliyun,api,serverless,python
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
+
+
+# aligi
+
+
