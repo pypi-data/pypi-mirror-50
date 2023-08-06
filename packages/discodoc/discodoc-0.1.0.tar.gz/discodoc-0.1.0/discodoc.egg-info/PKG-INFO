@@ -1,0 +1,122 @@
+Metadata-Version: 1.1
+Name: discodoc
+Version: 0.1.0
+Summary: Create documents from Discourse content easily
+Home-page: https://github.com/hiveeyes/discodoc
+Author: Andreas Motl
+Author-email: andreas@hiveeyes.org
+License: AGPL 3, EUPL 1.2
+Description: .. image:: https://img.shields.io/badge/Python-3-green.svg
+            :target: https://github.com/hiveeyes/discodoc
+        
+        .. image:: https://img.shields.io/pypi/v/discodoc.svg
+            :target: https://pypi.org/project/discodoc/
+        
+        .. image:: https://img.shields.io/github/tag/hiveeyes/discodoc.svg
+            :target: https://github.com/hiveeyes/discodoc
+        
+        |
+        
+        .. discodoc-readme:
+        
+        ########
+        discodoc
+        ########
+        
+        
+        *****
+        About
+        *****
+        `discodoc` - create documents from Discourse content easily.
+        
+        It aims to make documentation generation effortless.
+        
+        There might still be dragons.
+        
+        
+        
+        *******
+        Install
+        *******
+        
+        Prerequisites
+        =============
+        ::
+        
+            # Debian
+            apt install texlive-latex-base pandoc
+        
+            # macOS / Homebrew
+            brew install pandoc python3-requests
+            brew cask install basictex
+        
+        Optional::
+        
+            brew cask install wkhtmltopdf
+        
+        Setup
+        =====
+        ::
+        
+            pip install discodoc
+        
+        
+        ********
+        Synopsis
+        ********
+        ::
+        
+            # Generate PDF document from all posts of given topic
+            discodoc https://community.hiveeyes.org/t/anleitung-aufbau-und-installation-des-sensor-kits-grune-platine/2443 --format=pdf
+        
+        
+        ********
+        Features
+        ********
+        All output formats are provided by pandoc fame. These have been tested:
+        - pdf, docx, odt, pptx, epub2, epub3, fb2, latex, texinfo, html, html5
+        
+        
+        *******
+        Credits
+        *******
+        - `Donald Knuth`_ and the `LaTeX Team`_ for conceiving and maintaining TeX and LaTeX
+        - `John MacFarlane`_ and all contributors for creating and curating pandoc_
+        - The amazing `Discourse Team`_ and all contributors for creating Discourse and its spirit
+        
+        Thanks!
+        
+        .. _Donald Knuth: https://www-cs-faculty.stanford.edu/~knuth/
+        .. _LaTeX Team: https://www.latex-project.org/about/team/
+        .. _pandoc: https://pandoc.org/
+        .. _John MacFarlane: https://johnmacfarlane.net/
+        .. _Discourse Team: https://blog.discourse.org/2013/02/the-discourse-team/
+        
+Keywords: discourse pandoc document export pdf epub
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: License :: OSI Approved :: European Union Public Licence 1.2 (EUPL 1.2)
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: System Administrators
+Classifier: Topic :: Communications
+Classifier: Topic :: Database
+Classifier: Topic :: Internet
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Indexing/Search
+Classifier: Topic :: Scientific/Engineering :: Human Machine Interfaces
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Scientific/Engineering :: Interface Engine/Protocol Translator
+Classifier: Topic :: System :: Archiving
+Classifier: Topic :: Text Processing
+Classifier: Topic :: Utilities
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
