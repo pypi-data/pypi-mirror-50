@@ -1,0 +1,9 @@
+README.md
+setup.py
+py_schema/__init__.py
+py_schema/py_schema.py
+py_schema/py_schema_test.py
+py_schema.egg-info/PKG-INFO
+py_schema.egg-info/SOURCES.txt
+py_schema.egg-info/dependency_links.txt
+py_schema.egg-info/top_level.txt
