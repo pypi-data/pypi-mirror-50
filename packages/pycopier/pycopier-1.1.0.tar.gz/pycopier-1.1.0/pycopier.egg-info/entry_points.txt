@@ -1,0 +1,3 @@
+[console_scripts]
+pycopier = pycopier.__main__:main
+

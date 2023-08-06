@@ -1,0 +1,11 @@
+README.md
+setup.py
+pycopier/__init__.py
+pycopier/__main__.py
+pycopier/pycopier.py
+pycopier.egg-info/PKG-INFO
+pycopier.egg-info/SOURCES.txt
+pycopier.egg-info/dependency_links.txt
+pycopier.egg-info/entry_points.txt
+pycopier.egg-info/requires.txt
+pycopier.egg-info/top_level.txt
