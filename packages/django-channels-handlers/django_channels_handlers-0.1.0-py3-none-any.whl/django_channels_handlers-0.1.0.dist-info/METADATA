@@ -1,0 +1,112 @@
+Metadata-Version: 2.1
+Name: django-channels-handlers
+Version: 0.1.0
+Summary: Django Channels, without the Pain 💊
+Home-page: https://github.com/joshua-s/django-channels-handlers
+Author: Josh Smith
+Author-email: josh@joshsmith.codes
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 2.1
+Classifier: Framework :: Django :: 2.2
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Intended Audience :: Developers
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+Requires-Dist: Django (>=2.1)
+Requires-Dist: channels (~=2.2)
+Requires-Dist: pydantic (~=0.32)
+Provides-Extra: tests
+Requires-Dist: pytest (~=5.0) ; extra == 'tests'
+Requires-Dist: pytest-django (~=3.5) ; extra == 'tests'
+Requires-Dist: pytest-asyncio (~=0.10) ; extra == 'tests'
+Requires-Dist: pytest-cov (>=2.7) ; extra == 'tests'
+Requires-Dist: black (>=19.3b0) ; extra == 'tests'
+Requires-Dist: flake8 (>=3.7) ; extra == 'tests'
+
+django-channels-handlers
+========================
+
+.. image:: https://img.shields.io/pypi/v/channels_handlers.svg
+    :target: https://pypi.python.org/pypi/channels_handlers
+    :alt: Latest PyPI version
+
+.. image:: https://travis-ci.com/joshua-s/django-channels-handlers.svg?branch=master
+    :target: https://travis-ci.com/joshua-s/django-channels-handlers
+
+Django Channels, without the Pain 💊
+
+
+Requirements
+------------
+
+- Django>=2.1
+- channels>=2.2
+- pydantic>=0.32
+
+
+Usage
+-----
+
+Install django-channels-handlers from pypi::
+
+    pip install django-channels-handlers
+
+Create a message handler
+
+.. code:: python
+
+    from channels_handlers.handlers import MessageHandler
+    # For async, import AsyncMessageHandler
+
+
+    class ChatHandler(MessageHandler):
+        namespace = "chat"
+        handled_types = {
+            "chat.message": "receive_message",
+        }
+        models = {
+            "chat.message": pydantic_models.Message,
+        }
+
+        def receive_message(self, message):
+            # Do something with the message
+            pass
+
+Import ConsumerHandlerMixin and add it to your Django Channels consumer
+
+.. code:: python
+
+    from channels_handlers.consumers import ConsumerHandlerMixin
+    # For async, import AsyncConsumerHandlerMixin
+    from channels.generic.websocket import JsonWebsocketConsumer
+
+
+    class MyConsumer(ConsumerHandlerMixin, JsonWebsocketConsumer):
+        handler_classes = [ChatHandler]
+
+
+Compatibility
+-------------
+
+`django-channels-handlers` is compatible with Python 3.6+, Django 2.1+, and Django Channels 2.2+.
+
+
+License
+-------
+
+`django-channels-handlers` is licensed under the MIT License.
+
+
+Authors
+-------
+
+`django-channels-handlers` was written by `Josh Smith <josh@joshsmith.codes>`_.
+
+
