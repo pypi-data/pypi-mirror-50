@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: timerr
+Version: 1.0.2
+Summary: A basic timer that counts down from time entered
+Home-page: https://github.com/ItzAfroBoy/timerr
+Author: ItzAfroBoy
+Author-email: spareafro@post.com
+License: UNKNOWN
+Description: # Timerr Package for Python
+        
+        This is a simple timer package for python that counts `Down`  from the time set.  
+        If you have any suggestions,
+        - [Email](mailto:spareafro@post.com) me with your suggestion or 
+        - Add a pull request with your edit of the code and I'll look at it
+        
+        ## Usage
+        
+        ### Installation
+        
+        ```plain text
+        pip install timerr
+        ```
+        
+        ### Scripting
+        
+        ```python
+        # Import the timerr module
+        
+        import timerr
+        
+        # Create a variable named 'timer' and call the class 'Timer'
+        # Arguments are (hours, mins, secs, log)
+        # Default is a 1h timer and not to print the time left
+        # To print the time left, if all args are passsed, use 'log' otherwise copy below
+        # This sets a timer for 3h 45mins and to print the time left
+        
+        timer = timerr.Timer(3, 45,log='log')
+        
+        # Run the 'timer' function from the variable
+        timer.timer()
+        ```
+        
+        ### Interpreter
+        
+        ```python
+        >>> import timerr
+        >>> timerr.Timer(3, 45, 15, 'log').timer()
+        ```
+        
+        ## License & Copyright
+        
+        Copyright (c) 2019 ItzAfroBoy  
+        This package is under the [MIT License](https://github.com/ItzAfroBoy/timerr/blob/master/LICENSE).  
+        **Under the license, you are able to modify the file  
+        and serve it as `closed-source`**
+        
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
