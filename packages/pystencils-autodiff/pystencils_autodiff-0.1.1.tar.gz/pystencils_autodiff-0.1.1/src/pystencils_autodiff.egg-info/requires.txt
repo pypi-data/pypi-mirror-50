@@ -1,0 +1,7 @@
+numpy
+pystencils>=0.2.6
+jinja2
+
+[testing]
+pytest
+pytest-cov
