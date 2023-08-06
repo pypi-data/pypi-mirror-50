@@ -1,0 +1,15 @@
+#
+# for develop
+#
+
+-r test.txt
+
+pip-tools
+black
+
+wheel
+twine
+docutils
+
+
+
