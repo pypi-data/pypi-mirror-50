@@ -1,0 +1,16 @@
+censorfix/__init__.py,sha256=0V7IKNSvBNMVKrYxf-zc4sUfFDm7cHjGJOcu0LHikP4,122
+censorfix/censorfix.py,sha256=W9im0yjrLvDVPsOmcffKwr9wPQ9IMFzBHmvOd7PUxMc,8189
+censorfix/compile_stan.py,sha256=AA9j81QO1wZnPmpa675owqqUG0oYQz7HCTAqsKXWmV4,1352
+censorfix/test_censor.py,sha256=lKhC7Tp91ssY5nGZJUFoniGI_sVcTj5xLw1ucovRaqQ,3572
+stan_code/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+stan_code/s1.st,sha256=hPyktldt_jhLVCj1a2rl6UG-kQQDPIKb9HUof8do1_4,606
+stan_code/s2.st,sha256=gohtNlZ_5JhmHuFg_QnI1CkMaUbqJZq38oK7kp0lpIo,715
+stan_code/s3.st,sha256=YY4GUEcTqpKnD1dF-ECwFjM_g2p0bX-ey16OHHW8ksQ,994
+stan_code/s4.st,sha256=eHq928gxIcbCxbGMqb_tvjLg-vqek4KxoCChRFPqGHw,287
+stan_code/s5.st,sha256=z9_vuWJ--e_Y-JhF_WP7tMCf4bohRjjHOek4WIaDVlE,1074
+stan_compiled/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+censor_fix-0.0.1.dist-info/LICENSE,sha256=c8ti6TR8JYIwwIjVUOyj_07RPEHsDVh_Cfr1IEfeySE,1069
+censor_fix-0.0.1.dist-info/METADATA,sha256=6rcXsx8hoe7OCsahxku7b3Qe9A2gRn37-Lz5CWWGxy4,1388
+censor_fix-0.0.1.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+censor_fix-0.0.1.dist-info/top_level.txt,sha256=UygZ7MX-I-fPkIHGz3gX2nCxPVsOwzGJ7mthMA5-G-Q,10
+censor_fix-0.0.1.dist-info/RECORD,,
