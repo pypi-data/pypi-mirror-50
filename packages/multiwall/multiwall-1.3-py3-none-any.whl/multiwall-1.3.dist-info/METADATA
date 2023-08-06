@@ -1,0 +1,72 @@
+Metadata-Version: 2.1
+Name: multiwall
+Version: 1.3
+Summary: Wallpaper Getter and Setter
+Home-page: https://gitlab.com/avalonparton/multiwall
+Author: Avalon Parton
+Author-email: avalonlee@gmail.com
+License: MIT
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: Pillow
+Requires-Dist: python-unsplash
+Requires-Dist: screeninfo
+
+# Multiwall
+
+Set your background on multiple monitors to random images from [Unsplash](https://unsplash.com/), [mikedrawsdota](http://wallpapers.mikedrawsdota.com/#_=_), and more.
+
+## Installation
+
+```powershell
+py -3 -m pip install multiwall
+```
+
+## Usage
+
+```powershell
+py -3 -m multiwall
+```
+
+The default source is [Unsplash](https://unsplash.com/), use the `--source` flag to change it.
+
+```powershell
+py -3 -m multiwall --source 'mikedrawsdota'
+```
+
+### As a Desktop Shortcut
+
+1. Create a file `wallpaper.pyw` with the following contents:
+
+    ```python
+    import multiwall
+    multiwall.main()
+    ```
+
+1. Set it to Open With `"C:\Windows\pyw.exe"`
+
+## Examples
+
+```powershell
+# 4k monitor + 1080p monitor (5760x2160 picture)
+py -3 -m multiwall --monitors "3440x1440,1920x1080"
+```
+
+![5760x2160](https://i.imgur.com/huusFe8.jpg)
+
+
+```powershell
+# 4k monitor + portait monitor
+py -3 -m multiwall --monitors "3440x1440,1440x2560"
+```
+![3440x1440,1440x2560](https://i.imgur.com/aNE8aYF.jpg)
+
+
+## Planned Features
+
+* [*] Automatic monitor size detection
+* [*] Custom search parameters
+* [*] Save images without setting wallpaper
+* [ ] Favorite images
+
+
