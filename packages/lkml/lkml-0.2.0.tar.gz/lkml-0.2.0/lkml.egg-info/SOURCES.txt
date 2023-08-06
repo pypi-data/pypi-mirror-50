@@ -1,0 +1,16 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.cfg
+setup.py
+lkml/__init__.py
+lkml/keys.py
+lkml/lexer.py
+lkml/parser.py
+lkml/serializer.py
+lkml/tokens.py
+lkml.egg-info/PKG-INFO
+lkml.egg-info/SOURCES.txt
+lkml.egg-info/dependency_links.txt
+lkml.egg-info/entry_points.txt
+lkml.egg-info/top_level.txt
