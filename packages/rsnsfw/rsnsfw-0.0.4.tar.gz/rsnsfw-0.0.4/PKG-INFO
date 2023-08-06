@@ -1,0 +1,19 @@
+Metadata-Version: 1.2
+Name: rsnsfw
+Version: 0.0.4
+Summary: Reckonsys NSFW fork
+Home-page: https://github.com/reckonsys/rsnsfw
+Author: rockyzhengwu
+Author-email: zhengwu@midday.me
+Maintainer: reckonsys
+Maintainer-email: info@reckonsys.com
+License: MIT
+Description: NSFW detection
+Keywords: reckonsys nsfw
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
