@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: PythonZyjTools
+Version: 0.0.1
+Summary: python工具
+Home-page: https://github.com/echozyj/PythonZyjTools
+Author: yongjian zhang
+Author-email: frank_yongjian@163.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3
+Description-Content-Type: text/markdown
+Requires-Dist: paramiko (>=2.4.2)
+Requires-Dist: PyMySQL (>=0.9.3)
+Requires-Dist: openpyxl (>=2.5.6)
+Requires-Dist: xlrd (>=1.1.0)
+
+# PythonZyjTools
+个人集成的库文件,喜欢自取
+
+
