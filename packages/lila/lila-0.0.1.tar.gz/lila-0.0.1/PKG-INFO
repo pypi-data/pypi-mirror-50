@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: lila
+Version: 0.0.1
+Summary: Library to work with Siren protocol
+Home-page: https://github.com/KillAChicken/lila
+Author: KillAChicken
+Author-email: KillAChicken@yandex.ru
+License: UNKNOWN
+Description: lila
+        ====
+        Lila is a python library to work with `JSON Siren <https://github.com/kevinswiber/siren>`_ protocol.
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
