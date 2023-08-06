@@ -1,0 +1,17 @@
+diskcollections/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+diskcollections/interfaces.py,sha256=Cz0ryBJkidSYLoVvOWTRpTRkE2aq2SGEowGsNeX2TEs,767
+diskcollections/py2to3.py,sha256=343iIWpEkPY4OquKkwA7XyixDxG7UyiQwJyTYTRXrIU,537
+diskcollections/serializers.py,sha256=eP9RqO-ecJfiMlNcFN8MiYlhO8Oed2Cl5av36Z0CA1U,1161
+diskcollections/iterables/__init__.py,sha256=UdKuJpRKjZAHn-9FxgEhclYmdIpmOkfzqomdtMenbSU,180
+diskcollections/iterables/clients.py,sha256=D-Ctya_BoSnTDGeE8-kNFw-9FTLycUaJvthpLBYHv1w,1982
+diskcollections/iterables/iterables.py,sha256=j74dw_GPmdNn1BAzwKGqxhPi-pd6RISgAkC1AnVglDE,6276
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_serializers.py,sha256=2Uaf2VaDKy7iLJ7q8VLVQaJNLSlP0NdGlwfBDWGMtVo,811
+tests/sequences/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/sequences/test_clients.py,sha256=K1J69QxnBixsRafHRc-FmLwM3pzIjjcj6B9bb_IxkfU,651
+tests/sequences/test_iterables.py,sha256=fzHZ7MUS-0XgBqwrjPyrMDAJHBkqpc_wEjZGwkLPx-U,7483
+python_disk_collections-0.0.3.dist-info/LICENSE,sha256=HQgC9CGvReg1rXaWDt4Y1DYiUGPQoaKBZp9MVSml5V0,1066
+python_disk_collections-0.0.3.dist-info/METADATA,sha256=KOd3zd7D3UH-v0uS5vvywwKm6QQj-mEwXerStoFemcU,4965
+python_disk_collections-0.0.3.dist-info/WHEEL,sha256=h_aVn5OB2IERUjMbi2pucmR_zzWJtk303YXvhh60NJ8,110
+python_disk_collections-0.0.3.dist-info/top_level.txt,sha256=0JjGEfk8Wn7vnwLJ6Kl8BwgI2Q2I-5VKr38rQwytiFc,22
+python_disk_collections-0.0.3.dist-info/RECORD,,
