@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: artek-user-accounts
+Version: 2.1.1
+Summary: a Django user account app
+Home-page: https://github.com/AHDCreative/django_user_accounts
+Author: DarkArtek
+Author-email: luca@ahd-creative.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Django
+Provides-Extra: pytest
