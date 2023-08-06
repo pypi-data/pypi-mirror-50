@@ -1,0 +1,13 @@
+MANIFEST.in
+README.md
+VERSION
+requirements.txt
+setup.cfg
+setup.py
+dataverk_tools/__init__.py
+dataverk_tools/_doc.py
+dataverk_tools.egg-info/PKG-INFO
+dataverk_tools.egg-info/SOURCES.txt
+dataverk_tools.egg-info/dependency_links.txt
+dataverk_tools.egg-info/requires.txt
+dataverk_tools.egg-info/top_level.txt
