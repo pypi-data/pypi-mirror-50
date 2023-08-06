@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+docs/index.md
+epic_theme/__init__.py
+epic_theme/apps.py
+epic_theme/version.py
+epic_theme.egg-info/PKG-INFO
+epic_theme.egg-info/SOURCES.txt
+epic_theme.egg-info/dependency_links.txt
+epic_theme.egg-info/top_level.txt
