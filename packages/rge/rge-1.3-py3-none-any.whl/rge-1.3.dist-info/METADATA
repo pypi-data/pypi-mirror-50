@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: rge
+Version: 1.3
+Summary: Engine for Refrence Game Tests
+Home-page: https://github.com/cocolab-projects/reference-game-exploration
+Author: Ron Arel
+Author-email: RonArel123@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# reference-game-exploration
+Exploring the design of neural networks used in reference games. 
+
+More information: 
+https://docs.google.com/document/d/1VJNZs63Lg2dKkoM7X6Dcxv5ca4qV_iUyqlIKqriRjqs/edit
+
+
