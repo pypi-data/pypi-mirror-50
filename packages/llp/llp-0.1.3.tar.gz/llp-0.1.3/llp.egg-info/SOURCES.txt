@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+config.txt
+requirements.txt
+setup.py
+bin/llp
+llp.egg-info/PKG-INFO
+llp.egg-info/SOURCES.txt
+llp.egg-info/dependency_links.txt
+llp.egg-info/requires.txt
+llp.egg-info/top_level.txt
