@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: flake8-nitpick
+Version: 0.13.2
+Summary: Flake8 plugin to enforce the same lint configuration (flake8, isort, mypy, pylint) across multiple Python projects
+Home-page: https://github.com/andreoliwa/flake8-nitpick
+License: MIT
+Keywords: python3,flake8,linter,styleguide
+Author: W. Augusto Andreoli
+Author-email: andreoliwa@gmail.com
+Requires-Python: >=3.5,<4.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Plugins
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Quality Assurance
+Requires-Dist: attrs
+Requires-Dist: dictdiffer
+Requires-Dist: flake8 (>=3.0.0)
+Requires-Dist: jmespath
+Requires-Dist: python-slugify
+Requires-Dist: pyyaml
+Requires-Dist: requests
+Requires-Dist: toml
+Project-URL: Repository, https://github.com/andreoliwa/flake8-nitpick
+Description-Content-Type: text/markdown
+
+# NOTICE: flake-nitpick renamed to nitpick
+
+This project has been renamed to [nitpick](https://pypi.org/project/nitpick/).
+
