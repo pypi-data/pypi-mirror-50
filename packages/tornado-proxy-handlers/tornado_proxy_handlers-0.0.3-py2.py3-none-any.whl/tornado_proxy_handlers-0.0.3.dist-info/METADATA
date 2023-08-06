@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: tornado-proxy-handlers
+Version: 0.0.3
+Summary: Tornado proxy handlers
+Home-page: https://github.com/timkpaine/tornado-proxy-handlers
+Author: Tim Paine
+Author-email: timothy.k.paine@gmail.com
+License: Apache 2.0
+Download-URL: https://github.com/timkpaine/tornado-proxy-handlers/archive/v0.0.3.tar.gz
+Keywords: tornado proxy
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: tornado (>=6.0.2)
+Provides-Extra: dev
+Requires-Dist: tornado (>=6.0.2) ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Requires-Dist: pylint ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+
+# tornado-proxy-handlers
+Tornado proxy handlers for HTTP requests and web sockets
+
+## Overview
+This project contains 2 proxy handlers:
+- HTTP Handler
+- Websocket Handler
+
+The websocket handler requires the http handler for `599` protocol switching. 
+
+## Use
+These are designed to be embedded in a tornado server that needs to proxy. They can also be run as a standalone proxy server via the `tornado-proxy` command. 
+
+
+
