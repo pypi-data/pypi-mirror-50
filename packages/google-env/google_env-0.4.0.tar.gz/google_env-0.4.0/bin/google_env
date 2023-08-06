@@ -1,0 +1,4 @@
+#!/usr/bin/env python
+
+import google_env
+google_env.rewrite_env_file()

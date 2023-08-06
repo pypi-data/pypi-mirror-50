@@ -1,0 +1,9 @@
+README.md
+setup.py
+bin/google_env
+google_env/__init__.py
+google_env.egg-info/PKG-INFO
+google_env.egg-info/SOURCES.txt
+google_env.egg-info/dependency_links.txt
+google_env.egg-info/requires.txt
+google_env.egg-info/top_level.txt
