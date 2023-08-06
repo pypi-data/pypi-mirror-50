@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: pyramid-csrf-multi-scheme
+Version: 0.0.10
+Summary: provides for creating independent csrf tokens for the http and https schemes
+Home-page: https://github.com/jvanasco/pyramid_csrf_multi_scheme
+Author: Jonathan Vanasco
+Author-email: jonathan@findmeon.com
+License: BSD-derived (http://www.repoze.org/LICENSE.txt)
+Description: This package enables two separate cookie tokens on each request, bound to the scheme:
+        
+        * a secure HTTPS-only cookie
+        * a mixed-use INSECURE http token
+        
+Keywords: web pyramid csrf
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Framework :: Pyramid
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: Repoze Public License
