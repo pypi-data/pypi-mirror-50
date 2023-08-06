@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: camus
+Version: 0.0.3
+Summary: A Records like database API that works with Aurora Serverless Data API
+Home-page: https://github.com/noverde/camus
+Author: Rafael Izidoro
+Author-email: izidoro.rafa@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
+Requires-Dist: boto3
+
+# camus
+Records... but for Aurora Serverless Data API
+
+
