@@ -1,0 +1,46 @@
+{% if k8s.rbac and k8s.rbac.enabled %}
+
+{% if k8s.rbac.namespace or k8s.namespace %}
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: {{ k8s.rbac.namespace or k8s.namespace }}
+---
+{% endif %}
+
+kind: ServiceAccount
+apiVersion: v1
+metadata:
+  name: {{ k8s.rbac.name or k8s.name + '-user' }}
+
+  {% if k8s.rbac.namespace or k8s.namespace %}
+  namespace: {{ k8s.rbac.namespace or k8s.namespace }}
+  {% endif %}
+
+  labels:
+    htjs: "true"
+    htjs-app: "{{ k8s.name }}"
+    htjs-app-version: "{{ k8s.version or '0.0.1' }}"
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ k8s.rbac.name or k8s.name + '-user' }}
+
+  {% if k8s.rbac.namespace or k8s.namespace %}
+  namespace: {{ k8s.rbac.namespace or k8s.namespace }}
+  {% endif %}
+
+  labels:
+    htjs: "true"
+    htjs-app: "{{ k8s.name }}"
+    htjs-app-version: "{{ k8s.version or '0.0.1' }}"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: {{ k8s.rbac.name or k8s.name + '-user' }}
+    namespace: {{ k8s.rbac.namespace or k8s.namespace }}
+{% endif %}

@@ -1,0 +1,33 @@
+k8s:
+  name: nginx
+  namespace: default
+
+  configMap:
+    enabled: false
+    data:
+      key1: value1
+      key2: value2
+
+  rabc:
+    enabled: false
+
+  service:
+    enabled: true
+    type: NodePort
+    ports: 80
+
+  deployment:
+    enabled: true
+    imageWithTag: nginx:latest
+    ports: 80
+
+  storage:
+    enabled: false
+    class: nfs
+    requests: 1Gi
+    path: /k8s-data
+
+  ingress:
+    enabled: false
+    rules:
+      - host: www.htjs.net
