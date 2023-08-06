@@ -1,0 +1,9 @@
+{% load i18n %}
+{% blocktrans %}Hi {{ recipient }},
+
+{{ description }}
+
+{% if details %}
+{% trans 'Details' %}: {{ details }}
+{% endif %}
+{% endblocktrans %}
