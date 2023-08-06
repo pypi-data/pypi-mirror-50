@@ -1,0 +1,17 @@
+helpme/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+helpme/admin.py,sha256=qr0mZlX2F5_9tlIPxzbVQqMlLXkw6eGvsGkOb8r-mUY,112
+helpme/apps.py,sha256=z_YsMAXx0CKYnTjEhF4Nw46JrpdpzZNSt0N_YqZEN2Q,87
+helpme/forms.py,sha256=smWHHr9Pb6c4v3E4GLX7h1CEnXijMOxzrHX3_0_qzQg,825
+helpme/models.py,sha256=7ptyRhp7JAdkI_T5VK_yHc3Zd8NF6BCmcCfKEY7Uw-E,3549
+helpme/tests.py,sha256=mrbGGRNg5jwbTJtWWa7zSKdDyeB4vmgZCRc2nk6VY-g,60
+helpme/urls.py,sha256=5pYhAG5HLuuK5ab2wanBCp_vfbb8_JO-99leZBzhwvw,303
+helpme/views.py,sha256=rb0zbaq3h9hg9R7E7mOYhQSM1iNUyoP6VG6nFPa5Qis,1779
+helpme/migrations/0001_initial.py,sha256=JsnAkYtXda0IrJG38KB11HiCWyhsNHruUVbGUI0i6V8,2199
+helpme/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+helpme/templates/helpme/base.html,sha256=dsYLBNIuIT4gSEZrwCYc-eu_T33OnV5jX0x9u9xQo7U,93
+helpme/templates/helpme/submission_successful.html,sha256=AWtwsZyKid2MNTwpMyYCiHebLudfoE5IPBiDghOK0cs,91
+helpme/templates/helpme/supportrequest_form.html,sha256=GxC9BWtXfF_cPusAE_lY9FtBE8sFQcS8nhwRJpJMpzM,212
+django_help_me-0.1.0.dist-info/METADATA,sha256=HwByR1nvmj7rbFUV2aUudcimjFUJG81CMWVhQNDT6cs,1142
+django_help_me-0.1.0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+django_help_me-0.1.0.dist-info/top_level.txt,sha256=270akfBMdBAYKQ8uxKfMEvZ6UKc8dzv9aiLOdl8RBDw,7
+django_help_me-0.1.0.dist-info/RECORD,,

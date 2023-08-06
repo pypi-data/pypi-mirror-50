@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: django-help-me
+Version: 0.1.0
+Summary: A simple app for providing a simple help desk for users.
+Home-page: https://github.com/renderbox/django-help-me/
+Author: Grant Viklund
+Author-email: renderbox@example.com
+License: MIT license
+Keywords: django,app
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.6
+Requires-Dist: Django (<2.3,>=2.2)
+Provides-Extra: build
+Requires-Dist: setuptools ; extra == 'build'
+Requires-Dist: wheel ; extra == 'build'
+Requires-Dist: twine ; extra == 'build'
+Provides-Extra: dev
+Provides-Extra: docs
+Requires-Dist: coverage ; extra == 'docs'
+Requires-Dist: Sphinx ; extra == 'docs'
+Requires-Dist: sphinx-bootstrap-theme ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme ; extra == 'docs'
+Requires-Dist: sphinx-js ; extra == 'docs'
+Provides-Extra: prod
+Provides-Extra: test
+
+Help Me
+=======
+
+A simple app for providing a simple help desk for users.
+
+
