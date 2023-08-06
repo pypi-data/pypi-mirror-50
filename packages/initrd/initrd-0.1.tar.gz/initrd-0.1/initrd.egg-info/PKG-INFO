@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: initrd
+Version: 0.1
+Summary: Linux initrd utilities
+Home-page: https://github.com/bifferos/initrd/
+Author: bifferos
+Author-email: bifferos@gmail.com
+License: LGPLv2
+Description: UNKNOWN
+Keywords: inird cpio linux
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v2 (LGPLv2)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
