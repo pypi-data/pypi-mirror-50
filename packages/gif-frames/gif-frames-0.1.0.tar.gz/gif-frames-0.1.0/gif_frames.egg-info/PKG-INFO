@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: gif-frames
+Version: 0.1.0
+Summary: Extract frames from gif image.
+Home-page: UNKNOWN
+Author: zencore
+Author-email: dobetter@zencore.cn
+License: MIT
+Description: # gif-frames
+        
+        Extract frames from gif image.
+        
+        ## Install
+        
+            pip install gif-frames
+        
+        
+        ## Installed Commands
+        
+        - gif-frames
+        
+        
+        ## Usage
+        
+            E:\gif-frames>gif-frames --help
+            Usage: gif-frames [OPTIONS] IMAGE [OUT]
+        
+            Extract frames from gif image.
+        
+            IMAGE: The file path of the gif image
+        
+            OUT: The folder where extraced frames to save
+        
+            Options:
+            --help  Show this message and exit.
+        
+        
+        ## Examples
+        
+            E:\gif-frames>cd
+            E:\gif-frames
+        
+            E:\gif-frames>gif-frames test.gif
+            n_frames = 53
+        
+        
+        Extract frames from e:\gif-frames\test.gif and save frames in folder e:\gif-frames\test\.
+        
+        
+Keywords: gif-frames,gif
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires: click
+Requires: pillow
+Description-Content-Type: text/markdown

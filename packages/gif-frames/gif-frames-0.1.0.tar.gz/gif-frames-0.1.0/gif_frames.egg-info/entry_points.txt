@@ -1,0 +1,3 @@
+[console_scripts]
+gif-frames = gif_frames:main
+
