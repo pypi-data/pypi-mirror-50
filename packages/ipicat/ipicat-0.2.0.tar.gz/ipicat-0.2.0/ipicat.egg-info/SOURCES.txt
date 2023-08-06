@@ -1,0 +1,13 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+ipicat/__init__.py
+ipicat/pi.py
+ipicat.egg-info/PKG-INFO
+ipicat.egg-info/SOURCES.txt
+ipicat.egg-info/dependency_links.txt
+ipicat.egg-info/requires.txt
+ipicat.egg-info/top_level.txt
+ipicat/static/picat.js
