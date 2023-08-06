@@ -1,0 +1,4 @@
+[console_scripts]
+omwimport = importmod.main:main
+omwmigrate = importmod.migrate:migrate
+
