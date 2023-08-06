@@ -1,0 +1,17 @@
+Metadata-Version: 1.2
+Name: autoscaleaws
+Version: 0.0.2
+Summary: Auto scale AWS by spot instances.
+Home-page: https://github.com/ajeybk/autoscaleaws
+Author: arita37
+License: BSD
+Description: 
+         Autoscale AWS allows to scale up virtual machines by invoking spot requests as per
+         start and stop rules.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: BSD License
+Requires-Python: >=3.0
