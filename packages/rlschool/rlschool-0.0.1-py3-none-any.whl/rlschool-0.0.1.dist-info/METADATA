@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: rlschool
+Version: 0.0.1
+Summary: RLSchool: Excellent environments for reinforcement Learning benchmarking
+Home-page: https://github.com/PaddlePaddle/RLSchool
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: GPLv3
+Keywords: redis subscripe
+Platform: UNKNOWN
+Requires-Dist: pyglet (>=1.2.0)
+Requires-Dist: six (>=1.12.0)
+Requires-Dist: numpy (>=1.16.4)
+Requires-Dist: configparser (>=3.7.4)
+
+UNKNOWN
+
+
