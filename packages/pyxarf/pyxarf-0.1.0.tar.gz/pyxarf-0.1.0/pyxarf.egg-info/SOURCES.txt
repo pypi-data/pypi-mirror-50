@@ -1,0 +1,17 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+version.txt
+pyxarf/__init__.py
+pyxarf/exceptions.py
+pyxarf/xarf.py
+pyxarf.egg-info/PKG-INFO
+pyxarf.egg-info/SOURCES.txt
+pyxarf.egg-info/dependency_links.txt
+pyxarf.egg-info/requires.txt
+pyxarf.egg-info/top_level.txt
+scripts/xarfutil.py
+xarfmail/__init__.py
+xarfmail/xarfmail.py
