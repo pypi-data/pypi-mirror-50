@@ -1,0 +1,25 @@
+"""
+PyFunnels is library, written in Python, which aggregates the output of one or more tools.
+Basic usage:
+
+from PyFunnels import PyFunnels
+
+#Specify the output file for each tool in a dictionary.
+
+source_files = {
+    "spiderfoot":"/path/to/file/spiderfoot.db",
+    "recon_ng":"/path/to/file/recon-ng.db",
+    "nmap":"/path/to/file/nmap_results.xml"
+}
+
+#Create a PyFunnels object.
+
+PyF = PyFunnels.Funnel(source_files)
+
+#Do something with it
+
+domains = PyF.funnel_data("domains")
+
+for d in domains:
+    pass
+"""
