@@ -1,0 +1,42 @@
+## This is a template for input files for the MiTfAT library,
+#  a pyhton-based fMRI analysis tool.
+# In which line you write the info is irrelevant.
+# every line starting with '#', or not starting with a valid keyword is ignored.
+# There should be at least one blank space between the keyword and the data.
+# The only obligatory keywords are the DATA_FILE and MASK_FILE.
+
+# valid keywords are:
+# 'DATA_FILE:' -> (REQUIRED) name of the nifty data files
+# 'MASK_FILE:' -> (REQUIRED) nifty file including the mask file.
+                   In the mask file, 0 means ignore the voxel,
+                                     non-zero means read the voxel.
+# 'TIME_FILE:' -> file including time points for each data point.
+                  If left blank, indices of data points are used in plots.
+# 'EVENT_TIMES' -> can be any events of interest.
+                    should be numbers (float or integer), comma separated.
+                    They'd be irrelevant if TIME_FILE does not exist.
+                    They do not need to match exact values of time steps.
+# 'DIR_SOURCE:' -> Absolute path to source directory.
+                   default is 'datasets' subfolder inside current folder.
+# 'DIR_SAVE' -> Absolute path to directory used to save the outputs.
+                default is used: 'outputs' subfolder inside current folder.
+# 'MOL_NAME:' -> Molecule name. Used in molecular fMRI experiments.
+                 If not left blank will be used to establish DIR_SAVE name.
+# 'EXP_NAME' -> Experiment name.
+                 If not left blank will be used to establish DIR_SAVE name.
+# 'DESC'-> A free style text with info about the dataset.
+# 'DS_NO' -> A number assigned to identify the dataset.
+             If not left blank will be used to establish DIR_SAVE name.
+# 'SIGNAL_NAME' -> can be T1w, FISP, T2w* or any arbitrary string.
+
+## Here is a sample info file:
+DATA_FILE: sample_data_T1w.nii.gz
+MASK_FILE: sample_data_mask.nii.gz
+TIME_FILE: sample_data_time_T1w.txt
+MOL_NAME: SCA
+SIGNAL_NAME: T1w
+DS_NO: 1
+EXP_NAME: Exp1
+# DIR_SOURCE: ../resources/datasets/
+DESC: Just a sample dataset.
+EVENT_TIMES: 123,181

@@ -1,0 +1,151 @@
+MiTfAT
+======
+
+.. image:: https://img.shields.io/pypi/v/MiTfAT.svg
+    :target: https://pypi.python.org/pypi/MiTfAT
+    :alt: Latest PyPI version
+
+.. image:: https://travis-ci.org/borntyping/cookiecutter-pypackage-minimal.png
+   :target: https://travis-ci.org/borntyping/cookiecutter-pypackage-minimal
+   :alt: Latest Travis CI build status
+
+A python-based fMRI Analysis Tool.
+
+Usage
+-----
+When you install MiTfAT, it comes with a sample dataset. You can run an example using this dataset to familiarize yourself with the package:   
+
+ .. code-block:: python
+ 
+    import mitfat 
+    from mitfat.file_io import read_data
+    import pkg_resources
+    info_file = pkg_resources.resource_filename('mitfat', 'sample_info_file.txt')
+    DATA_PATH = pkg_resources.resource_filename('mitfat', 'datasets/')
+    dataset1 = read_data(info_file)
+
+In doing so, you have loaded all the available data in the sample dataset into an object called ``dataset1`` which hold all the relevant info of an fMRI recording. The sample dataset includes a nifty data file of 852 voxels, each recorded in 59 time-steps. The data files also include a text file of time-steps (in minutes) which will be used in x-axis of all relevant plots. There have been two 'events' during the recording which are added to the dataset. These two events split our time steps into three time-segments, which are also reflected in the plots.
+
+There are already some basic operation done on the data. For example, linear regression of the data in each time segment. Now you can plot raw, normalised and linearly regressed time-series for each voxelall voxels as follows. Plots will be saved under ``output`` folder which is created in the folder from which you are running the python. 
+
+ .. code-block:: python
+ 
+    # Basic plots of normalized time-series
+    dataset1.plot_basics()
+
+    # plots of linearly regressed time-series. Linear regression is performed on each segment separately. 
+    dataset1.plot_basics('lin_reg')
+
+    # plots of raw time-series
+    dataset1.plot_basics('raw')
+
+
+You can also cluster the time-series, using Kmenas clustering from scikit-learn library:
+
+ .. code-block:: python
+ 
+    X_train = dataset1.data
+    X_train_label = 'RAW_Normalised'  # used in plot titles only
+    num_clusters = 5
+    cluster_labels, cluster_centroid = dataset1.cluster(X_train, num_clusters)
+    dataset1.save_clusters(X_train, X_train_label, cluster_labels, cluster_centroid)
+    dataset1.plot_clusters(X_train, X_train_label, cluster_labels, cluster_centroid)
+
+or cluster voxels based on their mean value:
+
+ .. code-block:: python
+ 
+    X_train = dataset1.data_mean
+    X_train_label = 'Mean_Normalised'
+    print('Clusterhttps://gitlab.tuebingen.mpg.de/vbokharaie/mitfating ', X_train_label)
+    num_clusters = 4
+    cluster_labels, cluster_centroid = dataset1.cluster(X_train, num_clusters)
+    dataset1.save_clusters(X_train, X_train_label, cluster_labels, cluster_centroid)
+    dataset1.plot_clusters(X_train, X_train_label, cluster_labels, cluster_centroid)
+
+or you can cluster your voxels based on the slope of your three segments. 
+
+ .. code-block:: python
+ 
+    X_train = dataset1.line_reg_slopes
+    X_train_label = 'Lin_regression_slopes_per_segments'
+    num_clusters = 4
+    cluster_labels, cluster_centroid = dataset1.cluster(X_train, num_clusters)
+    dataset1.save_clusters(X_train, X_train_label, cluster_labels, cluster_centroid)
+    dataset1.plot_clusters(X_train, X_train_label, cluster_labels, cluster_centroid, if_slopes=True)
+    
+
+If you want to change a property (attribute in Pythons-speak), you can do so easily. For example, the example dataset is set to save the output plots and excel files into a subfolder called 'output' under the current python working directory. If you want to change it, you can simply do the following:
+
+ .. code-block:: python
+ 
+    dataset1.dir_save = 'COPY_FOLDER_PATH_HERE'
+
+You can change various other properties of the dataset. There are some of these attributes which are read directly from the input data-files:
+ .. code-block:: python
+ 
+    data_raw  #raw data
+    data  # normalized data.
+    data_mean  # mean value of time-series for each voxel
+    mask  # the fMRI mask. Number of 1s in it should match data.shape[1]
+    time_steps  # a float array of time-steps. Their length should match sdata.shape[0]. 
+                # If there is no such data available, time-steps would be consecutive integers to match data shape.
+    num_voxels 
+    num_time_steps 
+    dir_source  # from which folder the data was loaded?
+
+And then there are some which merely hold miscellaneous information and can be change at will:
+
+ .. code-block:: python
+
+    signal_name  # a string, can be 'T1w', 'T2*', 'FISP' or any other signal you have recorded
+    indices_cutoff  # indices of 'events'. If dataset has 59 time-steps, it should be a list of integere in [0,58] range.
+    experiment_name  # a string
+    dataset_no  # an integer. 
+    mol_name  # Molecule name. Useful for molecular fMRI studies. 
+    description  # a short description
+    
+
+    
+
+    
+
+Installation
+------------
+Simply type:
+
+::
+    pip install mitfat
+
+Or if you want to play around with the latest beta-release, you can find it in:
+
+https://gitlab.tuebingen.mpg.de/vbokharaie/mitfat
+
+
+Requirements
+^^^^^^^^^^^^
+
+ .. code-block:: python
+ 
+    seaborn==0.9.0
+    pandas==0.25.0
+    numpy==1.16.4
+    scipy==1.3.0
+    matplotlib==3.1.1
+    nibabel==2.5.0
+    nilearn==0.5.2
+    scikit_learn==0.21.3
+    openpyxl  # this is a pandas dependencies
+
+
+Compatibility
+-------------
+
+Licence
+-------
+MIT license
+
+Authors
+-------
+
+`MiTfAT` was written by `Vahid Samadi Bokharaie <vahid.bokharaie@tuebingen.mpg.de>`_.
