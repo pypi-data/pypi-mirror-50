@@ -1,0 +1,12 @@
+Metadata-Version: 1.0
+Name: kfp-server-api
+Version: 0.1.26
+Summary: KF Pipelines API
+Home-page: https://github.com/kubeflow/pipelines
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Description:     Generated python client for the KF Pipelines server API  # noqa: E501
+            
+Keywords: Swagger,KF Pipelines API
+Platform: UNKNOWN
