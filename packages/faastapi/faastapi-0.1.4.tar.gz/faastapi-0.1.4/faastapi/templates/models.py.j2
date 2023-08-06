@@ -1,0 +1,21 @@
+"""
+Function models
+"""
+from typing import Optional
+from pydantic import BaseModel, BaseSettings
+
+
+class OpenFaasConfig(BaseSettings):
+    enable_openfaas: bool = True
+
+    class Config:
+        env_prefix = "APP_"
+        case_insensitive = True
+
+
+class Output(BaseModel):
+    msg: str
+    mongo_client: Optional[str] = None
+    sql_client: Optional[str] = None
+    async_sql_client: Optional[str] = None
+
