@@ -1,0 +1,12 @@
+README.md
+setup.cfg
+setup.py
+cli_tool_test/__init__.py
+cli_tool_test/prog.py
+cli_tool_test.egg-info/PKG-INFO
+cli_tool_test.egg-info/SOURCES.txt
+cli_tool_test.egg-info/dependency_links.txt
+cli_tool_test.egg-info/entry_points.txt
+cli_tool_test.egg-info/requires.txt
+cli_tool_test.egg-info/top_level.txt
+cli_tool_test.egg-info/zip-safe
