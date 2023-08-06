@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+nb2xls/__init__.py
+nb2xls/__meta__.py
+nb2xls/exporter.py
+nb2xls/mdrenderer.py
+nb2xls/mdxlsstyles.py
+nb2xls.egg-info/PKG-INFO
+nb2xls.egg-info/SOURCES.txt
+nb2xls.egg-info/dependency_links.txt
+nb2xls.egg-info/entry_points.txt
+nb2xls.egg-info/not-zip-safe
+nb2xls.egg-info/requires.txt
+nb2xls.egg-info/top_level.txt
