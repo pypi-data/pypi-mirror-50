@@ -1,0 +1,9 @@
+docutils
+nbformat
+sphinx>=1.8.5
+dask
+dask[distributed]
+ipython
+nbconvert
+jupyter_client
+pyzmq>=17.1.3
