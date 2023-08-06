@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: maltego_crypto_test
+Version: 0.1.8
+Summary: Maltego OAuth Crypto Helper
+Home-page: https://www.maltego.com
+License: UNKNOWN
+Author: Maltego Staff
+Author-email: support@maltego.com
+Description-Content-Type: text/markdown
+Classifier: License :: OSI Approved :: MIT License
+Requires-Dist: pycryptodome>=3.8.2
+Requires-Dist: six>=1.12.0
+Requires-Dist: pytest >=5.0.1; extra == "test"
+Provides-Extra: test
+
+# Maltego Crypto Helper Library 
+A very small library that helps decrypt OAuth credentials sent from the TDS. 
+
+## Overview of the Maltego OAuth Configuration
+
+
+
+
