@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: ra_crypto
+Version: 1.0.2
+Summary: A python module with encryption and decryption				algorithms for RSA based IBE and AES
+Home-page: UNKNOWN
+Author: EddyMM
+Author-email: mwendaeddy@gmail.com
+License: UNKNOWN
+Description: ## Research Access Cryptosystem
+        
+        A python module with encryption and decryption algorithms for RSA based IBE
+        and AES
+        
+        
+        ## Author
+        Eddy Mwenda Mwiti (mwendaeddy@gmail.com)
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
