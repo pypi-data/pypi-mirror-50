@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: my-pypi-package
+Version: 0.0.2
+Summary: my First Package
+Home-page: https://github.com/frzmohammadali/my_pypi_package
+Author: Mohammadali
+Author-email: mforouzesh@mpi-sws.org
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: numpy (>=1.17.0)
+Requires-Dist: requests (>=2.22.0)
+
+# readme title
+This is just a line describing this package
+
