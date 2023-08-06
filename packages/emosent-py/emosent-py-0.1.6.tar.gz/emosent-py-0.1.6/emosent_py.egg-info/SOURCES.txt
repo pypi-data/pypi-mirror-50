@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+emosent/__init__.py
+emosent/emosent.py
+emosent/data/Emoji_Sentiment_Data_v1.0.csv
+emosent_py.egg-info/PKG-INFO
+emosent_py.egg-info/SOURCES.txt
+emosent_py.egg-info/dependency_links.txt
+emosent_py.egg-info/top_level.txt
