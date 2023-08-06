@@ -1,0 +1,5 @@
+pandas==0.25.0
+click==7.0
+click-log==0.3.2
+cutadapt==2.4
+flake8==3.7.8
