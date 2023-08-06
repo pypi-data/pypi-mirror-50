@@ -1,0 +1,49 @@
+Metadata-Version: 1.1
+Name: lock-with-timeout
+Version: 0.1.8
+Summary: Theading lock with timeout
+Home-page: https://github.com/fx-kirin/lock_with_timeout
+Author: fx-kirin
+Author-email: fx.kirin@gmail.com
+License: UNKNOWN
+Description: lock_with_timeout
+        =================
+        
+        .. image:: https://img.shields.io/pypi/v/lock_with_timeout.svg
+            :target: https://pypi.python.org/pypi/lock_with_timeout
+            :alt: Latest PyPI version
+        
+        .. image:: https://github.com/fx-kirin/lock_with_timeout.png
+           :target: https://github.com/fx-kirin/lock_with_timeout
+           :alt: Latest Travis CI build status
+        
+        Theading lock with timeout
+        
+        Usage
+        -----
+        
+        Installation
+        ------------
+        
+        Requirements
+        ^^^^^^^^^^^^
+        
+        Compatibility
+        -------------
+        
+        Licence
+        -------
+        
+        Authors
+        -------
+        
+        `lock_with_timeout` was written by `fx-kirin <fx.kirin@gmail.com>`_.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
