@@ -1,0 +1,11 @@
+-r base.txt
+django>=1.11,<2.0
+-e git://github.com/edx/xblock-sdk.git@master#egg=xblock-sdk==master
+lazy
+nose
+mock
+tox
+coverage
+django-pyfs
+mako
+ddt
