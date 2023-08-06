@@ -1,0 +1,9 @@
+mmcif>=0.43
+rcsb.utils.io>=0.37
+rcsb.utils.config>=0.20
+
+[dev]
+check-manifest
+
+[test]
+coverage
