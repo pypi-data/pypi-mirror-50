@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+versioneer.py
+pysweeper/_version.py
+pysweeper.egg-info/PKG-INFO
+pysweeper.egg-info/SOURCES.txt
+pysweeper.egg-info/dependency_links.txt
+pysweeper.egg-info/entry_points.txt
+pysweeper.egg-info/requires.txt
+pysweeper.egg-info/top_level.txt
