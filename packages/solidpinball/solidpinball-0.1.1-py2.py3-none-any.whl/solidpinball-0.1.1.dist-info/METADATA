@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: solidpinball
+Version: 0.1.1
+Summary: A digital fabrication framework for pinball machines using Python
+Home-page: https://github.com/felipesanches/SolidPinball/
+Author: Felipe Correa da Silva Sanches
+Author-email: juca@members.fsf.org
+License: GNU GPLv3+
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Development Status :: 4 - Beta
+Classifier: Topic :: Multimedia :: Graphics :: 3D Modeling
+Classifier: Topic :: Games/Entertainment :: Arcade
+Classifier: Intended Audience :: Manufacturing
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: solidpython
+
+SolidPinball
+============
+
+A digital fabrication framework for pinball machines using Python
+
+Example
+-------
+
+Please take a look at the PARTYLandRemake repository.
+
+
