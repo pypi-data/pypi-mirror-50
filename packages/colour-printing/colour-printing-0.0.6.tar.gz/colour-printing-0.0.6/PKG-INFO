@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: colour-printing
+Version: 0.0.6
+Summary: colour-printing
+Home-page: https://github.com/Faithforus/Colour-printing
+Author: faithforus
+Author-email: ljunf817@163.com
+License: UNKNOWN
+Description: 以不同颜色区分终端输出信息类型，标识出重要信息
+Keywords: python package print
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
