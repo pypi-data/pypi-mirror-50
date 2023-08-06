@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: backwork-backup-xtrabackup
+Version: 0.2.0
+Summary: Backwork plug-in for Percona XtraBackup backups.
+Home-page: https://github.com/IBM/backwork-backup-xtrabackup
+Author: Luiz Aoqui
+Author-email: laoqui@ca.ibm.com
+License: Apache 2
+Description: # backwork-backup-xtrabackup [![Build Status](https://travis-ci.org/IBM/backwork-backup-xtrabackup.svg?branch=master)](https://travis-ci.org/IBM/backwork-backup-xtrabackup) [![PyPI version](https://badge.fury.io/py/backwork-backup-xtrabackup.svg)](https://badge.fury.io/py/backwork-backup-xtrabackup)
+        
+        ### TODO: create readme for this plugin
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 2 :: Only
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Topic :: Database
+Classifier: Topic :: System :: Archiving :: Backup
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
