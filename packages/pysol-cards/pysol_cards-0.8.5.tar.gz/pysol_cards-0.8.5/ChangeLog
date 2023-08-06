@@ -1,0 +1,89 @@
+CHANGES
+=======
+
+0.8.5
+-----
+
+* add more pysol functionality
+
+0.8.4
+-----
+
+* add pysol constants
+
+0.8.3
+-----
+
+* add version
+
+0.8.2
+-----
+
+* add some pysol methods
+
+0.8.1
+-----
+
+* add match\_ms\_deal\_prefix
+* add match\_ms\_deal\_prefix
+
+0.8.0
+-----
+
+* add seed-as-string
+
+0.6.2
+-----
+
+* fix out of range deals
+
+0.6.1
+-----
+
+* speedup
+
+0.6.0
+-----
+
+* Extract random\_base as an attempt for optimize
+
+0.4.3
+-----
+
+* fix super()
+* fix super() on python2
+
+0.4.2
+-----
+
+* update metadata and text
+
+0.4.1
+-----
+
+* fix print\_ in py v2
+
+0.4.0
+-----
+
+* add the deal\_game module
+
+0.2.2
+-----
+
+* fix oper sys cfg
+
+0.2.1
+-----
+
+* fix mit license cfg
+
+0.2.0
+-----
+
+* update meta data
+* change licence
+* add some tests
+* add the pysol\_cards.random module
+* add cards.py
+* Initial Cookiecutter Commit
