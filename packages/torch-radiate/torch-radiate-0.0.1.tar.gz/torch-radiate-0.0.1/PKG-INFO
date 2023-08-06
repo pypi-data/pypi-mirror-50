@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: torch-radiate
+Version: 0.0.1
+Summary: Automatic deep learning research report generator
+Home-page: UNKNOWN
+Author: Benoit Anctil-Robitaille
+Author-email: benoit.anctil-robitaille.1@ens.etsmtl.ca
+License: MIT
+Description: #  <img src="/icons/sunglasses.png" width="150" vertical-align="bottom">Radiate
+        > Automatic deep learning reasearch report generator
+        
+        ## Contributing
+        
+        #### How to contribute ?
+        - [X] Create a branch by feature and/or bug fix
+        - [X] Get the code
+        - [X] Commit and push
+        - [X] Create a pull request
+        
+        #### Branch naming
+        
+        ##### Feature branch
+        > feature/ [Short feature description] [Issue number]
+        
+        ##### Bug branch
+        > fix/ [Short fix description] [Issue number]
+        
+        #### Commits syntax:
+        
+        ##### Adding code:
+        > \+ Added [Short Description] [Issue Number]
+        
+        ##### Deleting code:
+        > \- Deleted [Short Description] [Issue Number]
+        
+        ##### Modifying code:
+        > \* Changed [Short Description] [Issue Number]
+        
+        ##### Merging code:
+        > Y Merged [Short Description] [Issue Number]
+        
+        
+        Icons made by <a href="http://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
