@@ -1,0 +1,11 @@
+Metadata-Version: 1.2
+Name: dv
+Version: 0.9.2
+Summary: Library to connect to DV event based vision software
+Home-page: http://gitlab.com/inivation/dv-python
+Author: inivation AG
+Author-email: support@inivation.com
+License: BSD-2
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3
