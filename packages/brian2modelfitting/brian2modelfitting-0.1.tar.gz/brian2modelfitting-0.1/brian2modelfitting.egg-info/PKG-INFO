@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: brian2modelfitting
+Version: 0.1
+Summary: Modelfitting Toolbox for the Brian 2 simulator
+Home-page: https://github.com/brian-team/brian2modelfitting
+Author: Aleksandra Teska, Marcel Stimberg, Romain Brette, Dan Goodman
+Author-email: team@briansimulator.org
+License: CeCILL-2.1
+Description: brian2modelfitting
+        ==================
+        
+        Model fitting toolbox for the Brian 2 simulator
+        
+        This will used for the next version of the model fitting toolbox for the Brian 2 simulator. In the meantime, see the existing package for the Brian 1 simulator at http://www.briansimulator.org/docs/modelfitting.html
+        
+        
+        
+        Testing status
+        --------------
+        master
+        [![Build Status](https://travis-ci.org/brian-team/brian2modelfitting.svg?branch=master)](https://travis-ci.org/brian-team/brian2modelfitting)
+        
+        dev
+        [![Build Status](https://travis-ci.org/brian-team/brian2modelfitting.svg?branch=dev)](https://travis-ci.org/brian-team/brian2modelfitting)
+        
+        
+        
+        [![coveralls](https://img.shields.io/coveralls/brian-team/brian2/master.svg?style=flat-square)](https://coveralls.io/r/brian-team/brian2modelfitting?branch=master)
+        
+Keywords: model fitting computational neuroscience
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: CEA CNRS Inria Logiciel Libre License, version 2.1 (CeCILL-2.1)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Provides: brian2modelfitting
+Provides-Extra: docs
+Provides-Extra: test
