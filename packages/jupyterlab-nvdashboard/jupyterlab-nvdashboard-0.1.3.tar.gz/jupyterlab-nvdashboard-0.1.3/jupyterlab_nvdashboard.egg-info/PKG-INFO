@@ -1,0 +1,12 @@
+Metadata-Version: 1.1
+Name: jupyterlab-nvdashboard
+Version: 0.1.3
+Summary: A JupyterLab extension for displaying dashboards of GPU usage.
+Home-page: https://github.com/jacobtomlinson/jupyterlab-nvdashboard
+Author: NV Dashbaord contributors
+Author-email: UNKNOWN
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: Jupyter
+Platform: UNKNOWN
+Classifier: Framework :: Jupyter
