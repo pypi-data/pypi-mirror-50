@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        loraline = loraline.main:main
+    
