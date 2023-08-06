@@ -1,0 +1,14 @@
+SQLAlchemy>=1.3.6
+
+[dev]
+pytest
+tox
+pylint
+pytest-cov
+pytest-flakes
+mypy
+pydocstyle
+black
+pre-commit
+isort
+typing-extensions
