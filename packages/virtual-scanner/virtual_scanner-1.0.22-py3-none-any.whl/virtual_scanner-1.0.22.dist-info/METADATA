@@ -1,0 +1,94 @@
+Metadata-Version: 2.1
+Name: virtual-scanner
+Version: 1.0.22
+Summary: Virtual Scanner educational tool for MRI
+Home-page: https://github.com/imr-framework/virtual-scanner
+Author: imr-framework
+Author-email: imr.framework2018@gmail.com
+License: License :: OSI Approved :: GNU Affero General Public License v3
+Platform: UNKNOWN
+Requires-Dist: absl-py (==0.7.1)
+Requires-Dist: astor (==0.7.1)
+Requires-Dist: Click (==7.0)
+Requires-Dist: cycler (==0.10.0)
+Requires-Dist: Flask (==1.0.2)
+Requires-Dist: gast (==0.2.2)
+Requires-Dist: grpcio (==1.20.0)
+Requires-Dist: h5py (==2.9.0)
+Requires-Dist: itsdangerous (==1.1.0)
+Requires-Dist: Jinja2 (==2.10.1)
+Requires-Dist: Keras (==2.2.4)
+Requires-Dist: Keras-Applications (==1.0.7)
+Requires-Dist: Keras-Preprocessing (==1.0.9)
+Requires-Dist: kiwisolver (==1.0.1)
+Requires-Dist: Markdown (==3.1)
+Requires-Dist: MarkupSafe (==1.1.1)
+Requires-Dist: matplotlib (==3.0.3)
+Requires-Dist: mock (==2.0.0)
+Requires-Dist: nibabel (==2.4.0)
+Requires-Dist: numpy (==1.16.2)
+Requires-Dist: opencv-python (==4.0.0.21)
+Requires-Dist: pbr (==5.1.3)
+Requires-Dist: Pillow (==6.0.0)
+Requires-Dist: protobuf (==3.7.1)
+Requires-Dist: pydicom (==1.2.2)
+Requires-Dist: pyparsing (==2.3.1)
+Requires-Dist: pypulseq (==1.0.0)
+Requires-Dist: python-dateutil (==2.8.0)
+Requires-Dist: PyYAML (==5.1)
+Requires-Dist: scipy (==1.2.1)
+Requires-Dist: six (==1.12.0)
+Requires-Dist: tensorboard (==1.13.1)
+Requires-Dist: tensorflow (==1.13.1)
+Requires-Dist: tensorflow-estimator (==1.13.0)
+Requires-Dist: termcolor (==1.1.0)
+Requires-Dist: Werkzeug (==0.15.2)
+Requires-Dist: scikit-image (==0.15.0)
+
+<p align="center"> <a>
+<img title="Virtual Scanner Logo" src="https://github.com/imr-framework/imr-framework.github.io/blob/master/img/portfolio/virtual-scanner.png" width="225">
+</a></p>
+<h1 align="center"> Virtual Scanner </h1> <br>
+
+Virtual Scanner is an end-to-end hybrid MR simulator/console designed to be easily accessible, modular, and supported by open-source standards.
+
+The project is a response to the [ISMRM 2019 Junior Fellow Challenge (Africa)](https://www.ismrm.org/2019-junior-fellow-challenge/africa/).
+
+Virtual Scanner consists of two modes: in Standard Mode, a console-like GUI allows users to perform virtual scans and conduct basic analysis; in Advanced Mode, modular simulation/analysis of the entire MR signal chain may be performed.  
+
+## Quick Start
+1. Install Python 3.6.x.
+2. Create and activate a `venv` virtual environment.
+3. In a terminal: `pip install virtual-scanner`.
+
+If you want to hack around with the code:
+1. Install Python 3.6.x.
+2. Clone the repository and `cd` into it.
+3. Create and activate a `venv` virtual environment.
+4. Install dependencies by running `pip install -r requirements.txt` in a terminal.
+
+Then, run [`coms_server_flask.py`](https://github.com/imr-framework/virtual-scanner/blob/ISMRM2019/virtualscanner/coms/coms_ui/coms_server_flask.py) to start the browser GUI.
+
+To access the browser app, there are two ways:
+* Local hosting (only on the laptop running the script): go to the generated link (http://0.0.0.0:5000/) if you are a mac user, and this link (http://127.0.0.1:5000) if you are a windows user.  
+* Remote hosting : look up your IP address. Suppose it's 123.45.67.890, then you can go to (http://123.45.67.890:5000) to connect to the server remotely, either on the serving machine or different machines on the same network.
+
+Now you can start playing with Virtual Scanner! Log in with your email address, select Standard or Advanced mode, and click "Begin Scan". Instructions for each tab are given in the [Wiki](https://github.com/imr-framework/virtual-scanner/wiki).
+
+Alternatively, you can read the API documentation [here](https://imr-framework.github.io/virtual-scanner/) and run the Python test scripts in each module with more options available than allowed on the GUI.
+
+## Standard Mode
+* The **Register** page allows you to choose a phantom for simulation. Its format is similar to the form for entering information of the subject when conducting real scans. Choose the "Numerical" phantom for all simulations now.
+
+* The **Acquire** page allows the user to choose either a Gradient Echo (GRE) or a Spin Echo (SE, with optional inversion recovery) sequence, enter the parameters, and simulate them on a cylindrical phantom ("Numerical") containing spheres with different T1, T2, and PD values.
+
+* The **Analyze** page allows the user to load a series of data acquired in ISMRM/NIST phantom for T1 or T2 mapping and conduct curve fitting to obtain T1 and T2 maps. In addition, it can detect spheres in the phantom, a feature useful for comparing generated parameter values to literature values.
+
+## Advanced Mode
+* The **Tx** (RF transmit) page allows one to calculate and plot SAR from pulseq .seq files. *This feature is under development.*
+
+* The **Rx** (RF receive) page allows one to visualize time-domain MR signal, generated from an arbitrary grayscale image, and see the effects of using different demodulation frequencies and ADC sampling rate. *This feature is under development.*
+
+* Other features, including phantom and sequence viewers and reconstruction methods, are in active development.
+
+
