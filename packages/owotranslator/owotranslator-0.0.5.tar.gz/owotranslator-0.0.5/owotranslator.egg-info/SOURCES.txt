@@ -1,0 +1,12 @@
+.gitattributes
+.gitignore
+LICENSE
+README.md
+setup.cfg
+setup.py
+owotrans/__init__.py
+owotrans/owotrans.py
+owotranslator.egg-info/PKG-INFO
+owotranslator.egg-info/SOURCES.txt
+owotranslator.egg-info/dependency_links.txt
+owotranslator.egg-info/top_level.txt
