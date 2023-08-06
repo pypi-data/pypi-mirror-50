@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: tigrex
+Version: 1.2.0
+Summary: A Magic the Gathering CLI Tool
+Home-page: https://github.com/ericjaychi/tigrex
+Author: Eric Chi
+Author-email: ericjaychi@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: requests (<=2.21.0)
+Requires-Dist: fire (<=0.1.3)
+
+# tigrex
+
+tigrex is a Python CLI Tool for searching and pricing Magic the Gathering cards using Scryfall's API.
+
+## Installation
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install tigrex.
+
+```bash
+pip install tigrex
+```
+
+## Usage
+
+**search**
+```bash
+tigrex search [card-name]
+```
+![tigrex search](demo/tigrex-search.gif)
+
+**price**
+```
+tigrex price [card-name]
+```
+![tigrex search](demo/tigrex-price.gif)
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
+
