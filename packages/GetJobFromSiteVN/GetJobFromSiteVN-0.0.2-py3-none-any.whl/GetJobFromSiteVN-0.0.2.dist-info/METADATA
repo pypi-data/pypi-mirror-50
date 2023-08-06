@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: GetJobFromSiteVN
+Version: 0.0.2
+Summary: Get Job From Site VN
+Home-page: UNKNOWN
+Author: duonghao314
+Author-email: nhatquang.nv14@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+Requires-Dist: beautifulsoup4
+Requires-Dist: requests
+Requires-Dist: selenium
+
+Full description
+
+
