@@ -1,0 +1,14 @@
+README.rst
+setup.py
+bin/slingshot
+mpi_slingshot/__init__.py
+mpi_slingshot/config.py
+mpi_slingshot/interactive.py
+mpi_slingshot/logos.py
+mpi_slingshot/slingshot.py
+mpi_slingshot/tab_completer.py
+mpi_slingshot.egg-info/PKG-INFO
+mpi_slingshot.egg-info/SOURCES.txt
+mpi_slingshot.egg-info/dependency_links.txt
+mpi_slingshot.egg-info/requires.txt
+mpi_slingshot.egg-info/top_level.txt
