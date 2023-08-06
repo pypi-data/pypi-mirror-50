@@ -1,0 +1,6 @@
+absl-py==0.7.*
+boto3==1.9.*
+keras==2.2.*
+pillow==6.1.*
+tensorflow==1.14.*
+scikit-learn==0.21.*
