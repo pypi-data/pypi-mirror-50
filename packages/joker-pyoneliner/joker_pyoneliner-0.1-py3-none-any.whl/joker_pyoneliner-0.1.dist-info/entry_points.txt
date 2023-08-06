@@ -1,0 +1,3 @@
+[console_scripts]
+pyol = joker.pyoneliner.main:run
+

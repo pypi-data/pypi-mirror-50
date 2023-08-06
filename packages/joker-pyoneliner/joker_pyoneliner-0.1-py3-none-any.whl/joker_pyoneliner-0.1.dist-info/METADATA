@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: joker-pyoneliner
+Version: 0.1
+Summary: Easier way to write one-liners in Python
+Home-page: https://github.com/frozflame/joker-pyoneliner
+Author: frozflame
+Author-email: frozflame@outlook.com
+License: GNU General Public License (GPL)
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.0
+Classifier: Programming Language :: Python :: 3.1
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+Requires-Dist: joker-stream
+
+# joker-pyoneliner
+Easier way to write one-liners in Python
+
+
