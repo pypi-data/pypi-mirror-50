@@ -1,0 +1,14 @@
+numexpr-2.7.0.dist-info/WHEEL,sha256=i5SA-7-fHe0jcG7-zARss1ArnqL6O_idGzRvU-4t9gw,108
+numexpr-2.7.0.dist-info/top_level.txt,sha256=5R5OAhc7k6sUajqt4vp-368lWWhb23CoC6LltIMNqNA,8
+numexpr-2.7.0.dist-info/METADATA,sha256=xDoIEtpMPL5sBuWFm7gpPT9CI0MTx0jWmOZ62Q7yii8,4812
+numexpr-2.7.0.dist-info/RECORD,,
+numexpr/__config__.py,sha256=2dkcu66TxkOU-OtVi-H6TFyyaG7T8dkkAcnvoAHIq70,673
+numexpr/interpreter.so,sha256=luyPr0Q1oRuK0zEEIacX5BM_wvXHXuwRLIb7byXUU7w,323496
+numexpr/expressions.py,sha256=DnTqtEBoYLTXavVmkwLHmX7aqh5UHDBZJsIuIceqiro,16785
+numexpr/__init__.py,sha256=DIUnurvz5cbc-kUsAAcqJfjED36crXgs_75dKqytd-g,2324
+numexpr/version.py,sha256=Ii6rm1QcBzaO4Spmwa60iyaZ9S6YuF42uBEg3S_p7DA,366
+numexpr/necompiler.py,sha256=p2_AYH-SiEsRlLT2FknGneiRb6t-NPaRBWsjtYd7Pqk,28464
+numexpr/cpuinfo.py,sha256=-JgnWaMXnWFJwplK2nGypo9hbiDGNTacQyB3U_t0T8w,25185
+numexpr/utils.py,sha256=zbvY6glNEWii_BzDjmWKYYYNL4cj3w7rw2XWYbtdnzc,7164
+numexpr/tests/__init__.py,sha256=GBFxEA1-KjffdC-yum4Zj4u-f_zYVhSZIMPv-bOKoSQ,447
+numexpr/tests/test_numexpr.py,sha256=5rpZe6qhb6ma7Ujz3dE9F4R0p3ugkxwwLlC83vGFAxc,44462
