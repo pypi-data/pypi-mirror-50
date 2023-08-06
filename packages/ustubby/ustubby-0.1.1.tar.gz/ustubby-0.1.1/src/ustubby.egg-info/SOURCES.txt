@@ -1,0 +1,9 @@
+README.md
+setup.py
+src/ustubby/__init__.py
+src/ustubby.egg-info/PKG-INFO
+src/ustubby.egg-info/SOURCES.txt
+src/ustubby.egg-info/dependency_links.txt
+src/ustubby.egg-info/not-zip-safe
+src/ustubby.egg-info/top_level.txt
+test/test_basic.py
