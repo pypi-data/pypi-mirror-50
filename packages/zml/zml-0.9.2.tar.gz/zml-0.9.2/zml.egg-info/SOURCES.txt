@@ -1,0 +1,12 @@
+README.md
+setup.py
+test/test.py
+zml/__init__.py
+zml/core.py
+zml/exceptions.py
+zml/semantic.py
+zml/util.py
+zml.egg-info/PKG-INFO
+zml.egg-info/SOURCES.txt
+zml.egg-info/dependency_links.txt
+zml.egg-info/top_level.txt
