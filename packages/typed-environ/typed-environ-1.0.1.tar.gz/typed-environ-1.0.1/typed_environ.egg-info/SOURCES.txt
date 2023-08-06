@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+setup.py
+typed_environ/__init__.py
+typed_environ/_env.py
+typed_environ/_val.py
+typed_environ.egg-info/PKG-INFO
+typed_environ.egg-info/SOURCES.txt
+typed_environ.egg-info/dependency_links.txt
+typed_environ.egg-info/requires.txt
+typed_environ.egg-info/top_level.txt
