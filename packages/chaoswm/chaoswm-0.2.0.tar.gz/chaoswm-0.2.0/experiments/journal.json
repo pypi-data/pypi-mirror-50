@@ -1,0 +1,229 @@
+{
+  "chaoslib-version": "1.5.0",
+  "platform": "Darwin-18.7.0-x86_64-i386-64bit",
+  "node": "UKC02YC2DXJHD2",
+  "experiment": {
+    "version": "1.0.0",
+    "title": "Add mapping",
+    "description": "Experimenting with the Wiremock driver",
+    "tags": [
+      "wiremock",
+      "chaostoolkit"
+    ],
+    "configuration": {
+      "wiremock": {
+        "host": "localhost",
+        "port": 8080,
+        "timeout": 60,
+        "defaults": {
+          "down": {
+            "numberOfChunks": 4,
+            "totalDuration": 5000
+          }
+        }
+      }
+    },
+    "steady-state-hypothesis": {
+      "title": "WM server is running",
+      "probes": [
+        {
+          "type": "probe",
+          "name": "Wiremock server is running",
+          "tolerance": 200,
+          "provider": {
+            "type": "http",
+            "method": "GET",
+            "timeout": [
+              1,
+              5
+            ],
+            "url": "http://localhost:8080/__admin/mappings",
+            "headers": {
+              "Accept": "application/json"
+            }
+          }
+        }
+      ]
+    },
+    "method": [
+      {
+        "type": "action",
+        "name": "up",
+        "provider": {
+          "type": "python",
+          "module": "chaoswm.actions",
+          "func": "up",
+          "arguments": {
+            "filter": [
+              {
+                "method": "GET",
+                "url": "/hello"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "rollbacks": [],
+    "dry": false
+  },
+  "start": "2019-08-06T10:09:56.888077",
+  "status": "completed",
+  "deviated": false,
+  "steady_states": {
+    "before": {
+      "steady_state_met": true,
+      "probes": [
+        {
+          "activity": {
+            "type": "probe",
+            "name": "Wiremock server is running",
+            "tolerance": 200,
+            "provider": {
+              "type": "http",
+              "method": "GET",
+              "timeout": [
+                1,
+                5
+              ],
+              "url": "http://localhost:8080/__admin/mappings",
+              "headers": {
+                "Accept": "application/json"
+              }
+            }
+          },
+          "output": {
+            "status": 200,
+            "headers": {
+              "Content-Type": "application/json",
+              "Transfer-Encoding": "chunked",
+              "Server": "Jetty(9.4.z-SNAPSHOT)"
+            },
+            "body": {
+              "mappings": [
+                {
+                  "id": "3e1013fb-097a-4f3b-8cdc-3466f471cbff",
+                  "request": {
+                    "url": "/hello",
+                    "method": "GET"
+                  },
+                  "response": {
+                    "status": 200,
+                    "body": "Hello world!",
+                    "headers": {
+                      "Content-Type": "text/plain"
+                    },
+                    "chunkedDribbleDelay": {
+                      "numberOfChunks": 4,
+                      "totalDuration": 5000
+                    }
+                  },
+                  "uuid": "3e1013fb-097a-4f3b-8cdc-3466f471cbff"
+                }
+              ],
+              "meta": {
+                "total": 1
+              }
+            }
+          },
+          "status": "succeeded",
+          "start": "2019-08-06T10:09:56.888713",
+          "end": "2019-08-06T10:09:56.896036",
+          "duration": 0.007323,
+          "tolerance_met": true
+        }
+      ]
+    },
+    "after": {
+      "steady_state_met": true,
+      "probes": [
+        {
+          "activity": {
+            "type": "probe",
+            "name": "Wiremock server is running",
+            "tolerance": 200,
+            "provider": {
+              "type": "http",
+              "method": "GET",
+              "timeout": [
+                1,
+                5
+              ],
+              "url": "http://localhost:8080/__admin/mappings",
+              "headers": {
+                "Accept": "application/json"
+              }
+            }
+          },
+          "output": {
+            "status": 200,
+            "headers": {
+              "Content-Type": "application/json",
+              "Transfer-Encoding": "chunked",
+              "Server": "Jetty(9.4.z-SNAPSHOT)"
+            },
+            "body": {
+              "mappings": [
+                {
+                  "id": "5e5c8308-e8d2-42b7-92db-d4eed9159b3c",
+                  "request": {
+                    "url": "/hello",
+                    "method": "GET"
+                  },
+                  "response": {
+                    "status": 200,
+                    "body": "Hello world!",
+                    "headers": {
+                      "Content-Type": "text/plain"
+                    }
+                  },
+                  "uuid": "5e5c8308-e8d2-42b7-92db-d4eed9159b3c",
+                  "priority": 1
+                }
+              ],
+              "meta": {
+                "total": 1
+              }
+            }
+          },
+          "status": "succeeded",
+          "start": "2019-08-06T10:09:56.947907",
+          "end": "2019-08-06T10:09:56.956047",
+          "duration": 0.00814,
+          "tolerance_met": true
+        }
+      ]
+    }
+  },
+  "run": [
+    {
+      "activity": {
+        "type": "action",
+        "name": "up",
+        "provider": {
+          "type": "python",
+          "module": "chaoswm.actions",
+          "func": "up",
+          "arguments": {
+            "filter": [
+              {
+                "method": "GET",
+                "url": "/hello"
+              }
+            ]
+          }
+        }
+      },
+      "output": [
+        "5e5c8308-e8d2-42b7-92db-d4eed9159b3c"
+      ],
+      "status": "succeeded",
+      "start": "2019-08-06T10:09:56.896721",
+      "end": "2019-08-06T10:09:56.947220",
+      "duration": 0.050499
+    }
+  ],
+  "rollbacks": [],
+  "end": "2019-08-06T10:09:56.956569",
+  "duration": 0.08510780334472656
+}

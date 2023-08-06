@@ -1,0 +1,583 @@
+[36m[2019-08-06 10:41:16 DEBUG][39m ###############################################################################
+[36m[2019-08-06 10:41:16 DEBUG][39m Running command 'run'
+[36m[2019-08-06 10:41:16 DEBUG][39m Using settings file '/Users/mmi59/.chaostoolkit/settings.yaml'
+[36m[2019-08-06 10:41:18 DEBUG][39m The Chaos Toolkit settings file could not be found at '/Users/mmi59/.chaostoolkit/settings.yaml'.
+[36m[2019-08-06 10:41:18 DEBUG][39m Building activity cache...
+[36m[2019-08-06 10:41:18 DEBUG][39m Cached 2 activities
+[32m[2019-08-06 10:41:18 INFO][39m Validating the experiment's syntax
+[36m[2019-08-06 10:41:18 DEBUG][39m Loading configuration...
+[36m[2019-08-06 10:41:18 DEBUG][39m Loading secrets...
+[36m[2019-08-06 10:41:18 DEBUG][39m Secrets loaded
+[32m[2019-08-06 10:41:18 INFO][39m Experiment looks valid
+[36m[2019-08-06 10:41:18 DEBUG][39m Clearing activities cache
+[36m[2019-08-06 10:41:18 DEBUG][39m Building activity cache...
+[36m[2019-08-06 10:41:18 DEBUG][39m Cached 2 activities
+[32m[2019-08-06 10:41:18 INFO][39m Running experiment: Add mapping
+[36m[2019-08-06 10:41:18 DEBUG][39m Loading configuration...
+[36m[2019-08-06 10:41:18 DEBUG][39m Loading secrets...
+[36m[2019-08-06 10:41:18 DEBUG][39m Secrets loaded
+[36m[2019-08-06 10:41:18 DEBUG][39m Initializing controls
+[36m[2019-08-06 10:41:18 DEBUG][39m No controls to apply on 'experiment'
+[32m[2019-08-06 10:41:18 INFO][39m Steady state hypothesis: WM server is running
+[36m[2019-08-06 10:41:18 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 10:41:18 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 10:41:18 INFO][39m Probe: Wiremock server is running
+[36m[2019-08-06 10:41:18 DEBUG][39m   => succeeded with '{'status': 200, 'headers': {'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Server': 'Jetty(9.4.z-SNAPSHOT)'}, 'body': {'mappings': [{'id': '9b6f8d80-8eef-4e9a-b336-5d06b5c558e8', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'hi'}, 'uuid': '9b6f8d80-8eef-4e9a-b336-5d06b5c558e8', 'priority': 100}], 'meta': {'total': 1}}}'
+[36m[2019-08-06 10:41:18 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 10:41:18 DEBUG][39m allowed tolerance is 200
+[32m[2019-08-06 10:41:18 INFO][39m Steady state hypothesis is met!
+[36m[2019-08-06 10:41:18 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 10:41:18 DEBUG][39m No controls to apply on 'method'
+[36m[2019-08-06 10:41:18 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 10:41:18 INFO][39m Action: adding a mappings
+[36m[2019-08-06 10:41:18 DEBUG][39m Activity 'adding a mappings' loaded from '/Users/mmi59/venv/chaostoolkit-wiremock/lib/python3.7/site-packages/chaoswm/actions.py'
+[36m[2019-08-06 10:41:18 DEBUG][39m   => succeeded with '['e21aa56c-cd95-47b4-a1d5-0e90d39631b6']'
+[36m[2019-08-06 10:41:18 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 10:41:18 DEBUG][39m No controls to apply on 'method'
+[32m[2019-08-06 10:41:18 INFO][39m Steady state hypothesis: WM server is running
+[36m[2019-08-06 10:41:18 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 10:41:18 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 10:41:18 INFO][39m Probe: Wiremock server is running
+[36m[2019-08-06 10:41:18 DEBUG][39m   => succeeded with '{'status': 200, 'headers': {'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Server': 'Jetty(9.4.z-SNAPSHOT)'}, 'body': {'mappings': [{'id': 'e21aa56c-cd95-47b4-a1d5-0e90d39631b6', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'Hello world!', 'headers': {'Content-Type': 'text/plain'}}, 'uuid': 'e21aa56c-cd95-47b4-a1d5-0e90d39631b6'}, {'id': '9b6f8d80-8eef-4e9a-b336-5d06b5c558e8', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'hi'}, 'uuid': '9b6f8d80-8eef-4e9a-b336-5d06b5c558e8', 'priority': 100}], 'meta': {'total': 2}}}'
+[36m[2019-08-06 10:41:18 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 10:41:18 DEBUG][39m allowed tolerance is 200
+[32m[2019-08-06 10:41:18 INFO][39m Steady state hypothesis is met!
+[36m[2019-08-06 10:41:18 DEBUG][39m No controls to apply on 'hypothesis'
+[32m[2019-08-06 10:41:18 INFO][39m Let's rollback...
+[36m[2019-08-06 10:41:18 DEBUG][39m No controls to apply on 'rollback'
+[32m[2019-08-06 10:41:18 INFO][39m No declared rollbacks, let's move on.
+[36m[2019-08-06 10:41:18 DEBUG][39m No controls to apply on 'rollback'
+[32m[2019-08-06 10:41:18 INFO][39m Experiment ended with status: completed
+[36m[2019-08-06 10:41:18 DEBUG][39m No controls to apply on 'experiment'
+[36m[2019-08-06 10:41:18 DEBUG][39m Cleaning up controls
+[36m[2019-08-06 10:41:18 DEBUG][39m Clearing activities cache
+[36m[2019-08-06 10:43:54 DEBUG][39m ###############################################################################
+[36m[2019-08-06 10:43:54 DEBUG][39m Running command 'run'
+[36m[2019-08-06 10:43:54 DEBUG][39m Using settings file '/Users/mmi59/.chaostoolkit/settings.yaml'
+[36m[2019-08-06 10:43:55 DEBUG][39m The Chaos Toolkit settings file could not be found at '/Users/mmi59/.chaostoolkit/settings.yaml'.
+[36m[2019-08-06 10:43:55 DEBUG][39m Building activity cache...
+[36m[2019-08-06 10:43:55 DEBUG][39m Cached 2 activities
+[32m[2019-08-06 10:43:55 INFO][39m Validating the experiment's syntax
+[36m[2019-08-06 10:43:55 DEBUG][39m Loading configuration...
+[36m[2019-08-06 10:43:55 DEBUG][39m Loading secrets...
+[36m[2019-08-06 10:43:55 DEBUG][39m Secrets loaded
+[32m[2019-08-06 10:43:55 INFO][39m Experiment looks valid
+[36m[2019-08-06 10:43:55 DEBUG][39m Clearing activities cache
+[36m[2019-08-06 10:43:55 DEBUG][39m Building activity cache...
+[36m[2019-08-06 10:43:55 DEBUG][39m Cached 2 activities
+[32m[2019-08-06 10:43:55 INFO][39m Running experiment: Add mapping
+[36m[2019-08-06 10:43:55 DEBUG][39m Loading configuration...
+[36m[2019-08-06 10:43:55 DEBUG][39m Loading secrets...
+[36m[2019-08-06 10:43:55 DEBUG][39m Secrets loaded
+[36m[2019-08-06 10:43:55 DEBUG][39m Initializing controls
+[36m[2019-08-06 10:43:55 DEBUG][39m No controls to apply on 'experiment'
+[32m[2019-08-06 10:43:55 INFO][39m Steady state hypothesis: WM server is running
+[36m[2019-08-06 10:43:55 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 10:43:55 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 10:43:55 INFO][39m Probe: Wiremock server is running
+[36m[2019-08-06 10:43:55 DEBUG][39m   => succeeded with '{'status': 200, 'headers': {'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Server': 'Jetty(9.4.z-SNAPSHOT)'}, 'body': {'mappings': [{'id': 'e21aa56c-cd95-47b4-a1d5-0e90d39631b6', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'Hello world!', 'headers': {'Content-Type': 'text/plain'}}, 'uuid': 'e21aa56c-cd95-47b4-a1d5-0e90d39631b6'}, {'id': '9b6f8d80-8eef-4e9a-b336-5d06b5c558e8', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'hi'}, 'uuid': '9b6f8d80-8eef-4e9a-b336-5d06b5c558e8', 'priority': 100}], 'meta': {'total': 2}}}'
+[36m[2019-08-06 10:43:55 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 10:43:55 DEBUG][39m allowed tolerance is 200
+[32m[2019-08-06 10:43:55 INFO][39m Steady state hypothesis is met!
+[36m[2019-08-06 10:43:55 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 10:43:55 DEBUG][39m No controls to apply on 'method'
+[36m[2019-08-06 10:43:55 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 10:43:55 INFO][39m Action: down
+[36m[2019-08-06 10:43:55 DEBUG][39m Activity 'down' loaded from '/Users/mmi59/venv/chaostoolkit-wiremock/lib/python3.7/site-packages/chaoswm/actions.py'
+[36m[2019-08-06 10:43:55 DEBUG][39m   => succeeded with '[{'id': 'e21aa56c-cd95-47b4-a1d5-0e90d39631b6', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'Hello world!', 'headers': {'Content-Type': 'text/plain'}, 'chunkedDribbleDelay': {'numberOfChunks': 4, 'totalDuration': 5000}}, 'uuid': 'e21aa56c-cd95-47b4-a1d5-0e90d39631b6'}]'
+[36m[2019-08-06 10:43:55 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 10:43:55 DEBUG][39m No controls to apply on 'method'
+[32m[2019-08-06 10:43:55 INFO][39m Steady state hypothesis: WM server is running
+[36m[2019-08-06 10:43:55 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 10:43:55 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 10:43:55 INFO][39m Probe: Wiremock server is running
+[36m[2019-08-06 10:43:55 DEBUG][39m   => succeeded with '{'status': 200, 'headers': {'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Server': 'Jetty(9.4.z-SNAPSHOT)'}, 'body': {'mappings': [{'id': 'e21aa56c-cd95-47b4-a1d5-0e90d39631b6', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'Hello world!', 'headers': {'Content-Type': 'text/plain'}, 'chunkedDribbleDelay': {'numberOfChunks': 4, 'totalDuration': 5000}}, 'uuid': 'e21aa56c-cd95-47b4-a1d5-0e90d39631b6'}, {'id': '9b6f8d80-8eef-4e9a-b336-5d06b5c558e8', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'hi'}, 'uuid': '9b6f8d80-8eef-4e9a-b336-5d06b5c558e8', 'priority': 100}], 'meta': {'total': 2}}}'
+[36m[2019-08-06 10:43:55 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 10:43:55 DEBUG][39m allowed tolerance is 200
+[32m[2019-08-06 10:43:55 INFO][39m Steady state hypothesis is met!
+[36m[2019-08-06 10:43:55 DEBUG][39m No controls to apply on 'hypothesis'
+[32m[2019-08-06 10:43:55 INFO][39m Let's rollback...
+[36m[2019-08-06 10:43:55 DEBUG][39m No controls to apply on 'rollback'
+[32m[2019-08-06 10:43:55 INFO][39m No declared rollbacks, let's move on.
+[36m[2019-08-06 10:43:55 DEBUG][39m No controls to apply on 'rollback'
+[32m[2019-08-06 10:43:55 INFO][39m Experiment ended with status: completed
+[36m[2019-08-06 10:43:55 DEBUG][39m No controls to apply on 'experiment'
+[36m[2019-08-06 10:43:55 DEBUG][39m Cleaning up controls
+[36m[2019-08-06 10:43:55 DEBUG][39m Clearing activities cache
+[36m[2019-08-06 10:45:24 DEBUG][39m ###############################################################################
+[36m[2019-08-06 10:45:24 DEBUG][39m Running command 'run'
+[36m[2019-08-06 10:45:24 DEBUG][39m Using settings file '/Users/mmi59/.chaostoolkit/settings.yaml'
+[36m[2019-08-06 10:45:25 DEBUG][39m The Chaos Toolkit settings file could not be found at '/Users/mmi59/.chaostoolkit/settings.yaml'.
+[36m[2019-08-06 10:45:25 DEBUG][39m Building activity cache...
+[36m[2019-08-06 10:45:25 DEBUG][39m Cached 2 activities
+[32m[2019-08-06 10:45:25 INFO][39m Validating the experiment's syntax
+[36m[2019-08-06 10:45:25 DEBUG][39m Loading configuration...
+[36m[2019-08-06 10:45:25 DEBUG][39m Loading secrets...
+[36m[2019-08-06 10:45:25 DEBUG][39m Secrets loaded
+[32m[2019-08-06 10:45:25 INFO][39m Experiment looks valid
+[36m[2019-08-06 10:45:25 DEBUG][39m Clearing activities cache
+[36m[2019-08-06 10:45:25 DEBUG][39m Building activity cache...
+[36m[2019-08-06 10:45:25 DEBUG][39m Cached 2 activities
+[32m[2019-08-06 10:45:25 INFO][39m Running experiment: Add mapping
+[36m[2019-08-06 10:45:25 DEBUG][39m Loading configuration...
+[36m[2019-08-06 10:45:25 DEBUG][39m Loading secrets...
+[36m[2019-08-06 10:45:25 DEBUG][39m Secrets loaded
+[36m[2019-08-06 10:45:25 DEBUG][39m Initializing controls
+[36m[2019-08-06 10:45:25 DEBUG][39m No controls to apply on 'experiment'
+[32m[2019-08-06 10:45:25 INFO][39m Steady state hypothesis: WM server is running
+[36m[2019-08-06 10:45:25 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 10:45:25 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 10:45:25 INFO][39m Probe: Wiremock server is running
+[36m[2019-08-06 10:45:25 DEBUG][39m   => succeeded with '{'status': 200, 'headers': {'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Server': 'Jetty(9.4.z-SNAPSHOT)'}, 'body': {'mappings': [{'id': 'e21aa56c-cd95-47b4-a1d5-0e90d39631b6', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'Hello world!', 'headers': {'Content-Type': 'text/plain'}, 'chunkedDribbleDelay': {'numberOfChunks': 4, 'totalDuration': 5000}}, 'uuid': 'e21aa56c-cd95-47b4-a1d5-0e90d39631b6'}, {'id': '9b6f8d80-8eef-4e9a-b336-5d06b5c558e8', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'hi'}, 'uuid': '9b6f8d80-8eef-4e9a-b336-5d06b5c558e8', 'priority': 100}], 'meta': {'total': 2}}}'
+[36m[2019-08-06 10:45:25 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 10:45:25 DEBUG][39m allowed tolerance is 200
+[32m[2019-08-06 10:45:25 INFO][39m Steady state hypothesis is met!
+[36m[2019-08-06 10:45:25 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 10:45:25 DEBUG][39m No controls to apply on 'method'
+[36m[2019-08-06 10:45:25 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 10:45:25 INFO][39m Action: up
+[36m[2019-08-06 10:45:25 DEBUG][39m Activity 'up' loaded from '/Users/mmi59/venv/chaostoolkit-wiremock/lib/python3.7/site-packages/chaoswm/actions.py'
+[36m[2019-08-06 10:45:25 DEBUG][39m   => succeeded with '['f839b258-fd00-4b9d-9b96-82daa84793ba']'
+[36m[2019-08-06 10:45:25 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 10:45:25 DEBUG][39m No controls to apply on 'method'
+[32m[2019-08-06 10:45:25 INFO][39m Steady state hypothesis: WM server is running
+[36m[2019-08-06 10:45:25 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 10:45:25 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 10:45:25 INFO][39m Probe: Wiremock server is running
+[36m[2019-08-06 10:45:25 DEBUG][39m   => succeeded with '{'status': 200, 'headers': {'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Server': 'Jetty(9.4.z-SNAPSHOT)'}, 'body': {'mappings': [{'id': 'f839b258-fd00-4b9d-9b96-82daa84793ba', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'Hello world!', 'headers': {'Content-Type': 'text/plain'}}, 'uuid': 'f839b258-fd00-4b9d-9b96-82daa84793ba', 'priority': 1}, {'id': '9b6f8d80-8eef-4e9a-b336-5d06b5c558e8', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'hi'}, 'uuid': '9b6f8d80-8eef-4e9a-b336-5d06b5c558e8', 'priority': 100}], 'meta': {'total': 2}}}'
+[36m[2019-08-06 10:45:25 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 10:45:25 DEBUG][39m allowed tolerance is 200
+[32m[2019-08-06 10:45:25 INFO][39m Steady state hypothesis is met!
+[36m[2019-08-06 10:45:25 DEBUG][39m No controls to apply on 'hypothesis'
+[32m[2019-08-06 10:45:25 INFO][39m Let's rollback...
+[36m[2019-08-06 10:45:25 DEBUG][39m No controls to apply on 'rollback'
+[32m[2019-08-06 10:45:25 INFO][39m No declared rollbacks, let's move on.
+[36m[2019-08-06 10:45:25 DEBUG][39m No controls to apply on 'rollback'
+[32m[2019-08-06 10:45:25 INFO][39m Experiment ended with status: completed
+[36m[2019-08-06 10:45:25 DEBUG][39m No controls to apply on 'experiment'
+[36m[2019-08-06 10:45:25 DEBUG][39m Cleaning up controls
+[36m[2019-08-06 10:45:25 DEBUG][39m Clearing activities cache
+[36m[2019-08-06 11:00:40 DEBUG][39m ###############################################################################
+[36m[2019-08-06 11:00:40 DEBUG][39m Running command 'run'
+[36m[2019-08-06 11:00:40 DEBUG][39m Using settings file '/Users/mmi59/.chaostoolkit/settings.yaml'
+[36m[2019-08-06 11:00:41 DEBUG][39m The Chaos Toolkit settings file could not be found at '/Users/mmi59/.chaostoolkit/settings.yaml'.
+[36m[2019-08-06 11:00:41 DEBUG][39m Building activity cache...
+[36m[2019-08-06 11:00:41 DEBUG][39m Cached 2 activities
+[32m[2019-08-06 11:00:41 INFO][39m Validating the experiment's syntax
+[36m[2019-08-06 11:00:41 DEBUG][39m Loading configuration...
+[36m[2019-08-06 11:00:41 DEBUG][39m Loading secrets...
+[36m[2019-08-06 11:00:41 DEBUG][39m Secrets loaded
+[32m[2019-08-06 11:00:41 INFO][39m Experiment looks valid
+[36m[2019-08-06 11:00:41 DEBUG][39m Clearing activities cache
+[36m[2019-08-06 11:00:41 DEBUG][39m Building activity cache...
+[36m[2019-08-06 11:00:41 DEBUG][39m Cached 2 activities
+[32m[2019-08-06 11:00:41 INFO][39m Running experiment: Add mapping
+[36m[2019-08-06 11:00:41 DEBUG][39m Loading configuration...
+[36m[2019-08-06 11:00:41 DEBUG][39m Loading secrets...
+[36m[2019-08-06 11:00:41 DEBUG][39m Secrets loaded
+[36m[2019-08-06 11:00:41 DEBUG][39m Initializing controls
+[36m[2019-08-06 11:00:41 DEBUG][39m No controls to apply on 'experiment'
+[32m[2019-08-06 11:00:41 INFO][39m Steady state hypothesis: WM server is running
+[36m[2019-08-06 11:00:41 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:00:41 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:00:41 INFO][39m Probe: Wiremock server is running
+[36m[2019-08-06 11:00:41 DEBUG][39m   => succeeded with '{'status': 200, 'headers': {'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Server': 'Jetty(9.4.z-SNAPSHOT)'}, 'body': {'mappings': [{'id': 'f839b258-fd00-4b9d-9b96-82daa84793ba', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'Hello world!', 'headers': {'Content-Type': 'text/plain'}}, 'uuid': 'f839b258-fd00-4b9d-9b96-82daa84793ba', 'priority': 1}, {'id': '9b6f8d80-8eef-4e9a-b336-5d06b5c558e8', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'hi'}, 'uuid': '9b6f8d80-8eef-4e9a-b336-5d06b5c558e8', 'priority': 100}], 'meta': {'total': 2}}}'
+[36m[2019-08-06 11:00:41 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:00:41 DEBUG][39m allowed tolerance is 200
+[32m[2019-08-06 11:00:41 INFO][39m Steady state hypothesis is met!
+[36m[2019-08-06 11:00:41 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:00:41 DEBUG][39m No controls to apply on 'method'
+[36m[2019-08-06 11:00:41 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:00:41 INFO][39m Action: up
+[36m[2019-08-06 11:00:41 DEBUG][39m Activity 'up' loaded from '/Users/mmi59/venv/chaostoolkit-wiremock/lib/python3.7/site-packages/chaoswm/actions.py'
+[36m[2019-08-06 11:00:41 DEBUG][39m   => succeeded with '['6db02c25-527e-4db6-8395-2de992b8a651']'
+[36m[2019-08-06 11:00:41 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:00:41 DEBUG][39m No controls to apply on 'method'
+[32m[2019-08-06 11:00:41 INFO][39m Steady state hypothesis: WM server is running
+[36m[2019-08-06 11:00:41 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:00:41 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:00:41 INFO][39m Probe: Wiremock server is running
+[36m[2019-08-06 11:00:41 DEBUG][39m   => succeeded with '{'status': 200, 'headers': {'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Server': 'Jetty(9.4.z-SNAPSHOT)'}, 'body': {'mappings': [{'id': '6db02c25-527e-4db6-8395-2de992b8a651', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'Hello world!', 'headers': {'Content-Type': 'text/plain'}}, 'uuid': '6db02c25-527e-4db6-8395-2de992b8a651', 'priority': 1}, {'id': '9b6f8d80-8eef-4e9a-b336-5d06b5c558e8', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'hi'}, 'uuid': '9b6f8d80-8eef-4e9a-b336-5d06b5c558e8', 'priority': 100}], 'meta': {'total': 2}}}'
+[36m[2019-08-06 11:00:41 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:00:41 DEBUG][39m allowed tolerance is 200
+[32m[2019-08-06 11:00:41 INFO][39m Steady state hypothesis is met!
+[36m[2019-08-06 11:00:41 DEBUG][39m No controls to apply on 'hypothesis'
+[32m[2019-08-06 11:00:41 INFO][39m Let's rollback...
+[36m[2019-08-06 11:00:41 DEBUG][39m No controls to apply on 'rollback'
+[32m[2019-08-06 11:00:41 INFO][39m No declared rollbacks, let's move on.
+[36m[2019-08-06 11:00:41 DEBUG][39m No controls to apply on 'rollback'
+[32m[2019-08-06 11:00:41 INFO][39m Experiment ended with status: completed
+[36m[2019-08-06 11:00:41 DEBUG][39m No controls to apply on 'experiment'
+[36m[2019-08-06 11:00:41 DEBUG][39m Cleaning up controls
+[36m[2019-08-06 11:00:41 DEBUG][39m Clearing activities cache
+[36m[2019-08-06 11:01:20 DEBUG][39m ###############################################################################
+[36m[2019-08-06 11:01:20 DEBUG][39m Running command 'run'
+[36m[2019-08-06 11:01:20 DEBUG][39m Using settings file '/Users/mmi59/.chaostoolkit/settings.yaml'
+[36m[2019-08-06 11:01:21 DEBUG][39m The Chaos Toolkit settings file could not be found at '/Users/mmi59/.chaostoolkit/settings.yaml'.
+[36m[2019-08-06 11:01:21 DEBUG][39m Building activity cache...
+[36m[2019-08-06 11:01:21 DEBUG][39m Cached 2 activities
+[32m[2019-08-06 11:01:21 INFO][39m Validating the experiment's syntax
+[36m[2019-08-06 11:01:21 DEBUG][39m Loading configuration...
+[36m[2019-08-06 11:01:21 DEBUG][39m Loading secrets...
+[36m[2019-08-06 11:01:21 DEBUG][39m Secrets loaded
+[32m[2019-08-06 11:01:21 INFO][39m Experiment looks valid
+[36m[2019-08-06 11:01:21 DEBUG][39m Clearing activities cache
+[36m[2019-08-06 11:01:21 DEBUG][39m Building activity cache...
+[36m[2019-08-06 11:01:21 DEBUG][39m Cached 2 activities
+[32m[2019-08-06 11:01:21 INFO][39m Running experiment: Add mapping
+[36m[2019-08-06 11:01:21 DEBUG][39m Loading configuration...
+[36m[2019-08-06 11:01:21 DEBUG][39m Loading secrets...
+[36m[2019-08-06 11:01:21 DEBUG][39m Secrets loaded
+[36m[2019-08-06 11:01:21 DEBUG][39m Initializing controls
+[36m[2019-08-06 11:01:21 DEBUG][39m No controls to apply on 'experiment'
+[32m[2019-08-06 11:01:21 INFO][39m Steady state hypothesis: WM server is running
+[36m[2019-08-06 11:01:21 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:01:21 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:01:21 INFO][39m Probe: Wiremock server is running
+[36m[2019-08-06 11:01:21 DEBUG][39m   => succeeded with '{'status': 200, 'headers': {'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Server': 'Jetty(9.4.z-SNAPSHOT)'}, 'body': {'mappings': [{'id': '6db02c25-527e-4db6-8395-2de992b8a651', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'Hello world!', 'headers': {'Content-Type': 'text/plain'}}, 'uuid': '6db02c25-527e-4db6-8395-2de992b8a651', 'priority': 1}, {'id': '9b6f8d80-8eef-4e9a-b336-5d06b5c558e8', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'hi'}, 'uuid': '9b6f8d80-8eef-4e9a-b336-5d06b5c558e8', 'priority': 100}], 'meta': {'total': 2}}}'
+[36m[2019-08-06 11:01:21 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:01:21 DEBUG][39m allowed tolerance is 200
+[32m[2019-08-06 11:01:21 INFO][39m Steady state hypothesis is met!
+[36m[2019-08-06 11:01:21 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:01:21 DEBUG][39m No controls to apply on 'method'
+[36m[2019-08-06 11:01:21 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:01:21 INFO][39m Action: reset
+[36m[2019-08-06 11:01:21 DEBUG][39m Activity 'reset' loaded from '/Users/mmi59/venv/chaostoolkit-wiremock/lib/python3.7/site-packages/chaoswm/actions.py'
+[36m[2019-08-06 11:01:21 DEBUG][39m   => succeeded with '1'
+[36m[2019-08-06 11:01:21 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:01:21 DEBUG][39m No controls to apply on 'method'
+[32m[2019-08-06 11:01:21 INFO][39m Steady state hypothesis: WM server is running
+[36m[2019-08-06 11:01:21 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:01:21 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:01:21 INFO][39m Probe: Wiremock server is running
+[36m[2019-08-06 11:01:21 DEBUG][39m   => succeeded with '{'status': 200, 'headers': {'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Server': 'Jetty(9.4.z-SNAPSHOT)'}, 'body': {'mappings': [], 'meta': {'total': 0}}}'
+[36m[2019-08-06 11:01:21 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:01:21 DEBUG][39m allowed tolerance is 200
+[32m[2019-08-06 11:01:21 INFO][39m Steady state hypothesis is met!
+[36m[2019-08-06 11:01:21 DEBUG][39m No controls to apply on 'hypothesis'
+[32m[2019-08-06 11:01:21 INFO][39m Let's rollback...
+[36m[2019-08-06 11:01:21 DEBUG][39m No controls to apply on 'rollback'
+[32m[2019-08-06 11:01:21 INFO][39m No declared rollbacks, let's move on.
+[36m[2019-08-06 11:01:21 DEBUG][39m No controls to apply on 'rollback'
+[32m[2019-08-06 11:01:21 INFO][39m Experiment ended with status: completed
+[36m[2019-08-06 11:01:21 DEBUG][39m No controls to apply on 'experiment'
+[36m[2019-08-06 11:01:21 DEBUG][39m Cleaning up controls
+[36m[2019-08-06 11:01:21 DEBUG][39m Clearing activities cache
+[36m[2019-08-06 11:01:41 DEBUG][39m ###############################################################################
+[36m[2019-08-06 11:01:41 DEBUG][39m Running command 'run'
+[36m[2019-08-06 11:01:41 DEBUG][39m Using settings file '/Users/mmi59/.chaostoolkit/settings.yaml'
+[36m[2019-08-06 11:01:42 DEBUG][39m The Chaos Toolkit settings file could not be found at '/Users/mmi59/.chaostoolkit/settings.yaml'.
+[36m[2019-08-06 11:01:42 DEBUG][39m Building activity cache...
+[36m[2019-08-06 11:01:42 DEBUG][39m Cached 2 activities
+[32m[2019-08-06 11:01:42 INFO][39m Validating the experiment's syntax
+[36m[2019-08-06 11:01:42 DEBUG][39m Loading configuration...
+[36m[2019-08-06 11:01:42 DEBUG][39m Loading secrets...
+[36m[2019-08-06 11:01:42 DEBUG][39m Secrets loaded
+[32m[2019-08-06 11:01:42 INFO][39m Experiment looks valid
+[36m[2019-08-06 11:01:42 DEBUG][39m Clearing activities cache
+[36m[2019-08-06 11:01:42 DEBUG][39m Building activity cache...
+[36m[2019-08-06 11:01:42 DEBUG][39m Cached 2 activities
+[32m[2019-08-06 11:01:42 INFO][39m Running experiment: Add mapping
+[36m[2019-08-06 11:01:42 DEBUG][39m Loading configuration...
+[36m[2019-08-06 11:01:42 DEBUG][39m Loading secrets...
+[36m[2019-08-06 11:01:42 DEBUG][39m Secrets loaded
+[36m[2019-08-06 11:01:42 DEBUG][39m Initializing controls
+[36m[2019-08-06 11:01:42 DEBUG][39m No controls to apply on 'experiment'
+[32m[2019-08-06 11:01:42 INFO][39m Steady state hypothesis: WM server is running
+[36m[2019-08-06 11:01:42 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:01:42 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:01:42 INFO][39m Probe: Wiremock server is running
+[36m[2019-08-06 11:01:42 DEBUG][39m   => succeeded with '{'status': 200, 'headers': {'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Server': 'Jetty(9.4.z-SNAPSHOT)'}, 'body': {'mappings': [], 'meta': {'total': 0}}}'
+[36m[2019-08-06 11:01:42 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:01:42 DEBUG][39m allowed tolerance is 200
+[32m[2019-08-06 11:01:42 INFO][39m Steady state hypothesis is met!
+[36m[2019-08-06 11:01:42 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:01:42 DEBUG][39m No controls to apply on 'method'
+[36m[2019-08-06 11:01:42 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:01:42 INFO][39m Action: adding a mappings
+[36m[2019-08-06 11:01:42 DEBUG][39m Activity 'adding a mappings' loaded from '/Users/mmi59/venv/chaostoolkit-wiremock/lib/python3.7/site-packages/chaoswm/actions.py'
+[36m[2019-08-06 11:01:42 DEBUG][39m   => succeeded with '['ab501aed-97b9-4124-ac5e-7f2d62ebd67d']'
+[36m[2019-08-06 11:01:42 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:01:42 DEBUG][39m No controls to apply on 'method'
+[32m[2019-08-06 11:01:42 INFO][39m Steady state hypothesis: WM server is running
+[36m[2019-08-06 11:01:42 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:01:42 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:01:42 INFO][39m Probe: Wiremock server is running
+[36m[2019-08-06 11:01:42 DEBUG][39m   => succeeded with '{'status': 200, 'headers': {'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Server': 'Jetty(9.4.z-SNAPSHOT)'}, 'body': {'mappings': [{'id': 'ab501aed-97b9-4124-ac5e-7f2d62ebd67d', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'Hello world!', 'headers': {'Content-Type': 'text/plain'}}, 'uuid': 'ab501aed-97b9-4124-ac5e-7f2d62ebd67d'}], 'meta': {'total': 1}}}'
+[36m[2019-08-06 11:01:42 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:01:42 DEBUG][39m allowed tolerance is 200
+[32m[2019-08-06 11:01:42 INFO][39m Steady state hypothesis is met!
+[36m[2019-08-06 11:01:42 DEBUG][39m No controls to apply on 'hypothesis'
+[32m[2019-08-06 11:01:42 INFO][39m Let's rollback...
+[36m[2019-08-06 11:01:42 DEBUG][39m No controls to apply on 'rollback'
+[32m[2019-08-06 11:01:42 INFO][39m No declared rollbacks, let's move on.
+[36m[2019-08-06 11:01:42 DEBUG][39m No controls to apply on 'rollback'
+[32m[2019-08-06 11:01:42 INFO][39m Experiment ended with status: completed
+[36m[2019-08-06 11:01:42 DEBUG][39m No controls to apply on 'experiment'
+[36m[2019-08-06 11:01:42 DEBUG][39m Cleaning up controls
+[36m[2019-08-06 11:01:42 DEBUG][39m Clearing activities cache
+[36m[2019-08-06 11:01:55 DEBUG][39m ###############################################################################
+[36m[2019-08-06 11:01:55 DEBUG][39m Running command 'run'
+[36m[2019-08-06 11:01:55 DEBUG][39m Using settings file '/Users/mmi59/.chaostoolkit/settings.yaml'
+[36m[2019-08-06 11:01:55 DEBUG][39m The Chaos Toolkit settings file could not be found at '/Users/mmi59/.chaostoolkit/settings.yaml'.
+[36m[2019-08-06 11:01:55 DEBUG][39m Building activity cache...
+[36m[2019-08-06 11:01:55 DEBUG][39m Cached 2 activities
+[32m[2019-08-06 11:01:55 INFO][39m Validating the experiment's syntax
+[36m[2019-08-06 11:01:55 DEBUG][39m Loading configuration...
+[36m[2019-08-06 11:01:55 DEBUG][39m Loading secrets...
+[36m[2019-08-06 11:01:55 DEBUG][39m Secrets loaded
+[32m[2019-08-06 11:01:55 INFO][39m Experiment looks valid
+[36m[2019-08-06 11:01:55 DEBUG][39m Clearing activities cache
+[36m[2019-08-06 11:01:55 DEBUG][39m Building activity cache...
+[36m[2019-08-06 11:01:55 DEBUG][39m Cached 2 activities
+[32m[2019-08-06 11:01:55 INFO][39m Running experiment: Add mapping
+[36m[2019-08-06 11:01:55 DEBUG][39m Loading configuration...
+[36m[2019-08-06 11:01:55 DEBUG][39m Loading secrets...
+[36m[2019-08-06 11:01:55 DEBUG][39m Secrets loaded
+[36m[2019-08-06 11:01:55 DEBUG][39m Initializing controls
+[36m[2019-08-06 11:01:55 DEBUG][39m No controls to apply on 'experiment'
+[32m[2019-08-06 11:01:55 INFO][39m Steady state hypothesis: WM server is running
+[36m[2019-08-06 11:01:55 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:01:55 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:01:55 INFO][39m Probe: Wiremock server is running
+[36m[2019-08-06 11:01:55 DEBUG][39m   => succeeded with '{'status': 200, 'headers': {'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Server': 'Jetty(9.4.z-SNAPSHOT)'}, 'body': {'mappings': [{'id': 'ab501aed-97b9-4124-ac5e-7f2d62ebd67d', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'Hello world!', 'headers': {'Content-Type': 'text/plain'}}, 'uuid': 'ab501aed-97b9-4124-ac5e-7f2d62ebd67d'}], 'meta': {'total': 1}}}'
+[36m[2019-08-06 11:01:55 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:01:55 DEBUG][39m allowed tolerance is 200
+[32m[2019-08-06 11:01:55 INFO][39m Steady state hypothesis is met!
+[36m[2019-08-06 11:01:55 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:01:55 DEBUG][39m No controls to apply on 'method'
+[36m[2019-08-06 11:01:55 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:01:55 INFO][39m Action: down
+[36m[2019-08-06 11:01:55 DEBUG][39m Activity 'down' loaded from '/Users/mmi59/venv/chaostoolkit-wiremock/lib/python3.7/site-packages/chaoswm/actions.py'
+[36m[2019-08-06 11:01:55 DEBUG][39m   => succeeded with '[{'id': 'ab501aed-97b9-4124-ac5e-7f2d62ebd67d', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'Hello world!', 'headers': {'Content-Type': 'text/plain'}, 'chunkedDribbleDelay': {'numberOfChunks': 4, 'totalDuration': 5000}}, 'uuid': 'ab501aed-97b9-4124-ac5e-7f2d62ebd67d'}]'
+[36m[2019-08-06 11:01:55 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:01:55 DEBUG][39m No controls to apply on 'method'
+[32m[2019-08-06 11:01:55 INFO][39m Steady state hypothesis: WM server is running
+[36m[2019-08-06 11:01:55 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:01:55 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:01:55 INFO][39m Probe: Wiremock server is running
+[36m[2019-08-06 11:01:55 DEBUG][39m   => succeeded with '{'status': 200, 'headers': {'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Server': 'Jetty(9.4.z-SNAPSHOT)'}, 'body': {'mappings': [{'id': 'ab501aed-97b9-4124-ac5e-7f2d62ebd67d', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'Hello world!', 'headers': {'Content-Type': 'text/plain'}, 'chunkedDribbleDelay': {'numberOfChunks': 4, 'totalDuration': 5000}}, 'uuid': 'ab501aed-97b9-4124-ac5e-7f2d62ebd67d'}], 'meta': {'total': 1}}}'
+[36m[2019-08-06 11:01:55 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:01:55 DEBUG][39m allowed tolerance is 200
+[32m[2019-08-06 11:01:55 INFO][39m Steady state hypothesis is met!
+[36m[2019-08-06 11:01:55 DEBUG][39m No controls to apply on 'hypothesis'
+[32m[2019-08-06 11:01:55 INFO][39m Let's rollback...
+[36m[2019-08-06 11:01:55 DEBUG][39m No controls to apply on 'rollback'
+[32m[2019-08-06 11:01:55 INFO][39m No declared rollbacks, let's move on.
+[36m[2019-08-06 11:01:55 DEBUG][39m No controls to apply on 'rollback'
+[32m[2019-08-06 11:01:55 INFO][39m Experiment ended with status: completed
+[36m[2019-08-06 11:01:55 DEBUG][39m No controls to apply on 'experiment'
+[36m[2019-08-06 11:01:55 DEBUG][39m Cleaning up controls
+[36m[2019-08-06 11:01:55 DEBUG][39m Clearing activities cache
+[36m[2019-08-06 11:09:08 DEBUG][39m ###############################################################################
+[36m[2019-08-06 11:09:08 DEBUG][39m Running command 'run'
+[36m[2019-08-06 11:09:08 DEBUG][39m Using settings file '/Users/mmi59/.chaostoolkit/settings.yaml'
+[36m[2019-08-06 11:09:09 DEBUG][39m The Chaos Toolkit settings file could not be found at '/Users/mmi59/.chaostoolkit/settings.yaml'.
+[36m[2019-08-06 11:09:09 DEBUG][39m Building activity cache...
+[36m[2019-08-06 11:09:09 DEBUG][39m Cached 2 activities
+[32m[2019-08-06 11:09:09 INFO][39m Validating the experiment's syntax
+[36m[2019-08-06 11:09:09 DEBUG][39m Loading configuration...
+[36m[2019-08-06 11:09:09 DEBUG][39m Loading secrets...
+[36m[2019-08-06 11:09:09 DEBUG][39m Secrets loaded
+[32m[2019-08-06 11:09:09 INFO][39m Experiment looks valid
+[36m[2019-08-06 11:09:09 DEBUG][39m Clearing activities cache
+[36m[2019-08-06 11:09:09 DEBUG][39m Building activity cache...
+[36m[2019-08-06 11:09:09 DEBUG][39m Cached 2 activities
+[32m[2019-08-06 11:09:09 INFO][39m Running experiment: Add mapping
+[36m[2019-08-06 11:09:09 DEBUG][39m Loading configuration...
+[36m[2019-08-06 11:09:09 DEBUG][39m Loading secrets...
+[36m[2019-08-06 11:09:09 DEBUG][39m Secrets loaded
+[36m[2019-08-06 11:09:09 DEBUG][39m Initializing controls
+[36m[2019-08-06 11:09:09 DEBUG][39m No controls to apply on 'experiment'
+[32m[2019-08-06 11:09:09 INFO][39m Steady state hypothesis: WM server is running
+[36m[2019-08-06 11:09:09 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:09:09 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:09:09 INFO][39m Probe: Wiremock server is running
+[36m[2019-08-06 11:09:09 DEBUG][39m   => succeeded with '{'status': 200, 'headers': {'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Server': 'Jetty(9.4.z-SNAPSHOT)'}, 'body': {'mappings': [{'id': 'ab501aed-97b9-4124-ac5e-7f2d62ebd67d', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'Hello world!', 'headers': {'Content-Type': 'text/plain'}, 'chunkedDribbleDelay': {'numberOfChunks': 4, 'totalDuration': 5000}}, 'uuid': 'ab501aed-97b9-4124-ac5e-7f2d62ebd67d'}], 'meta': {'total': 1}}}'
+[36m[2019-08-06 11:09:09 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:09:09 DEBUG][39m allowed tolerance is 200
+[32m[2019-08-06 11:09:09 INFO][39m Steady state hypothesis is met!
+[36m[2019-08-06 11:09:09 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:09:09 DEBUG][39m No controls to apply on 'method'
+[36m[2019-08-06 11:09:09 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:09:09 INFO][39m Action: reset
+[36m[2019-08-06 11:09:09 DEBUG][39m Activity 'reset' loaded from '/Users/mmi59/venv/chaostoolkit-wiremock/lib/python3.7/site-packages/chaoswm/actions.py'
+[36m[2019-08-06 11:09:09 DEBUG][39m   => succeeded with '1'
+[36m[2019-08-06 11:09:09 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:09:09 DEBUG][39m No controls to apply on 'method'
+[32m[2019-08-06 11:09:09 INFO][39m Steady state hypothesis: WM server is running
+[36m[2019-08-06 11:09:09 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:09:09 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:09:09 INFO][39m Probe: Wiremock server is running
+[36m[2019-08-06 11:09:09 DEBUG][39m   => succeeded with '{'status': 200, 'headers': {'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Server': 'Jetty(9.4.z-SNAPSHOT)'}, 'body': {'mappings': [], 'meta': {'total': 0}}}'
+[36m[2019-08-06 11:09:09 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:09:09 DEBUG][39m allowed tolerance is 200
+[32m[2019-08-06 11:09:09 INFO][39m Steady state hypothesis is met!
+[36m[2019-08-06 11:09:09 DEBUG][39m No controls to apply on 'hypothesis'
+[32m[2019-08-06 11:09:09 INFO][39m Let's rollback...
+[36m[2019-08-06 11:09:09 DEBUG][39m No controls to apply on 'rollback'
+[32m[2019-08-06 11:09:09 INFO][39m No declared rollbacks, let's move on.
+[36m[2019-08-06 11:09:09 DEBUG][39m No controls to apply on 'rollback'
+[32m[2019-08-06 11:09:09 INFO][39m Experiment ended with status: completed
+[36m[2019-08-06 11:09:09 DEBUG][39m No controls to apply on 'experiment'
+[36m[2019-08-06 11:09:09 DEBUG][39m Cleaning up controls
+[36m[2019-08-06 11:09:09 DEBUG][39m Clearing activities cache
+[36m[2019-08-06 11:09:14 DEBUG][39m ###############################################################################
+[36m[2019-08-06 11:09:14 DEBUG][39m Running command 'run'
+[36m[2019-08-06 11:09:14 DEBUG][39m Using settings file '/Users/mmi59/.chaostoolkit/settings.yaml'
+[36m[2019-08-06 11:09:14 DEBUG][39m The Chaos Toolkit settings file could not be found at '/Users/mmi59/.chaostoolkit/settings.yaml'.
+[36m[2019-08-06 11:09:14 DEBUG][39m Building activity cache...
+[36m[2019-08-06 11:09:14 DEBUG][39m Cached 2 activities
+[32m[2019-08-06 11:09:14 INFO][39m Validating the experiment's syntax
+[36m[2019-08-06 11:09:14 DEBUG][39m Loading configuration...
+[36m[2019-08-06 11:09:14 DEBUG][39m Loading secrets...
+[36m[2019-08-06 11:09:14 DEBUG][39m Secrets loaded
+[32m[2019-08-06 11:09:14 INFO][39m Experiment looks valid
+[36m[2019-08-06 11:09:14 DEBUG][39m Clearing activities cache
+[36m[2019-08-06 11:09:14 DEBUG][39m Building activity cache...
+[36m[2019-08-06 11:09:14 DEBUG][39m Cached 2 activities
+[32m[2019-08-06 11:09:14 INFO][39m Running experiment: Add mapping
+[36m[2019-08-06 11:09:14 DEBUG][39m Loading configuration...
+[36m[2019-08-06 11:09:14 DEBUG][39m Loading secrets...
+[36m[2019-08-06 11:09:14 DEBUG][39m Secrets loaded
+[36m[2019-08-06 11:09:14 DEBUG][39m Initializing controls
+[36m[2019-08-06 11:09:15 DEBUG][39m No controls to apply on 'experiment'
+[32m[2019-08-06 11:09:15 INFO][39m Steady state hypothesis: WM server is running
+[36m[2019-08-06 11:09:15 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:09:15 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:09:15 INFO][39m Probe: Wiremock server is running
+[36m[2019-08-06 11:09:15 DEBUG][39m   => succeeded with '{'status': 200, 'headers': {'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Server': 'Jetty(9.4.z-SNAPSHOT)'}, 'body': {'mappings': [], 'meta': {'total': 0}}}'
+[36m[2019-08-06 11:09:15 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:09:15 DEBUG][39m allowed tolerance is 200
+[32m[2019-08-06 11:09:15 INFO][39m Steady state hypothesis is met!
+[36m[2019-08-06 11:09:15 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:09:15 DEBUG][39m No controls to apply on 'method'
+[36m[2019-08-06 11:09:15 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:09:15 INFO][39m Action: adding a mappings
+[36m[2019-08-06 11:09:15 DEBUG][39m Activity 'adding a mappings' loaded from '/Users/mmi59/venv/chaostoolkit-wiremock/lib/python3.7/site-packages/chaoswm/actions.py'
+[36m[2019-08-06 11:09:15 DEBUG][39m   => succeeded with '['3e1013fb-097a-4f3b-8cdc-3466f471cbff']'
+[36m[2019-08-06 11:09:15 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:09:15 DEBUG][39m No controls to apply on 'method'
+[32m[2019-08-06 11:09:15 INFO][39m Steady state hypothesis: WM server is running
+[36m[2019-08-06 11:09:15 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:09:15 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:09:15 INFO][39m Probe: Wiremock server is running
+[36m[2019-08-06 11:09:15 DEBUG][39m   => succeeded with '{'status': 200, 'headers': {'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Server': 'Jetty(9.4.z-SNAPSHOT)'}, 'body': {'mappings': [{'id': '3e1013fb-097a-4f3b-8cdc-3466f471cbff', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'Hello world!', 'headers': {'Content-Type': 'text/plain'}}, 'uuid': '3e1013fb-097a-4f3b-8cdc-3466f471cbff'}], 'meta': {'total': 1}}}'
+[36m[2019-08-06 11:09:15 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:09:15 DEBUG][39m allowed tolerance is 200
+[32m[2019-08-06 11:09:15 INFO][39m Steady state hypothesis is met!
+[36m[2019-08-06 11:09:15 DEBUG][39m No controls to apply on 'hypothesis'
+[32m[2019-08-06 11:09:15 INFO][39m Let's rollback...
+[36m[2019-08-06 11:09:15 DEBUG][39m No controls to apply on 'rollback'
+[32m[2019-08-06 11:09:15 INFO][39m No declared rollbacks, let's move on.
+[36m[2019-08-06 11:09:15 DEBUG][39m No controls to apply on 'rollback'
+[32m[2019-08-06 11:09:15 INFO][39m Experiment ended with status: completed
+[36m[2019-08-06 11:09:15 DEBUG][39m No controls to apply on 'experiment'
+[36m[2019-08-06 11:09:15 DEBUG][39m Cleaning up controls
+[36m[2019-08-06 11:09:15 DEBUG][39m Clearing activities cache
+[36m[2019-08-06 11:09:29 DEBUG][39m ###############################################################################
+[36m[2019-08-06 11:09:29 DEBUG][39m Running command 'run'
+[36m[2019-08-06 11:09:29 DEBUG][39m Using settings file '/Users/mmi59/.chaostoolkit/settings.yaml'
+[36m[2019-08-06 11:09:29 DEBUG][39m The Chaos Toolkit settings file could not be found at '/Users/mmi59/.chaostoolkit/settings.yaml'.
+[36m[2019-08-06 11:09:29 DEBUG][39m Building activity cache...
+[36m[2019-08-06 11:09:29 DEBUG][39m Cached 2 activities
+[32m[2019-08-06 11:09:29 INFO][39m Validating the experiment's syntax
+[36m[2019-08-06 11:09:29 DEBUG][39m Loading configuration...
+[36m[2019-08-06 11:09:29 DEBUG][39m Loading secrets...
+[36m[2019-08-06 11:09:29 DEBUG][39m Secrets loaded
+[32m[2019-08-06 11:09:29 INFO][39m Experiment looks valid
+[36m[2019-08-06 11:09:29 DEBUG][39m Clearing activities cache
+[36m[2019-08-06 11:09:29 DEBUG][39m Building activity cache...
+[36m[2019-08-06 11:09:29 DEBUG][39m Cached 2 activities
+[32m[2019-08-06 11:09:29 INFO][39m Running experiment: Add mapping
+[36m[2019-08-06 11:09:29 DEBUG][39m Loading configuration...
+[36m[2019-08-06 11:09:29 DEBUG][39m Loading secrets...
+[36m[2019-08-06 11:09:29 DEBUG][39m Secrets loaded
+[36m[2019-08-06 11:09:29 DEBUG][39m Initializing controls
+[36m[2019-08-06 11:09:29 DEBUG][39m No controls to apply on 'experiment'
+[32m[2019-08-06 11:09:29 INFO][39m Steady state hypothesis: WM server is running
+[36m[2019-08-06 11:09:29 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:09:29 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:09:29 INFO][39m Probe: Wiremock server is running
+[36m[2019-08-06 11:09:29 DEBUG][39m   => succeeded with '{'status': 200, 'headers': {'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Server': 'Jetty(9.4.z-SNAPSHOT)'}, 'body': {'mappings': [{'id': '3e1013fb-097a-4f3b-8cdc-3466f471cbff', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'Hello world!', 'headers': {'Content-Type': 'text/plain'}}, 'uuid': '3e1013fb-097a-4f3b-8cdc-3466f471cbff'}], 'meta': {'total': 1}}}'
+[36m[2019-08-06 11:09:29 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:09:29 DEBUG][39m allowed tolerance is 200
+[32m[2019-08-06 11:09:29 INFO][39m Steady state hypothesis is met!
+[36m[2019-08-06 11:09:29 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:09:29 DEBUG][39m No controls to apply on 'method'
+[36m[2019-08-06 11:09:29 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:09:29 INFO][39m Action: down
+[36m[2019-08-06 11:09:29 DEBUG][39m Activity 'down' loaded from '/Users/mmi59/venv/chaostoolkit-wiremock/lib/python3.7/site-packages/chaoswm/actions.py'
+[36m[2019-08-06 11:09:29 DEBUG][39m   => succeeded with '[{'id': '3e1013fb-097a-4f3b-8cdc-3466f471cbff', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'Hello world!', 'headers': {'Content-Type': 'text/plain'}, 'chunkedDribbleDelay': {'numberOfChunks': 4, 'totalDuration': 5000}}, 'uuid': '3e1013fb-097a-4f3b-8cdc-3466f471cbff'}]'
+[36m[2019-08-06 11:09:29 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:09:29 DEBUG][39m No controls to apply on 'method'
+[32m[2019-08-06 11:09:29 INFO][39m Steady state hypothesis: WM server is running
+[36m[2019-08-06 11:09:29 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:09:29 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:09:29 INFO][39m Probe: Wiremock server is running
+[36m[2019-08-06 11:09:29 DEBUG][39m   => succeeded with '{'status': 200, 'headers': {'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Server': 'Jetty(9.4.z-SNAPSHOT)'}, 'body': {'mappings': [{'id': '3e1013fb-097a-4f3b-8cdc-3466f471cbff', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'Hello world!', 'headers': {'Content-Type': 'text/plain'}, 'chunkedDribbleDelay': {'numberOfChunks': 4, 'totalDuration': 5000}}, 'uuid': '3e1013fb-097a-4f3b-8cdc-3466f471cbff'}], 'meta': {'total': 1}}}'
+[36m[2019-08-06 11:09:29 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:09:29 DEBUG][39m allowed tolerance is 200
+[32m[2019-08-06 11:09:29 INFO][39m Steady state hypothesis is met!
+[36m[2019-08-06 11:09:29 DEBUG][39m No controls to apply on 'hypothesis'
+[32m[2019-08-06 11:09:29 INFO][39m Let's rollback...
+[36m[2019-08-06 11:09:29 DEBUG][39m No controls to apply on 'rollback'
+[32m[2019-08-06 11:09:29 INFO][39m No declared rollbacks, let's move on.
+[36m[2019-08-06 11:09:29 DEBUG][39m No controls to apply on 'rollback'
+[32m[2019-08-06 11:09:29 INFO][39m Experiment ended with status: completed
+[36m[2019-08-06 11:09:29 DEBUG][39m No controls to apply on 'experiment'
+[36m[2019-08-06 11:09:29 DEBUG][39m Cleaning up controls
+[36m[2019-08-06 11:09:29 DEBUG][39m Clearing activities cache
+[36m[2019-08-06 11:09:56 DEBUG][39m ###############################################################################
+[36m[2019-08-06 11:09:56 DEBUG][39m Running command 'run'
+[36m[2019-08-06 11:09:56 DEBUG][39m Using settings file '/Users/mmi59/.chaostoolkit/settings.yaml'
+[36m[2019-08-06 11:09:56 DEBUG][39m The Chaos Toolkit settings file could not be found at '/Users/mmi59/.chaostoolkit/settings.yaml'.
+[36m[2019-08-06 11:09:56 DEBUG][39m Building activity cache...
+[36m[2019-08-06 11:09:56 DEBUG][39m Cached 2 activities
+[32m[2019-08-06 11:09:56 INFO][39m Validating the experiment's syntax
+[36m[2019-08-06 11:09:56 DEBUG][39m Loading configuration...
+[36m[2019-08-06 11:09:56 DEBUG][39m Loading secrets...
+[36m[2019-08-06 11:09:56 DEBUG][39m Secrets loaded
+[32m[2019-08-06 11:09:56 INFO][39m Experiment looks valid
+[36m[2019-08-06 11:09:56 DEBUG][39m Clearing activities cache
+[36m[2019-08-06 11:09:56 DEBUG][39m Building activity cache...
+[36m[2019-08-06 11:09:56 DEBUG][39m Cached 2 activities
+[32m[2019-08-06 11:09:56 INFO][39m Running experiment: Add mapping
+[36m[2019-08-06 11:09:56 DEBUG][39m Loading configuration...
+[36m[2019-08-06 11:09:56 DEBUG][39m Loading secrets...
+[36m[2019-08-06 11:09:56 DEBUG][39m Secrets loaded
+[36m[2019-08-06 11:09:56 DEBUG][39m Initializing controls
+[36m[2019-08-06 11:09:56 DEBUG][39m No controls to apply on 'experiment'
+[32m[2019-08-06 11:09:56 INFO][39m Steady state hypothesis: WM server is running
+[36m[2019-08-06 11:09:56 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:09:56 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:09:56 INFO][39m Probe: Wiremock server is running
+[36m[2019-08-06 11:09:56 DEBUG][39m   => succeeded with '{'status': 200, 'headers': {'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Server': 'Jetty(9.4.z-SNAPSHOT)'}, 'body': {'mappings': [{'id': '3e1013fb-097a-4f3b-8cdc-3466f471cbff', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'Hello world!', 'headers': {'Content-Type': 'text/plain'}, 'chunkedDribbleDelay': {'numberOfChunks': 4, 'totalDuration': 5000}}, 'uuid': '3e1013fb-097a-4f3b-8cdc-3466f471cbff'}], 'meta': {'total': 1}}}'
+[36m[2019-08-06 11:09:56 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:09:56 DEBUG][39m allowed tolerance is 200
+[32m[2019-08-06 11:09:56 INFO][39m Steady state hypothesis is met!
+[36m[2019-08-06 11:09:56 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:09:56 DEBUG][39m No controls to apply on 'method'
+[36m[2019-08-06 11:09:56 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:09:56 INFO][39m Action: up
+[36m[2019-08-06 11:09:56 DEBUG][39m Activity 'up' loaded from '/Users/mmi59/venv/chaostoolkit-wiremock/lib/python3.7/site-packages/chaoswm/actions.py'
+[36m[2019-08-06 11:09:56 DEBUG][39m   => succeeded with '['5e5c8308-e8d2-42b7-92db-d4eed9159b3c']'
+[36m[2019-08-06 11:09:56 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:09:56 DEBUG][39m No controls to apply on 'method'
+[32m[2019-08-06 11:09:56 INFO][39m Steady state hypothesis: WM server is running
+[36m[2019-08-06 11:09:56 DEBUG][39m No controls to apply on 'hypothesis'
+[36m[2019-08-06 11:09:56 DEBUG][39m No controls to apply on 'activity'
+[32m[2019-08-06 11:09:56 INFO][39m Probe: Wiremock server is running
+[36m[2019-08-06 11:09:56 DEBUG][39m   => succeeded with '{'status': 200, 'headers': {'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Server': 'Jetty(9.4.z-SNAPSHOT)'}, 'body': {'mappings': [{'id': '5e5c8308-e8d2-42b7-92db-d4eed9159b3c', 'request': {'url': '/hello', 'method': 'GET'}, 'response': {'status': 200, 'body': 'Hello world!', 'headers': {'Content-Type': 'text/plain'}}, 'uuid': '5e5c8308-e8d2-42b7-92db-d4eed9159b3c', 'priority': 1}], 'meta': {'total': 1}}}'
+[36m[2019-08-06 11:09:56 DEBUG][39m No controls to apply on 'activity'
+[36m[2019-08-06 11:09:56 DEBUG][39m allowed tolerance is 200
+[32m[2019-08-06 11:09:56 INFO][39m Steady state hypothesis is met!
+[36m[2019-08-06 11:09:56 DEBUG][39m No controls to apply on 'hypothesis'
+[32m[2019-08-06 11:09:56 INFO][39m Let's rollback...
+[36m[2019-08-06 11:09:56 DEBUG][39m No controls to apply on 'rollback'
+[32m[2019-08-06 11:09:56 INFO][39m No declared rollbacks, let's move on.
+[36m[2019-08-06 11:09:56 DEBUG][39m No controls to apply on 'rollback'
+[32m[2019-08-06 11:09:56 INFO][39m Experiment ended with status: completed
+[36m[2019-08-06 11:09:56 DEBUG][39m No controls to apply on 'experiment'
+[36m[2019-08-06 11:09:56 DEBUG][39m Cleaning up controls
+[36m[2019-08-06 11:09:56 DEBUG][39m Clearing activities cache
