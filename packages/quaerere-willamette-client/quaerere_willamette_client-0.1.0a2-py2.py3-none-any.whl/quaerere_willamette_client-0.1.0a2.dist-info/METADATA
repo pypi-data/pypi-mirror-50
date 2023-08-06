@@ -1,0 +1,75 @@
+Metadata-Version: 2.1
+Name: quaerere-willamette-client
+Version: 0.1.0a2
+Summary: Client for willamette RESTful API
+Home-page: https://github.com/QuaererePlatform/willamette-client
+Author: Caitlyn O'Hanna
+Author-email: ravenoak@virtualxistenz.com
+License: AGPLv3+
+Project-URL: Documentation, http://willamette-client.readthedocs.io/
+Project-URL: Source Code, https://github.com/QuaererePlatform/willamette-client
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Flask
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Text Processing :: Linguistic
+Requires-Python: >= 3.6
+Requires-Dist: requests
+Requires-Dist: quaerere-base-client (>=0.1.0a)
+Requires-Dist: quaerere-willamette-common (>=0.2.0)
+
+About
+=====
+
+**quaerere-willamette-client** is the client library used to interact with the willamette service RESTful API
+
+
+Links
+-----
+
+* Documentation: http://willamette-client.readthedocs.io/
+* PyPI: https://pypi.org/project/quaerere-willamette-client/
+* Source: https://github.com/QuaererePlatform/willamette-client.git
+
+
+Installation
+============
+
+Using pip:
+
+.. code-block:: shell
+
+   pip install quaerere-willamette-client
+
+Or using setup.py:
+
+.. code-block:: shell
+
+   python setup.py install
+
+
+Tests can be ran using:
+
+.. code-block:: shell
+
+   python setup.py test
+
+
+Documentation can be generated using:
+
+.. code-block:: shell
+
+   python setup.py build_sphinx
+
+
+Usage
+=====
+
+
