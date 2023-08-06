@@ -1,0 +1,102 @@
+Metadata-Version: 1.1
+Name: cdstoolbox-remote
+Version: 0.0.1
+Summary: Experimental tool to run a workflow on the CDS Toolbox remotely
+Home-page: https://software.ecmwf.int/stash/projects/CDS/repos/cdstoolbox-remote
+Author: ECMWF
+Author-email: software.support@ecmwf.int
+License: Apache 2.0
+Description: 
+        Experimental tool to run a workflow on the CDS Toolbox remotely.
+        
+        Install
+        -------
+        
+        Install via `pip` with::
+        
+            $ pip install cdstoolbox-remote
+        
+        
+        Configure
+        ---------
+        
+        If you are not already registered to the CDS, register here:
+        
+        https://cds.climate.copernicus.eu/user/register
+        
+        then log in the CDS and configure the `cdsapi` library following the instructions at:
+        
+        https://cds.climate.copernicus.eu/api-how-to
+        
+        
+        Usage
+        -----
+        
+        Write a valid CDS Toolbox workflow to the file `test-wf.py`::
+        
+            import cdstoolbox as ct
+        
+            @ct.application(title='Hello World!')
+            @ct.output.figure()
+            @ct.output.download()
+            def application():
+        
+                data = ct.catalogue.retrieve(
+                    'seasonal-monthly-single-levels',
+                    {
+                        'originating_centre': 'ecmwf',
+                        'variable': '2m_temperature',
+                        'product_type': 'ensemble_mean',
+                        'year': '2018',
+                        'month': ['02'],
+                        'leadtime_month': ['1'],
+                    }
+                )
+        
+                fig = ct.cdsplot.geomap(
+                    data, pcolormesh_kwargs={'cmap': 'RdBu_r'}, title='Mean {long_name}',
+                    projection=ct.cdsplot.crs.Robinson()
+                )
+        
+                return fig, data
+        
+        
+        Then run the worflow remotely with::
+        
+            $ python test-wf.py
+        
+        
+        License
+        -------
+        
+        Copyright 2019 European Centre for Medium-Range Weather Forecasts (ECMWF)
+        
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+        
+        http://www.apache.org/licenses/LICENSE-2.0
+        
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+        
+        In applying this licence, ECMWF does not waive the privileges and immunities
+        granted to it by virtue of its status as an intergovernmental organisation nor
+        does it submit to any jurisdiction.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Operating System :: OS Independent

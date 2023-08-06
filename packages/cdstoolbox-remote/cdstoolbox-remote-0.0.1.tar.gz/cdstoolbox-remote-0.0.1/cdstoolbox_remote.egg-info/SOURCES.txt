@@ -1,0 +1,11 @@
+MANIFEST.in
+README.rst
+setup.py
+test-wf.py
+cdstoolbox/__init__.py
+cdstoolbox_remote.egg-info/PKG-INFO
+cdstoolbox_remote.egg-info/SOURCES.txt
+cdstoolbox_remote.egg-info/dependency_links.txt
+cdstoolbox_remote.egg-info/requires.txt
+cdstoolbox_remote.egg-info/top_level.txt
+cdstoolbox_remote.egg-info/zip-safe
