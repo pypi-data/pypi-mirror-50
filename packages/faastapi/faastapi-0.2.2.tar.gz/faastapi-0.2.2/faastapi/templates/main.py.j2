@@ -1,0 +1,42 @@
+"""
+This template can be used to generate a Python file defining a FastAPI server
+"""
+from typing import * # noqa: 403
+from datetime import datetime  # noqa: 401
+from faastapi import FaastAPI, get_context
+{%- if run["output"] is mapping %}
+from function.models import Output
+{%- endif %}
+{%- if run["input"] is defined %}
+from function.models import Input
+{%- endif %}
+from function.handler import {{ run["function"] }} as handle
+
+
+app = FaastAPI()
+
+app.configure()
+
+
+{%- if run["output"] is defined %}
+    {%- if run["output"] is mapping %}
+@app.post("/", dependencies=[app.get_user], response_model=Output)
+    {%- else %}
+@app.post("/", dependencies=[app.get_user], response_model={{ run["output"] }})
+    {%- endif %}
+{%- else %}
+@app.post("/", dependencies=[app.get_user])
+{%- endif %}
+async def {{ run["method"].lower() }}(
+{%- if run["input"] is defined %}
+    inputs: Input,
+{%- endif %}
+    context=get_context
+):
+{%- if run["input"] is defined %}
+    resp = handle(context, **inputs.dict())
+{%- else %}
+    resp = handle(context)
+{%- endif %}
+    return resp
+
