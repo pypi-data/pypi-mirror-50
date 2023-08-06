@@ -1,0 +1,25 @@
+Metadata-Version: 1.1
+Name: kolibri-sentry-plugin
+Version: 0.0.1
+Summary: A plugin to provide sentry integration for Kolibri
+Home-page: https://github.com/learningequality/kolibri-sentry-plugin
+Author: Learning Equality
+Author-email: info@learningequality.org
+License: MIT
+Description: 
+        A plugin that provides Sentry SDK integration for the frontend and backend
+        of Kolibri. See the `Github repo <https://github.com/learningequality/kolibri-sentry-plugin>`_ for more details.
+        
+Keywords: k,o,l,i,b,r,i
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: PyPy
