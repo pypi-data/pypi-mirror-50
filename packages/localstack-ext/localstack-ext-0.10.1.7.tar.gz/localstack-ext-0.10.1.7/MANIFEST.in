@@ -1,0 +1,5 @@
+include requirements.txt
+recursive-include localstack_ext *.py.enc
+recursive-include localstack_ext _pytransform.*
+recursive-include localstack_ext *.lic
+recursive-include localstack_ext *.key
