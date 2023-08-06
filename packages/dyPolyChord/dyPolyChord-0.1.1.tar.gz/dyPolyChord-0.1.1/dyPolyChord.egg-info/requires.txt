@@ -1,0 +1,17 @@
+numpy>=1.13
+scipy>=1.0.0
+nestcheck>=0.1.8
+
+[:python_version == "2.7"]
+futures
+pytz
+python-dateutil
+
+[MPI]
+mpi4py
+
+[docs]
+sphinx
+numpydoc
+sphinx-rtd-theme
+nbsphinx>=0.3.3
