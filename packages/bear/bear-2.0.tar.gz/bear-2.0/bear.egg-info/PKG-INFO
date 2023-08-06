@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: bear
+Version: 2.0
+Summary: asynchronous parallelization pipeline
+Home-page: https://github.com/kouroshparsa/bear
+Author: Kourosh Parsa
+Author-email: kouroshtheking@gmail.com
+License: GNU
+Download-URL: https://github.com/kouroshparsa/bear/packages/2.0
+Description: 
+        Bear
+        
+        bear is a pipeline allowing you to run tasks in parallel in such
+        a way that it truly uses multiple cores of your processor
+        It also allow resuming failed pipelines and profiling and monitoring tasks and system memory.
+        
+Platform: all
+Classifier: Programming Language :: Python
