@@ -1,0 +1,15 @@
+libtorch/__init__.py,sha256=0-WYOmRSy_iQDqCnrknSnt2lAm97Vjos_A-HwkV9js8,56
+libtorch/build-version,sha256=KtOOcbW3BGExAzB0WQwqRIOMqixOTU0NHR7pA3dMvis,18
+libtorch/lib/libc10.so,sha256=aNM3BUjPBnSN3XG-Kn_7yDQTjMlQfiBEl9JtPIylQcY,285064
+libtorch/lib/libcaffe2_detectron_ops.so,sha256=bViB7tBRYw2_dFC6zPNCExP_V8BUNicNCC8FXX4J5cg,728160
+libtorch/lib/libcaffe2_module_test_dynamic.so,sha256=dSmEnE7puCJ4G-OYfEg1IVCuix4ZXW3fxFP2wKgcM-M,89096
+libtorch/lib/libfoxi.so,sha256=oLJHlUp_aFaiJneoTLzb-Otj9GfHsZ-6VlEapiMjHbA,19224
+libtorch/lib/libfoxi_dummy.so,sha256=lXNZeRqbjLAagUrrhz7fgSjivSwdhgiDeud8QxfO3Vk,15200
+libtorch/lib/libgomp-8bba0e50.so.1,sha256=QG3HKRZdEUpZNH86sa39UE6NeiJ9JBj1avkKTMc3s_o,170936
+libtorch/lib/libonnxifi.so,sha256=oLJHlUp_aFaiJneoTLzb-Otj9GfHsZ-6VlEapiMjHbA,19224
+libtorch/lib/libonnxifi_dummy.so,sha256=AfdjkBSU7nwoubYHQMTK74m_t3CrHk9qj9XGIsX129Q,15176
+libtorch/lib/libtorch.so,sha256=kqlGDWKXpVJcO-S45-dlMFltLkTHNU3k6m2Avbn3TEc,187573928
+libtorch-1.2.0.1.dist-info/METADATA,sha256=HWvb8W0EiQtGrqkXbpq8J2Qq77mjRKNo2Nz3Y07nBKc,496
+libtorch-1.2.0.1.dist-info/WHEEL,sha256=_wJFdOYk7i3xxT8ElOkUJvOdOvfNGbR9g-bf6UQT6sU,110
+libtorch-1.2.0.1.dist-info/top_level.txt,sha256=okXnok0ahmHFk3NZEhtNnZmIEKfnGzEB1UrkiNw6R90,9
+libtorch-1.2.0.1.dist-info/RECORD,,
