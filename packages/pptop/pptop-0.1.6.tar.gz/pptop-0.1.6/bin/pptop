@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+# PYTHON_ARGCOMPLETE_OK
+
+import curses
+import os
+
+from pptop import start
+
+exit_code = 1
+try:
+    exit_code = start()
+except Exception as e:
+    print(e)
+finally:
+    # always end curses
+    try:
+        curses.endwin()
+    except:
+        pass
+# force exit, even if some plugin freezed
+os._exit(exit_code)
