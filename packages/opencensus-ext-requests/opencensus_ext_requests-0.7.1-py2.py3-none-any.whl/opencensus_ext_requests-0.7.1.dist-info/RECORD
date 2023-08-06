@@ -1,0 +1,9 @@
+opencensus/__init__.py,sha256=F0UD44DuZCpVvI1PX5rW4FcKQ004ORdqeOhf4JsheIY,66
+opencensus/ext/__init__.py,sha256=F0UD44DuZCpVvI1PX5rW4FcKQ004ORdqeOhf4JsheIY,66
+opencensus/ext/requests/__init__.py,sha256=zIaGVrp3kWWX6vtd4Z6qjDzWGLgN-sJUGsVMmELQp2I,664
+opencensus/ext/requests/trace.py,sha256=LRQWLLzetutOXZRWzq5ZlsycqABbPw8a3yUO7RkqLA8,4972
+opencensus_ext_requests-0.7.1.dist-info/METADATA,sha256=xn6OhrW6FzOsQEK3FNbdDTVOoItWi9uXcohtO5_esiU,2411
+opencensus_ext_requests-0.7.1.dist-info/WHEEL,sha256=53VSps8MltPLN_x9Ib61FU2ZSaJKzgrWQqu9rS-Dkgk,116
+opencensus_ext_requests-0.7.1.dist-info/namespace_packages.txt,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
+opencensus_ext_requests-0.7.1.dist-info/top_level.txt,sha256=J24OU61lnFeMMuwOLPtTNywYsd2Bzp5KbBCPtAhDgaI,11
+opencensus_ext_requests-0.7.1.dist-info/RECORD,,
