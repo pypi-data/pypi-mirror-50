@@ -1,0 +1,13 @@
+README.md
+setup.py
+bin/diffenv
+diffenv/__init__.py
+diffenv/diffviewer.py
+diffenv/editor.py
+diffenv/main.py
+diffenv.egg-info/PKG-INFO
+diffenv.egg-info/SOURCES.txt
+diffenv.egg-info/dependency_links.txt
+diffenv.egg-info/not-zip-safe
+diffenv.egg-info/requires.txt
+diffenv.egg-info/top_level.txt
