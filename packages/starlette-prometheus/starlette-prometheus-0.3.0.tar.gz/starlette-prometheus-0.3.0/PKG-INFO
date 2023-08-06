@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: starlette-prometheus
+Version: 0.3.0
+Summary: Prometheus integration for Starlette
+Home-page: https://github.com/PeRDy/starlette-prometheus
+Author: José Antonio Perdiguero López
+Author-email: perdy@perdy.io
+Keywords: starlette,prometheus,metrics
+Requires-Python: >=3.6,<4.0
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: prometheus_client (>=0.7,<0.8)
+Requires-Dist: starlette (>=0.12.0)
+Project-URL: Repository, https://github.com/PeRDy/starlette-prometheus
