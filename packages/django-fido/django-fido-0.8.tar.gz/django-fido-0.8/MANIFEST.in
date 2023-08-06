@@ -1,0 +1,4 @@
+include *.md
+graft django_fido
+exclude django_fido/locale/C/**
+exclude django_fido/locale/*.pot
