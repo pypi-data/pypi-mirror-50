@@ -1,0 +1,3 @@
+[console_scripts]
+fluigi-monitor = fluigi_monitor.fluigi_monitor:run
+
