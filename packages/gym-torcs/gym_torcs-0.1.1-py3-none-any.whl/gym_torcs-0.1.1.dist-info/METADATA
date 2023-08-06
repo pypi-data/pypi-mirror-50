@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: gym-torcs
+Version: 0.1.1
+Summary: A pip package for the Gym Torcs environment
+Home-page: https://github.com/dosssman/GymTorcs.git
+Author: Rousslan F. J. Dossa
+Author-email: dosssman@hotmail.fr
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Dist: psutil
+Requires-Dist: gym
+
+Please check out the README at: https://github.com/dosssman/GymTorcs
+
+
