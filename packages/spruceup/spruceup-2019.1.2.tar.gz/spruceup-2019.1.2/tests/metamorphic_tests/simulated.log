@@ -1,0 +1,18 @@
+2019-07-19 08:59:11,779 - Parsing alignment simulated.fas ...
+
+2019-07-19 08:59:11,834 - Did not find guide tree, continuing ...
+
+2019-07-19 08:59:11,835 - Splitting into size-25 windows with 0 overlap ...
+
+2019-07-19 08:59:32,122 - Writing distances to file uncorrected-distances-25window-0overlap.json ...
+
+2019-07-19 08:59:32,821 - Used 124.02 MB memory
+
+2019-07-19 08:59:32,821 - Finding outliers for 0.98 lognorms cutoff ...
+2019-07-19 08:59:32,910 - Sites removed: 20500
+2019-07-19 08:59:32,911 - Removed 1.00% of sites at cutoff of 0.98 lognorms
+2019-07-19 08:59:32,912 - Wrote report 0.98_lognorms-cutoff-simulated-report.txt
+2019-07-19 08:59:32,936 - Wrote trimmed alignment 0.98_lognorms-cutoff-simulated-trimmed.fas
+
+2019-07-19 08:59:32,937 - Plotting distance distributions and cutoffs
+2019-07-19 08:59:44,179 - Finished in 32.40 seconds
