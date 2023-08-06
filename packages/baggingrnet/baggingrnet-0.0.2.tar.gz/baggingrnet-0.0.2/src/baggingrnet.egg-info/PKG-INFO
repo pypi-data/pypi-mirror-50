@@ -1,0 +1,88 @@
+Metadata-Version: 2.1
+Name: baggingrnet
+Version: 0.0.1
+Summary: Library of Bagging of Deep Residual Neural Networks
+Home-page: UNKNOWN
+Author: Lianfa Li
+Author-email: lspatial@gmail.com
+License: UNKNOWN
+Description: # Library of Bagging of Deep Residual Neural Networks (baggingrnet)
+        
+        [![Build Status](https://travis-ci.org/pybind/cmake_example.svg?branch=master)](https://travis-ci.org/pybind/cmake_example)
+        [![Build status](https://ci.appveyor.com/api/projects/status/57nnxfm4subeug43/branch/master?svg=true)](https://ci.appveyor.com/project/dean0x7d/cmake-example/branch/master)
+        
+        his package provides The python Library for Bagging of Deep Residual Neural Networks (baggingrnet).
+        Current version just supports the KERAS package of deep learning and will extend to the others in the future.
+        
+        ## Major modules
+
+        **model**
+
+        * model multBagging: Major class to parallel bagging of autoencoder-based deep residual networks.
+                              You can setup its aruments for optimal effects.
+                              See the class and its member functions' help for details.
+                 resAutoencoder: Major class of the base model of autoencoder-based deep residual network.
+                                 See the specifics for its details.
+                 ensPrediction: Major class to ensemble predictions and optional evaluation for independent test.
+
+        **util**
+        * util pmetrics: main metrics including rsquare and rmse etc.
+
+        **data**
+        * data data: function to access two sample datas to test and demonstrate parallel training and predictions
+                of multiple models by bagging. simData: function to simulate the dataset for a test.
+
+        ## Installation
+        
+        You can directly install it using the following command for the latest version:
+             pip install baggingrnet -U
+        You can also clone the repository and then install:
+        
+        ```bash
+        git clone --recursive https://github.com/lspatial/baggingrnet.git
+        cd package 
+        pip install ./setup.py install 
+        ```
+        
+        With the `setup.py` file included in this example, the `pip install` command will
+        invoke CMake and build the baggingrnet module as specified in `CMakeLists.txt`.
+        
+        
+        ## Note for installation and use 
+        
+        **Compiler requirements**
+        
+        baggingrnet requires a C++11 compliant compiler to be available.
+        
+        **Runtime requirements**
+        
+        baggingrnet requires installation of Keras with support of Tensorflow or other
+        backend system of deep learning (to support Keras). Also Pandas and Numpy should 
+        be installed. 
+        
+        
+        ## Use case 
+        The homepage of the github for the package, baggingrnet provides two specific
+        examples for use of autoencoder based residual deep network:  
+        https://github.com/lspatial/baggingrnet
+        
+        
+        ## License
+        
+        The baggingrnet is provided under a MIT license that can be found in the LICENSE
+        file. By using, distributing, or contributing to this project, you agree to the
+        terms and conditions of this license.
+        
+        ## Test call
+        
+        ```python
+        import baggingrnet as r
+        #Load the sample dataset for PM2.5  
+        simdata=r.data('pm2.5_train')
+        simdata.head()
+        ```
+        ## Collaboration
+        
+        Welcome to contact Dr. Lianfa Li (Email: lspatial@gmail.com or lilf@lreis.ac.cn).
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
