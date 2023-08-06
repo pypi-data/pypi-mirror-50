@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: remote-logger
+Version: 0.1.0
+Summary: Remote Logger
+Home-page: https://github.com/HenleyKuang/remote-logger
+Author: Henley Kuang
+Author-email: hekuang@ucdavis.edu
+License: GPL
+Description: Remote Logger
+        =============
+        
+        Installation
+        ------------
+        
+        .. code-block:: bash
+        
+            pip install remote-logger
+        
+        
+        Examples
+        --------
+        
+        .. code-block:: python
+        
+            client_type = "sentry"
+            dsn = https://<key>@sentry.io/<project>
+            sentry_handler = RemoteLoggerHandler(client_type,
+                                                dsn=dsn)
+            sentry_handler.setLevel(logging.ERROR)
+            LOGGER.addHandler(sentry_handler)
+            LOGGER.error("Test Message", extra={
+                "primary_metadata": {
+                    "pkey1": "pvalue1",
+                    "pkey2": "pvalue2",
+                    "pkey3": "pvalue3",
+                },
+                "secondary_metadata": {
+                    "skey1": "svalue1",
+                    "skey2": "svalue2",
+                    "skey3": "svalue3",
+                }
+            })
+        
+Keywords: python logger
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
