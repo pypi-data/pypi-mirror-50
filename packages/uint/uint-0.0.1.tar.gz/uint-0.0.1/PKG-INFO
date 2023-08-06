@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: uint
+Version: 0.0.1
+Summary: Fixed-width integer and calculation for Python
+Home-page: https://github.com/puhitaku/uint
+Author: Takumi Sueda
+Author-email: puhitaku@gmail.com
+License: MIT License
+Description: # uint
+        
+        *Fixed-width integer and calculation for Python*
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
