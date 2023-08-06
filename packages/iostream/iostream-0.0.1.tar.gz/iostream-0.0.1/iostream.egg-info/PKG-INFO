@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: iostream
+Version: 0.0.1
+Summary: iostream for Python
+Home-page: http://lyx.sanqqq.com
+Author: CubieLee
+Author-email: liyixiao0608@gmail.com
+License: UNKNOWN
+Description: Simple functions in iostream,c++ for Python. Also has some other useful functions
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown

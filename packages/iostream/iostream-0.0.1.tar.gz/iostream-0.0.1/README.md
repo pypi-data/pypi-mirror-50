@@ -1,0 +1,1 @@
+Simple functions in iostream,c++ for Python. Also has some other useful functions
