@@ -1,0 +1,8 @@
+setup.py
+elon_kindle.egg-info/PKG-INFO
+elon_kindle.egg-info/SOURCES.txt
+elon_kindle.egg-info/dependency_links.txt
+elon_kindle.egg-info/entry_points.txt
+elon_kindle.egg-info/top_level.txt
+kindle/__init__.py
+kindle/kindle.py
