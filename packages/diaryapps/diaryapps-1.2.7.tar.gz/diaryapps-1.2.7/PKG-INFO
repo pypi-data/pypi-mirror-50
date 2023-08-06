@@ -1,0 +1,70 @@
+Metadata-Version: 2.1
+Name: diaryapps
+Version: 1.2.7
+Summary: a simple diaryapp that one can use to note the days happennings
+Home-page: https://github.com/justo340/third_upload
+Author: Justus njogu
+Author-email: dj.pjn16@gmail.com
+License: UNKNOWN
+Description: # Diary_app
+        
+        Getting Started
+        This is a website built using django 2.2.3 for practicing  django
+        
+        Prerequisites
+        python 3.7
+        Django 2.2.3
+        
+        Give examples
+        Installing
+        pip3 install diaryapp
+        change database settings on diary.settings
+        python3 manage.py makemigrations
+        python3 manage.py migrate
+        python3 manage.py runserver
+        
+        Running the tests
+        use pytest to run test
+        use tox to automate tests
+        use flake8 to test coding styles
+        
+        Deployment
+        use anisble or pip registry to deploy
+        
+        Built With
+        django  - The web framework used
+        Contributing
+        Please read CONTRIBUTING.md for details of the code
+        
+        Versioning
+        we use github for versioning
+        
+        Authors
+        Justus Njogu- Initial work
+        See also the list of contributors who participated in this project.
+        
+        License
+        This project is licensed under the MIT License - see the LICENSE.md file for details
+        
+        Acknowledgments
+        Hat tip to anyone whose code was used
+        
+        
+        
+        coding toward better future.
+        
+Keywords: circleci ci cd api sdk
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Internet
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Python: >=3
+Description-Content-Type: text/markdown
