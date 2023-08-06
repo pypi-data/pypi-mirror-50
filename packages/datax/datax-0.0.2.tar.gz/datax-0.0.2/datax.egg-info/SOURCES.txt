@@ -1,0 +1,13 @@
+README.md
+setup.py
+datax/__init__.py
+datax/runner.py
+datax.egg-info/PKG-INFO
+datax.egg-info/SOURCES.txt
+datax.egg-info/dependency_links.txt
+datax.egg-info/entry_points.txt
+datax.egg-info/not-zip-safe
+datax.egg-info/requires.txt
+datax.egg-info/top_level.txt
+tests/__init__.py
+tests/test_runner.py
