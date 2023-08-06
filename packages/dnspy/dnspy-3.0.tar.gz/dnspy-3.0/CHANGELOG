@@ -1,0 +1,23 @@
+20190808
+--------
+- Package the latest ETLD file. Allow ability to update the ETLD file.
+- Further py3 fixes.
+
+20190312
+--------
+- Make Python3 compatible
+
+20170529
+--------
+- Bug fixes
+- Added support for Internationalized Domain Names
+- Making the library PEP-8 compatible
+
+20150628
+--------
+- Added a new method for getting the E2LD and count of sub-domains
+- Improved documentation
+
+20130907
+--------
+- Starting development
