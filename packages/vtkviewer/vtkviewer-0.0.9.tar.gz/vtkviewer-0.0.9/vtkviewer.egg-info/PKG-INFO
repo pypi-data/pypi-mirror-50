@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: vtkviewer
+Version: 0.0.9
+Summary: VTK data viewer
+Home-page: https://github.com/mjirik/default_project
+Author: Hal Canary
+Author-email: halcanary@gmail.com
+License: Apache License, Version 2.0
+Description: UNKNOWN
+Keywords: viewer vtk
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 2.7
