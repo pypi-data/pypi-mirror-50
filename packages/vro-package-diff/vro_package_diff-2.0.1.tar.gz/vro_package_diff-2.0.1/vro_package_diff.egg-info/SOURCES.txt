@@ -1,0 +1,12 @@
+README.md
+setup.py
+vro_package_diff/__init__.py
+vro_package_diff/__main__.py
+vro_package_diff/config.py
+vro_package_diff/vro_element.py
+vro_package_diff.egg-info/PKG-INFO
+vro_package_diff.egg-info/SOURCES.txt
+vro_package_diff.egg-info/dependency_links.txt
+vro_package_diff.egg-info/entry_points.txt
+vro_package_diff.egg-info/requires.txt
+vro_package_diff.egg-info/top_level.txt
