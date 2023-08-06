@@ -1,0 +1,7 @@
+numpy
+scipy>=1.1.0
+matplotlib
+cvxopt==1.2.1
+networkx
+sphinxcontrib-bibtex
+sphinx_rtd_theme
