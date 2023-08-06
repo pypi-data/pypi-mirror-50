@@ -1,0 +1,21 @@
+Metadata-Version: 1.0
+Name: datathon2
+Version: 0.1.11
+Summary: datathon2
+Home-page: https://github.com/MIT-LCP/datathon-package
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: MIT
+Description: # Package containing helper functions for datathons.
+        
+        Pip installable package containing helper functions for datathons
+        
+        ## Installation
+        
+        ```pip install datathon2```
+        
+        ## Notes for use
+        
+        
+Keywords: datathon
+Platform: UNKNOWN
