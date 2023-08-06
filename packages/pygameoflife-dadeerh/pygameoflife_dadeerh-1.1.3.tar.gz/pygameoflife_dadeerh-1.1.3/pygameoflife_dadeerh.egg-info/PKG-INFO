@@ -1,0 +1,57 @@
+Metadata-Version: 1.0
+Name: pygameoflife-dadeerh
+Version: 1.1.3
+Summary: Pygame implementation of Conway's Game of Life
+Home-page: UNKNOWN
+Author: dadeerh
+Author-email: dadeerh91@gmail.com
+License: GPL-3.0
+Description: Conway's Game of Life
+        ======================
+        
+        Simple pygame implementation of Conway's Game of Life
+        # Screenshot
+        
+        ![pygameoflife_dadeerh](pygameoflife_dadeerh.png?raw=true "pygameoflife_dadeerh screenshot")
+        
+        # Installation
+        install with pip:
+        
+            `pip install pygameoflife_dadeerh`
+        
+        Install from source:
+        
+            `python setup.py install`
+        
+        # Running
+        
+        Ruin via laucnh script installed with pip package:
+        
+            `pygameoflife_dadeerh`
+        
+        Run as a python module:
+        
+            `python -m pygameoflife_dadeerh`
+        
+        Using inside of code:
+        
+            to import class in to your own code:
+        
+                `from pygameoflife_dadeerh import LifeGame`
+        
+        # Controls
+        
+        There are a couple of keybinds available:
+        
+        * q - Quit
+        * s - Start/Stop (toggle pause)
+        * r - Randomize the grid
+        
+        # Source Code
+        
+        https://github.com/Dadeerh/pygameoflife_dadeerh
+        
+        # Contact
+        
+        dadeerh91@gmail.com
+Platform: UNKNOWN
