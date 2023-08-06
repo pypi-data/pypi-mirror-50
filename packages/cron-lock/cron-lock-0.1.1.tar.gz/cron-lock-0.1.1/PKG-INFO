@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: cron-lock
+Version: 0.1.1
+Summary: A count lock recovered by periodicity
+Home-page: https://github.com/igzhang/cron_lock
+Author: fallthrough
+Author-email: rainbroadcast@qq.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 2.7
