@@ -1,0 +1,16 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+gmsh_api/__init__.py
+gmsh_api/gmsh.bak.py
+gmsh_api/gmsh.py
+gmsh_api/libgmsh.so
+gmsh_api.egg-info/PKG-INFO
+gmsh_api.egg-info/SOURCES.txt
+gmsh_api.egg-info/dependency_links.txt
+gmsh_api.egg-info/not-zip-safe
+gmsh_api.egg-info/requires.txt
+gmsh_api.egg-info/top_level.txt
+test/test_mesh_2d.py
+test/test_sfem_mesh_2d.py
