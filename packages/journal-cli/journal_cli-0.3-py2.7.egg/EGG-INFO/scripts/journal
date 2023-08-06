@@ -1,0 +1,254 @@
+#!/usr/bin/python
+import os
+import sys
+import json
+from datetime import datetime
+# from appdirs import *
+
+appname = "journal"
+file = 'users/users.json'
+directory = os.path.dirname(file)
+print(file)
+
+def get_users():
+	if not os.path.exists(directory):
+		os.makedirs(directory)
+	try:
+		fh = open(file, 'r')
+	except FileNotFoundError:
+		# if file does not exist, create it
+		fh = open(file, 'w')
+		json.dump({}, fh)
+		fh.close()
+	with open(file, 'r') as json_file:
+		users = json.load(json_file)
+		return users
+
+def get_user(username):
+	users = get_users()
+	return users.get(username)
+
+def check_if_username_exists(username, users):
+	if users.get(username, None):
+		return True
+	else:
+		return False
+
+def get_username():
+	username = input("username: ")
+	if username:
+		return username
+	else:
+		print("invalid input, please re - enter username")
+		get_username()
+
+def get_password():
+	password = input("password: ")
+	if password:
+		return password
+	else:
+		print("invalid input, please re - enter password")
+		get_password()
+
+def login_signup_options():
+	print("1) Login")
+	print("2) Sign up")
+	option = input("(1/2) : ")
+	return option
+
+def write_to_file(users):
+	with open(file, 'w') as outfile:
+		json.dump(users, outfile)
+
+def commit_entry(username, entry):
+	users = get_users()
+	user = users.get(username)
+	user['entries'].insert(0, entry)
+	users[username] = user
+	write_to_file(users)
+
+def signup():
+	username = get_username()
+	users = get_users()
+	if check_if_username_exists(username, users):
+		print("user already exists")
+		signup()
+	else:
+		password = get_password()
+		users[username] = dict(entries=[], password=password)
+		write_to_file(users)
+		return True, username
+
+def create_journal_entry(username):
+	user = get_user(username)
+	entry = input("enter entry: - ")
+	if (len(user['entries']) is not 50):
+		commit_entry(username, "{time} - {entry}".format(time=datetime.now().strftime("%d/%m/%Y %H:%M:%S"), entry=entry))
+	else:
+		print("journal full!")
+
+def list_journal_entries(username):
+	user = get_user(username)
+	for entry in user.get('entries'):
+		print(entry)
+
+def journal_options():
+	print("1) List All Entries")
+	print("2) Create New Entry")
+	option = input("(1/2) : ")
+	return option
+
+def start_journal_flow(username):
+	option = journal_options()
+	if (option is not "1" and option is not "2"):
+		print("please enter correct input")
+		start_journal_flow()
+	elif option is "1":
+		# list all entries
+		list_journal_entries(username)
+	else:
+		# create new entry
+		create_journal_entry(username)
+
+
+def validate_password(user, password, username):
+	if user.get('password') == str(password):
+		print("login successful")
+		return True, username
+	else:
+		print("login failed")
+		return False, username
+
+def login():
+	username = get_username()
+	password = get_password()
+	users = get_users()
+	if users.get(username, None):
+		user = users.get(username)
+		return validate_password(user, password, username)
+	else:
+		print("user does not exist, try again")
+		login()
+
+def start_login_signup_flow():
+	option = login_signup_options()
+	status = username = None
+	if (option is not "1" and option is not "2"):
+		print("please enter correct input ")
+		start_login_signup_flow()
+	elif option is "1":
+		status, username = login()
+	else:
+		status, username = signup()
+	if status:
+		start_journal_flow(username)
+
+print("######## Welcome to journal-cli! ########")
+print("Type the options number to proceed: -")
+start_login_signup_flow()
+
+
+
+
+
+# print(option)
+
+# if option is 1:
+# 	#login
+# elif option is 2:
+# 	#signup
+# else:
+# 	print("Please enter the correct option")
+
+
+# class Entry:
+
+
+
+
+
+
+# class SignUp:
+
+# 	def __init__(self):
+# 		pass
+
+# 	def start_signup(self):
+# 		print("please enter the username: ")
+# 		username = raw_input("username: ")
+# 		users = self.get_users()
+# 		if self.check_if_username_exists(username, users):
+# 			print("this username already exists, please choose another one: - ")
+# 			self.start_signup()
+# 		else:
+# 			password = self.get_password()
+# 			users[username] = dict(filename=None, default=not bool(users), is_logged_in=None, entries=[], password=password)
+# 			with open('users/users.json', 'w') as outfile:
+# 				json.dump(users, outfile)
+
+# 	def get_password(self):
+# 		password = raw_input("Please enter the password")
+# 		if password:
+# 			return password
+# 		else:
+# 			print("invalid password, retry")
+# 			self.get_password()
+
+# 	def check_if_username_exists(self, username, users):
+# 		if users.get(username, None):
+# 			return True
+# 		else:
+# 			return False
+
+# 	def get_users(self):
+# 		with open('users/users.json', 'r') as json_file:
+# 			users = json.load(json_file)
+# 			return users
+
+
+# class Login(SignUp):
+
+# 	def __init__(self):
+# 		Login.__init__(self)
+
+# 	def start_login(self):
+# 		raw
+
+
+
+# class Flow:
+
+# 	def __init__(self):
+# 		print("######## Welcome to journal-cli! ########")
+# 		print("Type the options number to proceed: -")
+# 		pass
+
+# 	@classmethod
+# 	def start(cls):
+# 		option = Flow.login_signup_options()
+# 		if (option is not 1 and option is not 2):
+# 			print("please enter correct input ")
+# 			cls.start()
+# 		elif option is 1:
+# 			pass
+# 		else:
+# 			signup = SignUp()
+# 			signup.start_signup()
+
+# 	@staticmethod
+# 	def login_signup_options():
+# 		print("1) Login")
+# 		print("2) Sign up")
+# 		option = input("(1/2) : ")
+# 		return option
+
+# def main():
+# 	flow = Flow()
+# 	flow.start()
+# 	print(sys.argv)
+
+# if __name__ == "__main__":
+# 	main()
+
+
+
