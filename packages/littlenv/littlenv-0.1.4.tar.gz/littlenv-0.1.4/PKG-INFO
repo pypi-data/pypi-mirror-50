@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: littlenv
+Version: 0.1.4
+Summary: A simple script for manage .env in django
+Home-page: https://gitlab.com/oscfrayle/littlenv
+Author: Oscar Mendez Aguirre
+Author-email: oscfrayle@gmail.com
+License: UNKNOWN
+Download-URL: https://gitlab.com/oscfrayle/littlenv/-/tags/0.1.4
+Description: A simple script for manage .env in django, is very easy, you just have to import this library in your manage.py
+Keywords: deploy,env,.env
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown

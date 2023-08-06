@@ -1,0 +1,9 @@
+README.md
+setup.cfg
+setup.py
+littlenv/__init__.py
+littlenv/littlenv.py
+littlenv.egg-info/PKG-INFO
+littlenv.egg-info/SOURCES.txt
+littlenv.egg-info/dependency_links.txt
+littlenv.egg-info/top_level.txt
