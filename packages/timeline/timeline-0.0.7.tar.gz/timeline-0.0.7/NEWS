@@ -1,0 +1,47 @@
+timeline NEWS
++++++++++++++
+
+Changes and improvements to timeline, grouped by release.
+
+0.0.7
+-----
+
+* Include LICENSE, NEWS, and timeline/tests/ in the sdist. (Colin Watson)
+
+0.0.6
+-----
+
+* Use floor division so that intervals are always represented as integer
+  numbers of milliseconds, preserving output compatibility between Python 2
+  and 3. (Colin Watson)
+
+0.0.5
+-----
+
+* Add Python 3 support. (Colin Watson)
+
+0.0.4
+-----
+
+* The default stack formatter now no longer includes itself in the formatted
+  stack. (Robert Collins, #891989)
+
+0.0.3
+-----
+
+* Added a .testr.conf to support easy testing. (Robert Collins)
+
+* Relicensed under LGPL 3. (Robert Collins)
+
+* TimedAction.logTuple() now returns 5-tuples with the last element the
+  backtrace for the action, or None if none was set. (Robert Collins)
+
+* Timeline now gathers backtraces by default. This can be disabled by
+  passing format_stack=None, or customised by passing a replacement
+  callable. (Robert Collins)
+
+0.0.2
+-----
+
+* Added a WSGI integration module - very simple, just injects a Timeline into
+  environ as 'timeline.timeline'.
