@@ -1,0 +1,3 @@
+[pytest11]
+rng = pytest_rng.plugin
+
