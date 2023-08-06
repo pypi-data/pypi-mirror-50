@@ -1,0 +1,12 @@
+gvc4fastq/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+gvc4fastq/bwa_samtools.py,sha256=2liOI1cVh9dvui54n6qaXVymFfGbF9b03UdJy5VzJHw,6566
+gvc4fastq/fastq_vcf_pipeline.py,sha256=R94YCKRxML6yPDkRUKVM2-u6rPq7IxuWgc-25t3k1yw,6444
+gvc4fastq/sortbamInterface.py,sha256=WvTYvX0aB0hq1M9jwL-V9VQGMs2dqoH_Kioiew6NZhg,399
+gvc4fastq/tb_pipeline.py,sha256=PC5q5qCxkURIBWzPY-DL35c1kpRycGaH1_Jt_eafFKM,2457
+gvc4fastq-1.0.9.data/scripts/check_runtime.py,sha256=GPK6kwm8BHAzFp3dIOrxpwrBibOzJMBwmaK8NGTqO0Q,3649
+gvc4fastq-1.0.9.data/scripts/fastq_vcf.py,sha256=a-eYegBZ8KQelMd-jFqB7h5CbQansBJzNlW3jzUaUU0,6070
+gvc4fastq-1.0.9.dist-info/LICENSE,sha256=7zupLjbuKP3Irsz3pzp3Atz0nzyOSs7EIwJ4YVJ4cS4,25
+gvc4fastq-1.0.9.dist-info/METADATA,sha256=j-jNAYPzmTYSv-bvoK0nnZvR54SjIGoSkwv_ITjxe8M,10578
+gvc4fastq-1.0.9.dist-info/WHEEL,sha256=Ph_z28wTcU7HnQwSQ6yCQ-zkcGK4h4ehDfP8b6UoHVE,92
+gvc4fastq-1.0.9.dist-info/top_level.txt,sha256=CPrYrJccqm4xkzAK6-CMju2xeBtjkAYJiGR7Uk1aZJo,10
+gvc4fastq-1.0.9.dist-info/RECORD,,
