@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: ci-secrets
+Version: 1.0.0
+Summary: A secrets scanner for CI/CD.
+Home-page: https://github.com/pmarlow/ci_secrets
+Author: Phillip Marlow
+Author-email: phillip@marlow1.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Security
+Classifier: Topic :: Software Development
+Requires-Dist: gitpython
+Requires-Dist: detect-secrets
+
+UNKNOWN
+
+
