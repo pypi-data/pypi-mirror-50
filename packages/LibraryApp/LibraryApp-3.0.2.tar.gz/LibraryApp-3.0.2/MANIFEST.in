@@ -1,0 +1,8 @@
+include LICENSE
+include README.md
+recursive-include catalog/static *
+recursive-include templates *
+recursive-include catalog/templates *
+recursive-include catalog *
+recursive-include feedback *
+recursive-include feedback/templates *
