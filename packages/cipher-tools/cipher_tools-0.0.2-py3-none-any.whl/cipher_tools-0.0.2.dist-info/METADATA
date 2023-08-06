@@ -1,0 +1,73 @@
+Metadata-Version: 2.1
+Name: cipher-tools
+Version: 0.0.2
+Summary: A python library to assist in the creation of ciphers
+Home-page: https://gitlab.com/lukespademan/cipher-tools
+Author: Luke Spademan
+Author-email: info@lukespademan.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# Cipher Tools
+This is a python library that contains some tools for making ciphers.
+In was originaly made of use at a childrens workshop at PyCon UK 2019.
+
+## Installation
+Run the following to install:
+```python
+pip install cipher-tools
+```
+
+## Usage
+### Shift
+Shift some text by an arbitrary amount. Text case is preserved.
+
+Code:
+```python
+from cipher_tools import shift
+
+shifted_text = shift("AbCdEfgYZ", 2)
+print(shifted_text)
+```
+Output:
+```
+CdEfGhiAB
+```
+### Rot13
+You can encrypt / decrypt text using rot13.
+
+Code:
+```python
+from cipher_tools import rot13
+
+# Apply Rot13 to a phrase
+cipher_text = rot13("Hello, World!")
+print(cipher_text)
+```
+Output:
+```
+Uryyb, Jbeyq!
+```
+
+Code:
+```python
+from cipher_tools import rot13
+
+# Decrtpt the text
+plain_text = rot13("Uryyb, Jbeyq!")
+print(plain_text)
+```
+Output:
+```
+Hello, World!
+```
+
+
+
+
