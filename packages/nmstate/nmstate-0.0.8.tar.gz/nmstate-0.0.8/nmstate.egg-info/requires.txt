@@ -1,0 +1,9 @@
+dbus-python
+jsonschema
+PyGObject
+PyYAML
+setuptools
+six
+
+[:python_version < "3.3"]
+ipaddress
