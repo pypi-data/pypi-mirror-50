@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: type-registry
+Version: 1.0
+Summary: Package for registering types and creating systems based on config files
+Home-page: https://github.com/mikewright/py-type-registry.git
+Author: Michael Wright
+License: MIT License
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Requires-Dist: PyYAML (<4.0,>=3.13)
+Requires-Dist: termcolor (<2.0,>=1.1.0)
+Provides-Extra: dev
+Requires-Dist: wheel (>=0.29) ; extra == 'dev'
+Requires-Dist: pytest (>=3.0) ; extra == 'dev'
+Requires-Dist: pytest-cov (>=2.4) ; extra == 'dev'
+Requires-Dist: pylint (>=1.8.1) ; extra == 'dev'
+
+# type-registry
+A python library that provides the ability to register type and create configuration files to instantiate
+
+
