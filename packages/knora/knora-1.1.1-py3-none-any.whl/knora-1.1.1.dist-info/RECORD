@@ -1,0 +1,15 @@
+knora/__init__.py,sha256=0w-mUE_L_3BcfnwkRnSB9lAyHCJrXRVmOWaOCHm6604,206
+knora/create_ontology.py,sha256=wxL_CpKectN28IZFmJDn1b_14iAwNLXuaBv_cUmT7mY,9596
+knora/knora-ctl.py,sha256=JowKvWNPODsTM_YO1SpJJw5jZ2UonkttUMxsyAjDEH4,265
+knora/knora-schema-lists.json,sha256=Axii1vJk5MSPFqIpzEsxvWEYc6AAxqnQOcuXfHdIjTk,1788
+knora/knora-schema.json,sha256=1IETCmgUfV6b7p0nQ69swvb3xyvWiHpGbnFWeaaFcxg,7194
+knora/knora.py,sha256=j69RCcHT2OC9M71mtLh0nivTH_HTNcRLyY24TxSuNkc,61626
+knora/knoraConsole.py,sha256=74uBA2Yg_FioP7UkkIsu1RN5I2rtAEHg3bSbmg_o6RQ,11976
+knora/reset_triplestore.py,sha256=da0kLqnOg6YvN4Bp6foXPOKVAPzx7etbhG2jgxT3PXI,737
+knora/test-create-resource.py,sha256=a_5k01sFzFBbQYzsJbn36u6CBOEkrWqNj8Ah-_7mNC4,1842
+knora-1.1.1.dist-info/LICENSE,sha256=OXLcl0T2SZ8Pmy2_dmlvKuetivmyPd5m1q-Gyd-zaYY,35149
+knora-1.1.1.dist-info/METADATA,sha256=PcO1I-MHYwaWgUbHoKFUutFO7kSoB5sDWWi6aBMSBmI,28561
+knora-1.1.1.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+knora-1.1.1.dist-info/entry_points.txt,sha256=Mqd4VlaAXCC5Y6Dh_TS8U9xfYG13BdHnPsGoKhmdqFY,125
+knora-1.1.1.dist-info/top_level.txt,sha256=pEnroNav0C0OR74WHTMkd4IDmfjKh2LMjQ5EkmLTSQs,6
+knora-1.1.1.dist-info/RECORD,,
