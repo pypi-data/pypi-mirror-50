@@ -1,0 +1,12 @@
+README.md
+setup.py
+bin/buzzword
+buzzword/__init__.py
+buzzword/__main__.py
+buzzword/create.py
+buzzword.egg-info/PKG-INFO
+buzzword.egg-info/SOURCES.txt
+buzzword.egg-info/dependency_links.txt
+buzzword.egg-info/not-zip-safe
+buzzword.egg-info/requires.txt
+buzzword.egg-info/top_level.txt
