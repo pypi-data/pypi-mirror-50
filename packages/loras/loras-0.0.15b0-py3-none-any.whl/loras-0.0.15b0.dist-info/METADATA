@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: loras
+Version: 0.0.15b0
+Summary: A small package for LoRAS oversampling
+Home-page: https://github.com/narek-davtyan/LoRAS
+Author: Saptarshi Bej, Narek Davtyan
+Author-email: davtyannarek@hotmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: scikit-learn
+Requires-Dist: numpy
+
+# LoRAS
+Localized Randomized Affine Shadowsampling (LoRAS) oversampling technique
+
+
