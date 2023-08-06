@@ -1,0 +1,3 @@
+[console_scripts]
+gitpyman = gitpyman.gm_run:run
+

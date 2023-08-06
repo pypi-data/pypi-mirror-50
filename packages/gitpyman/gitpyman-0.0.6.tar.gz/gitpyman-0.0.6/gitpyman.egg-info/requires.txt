@@ -1,0 +1,5 @@
+docopt
+lxml==4.2.1
+sqlalchemy
+github3.py
+eventlet

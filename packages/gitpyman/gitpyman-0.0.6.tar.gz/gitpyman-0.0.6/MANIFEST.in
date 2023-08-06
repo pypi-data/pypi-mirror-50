@@ -1,0 +1,2 @@
+include gitpyman/Data/* gitpyman/*.ui gitpyman/UUI/*.ui
+exclude *.db
