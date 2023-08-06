@@ -1,0 +1,95 @@
+Metadata-Version: 2.1
+Name: belousov-zhabotinsky
+Version: 0.6.0
+Summary: Simulation of the Belousov-Zhabotinski reaction using ASCII art
+Home-page: https://github.com/neumann-mlucas/belousov-zhabotinsky
+Author: Lucas Stefan Minuzzi Neumann
+Author-email: neumannmlucas@gmail.com
+License: UNKNOWN
+Description: # Belousov-Zhabotinsky
+        
+        ![](demo.gif)
+        
+        ## About
+        
+        **The python package you never knew you needed!**
+        Now you can appreciate all the glory of the Belousov-Zhabotinsky reaction (and also Turing Patterns) from the comfort of your console window in a state of the art *ASCII art* rendering.
+        Your life will never be the same!
+        
+        BONUS: easy to play around with the parameters and colors/chars. Since version 0.5 supports n-fold symmetrical grid ('cos why not).
+        
+        Both the belousov-zhabotinsky reaction and turing patterns are classical examples of non-linear dynamics in chemical systems(or reaction-diffusion systems). Their dynamics can by described by simple systems of non-linear equations:
+        
+        __BZ Equations:__
+        
+        
+        <img src="https://latex.codecogs.com/svg.latex?\large&space;a_{t+1}=a_t+a_t({\alpha}b_t-{\gamma}c_t)" title="\large a_{t+1}=a_t+a_t({\alpha}b_t-{\gamma}c_t)" class="center" />
+        
+        <img src="https://latex.codecogs.com/svg.latex?\large&space;b_{t+1}=b_t+b_t({\beta}c_t-{\alpha}a_t)" title="\large b_{t+1}=b_t+b_t({\beta}c_t-{\alpha}a_t)" class="center" />
+        
+        <img src="https://latex.codecogs.com/svg.latex?\large&space;c_{t+1}=c_t+c_t({\gamma}a_t-{\beta}b_t)" title="\large c_{t+1}=c_t+c_t({\gamma}a_t-{\beta}b_t)" class="center" />
+        
+        
+        __TP Equations:__
+        
+            WIP
+        
+        
+        *The oscillatory behavior is only possible because those systems are far from thermodynamical equilibrium -- so there's no violation of the 2nd law. In the real word the oscillation will slowly die out due to dissipation of entropy.*
+        
+        You can learn more about the belousov-zhabotinsky reaction here:
+        
+        https://en.wikipedia.org/wiki/Belousov-Zhabotinsky_reaction
+        
+        Dynamics and Chaos - Steven H. Strogatz
+        
+        Chaotic Dynamics, an indroduction - G. L. Baker and J. P. Gollub
+        
+        Inspired by the following blog posts:
+        
+        https://scipython.com/blog/simulating-the-belousov-zhabotinsky-reaction/
+        
+        http://www.degeneratestate.org/posts/2017/May/05/turing-patterns/
+        
+        ## Installation
+        
+        > *No python 2 support*
+        
+        > *Needs numpy and scipy*
+        
+        You can pip install the python module with the following command
+        
+        `pip install --user belousov-zhabotinsky`
+        
+        ## Usage
+        
+        `$ belousov-zhabotinsky`
+        
+        Check options with:
+        `$ belousov-zhabotinsky --help`
+        
+        You can exit the program by pressing any key, but the Ctrl key may cause your terminal window to bug
+        
+        
+        ## Future
+        
+        > Update README.md and add a math overview
+        
+        
+        > Write tests
+        
+        
+        > ~~Make it faster~~
+        
+        
+        > Implement a screen saver
+        
+        
+        My *First GitHub project; HOORAY!*
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3
+Description-Content-Type: text/markdown
