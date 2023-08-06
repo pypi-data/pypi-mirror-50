@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\build\tests\test_cmake_build\subdirectory_target\CMakeFiles\d9b78b404105f58006b3f754bc09e13e\check.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_cmake_build\subdirectory_target\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\build\tests\test_cmake_build\subdirectory_target\CMakeFiles\check" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{00A1B590-042A-3669-893F-B3D5D80E8C07}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

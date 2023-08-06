@@ -1,0 +1,10 @@
+^C:\USERS\HARRY\DOCUMENTS\PB-CONSTRUCTION\CONMECH\EXT\PYBIND11\BUILD\TESTS\TEST_CMAKE_BUILD\INSTALLED_FUNCTION\CMAKEFILES\D2E030FC122B069C1A28077D693DCB16\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/tests/test_cmake_build/installed_function -BC:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/test_cmake_build/installed_function --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/test_cmake_build/installed_function/test_installed_module.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

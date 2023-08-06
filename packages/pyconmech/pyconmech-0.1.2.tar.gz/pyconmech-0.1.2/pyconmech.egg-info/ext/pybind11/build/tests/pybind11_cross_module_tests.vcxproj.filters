@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\pybind11_cross_module_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\detail\class.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\detail\common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\detail\descr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\detail\init.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\detail\internals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\detail\typeid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\attr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\buffer_info.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\cast.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\chrono.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\complex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\options.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\eigen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\embed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\eval.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\functional.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\numpy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\operators.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\pybind11.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\pytypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\stl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\stl_bind.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{84E704DD-AD13-3FE1-8EAA-41C32A1FACD1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{6CD8C584-8E6B-3346-8CD1-5C39EF070688}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

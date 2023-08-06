@@ -1,0 +1,20 @@
+^C:\USERS\HARRY\DOCUMENTS\PB-CONSTRUCTION\CONMECH\EXT\PYBIND11\BUILD\CMAKEFILES\51701A7E0E8D04A0783A2A0D3A0F13BA\MOCK_INSTALL.RULE
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_INSTALL_PREFIX=C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/mock_install -P C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/cmake_install.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\HARRY\DOCUMENTS\PB-CONSTRUCTION\CONMECH\EXT\PYBIND11\TESTS\TEST_CMAKE_BUILD\CMAKELISTS.TXT
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/harry/Documents/pb-construction/conmech/ext/pybind11 -BC:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build --check-stamp-file C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/test_cmake_build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

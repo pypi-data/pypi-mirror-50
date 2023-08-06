@@ -1,0 +1,24 @@
+^C:\USERS\HARRY\DOCUMENTS\PB-CONSTRUCTION\CONMECH\EXT\PYBIND11\BUILD\CMAKEFILES\3252814BE5B605DB7CD4F53A5C4BAE0C\PYTEST.RULE
+setlocal
+cd C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Users\harry\Anaconda3\python.exe -m pytest test_buffers.py test_builtin_casters.py test_call_policies.py test_callbacks.py test_chrono.py test_class.py test_constants_and_functions.py test_copy_move.py test_docstring_options.py test_eigen.py test_enum.py test_eval.py test_exceptions.py test_factory_constructors.py test_iostream.py test_kwargs_and_defaults.py test_local_bindings.py test_methods_and_attributes.py test_modules.py test_multiple_inheritance.py test_numpy_array.py test_numpy_dtypes.py test_numpy_vectorize.py test_opaque_types.py test_operator_overloading.py test_pickling.py test_pytypes.py test_sequences_and_iterators.py test_smart_ptr.py test_stl.py test_stl_binders.py test_virtual_functions.py
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\HARRY\DOCUMENTS\PB-CONSTRUCTION\CONMECH\EXT\PYBIND11\TESTS\CMAKELISTS.TXT
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/harry/Documents/pb-construction/conmech/ext/pybind11 -BC:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build --check-stamp-file C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

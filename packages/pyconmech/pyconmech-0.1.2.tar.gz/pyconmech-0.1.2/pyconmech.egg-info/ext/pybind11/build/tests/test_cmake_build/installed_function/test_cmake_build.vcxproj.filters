@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_cmake_build\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_cmake_build\installed_function\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{9B5A0F2D-A07F-3AF4-8656-70F946FFC675}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

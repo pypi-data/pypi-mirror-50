@@ -1,0 +1,45 @@
+[OUTPUT] 
+Internal cmake changing into directory: C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/test_cmake_build/installed_target
+======== CMake output     ======
+The CXX compiler identification is MSVC 19.21.27702.2
+Check for working CXX compiler: C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/VC/Tools/MSVC/14.21.27702/bin/Hostx86/x64/cl.exe
+Configuring
+Check for working CXX compiler: C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/VC/Tools/MSVC/14.21.27702/bin/Hostx86/x64/cl.exe -- works
+Detecting CXX compiler ABI info
+Configuring
+Detecting CXX compiler ABI info - done
+Detecting CXX compile features
+Configuring
+Detecting CXX compile features - done
+Found PythonInterp: C:/Users/harry/Anaconda3/python.exe (found version "3.7.3") 
+Found PythonLibs: C:/Users/harry/Anaconda3/libs/Python37.lib
+Found pybind11 v2.2.0: C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/mock_install/include;C:/Users/harry/Anaconda3/include
+Configuring
+Configuring done
+Generating
+Generating done
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CMAKE_BUILD_TYPE
+
+
+Build files have been written to: C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/test_cmake_build/installed_target
+======== End CMake output ======
+Change Dir: C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/test_cmake_build/installed_target
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/MSBuild/Current/Bin/MSBuild.exe check.vcxproj /p:Configuration=Release /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m 
+Microsoft (R) Build Engine version 16.1.76+g14b0a930a7 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Checking Build System
+  CMake does not need to re-run because C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/test_cmake_build/installed_target/CMakeFiles/generate.stamp is up-to-date.
+  Building Custom Rule C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/tests/test_cmake_build/installed_target/CMakeLists.txt
+  CMake does not need to re-run because C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/test_cmake_build/installed_target/CMakeFiles/generate.stamp is up-to-date.
+  main.cpp
+     Creating library C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/test_cmake_build/installed_target/Release/test_cmake_build.lib and object C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/test_cmake_build/installed_target/Release/test_cmake_build.exp
+  test_cmake_build.vcxproj -> C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\build\tests\test_cmake_build\installed_target\Release\test_cmake_build.cp37-win_amd64.pyd
+  test_installed_target imports, runs, and adds: 1 + 2 = 3
+  Building Custom Rule C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/tests/test_cmake_build/installed_target/CMakeLists.txt
+  CMake does not need to re-run because C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/test_cmake_build/installed_target/CMakeFiles/generate.stamp is up-to-date.
+

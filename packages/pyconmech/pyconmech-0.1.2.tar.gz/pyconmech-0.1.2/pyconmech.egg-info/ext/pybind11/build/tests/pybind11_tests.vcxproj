@@ -1,0 +1,446 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x86</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1BBD1A07-D51D-3177-8A56-05FB55E42743}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>pybind11_tests</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pybind11_tests.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pybind11_tests.cp37-win_amd64</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.pyd</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pybind11_tests.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pybind11_tests.cp37-win_amd64</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.pyd</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">pybind11_tests.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">pybind11_tests.cp37-win_amd64</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.pyd</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">pybind11_tests.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">pybind11_tests.cp37-win_amd64</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.pyd</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include;C:\Users\harry\Anaconda3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj /utf-8</AdditionalOptions>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode>true</SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;CMAKE_INTDIR="Debug";pybind11_tests_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\";pybind11_tests_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include;C:\Users\harry\Anaconda3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include;C:\Users\harry\Anaconda3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\Users\harry\Anaconda3\python.exe C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/tools/libsize.py C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/tests/pybind11_tests.cp37-win_amd64.pyd C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/sosize-pybind11_tests.cp37-win_amd64.pyd.txt
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>C:\Users\harry\Anaconda3\libs\Python37.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/Debug/pybind11_tests.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/tests/pybind11_tests.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include;C:\Users\harry\Anaconda3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj /utf-8</AdditionalOptions>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release";pybind11_tests_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\";pybind11_tests_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include;C:\Users\harry\Anaconda3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include;C:\Users\harry\Anaconda3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\Users\harry\Anaconda3\python.exe C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/tools/libsize.py C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/tests/pybind11_tests.cp37-win_amd64.pyd C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/sosize-pybind11_tests.cp37-win_amd64.pyd.txt
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>C:\Users\harry\Anaconda3\libs\Python37.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/Release/pybind11_tests.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/tests/pybind11_tests.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include;C:\Users\harry\Anaconda3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj /utf-8</AdditionalOptions>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel";pybind11_tests_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\";pybind11_tests_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include;C:\Users\harry\Anaconda3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include;C:\Users\harry\Anaconda3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\Users\harry\Anaconda3\python.exe C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/tools/libsize.py C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/tests/pybind11_tests.cp37-win_amd64.pyd C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/sosize-pybind11_tests.cp37-win_amd64.pyd.txt
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>C:\Users\harry\Anaconda3\libs\Python37.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/MinSizeRel/pybind11_tests.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/tests/pybind11_tests.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include;C:\Users\harry\Anaconda3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj /utf-8</AdditionalOptions>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo";pybind11_tests_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\";pybind11_tests_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include;C:\Users\harry\Anaconda3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include;C:\Users\harry\Anaconda3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\Users\harry\Anaconda3\python.exe C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/tools/libsize.py C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/tests/pybind11_tests.cp37-win_amd64.pyd C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/sosize-pybind11_tests.cp37-win_amd64.pyd.txt
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>C:\Users\harry\Anaconda3\libs\Python37.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/RelWithDebInfo/pybind11_tests.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/tests/pybind11_tests.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/tests/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/harry/Documents/pb-construction/conmech/ext/pybind11 -BC:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build --check-stamp-file C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/tests/CMakeLists.txt;C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.14\Modules\FindBoost.cmake;C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.14\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.14\Modules\FindPackageMessage.cmake;C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\CMakeLists.txt;C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tools\FindEigen3.cmake;C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\build\tests\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/tests/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/harry/Documents/pb-construction/conmech/ext/pybind11 -BC:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build --check-stamp-file C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/tests/CMakeLists.txt;C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.14\Modules\FindBoost.cmake;C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.14\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.14\Modules\FindPackageMessage.cmake;C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\CMakeLists.txt;C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tools\FindEigen3.cmake;C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\build\tests\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/tests/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/harry/Documents/pb-construction/conmech/ext/pybind11 -BC:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build --check-stamp-file C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/tests/CMakeLists.txt;C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.14\Modules\FindBoost.cmake;C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.14\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.14\Modules\FindPackageMessage.cmake;C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\CMakeLists.txt;C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tools\FindEigen3.cmake;C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\build\tests\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/tests/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/harry/Documents/pb-construction/conmech/ext/pybind11 -BC:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build --check-stamp-file C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/build/tests/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/harry/Documents/pb-construction/conmech/ext/pybind11/tests/CMakeLists.txt;C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.14\Modules\FindBoost.cmake;C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.14\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.14\Modules\FindPackageMessage.cmake;C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\CMakeLists.txt;C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tools\FindEigen3.cmake;C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\build\tests\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\pybind11_tests.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_buffers.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_builtin_casters.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_call_policies.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_callbacks.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_chrono.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_class.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_constants_and_functions.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_copy_move.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_docstring_options.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_enum.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_eval.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_exceptions.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_factory_constructors.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_iostream.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_kwargs_and_defaults.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_local_bindings.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_methods_and_attributes.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_modules.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_multiple_inheritance.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_numpy_array.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_numpy_dtypes.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_numpy_vectorize.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_opaque_types.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_operator_overloading.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_pickling.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_pytypes.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_sequences_and_iterators.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_smart_ptr.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_stl.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_stl_binders.cpp" />
+    <ClCompile Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\tests\test_virtual_functions.cpp" />
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\detail\class.h" />
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\detail\common.h" />
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\detail\descr.h" />
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\detail\init.h" />
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\detail\internals.h" />
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\detail\typeid.h" />
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\attr.h" />
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\buffer_info.h" />
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\cast.h" />
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\chrono.h" />
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\complex.h" />
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\options.h" />
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\eigen.h" />
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\embed.h" />
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\eval.h" />
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\functional.h" />
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\numpy.h" />
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\operators.h" />
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\pybind11.h" />
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\pytypes.h" />
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\stl.h" />
+    <ClInclude Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\include\pybind11\stl_bind.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\harry\Documents\pb-construction\conmech\ext\pybind11\build\ZERO_CHECK.vcxproj">
+      <Project>{85EAA97A-F006-32BE-A22A-73E65E16B4A6}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
