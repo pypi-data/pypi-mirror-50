@@ -1,0 +1,73 @@
+Metadata-Version: 1.1
+Name: gopipexample
+Version: 0.1.0
+Summary: Simple example showing packaging of go binaries in pip
+Home-page: https://github.com/robc-io/gopipexample
+Author: robc-io
+Author-email: robc.io.opensouce@gmail.com
+License: Apache Software License 2.0
+Description: ==============
+        go pip example
+        ==============
+        
+        
+        .. image:: https://img.shields.io/pypi/v/gopipexample.svg
+                :target: https://pypi.python.org/pypi/gopipexample
+        
+        .. image:: https://img.shields.io/travis/robc-io/gopipexample.svg
+                :target: https://travis-ci.org/robc-io/gopipexample
+        
+        .. image:: https://readthedocs.org/projects/gopipexample/badge/?version=latest
+                :target: https://gopipexample.readthedocs.io/en/latest/?badge=latest
+                :alt: Documentation Status
+        
+        
+        .. image:: https://pyup.io/repos/github/robc-io/gopipexample/shield.svg
+             :target: https://pyup.io/repos/github/robc-io/gopipexample/
+             :alt: Updates
+        
+        
+        
+        Simple example showing packaging of go binaries in pip
+        
+        
+        * Free software: Apache Software License 2.0
+        * Documentation: https://gopipexample.readthedocs.io.
+        
+        
+        Features
+        --------
+        
+        * TODO
+        
+        Credits
+        -------
+        
+        This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+        
+        .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+        .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+        
+        
+        =======
+        History
+        =======
+        
+        0.1.0 (2019-08-14)
+        ------------------
+        
+        * First release on PyPI.
+        
+Keywords: gopipexample
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
