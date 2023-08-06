@@ -1,0 +1,56 @@
+Metadata-Version: 2.1
+Name: fastapi-jsonrpc
+Version: 0.1.1
+Summary: 
+Author: Sergey Magafurov
+Author-email: magafurov@tochka.com
+Requires-Python: >=3.6
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: fastapi (>=0.34.0)
+Description-Content-Type: text/x-rst
+
+Installation
+============
+
+pip install fastapi-jsonrpc
+
+Development
+===========
+
+1. Install poetry
+
+    https://github.com/sdispater/poetry#installation
+
+2. Update dependencies
+
+.. code:: bash
+
+    poetry update
+
+3. Install dependencies
+
+.. code:: bash
+
+    poetry install
+
+4. Install dephell
+
+.. code:: bash
+
+    pip install dephell
+
+5. Regenerate setup.py
+
+.. code:: bash
+
+    dephell deps convert
+
+Changelog
+=========
+
+[0.1.1] README.rst
+
+[0.1.0] Initial commit
+
