@@ -1,0 +1,13 @@
+README.md
+bvhtomimic.py
+setup.py
+bvhtodeepmimic/__init__.py
+bvhtodeepmimic/bvh_extended.py
+bvhtodeepmimic/bvh_joint.py
+bvhtodeepmimic/bvh_joint_handler.py
+bvhtodeepmimic/joint_info.py
+bvhtodeepmimic.egg-info/PKG-INFO
+bvhtodeepmimic.egg-info/SOURCES.txt
+bvhtodeepmimic.egg-info/dependency_links.txt
+bvhtodeepmimic.egg-info/requires.txt
+bvhtodeepmimic.egg-info/top_level.txt
