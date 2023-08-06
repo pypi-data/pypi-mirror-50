@@ -1,0 +1,133 @@
+Metadata-Version: 1.1
+Name: badic
+Version: 0.0.4
+Summary: Beta-adics and automata tools
+Home-page: https://gitlab.com/mercatp/badic
+Author: Paul Mercat, Dominique Benielli
+Author-email: paul.mercat@univ-amu.fr
+License: GPLv3.0
+Description: ============================
+        Beta-adic tools and automata
+        ============================
+        
+        The badic package for SageMath add functionalities related to beta-adic sets, i.e. sets of the form
+        { a_0 + a_1*b + a_2*b^2 + ... + a_n*b^n | n in N, a_0 a_1 ... a_n in L }
+        where b is a number, and L is a regular language (over an alphabet in the same ring as b).
+        This permits to do computation and drawing with Rauzy fractals and many other fractals.
+        It also permits to manipulate efficiently automata written in C language (mainly deterministic automata).
+        It installs on top of an existing Sage installation (tested on versions 8.1 and 8.8).
+        
+        This package is based on `SageMath <http://www.sagemath.org>`_
+        
+        Prerequisites
+        -------------
+        
+        Installing the package badic requires a working Sage installation (with Cython and gcc).
+        
+        It is recommanded (but not necessary) to install the dot command of Graphiz, in order to
+        have nice plots of automata.
+        If you want to use the function draw_zoom() and user_draw() of BetaAdicSet, you need to
+        install the SDL2 library (developpement version) in your system before installing the badic package.
+        
+        Installation
+        ------------
+        
+        The module is distributed on PyPI. You just need to run the following command::
+        
+            $ sage -pip install badic [--user]
+        
+        The --user option is optional and allows to install the module in your user space
+        (and does not require administrator rights).
+        
+        Remark: If you don't have SSL installed, the previous command may not work.
+        If it is the case, you can download the file badic-x.x.x.tar.gz from https://pypi.org/project/badic/#files
+        Then, extract the files (you will get a folder badic-x.x.x), and then use the command
+        
+        	$ sage -pip install badic-x.x.x/ --user
+        	
+        (replace badic-x.x.x/ by the location of the folder extracted)
+        
+        Documentation
+        -------------
+        
+        * examples of Sage worksheets using the package badic:
+        	http://www.i2m.univ-amu.fr/perso/paul.mercat/RauzyFractals/
+        
+        * tutorial about beta-adic sets (not up-to-date, functions names may have changed):
+        	http://www.i2m.univ-amu.fr/perso/paul.mercat/RauzyFractals/html/beta_adic_set.html
+        
+        * tutorial about automata and regular languages (not up-to-date, functions names may have changed):
+        	http://www.i2m.univ-amu.fr/perso/paul.mercat/RauzyFractals/html/language_automaton.html
+        
+        Check
+        -----
+        
+        After installing badic, check that it works by launching Sage
+        and typing the following commands. You should get the same
+        output as below.::
+        
+            sage: from badic import *
+            sage: m = BetaAdicSet(1/(1+I), [0,1])
+            sage: m.plot()                  # this should plot the dragon fractal
+            
+            sage: mi = m.intersection_words([0], [1]); mi
+            b-adic set with b root of x^2 - x + 1/2, and an automaton of 21 states and 2 letters
+            sage: mi.plot(nprec=8)          # this should plot a part of the boundary of the dragon fractal
+            sage: mi.critical_exponent()    # compute the Hausdorff dimension of the boundary of the dragon fractal
+            log(y)/log(1.414213562373095?) where y is the max root of x^3 - x^2 - 2, and 1.414213562373095? is root of x^2 - 2.
+            1.523627086202492
+            
+            sage: from badic.beta_adic import *
+            sage: s = WordMorphism('a->ab,b->ca,c->a')  # define a substitution
+            sage: m = DumontThomas(s).mirror(); m    # take the corresponding beta-adic set
+            b-adic set with b root of x^3 - x^2 - x - 1, and an automaton of 3 states and 2 letters
+            sage: m.plot()      # should plot the Rauzy fractal of the substitution s
+            sage: m.draw_zoom() # permits to zoom in the Rauzy fractal (works only if SDL2 was installed)
+            
+            sage: a = dag.AnyWord(['a','b']).concat(dag.Word('abca')); a    # define an automaton
+            DetAutomaton with 5 states and an alphabet of 3 letters
+            sage: a.plot()  # plot the automaton (to have a nice picture drawn with Graphviz,
+                            #                      install the dot command on your system before
+                            #                      installing the package badic)
+        
+        Installing development version. Source code
+        -------------------------------------------
+        
+        The development webpage is https://gitlab.com/mercatp/badic
+        
+        Assuming you have the program git on your computer, you can install the
+        development version with the command::
+        
+            $ sage -pip install git+https://gitlab.com/mercatp/badic [--user]
+        
+        Contact
+        -------
+        
+        Your comments and help are welcome: paul.mercat@univ-amu.fr
+        
+        Authors
+        -------
+        
+        * Paul Mercat
+        * Dominique Benielli (PEP8 and doc)
+        * Vincent Delecroix (helped to make a package)
+        
+        Versions
+        --------
+        
+        * badic 0.0.4 was released on 2019-07-26 (as a Python package on PyPI)
+        * badic 0.0.3 was released on 2019-07-26 (as a Python package on PyPI)
+        * badic 0.0.2 was released on 2019-07-26 (as a Python package on PyPI)
+        * badic 0.0.1 was released on 2019-07-26 (as a Python package on PyPI)
+        
+Keywords: SageMath beta-adic automata
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Cython
+Classifier: Programming Language :: C
