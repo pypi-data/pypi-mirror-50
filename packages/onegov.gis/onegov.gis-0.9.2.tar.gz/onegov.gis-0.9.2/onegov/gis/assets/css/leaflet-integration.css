@@ -1,0 +1,320 @@
+/*
+    Workaround for https://github.com/Leaflet/Leaflet/issues/3575
+*/
+.leaflet-tile-container img {
+    box-shadow: 0 0 1px rgba(0, 0, 0, .05);
+}
+
+/*
+    IE 11's XMLHTML requests do not work with Mapbox, so we disable geocoding
+    https://stackoverflow.com/questions/24646732/sec7118-xmlhttprequest-cors-ie-console-message
+*/
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+    .leaflet-container .leaflet-control-container .leaflet-control-geocoder {
+        display: none !important;
+    }
+}
+
+/*
+    Fix leaflet button styles
+*/
+.leaflet-control {
+    box-shadow: 2px 2px 3px rgba(125, 125, 125, .5) !important;
+}
+
+.leaflet-bar button {
+    margin: 0;
+    padding: 0;
+}
+
+.leaflet-control-container [role="button"],
+.leaflet-control-container [type="button"] {
+    font-size: .875rem !important;
+    height: 26px !important;
+    line-height: 26px !important;
+    width: 26px !important;
+}
+
+.leaflet-control-zoom-in {
+    border-radius: 4px 4px 0 0 !important;
+}
+
+.leaflet-control-zoom-out {
+    border-radius: 0 0 4px 4px !important;
+}
+
+/*
+    External links button
+*/
+.open-active:hover {
+    background: white;
+}
+
+/*
+    Remove touch border
+*/
+.leaflet-touch .leaflet-bar {
+    border: 0;
+}
+
+/*
+    Customise button looks
+*/
+.add-point-active, .remove-point-active {
+    background: red;
+    color: white;
+}
+
+.leaflet-control-zoom > a,
+.leaflet-disabled {
+    background-color: black !important;
+    border: 1px solid black !important;
+    color: white !important;
+}
+
+.leaflet-control-geocoder-icon {
+    background: black !important;
+    border: 1px solid black;
+    border-radius: 0 4px 4px 0 !important;
+    color: white;
+    position: absolute;
+    right: 0;
+}
+
+.leaflet-control-geocoder-options-open .leaflet-control-geocoder-icon {
+    border-radius: 0 4px 0 4px !important;
+}
+
+.closed-active {
+    background: black;
+    color: white;
+}
+
+.leaflet-control-geocoder-icon::before {
+    color: white;
+}
+
+.leaflet-control-geocoder-icon:hover,
+.leaflet-control-zoom > a:hover,
+.add-point-active:hover,
+.remove-point-active:hover,
+.closed-active:hover {
+    cursor: pointer !important;
+    outline: 1px solid white;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+.add-point-active:hover,
+.remove-point-active:hover {
+    background: red;
+}
+
+/*
+    Leaflet marker styles
+*/
+.vector-marker {
+    width: 28px;
+    height: 37px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    text-align: center;
+    -webkit-filter: drop-shadow(1px 0px 2px #999);
+    filter: drop-shadow(1px 0px 2px #999);
+}
+
+/*
+    Make sure the attribution is always rendered as one line
+*/
+
+.leaflet-control-attribution {
+    border-radius: 3px 0 0 0;
+}
+
+.leaflet-control-attribution ul {
+    list-style: none;
+    margin: 0;
+}
+
+.leaflet-control-attribution ul li {
+    float: left;
+    font-size: 9px !important;
+    font-weight: normal;
+    margin-bottom: 2px;
+    padding: 0;
+    position: relative;
+    top: 1px;
+}
+
+.leaflet-control-attribution ul li + li {
+    margin-left: 5px;
+}
+
+.leaflet-control-attribution ul li a {
+    font-weight: normal;
+    color: #333;
+    line-height: 10px;
+}
+
+.leaflet-control-attribution ul li a:hover {
+    color: #2D5594;
+}
+
+/*
+    Map button context menu
+*/
+
+.easy-button-container {
+    background-color: white;
+}
+
+button.open-active {
+    float: right;
+}
+
+.leaflet-container .leaflet-control-container .map-context-menu {
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}
+
+.leaflet-container .leaflet-control-container .map-context-menu li {
+    margin-bottom: 0;
+}
+
+.leaflet-container .leaflet-control-container .map-context-menu li a,
+.leaflet-container .leaflet-control-container .map-context-menu li a:hover {
+    font-size: .875rem !important;
+    font-weight: normal !important;
+    padding: 0 5px;
+    text-align: left;
+    text-overflow: normal !important;
+    width: auto !important;
+}
+
+/*
+    Disable mouse pointer on non-clickable markers (which is currently all)
+*/
+
+.marker-undefined {
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+    cursor: grab;
+}
+
+.marker-thumbnail {
+    cursor: auto;
+}
+
+/*
+    Leaflet geocoder fixes
+*/
+.leaflet-control.leaflet-control-geocoder {
+    height: 26px;
+    min-height: 26px;
+    width: 250px;
+}
+
+.leaflet-control.leaflet-control-geocoder .leaflet-control-geocoder-icon {
+    float: right;
+    height: 26px;
+    margin: 0;
+    padding: 0 !important;
+}
+
+.leaflet-control.leaflet-control-geocoder .leaflet-control-geocoder-icon::before {
+    content: "\f002";
+    font-family: "FontAwesome";
+    font-size: .875rem;
+    margin-left: 4px;
+    position: relative;
+}
+
+.leaflet-control-geocoder .leaflet-control-geocoder-form {
+    width: 220px;
+}
+
+.leaflet-control-geocoder .leaflet-control-geocoder-form input {
+    box-shadow: none;
+    font-size: 12px;
+    height: 25px;
+    margin: 0;
+    width: 100%;
+}
+
+.leaflet-control-geocoder .leaflet-control-geocoder-form input:focus {
+    box-shadow: none;
+    background: none;
+}
+
+.leaflet-control-geocoder ul {
+    width: 100%;
+}
+
+.leaflet-control-geocoder li {
+    border-color: #efefef;
+    display: none;
+    font-size: 12px;
+    margin: 0;
+}
+
+.leaflet-control-geocoder li:nth-child(1),
+.leaflet-control-geocoder li:nth-child(2),
+.leaflet-control-geocoder li:nth-child(3) {
+    display: block;
+}
+
+.leaflet-control-geocoder .leaflet-control-geocoder-form-no-error {
+    display: none;
+}
+
+.leaflet-control-geocoder .leaflet-control-geocoder-error {
+    background-color: red;
+    display: block;
+    height: 4px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: -1px;
+    z-index: 100;
+    box-shadow: 0 2px 0 0 red;
+}
+
+.leaflet-control-geocoder .leaflet-control-geocoder-alternatives {
+    background: white;
+}
+
+.leaflet-control-geocoder .leaflet-control-geocoder-alternatives li {
+    cursor: pointer;
+    padding: 3px 8px;
+}
+
+.leaflet-control-geocoder .leaflet-control-geocoder-alternatives li a {
+    cursor: pointer;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 240px !important;
+}
+
+/*
+    Leaflet popups
+*/
+
+.leaflet-popup > div {
+    border-radius: 5px;
+}
+
+.leaflet-popup-content {
+    font-size: .8rem;
+    margin: 7px 14px !important;
+}
+
+.leaflet-popup-content .popup-title {
+    font-weight: bold;
+}
