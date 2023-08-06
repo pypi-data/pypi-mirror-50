@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: dimdrop
+Version: 0.1.0
+Summary: Providing some dimensionality reduction methods using Machine Learning
+Home-page: https://github.com/theodedeken/dimdrop
+Author: Theo Dedeken
+Author-email: theo.dedeken@telenet.be
+License: UNKNOWN
+Description: # dimdrop
+        **Dimensionality reduction using Neural Networks**
+        
+        A collection of dimensionality reduction methods using neural networks.
+        
+        ## Installation
+        ### From PyPi
+        ```bash
+        pip install dimdrop
+        ```
+        
+        ### From source
+        ```bash
+        git clone https://github.com/theodedeken/dimdrop
+        cd dimdrop
+        pip install .
+        ```
+        
+        ## Documentation
+        Documentation can be found [here](https://theodedeken.github.io/dimdrop)
+        
+        ## Contributing
+        View the guidelines [here](CONTRIBUTING.md)
+        
+        ## License
+        [MIT](LICENSE)
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
