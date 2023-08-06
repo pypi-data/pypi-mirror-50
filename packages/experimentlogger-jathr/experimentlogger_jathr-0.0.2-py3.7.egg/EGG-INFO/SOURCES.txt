@@ -1,0 +1,12 @@
+README.md
+setup.py
+experimentlogger/ExperimentLogger.py
+experimentlogger/__init__.py
+experimentlogger/tests/__init__.py
+experimentlogger/tests/testFileLogger.py
+experimentlogger/utils/__init__.py
+experimentlogger/utils/errors.py
+experimentlogger_jathr.egg-info/PKG-INFO
+experimentlogger_jathr.egg-info/SOURCES.txt
+experimentlogger_jathr.egg-info/dependency_links.txt
+experimentlogger_jathr.egg-info/top_level.txt
