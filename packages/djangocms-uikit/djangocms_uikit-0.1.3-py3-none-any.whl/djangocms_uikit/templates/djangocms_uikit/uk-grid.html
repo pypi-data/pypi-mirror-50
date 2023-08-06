@@ -1,0 +1,15 @@
+{% load cms_tags %}
+<div class="{{ instance.gutter|default_if_none:"" }}
+{% if instance.divider %}uk-grid-divider{% endif %}
+{% if instance.match %}uk-grid-match {% endif %}
+{% if instance.child_width %}uk-child-width-1-{{ instance.child_width }} {% endif %}
+{% if instance.child_width_s %}uk-child-width-1-{{ instance.child_width_s }}@s {% endif %}
+{% if instance.child_width_m %}uk-child-width-1-{{ instance.child_width_m }}@m {% endif %}
+{% if instance.child_width_l %}uk-child-width-1-{{ instance.child_width_l }}@l {% endif %}
+{% if instance.child_width_xl %}uk-child-width-1-{{ instance.child_width_xl }}@xl {% endif %}
+{% if instance.flex %}{{ instance.flex }} {% endif %}"
+     uk-grid="{% if instance.masonry %}masonry: true; {% endif %}">
+    {% for plugin in instance.child_plugin_instances %}
+        {% render_plugin plugin %}
+    {% endfor %}
+</div>

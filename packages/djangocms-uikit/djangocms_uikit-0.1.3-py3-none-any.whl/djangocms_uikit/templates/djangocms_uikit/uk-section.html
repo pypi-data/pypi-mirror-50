@@ -1,0 +1,7 @@
+{% load cms_tags %}
+<div class="uk-section
+{% if instance.style %}{{ instance.style }} {% endif %}">
+    {% for plugin in instance.child_plugin_instances %}
+        {% render_plugin plugin %}
+    {% endfor %}
+</div>
