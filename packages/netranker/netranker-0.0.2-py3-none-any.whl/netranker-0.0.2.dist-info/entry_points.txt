@@ -1,0 +1,3 @@
+[console_scripts]
+nrutils = netranker.utils:main
+
