@@ -1,0 +1,16 @@
+README.md
+setup.cfg
+setup.py
+elsapy/__init__.py
+elsapy/elsclient.py
+elsapy/elsdoc.py
+elsapy/elsentity.py
+elsapy/elsprofile.py
+elsapy/elssearch.py
+elsapy/log_util.py
+elsapy/utils.py
+elsapy.egg-info/PKG-INFO
+elsapy.egg-info/SOURCES.txt
+elsapy.egg-info/dependency_links.txt
+elsapy.egg-info/requires.txt
+elsapy.egg-info/top_level.txt
