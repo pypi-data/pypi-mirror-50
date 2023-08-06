@@ -1,0 +1,9 @@
+numpy
+pandas
+pygsheets
+xdg==1.0.5
+
+[test]
+coverage
+mock
+ddt
