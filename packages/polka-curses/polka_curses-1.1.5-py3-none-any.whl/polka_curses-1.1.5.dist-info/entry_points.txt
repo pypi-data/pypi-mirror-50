@@ -1,0 +1,3 @@
+[console_scripts]
+polka=polka_curses.main:main
+

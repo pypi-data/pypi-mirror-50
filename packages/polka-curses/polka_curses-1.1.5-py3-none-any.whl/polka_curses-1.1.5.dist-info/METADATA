@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: polka-curses
+Version: 1.1.5
+Summary: The curses interface for the Polka website (https://polka.academy/)
+Home-page: https://github.com/dmkskn/polka_curses/
+License: MIT
+Keywords: polka,books,literature,russian,api,urwid,cli,terminal,curses,tui
+Author: Dima Koskin
+Author-email: dmksknn@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Libraries
+Requires-Dist: polka (>=2.4,<3.0)
+Requires-Dist: urwid (>=2.0,<3.0)
+Description-Content-Type: text/markdown
+
+![Installation and Usage](https://raw.githubusercontent.com/dmkskn/polka_curses/master/images/install_and_usage.gif)
+
+## Installation
+
+Use `pip` to install the program (Python 3.7 is required):
+
+```bash
+pip install polka-curses
+```
+
+Doesn't work in Windows!
+
+## Usage
+
+To run the program, write `polka`.
+
