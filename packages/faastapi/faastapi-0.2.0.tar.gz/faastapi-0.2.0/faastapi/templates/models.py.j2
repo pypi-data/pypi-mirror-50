@@ -1,0 +1,33 @@
+"""
+Function models
+"""
+from typing import * # noqa: 403
+from datetime import datetime  # noqa: 401
+from pydantic import BaseModel
+
+{% if run["output"] is defined and run["output"] is mapping %}
+class Output(BaseModel):
+    {%- for arg, arg_type in run["output"].items() %}
+    {{ arg }}: {{ arg_type }}
+    {%- endfor %}
+{%- endif %}
+
+{% if run["input"] is defined %}
+class Input(BaseModel):
+{%- for arg in run["input"] -%}
+    {%- if (arg["optional"] is defined and arg["optional"]) or arg["default"] is defined -%}
+        {%- if arg["default"] is defined %}
+            {%- if arg["type"] == 'str' %}
+    {{ arg["name"] }}: Optional[{{ arg["type"] }}] = '{{ arg["default"] }}'
+            {%- else %}
+    {{ arg["name"] }}: Optional[{{ arg["type"] }}] = {{ arg["default"] }}
+            {%- endif %}
+        {%- else %}
+    {{ arg["name"] }}: Optional[{{ arg["type"] }}] = None
+        {%- endif %}
+    {%- else %}
+    {{ arg["name"] }}: Optional[{{ arg["type"] }}]
+    {%- endif %}
+{%- endfor %}
+{%- endif %}
+
