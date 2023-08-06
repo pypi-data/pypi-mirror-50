@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: analitico
+Version: 2019.8.12.dev6
+Summary: Python client for Analitico.ai
+Home-page: https://github.com/analitico/analitico-sdk
+Author: Analitico Labs, Inc.
+Author-email: info@analitico.ai
+License: UNKNOWN
+Description: 
+        ## Analitico SDK
+        
+        This package contains plugins and classes used to access analitico.ai cloud services and machine learning models. The package can be installed in Jupyter notebooks, Colaboratory notebooks or other Python environments. To access assets stored in Analitico you will need an API token.
+        
+        ### Installation
+        
+        To install in Python:  
+        `pip install analitico`
+        
+        To install on Jupyter, Colaboratory, etc:  
+        `!pip install analitico`
+        
+        ### Usage
+        
+        ```python
+        import analitico
+        
+        # authorize calls with developer token
+        sdk = analitico.authorize_sdk(token="tok_xxx")
+        
+        # retrieve a dataset object from analitico
+        dataset = sdk.get_dataset("ds_xxx")
+        
+        # download a data file from storage into a Pandas dataframe
+        df = dataset.download(df="customers.csv")
+        ```
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Financial and Insurance Industry
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Description-Content-Type: text/markdown
