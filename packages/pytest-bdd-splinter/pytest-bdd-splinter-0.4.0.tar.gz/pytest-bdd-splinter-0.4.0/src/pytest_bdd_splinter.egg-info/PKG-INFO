@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: pytest-bdd-splinter
+Version: 0.4.0
+Summary: Common steps for pytest bdd and splinter integration
+Home-page: https://github.com/labd/pytest-bdd-splinter
+Author: Lab Digital
+Author-email: opensource@labdigital.nl
+License: MIT
+Description: # pytest-bdd-splinter
+        
+        This module provides a number of common `given`, `when`, `then` steps for
+        [pytest-splinter](https://github.com/pytest-dev/pytest-splinter) in
+        [pytest-bdd](https://github.com/pytest-dev/pytest-bdd)
+        
+        ## Installation
+        
+        ```shell
+        pip install pytest-bdd-splinter
+        ```
+        
+        ## Number of examples
+        ```gherkin
+        Scenario: Fill in a form
+            Given I am using a large device
+            And I am on the homepage
+            When I go to "/my-contact-form/"
+            And I fill in the following:
+                | first_name | John  |
+                | last_name  | Doe  |
+                | username   | johndoe  |
+                | password   | mysecret |
+            And I press "agree-tos"
+            And I press "submit"
+            Then I should be on "/thank-you/"
+            And I should see "Thank you for creating an account"
+        ```
+        
+        ## More information
+        Please see [the documentation](https://pytest-bdd-splinter.readthedocs.io/en/latest/)
+        to read more about installation, configuration and an overview of all the
+        available steps.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Provides-Extra: test
+Provides-Extra: docs

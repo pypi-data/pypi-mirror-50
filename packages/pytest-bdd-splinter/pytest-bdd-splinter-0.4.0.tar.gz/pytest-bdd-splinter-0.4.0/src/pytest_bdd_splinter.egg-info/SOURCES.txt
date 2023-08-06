@@ -1,0 +1,16 @@
+README.md
+setup.cfg
+setup.py
+src/pytest_bdd_splinter/__init__.py
+src/pytest_bdd_splinter/browse.py
+src/pytest_bdd_splinter/forms.py
+src/pytest_bdd_splinter/misc.py
+src/pytest_bdd_splinter/mouse.py
+src/pytest_bdd_splinter/rendering.py
+src/pytest_bdd_splinter/utils.py
+src/pytest_bdd_splinter.egg-info/PKG-INFO
+src/pytest_bdd_splinter.egg-info/SOURCES.txt
+src/pytest_bdd_splinter.egg-info/dependency_links.txt
+src/pytest_bdd_splinter.egg-info/not-zip-safe
+src/pytest_bdd_splinter.egg-info/requires.txt
+src/pytest_bdd_splinter.egg-info/top_level.txt
