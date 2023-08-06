@@ -1,0 +1,16 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.cfg
+setup.py
+img2sh/__init__.py
+img2sh/cli.py
+img2sh/pallette.py
+img2sh/rect.py
+img2sh/renderer.py
+img2sh.egg-info/PKG-INFO
+img2sh.egg-info/SOURCES.txt
+img2sh.egg-info/dependency_links.txt
+img2sh.egg-info/entry_points.txt
+img2sh.egg-info/requires.txt
+img2sh.egg-info/top_level.txt
