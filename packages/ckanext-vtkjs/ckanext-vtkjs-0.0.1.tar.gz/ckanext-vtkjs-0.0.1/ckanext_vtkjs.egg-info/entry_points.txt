@@ -1,0 +1,7 @@
+
+        [ckan.plugins]
+        vtkjs=ckanext.vtkjs.plugin:VtkjsPlugin
+
+        [babel.extractors]
+        ckan = ckan.lib.extract:extract_ckan
+    
