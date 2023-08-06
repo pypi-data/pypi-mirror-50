@@ -1,0 +1,71 @@
+Metadata-Version: 2.1
+Name: vuejspython
+Version: 0.2.1
+Summary: Bridging vuejs and python (e.g., to leverage numpy)
+Home-page: https://github.com/twitwi/vuejs-python/
+Author: Rémi Emonet
+Author-email: remi-242-e2f8@heeere.com
+License: UNKNOWN
+Description: 
+        Vuejs-python brings the concepts of vuejs to Python.
+        You can write your model/data as a Python object and your HTML UI/view with the very convenient vuejs syntax.
+        As soon as part of your model changes, all dependent variables are updated and the HTML UI is automatically refreshed.
+        
+        The goal is to use not only Python the language but Python the platform (with numpy, system APIs, and other "native" things).
+        
+        ## Installation
+        
+        ~~~
+        pip install vuejspython
+        ~~~
+        
+        ## Tiny Example
+        
+        <div style="display: flex">
+          <div style="flex: 50%;">
+        
+          `# example.py`
+        
+        ```python
+            ...
+            @model
+            class App:
+              radius = 5
+              def computed_area(self):
+                return pi * self.radius ** 2
+        
+            vuejspython.start(App())
+        ```
+        
+          </div>
+          <div style="flex: 50%;">
+        
+          `# example.html`
+        
+        ```html
+            <div id="main">
+              Fill the radius in the text field: <input v-model.number="radius"/>.
+              (or with <button @click="radius += 1">+1</button> <br/>
+              A disk with radius {{ radius }} has an area of {{ area }}.
+            </div>
+             
+            <script src="lib/vuejspython.js"></script>
+            <script>vuejspython.start()</script>
+        ```
+        
+          </div>
+        </div>
+        
+        
+        ## Similar projects?
+        
+        If you're interested only in using Python the language with Vue.js, you can try [brython](http://brython.info/) and the [brython vue demo](http://brython.info/gallery/test_vue.html)
+        
+        There are projects that try to help integrating Vue.js with different Python web frameworks. The goal is different: Vuejs-python makes python and vue tightly integrated, in a common, reactive model.
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
