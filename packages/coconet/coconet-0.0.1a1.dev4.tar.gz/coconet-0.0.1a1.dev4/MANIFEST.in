@@ -1,0 +1,7 @@
+include README.md LICENSE
+global-include CMakeLists.txt *.cmake
+recursive-include include *
+recursive-include source *
+recursive-include contrib/taskflow/taskflow *
+recursive-include contrib/xsimd/include *
+recursive-include contrib/pybind11/include *.h
