@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: handout
+Version: 1.0.0
+Summary: Turn Python scripts into handouts with Markdown and figures
+Home-page: http://github.com/danijar/handout
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: Topic :: Multimedia :: Graphics :: Presentation
+Classifier: License :: OSI Approved :: Apache Software License
+Provides-Extra: media
