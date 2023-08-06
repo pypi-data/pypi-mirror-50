@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: iso3-lookup
+Version: 0.4.0
+Summary: Go from iso3 -> country name and visa versa
+Home-page: https://github.com/watson-sam/iso3_lookup
+Author: Sam Watson
+Author-email: quadquants@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: fuzzywuzzy
+Requires-Dist: python-Levenshtein
+
+UNKNOWN
+
+
