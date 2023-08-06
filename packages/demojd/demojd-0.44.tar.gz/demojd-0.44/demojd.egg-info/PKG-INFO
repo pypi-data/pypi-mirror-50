@@ -1,0 +1,36 @@
+Metadata-Version: 1.0
+Name: demojd
+Version: 0.44
+Summary: Hello World demo with tree package structure.
+Home-page: UNKNOWN
+Author: vipervit
+Author-email: vitolg1@gmail.com
+License: UNKNOWN
+Description: |
+        
+        This is a simple hello world demo to demonstrate pipelines_ principles and deployment of Python applications
+        based on Jenkins / Docker / pip integration.
+        
+        |
+        
+        A complete description is to be added in near future.
+        
+        |
+        |
+        
+        .. _pipelines: https://dzone.com/articles/learn-how-to-setup-a-cicd-pipeline-from-scratch
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        ======================================
+         **UNDER CONSTRUCTION**
+        ======================================
+        
+Platform: UNKNOWN
