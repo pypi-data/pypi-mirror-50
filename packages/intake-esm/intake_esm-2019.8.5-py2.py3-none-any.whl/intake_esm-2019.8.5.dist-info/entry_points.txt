@@ -1,0 +1,4 @@
+
+    [console_scripts]
+    intake-esm-builder=intake_esm.cli:main
+    
