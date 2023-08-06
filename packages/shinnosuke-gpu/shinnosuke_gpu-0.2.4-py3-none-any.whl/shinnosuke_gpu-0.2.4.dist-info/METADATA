@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: shinnosuke-gpu
+Version: 0.2.4
+Summary: A keras-like API deep learning framework,realized by cupy
+Home-page: https://github.com/eLeVeNnN/shinnosuke-gpu
+Author: Eleven
+Author-email: eleven_1111@outlook.com
+Maintainer: Eleven
+Maintainer-email: eleven_1111@outlook.com
+License: MIT License
+Platform: all
+Classifier: Development Status :: 4 - Beta
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: Implementation
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development :: Libraries
+Description-Content-Type: text/markdown
+Requires-Dist: cupy
+Requires-Dist: matplotlib
+
+waiting to implementd
+
+
