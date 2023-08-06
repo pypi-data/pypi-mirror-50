@@ -1,0 +1,10 @@
+README.rst
+setup.cfg
+setup.py
+dunder_run/__init__.py
+dunder_run/__main__.py
+dunder_run.egg-info/PKG-INFO
+dunder_run.egg-info/SOURCES.txt
+dunder_run.egg-info/dependency_links.txt
+dunder_run.egg-info/entry_points.txt
+dunder_run.egg-info/top_level.txt

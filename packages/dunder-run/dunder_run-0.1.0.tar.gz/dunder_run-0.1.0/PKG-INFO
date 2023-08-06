@@ -1,0 +1,13 @@
+Metadata-Version: 1.0
+Name: dunder_run
+Version: 0.1.0
+Summary: A proof-of-concept for a new way of running Python scripts.
+Home-page: https://github.com/scaramagus/dunder-run
+Author: Agustin Scaramuzza
+Author-email: agustinscaramuzza@gmail.com
+License: GPLv3
+Description: # dunder-run
+        
+        A proof-of-concept for a new way of running Python scripts.
+        
+Platform: UNKNOWN
