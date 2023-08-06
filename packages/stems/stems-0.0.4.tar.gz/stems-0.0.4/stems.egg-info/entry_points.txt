@@ -1,0 +1,3 @@
+[console_scripts]
+stems = stems.cli.main:main
+
