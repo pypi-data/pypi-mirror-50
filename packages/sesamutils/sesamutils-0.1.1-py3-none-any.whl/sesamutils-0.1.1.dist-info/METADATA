@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: sesamutils
+Version: 0.1.1
+Summary: Sesam microservice utils
+Home-page: https://github.com/sesam-community/
+Author: Anders Borud
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet :: WWW/HTTP
+Description-Content-Type: text/markdown
+
+# SesamUtils
+
+**Python module to simplify common tasks when developing microservices for the Sesam integration platform.**
+
+
+### Usage examples
+
+
+
+### Installation
+
