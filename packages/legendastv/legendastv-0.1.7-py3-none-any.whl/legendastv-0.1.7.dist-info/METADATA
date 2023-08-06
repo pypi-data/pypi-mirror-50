@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: legendastv
+Version: 0.1.7
+Summary: Library to automate downloads from Legendas TV website
+Home-page: https://github.com/vinigfer/legendastv
+Author: Vinicius Gubiani Ferreira
+Author-email: vini.g.fer@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+Requires-Dist: beautifulsoup4
+Requires-Dist: requests
+
+This is a WIP description
+
+
