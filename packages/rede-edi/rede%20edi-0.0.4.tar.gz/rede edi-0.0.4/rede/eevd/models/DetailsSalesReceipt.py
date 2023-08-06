@@ -1,0 +1,21 @@
+COLUMNS = [
+    'TIPO_REGISTRO',
+    'NRO_FILIAL_PONTO_VENDA',
+    'NRO_RESUMO_VENDAS',
+    'DT_CV',
+    'VL_BRUTO',
+    'VL_DESCONTO',
+    'VL_LIQUIDO',
+    'NRO_CARTAO',
+    'TIPO_TRANSACAO',
+    'NRO_CV',
+    'DT_CREDITO',
+    'STATUS_TRANSACAO',
+    'HR_TRANSACAO',
+    'NRO_TERMINAL',
+    'TIPO_CAPTURA',
+    'RESERVADO',
+    'VL_COMPRA',
+    'VL_SAQUE',
+    'BANDEIRA'
+]
