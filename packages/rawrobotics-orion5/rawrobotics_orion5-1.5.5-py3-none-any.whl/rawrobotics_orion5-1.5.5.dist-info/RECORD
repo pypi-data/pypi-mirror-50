@@ -1,0 +1,16 @@
+orion5/__init__.py,sha256=odWAsdQ8tEzXjzoF4m0psdkXn3XYcVRulN46UareMfs,62
+orion5/orion5.py,sha256=HuR2HwWsDHZjxFk7bOr9fMcsPhNbLGQHLiNNGmagtak,23210
+orion5/orion5_client.py,sha256=L7P6e06c0OuU8cVfQQrN9T32UFwO5eqFowIBGu1Hmh0,5356
+orion5/orion5_serial.py,sha256=KsLNSCUPhmcTVSVchkPoqwn7bofBwIkwLaPBbIdM5j4,22858
+orion5/version.py,sha256=znAHNWVhFF1Vx4vfVv5r8f-dkzq-xzXL-0_1BiYWvew,23
+orion5/orion5_math/__init__.py,sha256=A86UwEjVaA9S9-nM76HDdP6xEIX37y5sClcnaKmlEfw,66
+orion5/orion5_math/ikinematics.py,sha256=ZAGklgdPcW3CRLdS73MYz1z1bvyE2PGJ4ZKeoX2czm8,2512
+orion5/orion5_math/orion5_math.py,sha256=2dFT04HPKeZ0L21XLnbMaASLrQc_ICvrvG035K0zQc8,1928
+orion5/utils/__init__.py,sha256=ucqv2MWsnwWV5uQgMdIBGj06cV2flixs4-J-H-eVuDs,101
+orion5/utils/firmware_updater.py,sha256=f-5cRxOgF8dMXkTRJ9w3KIEfLs1fCFSYRZ8DTkiB-nI,3830
+orion5/utils/general.py,sha256=iaSa5A-8gU0KWBXjjllMfR8zEMtZsQOhRl-ha6XWnqw,11966
+orion5/utils/helpers.py,sha256=aMXzf1hQWQNqbQxFIf7coTzMgyIM4LYaFsS1DQ4TaW4,2058
+rawrobotics_orion5-1.5.5.dist-info/METADATA,sha256=UjOHJ4_YdvR7HZsuzHmi0HxCsz_BczUGpfus4y5mBhk,488
+rawrobotics_orion5-1.5.5.dist-info/WHEEL,sha256=QBOOAdG2icRHGBs2s94rfaUlHrdfNBp-TceubUYCwOE,97
+rawrobotics_orion5-1.5.5.dist-info/top_level.txt,sha256=XCq8dOBBFrMSyS_I1tYNCVRkjnkuGfsA3A2dPduo8QM,7
+rawrobotics_orion5-1.5.5.dist-info/RECORD,,

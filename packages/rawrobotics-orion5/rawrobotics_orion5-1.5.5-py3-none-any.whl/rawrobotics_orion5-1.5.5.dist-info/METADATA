@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: rawrobotics-orion5
+Version: 1.5.5
+Summary: Python libraries for the Orion5 robotic arm from RAWrobotics.
+Home-page: https://github.com/rawrobotics/orion5
+Author: RAWrobotics Pty. Ltd.
+Author-email: info@rawrobotics.com.au
+License: UNKNOWN
+Keywords: orion5 robotics rawrobotics robot arm
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3
+Requires-Dist: pyserial
+
+UNKNOWN
+
+
