@@ -1,0 +1,17 @@
+Metadata-Version: 1.2
+Name: aiologs
+Version: 0.0.3
+Summary: ('纯异步的高性能日志组件，支持日志保存文件、mongo、elasticsearch', 'Purely asynchronous high performance logging components，Support for writing files，mongo、elasticsearch')
+Home-page: https://github.com/beincy/aiologs
+Author: beincy
+Author-email: bianhui0524@sina.com
+Maintainer: 卞辉(beincy)
+Maintainer-email: bianhui0524@sina.com
+License: MIT
+Description: UNKNOWN
+Platform: all
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7

@@ -1,0 +1,10 @@
+README.rst
+setup.py
+aiologs/__init__.py
+aiologs/esHandler.py
+aiologs/mongoHandler.py
+aiologs.egg-info/PKG-INFO
+aiologs.egg-info/SOURCES.txt
+aiologs.egg-info/dependency_links.txt
+aiologs.egg-info/requires.txt
+aiologs.egg-info/top_level.txt
