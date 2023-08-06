@@ -1,0 +1,11 @@
+cloud_storage/__about__.py,sha256=wShy9YfBfroz0HjRH_aNNehkEu1_PLsd_GjTU5aCDPk,22
+cloud_storage/__init__.py,sha256=a7zz1WLJ4-Cz0hQukoWaXBwe61FL2JVP3GGiLtDB3fQ,966
+cloud_storage/excepts.py,sha256=dMru5QEb1NYHyzmvSfOWBPbbqmVXJgJFtH0PbgIAMo8,674
+cloud_storage/gcs_storage.py,sha256=NFBkxpHlJmcndiySd5WN9TVOrXCOKDYSxzAKPx4MtK8,8923
+cloud_storage/local_storage.py,sha256=wO3C-lexfzsPjR0E7krc_AXUFbWT6x-J54pRNl7bb7M,5290
+cloud_storage/s3_storage_boto3.py,sha256=cZleK7ZsF0HlAnh9O15jL4vS80sshx1HDcdY8_c7F20,6787
+cloud_storage-1.5.0.dist-info/LICENSE,sha256=OXLcl0T2SZ8Pmy2_dmlvKuetivmyPd5m1q-Gyd-zaYY,35149
+cloud_storage-1.5.0.dist-info/METADATA,sha256=uyBU4ceOwLoxIAtb9NFdWBvv0fGBaCqnwyoqquV0BuE,2423
+cloud_storage-1.5.0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+cloud_storage-1.5.0.dist-info/top_level.txt,sha256=p1T7iRuVIRFspfCoaGurlxsXGqHzxwyyqPNjnulvWLc,14
+cloud_storage-1.5.0.dist-info/RECORD,,
