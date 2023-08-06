@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: pymemcache
+Version: 2.2.1
+Summary: "A comprehensive, fast, pure Python memcached client"
+Home-page: https://github.com/pinterest/pymemcache
+Author: Charles Gordon
+Author-email: charles@pinterest.com
+License: Apache License 2.0
+Description: 
+        file: README.rst, ChangeLog.rst
+Keywords: memcache,client,database
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Topic :: Database
+Description-Content-Type: text/x-rst
