@@ -1,0 +1,15 @@
+MANIFEST.in
+README.md
+setup.py
+assets/autosuggest.css
+dash_elasticsearch_autosuggest/ESAutosuggest.py
+dash_elasticsearch_autosuggest/__init__.py
+dash_elasticsearch_autosuggest/_imports_.py
+dash_elasticsearch_autosuggest/dash_elasticsearch_autosuggest.dev.js
+dash_elasticsearch_autosuggest/dash_elasticsearch_autosuggest.min.js
+dash_elasticsearch_autosuggest/metadata.json
+dash_elasticsearch_autosuggest/package.json
+dash_elasticsearch_autosuggest.egg-info/PKG-INFO
+dash_elasticsearch_autosuggest.egg-info/SOURCES.txt
+dash_elasticsearch_autosuggest.egg-info/dependency_links.txt
+dash_elasticsearch_autosuggest.egg-info/top_level.txt
