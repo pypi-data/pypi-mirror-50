@@ -1,0 +1,83 @@
+Metadata-Version: 1.1
+Name: collective.sentry
+Version: 0.1.5
+Summary: Sentry integration with Plone 5.2/Zope 4
+Home-page: UNKNOWN
+Author: Andreas Jung
+Author-email: info@zopyx.com
+License: GPL
+Description: collective.sentry
+        =================
+        
+        Sentry integration with Zope.
+        
+        Requirements
+        ------------
+        
+        * Plone 5.2 (tested)
+        * Python 3.6+ (tested)
+        
+        Installation
+        ------------
+        
+        Add `collective.sentry` to your buildout and re-run buildout. 
+        
+        Configuration
+        -------------
+        
+        Configure the Sentry DSN by setting the environment variable `SENTRY_DSN` inside your shell configuration or using buildout::
+        
+            [instance]
+            environment-vars +=
+                SENTRY_DSN https://......
+        
+        
+        Repository
+        ----------
+        
+        https://github.com/collective/collective.sentry
+        
+        Licence
+        -------
+        
+        - GPL2 - GNU Public License 2
+        - based on `raven.contrib.zope`: BSD
+        
+        
+        Author
+        ------
+        
+        ZOPYX/Andreas Jung, info@zopyx.com
+        
+        `collective.sentry` has been developed as part of a Plone 5.2 migration project and it
+        sponsored by the University Gent.
+        
+        Changelog
+        =========
+        
+        
+        0.1 (2019/08/15)
+        ----------------
+        
+        - initial release
+        
+        Contributors
+        ------------
+        
+        - Andreas Jung <info@zopyx.com>
+        
+Keywords: policy
+Platform: UNKNOWN
+Classifier: Framework :: Plone
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Framework :: Plone
+Classifier: Framework :: Plone :: 5.1
+Classifier: Framework :: Plone :: 5.2
+Classifier: Framework :: Zope
+Classifier: Framework :: Zope :: 4
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
