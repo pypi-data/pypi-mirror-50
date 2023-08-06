@@ -1,0 +1,17 @@
+Metadata-Version: 1.2
+Name: contessa
+Version: 0.1.0
+Summary: Data-quality framework
+Home-page: https://github.com/kiwicom/contessa
+Author: Mario Hunka
+Author-email: mario.hunka@kiwi.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Database
+Classifier: Topic :: Software Development :: Quality Assurance
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6
