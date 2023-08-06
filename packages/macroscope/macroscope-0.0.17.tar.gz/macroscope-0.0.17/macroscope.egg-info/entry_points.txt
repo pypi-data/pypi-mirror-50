@@ -1,0 +1,3 @@
+[console_scripts]
+macroscope = macroscope:cli
+

@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: macroscope
+Version: 0.0.17
+Summary: The macroscope command line interface
+Home-page: UNKNOWN
+Author: StraightOuttaCrompton
+Author-email: soc@email.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.0.*
+Provides-Extra: dev
