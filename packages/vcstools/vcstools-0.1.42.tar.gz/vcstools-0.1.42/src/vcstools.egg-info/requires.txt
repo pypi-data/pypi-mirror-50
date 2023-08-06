@@ -1,0 +1,17 @@
+pyyaml
+python-dateutil
+
+[test]
+nose
+coverage
+coveralls
+mock
+pep8
+tox
+tox-pyenv
+
+[test:python_version > "3"]
+radon~=1.4.0
+coala
+coala-bears
+mypy
