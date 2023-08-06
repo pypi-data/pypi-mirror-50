@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: mlvis
+Version: 0.0.2
+Summary: A wrapper around react components for use in jupyter notebooks
+Home-page: https://github.com/
+Author: Hong Wang
+Author-email: hongw@uber.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: ipython
+Requires-Dist: jupyter-react
+
+UNKNOWN
+
+
