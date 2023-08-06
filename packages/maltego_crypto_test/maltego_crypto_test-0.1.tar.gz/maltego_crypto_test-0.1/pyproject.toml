@@ -1,0 +1,11 @@
+[build-system]
+requires = ["flit"]
+build-backend = "flit.buildapi"
+
+[tool.flit.metadata]
+module = "maltego_crypto_test"
+author = "Tendai M"
+author-email = "tm@maltego.com"
+home-page = "http://tendai.co.zw"
+classifiers = ["License :: OSI Approved :: MIT License"]
+
