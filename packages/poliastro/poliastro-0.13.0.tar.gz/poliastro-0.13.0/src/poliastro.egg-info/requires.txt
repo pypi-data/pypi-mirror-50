@@ -1,0 +1,34 @@
+astropy~=3.2
+astroquery>=0.3.9
+jplephem
+matplotlib!=3.0.1,>=2.0
+numpy
+pandas
+plotly~=4.0
+scipy>=1.0
+
+[:implementation_name == "cpython"]
+numba>=0.39
+
+[cesium]
+czml3~=0.1.2
+
+[dev]
+black
+coverage
+ipykernel
+ipython>=5.0
+isort
+jupyter-client
+nbsphinx
+pycodestyle
+pytest>=3.2
+pytest-cov<2.6.0
+pytest-mpl
+sphinx
+sphinx_rtd_theme@ https://github.com/Juanlu001/sphinx_rtd_theme/archive/avoid-require-redefinition.zip
+sphinx-notfound-page
+tox
+
+[jupyter]
+notebook
