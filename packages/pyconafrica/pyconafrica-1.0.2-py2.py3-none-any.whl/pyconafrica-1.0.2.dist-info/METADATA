@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: pyconafrica
+Version: 1.0.2
+Summary: This package that enables you fetch BMRS data as json instead of XML
+Home-page: https://github.com/SimiCode/pyconafrica-json-api
+License: UNKNOWN
+Author: Edison Abahurire
+Author-email: abahedison@gmail.com
+Classifier: License :: OSI Approved :: MIT License
