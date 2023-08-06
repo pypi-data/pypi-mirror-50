@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: graphene-framework
+Version: 0.0.4
+Summary: Framework based on graphene
+Home-page: https://github.com/Donnyyyyy/graphene-framework
+Author: Dmitrii Donetskii
+Author-email: donetskiydmitriy@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: graphene (==2.1.7)
+
+# Graphene Framework
+
+This is framework based on graphene. It aims to offer a scalable and convenient architecture to write web api.
+
+[PyPi page](https://pypi.org/project/graphene-framework/)
+
