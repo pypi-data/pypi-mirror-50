@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: flask-hintful
+Version: 0.0.3.dev0
+Summary: Flask extension for generating restful apis using type hints to automatically (de)serialize parameters and generate openapi docs.
+Home-page: https://github.com/GabrielCappelli/flask-hintful
+Author: Gabriel Cappelli
+Author-email: 6148081+GabrielCappelli@users.noreply.github.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Requires-Dist: flask
+Requires-Dist: openapi-specgen
+
+TODO
+
+
