@@ -1,0 +1,14 @@
+deprecation
+pypandoc
+pytest
+pytest-runner
+testfixtures
+xenon
+pylint
+pytest-cov
+python-terraform
+google-auth-httplib2
+pyspark==2.3.1
+pytest-mock
+mock
+--editable ./
