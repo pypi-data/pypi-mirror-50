@@ -1,0 +1,15 @@
+zeroscale/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+zeroscale/__main__.py,sha256=MS-_k0Z0JwHMYJ8GLYFCRwUuwmUokZ9d4Ovp-LGyS78,3639
+zeroscale/proxy.py,sha256=hVTGYN7O_TLpN2Wrf4q-xUdjAtAdCxRuMeztVqWXRZE,600
+zeroscale/status.py,sha256=Bn-l2VxwoISCV6bs5FM37qolMdWKaThW9Uk6dFfQAjA,311
+zeroscale/zeroscale.py,sha256=IIkBTBMojwC9V_fMoVJpBKHIFxyXik6ODrlroeoLvqY,4127
+zeroscale/plugins/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+zeroscale/plugins/generic.py,sha256=O-38G1HwZ7YDzCmtBfuA_ZBCCksldE2eSwDP5hSdHaQ,1535
+zeroscale/plugins/minecraft.py,sha256=W4VrD7mlTTIfHdXZ1YwsNshyZMq6Kx7jsQszbipj6wg,4654
+zeroscale/plugins/terraria.py,sha256=gmkCd8bvgPkdnfUPie85RNvilvQwyiwt3cah_dUihR0,4453
+zeroscale-0.4.0.dist-info/LICENSE,sha256=OXLcl0T2SZ8Pmy2_dmlvKuetivmyPd5m1q-Gyd-zaYY,35149
+zeroscale-0.4.0.dist-info/METADATA,sha256=xkSVulsP4QU2gCNZg_z8oVU9a7oBMt4te5X_COj1cHk,6116
+zeroscale-0.4.0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+zeroscale-0.4.0.dist-info/entry_points.txt,sha256=DTOsJyM45GrQKD-jOk7QYNq1eR-W3S7e5lOxc3UMoas,55
+zeroscale-0.4.0.dist-info/top_level.txt,sha256=a1R8CYLl1eLubt7QBWrZflWjXWRYH2Vm0wOS8RJDgiE,10
+zeroscale-0.4.0.dist-info/RECORD,,
