@@ -1,0 +1,14 @@
+README.md
+setup.py
+openapi2omg/Converter.py
+openapi2omg/Properties.py
+openapi2omg/__init__.py
+openapi2omg.egg-info/PKG-INFO
+openapi2omg.egg-info/SOURCES.txt
+openapi2omg.egg-info/dependency_links.txt
+openapi2omg.egg-info/top_level.txt
+openapi2omg/exceptions/ConverterError.py
+openapi2omg/exceptions/MappingError.py
+openapi2omg/exceptions/__init__.py
+openapi2omg/utils/OpenAPIActionUtil.py
+openapi2omg/utils/__init__.py

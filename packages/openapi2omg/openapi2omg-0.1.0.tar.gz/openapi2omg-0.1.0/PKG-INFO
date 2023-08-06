@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: openapi2omg
+Version: 0.1.0
+Summary: A tool to convert an OpenAPI spec to an OMG spec
+Home-page: https://github.com/microservices/openapi2omg
+Author: Storyscript
+Author-email: support@storyscript.io
+License: UNKNOWN
+Description: ## Assumptions
+        1. If there are multiple content types available for a given path, the content type
+           `application/json` shall be preferred if available. If `application/json` is not
+           available, then an appropriate content type will be chosen arbitrarily
+        2. OMG doesn't support multiple responses. As such, the following order of response
+           codes are considered as successful operations: `200, 201, 202, 2XX, 204, default`.
+           Furthermore, since multiple content types are not supported, `application/json`
+           will be used if available. If `application/json` is not available, then an
+           appropriate content type will be chosen arbitrarily
+           
+           
+        ## todos 
+        related:
+        1. https://github.com/microservices/microservice.guide/issues/50
+        2. https://github.com/microservices/microservice.guide/pull/96
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
