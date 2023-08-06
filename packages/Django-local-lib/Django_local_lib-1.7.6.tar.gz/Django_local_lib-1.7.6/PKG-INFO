@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: Django_local_lib
+Version: 1.7.6
+Summary: Python wrapper for the CircleCI API
+Home-page: https://github.com/joseph-njogu/Django_local_lib
+Author: Joseph
+Author-email: josephnjogu487@gmail.com
+License: UNKNOWN
+Description: # Django_local_lib
+        This project is a sample django made local libary
+        
+Keywords: circleci ci cd api sdk
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Internet
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Python: >=3
+Description-Content-Type: text/markdown
