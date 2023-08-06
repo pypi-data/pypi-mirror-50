@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: ipyhc
+Version: 0.0.0a3
+Summary: Jupyter widget - highcharts in the notebook
+Home-page: https://gitlab.com/DGothrek/ipyhc
+Author: DGothrek
+Author-email: louisraison1@gmail.com
+License: MIT
+Download-URL: https://gitlab.com/DGothrek/ipyhc-dev/repository/archive.tar.gz?ref=0.0.0-alpha.3
+Keywords: ipyhc,javascript,highcharts
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+Requires-Dist: ipywidgets (>=7.4.0)
+Requires-Dist: pandas
+Requires-Dist: simplejson
+
+# ipyhc
+
+Plugin to use Highcharts in Jupyter notebooks.
+
+### Documentation
+
+Documentation is available on the website [https://ipyhc.gitlab.io/](https://ipyhc.gitlab.io/).
+
+### Credits
+
+This plugin is the result of a collaboration between
+[Louis Raison](https://gitlab.com/DGothrek),
+[Pierre Tholoniat](https://gitlab.com/tholoz) and [oscar6echo](https://gitlab.com/oscar6echo).
+
