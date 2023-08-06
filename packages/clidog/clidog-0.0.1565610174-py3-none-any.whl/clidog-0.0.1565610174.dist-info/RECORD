@@ -1,0 +1,15 @@
+clidog/__init__.py,sha256=rHIzJMolw7FKY2b199FNEhHBcOxPR944CMa0XFMQ7vI,248
+clidog/cli.py,sha256=x5_-b56GKbIPXGB8qYengexVMKowCD6JwK8KgDQHsBQ,960
+clidog/cli_example.py,sha256=gvgPrjYxrKbAOwVMpPuwLZX8kiYG6UKM30a5xDy2Tv8,663
+clidog/clis/__init__.py,sha256=OsiP1iHKL6aJp4RtIrOttBmzUbUMi0F4wbg3CrlW8HM,248
+clidog/clis/demo.py,sha256=-SMUYN2gHm0Fv7_m_QjSVQcfoknZ88rjG6l1kxvTzv8,433
+clidog/clis/info.py,sha256=Tiq9-3UT3-QW_rEdMbvpP_5r7Au-m1ySMdUj4UdE6HA,404
+clidog/clis/send_mail.py,sha256=fywnMPPj1XU0Vmjl7IJ1BT5RRwD5kyg_HQISiE8Htyw,1039
+clidog/clis/sh.py,sha256=eRMFNjGB4j378MDoF3pswD4U3QqhT3_BMGbXJWq4ryw,1044
+clidog/clis/spark.py,sha256=wMuzunTjkQOhShZmTUPVpQU3D82SC9nt0mEIoXvNxTw,4631
+clidog/clis/spark.yml,sha256=T08LE-fjXPC1l9NKgSzHfbmpsoBfK4wOWzsP9XShLZg,316
+clidog-0.0.1565610174.dist-info/METADATA,sha256=xvpKYSstdVf-MO9m4jYv9LhQZV06JmOv6lB9r-C6hCg,681
+clidog-0.0.1565610174.dist-info/RECORD,,
+clidog-0.0.1565610174.dist-info/WHEEL,sha256=FRuHuBX28RTgsOL603qIpbSc2WeDgbsFBWKj9XFOCpg,92
+clidog-0.0.1565610174.dist-info/entry_points.txt,sha256=Il5VYQNi6NeMUQ2MGufL2wg7OP7asqmLrDMBtY8UhyY,41
+clidog-0.0.1565610174.dist-info/top_level.txt,sha256=apncrzPHblW8DoE5IVl38Zg6AGjFynBLnIhjp_UVTcQ,7
