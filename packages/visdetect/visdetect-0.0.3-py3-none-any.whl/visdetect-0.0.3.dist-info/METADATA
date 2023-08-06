@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: visdetect
+Version: 0.0.3
+Summary: Visual error analysis for detection tasks
+Home-page: UNKNOWN
+Author: Shiva Pentyala
+Author-email: pk123@tamu.edu
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: matplotlib (==3.1.1)
+Requires-Dist: numpy (==1.16.4)
+Requires-Dist: opencv-python
+Requires-Dist: pandas (==0.25.0)
+Requires-Dist: Pillow (>=4.0.0)
+Requires-Dist: setuptools (==41.0.1)
+Requires-Dist: tensorflow (==1.13.1)
+Requires-Dist: tqdm (==4.32.2)
+
+UNKNOWN
+
+

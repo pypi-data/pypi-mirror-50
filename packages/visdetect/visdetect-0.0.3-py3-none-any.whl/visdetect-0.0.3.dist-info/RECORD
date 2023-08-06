@@ -1,0 +1,14 @@
+visdetect/analysis.py,sha256=zLp9eFuENHKn_q8nmUKTaT5PgYBbIyTiUVnFfzebJRs,71068
+visdetect/config.py,sha256=Z4fvxXEaz1cqk8H6RhA713uKOzmhcggQbZmA3VqCEzw,4036
+visdetect/metrics.py,sha256=F3bctynUr1r2H3TRKKpNnaJvx44NgnkjlOMY1Q62mKQ,8242
+visdetect/plots.py,sha256=Zvqk9vrvkTuEtG84U8CfQnbTdYt9DVCoD1sCkqXsTiE,19173
+visdetect/run_analysis.py,sha256=cli1wMssikHY3yfAn8K48cIezlyvNIQhwNPGVqTtJ9I,4975
+visdetect/run_show.py,sha256=aC3BFGboCVeDxsGnaSZA00fnoHFqzPjz4XHE23DuiWA,3750
+visdetect/helpers/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+visdetect/helpers/dataset_coco_format.py,sha256=ZX0ezk2cY8HvXXQxU5is5cRhrCMsBFmc0Ed7bBw_o2E,9373
+visdetect/helpers/dataset_kensho_format.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+visdetect-0.0.3.data/scripts/visdetect,sha256=mdDQ-fr3REw8OqynynHks9YeFE7qG8CIfqpb2ewCDp8,6468
+visdetect-0.0.3.dist-info/METADATA,sha256=w4GmXOrsEmUcVOLPaq1RxjUjqXhhfP8ZN9qihYrssX0,488
+visdetect-0.0.3.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+visdetect-0.0.3.dist-info/top_level.txt,sha256=JXQRuFaR4TxlCvN5UcVDyfSTWUJME2-J4OIBLmu0AI4,28
+visdetect-0.0.3.dist-info/RECORD,,
