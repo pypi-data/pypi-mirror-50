@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: ln2sqlmodule
+Version: 0.0.1
+Summary: This is a wrapper around ln2sql by Jeremy Ferrero for convenient use
+Home-page: https://github.com/rupinder1133
+Author: Rupinder Singh
+Author-email: rupinder1133@gmail.com
+License: gpl-3.0
+Download-URL: https://github.com/rupinder1133/ln2sqlmodule/archive/v0.0.1.tar.gz
+Description: UNKNOWN
+Keywords: ln2sql,NLP,SQL
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 2
