@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: grafana-snapshot
+Version: 0.0.5
+Summary: A small example package
+Home-page: https://github.com/ohmrefresh/GrafanaSnapshot.git
+Author: Authapon Kongkaew
+Author-email: ohmrefresh@gmail.com, authapon.kon@ascendcorp.com
+License: UNKNOWN
+Description: # GrafanaSnapshot Package [![Build Status](https://travis-ci.com/ohmrefresh/GrafanaSnapshot.svg?branch=master)](https://travis-ci.com/ohmrefresh/GrafanaSnapshot)
+        
+        
+        ## Install
+        If you want to use the API algorithms in your code, it is as simple as:
+        
+            $ pip3 install grafana-snapshot
+        
+        You can test by creating a python file:
+        
+        ```python3
+        from GrafanaSnapshot.GenerateSnapshot import GenerateSnapshot
+        
+        if __name__ == "__main__":
+            grafana = GenerateSnapshot(auth='', host='xx', port=3000, protocol="https")
+            result = grafana.generate(tags="tags", time_from=1563183710618, time_to=1563185212275)
+        ```
+        
+        
+        
+        ## Uninstall
+        If you want to uninstall grafana-snapshot, it is as simple as:
+        
+            $ pip3 uninstall -y grafana-snapshot
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development
+Description-Content-Type: text/markdown
