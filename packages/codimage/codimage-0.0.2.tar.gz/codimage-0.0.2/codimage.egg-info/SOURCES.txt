@@ -1,0 +1,11 @@
+LICENSE
+README.md
+setup.py
+codimage/__init__.py
+codimage/codimage.py
+codimage/utils.py
+codimage.egg-info/PKG-INFO
+codimage.egg-info/SOURCES.txt
+codimage.egg-info/dependency_links.txt
+codimage.egg-info/requires.txt
+codimage.egg-info/top_level.txt
