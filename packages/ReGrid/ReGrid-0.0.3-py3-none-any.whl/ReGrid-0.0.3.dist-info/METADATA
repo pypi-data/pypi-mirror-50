@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: ReGrid
+Version: 0.0.3
+Summary: Grid conversion utilities for multiphase flow modelling software
+Home-page: https://git.lemmasofware.org/co2/ReGrid
+Author: Trevor P. Irons
+Author-email: Trevor.Irons@egi.utah.edu
+License: ['GPL 4.0']
+Platform: UNKNOWN
+Requires-Dist: matplotlib
+Requires-Dist: scipy
+Requires-Dist: numpy
+Requires-Dist: cmocean
+Requires-Dist: vtk
+
+UNKNOWN
+
+

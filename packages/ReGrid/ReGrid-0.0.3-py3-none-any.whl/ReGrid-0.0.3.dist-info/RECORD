@@ -1,0 +1,11 @@
+ReGrid-0.0.3.dist-info/METADATA,sha256=yXv6smZMWiBDe9AoXWBVq5gmP-kG0sDjMo4iazQCQFU,399
+ReGrid-0.0.3.dist-info/RECORD,,
+ReGrid-0.0.3.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+ReGrid-0.0.3.dist-info/top_level.txt,sha256=umz-eO3uWnbwh-F1CYcgPqfuaQQdQek5laQLN0DvdwU,7
+regrid/__init__.py,sha256=g4G4gJsynpBtha54fwTHxCv8WAk-Pzq7Cv-dARFUW6Q,17
+regrid/flowgrid/FlowGrid.py,sha256=QhrPDDRuBmCLV8FTIV5nWDlcoZ9rlzSAjQ1XUJK2tOQ,33983
+regrid/flowgrid/SUTRA.py,sha256=kaRHe8l6HV6MrKHFOoLtdari2gHaIFshpSxbYUy8wr0,4675
+regrid/flowgrid/__init__.py,sha256=pJ8VRtm5lUBLwwjsBmKuTyMtcwqLywd6mx9q35GA6zc,112
+regrid/gui/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+regrid/gui/main_ui.py,sha256=a5BlXQK9qSmWW2MJOjizUCEchSuJVuId9Teh1Gi1KkQ,62690
+regrid/gui/regridGUI.py,sha256=YvOyi7xFHbAaCvpGndjrFbSZtuFb_DIM8BLaiFnp5RU,66158
