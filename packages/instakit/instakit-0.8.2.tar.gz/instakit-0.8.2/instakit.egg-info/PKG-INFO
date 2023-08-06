@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: instakit
+Version: 0.8.2
+Summary: Image processors for django-imagekit - based on Pillow, SciPy, and scikit-image
+Home-page: https://github.com/fish2000/instakit
+Author: Alexander Böhn
+Author-email: fish2000@gmail.com
+License: MIT
+Download-URL: https://github.com/fish2000/instakit/zipball/master
+Description: Instakit: Filters and Tools; BYO Facebook Buyout
+        =====================================
+        
+        Image processors and filters - inspired by Instagram, built on top of the
+        PIL/Pillow, SciPy and scikit-image packages, accelerated with Cython, and
+        ready to use with PILKit and the django-imagekit framework.
+        
+        Included are filters for Atkinson and Floyd-Steinberg dithering, dot-pitch
+        halftoning (with GCR and per-channel pipeline processors), classes exposing
+        image-processing pipeline data as NumPy ND-arrays, Gaussian kernel functions,
+        processors for applying channel-based LUT curves to images from Photoshop
+        .acv files, imagekit-ready processors furnishing streamlined access to a wide
+        schmorgasbord of Pillow's many image adjustment algorithms (e.g. noise, blur,
+        and sharpen functions, histogram-based operations like Brightness/Contrast,
+        among others), an implementation of the entropy-based smart-crop algorithm
+        many will recognize from the easy-thumbnails Django app - and much more.
+Keywords: django imagekit instakit fish2000 image processing image analysis image comparison halftone dithering Photoshop acv curves PIL Pillow Cython NumPy SciPy scikit-image
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: OS Independent
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown

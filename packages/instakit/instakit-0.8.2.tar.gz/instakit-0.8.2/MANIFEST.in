@@ -1,0 +1,23 @@
+exclude *.pyc *~ *.so .DS_Store
+recursive-include requirements *.txt
+include .bumpversion.cfg
+include .clang-format
+include .editorconfig
+include .gitattributes
+include .gitignore
+include .landscape.yml
+include .travis.yml
+include ABOUT.md
+include ABOUT.ETC.md
+include appveyor.yml
+include CODE_OF_CONDUCT.md
+include LICENSE.txt
+include Makefile
+include README.md
+include setup.py
+include tox.ini
+recursive-include instakit *
+recursive-include tests *
+recursive-exclude requirements *.pyc *~ *.so .DS_Store
+recursive-exclude instakit *.pyc *~ *.so .DS_Store
+recursive-exclude tests *.pyc *~ *.so .DS_Store
