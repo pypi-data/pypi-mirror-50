@@ -1,0 +1,9 @@
+README.md
+setup.py
+bin/cuprocell-install.bat
+bin/cuprocell-install.sh
+cuprocell/__init__.py
+cuprocell.egg-info/PKG-INFO
+cuprocell.egg-info/SOURCES.txt
+cuprocell.egg-info/dependency_links.txt
+cuprocell.egg-info/top_level.txt
