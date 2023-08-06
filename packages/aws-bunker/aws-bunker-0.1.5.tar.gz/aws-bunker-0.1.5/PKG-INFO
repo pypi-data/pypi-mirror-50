@@ -1,0 +1,92 @@
+Metadata-Version: 2.1
+Name: aws-bunker
+Version: 0.1.5
+Summary: bunker is a command line program for creating a dev/backup ec2 in AWS. It will install software, and clone your git repos, then it will transfer ignored files from your machine to the ec2.
+Home-page: https://gitlab.com/shindagger/bunker
+Author: Andy Klier, Gus Clemens
+Author-email: andyklier@gmail.com
+License: UNKNOWN
+Description: # bunker  
+          
+        Bunker is a command line program for creating a dev/backup ec2 in AWS. It will install software, and clone your git repos, then it will transfer ignored files from your machine to the ec2.  
+          
+        ### requirements  
+          
+        - python  
+        - aws cli  
+        - boto3  
+          
+        Also, you will need an EC2 instance on AWS, preferably running ubuntu>=18.04. This EC2 will need ssh (port 22) open and an attached SSM role (AmazonEC2RoleforSSM).  
+          
+        ### terraform  
+          
+        We have included terraform files which, when configured will spin up an EC2 instance you can use for bunker. terraform will output an instance ID you can use to init bunker with.  
+          
+        To configure and use these terraform files:  
+          
+        1. Clone this repo (https://gitlab.com/shindagger/bunker.git)  
+          
+        2. cd into the repo dir and `ls *.default`. These are the files you will need to edit before you init terraform. Each one of these files will need the extention `.tf.default` changed to `.tf`.  
+          
+        3. Edit `alfa.tf` and ensure that the region is correct.  
+          
+        4. Edit `beta.tf` and change the s3 bucket to a bucket you own. Also ensure the region is correct.  
+          
+        5. Edit `terraform.tfvars` with your AWS SDK access id and key. Also make sure you are configured to this account with `aws config`  
+          
+        6. Edit `variables.tf` and change the default values to reflect your wishes. NOTE: if you don't have them already, you will need to create your own ssm role, and ssh key file manually. `ec2_key_name` is just the name of the keypair in AWS, while `ssh_private_key` is the full (absolute) path to your .pem file on your local machine.  
+          
+        7. `terraform init`  
+          
+        8. `terraform plan && terraform apply`  
+          
+        ### before you init bunker  
+          
+        1. You have an EC2 instance ID. (see "terraform" above)  
+          
+        2. You have a directory (prefix) in which you will keep `repositories.txt` and `ignoredfiles.txt`. You can copy sample files from this repo, and edit them to reflect your repos and ignored files.  
+          
+        3. You have a .pem file and you know the path to its location.  
+          
+        4. You know the username for the EC2 (should be "ubuntu" by default)  
+          
+        5. You know your git, bitbucket, etc usernames and passwords. Alternatively you have an app password.  
+          
+        ### usage  
+          
+        `$ bunker -h`  
+          
+        *Show main bunker help page and exit*  
+          
+        `$ bunker build -h`  
+          
+        *Show help page for the subcommand `build` and exit. This will work with any available subcommand*  
+          
+        `$ bunker init`  
+          
+        *Write the bunker config file `~/.config-bunker.ini`. If the file exists already, answers will be populated with existing values \(underlined\), and only overwritten if you offer a replacement value.*  
+          
+        `$ bunker install`  
+          
+        Install essential software on your EC2 instance. Installed essentials include:  
+        - python  
+        - pip  
+        - node  
+        - npm  
+        - yarn  
+        - aws cli  
+        - terraform  
+          
+        `$ bunker build -s`  
+          
+        *Clone list of git repos \(repositories.txt\) on your EC2 and then rsync list of ignored files \(ignoredfiles.txt\) from your local repos to the EC2 repos. `-s` flag tells bunker to skip the EC2 startup.*  
+          
+        `$ bunker build -l`  
+          
+        *Clone repos and copy ignored files. Will startup the EC2 first, and then leave the EC2 running `-l`*  
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
