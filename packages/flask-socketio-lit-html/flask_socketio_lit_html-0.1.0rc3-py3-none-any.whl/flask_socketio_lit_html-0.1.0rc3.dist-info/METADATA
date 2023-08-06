@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: flask-socketio-lit-html
+Version: 0.1.0rc3
+Summary: Simple Webcomponents with flask
+Home-page: https://github.com/playerla/flask-socketio-lit-html
+License: MIT
+Keywords: Webcomponents,Flask,lit-html
+Author: playerla
+Author-email: playerla.94@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Flask
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Project-URL: Documentation, https://flask-socketio-lit-html.readthedocs.io
+Project-URL: Repository, https://github.com/playerla/flask-socketio-lit-html
