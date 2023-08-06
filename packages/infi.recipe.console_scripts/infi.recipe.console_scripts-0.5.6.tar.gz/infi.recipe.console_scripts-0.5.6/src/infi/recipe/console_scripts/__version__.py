@@ -1,0 +1,11 @@
+__version__ = "0.5.6"
+__git_commiter_name__ = "Arnon Yaari"
+__git_commiter_email__ = "arnony@infinidat.com"
+__git_branch__ = u'develop'
+__git_remote_tracking_branch__ = u'origin/develop'
+__git_remote_url__ = u'git@git.infinidat.com:host-opensource/infi.recipe.console_scripts.git'
+__git_head_hash__ = '767ca8d17905209352ae79077079a0d4bf3fdb1b'
+__git_head_subject__ = u'Finished Release v0.5.6'
+__git_head_message__ = u''
+__git_dirty_diff__ = u''
+__git_commit_date__ = '2019-08-05 18:06:52'
