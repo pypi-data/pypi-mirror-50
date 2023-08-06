@@ -1,0 +1,22 @@
+Metadata-Version: 2.0
+Name: osim-rl
+Version: 3.0.5
+Summary: OpenSim Reinforcement Learning Framework
+Home-page: http://opensim.stanford.edu/
+Author: Lukasz Kidzinski
+Author-email: lukasz.kidzinski@stanford.edu
+License: Apache 2.0
+Platform: UNKNOWN
+Classifier: Intended Audience :: Science/Research
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Dist: gym (>=0.10.4)
+Requires-Dist: matplotlib (>=3.0.3)
+Requires-Dist: numpy (>=1.14.2)
+Requires-Dist: redis (>=2.10.6)
+Requires-Dist: timeout-decorator (>=0.4.0)
+
+UNKNOWN
+
+
