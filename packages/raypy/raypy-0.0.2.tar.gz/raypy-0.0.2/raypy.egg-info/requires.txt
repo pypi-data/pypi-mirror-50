@@ -1,0 +1,10 @@
+numpy
+scipy
+matplotlib
+sympy
+pillow
+
+[dev]
+
+[test]
+pytest
