@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: pyzik
+Version: 0.2.0
+Summary: functions packages for my physic's students
+Home-page: UNKNOWN
+Author: FJ
+Author-email: fredericboltzmann@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: colorama
+Requires-Dist: prettytable
+Requires-Dist: uncertainties
+Requires-Dist: astroquery
+Requires-Dist: ezsheets
+Requires-Dist: Pillow
+Requires-Dist: mendeleev
+Requires-Dist: wget
+Requires-Dist: requests
+
+this is a test
+
+
