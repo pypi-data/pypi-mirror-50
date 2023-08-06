@@ -1,0 +1,61 @@
+Metadata-Version: 1.2
+Name: rfctools_common
+Version: 0.5.17
+Summary: Verify that an svg file is compliant with the RFC standards.
+Home-page: https://tools.ietf.org/tools/ietfdb/browser/brance/elft/svgcheck/
+Author: Jim Schaad
+Author-email: ietf@augustcellars.com
+License: Simplified BSD
+Description: RFC Editor Tools Utility Code
+        =============================
+        
+        This module contains a set of utility functions used by some of the RFC Editor tools.
+        Long term, the goal is to incorperate these functions back into xml2rfc but having it
+        separate allows for an easier modification of the functions as needed.
+        
+        Changelog
+        =========
+        
+        
+        Version 0.5.17 (Fri 16 Aug)
+        ------------------------------------------------
+        
+        
+        	* Remove Python 3.4 from the supported liste
+        
+        
+        
+        
+        
+        
+        Version 0.5.16 (Mon 1 July)
+        ------------------------------------------------
+        
+        
+        	* Update the RNG schema file from XML2RFC drop v2.23.0
+        
+        
+        
+        
+        
+        
+        Version 0.5.15 (Mon 27 May)
+        ------------------------------------------------
+        
+        
+        	* Use the correct function anywhere that we could write out UTF-8
+        
+        
+        
+        
+        
+Keywords: RFC common
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Other Audience
+Classifier: Topic :: Text Processing
+Classifier: Topic :: Text Processing :: Markup :: XML
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4
