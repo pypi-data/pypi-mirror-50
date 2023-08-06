@@ -1,0 +1,13 @@
+README.md
+setup.py
+pafx/__init__.py
+pafx/add_depth.py
+pafx/add_outline.py
+pafx/clone_format.py
+pafx/paste.py
+pafx/utils.py
+pafx.egg-info/PKG-INFO
+pafx.egg-info/SOURCES.txt
+pafx.egg-info/dependency_links.txt
+pafx.egg-info/requires.txt
+pafx.egg-info/top_level.txt
