@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: flask-socketio-lit-html
+Version: 0.1.0
+Summary: Simple Webcomponents with flask
+Author: playerla
+Author-email: playerla.94@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
