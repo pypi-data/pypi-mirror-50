@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: inspektor
+Version: 0.1.0
+Summary: SQLAlchemy querying metrics collection and reporting extension for Flask.
+Home-page: https://github.com/getbyrd/inspektor
+Author: Byrd Technologies GmbH
+Author-email: developers@getbyrd.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Software Development :: Libraries :: Python ModulesEnvironment :: Web Environment
+Requires-Python: >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*
+Provides-Extra: test
