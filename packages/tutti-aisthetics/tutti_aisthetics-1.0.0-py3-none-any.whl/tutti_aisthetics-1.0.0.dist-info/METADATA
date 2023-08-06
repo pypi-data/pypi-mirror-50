@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: tutti-aisthetics
+Version: 1.0.0
+Summary: A tutti.ch image asthetics AI scorer.
+Home-page: UNKNOWN
+Author: Oscar Saleta
+Author-email: oscar@tutti.ch
+License: Proprietary
+Keywords: nima,CNN,neural net,MobileNet,aesthetics
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.5.2
+Requires-Dist: keras (==2.2.*)
+Requires-Dist: absl-py (==0.7.*)
+Requires-Dist: tensorflow (==1.14.*)
+Requires-Dist: pillow (==6.1.*)
+Requires-Dist: plac (==1.1.*)
+Requires-Dist: boto3 (==1.9.*)
+
+Package based on https://github.com/idealo/image-quality-assessment.
+
+
