@@ -1,0 +1,9 @@
+setup.py
+iapp/App.py
+iapp/__init__.py
+iapp/api_sanic.py
+iapp.egg-info/PKG-INFO
+iapp.egg-info/SOURCES.txt
+iapp.egg-info/dependency_links.txt
+iapp.egg-info/requires.txt
+iapp.egg-info/top_level.txt
