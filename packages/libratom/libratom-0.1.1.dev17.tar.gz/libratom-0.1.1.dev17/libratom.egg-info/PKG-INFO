@@ -1,0 +1,11 @@
+Metadata-Version: 1.1
+Name: libratom
+Version: 0.1.1.dev17
+Summary: Set of Python tools for the RATOM project
+Home-page: https://github.com/libratom/libratom
+Author: RATOM
+Author-email: ratom@protonmail.com
+License: MIT
+Description: Set of Python tools for the RATOM project
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
