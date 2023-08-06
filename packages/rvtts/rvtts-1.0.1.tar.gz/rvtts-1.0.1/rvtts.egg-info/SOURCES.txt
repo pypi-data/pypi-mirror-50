@@ -1,0 +1,17 @@
+README.md
+setup.py
+rvtts/__init__.py
+rvtts/rvtts.py
+rvtts/utils.py
+rvtts/version.py
+rvtts.egg-info/PKG-INFO
+rvtts.egg-info/SOURCES.txt
+rvtts.egg-info/dependency_links.txt
+rvtts.egg-info/entry_points.txt
+rvtts.egg-info/requires.txt
+rvtts.egg-info/top_level.txt
+rvtts/tokenizer/__init__.py
+rvtts/tokenizer/core.py
+rvtts/tokenizer/pre_processors.py
+rvtts/tokenizer/symbols.py
+rvtts/tokenizer/tokenizer_cases.py
