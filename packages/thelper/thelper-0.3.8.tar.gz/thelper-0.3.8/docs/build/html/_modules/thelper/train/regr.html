@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.train.regr &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../../index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="../../../_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for thelper.train.regr</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Regression trainer/evaluator implementation module.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">AnyStr</span>  <span class="c1"># noqa: F401</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.optim</span>
+
+<span class="kn">import</span> <span class="nn">thelper.typedefs</span> <span class="k">as</span> <span class="nn">typ</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">import</span> <span class="nn">thelper.utils</span>
+<span class="kn">from</span> <span class="nn">thelper.train.base</span> <span class="k">import</span> <span class="n">Trainer</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="RegressionTrainer"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.regr.RegressionTrainer">[docs]</a><span class="k">class</span> <span class="nc">RegressionTrainer</span><span class="p">(</span><span class="n">Trainer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Trainer interface specialized for generic (n-dim) regression.</span>
+
+<span class="sd">    This class implements the abstract functions of :class:`thelper.train.base.Trainer` required to train/evaluate</span>
+<span class="sd">    a model for generic regression (i.e. n-dim target value prediction). It also provides a utility function</span>
+<span class="sd">    for fetching i/o packets (input tensors, target values) from a sample, and that converts those into tensors for</span>
+<span class="sd">    forwarding and loss estimation.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.train.base.Trainer`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="RegressionTrainer.__init__"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.regr.RegressionTrainer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">session_name</span><span class="p">,</span>    <span class="c1"># type: AnyStr</span>
+                 <span class="n">save_dir</span><span class="p">,</span>        <span class="c1"># type: AnyStr</span>
+                 <span class="n">model</span><span class="p">,</span>           <span class="c1"># type: thelper.typedefs.ModelType</span>
+                 <span class="n">task</span><span class="p">,</span>            <span class="c1"># type: thelper.tasks.Task</span>
+                 <span class="n">loaders</span><span class="p">,</span>         <span class="c1"># type: thelper.typedefs.MultiLoaderType</span>
+                 <span class="n">config</span><span class="p">,</span>          <span class="c1"># type: thelper.typedefs.ConfigDict</span>
+                 <span class="n">ckptdata</span><span class="o">=</span><span class="kc">None</span>    <span class="c1"># type: typ.Optional[thelper.typedefs.CheckpointContentType]</span>
+                 <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives session parameters, parses tensor/target keys from task object, and sets up metrics.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">session_name</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">loaders</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">ckptdata</span><span class="o">=</span><span class="n">ckptdata</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Regression</span><span class="p">),</span> <span class="s2">&quot;expected task to be regression&quot;</span></div>
+        <span class="c1"># @@@@@ todo: use target_min/target_max and other props from task?</span>
+
+    <span class="k">def</span> <span class="nf">_to_tensor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fetches and returns tensors of inputs and targets from a batched sample dictionary.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="nb">dict</span><span class="p">),</span> <span class="s2">&quot;trainer expects samples to come in dicts for key-based usage&quot;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">input_key</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;could not find input key &#39;</span><span class="si">{self.task.input_key}</span><span class="s2">&#39; in sample dict&quot;</span>
+        <span class="n">input_val</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">input_key</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">input_val</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="n">input_val</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">input_val</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">input_val</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">),</span> <span class="s2">&quot;unexpected input type; should be torch.Tensor&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">input_shape</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">input_val</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">input_shape</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> \
+                <span class="s2">&quot;expected input as Nx[shape] where N = batch size&quot;</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">input_shape</span> <span class="o">==</span> <span class="n">input_val</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> \
+                <span class="n">f</span><span class="s2">&quot;invalid input shape; got &#39;</span><span class="si">{input_val.shape[1:]}</span><span class="s2">&#39;, expected &#39;</span><span class="si">{self.task.input_shape}</span><span class="s2">&#39;&quot;</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">gt_key</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">:</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">gt_key</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">target_type</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">target</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">target_type</span><span class="p">,</span> \
+                    <span class="n">f</span><span class="s2">&quot;unexpected target type, should be &#39;{str(self.task.target_type)}&#39;&quot;</span>
+                <span class="n">target</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">),</span> <span class="s2">&quot;unexpected target type; should be torch.Tensor&quot;</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">target_shape</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="n">target</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">target_shape</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> \
+                    <span class="s2">&quot;expected target as Nx[shape] where N = batch size&quot;</span>
+                <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">target_shape</span> <span class="o">==</span> <span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> \
+                    <span class="n">f</span><span class="s2">&quot;invalid target shape; got &#39;</span><span class="si">{target.shape[1:]}</span><span class="s2">&#39;, expected &#39;</span><span class="si">{self.task.target_shape}</span><span class="s2">&#39;&quot;</span>
+        <span class="k">return</span> <span class="n">input_val</span><span class="p">,</span> <span class="n">target</span>
+
+<div class="viewcode-block" id="RegressionTrainer.train_epoch"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.regr.RegressionTrainer.train_epoch">[docs]</a>    <span class="k">def</span> <span class="nf">train_epoch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">dev</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">loader</span><span class="p">,</span> <span class="n">metrics</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Trains the model for a single epoch using the provided objects.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            model: the model to train that is already uploaded to the target device(s).</span>
+<span class="sd">            epoch: the epoch index we are training for (0-based).</span>
+<span class="sd">            dev: the target device that tensors should be uploaded to.</span>
+<span class="sd">            loss: the loss function used to evaluate model fidelity.</span>
+<span class="sd">            optimizer: the optimizer used for back propagation.</span>
+<span class="sd">            loader: the data loader used to get transformed training samples.</span>
+<span class="sd">            metrics: the dictionary of metrics/consumers to update every iteration.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">loss</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;missing loss function&quot;</span>
+        <span class="k">assert</span> <span class="n">optimizer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;missing optimizer&quot;</span>
+        <span class="k">assert</span> <span class="n">loader</span><span class="p">,</span> <span class="s2">&quot;no available data to load&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">metrics</span><span class="p">,</span> <span class="nb">dict</span><span class="p">),</span> <span class="s2">&quot;expect metrics as dict object&quot;</span>
+        <span class="n">epoch_loss</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">epoch_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">loader</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;fetching data loader samples...&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">sample</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">loader</span><span class="p">):</span>
+            <span class="n">input_val</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_tensor</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+            <span class="c1"># todo: add support to fraction samples that are too big for a single iteration</span>
+            <span class="c1"># (e.g. when batching non-image data that would be too inefficient one sample at a time)</span>
+            <span class="k">assert</span> <span class="n">target</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;groundtruth required when training a model&quot;</span>
+            <span class="k">assert</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">input_val</span><span class="p">,</span> <span class="nb">list</span><span class="p">),</span> <span class="s2">&quot;missing regr trainer support for duped minibatches&quot;</span>
+            <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_move_tensor</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">dev</span><span class="p">)</span>
+            <span class="n">iter_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_move_tensor</span><span class="p">(</span><span class="n">input_val</span><span class="p">,</span> <span class="n">dev</span><span class="p">))</span>
+            <span class="n">iter_loss</span> <span class="o">=</span> <span class="n">loss</span><span class="p">(</span><span class="n">iter_pred</span><span class="p">,</span> <span class="n">target</span><span class="o">.</span><span class="n">float</span><span class="p">())</span>
+            <span class="n">iter_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+            <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+            <span class="n">iter_pred_cpu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_move_tensor</span><span class="p">(</span><span class="n">iter_pred</span><span class="p">,</span> <span class="n">dev</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="n">detach</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">target_cpu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_move_tensor</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">dev</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="n">detach</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">iter_loss</span> <span class="o">=</span> <span class="n">iter_loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">metrics</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="n">metric</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">task</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="n">input_val</span><span class="p">,</span> <span class="n">pred</span><span class="o">=</span><span class="n">iter_pred_cpu</span><span class="p">,</span>
+                              <span class="n">target</span><span class="o">=</span><span class="n">target_cpu</span><span class="p">,</span> <span class="n">sample</span><span class="o">=</span><span class="n">sample</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="n">iter_loss</span><span class="p">,</span> <span class="n">iter_idx</span><span class="o">=</span><span class="n">idx</span><span class="p">,</span>
+                              <span class="n">max_iters</span><span class="o">=</span><span class="n">epoch_size</span><span class="p">,</span> <span class="n">epoch_idx</span><span class="o">=</span><span class="n">epoch</span><span class="p">,</span> <span class="n">max_epochs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">epochs</span><span class="p">)</span>
+            <span class="n">epoch_loss</span> <span class="o">+=</span> <span class="n">iter_loss</span>
+        <span class="n">epoch_loss</span> <span class="o">/=</span> <span class="n">epoch_size</span>
+        <span class="k">return</span> <span class="n">epoch_loss</span></div>
+
+<div class="viewcode-block" id="RegressionTrainer.eval_epoch"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.regr.RegressionTrainer.eval_epoch">[docs]</a>    <span class="k">def</span> <span class="nf">eval_epoch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">dev</span><span class="p">,</span> <span class="n">loader</span><span class="p">,</span> <span class="n">metrics</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Evaluates the model using the provided objects.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            model: the model to evaluate that is already uploaded to the target device(s).</span>
+<span class="sd">            epoch: the epoch index we are training for (0-based).</span>
+<span class="sd">            dev: the target device that tensors should be uploaded to.</span>
+<span class="sd">            loader: the data loader used to get transformed valid/test samples.</span>
+<span class="sd">            metrics: the dictionary of metrics/consumers to update every iteration.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">loader</span><span class="p">,</span> <span class="s2">&quot;no available data to load&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">metrics</span><span class="p">,</span> <span class="nb">dict</span><span class="p">),</span> <span class="s2">&quot;expect metrics as dict object&quot;</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">epoch_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">loader</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;fetching data loader samples...&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">sample</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">loader</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">skip_eval_iter</span><span class="p">:</span>
+                    <span class="k">continue</span>  <span class="c1"># skip until previous iter count (if set externally; no effect otherwise)</span>
+                <span class="n">input_val</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_tensor</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+                <span class="k">assert</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">input_val</span><span class="p">,</span> <span class="nb">list</span><span class="p">),</span> <span class="s2">&quot;missing regr trainer support for duped minibatches&quot;</span>
+                <span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_move_tensor</span><span class="p">(</span><span class="n">input_val</span><span class="p">,</span> <span class="n">dev</span><span class="p">))</span>
+                <span class="n">pred_cpu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_move_tensor</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">dev</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="n">detach</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">target_cpu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_move_tensor</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">dev</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="n">detach</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">metrics</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                    <span class="n">metric</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">task</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="n">input_val</span><span class="p">,</span> <span class="n">pred</span><span class="o">=</span><span class="n">pred_cpu</span><span class="p">,</span>
+                                  <span class="n">target</span><span class="o">=</span><span class="n">target_cpu</span><span class="p">,</span> <span class="n">sample</span><span class="o">=</span><span class="n">sample</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">iter_idx</span><span class="o">=</span><span class="n">idx</span><span class="p">,</span>
+                                  <span class="n">max_iters</span><span class="o">=</span><span class="n">epoch_size</span><span class="p">,</span> <span class="n">epoch_idx</span><span class="o">=</span><span class="n">epoch</span><span class="p">,</span> <span class="n">max_epochs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">epochs</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../use-cases.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.optim.schedulers &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../../index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="../../../_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for thelper.optim.schedulers</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Schedulers module.</span>
+
+<span class="sd">This module contains classes used for scheduling learning rate changes while training a model. All</span>
+<span class="sd">classes defined here should derive from ``torch.optim.lr_scheduler._LRScheduler`` to remain torch-</span>
+<span class="sd">compatible.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">bisect</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="CustomStepLR"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.schedulers.CustomStepLR">[docs]</a><span class="k">class</span> <span class="nc">CustomStepLR</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">_LRScheduler</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sets the learning rate of each parameter group using a dictionary of preset scaling factors</span>
+<span class="sd">    for epoch-based milestones.</span>
+
+<span class="sd">    This class can be useful for tuning the learning rate scheduling behavior of a training session</span>
+<span class="sd">    beyond what is already possible using PyTorch&#39;s existing LR scheduler classes.  Note that all</span>
+<span class="sd">    epoch indices are assumed to be 0-based.</span>
+
+<span class="sd">    Usage example in Python::</span>
+
+<span class="sd">        # Assuming the optimizer uses lr = 0.05, we hard-code a slow startup...</span>
+<span class="sd">        # lr = 0.00625   if epoch &lt; 2        (1/8 scale before epoch 2)</span>
+<span class="sd">        # lr = 0.0125    if 2 &lt;= epoch &lt; 3   (1/4 scale before epoch 3)</span>
+<span class="sd">        # lr = 0.025     if 3 &lt;= epoch &lt; 4   (1/2 scale before epoch 4)</span>
+<span class="sd">        # lr = 0.05      if 4 &lt;= epoch &lt; 30  (default scale between epoch 4 and 30)</span>
+<span class="sd">        # lr = 0.005     if 30 &lt;= epoch &lt; 80 (1/10 scale past epoch 30)</span>
+<span class="sd">        # lr = 0.0005    if epoch &gt;= 80      (1/100 scale past epoch 80)</span>
+<span class="sd">        scheduler = CustomStepLR(optimizer, milestones={</span>
+<span class="sd">            0: 1/8,</span>
+<span class="sd">            2: 1/4,</span>
+<span class="sd">            3: 1/2,</span>
+<span class="sd">            4: 1,</span>
+<span class="sd">            30: 0.1,</span>
+<span class="sd">            80: 0.01</span>
+<span class="sd">        })</span>
+<span class="sd">        for epoch in range(100):</span>
+<span class="sd">            scheduler.step(epoch)</span>
+<span class="sd">            train(...)</span>
+<span class="sd">            validate(...)</span>
+
+<span class="sd">    Usage example inside a session configuration file::</span>
+
+<span class="sd">        # ...</span>
+<span class="sd">        # lists the model optimization parameters for the training session</span>
+<span class="sd">        &quot;optimization&quot;: {</span>
+<span class="sd">            # lists the optimizer arguments (type, parameters, LR, ...)</span>
+<span class="sd">            &quot;optimizer&quot;: {</span>
+<span class="sd">                # ...</span>
+<span class="sd">            },</span>
+<span class="sd">            # lists the scheduler arguments (field can be omitted if no scheduler is needed)</span>
+<span class="sd">            &quot;scheduler&quot;: {</span>
+<span class="sd">                # the type used to instantiate the scheduler</span>
+<span class="sd">                &quot;type&quot;: &quot;thelper.optim.schedulers.CustomStepLR&quot;,</span>
+<span class="sd">                # the parameters passed to the scheduler&#39;s constructor</span>
+<span class="sd">                &quot;params&quot;: {</span>
+<span class="sd">                    # by default, the optimizer is passed automatically;</span>
+<span class="sd">                    # we only need to specify the extra parameters here</span>
+<span class="sd">                    &quot;milestones&quot;: {</span>
+<span class="sd">                        &quot;1&quot;: 1,  # after epoch 1, scale the LR by 1</span>
+<span class="sd">                        &quot;10&quot;: 0.1, # after epoch 10, scale the LR by 0.1</span>
+<span class="sd">                        &quot;20&quot;: 0.01,  # ... and so on</span>
+<span class="sd">                        &quot;30&quot;: 0.001,</span>
+<span class="sd">                        &quot;40&quot;: 0.0001</span>
+<span class="sd">                    }</span>
+<span class="sd">                }</span>
+<span class="sd">            }</span>
+<span class="sd">        },</span>
+<span class="sd">        # ...</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        stages: list of epochs where a new scaling factor is to be applied.</span>
+<span class="sd">        scales: list of scaling factors to apply at each stage.</span>
+<span class="sd">        milestones: original milestones map provided in the constructor.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.train.base.Trainer`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CustomStepLR.__init__"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.schedulers.CustomStepLR.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">milestones</span><span class="p">,</span> <span class="n">last_epoch</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives the optimizer, milestone scaling factor, and initialization state.</span>
+
+<span class="sd">        If the milestones do not include the first epoch (idx = 0), then its scaling factor is set</span>
+<span class="sd">        to 1. When last_epoch is -1, the training is assumed to start from scratch.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            optimizer: Wrapped optimizer (PyTorch-compatible object).</span>
+<span class="sd">            milestones: Map of epoch indices tied to scaling factors. Keys must be increasing.</span>
+<span class="sd">            last_epoch: The index of last epoch. Default: -1.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">milestones</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;milestones should be provided as a dictionary&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stages</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">milestones</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">milestones</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>  <span class="c1"># fixup for json-based config loaders</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">stages</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">milestones</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">milestones</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">int</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">stages</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">milestones</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;milestone stages should be epoch indices (integers)&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stages</span> <span class="o">!=</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stages</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;milestone stages should be increasing integers&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">milestones</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">)):</span>
+                <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;milestone scaling factors should be int/float&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scales</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">scale</span><span class="p">)</span> <span class="k">for</span> <span class="n">scale</span> <span class="ow">in</span> <span class="n">milestones</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+        <span class="k">if</span> <span class="mi">0</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stages</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stages</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scales</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">milestones</span> <span class="o">=</span> <span class="n">milestones</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">last_epoch</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_get_stage_idx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stages</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stages</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">bisect</span><span class="o">.</span><span class="n">bisect_right</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stages</span><span class="p">,</span> <span class="n">epoch</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CustomStepLR.get_lr"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.schedulers.CustomStepLR.get_lr">[docs]</a>    <span class="k">def</span> <span class="nf">get_lr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the learning rate to use given the current epoch and scaling factors.&quot;&quot;&quot;</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scales</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_stage_idx</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">last_epoch</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">base_lr</span> <span class="o">*</span> <span class="n">scale</span> <span class="k">for</span> <span class="n">base_lr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_lrs</span><span class="p">]</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../use-cases.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.optim package &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="thelper.tasks package" href="thelper.tasks.html" />
+    <link rel="prev" title="thelper.nn.sr package" href="thelper.nn.sr.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="thelper.html" accesskey="U">thelper package</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-thelper.optim">
+<span id="thelper-optim-package"></span><h1>thelper.optim package<a class="headerlink" href="#module-thelper.optim" title="Permalink to this headline">¶</a></h1>
+<p>Optimization/metrics package.</p>
+<p>This package contains metrics implementations used to monitor training sessions and evaluate models,
+and optimization methods used to control the learning behavior of these models.</p>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-thelper.optim.eval">
+<span id="thelper-optim-eval-module"></span><h2>thelper.optim.eval module<a class="headerlink" href="#module-thelper.optim.eval" title="Permalink to this headline">¶</a></h2>
+<p>Evaluation classes/funcs module.</p>
+<p>This module contains procedures used to evaluate models and prediction results on specific
+tasks or datasets. These procedures may be used as part of metric classes (defined in
+<a class="reference internal" href="#module-thelper.optim.metrics" title="thelper.optim.metrics"><code class="xref py py-mod docutils literal notranslate"><span class="pre">thelper.optim.metrics</span></code></a>) or high-level debug/drawing utilities.</p>
+<dl class="function">
+<dt id="thelper.optim.eval.compute_average_precision">
+<code class="sig-prename descclassname">thelper.optim.eval.</code><code class="sig-name descname">compute_average_precision</code><span class="sig-paren">(</span><em class="sig-param">precision</em>, <em class="sig-param">recall</em>, <em class="sig-param">method='all-points'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/eval.html#compute_average_precision"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.eval.compute_average_precision" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the average precision given an array of precision and recall values.</p>
+<p>This function is inspired from the ‘Object Detection Metrics’ repository of Rafael Padilla.
+See <a class="reference external" href="https://github.com/rafaelpadilla/Object-Detection-Metrics">https://github.com/rafaelpadilla/Object-Detection-Metrics</a> for more information.
+The original code is distributed under the MIT License, Copyright (c) 2018 Rafael Padilla.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>precision</strong> – list of precision values for the evaluated predictions of a class.</p></li>
+<li><p><strong>recall</strong> – list of recall values for the evaluated predictions of a class.</p></li>
+<li><p><strong>method</strong> – the evaluation method to use; can be the the latest &amp; official PASCAL VOC toolkit
+approach (“all-points”), or the 11-point approach (“11-points”) described in the original
+paper (“The PASCAL Visual Object Classes(VOC) Challenge”).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 4-element tuple containing the average precision, rectified precision/recall arrays, and
+the indices used for the integral.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.optim.eval.compute_iou">
+<code class="sig-prename descclassname">thelper.optim.eval.</code><code class="sig-name descname">compute_iou</code><span class="sig-paren">(</span><em class="sig-param">bbox1</em>, <em class="sig-param">bbox2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/eval.html#compute_iou"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.eval.compute_iou" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes and returns the Intersection over Union (IoU) of two bounding boxes.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.optim.eval.compute_pascalvoc_metrics">
+<code class="sig-prename descclassname">thelper.optim.eval.</code><code class="sig-name descname">compute_pascalvoc_metrics</code><span class="sig-paren">(</span><em class="sig-param">pred_bboxes</em>, <em class="sig-param">gt_bboxes</em>, <em class="sig-param">task</em>, <em class="sig-param">iou_threshold=0.5</em>, <em class="sig-param">method='all-points'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/eval.html#compute_pascalvoc_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.eval.compute_pascalvoc_metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the metrics used by the VOC Pascal 2012 challenge.</p>
+<p>This function is inspired from the ‘Object Detection Metrics’ repository of Rafael Padilla.
+See <a class="reference external" href="https://github.com/rafaelpadilla/Object-Detection-Metrics">https://github.com/rafaelpadilla/Object-Detection-Metrics</a> for more information.
+The original code is distributed under the MIT License, Copyright (c) 2018 Rafael Padilla.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pred_bboxes</strong> – list of bbox predictions generated by the model under evaluation.</p></li>
+<li><p><strong>gt_bboxes</strong> – list of groundtruth bounding boxes defined by the dataset.</p></li>
+<li><p><strong>task</strong> – task definition object that holds a vector of all class names.</p></li>
+<li><p><strong>iou_threshold</strong> – Intersection Over Union (IOU) threshold for true/false positive classification.</p></li>
+<li><p><strong>method</strong> – the evaluation method to use; can be the the latest &amp; official PASCAL VOC toolkit
+approach (“all-points”), or the 11-point approach (“11-points”) described in the original
+paper (“The PASCAL Visual Object Classes(VOC) Challenge”).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p><em>A dictionary containing evaluation information and metrics for each class. Each entry contains</em> –</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">precision</span></code>: array with the precision values;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">recall</span></code>: array with the recall values;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AP</span></code>: average precision;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interpolated</span> <span class="pre">precision</span></code>: interpolated precision values;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interpolated</span> <span class="pre">recall</span></code>: interpolated recall values;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">total</span> <span class="pre">positives</span></code>: total number of ground truth positives;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">total</span> <span class="pre">TP</span></code>: total number of True Positive detections;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">total</span> <span class="pre">FP</span></code>: total number of False Negative detections.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.optim.metrics">
+<span id="thelper-optim-metrics-module"></span><h2>thelper.optim.metrics module<a class="headerlink" href="#module-thelper.optim.metrics" title="Permalink to this headline">¶</a></h2>
+<p>Metrics module.</p>
+<p>This module contains classes that implement metrics used to monitor training sessions and evaluate models.
+These metrics should all inherit from <a class="reference internal" href="#thelper.optim.metrics.Metric" title="thelper.optim.metrics.Metric"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.optim.metrics.Metric</span></code></a> to allow them to be dynamically
+instantiated by the framework from a configuration file, and evaluated automatically inside a training
+session. For more information on this, refer to <a class="reference internal" href="thelper.train.html#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a>.</p>
+<dl class="class">
+<dt id="thelper.optim.metrics.Accuracy">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.optim.metrics.</code><code class="sig-name descname">Accuracy</code><span class="sig-paren">(</span><em class="sig-param">top_k=1</em>, <em class="sig-param">max_win_size=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#Accuracy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.Accuracy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.optim.metrics.Metric" title="thelper.optim.metrics.Metric"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.optim.metrics.Metric</span></code></a></p>
+<p>Classification accuracy metric interface.</p>
+<p>This is a scalar metric used to monitor the label prediction accuracy of a model. By default,
+it works in <code class="docutils literal notranslate"><span class="pre">top-k</span></code> mode, meaning that the evaluation result is given by:</p>
+<div class="math notranslate nohighlight">
+\[\text{accuracy} = \frac{\text{nb. correct predictions}}{\text{nb. total predictions}} \cdot 100\]</div>
+<p>When <span class="math notranslate nohighlight">\(k&gt;1\)</span>, a ‘correct’ prediction is obtained if any of the model’s top <span class="math notranslate nohighlight">\(k\)</span> predictions
+(i.e. the <span class="math notranslate nohighlight">\(k\)</span> predictions with the highest score) match the groundtruth label. Otherwise, if
+<span class="math notranslate nohighlight">\(k=1\)</span>, then only the top prediction is compared to the groundtruth label. Note that for
+binary classification problems, <span class="math notranslate nohighlight">\(k\)</span> should always be set to 1.</p>
+<p>This metric’s goal is to maximize its value <span class="math notranslate nohighlight">\(\in [0,100]\)</span> (a percentage is returned).</p>
+<p>Usage example inside a session configuration file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
+<span class="c1"># lists all metrics to instantiate as a dictionary</span>
+<span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1"># ...</span>
+    <span class="c1"># this is the name of the example metric; it is used for lookup/printing only</span>
+    <span class="s2">&quot;top_5_accuracy&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># this type is used to instantiate the accuracy metric</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.optim.metrics.Accuracy&quot;</span><span class="p">,</span>
+        <span class="c1"># these parameters are passed to the wrapper&#39;s constructor</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># the top prediction count to check for a match with the groundtruth</span>
+            <span class="s2">&quot;top_k&quot;</span><span class="p">:</span> <span class="mi">5</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1"># ...</span>
+<span class="p">}</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<p>Todo: add support for ‘dont care’ target value?</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>top_k</strong> – number of top predictions to consider when matching with the groundtruth (default=1).</p></li>
+<li><p><strong>max_win_size</strong> – maximum moving average window size to use (default=None, which equals dataset size).</p></li>
+<li><p><strong>correct</strong> – total number of correct predictions stored using an array for window-based averaging.</p></li>
+<li><p><strong>total</strong> – total number of predictions stored using an array for window-based averaging.</p></li>
+<li><p><strong>warned_eval_bad</strong> – toggles whether the division-by-zero warning has been flagged or not.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.optim.metrics.Accuracy.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">top_k=1</em>, <em class="sig-param">max_win_size=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#Accuracy.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.Accuracy.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives the number of predictions to consider for matches (<code class="docutils literal notranslate"><span class="pre">top_k</span></code>) and the moving average
+window size (<code class="docutils literal notranslate"><span class="pre">window_size</span></code>).</p>
+<p>Note that by default, if <code class="docutils literal notranslate"><span class="pre">max_win_size</span></code> is not provided here, the value given to <code class="docutils literal notranslate"><span class="pre">max_iters</span></code> on
+the first update call will be used instead to fix the sliding window length. In any case, the
+smallest of <code class="docutils literal notranslate"><span class="pre">max_iters</span></code> and <code class="docutils literal notranslate"><span class="pre">max_win_size</span></code> will be used to determine the actual window size.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.Accuracy.eval">
+<code class="sig-name descname">eval</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#Accuracy.eval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.Accuracy.eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current accuracy (in percentage) based on the accumulated prediction counts.</p>
+<p>Will issue a warning if no predictions have been accumulated yet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.Accuracy.goal">
+<em class="property">property </em><code class="sig-name descname">goal</code><a class="headerlink" href="#thelper.optim.metrics.Accuracy.goal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the scalar optimization goal of this metric (maximization).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.Accuracy.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#Accuracy.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.Accuracy.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggles a reset of the metric’s internal state, deallocating count arrays.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.Accuracy.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">input</em>, <em class="sig-param">pred</em>, <em class="sig-param">target</em>, <em class="sig-param">sample</em>, <em class="sig-param">loss</em>, <em class="sig-param">iter_idx</em>, <em class="sig-param">max_iters</em>, <em class="sig-param">epoch_idx</em>, <em class="sig-param">max_epochs</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#Accuracy.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.Accuracy.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives the latest class prediction and groundtruth labels from the training session.</p>
+<p>This function computes and accumulate the number of correct and total predictions in
+the internal arrays, cycling over the iteration index if the maximum window length is reached.</p>
+<p>The exact signature of this function should match the one of the callbacks defined in
+<a class="reference internal" href="thelper.train.html#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a> and specified by <code class="docutils literal notranslate"><span class="pre">thelper.typedefs.IterCallbackParams</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.optim.metrics.AveragePrecision">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.optim.metrics.</code><code class="sig-name descname">AveragePrecision</code><span class="sig-paren">(</span><em class="sig-param">target_class=None</em>, <em class="sig-param">iou_threshold=0.5</em>, <em class="sig-param">method='all-points'</em>, <em class="sig-param">max_win_size=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#AveragePrecision"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.AveragePrecision" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.optim.metrics.Metric" title="thelper.optim.metrics.Metric"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.optim.metrics.Metric</span></code></a></p>
+<p>Object detection average precision score from PascalVOC.</p>
+<p>This metric is computed based on the evaluator function implemented in <a class="reference internal" href="#module-thelper.optim.eval" title="thelper.optim.eval"><code class="xref py py-mod docutils literal notranslate"><span class="pre">thelper.optim.eval</span></code></a>.
+It can target a single class at a time, or produce the mean average precision for all classes.</p>
+<p>Usage example inside a session configuration file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
+<span class="c1"># lists all metrics to instantiate as a dictionary</span>
+<span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1"># ...</span>
+    <span class="c1"># this is the name of the example metric; it is used for lookup/printing only</span>
+    <span class="s2">&quot;mAP&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># this type is used to instantiate the AP metric</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.optim.metrics.AveragePrecision&quot;</span><span class="p">,</span>
+        <span class="c1"># these parameters are passed to the wrapper&#39;s constructor</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># no parameters means we will compute the mAP</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1"># ...</span>
+<span class="p">}</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target_class</strong> – name of the class to target; if ‘None’, will compute mAP instead of AP.</p></li>
+<li><p><strong>iou_threshold</strong> – Intersection Over Union (IOU) threshold for true/false positive classification.</p></li>
+<li><p><strong>method</strong> – the evaluation method to use; can be the the latest &amp; official PASCAL VOC toolkit
+approach (“all-points”), or the 11-point approach (“11-points”) described in the original
+paper (“The PASCAL Visual Object Classes(VOC) Challenge”).</p></li>
+<li><p><strong>max_win_size</strong> – maximum moving average window size to use (default=None, which equals dataset size).</p></li>
+<li><p><strong>preds</strong> – array holding the predicted bounding boxes for all input samples.</p></li>
+<li><p><strong>targets</strong> – array holding the target bounding boxes for all input samples.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.optim.metrics.AveragePrecision.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">target_class=None</em>, <em class="sig-param">iou_threshold=0.5</em>, <em class="sig-param">method='all-points'</em>, <em class="sig-param">max_win_size=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#AveragePrecision.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.AveragePrecision.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes metric attributes.</p>
+<p>Note that by default, if <code class="docutils literal notranslate"><span class="pre">max_win_size</span></code> is not provided here, the value given to <code class="docutils literal notranslate"><span class="pre">max_iters</span></code> on
+the first update call will be used instead to fix the sliding window length. In any case, the
+smallest of <code class="docutils literal notranslate"><span class="pre">max_iters</span></code> and <code class="docutils literal notranslate"><span class="pre">max_win_size</span></code> will be used to determine the actual window size.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.AveragePrecision.eval">
+<code class="sig-name descname">eval</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#AveragePrecision.eval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.AveragePrecision.eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current accuracy (in percentage) based on the accumulated prediction counts.</p>
+<p>Will issue a warning if no predictions have been accumulated yet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.AveragePrecision.goal">
+<em class="property">property </em><code class="sig-name descname">goal</code><a class="headerlink" href="#thelper.optim.metrics.AveragePrecision.goal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the scalar optimization goal of this metric (maximization).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.AveragePrecision.live_eval">
+<em class="property">property </em><code class="sig-name descname">live_eval</code><a class="headerlink" href="#thelper.optim.metrics.AveragePrecision.live_eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether this metric can/should be evaluated at every backprop iteration or not.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.AveragePrecision.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#AveragePrecision.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.AveragePrecision.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggles a reset of the metric’s internal state, deallocating bbox arrays.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.AveragePrecision.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">input</em>, <em class="sig-param">pred</em>, <em class="sig-param">target</em>, <em class="sig-param">sample</em>, <em class="sig-param">loss</em>, <em class="sig-param">iter_idx</em>, <em class="sig-param">max_iters</em>, <em class="sig-param">epoch_idx</em>, <em class="sig-param">max_epochs</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#AveragePrecision.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.AveragePrecision.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives the latest bbox predictions and targets from the training session.</p>
+<p>The exact signature of this function should match the one of the callbacks defined in
+<a class="reference internal" href="thelper.train.html#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a> and specified by <code class="docutils literal notranslate"><span class="pre">thelper.typedefs.IterCallbackParams</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.optim.metrics.ExternalMetric">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.optim.metrics.</code><code class="sig-name descname">ExternalMetric</code><span class="sig-paren">(</span><em class="sig-param">metric_name</em>, <em class="sig-param">metric_type</em>, <em class="sig-param">metric_goal</em>, <em class="sig-param">metric_params=None</em>, <em class="sig-param">target_name=None</em>, <em class="sig-param">class_names=None</em>, <em class="sig-param">max_win_size=None</em>, <em class="sig-param">force_softmax=True</em>, <em class="sig-param">live_eval=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#ExternalMetric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.ExternalMetric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.optim.metrics.Metric" title="thelper.optim.metrics.Metric"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.optim.metrics.Metric</span></code></a></p>
+<p>External metric wrapping interface.</p>
+<p>This interface is used to wrap external metrics and use them in the training framework. The metrics
+of <code class="docutils literal notranslate"><span class="pre">sklearn.metrics</span></code> are good candidates that have been used extensively with this interface in
+the past, but those of other libraries might also be compatible.</p>
+<p>Along with the name of the class to import and its constructor’s parameters, the user must provide
+a handling mode that specifies how prediction and groundtruth data should be handled in this wrapper.
+Also, extra arguments such as target label names, goal information, and window sizes can be provided
+for specific use cases related to the selected handling mode.</p>
+<p>For now, two metric handling modes (both related to classification) are supported:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">classif_best</span></code>: the wrapper will accumulate the predicted and groundtruth classification labels forwarded by the trainer and provide them to the external metric for evaluation. If a target label name is specified, then only classifications related to that label will be accumulated. This is the handling mode required for count-based classification metrics such as accuracy, F-Measure, precision, recall, etc.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">classif_score</span></code>: the wrapper will accumulate the prediction score of the targeted label along with a boolean that indicates whether this label was the groundtruth label or not. This is the handling mode required for score-based classification metrics such as when computing the area under the ROC curve (AUC).</p></li>
+</ul>
+</div></blockquote>
+<p>Usage examples inside a session configuration file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
+<span class="c1"># lists all metrics to instantiate as a dictionary</span>
+<span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1"># ...</span>
+    <span class="c1"># this is the name of the first example metric; it is used for lookup/printing only</span>
+    <span class="s2">&quot;f1_score_reject&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># this type is used to instantiate the wrapper</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.optim.metrics.ExternalMetric&quot;</span><span class="p">,</span>
+        <span class="c1"># these parameters are passed to the wrapper&#39;s constructor</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># the external class to import</span>
+            <span class="s2">&quot;metric_name&quot;</span><span class="p">:</span> <span class="s2">&quot;sklearn.metrics.f1_score&quot;</span><span class="p">,</span>
+            <span class="c1"># the parameters passed to the external class&#39;s constructor</span>
+            <span class="s2">&quot;metric_params&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="c1"># the wrapper metric handling mode</span>
+            <span class="s2">&quot;metric_type&quot;</span><span class="p">:</span> <span class="s2">&quot;classif_best&quot;</span><span class="p">,</span>
+            <span class="c1"># the target class name (note: dataset-specific)</span>
+            <span class="s2">&quot;target_name&quot;</span><span class="p">:</span> <span class="s2">&quot;reject&quot;</span><span class="p">,</span>
+            <span class="c1"># the goal type of the external metric</span>
+            <span class="s2">&quot;metric_goal&quot;</span><span class="p">:</span> <span class="s2">&quot;max&quot;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1"># this is the name of the second example metric; it is used for lookup/printing only</span>
+    <span class="s2">&quot;roc_auc_accept&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># this type is used to instantiate the wrapper</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.optim.metrics.ExternalMetric&quot;</span><span class="p">,</span>
+        <span class="c1"># these parameters are passed to the wrapper&#39;s constructor</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># the external class to import</span>
+            <span class="s2">&quot;metric_name&quot;</span><span class="p">:</span> <span class="s2">&quot;sklearn.metrics.roc_auc_score&quot;</span><span class="p">,</span>
+            <span class="c1"># the parameters passed to the external class&#39;s constructor</span>
+            <span class="s2">&quot;metric_params&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="c1"># the wrapper metric handling mode</span>
+            <span class="s2">&quot;metric_type&quot;</span><span class="p">:</span> <span class="s2">&quot;classif_score&quot;</span><span class="p">,</span>
+            <span class="c1"># the target class name (note: dataset-specific)</span>
+            <span class="s2">&quot;target_name&quot;</span><span class="p">:</span> <span class="s2">&quot;accept&quot;</span><span class="p">,</span>
+            <span class="c1"># the goal type of the external metric</span>
+            <span class="s2">&quot;metric_goal&quot;</span><span class="p">:</span> <span class="s2">&quot;max&quot;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1"># ...</span>
+<span class="p">}</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>metric_goal</strong> – goal of the external metric, used for monitoring. Can be <code class="docutils literal notranslate"><span class="pre">min</span></code> or <code class="docutils literal notranslate"><span class="pre">max</span></code>.</p></li>
+<li><p><strong>metric_type</strong> – handling mode of the external metric. Can only be one of the predetermined values.</p></li>
+<li><p><strong>metric</strong> – type of the external metric that will be instantiated when <code class="docutils literal notranslate"><span class="pre">eval</span></code> is called.</p></li>
+<li><p><strong>metric_params</strong> – dictionary of parameters passed to the external metric on instantiation.</p></li>
+<li><p><strong>target_name</strong> – name of the targeted label. Used only in handling modes related to classification.</p></li>
+<li><p><strong>target_idx</strong> – index of the targeted label. Used only in handling modes related to classification.</p></li>
+<li><p><strong>class_names</strong> – holds the list of class label names provided by the dataset parser. If it is not
+provided when the constructor is called, it will be set by the trainer at runtime.</p></li>
+<li><p><strong>force_softmax</strong> – specifies whether a softmax operation should be applied to the prediction scores
+obtained from the trainer. Only used with the “classif_score” handling mode.</p></li>
+<li><p><strong>max_win_size</strong> – maximum moving average window size to use (default=None, which equals dataset size).</p></li>
+<li><p><strong>pred</strong> – queue used to store predictions-related values for window-based averaging.</p></li>
+<li><p><strong>target</strong> – queue used to store groundtruth-related values for window-based averaging.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.optim.metrics.ExternalMetric.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">metric_name</em>, <em class="sig-param">metric_type</em>, <em class="sig-param">metric_goal</em>, <em class="sig-param">metric_params=None</em>, <em class="sig-param">target_name=None</em>, <em class="sig-param">class_names=None</em>, <em class="sig-param">max_win_size=None</em>, <em class="sig-param">force_softmax=True</em>, <em class="sig-param">live_eval=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#ExternalMetric.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.ExternalMetric.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives all necessary arguments for wrapper initialization and external metric instantiation.</p>
+<p>See <a class="reference internal" href="#thelper.optim.metrics.ExternalMetric" title="thelper.optim.metrics.ExternalMetric"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.optim.metrics.ExternalMetric</span></code></a> for information on arguments.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.ExternalMetric.eval">
+<code class="sig-name descname">eval</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#ExternalMetric.eval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.ExternalMetric.eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the external metric’s evaluation result.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.ExternalMetric.goal">
+<em class="property">property </em><code class="sig-name descname">goal</code><a class="headerlink" href="#thelper.optim.metrics.ExternalMetric.goal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the scalar optimization goal of this metric (user-defined).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.ExternalMetric.live_eval">
+<em class="property">property </em><code class="sig-name descname">live_eval</code><a class="headerlink" href="#thelper.optim.metrics.ExternalMetric.live_eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether this metric can/should be evaluated at every backprop iteration or not.</p>
+<p>By default, this returns <code class="docutils literal notranslate"><span class="pre">True</span></code>, but implementations that are quite slow may return <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.ExternalMetric.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#ExternalMetric.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.ExternalMetric.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggles a reset of the metric’s internal state, emptying pred/target queues.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.ExternalMetric.set_class_names">
+<code class="sig-name descname">set_class_names</code><span class="sig-paren">(</span><em class="sig-param">class_names</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#ExternalMetric.set_class_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.ExternalMetric.set_class_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the class label names that must be predicted by the model.</p>
+<p>This is only useful in metric handling modes related to classification. The goal of having
+class names here is to translate a target class label (provided in the constructor) into a
+target class index. This is required as predictions are not mapped to their original names
+(in string format) before being forwarded to this object by the trainer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.ExternalMetric.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">input</em>, <em class="sig-param">pred</em>, <em class="sig-param">target</em>, <em class="sig-param">sample</em>, <em class="sig-param">loss</em>, <em class="sig-param">iter_idx</em>, <em class="sig-param">max_iters</em>, <em class="sig-param">epoch_idx</em>, <em class="sig-param">max_epochs</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#ExternalMetric.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.ExternalMetric.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives the latest predictions and target values from the training session.</p>
+<p>The handling of the data received here will depend on the current metric’s handling mode.</p>
+<p>The exact signature of this function should match the one of the callbacks defined in
+<a class="reference internal" href="thelper.train.html#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a> and specified by <code class="docutils literal notranslate"><span class="pre">thelper.typedefs.IterCallbackParams</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.optim.metrics.MeanAbsoluteError">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.optim.metrics.</code><code class="sig-name descname">MeanAbsoluteError</code><span class="sig-paren">(</span><em class="sig-param">reduction='mean'</em>, <em class="sig-param">max_win_size=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#MeanAbsoluteError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.MeanAbsoluteError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.optim.metrics.Metric" title="thelper.optim.metrics.Metric"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.optim.metrics.Metric</span></code></a></p>
+<p>Mean absolute error metric interface.</p>
+<p>This is a scalar metric used to monitor the mean absolute deviation (or error) for a model’s
+predictions. This regression metric can be described as:</p>
+<div class="math notranslate nohighlight">
+\[e(x, y) = E = \{e_1,\dots,e_N\}^\top, \quad
+e_n = \left| x_n - y_n \right|,\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the batch size. If <code class="docutils literal notranslate"><span class="pre">reduction</span></code> is not <code class="docutils literal notranslate"><span class="pre">'none'</span></code>, then:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\text{MAE}(x, y) =
+\begin{cases}
+    \operatorname{mean}(E), &amp; \text{if reduction } = \text{mean.}\\
+    \operatorname{sum}(E),  &amp; \text{if reduction } = \text{sum.}
+\end{cases}\end{split}\]</div>
+<p><cite>x</cite> and <cite>y</cite> are tensors of arbitrary shapes with a total of <cite>n</cite> elements each.</p>
+<p>Usage example inside a session configuration file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
+<span class="c1"># lists all metrics to instantiate as a dictionary</span>
+<span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1"># ...</span>
+    <span class="c1"># this is the name of the example metric; it is used for lookup/printing only</span>
+    <span class="s2">&quot;mae&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># this type is used to instantiate the error metric</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.optim.metrics.MeanAbsoluteError&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;reduction&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1"># ...</span>
+<span class="p">}</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<p>Todo: add support for ‘dont care’ target value?</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>max_win_size</strong> – maximum moving average window size to use (default=None, which equals dataset size).</p></li>
+<li><p><strong>reduction</strong> – string representing the tensor reduction strategy to use.</p></li>
+<li><p><strong>errors</strong> – array of error values stored for window-based averaging.</p></li>
+<li><p><strong>warned_eval_bad</strong> – toggles whether the division-by-zero warning has been flagged or not.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.optim.metrics.MeanAbsoluteError.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">reduction='mean'</em>, <em class="sig-param">max_win_size=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#MeanAbsoluteError.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.MeanAbsoluteError.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives the reduction strategy and the moving average window size (<code class="docutils literal notranslate"><span class="pre">window_size</span></code>).</p>
+<p>Note that by default, if <code class="docutils literal notranslate"><span class="pre">max_win_size</span></code> is not provided here, the value given to <code class="docutils literal notranslate"><span class="pre">max_iters</span></code> on
+the first update call will be used instead to fix the sliding window length. In any case, the
+smallest of <code class="docutils literal notranslate"><span class="pre">max_iters</span></code> and <code class="docutils literal notranslate"><span class="pre">max_win_size</span></code> will be used to determine the actual window size.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.MeanAbsoluteError.eval">
+<code class="sig-name descname">eval</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#MeanAbsoluteError.eval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.MeanAbsoluteError.eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current (average) mean absolute error based on the accumulated values.</p>
+<p>Will issue a warning if no predictions have been accumulated yet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.MeanAbsoluteError.goal">
+<em class="property">property </em><code class="sig-name descname">goal</code><a class="headerlink" href="#thelper.optim.metrics.MeanAbsoluteError.goal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the scalar optimization goal of this metric (minimization).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.MeanAbsoluteError.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#MeanAbsoluteError.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.MeanAbsoluteError.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggles a reset of the metric’s internal state, deallocating the errors array.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.MeanAbsoluteError.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">input</em>, <em class="sig-param">pred</em>, <em class="sig-param">target</em>, <em class="sig-param">sample</em>, <em class="sig-param">loss</em>, <em class="sig-param">iter_idx</em>, <em class="sig-param">max_iters</em>, <em class="sig-param">epoch_idx</em>, <em class="sig-param">max_epochs</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#MeanAbsoluteError.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.MeanAbsoluteError.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives the latest predictions and target values from the training session.</p>
+<p>This function computes and accumulates the L1 distance between predictions and targets in the
+internal array, cycling over the iteration index if the maximum window length is reached.</p>
+<p>The exact signature of this function should match the one of the callbacks defined in
+<a class="reference internal" href="thelper.train.html#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a> and specified by <code class="docutils literal notranslate"><span class="pre">thelper.typedefs.IterCallbackParams</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.optim.metrics.MeanSquaredError">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.optim.metrics.</code><code class="sig-name descname">MeanSquaredError</code><span class="sig-paren">(</span><em class="sig-param">reduction='mean'</em>, <em class="sig-param">max_win_size=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#MeanSquaredError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.MeanSquaredError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.optim.metrics.Metric" title="thelper.optim.metrics.Metric"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.optim.metrics.Metric</span></code></a></p>
+<p>Mean squared error metric interface.</p>
+<p>This is a scalar metric used to monitor the mean squared deviation (or error) for a model’s
+predictions. This regression metric can be described as:</p>
+<div class="math notranslate nohighlight">
+\[e(x, y) = E = \{e_1,\dots,e_N\}^\top, \quad
+e_n = \left( x_n - y_n \right)^2,\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the batch size. If <code class="docutils literal notranslate"><span class="pre">reduction</span></code> is not <code class="docutils literal notranslate"><span class="pre">'none'</span></code>, then:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\text{MSE}(x, y) =
+\begin{cases}
+    \operatorname{mean}(E), &amp; \text{if reduction } = \text{mean.}\\
+    \operatorname{sum}(E),  &amp; \text{if reduction } = \text{sum.}
+\end{cases}\end{split}\]</div>
+<p><cite>x</cite> and <cite>y</cite> are tensors of arbitrary shapes with a total of <cite>n</cite> elements each.</p>
+<p>Usage example inside a session configuration file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
+<span class="c1"># lists all metrics to instantiate as a dictionary</span>
+<span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1"># ...</span>
+    <span class="c1"># this is the name of the example metric; it is used for lookup/printing only</span>
+    <span class="s2">&quot;mse&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># this type is used to instantiate the error metric</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.optim.metrics.MeanSquaredError&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;reduction&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1"># ...</span>
+<span class="p">}</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<p>Todo: add support for ‘dont care’ target value?</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>max_win_size</strong> – maximum moving average window size to use (default=None, which equals dataset size).</p></li>
+<li><p><strong>reduction</strong> – string representing the tensor reduction strategy to use.</p></li>
+<li><p><strong>errors</strong> – array of error values stored for window-based averaging.</p></li>
+<li><p><strong>warned_eval_bad</strong> – toggles whether the division-by-zero warning has been flagged or not.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.optim.metrics.MeanSquaredError.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">reduction='mean'</em>, <em class="sig-param">max_win_size=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#MeanSquaredError.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.MeanSquaredError.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives the reduction strategy and the moving average window size (<code class="docutils literal notranslate"><span class="pre">window_size</span></code>).</p>
+<p>Note that by default, if <code class="docutils literal notranslate"><span class="pre">max_win_size</span></code> is not provided here, the value given to <code class="docutils literal notranslate"><span class="pre">max_iters</span></code> on
+the first update call will be used instead to fix the sliding window length. In any case, the
+smallest of <code class="docutils literal notranslate"><span class="pre">max_iters</span></code> and <code class="docutils literal notranslate"><span class="pre">max_win_size</span></code> will be used to determine the actual window size.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.MeanSquaredError.eval">
+<code class="sig-name descname">eval</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#MeanSquaredError.eval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.MeanSquaredError.eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current (average) mean squared error based on the accumulated values.</p>
+<p>Will issue a warning if no predictions have been accumulated yet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.MeanSquaredError.goal">
+<em class="property">property </em><code class="sig-name descname">goal</code><a class="headerlink" href="#thelper.optim.metrics.MeanSquaredError.goal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the scalar optimization goal of this metric (minimization).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.MeanSquaredError.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#MeanSquaredError.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.MeanSquaredError.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggles a reset of the metric’s internal state, deallocating the errors array.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.MeanSquaredError.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">input</em>, <em class="sig-param">pred</em>, <em class="sig-param">target</em>, <em class="sig-param">sample</em>, <em class="sig-param">loss</em>, <em class="sig-param">iter_idx</em>, <em class="sig-param">max_iters</em>, <em class="sig-param">epoch_idx</em>, <em class="sig-param">max_epochs</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#MeanSquaredError.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.MeanSquaredError.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives the latest predictions and target values from the training session.</p>
+<p>This function computes and accumulates the mean squared error between predictions and targets in
+the internal array, cycling over the iteration index if the maximum window length is reached.</p>
+<p>The exact signature of this function should match the one of the callbacks defined in
+<a class="reference internal" href="thelper.train.html#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a> and specified by <code class="docutils literal notranslate"><span class="pre">thelper.typedefs.IterCallbackParams</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.optim.metrics.Metric">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.optim.metrics.</code><code class="sig-name descname">Metric</code><a class="reference internal" href="_modules/thelper/optim/metrics.html#Metric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.Metric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="thelper.train.html#thelper.train.utils.PredictionConsumer" title="thelper.train.utils.PredictionConsumer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.utils.PredictionConsumer</span></code></a></p>
+<p>Abstract metric interface.</p>
+<p>This interface defines basic functions required so that <a class="reference internal" href="thelper.train.html#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a> can
+figure out how to instantiate, update, and optimize a given metric while training/evaluating a model.</p>
+<p>All metrics, by definition, must be ‘optimizable’. This means that they should return a scalar value
+when ‘evaluated’ and define an optimal goal (-inf or +inf). If this is not possible, then the class
+should probably be derived using the more generic <a class="reference internal" href="thelper.train.html#thelper.train.utils.PredictionConsumer" title="thelper.train.utils.PredictionConsumer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.utils.PredictionConsumer</span></code></a>
+instead.</p>
+<dl class="method">
+<dt id="thelper.optim.metrics.Metric.eval">
+<em class="property">abstract </em><code class="sig-name descname">eval</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#Metric.eval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.Metric.eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the metric’s evaluation result.</p>
+<p>The returned value should be a scalar. As a model improves, this scalar should get closer
+to the optimization goal (defined through the ‘goal’ attribute). This value will be queried
+at the end of each training epoch by the trainer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.Metric.goal">
+<em class="property">property </em><code class="sig-name descname">goal</code><a class="headerlink" href="#thelper.optim.metrics.Metric.goal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the scalar optimization goal of the metric.</p>
+<p>The returned goal can be the <code class="docutils literal notranslate"><span class="pre">minimize</span></code> or <code class="docutils literal notranslate"><span class="pre">maximize</span></code> members of <code class="docutils literal notranslate"><span class="pre">thelper.optim.metrics.Metric</span></code>
+if the class’s evaluation returns a scalar value, and <code class="docutils literal notranslate"><span class="pre">None</span></code> otherwise. The trainer will
+check this value to see if monitoring the metric’s evaluation result progression is possible.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.Metric.live_eval">
+<em class="property">property </em><code class="sig-name descname">live_eval</code><a class="headerlink" href="#thelper.optim.metrics.Metric.live_eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether this metric can/should be evaluated at every backprop iteration or not.</p>
+<p>By default, this returns <code class="docutils literal notranslate"><span class="pre">True</span></code>, but implementations that are quite slow may return <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="thelper.optim.metrics.Metric.maximize">
+<code class="sig-name descname">maximize</code><em class="property"> = inf</em><a class="headerlink" href="#thelper.optim.metrics.Metric.maximize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Possible value of the <code class="docutils literal notranslate"><span class="pre">goal</span></code> attribute of this metric.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="thelper.optim.metrics.Metric.minimize">
+<code class="sig-name descname">minimize</code><em class="property"> = -inf</em><a class="headerlink" href="#thelper.optim.metrics.Metric.minimize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Possible value of the <code class="docutils literal notranslate"><span class="pre">goal</span></code> attribute of this metric.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.Metric.update">
+<em class="property">abstract </em><code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">input</em>, <em class="sig-param">pred</em>, <em class="sig-param">target</em>, <em class="sig-param">sample</em>, <em class="sig-param">loss</em>, <em class="sig-param">iter_idx</em>, <em class="sig-param">max_iters</em>, <em class="sig-param">epoch_idx</em>, <em class="sig-param">max_epochs</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#Metric.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.Metric.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives the latest prediction and groundtruth tensors from the training session.</p>
+<p>The data given here will be “consumed” internally, but it should NOT be modified. For example,
+a classification accuracy metric might accumulate the correct number of predictions in comparison
+to groundtruth labels, but never alter those predictions. The iteration/epoch indices may be
+used to ‘reset’ the internal state of this object when needed (for example, at the start of each
+new epoch).</p>
+<p>Remember that input, prediction, and target tensors received here will all have a batch dimension!</p>
+<p>The exact signature of this function should match the one of the callbacks defined in
+<a class="reference internal" href="thelper.train.html#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a> and specified by <code class="docutils literal notranslate"><span class="pre">thelper.typedefs.IterCallbackParams</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.optim.metrics.PSNR">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.optim.metrics.</code><code class="sig-name descname">PSNR</code><span class="sig-paren">(</span><em class="sig-param">data_range=1.0</em>, <em class="sig-param">max_win_size=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#PSNR"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.PSNR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.optim.metrics.Metric" title="thelper.optim.metrics.Metric"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.optim.metrics.Metric</span></code></a></p>
+<p>Peak Signal-to-Noise Ratio (PSNR) metric interface.</p>
+<p>This is a scalar metric used to monitor the change in quality of a signal (or image) following a
+transformation. For more information, see its definition on <a class="reference external" href="https://en.wikipedia.org/wiki/Peak_signal-to-noise_ratio">[Wikipedia]</a>.</p>
+<p>The PSNR (in decibels, dB) between a modified signal <span class="math notranslate nohighlight">\(x\)</span> and its original version <span class="math notranslate nohighlight">\(y\)</span> is
+defined as:</p>
+<div class="math notranslate nohighlight">
+\[\text{PSNR}(x, y) = 10 * \log_{10} \Bigg( \frac{R^2}{\text{MSE}(x, y)} \Bigg)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\text{MSE}(x, y)\)</span> returns the mean squared error (see <a class="reference internal" href="#thelper.optim.metrics.MeanSquaredError" title="thelper.optim.metrics.MeanSquaredError"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.optim.metrics.MeanSquaredError</span></code></a>
+for more information), and <span class="math notranslate nohighlight">\(R\)</span> is the maximum possible value for a single element in the input signal
+(i.e. its maximum “range”).</p>
+<p>Usage example inside a session configuration file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
+<span class="c1"># lists all metrics to instantiate as a dictionary</span>
+<span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1"># ...</span>
+    <span class="c1"># this is the name of the example metric; it is used for lookup/printing only</span>
+    <span class="s2">&quot;psnr&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># this type is used to instantiate the metric</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.optim.metrics.PSNR&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;data_range&quot;</span><span class="p">:</span> <span class="s2">&quot;255&quot;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1"># ...</span>
+<span class="p">}</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>max_win_size</strong> – maximum moving average window size to use (default=None, which equals dataset size).</p></li>
+<li><p><strong>data_range</strong> – maximum value of an element in the target signal.</p></li>
+<li><p><strong>psnrs</strong> – array of psnr values stored for window-based averaging.</p></li>
+<li><p><strong>warned_eval_bad</strong> – toggles whether the division-by-zero warning has been flagged or not.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.optim.metrics.PSNR.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">data_range=1.0</em>, <em class="sig-param">max_win_size=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#PSNR.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.PSNR.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives all necessary initialization arguments to compute signal PSNRs,</p>
+<p>See <a class="reference internal" href="#thelper.optim.metrics.PSNR" title="thelper.optim.metrics.PSNR"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.optim.metrics.PSNR</span></code></a> for information on arguments.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.PSNR.eval">
+<code class="sig-name descname">eval</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#PSNR.eval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.PSNR.eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current (average) PSNR based on the accumulated values.</p>
+<p>Will issue a warning if no predictions have been accumulated yet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.PSNR.goal">
+<em class="property">property </em><code class="sig-name descname">goal</code><a class="headerlink" href="#thelper.optim.metrics.PSNR.goal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the scalar optimization goal of this metric (maximization).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.PSNR.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#PSNR.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.PSNR.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggles a reset of the metric’s internal state, deallocating the psnrs array.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.PSNR.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">input</em>, <em class="sig-param">pred</em>, <em class="sig-param">target</em>, <em class="sig-param">sample</em>, <em class="sig-param">loss</em>, <em class="sig-param">iter_idx</em>, <em class="sig-param">max_iters</em>, <em class="sig-param">epoch_idx</em>, <em class="sig-param">max_epochs</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#PSNR.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.PSNR.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives the latest predictions and target values from the training session.</p>
+<p>The exact signature of this function should match the one of the callbacks defined in
+<a class="reference internal" href="thelper.train.html#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a> and specified by <code class="docutils literal notranslate"><span class="pre">thelper.typedefs.IterCallbackParams</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.optim.metrics.ROCCurve">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.optim.metrics.</code><code class="sig-name descname">ROCCurve</code><span class="sig-paren">(</span><em class="sig-param">target_name</em>, <em class="sig-param">target_tpr=None</em>, <em class="sig-param">target_fpr=None</em>, <em class="sig-param">class_names=None</em>, <em class="sig-param">force_softmax=True</em>, <em class="sig-param">sample_weight=None</em>, <em class="sig-param">drop_intermediate=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#ROCCurve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.ROCCurve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.optim.metrics.Metric" title="thelper.optim.metrics.Metric"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.optim.metrics.Metric</span></code></a></p>
+<p>Receiver operating characteristic (ROC) computation interface.</p>
+<p>This class provides an interface to <code class="docutils literal notranslate"><span class="pre">sklearn.metrics.roc_curve</span></code> and <code class="docutils literal notranslate"><span class="pre">sklearn.metrics.roc_auc_score</span></code>
+that can produce various types of ROC-related information including the area under the curve (AUC), the
+false positive and negative rates for various operating points, and the ROC curve itself as an image
+(also compatible with tensorboardX).</p>
+<p>By default, evaluating this metric returns the Area Under the Curve (AUC). If a target operating point is
+set, it will instead return the false positive/negative prediction rate of the model at that point.</p>
+<p>Usage examples inside a session configuration file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
+<span class="c1"># lists all metrics to instantiate as a dictionary</span>
+<span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1"># ...</span>
+    <span class="c1"># this is the name of the first example; it will output the AUC of the &quot;reject&quot; class</span>
+    <span class="s2">&quot;roc_reject_auc&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># this type is used to instantiate the ROC metric</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.optim.metrics.ROCCurve&quot;</span><span class="p">,</span>
+        <span class="c1"># these parameters are passed to the constructor</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># the name of the class to evaluate</span>
+            <span class="s2">&quot;target_name&quot;</span><span class="p">:</span> <span class="s2">&quot;reject&quot;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1"># this is the name of the second example; it will output the FPR at TPR=0.99</span>
+    <span class="s2">&quot;roc_reject_0.99tpr&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># this type is used to instantiate the ROC metric</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.optim.metrics.ROCCurve&quot;</span><span class="p">,</span>
+        <span class="c1"># these parameters are passed to the constructor</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># the name of the class to evaluate</span>
+            <span class="s2">&quot;target_name&quot;</span><span class="p">:</span> <span class="s2">&quot;reject&quot;</span><span class="p">,</span>
+            <span class="c1"># the target true positive rate (TPR) operating point</span>
+            <span class="s2">&quot;target_tpr&quot;</span><span class="p">:</span> <span class="mf">0.99</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1"># ...</span>
+<span class="p">}</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target_inv</strong> – used to target all classes except the named one(s); experimental!</p></li>
+<li><p><strong>target_name</strong> – name of targeted class to generate the roc curve/auc information for.</p></li>
+<li><p><strong>target_tpr</strong> – target operating point in terms of true positive rate (provided in constructor).</p></li>
+<li><p><strong>target_fpr</strong> – target operating point in terms of false positive rate (provided in constructor).</p></li>
+<li><p><strong>target_idx</strong> – index of the targeted class, mapped from target_name using the class_names list.</p></li>
+<li><p><strong>class_names</strong> – holds the list of class label names provided by the dataset parser. If it is not
+provided when the constructor is called, it will be set by the trainer at runtime.</p></li>
+<li><p><strong>force_softmax</strong> – specifies whether a softmax operation should be applied to the prediction scores
+obtained from the trainer.</p></li>
+<li><p><strong>curve</strong> – roc curve generator function, called at evaluation time to generate the output string.</p></li>
+<li><p><strong>auc</strong> – auc score generator function, called at evaluation time to generate the output string.</p></li>
+<li><p><strong>score</strong> – queue used to store prediction score values for window-based averaging.</p></li>
+<li><p><strong>true</strong> – queue used to store groundtruth label values for window-based averaging.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.optim.metrics.ROCCurve.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">target_name</em>, <em class="sig-param">target_tpr=None</em>, <em class="sig-param">target_fpr=None</em>, <em class="sig-param">class_names=None</em>, <em class="sig-param">force_softmax=True</em>, <em class="sig-param">sample_weight=None</em>, <em class="sig-param">drop_intermediate=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#ROCCurve.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.ROCCurve.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives the target class/operating point info, log parameters, and roc computation arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target_name</strong> – name of targeted class to generate the roc curve/auc information for.</p></li>
+<li><p><strong>target_tpr</strong> – target operating point in terms of true positive rate (provided in constructor).</p></li>
+<li><p><strong>target_fpr</strong> – target operating point in terms of false positive rate (provided in constructor).</p></li>
+<li><p><strong>class_names</strong> – holds the list of class label names provided by the dataset parser. If it is not
+provided when the constructor is called, it will be set by the trainer at runtime.</p></li>
+<li><p><strong>force_softmax</strong> – specifies whether a softmax operation should be applied to the prediction scores
+obtained from the trainer.</p></li>
+<li><p><strong>sample_weight</strong> – passed to <code class="docutils literal notranslate"><span class="pre">sklearn.metrics.roc_curve</span></code> and <code class="docutils literal notranslate"><span class="pre">sklearn.metrics.roc_auc_score</span></code>.</p></li>
+<li><p><strong>drop_intermediate</strong> – passed to <code class="docutils literal notranslate"><span class="pre">sklearn.metrics.roc_curve</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.ROCCurve.eval">
+<code class="sig-name descname">eval</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#ROCCurve.eval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.ROCCurve.eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the evaluation result (AUC/TPR/FPR).</p>
+<p>If no target operating point is set, the returned value is the AUC for the target class. If a
+target TPR is set, the returned value is the FPR for that operating point. If a target FPR is set,
+the returned value is the TPR for that operating point.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.ROCCurve.goal">
+<em class="property">property </em><code class="sig-name descname">goal</code><a class="headerlink" href="#thelper.optim.metrics.ROCCurve.goal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the scalar optimization goal of this metric (variable based on target op point).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.ROCCurve.live_eval">
+<em class="property">property </em><code class="sig-name descname">live_eval</code><a class="headerlink" href="#thelper.optim.metrics.ROCCurve.live_eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether this metric can/should be evaluated at every backprop iteration or not.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.ROCCurve.render">
+<code class="sig-name descname">render</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#ROCCurve.render"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.ROCCurve.render" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the ROC curve as a numpy-compatible RGBA image drawn by pyplot.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.ROCCurve.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#ROCCurve.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.ROCCurve.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggles a reset of the metric’s internal state, emptying queues.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.ROCCurve.set_class_names">
+<code class="sig-name descname">set_class_names</code><span class="sig-paren">(</span><em class="sig-param">class_names</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#ROCCurve.set_class_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.ROCCurve.set_class_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the class label names that must be predicted by the model.</p>
+<p>This allows the target class name to be mapped to a target class index.</p>
+<p>The current implementation of <a class="reference internal" href="thelper.train.html#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a> will automatically
+call this function at runtime if it is available, and provide the dataset’s classes as a
+list of strings.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.metrics.ROCCurve.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">input</em>, <em class="sig-param">pred</em>, <em class="sig-param">target</em>, <em class="sig-param">sample</em>, <em class="sig-param">loss</em>, <em class="sig-param">iter_idx</em>, <em class="sig-param">max_iters</em>, <em class="sig-param">epoch_idx</em>, <em class="sig-param">max_epochs</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/metrics.html#ROCCurve.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.metrics.ROCCurve.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives the latest predictions and target values from the training session.</p>
+<p>The exact signature of this function should match the one of the callbacks defined in
+<a class="reference internal" href="thelper.train.html#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a> and specified by <code class="docutils literal notranslate"><span class="pre">thelper.typedefs.IterCallbackParams</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.optim.schedulers">
+<span id="thelper-optim-schedulers-module"></span><h2>thelper.optim.schedulers module<a class="headerlink" href="#module-thelper.optim.schedulers" title="Permalink to this headline">¶</a></h2>
+<p>Schedulers module.</p>
+<p>This module contains classes used for scheduling learning rate changes while training a model. All
+classes defined here should derive from <code class="docutils literal notranslate"><span class="pre">torch.optim.lr_scheduler._LRScheduler</span></code> to remain torch-
+compatible.</p>
+<dl class="class">
+<dt id="thelper.optim.schedulers.CustomStepLR">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.optim.schedulers.</code><code class="sig-name descname">CustomStepLR</code><span class="sig-paren">(</span><em class="sig-param">optimizer</em>, <em class="sig-param">milestones</em>, <em class="sig-param">last_epoch=-1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/schedulers.html#CustomStepLR"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.schedulers.CustomStepLR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.optim.lr_scheduler._LRScheduler</span></code></p>
+<p>Sets the learning rate of each parameter group using a dictionary of preset scaling factors
+for epoch-based milestones.</p>
+<p>This class can be useful for tuning the learning rate scheduling behavior of a training session
+beyond what is already possible using PyTorch’s existing LR scheduler classes.  Note that all
+epoch indices are assumed to be 0-based.</p>
+<p>Usage example in Python:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assuming the optimizer uses lr = 0.05, we hard-code a slow startup...</span>
+<span class="c1"># lr = 0.00625   if epoch &lt; 2        (1/8 scale before epoch 2)</span>
+<span class="c1"># lr = 0.0125    if 2 &lt;= epoch &lt; 3   (1/4 scale before epoch 3)</span>
+<span class="c1"># lr = 0.025     if 3 &lt;= epoch &lt; 4   (1/2 scale before epoch 4)</span>
+<span class="c1"># lr = 0.05      if 4 &lt;= epoch &lt; 30  (default scale between epoch 4 and 30)</span>
+<span class="c1"># lr = 0.005     if 30 &lt;= epoch &lt; 80 (1/10 scale past epoch 30)</span>
+<span class="c1"># lr = 0.0005    if epoch &gt;= 80      (1/100 scale past epoch 80)</span>
+<span class="n">scheduler</span> <span class="o">=</span> <span class="n">CustomStepLR</span><span class="p">(</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">milestones</span><span class="o">=</span><span class="p">{</span>
+    <span class="mi">0</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="mi">30</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+    <span class="mi">80</span><span class="p">:</span> <span class="mf">0.01</span>
+<span class="p">})</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">scheduler</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span>
+    <span class="n">train</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">validate</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Usage example inside a session configuration file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
+<span class="c1"># lists the model optimization parameters for the training session</span>
+<span class="s2">&quot;optimization&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1"># lists the optimizer arguments (type, parameters, LR, ...)</span>
+    <span class="s2">&quot;optimizer&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># ...</span>
+    <span class="p">},</span>
+    <span class="c1"># lists the scheduler arguments (field can be omitted if no scheduler is needed)</span>
+    <span class="s2">&quot;scheduler&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># the type used to instantiate the scheduler</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.optim.schedulers.CustomStepLR&quot;</span><span class="p">,</span>
+        <span class="c1"># the parameters passed to the scheduler&#39;s constructor</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># by default, the optimizer is passed automatically;</span>
+            <span class="c1"># we only need to specify the extra parameters here</span>
+            <span class="s2">&quot;milestones&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># after epoch 1, scale the LR by 1</span>
+                <span class="s2">&quot;10&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="c1"># after epoch 10, scale the LR by 0.1</span>
+                <span class="s2">&quot;20&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>  <span class="c1"># ... and so on</span>
+                <span class="s2">&quot;30&quot;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span>
+                <span class="s2">&quot;40&quot;</span><span class="p">:</span> <span class="mf">0.0001</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">},</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stages</strong> – list of epochs where a new scaling factor is to be applied.</p></li>
+<li><p><strong>scales</strong> – list of scaling factors to apply at each stage.</p></li>
+<li><p><strong>milestones</strong> – original milestones map provided in the constructor.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="thelper.train.html#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.optim.schedulers.CustomStepLR.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">optimizer</em>, <em class="sig-param">milestones</em>, <em class="sig-param">last_epoch=-1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/schedulers.html#CustomStepLR.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.schedulers.CustomStepLR.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives the optimizer, milestone scaling factor, and initialization state.</p>
+<p>If the milestones do not include the first epoch (idx = 0), then its scaling factor is set
+to 1. When last_epoch is -1, the training is assumed to start from scratch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>optimizer</strong> – Wrapped optimizer (PyTorch-compatible object).</p></li>
+<li><p><strong>milestones</strong> – Map of epoch indices tied to scaling factors. Keys must be increasing.</p></li>
+<li><p><strong>last_epoch</strong> – The index of last epoch. Default: -1.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.optim.schedulers.CustomStepLR.get_lr">
+<code class="sig-name descname">get_lr</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/schedulers.html#CustomStepLR.get_lr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.schedulers.CustomStepLR.get_lr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the learning rate to use given the current epoch and scaling factors.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.optim.utils">
+<span id="thelper-optim-utils-module"></span><h2>thelper.optim.utils module<a class="headerlink" href="#module-thelper.optim.utils" title="Permalink to this headline">¶</a></h2>
+<p>Optimization/metrics utility module.</p>
+<p>This module contains utility functions and tools used by the other modules of this package.</p>
+<dl class="function">
+<dt id="thelper.optim.utils.create_loss_fn">
+<code class="sig-prename descclassname">thelper.optim.utils.</code><code class="sig-name descname">create_loss_fn</code><span class="sig-paren">(</span><em class="sig-param">config</em>, <em class="sig-param">model</em>, <em class="sig-param">loader=None</em>, <em class="sig-param">uploader=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/utils.html#create_loss_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.utils.create_loss_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiates and returns the loss function to use for training.</p>
+<p>The default way to specify the loss function to use is to provide a callable type to instantiate
+as well as its initialization parameters. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
+<span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1"># if we want to use PyTorch&#39;s cross entropy loss:</span>
+    <span class="c1">#  &gt;&gt;&gt; loss_fn = torch.nn.CrossEntropyLoss(**params)</span>
+    <span class="c1">#  &gt;&gt;&gt; ...</span>
+    <span class="c1">#  &gt;&gt;&gt; loss = loss_fn(pred, target)</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;torch.nn.CrossEntropyLoss&quot;</span>
+    <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="o">...</span> <span class="p">],</span>
+        <span class="s2">&quot;reduction&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span>
+        <span class="c1"># ...</span>
+    <span class="p">}</span>
+<span class="p">},</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<p>The loss function can also be queried from a member function of the model class, as such:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
+<span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1"># to query the model for the loss function:</span>
+    <span class="c1">#  &gt;&gt;&gt; loss_fn = model.get_loss_fn(**params)</span>
+    <span class="c1">#  &gt;&gt;&gt; ...</span>
+    <span class="c1">#  &gt;&gt;&gt; loss = loss_fn(pred, target)</span>
+    <span class="s2">&quot;model_getter&quot;</span><span class="p">:</span> <span class="s2">&quot;get_loss_fn&quot;</span>
+    <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># ...</span>
+    <span class="p">}</span>
+<span class="p">},</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<p>If the model is supposed to compute its own loss, we suggest creating a specialized trainer class. In that
+case only, the ‘loss’ field can be omitted from the session configuration file.</p>
+<p>If the task is related to image classification or semantic segmentation, the classes can be weighted based
+on extra parameters in the loss configuration. The strategy used to compute the weights is related to the
+one in <a class="reference internal" href="thelper.data.html#thelper.data.samplers.WeightedSubsetRandomSampler" title="thelper.data.samplers.WeightedSubsetRandomSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.samplers.WeightedSubsetRandomSampler</span></code></a>. The exact parameters that are expected
+for class reweighting are the following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">weight_distribution</span></code> (mandatory, toggle): the dictionary of weights assigned to each class, or the
+rebalancing strategy to use. If omitted entirely, no class weighting will be performed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">weight_param_name</span></code> (optional, default=”weight”): name of the constructor parameter that expects the
+weight list.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">weight_max</span></code> (optional, default=inf): the maximum weight that can be assigned to a class.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">weight_min</span></code> (optional, default=0): the minimum weight that can be assigned to a class.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">weight_norm</span></code> (optional, default=True): specifies whether the weights should be normalized or not.</p></li>
+</ul>
+<p>This function also supports an extra special parameter if the task is related to semantic segmentation:
+<code class="docutils literal notranslate"><span class="pre">ignore_index</span></code>. If this parameter is found and not <code class="docutils literal notranslate"><span class="pre">None</span></code> (integer), then the loss function will ignore
+the given value when computing the loss of a sample. The exact parameters that are expected in this case are
+the following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ignore_index_param_name</span></code> (optional, default=”ignore_index”): name of the constructor parameter that expects
+the ignore value.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ignore_index_label_name</span></code> (optional, default=”dontcare”): name of the label to pass the ignore value from.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.optim.utils.create_metrics">
+<code class="sig-prename descclassname">thelper.optim.utils.</code><code class="sig-name descname">create_metrics</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/utils.html#create_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.utils.create_metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiates and returns the metrics defined in the configuration dictionary.</p>
+<p>All arguments are expected to be handed in through the configuration via a dictionary named ‘params’.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.optim.utils.create_optimizer">
+<code class="sig-prename descclassname">thelper.optim.utils.</code><code class="sig-name descname">create_optimizer</code><span class="sig-paren">(</span><em class="sig-param">config</em>, <em class="sig-param">model</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/utils.html#create_optimizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.utils.create_optimizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiates and returns the optimizer to use for training.</p>
+<p>By default, the optimizer will be instantiated with the model parameters given as the first argument
+of its constructor. All supplementary arguments are expected to be handed in through the configuration
+via a dictionary named ‘params’.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.optim.utils.create_scheduler">
+<code class="sig-prename descclassname">thelper.optim.utils.</code><code class="sig-name descname">create_scheduler</code><span class="sig-paren">(</span><em class="sig-param">config</em>, <em class="sig-param">optimizer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/utils.html#create_scheduler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.utils.create_scheduler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiates and returns the learning rate scheduler to use for training.</p>
+<p>All arguments are expected to be handed in through the configuration via a dictionary named ‘params’.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.optim.utils.get_lr">
+<code class="sig-prename descclassname">thelper.optim.utils.</code><code class="sig-name descname">get_lr</code><span class="sig-paren">(</span><em class="sig-param">optimizer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/optim/utils.html#get_lr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.optim.utils.get_lr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the optimizer’s learning rate, or 0 if not found.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use-cases.html">Use Cases</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="thelper.html">thelper package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="thelper.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.cli">thelper.cli module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.typedefs">thelper.typedefs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.utils">thelper.utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/thelper.optim.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="thelper.tasks.html" title="thelper.tasks package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="thelper.nn.sr.html" title="thelper.nn.sr package"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

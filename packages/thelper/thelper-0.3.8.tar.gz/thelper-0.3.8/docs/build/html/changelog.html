@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Changelog &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Authors" href="authors.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="index.html">thelper-0.3.8</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="changelog">
+<span id="id1"></span><h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>0.3.8 (2019/08/08)<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fixed nn modules constructor args forwarding</p></li>
+<li><p>Updated class importer to allow parsing of non-package dirs</p></li>
+<li><p>Fixed file-based logging from submodules (e.g. for all data)</p></li>
+<li><p>Cleaned and API-fied the CLI entrypoints for external use</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>0.3.7 (2019/07/31)<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fixed travis timeouts on long deploy operations</p></li>
+<li><p>Added output path to trainer callback impls</p></li>
+<li><p>Added new draw-and-save display callback</p></li>
+<li><p>Added togray/tocolor transformation operations</p></li>
+<li><p>Cleaned up matplotlib use and show/block across draw functions</p></li>
+<li><p>Fixed various dependency and logging issues</p></li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>0.3.6 (2019/07/26)<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fixed torch version checks in custom default collate impl</p></li>
+<li><p>Fixed bbox predictions forwarding and evaluation in objdetect</p></li>
+<li><p>Refactored metrics/callbacks to clean up trainer impls</p></li>
+<li><p>Added pretrained opt to default resnet impl</p></li>
+<li><p>Fixed objdetect trainer display and prediction callbacks</p></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>0.3.5 (2019/07/23)<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Refactored metrics/consumers into separate interfaces</p></li>
+<li><p>Added unit tests for all metrics/prediction consumers</p></li>
+<li><p>Updated trainer callback signatures to include more data</p></li>
+<li><p>Updated install doc with links to anaconda/docker hubs</p></li>
+<li><p>Cleaned drawing functions args wrt callback refactoring</p></li>
+<li><p>Added eval module to optim w/ pascalvoc evaluation funcs</p></li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h2>0.3.4 (2019/07/12)<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fixed issues when reloading objdet model checkpoints</p></li>
+<li><p>Fixed issues when trying to use missing color maps</p></li>
+<li><p>Fixed backward compat issues when reloading old tasks</p></li>
+<li><p>Cleaned up object detection drawing utilities</p></li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h2>0.3.3 (2019/07/09)<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fixed travis conda build dependencies &amp; channels</p></li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h2>0.3.2 (2019/07/05)<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Update documentation use cases (model export) &amp; faq</p></li>
+<li><p>Cleanup module base class config backup</p></li>
+<li><p>Fixed docker build and automated it via travis</p></li>
+</ul>
+</div>
+<div class="section" id="id9">
+<h2>0.3.0 - 0.3.1 (2019/06/12)<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Added dockerfile for containerized builds</p></li>
+<li><p>Added object detection task &amp; trainer implementations</p></li>
+<li><p>Added CLI model/checkpoint export support</p></li>
+<li><p>Added CLI dataset splitting/HDF5 support</p></li>
+<li><p>Added baseline superresolution implementations</p></li>
+<li><p>Added lots of new unit tests &amp; docstrings</p></li>
+<li><p>Cleaned up transform &amp; display operations</p></li>
+</ul>
+</div>
+<div class="section" id="id10">
+<h2>0.2.8 (2019/03/17)<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Cleaned up build tools &amp; docstrings throughout api</p></li>
+<li><p>Added user guide in documentation build</p></li>
+<li><p>Update tasks to allow dataset interface override</p></li>
+<li><p>Cleaned up trainer output logs</p></li>
+<li><p>Added fully convolutional resnet implementation</p></li>
+<li><p>Fixup various issues related to fine-tuning via ‘resume’</p></li>
+</ul>
+</div>
+<div class="section" id="id11">
+<h2>0.2.7 (2019/02/04)<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Updated conda build recipe for python variants w/ auto upload</p></li>
+</ul>
+</div>
+<div class="section" id="id12">
+<h2>0.2.6 (2019/01/31)<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Added framework checkpoint/configuration migration utilities</p></li>
+<li><p>Fixed minor config parsing backward compatibility issues</p></li>
+<li><p>Fixed minor bugs related to query &amp; drawing utilities</p></li>
+</ul>
+</div>
+<div class="section" id="id13">
+<h2>0.2.2 - 0.2.5 (2019/01/29)<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fixed travis-ci matrix configuration</p></li>
+<li><p>Added travis-ci deployment step for pypi</p></li>
+<li><p>Fixed readthedocs documentation building</p></li>
+<li><p>Updated readme shields &amp; front page look</p></li>
+<li><p>Cleaned up cli module entrypoint</p></li>
+<li><p>Fixed openssl dependency issues for travis tox check jobs</p></li>
+<li><p>Updated travis post-deploy to try to fix conda packaging (wip)</p></li>
+</ul>
+</div>
+<div class="section" id="id14">
+<h2>0.2.1 (2019/01/24)<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Added typedef module &amp; cleaned up parameter inspections</p></li>
+<li><p>Cleaned up all drawing utils &amp; added callback support to trainers</p></li>
+<li><p>Added support for albumentation pipelines via wrapper</p></li>
+<li><p>Updated all trainers/schedulers to rely on 0-based indexing</p></li>
+<li><p>Updated travis/rtd configs for auto-deploy &amp; 3.6 support</p></li>
+</ul>
+</div>
+<div class="section" id="id15">
+<h2>0.2.0 (2019/01/15)<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Added regression/segmentation tasks and trainers</p></li>
+<li><p>Added interface for pascalvoc dataset</p></li>
+<li><p>Refactored data loaders/parsers and cleaned up data package</p></li>
+<li><p>Added lots of new utilities in base trainer implementation</p></li>
+<li><p>Added new unit tests for transformations</p></li>
+<li><p>Refactored transformations to use wrappers for augments/lists</p></li>
+<li><p>Added new samplers with dataset scaling support</p></li>
+<li><p>Added baseline implementation for FCN32s</p></li>
+<li><p>Added mae/mse metrics implementations</p></li>
+<li><p>Added trainer support for loss computation via external members</p></li>
+<li><p>Added utils to download/verify/extract files</p></li>
+</ul>
+</div>
+<div class="section" id="id16">
+<h2>0.1.1 (2019/01/14)<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Minor fixups and updates for CCFB02 compatibility</p></li>
+<li><p>Added RawPredictions metric to fetch data from trainers</p></li>
+</ul>
+</div>
+<div class="section" id="id17">
+<h2>0.1.0 (2018/11/28)<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fixed readthedocs sphinx auto-build w/ mocking.</p></li>
+<li><p>Refactored package structure to avoid env issues.</p></li>
+<li><p>Rewrote seeding to allow 100% reproducible sessions.</p></li>
+<li><p>Cleaned up config file parameter lists.</p></li>
+<li><p>Cleaned up session output vars/logs/images.</p></li>
+<li><p>Add support for eval-time augmentation.</p></li>
+<li><p>Update transform wrappers for multi-channels &amp; lists.</p></li>
+<li><p>Add gui module w/ basic segmentation annotation tool.</p></li>
+<li><p>Refactored task interfaces to allow merging.</p></li>
+<li><p>Simplified model fine-tuning via checkpoints.</p></li>
+</ul>
+</div>
+<div class="section" id="id18">
+<h2>0.0.2 (2018/10/18)<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Completed first documentation pass.</p></li>
+<li><p>Fixed travis/rtfd builds.</p></li>
+<li><p>Fixed device mapping/loading issues.</p></li>
+</ul>
+</div>
+<div class="section" id="id19">
+<h2>0.0.1 (2018/10/03)<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Initial release (work in progress).</p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use-cases.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">0.3.8 (2019/08/08)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">0.3.7 (2019/07/31)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">0.3.6 (2019/07/26)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">0.3.5 (2019/07/23)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">0.3.4 (2019/07/12)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">0.3.3 (2019/07/09)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">0.3.2 (2019/07/05)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">0.3.0 - 0.3.1 (2019/06/12)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">0.2.8 (2019/03/17)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">0.2.7 (2019/02/04)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">0.2.6 (2019/01/31)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">0.2.2 - 0.2.5 (2019/01/29)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id14">0.2.1 (2019/01/24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id15">0.2.0 (2019/01/15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id16">0.1.1 (2019/01/14)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id17">0.1.0 (2018/11/28)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id18">0.0.2 (2018/10/18)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id19">0.0.1 (2018/10/03)</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/changelog.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="authors.html" title="Authors"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

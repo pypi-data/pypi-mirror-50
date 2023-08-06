@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.data package &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="thelper.gui package" href="thelper.gui.html" />
+    <link rel="prev" title="thelper package" href="thelper.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="thelper.html" accesskey="U">thelper package</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-thelper.data">
+<span id="thelper-data-package"></span><h1>thelper.data package<a class="headerlink" href="#module-thelper.data" title="Permalink to this headline">¶</a></h1>
+<p>Dataset parsing/loading package.</p>
+<p>This package contains classes and functions whose role is to fetch the data required to train, validate,
+and test a model. The <a class="reference internal" href="#thelper.data.utils.create_loaders" title="thelper.data.utils.create_loaders"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.create_loaders()</span></code></a> function contained herein is responsible for
+preparing the task and data loaders for a training session. This package also contains the base interfaces
+for dataset parsers.</p>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-thelper.data.loaders">
+<span id="thelper-data-loaders-module"></span><h2>thelper.data.loaders module<a class="headerlink" href="#module-thelper.data.loaders" title="Permalink to this headline">¶</a></h2>
+<p>Dataset loaders module.</p>
+<p>This module contains a dataset loader specialization used to properly seed samplers and workers.</p>
+<dl class="class">
+<dt id="thelper.data.loaders.DataLoader">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.data.loaders.</code><code class="sig-name descname">DataLoader</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">seeds=None</em>, <em class="sig-param">epoch=0</em>, <em class="sig-param">collate_fn=&lt;function default_collate&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/loaders.html#DataLoader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.loaders.DataLoader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.dataloader.DataLoader</span></code></p>
+<p>Specialized data loader used to load minibatches from a dataset parser.</p>
+<p>This specialization handles the seeding of samplers and workers.</p>
+<p>See <code class="docutils literal notranslate"><span class="pre">torch.utils.data.DataLoader</span></code> for more information on attributes/methods.</p>
+<dl class="method">
+<dt id="thelper.data.loaders.DataLoader.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">seeds=None</em>, <em class="sig-param">epoch=0</em>, <em class="sig-param">collate_fn=&lt;function default_collate&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/loaders.html#DataLoader.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.loaders.DataLoader.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.data.loaders.DataLoader.sample_count">
+<em class="property">property </em><code class="sig-name descname">sample_count</code><a class="headerlink" href="#thelper.data.loaders.DataLoader.sample_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="thelper.data.loaders.DataLoader.set_epoch">
+<code class="sig-name descname">set_epoch</code><span class="sig-paren">(</span><em class="sig-param">epoch=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/loaders.html#DataLoader.set_epoch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.loaders.DataLoader.set_epoch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the current epoch number in order to offset RNG states for the workers and the sampler.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.data.loaders.LoaderFactory">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.data.loaders.</code><code class="sig-name descname">LoaderFactory</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/loaders.html#LoaderFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.loaders.LoaderFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Factory used for preparing and splitting dataset parsers into usable data loader objects.</p>
+<p>This class is responsible for parsing the parameters contained in the ‘loaders’ field of a
+configuration dictionary, instantiating the data loaders, and shuffling/splitting the samples.
+An example configuration is presented in <a class="reference internal" href="#thelper.data.utils.create_loaders" title="thelper.data.utils.create_loaders"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.create_loaders()</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.data.utils.create_loaders" title="thelper.data.utils.create_loaders"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.create_loaders()</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.transforms.html#thelper.transforms.utils.load_augments" title="thelper.transforms.utils.load_augments"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.transforms.utils.load_augments()</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.transforms.html#thelper.transforms.utils.load_transforms" title="thelper.transforms.utils.load_transforms"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.transforms.utils.load_transforms()</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.data.loaders.LoaderFactory.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/loaders.html#LoaderFactory.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.loaders.LoaderFactory.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives and parses the data configuration dictionary.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.data.loaders.LoaderFactory.create_loaders">
+<code class="sig-name descname">create_loaders</code><span class="sig-paren">(</span><em class="sig-param">datasets</em>, <em class="sig-param">train_idxs</em>, <em class="sig-param">valid_idxs</em>, <em class="sig-param">test_idxs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/loaders.html#LoaderFactory.create_loaders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.loaders.LoaderFactory.create_loaders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the data loaders for the train/valid/test sets based on a prior split.</p>
+<p>This function essentially takes the dataset parser interfaces and indices maps, and instantiates
+data loaders that are ready to produce samples for training or evaluation. Note that the dataset
+parsers will be deep-copied in each data loader, meaning that they should ideally not contain a
+persistent loading state or a large buffer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>datasets</strong> – the map of dataset parsers, where each has a name (key) and a parser (value).</p></li>
+<li><p><strong>train_idxs</strong> – training data samples indices map.</p></li>
+<li><p><strong>valid_idxs</strong> – validation data samples indices map.</p></li>
+<li><p><strong>test_idxs</strong> – test data samples indices map.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A three-element tuple containing the training, validation, and test data loaders, respectively.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.data.loaders.LoaderFactory.get_base_transforms">
+<code class="sig-name descname">get_base_transforms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/loaders.html#LoaderFactory.get_base_transforms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.loaders.LoaderFactory.get_base_transforms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the (global) sample transformation operations parsed in the data configuration.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.data.loaders.LoaderFactory.get_split">
+<code class="sig-name descname">get_split</code><span class="sig-paren">(</span><em class="sig-param">datasets</em>, <em class="sig-param">task</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/loaders.html#LoaderFactory.get_split"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.loaders.LoaderFactory.get_split" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the train/valid/test sample indices split for a given dataset (name-parser) map.</p>
+<p>Note that the returned indices are unique, possibly shuffled, and never duplicated between sets.
+If the samples have a class attribute (i.e. the task is related to classification), the split
+will respect the initial distribution and apply the ratios within the classes themselves. For
+example, consider a dataset of three classes (<span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span>, and <span class="math notranslate nohighlight">\(C\)</span>) that contains
+100 samples such as:</p>
+<div class="math notranslate nohighlight">
+\[|A| = 50,\;|B| = 30,\;|C| = 20\]</div>
+<p>If we require a 80%-10%-10% ratio distribution for the training, validation, and test loaders
+respectively, the resulting split will contain the following sample counts:</p>
+<div class="math notranslate nohighlight">
+\[\text{training loader} = {40A + 24B + 16C}\]</div>
+<div class="math notranslate nohighlight">
+\[\text{validation loader} = {5A + 3B + 2C}\]</div>
+<div class="math notranslate nohighlight">
+\[\text{test loader} = {5A + 3B + 2C}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>datasets</strong> – the map of datasets to split, where each has a name (key) and a parser (value).</p></li>
+<li><p><strong>task</strong> – a task object that should be compatible with all provided datasets (can be <code class="docutils literal notranslate"><span class="pre">None</span></code>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A three-element tuple containing the maps of the training, validation, and test sets
+respectively. These maps associate dataset names to a list of sample indices.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.data.loaders.default_collate">
+<code class="sig-prename descclassname">thelper.data.loaders.</code><code class="sig-name descname">default_collate</code><span class="sig-paren">(</span><em class="sig-param">batch</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/loaders.html#default_collate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.loaders.default_collate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Puts each data field into a tensor with outer dimension batch size.</p>
+<p>This function is copied from PyTorch’s <cite>torch.utils.data._utils.collate.default_collate</cite>, but
+additionally supports custom objects from the framework (such as bounding boxes).</p>
+<p>See <code class="docutils literal notranslate"><span class="pre">torch.utils.data.DataLoader</span></code> for more information.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.data.parsers">
+<span id="thelper-data-parsers-module"></span><h2>thelper.data.parsers module<a class="headerlink" href="#module-thelper.data.parsers" title="Permalink to this headline">¶</a></h2>
+<p>Dataset parsers module.</p>
+<p>This module contains dataset parser interfaces and base classes that define basic i/o
+operations so that the framework can automatically interact with training data.</p>
+<dl class="class">
+<dt id="thelper.data.parsers.ClassificationDataset">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.data.parsers.</code><code class="sig-name descname">ClassificationDataset</code><span class="sig-paren">(</span><em class="sig-param">class_names</em>, <em class="sig-param">input_key</em>, <em class="sig-param">label_key</em>, <em class="sig-param">meta_keys=None</em>, <em class="sig-param">transforms=None</em>, <em class="sig-param">deepcopy=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#ClassificationDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.ClassificationDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.data.parsers.Dataset" title="thelper.data.parsers.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.Dataset</span></code></a></p>
+<p>Classification dataset specialization interface.</p>
+<p>This specialization receives some extra parameters in its constructor and automatically defines
+a <a class="reference internal" href="thelper.tasks.html#thelper.tasks.classif.Classification" title="thelper.tasks.classif.Classification"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.classif.Classification</span></code></a> task based on those. The derived class must still
+implement <a class="reference internal" href="#thelper.data.parsers.ClassificationDataset.__getitem__" title="thelper.data.parsers.ClassificationDataset.__getitem__"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.parsers.ClassificationDataset.__getitem__()</span></code></a>, and it must still store its
+samples as dictionaries in <code class="docutils literal notranslate"><span class="pre">self.samples</span></code> to behave properly.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.data.parsers.Dataset" title="thelper.data.parsers.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.Dataset</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.data.parsers.ClassificationDataset.__getitem__">
+<em class="property">abstract </em><code class="sig-name descname">__getitem__</code><span class="sig-paren">(</span><em class="sig-param">idx</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#ClassificationDataset.__getitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.ClassificationDataset.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the data sample (a dictionary) for a specific (0-based) index.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.data.parsers.ClassificationDataset.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">class_names</em>, <em class="sig-param">input_key</em>, <em class="sig-param">label_key</em>, <em class="sig-param">meta_keys=None</em>, <em class="sig-param">transforms=None</em>, <em class="sig-param">deepcopy=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#ClassificationDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.ClassificationDataset.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Classification dataset parser constructor.</p>
+<p>This constructor receives all extra arguments necessary to build a classification task object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>class_names</strong> – list of all class names (or labels) that will be associated with the samples.</p></li>
+<li><p><strong>input_key</strong> – key used to index the input data in the loaded samples.</p></li>
+<li><p><strong>label_key</strong> – key used to index the label (or class name) in the loaded samples.</p></li>
+<li><p><strong>meta_keys</strong> – list of extra keys that will be available in the loaded samples.</p></li>
+<li><p><strong>transforms</strong> – function or object that should be applied to all loaded samples in order to
+return the data in the requested transformed/augmented state.</p></li>
+<li><p><strong>deepcopy</strong> – specifies whether this dataset interface should be deep-copied inside
+<a class="reference internal" href="#thelper.data.loaders.LoaderFactory" title="thelper.data.loaders.LoaderFactory"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.loaders.LoaderFactory</span></code></a> so that it may be shared between
+different threads. This is false by default, as we assume datasets do not contain a state
+or buffer that might cause problems in multi-threaded data loaders.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.data.parsers.Dataset">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.data.parsers.</code><code class="sig-name descname">Dataset</code><span class="sig-paren">(</span><em class="sig-param">transforms=None</em>, <em class="sig-param">deepcopy=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#Dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.Dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.dataset.Dataset</span></code></p>
+<p>Abstract dataset parsing interface that holds a task and a list of sample dictionaries.</p>
+<p>This interface helps fix a failure of PyTorch’s dataset interface (<code class="docutils literal notranslate"><span class="pre">torch.utils.data.Dataset</span></code>):
+the lack of identity associated with the components of a sample. In short, a data sample loaded by a
+dataset typically contains the input data that should be forwarded to a model as well as the expected
+prediction of the model (i.e. the ‘groundtruth’) that will be used to compute the loss. These two
+elements are typically paired in a tuple that can then be provided to the data loader for batching.
+Problems however arise when the model has multiple inputs or outputs, when the sample needs to carry
+supplemental metadata to simplify debugging, or when transformation operations need to be applied
+only to specific elements of the sample. Here, we fix this issue by specifying that all samples must
+be provided to data loaders as dictionaries. The keys of these dictionaries explicitly define which
+value(s) should be transformed, which should be forwarded to the model, which are the expected model
+predictions, and which are only used for debugging. The keys are defined via the task object that is
+generated by the dataset or specified via the configuration file (see <a class="reference internal" href="thelper.tasks.html#thelper.tasks.utils.Task" title="thelper.tasks.utils.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.utils.Task</span></code></a>
+for more information).</p>
+<p>To properly use this interface, a derived class must thus implement <a class="reference internal" href="#thelper.data.parsers.Dataset.__getitem__" title="thelper.data.parsers.Dataset.__getitem__"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.parsers.Dataset.__getitem__()</span></code></a>,
+provide proper <code class="docutils literal notranslate"><span class="pre">self.task</span></code> and <code class="docutils literal notranslate"><span class="pre">self.samples</span></code> attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#thelper.data.parsers.Dataset.transforms" title="thelper.data.parsers.Dataset.transforms"><strong>transforms</strong></a> – function or object that should be applied to all loaded samples in order to
+return the data in the requested transformed/augmented state.</p></li>
+<li><p><a class="reference internal" href="#thelper.data.parsers.Dataset.deepcopy" title="thelper.data.parsers.Dataset.deepcopy"><strong>deepcopy</strong></a> – specifies whether this dataset interface should be deep-copied inside
+<a class="reference internal" href="#thelper.data.loaders.LoaderFactory" title="thelper.data.loaders.LoaderFactory"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.loaders.LoaderFactory</span></code></a> so that it may be shared between
+different threads. This is false by default, as we assume datasets do not contain a state
+or buffer that might cause problems in multi-threaded data loaders.</p></li>
+<li><p><a class="reference internal" href="#thelper.data.parsers.Dataset.samples" title="thelper.data.parsers.Dataset.samples"><strong>samples</strong></a> – list of dictionaries containing the data that is ready to be forwarded to the
+data loader. Note that relatively costly operations (such as reading images from a disk
+or pre-transforming them) should be delayed until the <a class="reference internal" href="#thelper.data.parsers.Dataset.__getitem__" title="thelper.data.parsers.Dataset.__getitem__"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.parsers.Dataset.__getitem__()</span></code></a>
+function is called, as they will most likely then be accomplished in a separate thread.
+Once loaded, these samples should never be modified by another part of the framework. For
+example, transformation and augmentation operations will always be applied to copies
+of these samples.</p></li>
+<li><p><a class="reference internal" href="#thelper.data.parsers.Dataset.task" title="thelper.data.parsers.Dataset.task"><strong>task</strong></a> – object used to define what keys are used to index the loaded data into sample dictionaries.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.data.parsers.ExternalDataset" title="thelper.data.parsers.ExternalDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.ExternalDataset</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.data.parsers.Dataset.__getitem__">
+<em class="property">abstract </em><code class="sig-name descname">__getitem__</code><span class="sig-paren">(</span><em class="sig-param">idx</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#Dataset.__getitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.Dataset.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the data sample (a dictionary) for a specific (0-based) index.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.data.parsers.Dataset.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">transforms=None</em>, <em class="sig-param">deepcopy=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#Dataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.Dataset.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dataset parser constructor.</p>
+<p>In order for derived datasets to be instantiated automatically by the framework from a configuration
+file, they must minimally accept a ‘transforms’ argument like the shown one here.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>transforms</strong> – function or object that should be applied to all loaded samples in order to
+return the data in the requested transformed/augmented state.</p></li>
+<li><p><strong>deepcopy</strong> – specifies whether this dataset interface should be deep-copied inside
+<a class="reference internal" href="#thelper.data.loaders.LoaderFactory" title="thelper.data.loaders.LoaderFactory"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.loaders.LoaderFactory</span></code></a> so that it may be shared between
+different threads. This is false by default, as we assume datasets do not contain a state
+or buffer that might cause problems in multi-threaded data loaders.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.data.parsers.Dataset.deepcopy">
+<em class="property">property </em><code class="sig-name descname">deepcopy</code><a class="headerlink" href="#thelper.data.parsers.Dataset.deepcopy" title="Permalink to this definition">¶</a></dt>
+<dd><p>specifies whether this dataset interface should be deep-copied inside
+<a class="reference internal" href="#thelper.data.loaders.LoaderFactory" title="thelper.data.loaders.LoaderFactory"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.loaders.LoaderFactory</span></code></a> so that it may be shared between
+different threads. This is false by default, as we assume datasets do not contain a state
+or buffer that might cause problems in multi-threaded data loaders.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.data.parsers.Dataset.samples">
+<em class="property">property </em><code class="sig-name descname">samples</code><a class="headerlink" href="#thelper.data.parsers.Dataset.samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of internal samples held by this dataset interface.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.data.parsers.Dataset.task">
+<em class="property">property </em><code class="sig-name descname">task</code><a class="headerlink" href="#thelper.data.parsers.Dataset.task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the task object associated with this dataset interface.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.data.parsers.Dataset.transforms">
+<em class="property">property </em><code class="sig-name descname">transforms</code><a class="headerlink" href="#thelper.data.parsers.Dataset.transforms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the transformation operations to apply to this dataset’s loaded samples.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.data.parsers.ExternalDataset">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.data.parsers.</code><code class="sig-name descname">ExternalDataset</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">task</em>, <em class="sig-param">transforms=None</em>, <em class="sig-param">deepcopy=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#ExternalDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.ExternalDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.data.parsers.Dataset" title="thelper.data.parsers.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.Dataset</span></code></a></p>
+<p>External dataset interface.</p>
+<p>This interface allows external classes to be instantiated automatically in the framework through
+a configuration file, as long as they themselves provide implementations for  <code class="docutils literal notranslate"><span class="pre">__getitem__</span></code> and
+<code class="docutils literal notranslate"><span class="pre">__len__</span></code>. This includes all derived classes of <code class="docutils literal notranslate"><span class="pre">torch.utils.data.Dataset</span></code> such as
+<code class="docutils literal notranslate"><span class="pre">torchvision.datasets.ImageFolder</span></code>, and the specialized versions such as <code class="docutils literal notranslate"><span class="pre">torchvision.datasets.CIFAR10</span></code>.</p>
+<p>Note that for this interface to be compatible with our runtime instantiation rules, the constructor
+needs to receive a fully constructed task object. This object is currently constructed in
+<a class="reference internal" href="#thelper.data.utils.create_parsers" title="thelper.data.utils.create_parsers"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.create_parsers()</span></code></a> based on extra parameters; see the code there for more
+information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset_type</strong> – type of the internally instantiated or provided dataset object.</p></li>
+<li><p><strong>warned_dictionary</strong> – specifies whether the user was warned about missing keys in the output
+samples dictionaries.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.data.parsers.Dataset" title="thelper.data.parsers.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.Dataset</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.data.parsers.ExternalDataset.__getitem__">
+<code class="sig-name descname">__getitem__</code><span class="sig-paren">(</span><em class="sig-param">idx</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#ExternalDataset.__getitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.ExternalDataset.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the data sample (a dictionary) for a specific (0-based) index.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.data.parsers.ExternalDataset.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">task</em>, <em class="sig-param">transforms=None</em>, <em class="sig-param">deepcopy=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#ExternalDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.ExternalDataset.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>External dataset parser constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> – fully qualified name of the dataset object to instantiate, or the dataset itself.</p></li>
+<li><p><strong>task</strong> – fully constructed task object providing key information for sample loading.</p></li>
+<li><p><strong>transforms</strong> – function or object that should be applied to all loaded samples in order to
+return the data in the requested transformed/augmented state.</p></li>
+<li><p><strong>deepcopy</strong> – specifies whether this dataset interface should be deep-copied inside
+<a class="reference internal" href="#thelper.data.loaders.LoaderFactory" title="thelper.data.loaders.LoaderFactory"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.loaders.LoaderFactory</span></code></a> so that it may be shared between
+different threads. This is false by default, as we assume datasets do not contain a state
+or buffer that might cause problems in multi-threaded data loaders.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.data.parsers.HDF5Dataset">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.data.parsers.</code><code class="sig-name descname">HDF5Dataset</code><span class="sig-paren">(</span><em class="sig-param">root</em>, <em class="sig-param">subset='train'</em>, <em class="sig-param">transforms=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#HDF5Dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.HDF5Dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.data.parsers.Dataset" title="thelper.data.parsers.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.Dataset</span></code></a></p>
+<p>HDF5 dataset specialization interface.</p>
+<p>This specialization is compatible with the HDF5 packages made by the CLI’s “split” operation. The
+archives it loads contains pre-split datasets that can be reloaded without having to resplit their
+data. The archive also contains useful metadata, and a task interface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>archive</strong> – file descriptor for the opened hdf5 dataset.</p></li>
+<li><p><strong>subset</strong> – hdf5 group section representing the targeted set.</p></li>
+<li><p><strong>target_args</strong> – list decompression args required for each sample key.</p></li>
+<li><p><strong>source</strong> – source logstamp of the hdf5 dataset.</p></li>
+<li><p><strong>git_sha1</strong> – framework git tag of the hdf5 dataset.</p></li>
+<li><p><strong>version</strong> – version of the framework that saved the hdf5 dataset.</p></li>
+<li><p><strong>orig_config</strong> – configuration used to originally generate the hdf5 dataset.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="thelper.html#thelper.cli.split_data" title="thelper.cli.split_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.cli.split_data()</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.data.utils.create_hdf5" title="thelper.data.utils.create_hdf5"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.create_hdf5()</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.data.parsers.HDF5Dataset.__getitem__">
+<code class="sig-name descname">__getitem__</code><span class="sig-paren">(</span><em class="sig-param">idx</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#HDF5Dataset.__getitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.HDF5Dataset.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the data sample (a dictionary) for a specific (0-based) index.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.data.parsers.HDF5Dataset.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">root</em>, <em class="sig-param">subset='train'</em>, <em class="sig-param">transforms=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#HDF5Dataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.HDF5Dataset.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>HDF5 dataset parser constructor.</p>
+<p>This constructor receives the path to the HDF5 archive as well as a subset indicating which
+section of the archive to load. By default, it loads the training set.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.data.parsers.HDF5Dataset.close">
+<code class="sig-name descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#HDF5Dataset.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.HDF5Dataset.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Closes the internal HDF5 file.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.data.parsers.ImageDataset">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.data.parsers.</code><code class="sig-name descname">ImageDataset</code><span class="sig-paren">(</span><em class="sig-param">root</em>, <em class="sig-param">transforms=None</em>, <em class="sig-param">image_key='image'</em>, <em class="sig-param">path_key='path'</em>, <em class="sig-param">idx_key='idx'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#ImageDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.ImageDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.data.parsers.Dataset" title="thelper.data.parsers.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.Dataset</span></code></a></p>
+<p>Image dataset specialization interface.</p>
+<p>This specialization is used to parse simple image folders, and it does not fulfill the requirements of any
+specialized task constructors due to the lack of groundtruth data support. Therefore, it returns a basic task
+object (<a class="reference internal" href="thelper.tasks.html#thelper.tasks.utils.Task" title="thelper.tasks.utils.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.utils.Task</span></code></a>) with no set value for the groundtruth key, and it cannot be used to
+directly train a model. It can however be useful when simply visualizing, annotating, or testing raw data
+from a simple directory structure.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.data.parsers.Dataset" title="thelper.data.parsers.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.Dataset</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.data.parsers.ImageDataset.__getitem__">
+<code class="sig-name descname">__getitem__</code><span class="sig-paren">(</span><em class="sig-param">idx</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#ImageDataset.__getitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.ImageDataset.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the data sample (a dictionary) for a specific (0-based) index.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.data.parsers.ImageDataset.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">root</em>, <em class="sig-param">transforms=None</em>, <em class="sig-param">image_key='image'</em>, <em class="sig-param">path_key='path'</em>, <em class="sig-param">idx_key='idx'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#ImageDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.ImageDataset.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Image dataset parser constructor.</p>
+<p>This constructor exposes some of the configurable keys used to index sample dictionaries.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.data.parsers.ImageFolderDataset">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.data.parsers.</code><code class="sig-name descname">ImageFolderDataset</code><span class="sig-paren">(</span><em class="sig-param">root</em>, <em class="sig-param">transforms=None</em>, <em class="sig-param">image_key='image'</em>, <em class="sig-param">label_key='label'</em>, <em class="sig-param">path_key='path'</em>, <em class="sig-param">idx_key='idx'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#ImageFolderDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.ImageFolderDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.data.parsers.ClassificationDataset" title="thelper.data.parsers.ClassificationDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.ClassificationDataset</span></code></a></p>
+<p>Image folder dataset specialization interface for classification tasks.</p>
+<p>This specialization is used to parse simple image subfolders, and it essentially replaces the very
+basic <code class="docutils literal notranslate"><span class="pre">torchvision.datasets.ImageFolder</span></code> interface with similar functionalities. It it used to provide
+a proper task interface as well as path metadata in each loaded packet for metrics/logging output.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.data.parsers.ImageDataset" title="thelper.data.parsers.ImageDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.ImageDataset</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.data.parsers.ClassificationDataset" title="thelper.data.parsers.ClassificationDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.ClassificationDataset</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.data.parsers.ImageFolderDataset.__getitem__">
+<code class="sig-name descname">__getitem__</code><span class="sig-paren">(</span><em class="sig-param">idx</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#ImageFolderDataset.__getitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.ImageFolderDataset.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the data sample (a dictionary) for a specific (0-based) index.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.data.parsers.ImageFolderDataset.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">root</em>, <em class="sig-param">transforms=None</em>, <em class="sig-param">image_key='image'</em>, <em class="sig-param">label_key='label'</em>, <em class="sig-param">path_key='path'</em>, <em class="sig-param">idx_key='idx'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#ImageFolderDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.ImageFolderDataset.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Image folder dataset parser constructor.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.data.parsers.SegmentationDataset">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.data.parsers.</code><code class="sig-name descname">SegmentationDataset</code><span class="sig-paren">(</span><em class="sig-param">class_names</em>, <em class="sig-param">input_key</em>, <em class="sig-param">label_map_key</em>, <em class="sig-param">meta_keys=None</em>, <em class="sig-param">dontcare=None</em>, <em class="sig-param">transforms=None</em>, <em class="sig-param">deepcopy=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#SegmentationDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.SegmentationDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.data.parsers.Dataset" title="thelper.data.parsers.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.Dataset</span></code></a></p>
+<p>Segmentation dataset specialization interface.</p>
+<p>This specialization receives some extra parameters in its constructor and automatically defines
+its task (<a class="reference internal" href="thelper.tasks.html#thelper.tasks.segm.Segmentation" title="thelper.tasks.segm.Segmentation"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.segm.Segmentation</span></code></a>) based on those. The derived class must still
+implement <a class="reference internal" href="#thelper.data.parsers.SegmentationDataset.__getitem__" title="thelper.data.parsers.SegmentationDataset.__getitem__"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.parsers.SegmentationDataset.__getitem__()</span></code></a>, and it must still store its
+samples as dictionaries in <code class="docutils literal notranslate"><span class="pre">self.samples</span></code> to behave properly.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.data.parsers.Dataset" title="thelper.data.parsers.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.Dataset</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.data.parsers.SegmentationDataset.__getitem__">
+<em class="property">abstract </em><code class="sig-name descname">__getitem__</code><span class="sig-paren">(</span><em class="sig-param">idx</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#SegmentationDataset.__getitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.SegmentationDataset.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the data sample (a dictionary) for a specific (0-based) index.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.data.parsers.SegmentationDataset.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">class_names</em>, <em class="sig-param">input_key</em>, <em class="sig-param">label_map_key</em>, <em class="sig-param">meta_keys=None</em>, <em class="sig-param">dontcare=None</em>, <em class="sig-param">transforms=None</em>, <em class="sig-param">deepcopy=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#SegmentationDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.SegmentationDataset.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Segmentation dataset parser constructor.</p>
+<p>This constructor receives all extra arguments necessary to build a segmentation task object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>class_names</strong> – list of all class names (or labels) that must be predicted in the image.</p></li>
+<li><p><strong>input_key</strong> – key used to index the input image in the loaded samples.</p></li>
+<li><p><strong>label_map_key</strong> – key used to index the label map in the loaded samples.</p></li>
+<li><p><strong>meta_keys</strong> – list of extra keys that will be available in the loaded samples.</p></li>
+<li><p><strong>transforms</strong> – function or object that should be applied to all loaded samples in order to
+return the data in the requested transformed/augmented state.</p></li>
+<li><p><strong>deepcopy</strong> – specifies whether this dataset interface should be deep-copied inside
+<a class="reference internal" href="#thelper.data.loaders.LoaderFactory" title="thelper.data.loaders.LoaderFactory"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.loaders.LoaderFactory</span></code></a> so that it may be shared between
+different threads. This is false by default, as we assume datasets do not contain a state
+or buffer that might cause problems in multi-threaded data loaders.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.data.parsers.SuperResFolderDataset">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.data.parsers.</code><code class="sig-name descname">SuperResFolderDataset</code><span class="sig-paren">(</span><em class="sig-param">root</em>, <em class="sig-param">downscale_factor=2.0</em>, <em class="sig-param">rescale_lowres=True</em>, <em class="sig-param">center_crop=None</em>, <em class="sig-param">transforms=None</em>, <em class="sig-param">lowres_image_key='lowres_image'</em>, <em class="sig-param">highres_image_key='highres_image'</em>, <em class="sig-param">path_key='path'</em>, <em class="sig-param">idx_key='idx'</em>, <em class="sig-param">label_key='label'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#SuperResFolderDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.SuperResFolderDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.data.parsers.Dataset" title="thelper.data.parsers.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.Dataset</span></code></a></p>
+<p>Image folder dataset specialization interface for super-resolution tasks.</p>
+<p>This specialization is used to parse simple image subfolders, and it essentially replaces the very
+basic <code class="docutils literal notranslate"><span class="pre">torchvision.datasets.ImageFolder</span></code> interface with similar functionalities. It it used to provide
+a proper task interface as well as path/class metadata in each loaded packet for metrics/logging output.</p>
+<dl class="method">
+<dt id="thelper.data.parsers.SuperResFolderDataset.__getitem__">
+<code class="sig-name descname">__getitem__</code><span class="sig-paren">(</span><em class="sig-param">idx</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#SuperResFolderDataset.__getitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.SuperResFolderDataset.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the data sample (a dictionary) for a specific (0-based) index.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.data.parsers.SuperResFolderDataset.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">root</em>, <em class="sig-param">downscale_factor=2.0</em>, <em class="sig-param">rescale_lowres=True</em>, <em class="sig-param">center_crop=None</em>, <em class="sig-param">transforms=None</em>, <em class="sig-param">lowres_image_key='lowres_image'</em>, <em class="sig-param">highres_image_key='highres_image'</em>, <em class="sig-param">path_key='path'</em>, <em class="sig-param">idx_key='idx'</em>, <em class="sig-param">label_key='label'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/parsers.html#SuperResFolderDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.parsers.SuperResFolderDataset.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Image folder dataset parser constructor.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.data.pascalvoc">
+<span id="thelper-data-pascalvoc-module"></span><h2>thelper.data.pascalvoc module<a class="headerlink" href="#module-thelper.data.pascalvoc" title="Permalink to this headline">¶</a></h2>
+<p>PASCAL VOC dataset parser module.</p>
+<p>This module contains a dataset parser used to load the PASCAL Visual Object Classes (VOC) dataset for
+semantic segmentation or object detection. See <a class="reference external" href="http://host.robots.ox.ac.uk/pascal/VOC/">http://host.robots.ox.ac.uk/pascal/VOC/</a> for more info.</p>
+<dl class="class">
+<dt id="thelper.data.pascalvoc.PASCALVOC">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.data.pascalvoc.</code><code class="sig-name descname">PASCALVOC</code><span class="sig-paren">(</span><em class="sig-param">root</em>, <em class="sig-param">task='segm'</em>, <em class="sig-param">subset='trainval'</em>, <em class="sig-param">target_labels=None</em>, <em class="sig-param">download=False</em>, <em class="sig-param">preload=True</em>, <em class="sig-param">use_difficult=False</em>, <em class="sig-param">use_occluded=True</em>, <em class="sig-param">use_truncated=True</em>, <em class="sig-param">transforms=None</em>, <em class="sig-param">image_key='image'</em>, <em class="sig-param">sample_name_key='name'</em>, <em class="sig-param">idx_key='idx'</em>, <em class="sig-param">image_path_key='image_path'</em>, <em class="sig-param">gt_path_key='gt_path'</em>, <em class="sig-param">bboxes_key='bboxes'</em>, <em class="sig-param">label_map_key='label_map'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/pascalvoc.html#PASCALVOC"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.pascalvoc.PASCALVOC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.data.parsers.Dataset" title="thelper.data.parsers.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.Dataset</span></code></a></p>
+<p>PASCAL VOC dataset parser.</p>
+<p>This class can be used to parse the PASCAL VOC dataset for either semantic segmentation or object
+detection. The task object it exposes will be changed accordingly. In all cases, the 2012 version
+of the dataset will be used.</p>
+<p>TODO: Add support for semantic instance segmentation.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.data.parsers.Dataset" title="thelper.data.parsers.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.Dataset</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.data.pascalvoc.PASCALVOC.__getitem__">
+<code class="sig-name descname">__getitem__</code><span class="sig-paren">(</span><em class="sig-param">idx</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/pascalvoc.html#PASCALVOC.__getitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.pascalvoc.PASCALVOC.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the data sample (a dictionary) for a specific (0-based) index.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.data.pascalvoc.PASCALVOC.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">root</em>, <em class="sig-param">task='segm'</em>, <em class="sig-param">subset='trainval'</em>, <em class="sig-param">target_labels=None</em>, <em class="sig-param">download=False</em>, <em class="sig-param">preload=True</em>, <em class="sig-param">use_difficult=False</em>, <em class="sig-param">use_occluded=True</em>, <em class="sig-param">use_truncated=True</em>, <em class="sig-param">transforms=None</em>, <em class="sig-param">image_key='image'</em>, <em class="sig-param">sample_name_key='name'</em>, <em class="sig-param">idx_key='idx'</em>, <em class="sig-param">image_path_key='image_path'</em>, <em class="sig-param">gt_path_key='gt_path'</em>, <em class="sig-param">bboxes_key='bboxes'</em>, <em class="sig-param">label_map_key='label_map'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/pascalvoc.html#PASCALVOC.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.pascalvoc.PASCALVOC.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dataset parser constructor.</p>
+<p>In order for derived datasets to be instantiated automatically by the framework from a configuration
+file, they must minimally accept a ‘transforms’ argument like the shown one here.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>transforms</strong> – function or object that should be applied to all loaded samples in order to
+return the data in the requested transformed/augmented state.</p></li>
+<li><p><strong>deepcopy</strong> – specifies whether this dataset interface should be deep-copied inside
+<a class="reference internal" href="#thelper.data.loaders.LoaderFactory" title="thelper.data.loaders.LoaderFactory"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.loaders.LoaderFactory</span></code></a> so that it may be shared between
+different threads. This is false by default, as we assume datasets do not contain a state
+or buffer that might cause problems in multi-threaded data loaders.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.data.pascalvoc.PASCALVOC.decode_label_map">
+<code class="sig-name descname">decode_label_map</code><span class="sig-paren">(</span><em class="sig-param">label_map</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/pascalvoc.html#PASCALVOC.decode_label_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.pascalvoc.PASCALVOC.decode_label_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a color image from a label indices map.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.data.pascalvoc.PASCALVOC.encode_label_map">
+<code class="sig-name descname">encode_label_map</code><span class="sig-paren">(</span><em class="sig-param">label_map</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/pascalvoc.html#PASCALVOC.encode_label_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.pascalvoc.PASCALVOC.encode_label_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a map of label indices from a color image.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.data.samplers">
+<span id="thelper-data-samplers-module"></span><h2>thelper.data.samplers module<a class="headerlink" href="#module-thelper.data.samplers" title="Permalink to this headline">¶</a></h2>
+<p>Samplers module.</p>
+<p>This module contains classes used for raw dataset rebalancing or augmentation.</p>
+<p>All samplers here should aim to be compatible with PyTorch’s sampling interface
+(torch.utils.data.sampler.Sampler) so that they can be instantiated at runtime
+through a configuration file and used as the input of a data loader.</p>
+<dl class="class">
+<dt id="thelper.data.samplers.SubsetRandomSampler">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.data.samplers.</code><code class="sig-name descname">SubsetRandomSampler</code><span class="sig-paren">(</span><em class="sig-param">indices</em>, <em class="sig-param">seeds=None</em>, <em class="sig-param">epoch=0</em>, <em class="sig-param">scale=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/samplers.html#SubsetRandomSampler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.samplers.SubsetRandomSampler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.sampler.Sampler</span></code></p>
+<p>Samples elements randomly from a given list of indices, without replacement.</p>
+<p>This specialization handles seeding based on the epoch number, and scaling (via duplication/decimation)
+of samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>indices</strong> (<em>list</em>) – a list of indices</p></li>
+<li><p><strong>seeds</strong> (<em>dict</em>) – dictionary of seeds to use when initializing RNG state.</p></li>
+<li><p><strong>epoch</strong> (<em>int</em>) – epoch number used to reinitialize the RNG to an epoch-specific state.</p></li>
+<li><p><strong>scale</strong> (<em>float</em>) – scaling factor used to increase/decrease the final number of samples.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.data.samplers.SubsetRandomSampler.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">indices</em>, <em class="sig-param">seeds=None</em>, <em class="sig-param">epoch=0</em>, <em class="sig-param">scale=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/samplers.html#SubsetRandomSampler.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.samplers.SubsetRandomSampler.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.data.samplers.SubsetRandomSampler.set_epoch">
+<code class="sig-name descname">set_epoch</code><span class="sig-paren">(</span><em class="sig-param">epoch=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/samplers.html#SubsetRandomSampler.set_epoch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.samplers.SubsetRandomSampler.set_epoch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the current epoch number in order to offset the RNG state for sampling.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.data.samplers.SubsetSequentialSampler">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.data.samplers.</code><code class="sig-name descname">SubsetSequentialSampler</code><span class="sig-paren">(</span><em class="sig-param">indices</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/samplers.html#SubsetSequentialSampler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.samplers.SubsetSequentialSampler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.sampler.Sampler</span></code></p>
+<p>Samples element indices sequentially, always in the same order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>indices</strong> (<em>list</em>) – a list of indices</p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.data.samplers.SubsetSequentialSampler.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">indices</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/samplers.html#SubsetSequentialSampler.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.samplers.SubsetSequentialSampler.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.data.samplers.WeightedSubsetRandomSampler">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.data.samplers.</code><code class="sig-name descname">WeightedSubsetRandomSampler</code><span class="sig-paren">(</span><em class="sig-param">indices</em>, <em class="sig-param">labels</em>, <em class="sig-param">stype='uniform'</em>, <em class="sig-param">scale=1.0</em>, <em class="sig-param">seeds=None</em>, <em class="sig-param">epoch=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/samplers.html#WeightedSubsetRandomSampler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.samplers.WeightedSubsetRandomSampler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.sampler.Sampler</span></code></p>
+<p>Provides a rebalanced list of sample indices to use in a data loader.</p>
+<p>Given a list of sample indices and the corresponding list of class labels, this sampler
+will produce a new list of indices that rebalances the distribution of samples according
+to a specified strategy. It can also optionally scale the dataset’s total sample count to
+avoid undersampling large classes as smaller ones get bigger.</p>
+<p>The currently implemented strategies are:</p>
+<blockquote>
+<div><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">random</span></code>: will return a list of randomly picked samples based on the multinomial distribution of the initial class weights. This sampling is done with replacement, meaning that each index is picked independently of the already-picked ones.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uniform</span></code>: will rebalance the dataset by normalizing the sample count of all classes, oversampling and undersampling as required to distribute all samples equally. All removed or duplicated samples are selected randomly without replacement.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">root</span></code>: will rebalance the dataset by normalizing class weight using an n-th degree root. More specifically, for a list of initial class weights <span class="math notranslate nohighlight">\(W^0=\{w_1^0, w_2^0, ... w_n^0\}\)</span>, we compute the adjusted weight <span class="math notranslate nohighlight">\(w_i\)</span> of each class via:</p>
+<div class="math notranslate nohighlight">
+\[w_i = \frac{\sqrt[\leftroot{-1}\uproot{3}n]{w_i^0}}{\sum_j\sqrt[\leftroot{-1}\uproot{3}n]{w_j^0}}\]</div>
+<p>Then, according to the new distribution of weights, all classes are oversampled and
+undersampled as required to reobtain the dataset’s total sample count (which may be
+scaled). All removed or duplicated samples are selected randomly without replacement.</p>
+<p>Note that with the <code class="docutils literal notranslate"><span class="pre">root</span></code> strategy, if a very large root degree <code class="docutils literal notranslate"><span class="pre">n</span></code> is used, this
+strategy is equivalent to <code class="docutils literal notranslate"><span class="pre">uniform</span></code>. The <code class="docutils literal notranslate"><span class="pre">root</span></code> strategy essentially provides a
+solution for extremely unbalanced datasets where uniform oversampling and undersampling
+would be too aggressive.</p>
+</li>
+</ul>
+</div></blockquote>
+<p>By default, this interface will try to keep the dataset size constant and balance oversampling
+with undersampling. If undersampling is undesired, the user can increase the total dataset
+size via a scale factor. Finally, note that the rebalanced list of indices is generated by
+this interface every time the <code class="docutils literal notranslate"><span class="pre">__iter__</span></code> function is called, meaning two consecutive lists
+might not contain the exact same indices.</p>
+<p>Example configuration file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
+<span class="c1"># the sampler is defined inside the &#39;loaders&#39; field</span>
+<span class="s2">&quot;loaders&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1"># ...</span>
+    <span class="c1"># this field is completely optional, and can be omitted entirely</span>
+    <span class="s2">&quot;sampler&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># the type of the sampler we want to instantiate</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.data.samplers.WeightedSubsetRandomSampler&quot;</span><span class="p">,</span>
+        <span class="c1"># the parameters passed to the sampler&#39;s constructor</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;stype&quot;</span><span class="p">:</span> <span class="s2">&quot;root3&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;scale&quot;</span><span class="p">:</span> <span class="mf">1.2</span>
+        <span class="p">},</span>
+        <span class="c1"># specifies whether the sampler should receive class labels</span>
+        <span class="s2">&quot;pass_labels&quot;</span><span class="p">:</span> <span class="n">true</span>
+    <span class="p">},</span>
+    <span class="c1"># ...</span>
+<span class="p">},</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nb_samples</strong> – total number of samples to rebalance (i.e. scaled size of original dataset).</p></li>
+<li><p><strong>label_groups</strong> – map that splits all samples indices into groups based on labels.</p></li>
+<li><p><strong>stype</strong> – name of the rebalancing strategy to use.</p></li>
+<li><p><strong>indices</strong> – copy of the original list of sample indices provided in the constructor.</p></li>
+<li><p><strong>sample_weights</strong> – list of weights used for random sampling.</p></li>
+<li><p><strong>label_counts</strong> – number of samples in each class for the <code class="docutils literal notranslate"><span class="pre">uniform</span></code> and <code class="docutils literal notranslate"><span class="pre">root</span></code> strategies.</p></li>
+<li><p><strong>seeds</strong> – dictionary of seeds to use when initializing RNG state.</p></li>
+<li><p><strong>epoch</strong> – epoch number used to reinitialize the RNG to an epoch-specific state.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.data.utils.create_loaders" title="thelper.data.utils.create_loaders"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.create_loaders()</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.data.utils.get_class_weights" title="thelper.data.utils.get_class_weights"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.get_class_weights()</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.data.samplers.WeightedSubsetRandomSampler.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">indices</em>, <em class="sig-param">labels</em>, <em class="sig-param">stype='uniform'</em>, <em class="sig-param">scale=1.0</em>, <em class="sig-param">seeds=None</em>, <em class="sig-param">epoch=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/samplers.html#WeightedSubsetRandomSampler.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.samplers.WeightedSubsetRandomSampler.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives sample indices, labels, rebalancing strategy, and dataset scaling factor.</p>
+<p>This function will validate all input arguments, parse and categorize samples according to
+labels, initialize rebalancing parameters, and determine sample counts for each valid class.
+Note that an empty list of indices is an acceptable input; the resulting object will also
+create and empty list of samples when <code class="docutils literal notranslate"><span class="pre">__iter__</span></code> is called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>indices</strong> – list of integers representing the indices of samples of interest in the dataset.</p></li>
+<li><p><strong>labels</strong> – list of labels tied to the list of indices (must be the same length).</p></li>
+<li><p><strong>stype</strong> – rebalancing strategy given as a string. Should be either “random”, “uniform”, or
+“rootX”, where the ‘X’ is the degree to use in the root computation (float).</p></li>
+<li><p><strong>scale</strong> – scaling factor used to increase/decrease the final number of sample indices to
+generate while rebalancing.</p></li>
+<li><p><strong>seeds</strong> – dictionary of seeds to use when initializing RNG state.</p></li>
+<li><p><strong>epoch</strong> – epoch number used to reinitialize the RNG to an epoch-specific state.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.data.samplers.WeightedSubsetRandomSampler.set_epoch">
+<code class="sig-name descname">set_epoch</code><span class="sig-paren">(</span><em class="sig-param">epoch=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/samplers.html#WeightedSubsetRandomSampler.set_epoch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.samplers.WeightedSubsetRandomSampler.set_epoch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the current epoch number in order to offset the RNG state for sampling.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.data.utils">
+<span id="thelper-data-utils-module"></span><h2>thelper.data.utils module<a class="headerlink" href="#module-thelper.data.utils" title="Permalink to this headline">¶</a></h2>
+<p>Dataset utility functions and tools.</p>
+<p>This module contains utility functions and tools used to instantiate data loaders and parsers.</p>
+<dl class="function">
+<dt id="thelper.data.utils.create_hdf5">
+<code class="sig-prename descclassname">thelper.data.utils.</code><code class="sig-name descname">create_hdf5</code><span class="sig-paren">(</span><em class="sig-param">archive_path</em>, <em class="sig-param">task</em>, <em class="sig-param">train_loader</em>, <em class="sig-param">valid_loader</em>, <em class="sig-param">test_loader</em>, <em class="sig-param">compression=None</em>, <em class="sig-param">config_backup=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/utils.html#create_hdf5"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.utils.create_hdf5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the samples loaded from train/valid/test data loaders into an HDF5 archive.</p>
+<p>The loaded minibatches are decomposed into individual samples. The keys provided via the task interface are used
+to fetch elements (input, groundtruth, …) from the samples, and save them in the archive. The archive will
+contain three groups (<cite>train</cite>, <cite>valid</cite>, and <cite>test</cite>), and each group will contain a dataset for each element
+originally found in the samples.</p>
+<p>Note that the compression operates at the sample level, not at the dataset level. This means that elements of
+each sample will be compressed individually, not as an array. Therefore, if you are trying to compress very
+correlated samples (e.g. frames in a video sequence), this approach will be pretty bad.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>archive_path</strong> – path pointing where the HDF5 archive should be created.</p></li>
+<li><p><strong>task</strong> – task object that defines the input, groundtruth, and meta keys tied to elements that should be
+parsed from loaded samples and saved in the HDF5 archive.</p></li>
+<li><p><strong>train_loader</strong> – training data loader (can be <cite>None</cite>).</p></li>
+<li><p><strong>valid_loader</strong> – validation data loader (can be <cite>None</cite>).</p></li>
+<li><p><strong>test_loader</strong> – testing data loader (can be <cite>None</cite>).</p></li>
+<li><p><strong>compression</strong> – the compression configuration dictionary that will be parsed to determine how sample
+elements should be compressed. If a mapping is missing, that element will not be compressed.</p></li>
+<li><p><strong>config_backup</strong> – optional session configuration file that should be saved in the HDF5 archive.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example compression configuration:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># the config is given as a dictionary</span>
+<span class="p">{</span>
+    <span class="c1"># each field is a key that corresponds to an element in each sample</span>
+    <span class="s2">&quot;key1&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># the &#39;type&#39; identifies the compression approach to use</span>
+        <span class="c1"># (see thelper.utils.encode_data for more information)</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;jpg&quot;</span><span class="p">,</span>
+        <span class="c1"># extra parameters might be needed to encode the data</span>
+        <span class="c1"># (see thelper.utils.encode_data for more information)</span>
+        <span class="s2">&quot;encode_params&quot;</span><span class="p">:</span> <span class="p">{}</span>
+        <span class="c1"># these parameters are packed and kept for decoding</span>
+        <span class="c1"># (see thelper.utils.decode_data for more information)</span>
+        <span class="s2">&quot;decode_params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;flags&quot;</span><span class="p">:</span> <span class="s2">&quot;cv.IMREAD_COLOR&quot;</span><span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;key2&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># this explicitly means that no encoding should be performed</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;none&quot;</span>
+    <span class="p">},</span>
+    <span class="o">...</span>
+    <span class="c1"># if a key is missing, its elements will not be compressed</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="thelper.html#thelper.cli.split_data" title="thelper.cli.split_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.cli.split_data()</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.data.parsers.HDF5Dataset" title="thelper.data.parsers.HDF5Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.HDF5Dataset</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.html#thelper.utils.encode_data" title="thelper.utils.encode_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.utils.encode_data()</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.html#thelper.utils.decode_data" title="thelper.utils.decode_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.utils.decode_data()</span></code></a></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.data.utils.create_loaders">
+<code class="sig-prename descclassname">thelper.data.utils.</code><code class="sig-name descname">create_loaders</code><span class="sig-paren">(</span><em class="sig-param">config</em>, <em class="sig-param">save_dir=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/utils.html#create_loaders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.utils.create_loaders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepares the task and data loaders for a model trainer based on a provided data configuration.</p>
+<p>This function will parse a configuration dictionary and extract all the information required to
+instantiate the requested dataset parsers. Then, combining the task metadata of all these parsers, it
+will evenly split the available samples into three sets (training, validation, test) to be handled by
+different data loaders. These will finally be returned along with the (global) task object.</p>
+<p>The configuration dictionary is expected to contain two fields: <code class="docutils literal notranslate"><span class="pre">loaders</span></code>, which specifies all
+parameters required for establishing the dataset split, shuffling seeds, and batch size (these are
+listed and detailed below); and <code class="docutils literal notranslate"><span class="pre">datasets</span></code>, which lists the dataset parser interfaces to instantiate
+as well as their parameters. For more information on the <code class="docutils literal notranslate"><span class="pre">datasets</span></code> field, refer to
+<a class="reference internal" href="#thelper.data.utils.create_parsers" title="thelper.data.utils.create_parsers"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.create_parsers()</span></code></a>.</p>
+<p>The parameters expected in the ‘loaders’ configuration field are the following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;train_/valid_/test_&gt;batch_size</span></code> (mandatory): specifies the (mini)batch size to use in data
+loaders. If you get an ‘out of memory’ error at runtime, try reducing it.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;train_/valid_/test_&gt;collate_fn</span></code> (optional): specifies the collate function to use in data
+loaders. The default one is typically fine, but some datasets might require a custom function.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shuffle</span></code> (optional, default=True): specifies whether the data loaders should shuffle
+their samples or not.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_seed</span></code> (optional): specifies the RNG seed to use when splitting test data. If no seed
+is specified, the RNG will be initialized with a device-specific or time-related seed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">valid_seed</span></code> (optional): specifies the RNG seed to use when splitting validation data. If no
+seed is specified, the RNG will be initialized with a device-specific or time-related seed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">torch_seed</span></code> (optional): specifies the RNG seed to use for torch-related stochastic operations
+(e.g. for data augmentation). If no seed is specified, the RNG will be initialized with a
+device-specific or time-related seed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numpy_seed</span></code> (optional): specifies the RNG seed to use for numpy-related stochastic operations
+(e.g. for data augmentation). If no seed is specified, the RNG will be initialized with a
+device-specific or time-related seed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">random_seed</span></code> (optional): specifies the RNG seed to use for stochastic operations with python’s
+‘random’ package. If no seed is specified, the RNG will be initialized with a device-specific or
+time-related seed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">workers</span></code> (optional, default=1): specifies the number of threads to use to preload batches in
+parallel; can be 0 (loading will be on main thread), or an integer &gt;= 1.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pin_memory</span></code> (optional, default=False): specifies whether the data loaders will copy tensors
+into CUDA-pinned memory before returning them.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">drop_last</span></code> (optional, default=False): specifies whether to drop the last incomplete batch
+or not if the dataset size is not a multiple of the batch size.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sampler</span></code> (optional): specifies a type of sampler and its constructor parameters to be used
+in the data loaders. This can be used for example to help rebalance a dataset based on its
+class distribution. See <a class="reference internal" href="#module-thelper.data.samplers" title="thelper.data.samplers"><code class="xref py py-mod docutils literal notranslate"><span class="pre">thelper.data.samplers</span></code></a> for more information.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">augments</span></code> (optional): provides a list of transformation operations used to augment all samples
+of a dataset. See <a class="reference internal" href="thelper.transforms.html#thelper.transforms.utils.load_augments" title="thelper.transforms.utils.load_augments"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.transforms.utils.load_augments()</span></code></a> for more info.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">train_augments</span></code> (optional): provides a list of transformation operations used to augment the
+training samples of a dataset. See <a class="reference internal" href="thelper.transforms.html#thelper.transforms.utils.load_augments" title="thelper.transforms.utils.load_augments"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.transforms.utils.load_augments()</span></code></a> for more info.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">valid_augments</span></code> (optional): provides a list of transformation operations used to augment the
+validation samples of a dataset. See <a class="reference internal" href="thelper.transforms.html#thelper.transforms.utils.load_augments" title="thelper.transforms.utils.load_augments"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.transforms.utils.load_augments()</span></code></a> for more info.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_augments</span></code> (optional): provides a list of transformation operations used to augment the
+test samples of a dataset. See <a class="reference internal" href="thelper.transforms.html#thelper.transforms.utils.load_augments" title="thelper.transforms.utils.load_augments"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.transforms.utils.load_augments()</span></code></a> for more info.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">eval_augments</span></code> (optional): provides a list of transformation operations used to augment the
+validation and test samples of a dataset. See <a class="reference internal" href="thelper.transforms.html#thelper.transforms.utils.load_augments" title="thelper.transforms.utils.load_augments"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.transforms.utils.load_augments()</span></code></a> for more info.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">base_transforms</span></code> (optional): provides a list of transformation operations to apply to all
+loaded samples. This list will be passed to the constructor of all instantiated dataset parsers.
+See <a class="reference internal" href="thelper.transforms.html#thelper.transforms.utils.load_transforms" title="thelper.transforms.utils.load_transforms"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.transforms.utils.load_transforms()</span></code></a> for more info.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">train_split</span></code> (optional): provides the proportion of samples of each dataset to hand off to the
+training data loader. These proportions are given in a dictionary format (<code class="docutils literal notranslate"><span class="pre">name:</span> <span class="pre">ratio</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">valid_split</span></code> (optional): provides the proportion of samples of each dataset to hand off to the
+validation data loader. These proportions are given in a dictionary format (<code class="docutils literal notranslate"><span class="pre">name:</span> <span class="pre">ratio</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_split</span></code> (optional): provides the proportion of samples of each dataset to hand off to the
+test data loader. These proportions are given in a dictionary format (<code class="docutils literal notranslate"><span class="pre">name:</span> <span class="pre">ratio</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">skip_verif</span></code> (optional, default=True): specifies whether the dataset split should be verified
+if resuming a session by parsing the log files generated earlier.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">skip_split_norm</span></code> (optional, default=False): specifies whether the question about normalizing
+the split ratios should be skipped or not.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">skip_class_balancing</span></code> (optional, default=False): specifies whether the balancing of class
+labels should be skipped in case the task is classification-related.</p></li>
+</ul>
+<p>Example configuration file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
+<span class="s2">&quot;loaders&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="mi">128</span><span class="p">,</span>  <span class="c1"># batch size to use in data loaders</span>
+    <span class="s2">&quot;shuffle&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>  <span class="c1"># specifies that the data should be shuffled</span>
+    <span class="s2">&quot;workers&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>  <span class="c1"># number of threads to pre-fetch data batches with</span>
+    <span class="s2">&quot;sampler&quot;</span><span class="p">:</span> <span class="p">{</span>  <span class="c1"># we can use a data sampler to rebalance classes (optional)</span>
+        <span class="c1"># see e.g. &#39;thelper.data.samplers.WeightedSubsetRandomSampler&#39;</span>
+        <span class="c1"># ...</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;train_augments&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="c1"># training data augmentation operations</span>
+        <span class="c1"># see &#39;thelper.transforms.utils.load_augments&#39;</span>
+        <span class="c1"># ...</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;eval_augments&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="c1"># evaluation (valid/test) data augmentation operations</span>
+        <span class="c1"># see &#39;thelper.transforms.utils.load_augments&#39;</span>
+        <span class="c1"># ...</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;base_transforms&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="c1"># global sample transformation operations</span>
+        <span class="c1"># see &#39;thelper.transforms.utils.load_transforms&#39;</span>
+        <span class="c1"># ...</span>
+    <span class="p">},</span>
+    <span class="c1"># finally, we define a 80%-10%-10% split for our data</span>
+    <span class="c1"># (we could instead use one dataset for training and one for testing)</span>
+    <span class="s2">&quot;train_split&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;dataset_A&quot;</span><span class="p">:</span> <span class="mf">0.8</span>
+        <span class="s2">&quot;dataset_B&quot;</span><span class="p">:</span> <span class="mf">0.8</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;valid_split&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;dataset_A&quot;</span><span class="p">:</span> <span class="mf">0.1</span>
+        <span class="s2">&quot;dataset_B&quot;</span><span class="p">:</span> <span class="mf">0.1</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;test_split&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;dataset_A&quot;</span><span class="p">:</span> <span class="mf">0.1</span>
+        <span class="s2">&quot;dataset_B&quot;</span><span class="p">:</span> <span class="mf">0.1</span>
+    <span class="p">}</span>
+    <span class="c1"># (note that the dataset names above are defined in the field below)</span>
+<span class="p">},</span>
+<span class="s2">&quot;datasets&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;dataset_A&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># type of dataset interface to instantiate</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># ...</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;dataset_B&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># type of dataset interface to instantiate</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># ...</span>
+        <span class="p">},</span>
+        <span class="c1"># if it does not derive from &#39;thelper.data.parsers.Dataset&#39;, a task is needed:</span>
+        <span class="s2">&quot;task&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># this type must derive from &#39;thelper.tasks.Task&#39;</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="c1"># ...</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1"># ...</span>
+<span class="p">},</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> – a dictionary that provides all required data configuration information under two fields,
+namely ‘datasets’ and ‘loaders’.</p></li>
+<li><p><strong>save_dir</strong> – the path to the root directory where the session directory should be saved. Note that
+this is not the path to the session directory itself, but its parent, which may also contain
+other session directories.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>A 4-element tuple that contains</em> – 1) the global task object to specialize models and trainers with;
+2) the training data loader; 3) the validation data loader; and 4) the test data loader.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.data.utils.create_parsers" title="thelper.data.utils.create_parsers"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.create_parsers()</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.transforms.html#thelper.transforms.utils.load_augments" title="thelper.transforms.utils.load_augments"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.transforms.utils.load_augments()</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.transforms.html#thelper.transforms.utils.load_transforms" title="thelper.transforms.utils.load_transforms"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.transforms.utils.load_transforms()</span></code></a></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.data.utils.create_parsers">
+<code class="sig-prename descclassname">thelper.data.utils.</code><code class="sig-name descname">create_parsers</code><span class="sig-paren">(</span><em class="sig-param">config</em>, <em class="sig-param">base_transforms=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/utils.html#create_parsers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.utils.create_parsers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiates dataset parsers based on a provided dictionary.</p>
+<p>This function will instantiate dataset parsers as defined in a name-type-param dictionary. If multiple
+datasets are instantiated, this function will also verify their task compatibility and return the global
+task. The dataset interfaces themselves should be derived from <a class="reference internal" href="#thelper.data.parsers.Dataset" title="thelper.data.parsers.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.Dataset</span></code></a>, be
+compatible with <a class="reference internal" href="#thelper.data.parsers.ExternalDataset" title="thelper.data.parsers.ExternalDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.ExternalDataset</span></code></a>, or should provide a ‘task’ field specifying
+all the information related to sample dictionary keys and model i/o.</p>
+<p>The provided configuration will be parsed for a ‘datasets’ dictionary entry. The keys in this dictionary
+are treated as unique dataset names and are used for lookups. The value associated to each key (or dataset
+name) should be a type-params dictionary that can be parsed to instantiate the dataset interface.</p>
+<p>An example configuration dictionary is given in <a class="reference internal" href="#thelper.data.utils.create_loaders" title="thelper.data.utils.create_loaders"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.create_loaders()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> – a dictionary that provides unique dataset names and parameters needed for instantiation under
+the ‘datasets’ field.</p></li>
+<li><p><strong>base_transforms</strong> – the transform operation that should be applied to all loaded samples, and that
+will be provided to the constructor of all instantiated dataset parsers.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>A 2-element tuple that contains</em> – 1) the list of dataset interfaces/parsers that were instantiated; and
+2) a task object compatible with all of those (see <a class="reference internal" href="thelper.tasks.html#thelper.tasks.utils.Task" title="thelper.tasks.utils.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.utils.Task</span></code></a> for more information).</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.data.utils.create_loaders" title="thelper.data.utils.create_loaders"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.create_loaders()</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.data.parsers.Dataset" title="thelper.data.parsers.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.Dataset</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.data.parsers.ExternalDataset" title="thelper.data.parsers.ExternalDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.ExternalDataset</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.tasks.html#thelper.tasks.utils.Task" title="thelper.tasks.utils.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.utils.Task</span></code></a></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.data.utils.get_class_weights">
+<code class="sig-prename descclassname">thelper.data.utils.</code><code class="sig-name descname">get_class_weights</code><span class="sig-paren">(</span><em class="sig-param">label_map</em>, <em class="sig-param">stype</em>, <em class="sig-param">invmax</em>, <em class="sig-param">maxw=inf</em>, <em class="sig-param">minw=0.0</em>, <em class="sig-param">norm=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/data/utils.html#get_class_weights"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.data.utils.get_class_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a map of adjusted class weights based on a given rebalancing strategy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label_map</strong> – map of index lists or sample counts tied to class labels.</p></li>
+<li><p><strong>stype</strong> – weighting strategy (‘uniform’, ‘linear’, or ‘rootX’); see <a class="reference internal" href="#thelper.data.samplers.WeightedSubsetRandomSampler" title="thelper.data.samplers.WeightedSubsetRandomSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.samplers.WeightedSubsetRandomSampler</span></code></a>
+for more information on these.</p></li>
+<li><p><strong>invmax</strong> – specifies whether to max-invert the weight vector (thus creating cost factors) or not (default=True).</p></li>
+<li><p><strong>maxw</strong> – maximum allowed weight value (applied after invmax, if required).</p></li>
+<li><p><strong>minw</strong> – minimum allowed weight value (applied after invmax, if required).</p></li>
+<li><p><strong>norm</strong> – specifies whether the returned weights should be normalized (default=True, i.e. normalized).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Map of adjusted weights tied to class labels.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.data.samplers.WeightedSubsetRandomSampler" title="thelper.data.samplers.WeightedSubsetRandomSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.samplers.WeightedSubsetRandomSampler</span></code></a></div>
+</div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use-cases.html">Use Cases</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="thelper.html">thelper package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="thelper.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.cli">thelper.cli module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.typedefs">thelper.typedefs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.utils">thelper.utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/thelper.data.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="thelper.gui.html" title="thelper.gui package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="thelper.html" title="thelper package"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.nn.sr package &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="thelper.optim package" href="thelper.optim.html" />
+    <link rel="prev" title="thelper.nn package" href="thelper.nn.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="thelper.html" >thelper package</a> &#187;</li>
+          <li><a href="thelper.nn.html" accesskey="U">thelper.nn package</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-thelper.nn.sr">
+<span id="thelper-nn-sr-package"></span><h1>thelper.nn.sr package<a class="headerlink" href="#module-thelper.nn.sr" title="Permalink to this headline">¶</a></h1>
+<p>Neural network and model package for super resolution.</p>
+<p>This package contains classes that define blocks and modules used in various neural network for super
+resolution architectures. Most of these classes have been adapted from external sources; see their
+individual headers for more information.</p>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-thelper.nn.sr.srcnn">
+<span id="thelper-nn-sr-srcnn-module"></span><h2>thelper.nn.sr.srcnn module<a class="headerlink" href="#module-thelper.nn.sr.srcnn" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="thelper.nn.sr.srcnn.SRCNN">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.sr.srcnn.</code><code class="sig-name descname">SRCNN</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">num_channels=1</em>, <em class="sig-param">base_filter=64</em>, <em class="sig-param">groups=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/sr/srcnn.html#SRCNN"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.sr.srcnn.SRCNN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="thelper.nn.html#thelper.nn.utils.Module" title="thelper.nn.utils.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.utils.Module</span></code></a></p>
+<p>Implements the SRCNN architecture.</p>
+<p>See Dong et al., “Image Super-Resolution Using Deep Convolutional Networks” (2014) for more
+information (<a class="reference external" href="https://arxiv.org/abs/1501.00092">https://arxiv.org/abs/1501.00092</a>).</p>
+<dl class="method">
+<dt id="thelper.nn.sr.srcnn.SRCNN.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">num_channels=1</em>, <em class="sig-param">base_filter=64</em>, <em class="sig-param">groups=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/sr/srcnn.html#SRCNN.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.sr.srcnn.SRCNN.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives a task object to hold internally for model specialization.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.sr.srcnn.SRCNN.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/sr/srcnn.html#SRCNN.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.sr.srcnn.SRCNN.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms an input tensor in order to generate a prediction.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.sr.srcnn.SRCNN.set_task">
+<code class="sig-name descname">set_task</code><span class="sig-paren">(</span><em class="sig-param">task</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/sr/srcnn.html#SRCNN.set_task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.sr.srcnn.SRCNN.set_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adapts the model to support a new task, replacing layers if needed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.sr.srcnn.SRCNN.weight_init">
+<code class="sig-name descname">weight_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/sr/srcnn.html#SRCNN.weight_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.sr.srcnn.SRCNN.weight_init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.nn.sr.vdsr">
+<span id="thelper-nn-sr-vdsr-module"></span><h2>thelper.nn.sr.vdsr module<a class="headerlink" href="#module-thelper.nn.sr.vdsr" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="thelper.nn.sr.vdsr.VDSR">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.sr.vdsr.</code><code class="sig-name descname">VDSR</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">num_channels=1</em>, <em class="sig-param">base_filter=64</em>, <em class="sig-param">kernel_size0=3</em>, <em class="sig-param">num_residuals=18</em>, <em class="sig-param">groups=1</em>, <em class="sig-param">activation='relu'</em>, <em class="sig-param">norm='batch'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/sr/vdsr.html#VDSR"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.sr.vdsr.VDSR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="thelper.nn.html#thelper.nn.utils.Module" title="thelper.nn.utils.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.utils.Module</span></code></a></p>
+<p>Implements the VDSR architecture.</p>
+<p>See Kim et al., “Accurate Image Super-Resolution Using Very Deep Convolutional Networks” (2015) for more
+information (<a class="reference external" href="https://arxiv.org/abs/1511.04587">https://arxiv.org/abs/1511.04587</a>).</p>
+<dl class="method">
+<dt id="thelper.nn.sr.vdsr.VDSR.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">num_channels=1</em>, <em class="sig-param">base_filter=64</em>, <em class="sig-param">kernel_size0=3</em>, <em class="sig-param">num_residuals=18</em>, <em class="sig-param">groups=1</em>, <em class="sig-param">activation='relu'</em>, <em class="sig-param">norm='batch'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/sr/vdsr.html#VDSR.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.sr.vdsr.VDSR.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives a task object to hold internally for model specialization.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.sr.vdsr.VDSR.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/sr/vdsr.html#VDSR.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.sr.vdsr.VDSR.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms an input tensor in order to generate a prediction.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.sr.vdsr.VDSR.set_task">
+<code class="sig-name descname">set_task</code><span class="sig-paren">(</span><em class="sig-param">task</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/sr/vdsr.html#VDSR.set_task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.sr.vdsr.VDSR.set_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adapts the model to support a new task, replacing layers if needed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.sr.vdsr.VDSR.weight_init">
+<code class="sig-name descname">weight_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/sr/vdsr.html#VDSR.weight_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.sr.vdsr.VDSR.weight_init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use-cases.html">Use Cases</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="thelper.html">thelper package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="thelper.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.cli">thelper.cli module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.typedefs">thelper.typedefs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.utils">thelper.utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/thelper.nn.sr.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="thelper.optim.html" title="thelper.optim package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="thelper.nn.html" title="thelper.nn package"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

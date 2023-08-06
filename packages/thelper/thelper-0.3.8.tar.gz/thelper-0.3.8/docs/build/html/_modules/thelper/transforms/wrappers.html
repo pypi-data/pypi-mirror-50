@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.transforms.wrappers &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../../index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="../../../_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for thelper.transforms.wrappers</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Transformations wrappers module.</span>
+
+<span class="sd">The wrapper classes herein are used to either support inline operations on odd sample types (e.g. lists</span>
+<span class="sd">of images) or for external libraries (e.g. Augmentor).</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">PIL.Image</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="kn">import</span> <span class="nn">thelper.data</span>
+<span class="kn">import</span> <span class="nn">thelper.utils</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="AlbumentationsWrapper"><a class="viewcode-back" href="../../../thelper.transforms.html#thelper.transforms.wrappers.AlbumentationsWrapper">[docs]</a><span class="k">class</span> <span class="nc">AlbumentationsWrapper</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Albumentations pipeline wrapper that allows dictionary unpacking.</span>
+
+<span class="sd">    See https://github.com/albu/albumentations for more information.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        pipeline: the augmentor pipeline instance to apply to images.</span>
+<span class="sd">        image_key: the key to fetch images from (when dictionaries are passed in).</span>
+<span class="sd">        bboxes_key: the key to fetch bounding boxes from (when dictionaries are passed in).</span>
+<span class="sd">        mask_key: the key to fetch masks from (when dictionaries are passed in).</span>
+<span class="sd">        keypoints_key: the key to fetch keypoints from (when dictionaries are passed in).</span>
+<span class="sd">        cvt_kpts_to_bboxes: specifies whether keypoints should be converted to bboxes for compatbility.</span>
+<span class="sd">        linked_fate: specifies whether input list samples should all have the same fate or not.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :func:`thelper.transforms.utils.load_transforms`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="AlbumentationsWrapper.__init__"><a class="viewcode-back" href="../../../thelper.transforms.html#thelper.transforms.wrappers.AlbumentationsWrapper.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transforms</span><span class="p">,</span> <span class="n">to_tensor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bbox_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">add_targets</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">image_key</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">,</span>
+                 <span class="n">bboxes_key</span><span class="o">=</span><span class="s2">&quot;bboxes&quot;</span><span class="p">,</span> <span class="n">mask_key</span><span class="o">=</span><span class="s2">&quot;mask&quot;</span><span class="p">,</span> <span class="n">keypoints_key</span><span class="o">=</span><span class="s2">&quot;keypoints&quot;</span><span class="p">,</span> <span class="n">probability</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+                 <span class="n">cvt_kpts_to_bboxes</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">linked_fate</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives and stores an augmentor pipeline for later use.</span>
+
+<span class="sd">        The pipeline itself is instantiated in :func:`thelper.transforms.utils.load_transforms`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">bbox_params</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">bbox_params</span><span class="p">:</span>
+            <span class="n">bbox_params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;coco&quot;</span><span class="p">}</span>  <span class="c1"># i.e. opencv format (X,Y,W,H)</span>
+        <span class="k">if</span> <span class="n">add_targets</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">add_targets</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">image_key</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">image_key</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;current implementation cannot handle more than one input image key per packet&quot;</span>
+            <span class="n">image_key</span> <span class="o">=</span> <span class="n">image_key</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_key</span> <span class="o">=</span> <span class="n">image_key</span>
+        <span class="k">assert</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">bboxes_key</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">))</span> <span class="ow">or</span>
+                    <span class="nb">isinstance</span><span class="p">(</span><span class="n">keypoints_key</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">))</span> <span class="ow">or</span>
+                    <span class="nb">isinstance</span><span class="p">(</span><span class="n">mask_key</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">))),</span> \
+            <span class="s2">&quot;bboxes/keypoints/masks keys should never be passed as lists&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bboxes_key</span> <span class="o">=</span> <span class="n">bboxes_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mask_key</span> <span class="o">=</span> <span class="n">mask_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">keypoints_key</span> <span class="o">=</span> <span class="n">keypoints_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cvt_kpts_to_bboxes</span> <span class="o">=</span> <span class="n">cvt_kpts_to_bboxes</span>
+        <span class="k">assert</span> <span class="ow">not</span> <span class="p">(</span><span class="n">cvt_kpts_to_bboxes</span> <span class="ow">and</span> <span class="s2">&quot;format&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">bbox_params</span> <span class="ow">or</span> <span class="n">bbox_params</span><span class="p">[</span><span class="s2">&quot;format&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;coco&quot;</span><span class="p">),</span> \
+            <span class="s2">&quot;if converting kpts to bboxes, must use coco format&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bbox_params</span> <span class="o">=</span> <span class="n">bbox_params</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linked_fate</span> <span class="o">=</span> <span class="n">linked_fate</span>
+        <span class="kn">import</span> <span class="nn">albumentations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transforms</span> <span class="o">=</span> <span class="n">transforms</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">to_tensor</span> <span class="o">=</span> <span class="n">to_tensor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_targets</span> <span class="o">=</span> <span class="n">add_targets</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">albumentations</span><span class="o">.</span><span class="n">Compose</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">to_tensor</span><span class="o">=</span><span class="n">to_tensor</span><span class="p">,</span> <span class="n">bbox_params</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bbox_params</span><span class="p">,</span>
+                                               <span class="n">additional_targets</span><span class="o">=</span><span class="n">add_targets</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">probability</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AlbumentationsWrapper.__call__"><a class="viewcode-back" href="../../../thelper.transforms.html#thelper.transforms.wrappers.AlbumentationsWrapper.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="n">force_linked_fate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">op_seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Transforms a (dict) sample, a single image, or a list of images using the augmentor pipeline.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            sample: the sample or image(s) to transform (can also contain embedded lists/tuples of images).</span>
+<span class="sd">            force_linked_fate: override flag for recursive use allowing forced linking of arrays.</span>
+<span class="sd">            op_seed: seed to set before calling the wrapped operation.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The transformed image(s), with the same list/tuple formatting as the input.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># todo: add list unwrapping/interlacing support like in other wrappers?</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">unpack_bboxes</span><span class="p">,</span> <span class="n">decode_bboxes</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_key</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">,</span> \
+                <span class="n">f</span><span class="s2">&quot;image is missing from sample (key=</span><span class="si">{self.image_key}</span><span class="s2">) but it is mandatory&quot;</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">image_key</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+                <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+                <span class="c1"># impl should use linked_fate and force_linked_fate</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">image_key</span><span class="p">]</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">keypoints_key</span> <span class="ow">in</span> <span class="n">sample</span> <span class="ow">and</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">keypoints_key</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">keypoints</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">keypoints_key</span><span class="p">]</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cvt_kpts_to_bboxes</span><span class="p">:</span>
+                    <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">bboxes_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">,</span> \
+                        <span class="s2">&quot;trying to override bboxes w/ keypoints while bboxes already exist&quot;</span>
+                    <span class="c1"># fake x,y,w,h,c format (w/ labels)</span>
+                    <span class="n">msize</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+                    <span class="n">params</span><span class="p">[</span><span class="s2">&quot;bboxes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">kp</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">),</span> <span class="n">msize</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span>
+                                         <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">kp</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">),</span> <span class="n">msize</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">kp</span> <span class="ow">in</span> <span class="n">keypoints</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">params</span><span class="p">[</span><span class="s2">&quot;keypoints&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">keypoints</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bboxes_key</span> <span class="ow">in</span> <span class="n">sample</span> <span class="ow">and</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">bboxes_key</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">bboxes</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">bboxes_key</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bboxes</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">BoundingBox</span><span class="p">):</span>
+                    <span class="n">bboxes</span> <span class="o">=</span> <span class="p">[</span><span class="n">bboxes</span><span class="p">]</span>
+                    <span class="n">unpack_bboxes</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bboxes</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">BoundingBox</span><span class="p">)</span> <span class="k">for</span> <span class="n">bbox</span> <span class="ow">in</span> <span class="n">bboxes</span><span class="p">]):</span>
+                    <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">bbox_params</span><span class="p">[</span><span class="s2">&quot;format&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;coco&quot;</span><span class="p">,</span> <span class="s2">&quot;pascal_voc&quot;</span><span class="p">],</span> <span class="s2">&quot;unsupported/unknown bbox format&quot;</span>
+                    <span class="n">bboxes</span> <span class="o">=</span> <span class="p">[</span><span class="n">bbox</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bbox_params</span><span class="p">[</span><span class="s2">&quot;format&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">bbox</span> <span class="ow">in</span> <span class="n">bboxes</span><span class="p">]</span>
+                    <span class="n">decode_bboxes</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">params</span><span class="p">[</span><span class="s2">&quot;bboxes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bboxes</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">params</span><span class="p">[</span><span class="s2">&quot;bboxes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mask_key</span> <span class="ow">in</span> <span class="n">sample</span> <span class="ow">and</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mask_key</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">params</span><span class="p">[</span><span class="s2">&quot;mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mask_key</span><span class="p">]</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+            <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">image_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="s2">&quot;keypoints&quot;</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
+                <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">keypoints_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="s2">&quot;keypoints&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="s2">&quot;bboxes&quot;</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cvt_kpts_to_bboxes</span><span class="p">:</span>
+                    <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">keypoints_key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[[</span><span class="n">kp</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">kp</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="k">for</span> <span class="n">kp</span> <span class="ow">in</span> <span class="n">output</span><span class="p">[</span><span class="s2">&quot;bboxes&quot;</span><span class="p">]]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">bboxes</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="s2">&quot;bboxes&quot;</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">decode_bboxes</span><span class="p">:</span>
+                        <span class="n">bboxes</span> <span class="o">=</span> <span class="p">[</span><span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">BoundingBox</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bbox_params</span><span class="p">[</span><span class="s2">&quot;format&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">bbox</span> <span class="ow">in</span> <span class="n">bboxes</span><span class="p">]</span>
+                    <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">bboxes_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">bboxes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">unpack_bboxes</span> <span class="k">else</span> <span class="n">bboxes</span>
+            <span class="k">if</span> <span class="s2">&quot;mask&quot;</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
+                <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mask_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="s2">&quot;mask&quot;</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">sample</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+            <span class="c1"># impl should use linked_fate and force_linked_fate</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">sample</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">sample</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">]</span></div>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a print-friendly representation of inner augmentation stages.&quot;&quot;&quot;</span>
+        <span class="c1"># for debug purposes only, transforms probably cannot be expressed as a string</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;(transforms={repr(self.transforms)}, to_tensor={repr(self.to_tensor)}, &quot;</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;bbox_params={repr(self.bbox_params)}, add_targets={repr(self.add_targets)}, &quot;</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;image_key={repr(self.image_key)}, bboxes_key={repr(self.bboxes_key)}, &quot;</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;mask_key={repr(self.mask_key)}, keypoints_key={repr(self.keypoints_key)}, &quot;</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;probability={repr(self.probability)}, cvt_kpts_to_bboxes={repr(self.cvt_kpts_to_bboxes)}, &quot;</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;linked_fate={repr(self.linked_fate)})&quot;</span>
+
+    <span class="c1"># noinspection PyMethodMayBeStatic</span>
+<div class="viewcode-block" id="AlbumentationsWrapper.set_seed"><a class="viewcode-back" href="../../../thelper.transforms.html#thelper.transforms.wrappers.AlbumentationsWrapper.set_seed">[docs]</a>    <span class="k">def</span> <span class="nf">set_seed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the internal seed to use for stochastic ops.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">transforms</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">transforms</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="s2">&quot;set_seed&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">callable</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">set_seed</span><span class="p">):</span>
+                    <span class="n">t</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AlbumentationsWrapper.set_epoch"><a class="viewcode-back" href="../../../thelper.transforms.html#thelper.transforms.wrappers.AlbumentationsWrapper.set_epoch">[docs]</a>    <span class="k">def</span> <span class="nf">set_epoch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the current epoch number in order to change the behavior of some suboperations.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">epoch</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;invalid epoch value&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">transforms</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">transforms</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="s2">&quot;set_epoch&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">callable</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">set_epoch</span><span class="p">):</span>
+                    <span class="n">t</span><span class="o">.</span><span class="n">set_epoch</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="AugmentorWrapper"><a class="viewcode-back" href="../../../thelper.transforms.html#thelper.transforms.wrappers.AugmentorWrapper">[docs]</a><span class="k">class</span> <span class="nc">AugmentorWrapper</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Augmentor pipeline wrapper that allows pickling and multi-threading.</span>
+
+<span class="sd">    See https://github.com/mdbloice/Augmentor for more information. This wrapper was last updated to work</span>
+<span class="sd">    with version 0.2.2 --- more recent versions introduced yet unfixed (as of 2018/08) issues on some platforms.</span>
+
+<span class="sd">    All original transforms are supported here. This wrapper also fixes the list output bug for single-image</span>
+<span class="sd">    samples when using operations individually.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        pipeline: the augmentor pipeline instance to apply to images.</span>
+<span class="sd">        target_keys: the sample keys to apply the pipeline to (when dictionaries are passed in).</span>
+<span class="sd">        linked_fate: specifies whether input list samples should all have the same fate or not.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :func:`thelper.transforms.utils.load_transforms`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="AugmentorWrapper.__init__"><a class="viewcode-back" href="../../../thelper.transforms.html#thelper.transforms.wrappers.AugmentorWrapper.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">target_keys</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">linked_fate</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives and stores an augmentor pipeline for later use.</span>
+
+<span class="sd">        The pipeline itself is instantiated in :func:`thelper.transforms.utils.load_transforms`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">pipeline</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_keys</span> <span class="o">=</span> <span class="n">target_keys</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linked_fate</span> <span class="o">=</span> <span class="n">linked_fate</span></div>
+
+<div class="viewcode-block" id="AugmentorWrapper.__call__"><a class="viewcode-back" href="../../../thelper.transforms.html#thelper.transforms.wrappers.AugmentorWrapper.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="n">force_linked_fate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">op_seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">in_cvts</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Transforms a (dict) sample, a single image, or a list of images using the augmentor pipeline.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            sample: the sample or image(s) to transform (can also contain embedded lists/tuples of images).</span>
+<span class="sd">            force_linked_fate: override flag for recursive use allowing forced linking of arrays.</span>
+<span class="sd">            op_seed: seed to set before calling the wrapped operation.</span>
+<span class="sd">            in_cvts: holds the input conversion flag array (for recursive usage).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The transformed image(s), with the same list/tuple formatting as the input.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="c1"># recursive call for unpacking sample content w/ target keys</span>
+            <span class="k">assert</span> <span class="n">in_cvts</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;top-level call should never provide in_cvts&quot;</span>
+            <span class="c1"># capture non-scalar objects (according to numpy) if no keys are provided</span>
+            <span class="n">key_vals</span> <span class="o">=</span> <span class="p">[(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sample</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="p">(</span>
+                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_keys</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="ow">or</span>
+                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_keys</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_keys</span><span class="p">))]</span>
+            <span class="n">keys</span><span class="p">,</span> <span class="n">vals</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">key_vals</span><span class="p">))</span>
+            <span class="n">lengths</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">))</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lengths</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="n">lengths</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">lengths</span><span class="p">)</span> <span class="ow">and</span> <span class="n">lengths</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># interlace input lists for internal linked fate (if needed; otherwise, it won&#39;t change anything)</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="p">[[</span><span class="n">v</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">))</span> <span class="k">else</span>
+                         <span class="n">v</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lengths</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="bp">self</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">force_linked_fate</span><span class="o">=</span><span class="n">force_linked_fate</span><span class="p">,</span> <span class="n">op_seed</span><span class="o">=</span><span class="n">op_seed</span><span class="p">,</span> <span class="n">in_cvts</span><span class="o">=</span><span class="n">in_cvts</span><span class="p">)</span>
+                <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span> <span class="o">==</span> <span class="n">lengths</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;messed up something internally&quot;</span>
+                <span class="n">out_vals</span> <span class="o">=</span> <span class="p">[[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="p">[[</span><span class="n">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span>
+                <span class="k">for</span> <span class="n">idx1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">lengths</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+                    <span class="k">for</span> <span class="n">idx2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">out_vals</span><span class="p">)):</span>
+                        <span class="n">out_vals</span><span class="p">[</span><span class="n">idx2</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="n">idx1</span><span class="p">][</span><span class="n">idx2</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="n">idx1</span><span class="p">],</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="n">vals</span><span class="p">[</span><span class="n">idx1</span><span class="p">])</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="n">out_vals</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="bp">self</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">force_linked_fate</span><span class="o">=</span><span class="n">force_linked_fate</span><span class="p">,</span> <span class="n">op_seed</span><span class="o">=</span><span class="n">op_seed</span><span class="p">,</span> <span class="n">in_cvts</span><span class="o">=</span><span class="n">in_cvts</span><span class="p">)</span>
+            <span class="n">sample</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">vals</span><span class="p">[</span><span class="n">keys</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span> <span class="k">else</span> <span class="n">sample</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">}</span>
+            <span class="k">return</span> <span class="n">sample</span>
+        <span class="n">out_cvts</span> <span class="o">=</span> <span class="n">in_cvts</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">out_list</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">sample</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="p">(</span><span class="n">out_list</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">sample</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">([],</span> <span class="p">[])</span> <span class="k">if</span> <span class="n">out_cvts</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">out_list</span><span class="p">:</span>
+            <span class="n">sample</span> <span class="o">=</span> <span class="p">[</span><span class="n">sample</span><span class="p">]</span>
+        <span class="k">assert</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">]),</span> \
+            <span class="s2">&quot;augmentor wrapper cannot handle sample-in-sample (or dict-in-list) inputs&quot;</span>
+        <span class="n">skip_unpack</span> <span class="o">=</span> <span class="n">in_cvts</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">in_cvts</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span> <span class="ow">and</span> <span class="n">in_cvts</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">linked_fate</span> <span class="ow">or</span> <span class="n">force_linked_fate</span><span class="p">:</span>  <span class="c1"># process all content with the same operations below</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">skip_unpack</span><span class="p">:</span>
+                <span class="c1"># noinspection PyProtectedMember</span>
+                <span class="n">sample</span><span class="p">,</span> <span class="n">cvts</span> <span class="o">=</span> <span class="n">TransformWrapper</span><span class="o">.</span><span class="n">_unpack</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">convert_pil</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+                    <span class="n">sample</span> <span class="o">=</span> <span class="p">[</span><span class="n">sample</span><span class="p">]</span>
+                    <span class="n">cvts</span> <span class="o">=</span> <span class="p">[</span><span class="n">cvts</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">cvts</span> <span class="o">=</span> <span class="n">in_cvts</span>
+            <span class="k">if</span> <span class="n">op_seed</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">op_seed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">iinfo</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">)</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">op_seed</span><span class="p">)</span>
+            <span class="n">prev_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">):</span>
+                    <span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">cvts</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">force_linked_fate</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                  <span class="n">op_seed</span><span class="o">=</span><span class="n">op_seed</span><span class="p">,</span> <span class="n">in_cvts</span><span class="o">=</span><span class="n">cvts</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">prev_state</span><span class="p">)</span>
+                    <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">iinfo</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">))</span>
+                    <span class="k">for</span> <span class="n">operation</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">operations</span><span class="p">:</span>
+                        <span class="n">r</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">r</span> <span class="o">&lt;=</span> <span class="n">operation</span><span class="o">.</span><span class="n">probability</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                                <span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">operation</span><span class="o">.</span><span class="n">perform_operation</span><span class="p">([</span><span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">]])[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># each element of the top array will be processed independently below (current seeds are kept)</span>
+            <span class="n">cvts</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
+                <span class="c1"># noinspection PyProtectedMember</span>
+                <span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">cvts</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">TransformWrapper</span><span class="o">.</span><span class="n">_unpack</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">convert_pil</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">):</span>
+                    <span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">cvts</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">force_linked_fate</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                  <span class="n">op_seed</span><span class="o">=</span><span class="n">op_seed</span><span class="p">,</span> <span class="n">in_cvts</span><span class="o">=</span><span class="n">cvts</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">iinfo</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">))</span>
+                    <span class="k">for</span> <span class="n">operation</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">operations</span><span class="p">:</span>
+                        <span class="n">r</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">r</span> <span class="o">&lt;=</span> <span class="n">operation</span><span class="o">.</span><span class="n">probability</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                                <span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">operation</span><span class="o">.</span><span class="n">perform_operation</span><span class="p">([</span><span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">]])[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># noinspection PyProtectedMember</span>
+        <span class="n">sample</span><span class="p">,</span> <span class="n">cvts</span> <span class="o">=</span> <span class="n">TransformWrapper</span><span class="o">.</span><span class="n">_pack</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">cvts</span><span class="p">,</span> <span class="n">convert_pil</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">cvts</span><span class="p">),</span> <span class="s2">&quot;messed up packing/unpacking logic&quot;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">skip_unpack</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">out_list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">cvts</span> <span class="o">=</span> <span class="n">cvts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">cvts</span><span class="p">)</span> <span class="k">if</span> <span class="n">out_cvts</span> <span class="k">else</span> <span class="n">sample</span></div>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a print-friendly representation of inner augmentation stages.&quot;&quot;&quot;</span>
+        <span class="c1"># for debug purposes only, pipeline probably cannot be expressed as a string</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;(pipeline={repr(self.pipeline)}, target_keys={repr(self.target_keys)}, linked_fate={repr(self.linked_fate)})&quot;</span>
+
+    <span class="c1"># noinspection PyMethodMayBeStatic</span>
+<div class="viewcode-block" id="AugmentorWrapper.set_seed"><a class="viewcode-back" href="../../../thelper.transforms.html#thelper.transforms.wrappers.AugmentorWrapper.set_seed">[docs]</a>    <span class="k">def</span> <span class="nf">set_seed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the internal seed to use for stochastic ops.&quot;&quot;&quot;</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AugmentorWrapper.set_epoch"><a class="viewcode-back" href="../../../thelper.transforms.html#thelper.transforms.wrappers.AugmentorWrapper.set_epoch">[docs]</a>    <span class="k">def</span> <span class="nf">set_epoch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the current epoch number in order to change the behavior of some suboperations.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">epoch</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;invalid epoch value&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">operations</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">operations</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="s2">&quot;set_epoch&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">callable</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">set_epoch</span><span class="p">):</span>
+                    <span class="n">op</span><span class="o">.</span><span class="n">set_epoch</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="TransformWrapper"><a class="viewcode-back" href="../../../thelper.transforms.html#thelper.transforms.wrappers.TransformWrapper">[docs]</a><span class="k">class</span> <span class="nc">TransformWrapper</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Transform wrapper that allows operations on samples, lists, tuples, and single elements.</span>
+
+<span class="sd">    Can be used to wrap the operations in ``thelper.transforms`` or in ``torchvision.transforms``</span>
+<span class="sd">    that only accept array-like objects as input. Will optionally force-convert content to PIL images.</span>
+
+<span class="sd">    Can also be used to transform a list/tuple of images uniformly based on a shared dice roll, or</span>
+<span class="sd">    to ensure that each image is transformed independently.</span>
+
+<span class="sd">    .. warning::</span>
+<span class="sd">        Stochastic transforms (e.g. ``torchvision.transforms.RandomCrop``) will always treat each</span>
+<span class="sd">        image in a list differently. If the same operations are to be applied to all images, you</span>
+<span class="sd">        should consider using a series non-stochastic operations wrapped inside an instance of</span>
+<span class="sd">        ``torchvision.transforms.RandomApply``, or simply provide the probability of applying the</span>
+<span class="sd">        transforms to this wrapper&#39;s constructor.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        operation: the wrapped operation (callable object or class name string to import).</span>
+<span class="sd">        params: the parameters that are passed to the operation when init&#39;d or called.</span>
+<span class="sd">        probability: the probability that the wrapped operation will be applied.</span>
+<span class="sd">        convert_pil: specifies whether images should be converted into PIL format or not.</span>
+<span class="sd">        target_keys: the sample keys to apply the transform to (when dictionaries are passed in).</span>
+<span class="sd">        linked_fate: specifies whether images given in a list/tuple should have the same fate or not.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="TransformWrapper.__init__"><a class="viewcode-back" href="../../../thelper.transforms.html#thelper.transforms.wrappers.TransformWrapper.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operation</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">probability</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">convert_pil</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">target_keys</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">linked_fate</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives and stores a torchvision transform operation for later use.</span>
+
+<span class="sd">        If the operation is given as a string, it is assumed to be a class name and it will</span>
+<span class="sd">        be imported. The parameters (if any) will then be given to the constructor of that</span>
+<span class="sd">        class. Otherwise, the operation is assumed to be a callable object, and its parameters</span>
+<span class="sd">        (if any) will be provided at call-time.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            operation: the wrapped operation (callable object or class name string to import).</span>
+<span class="sd">            params: the parameters that are passed to the operation when init&#39;d or called.</span>
+<span class="sd">            probability: the probability that the wrapped operation will be applied.</span>
+<span class="sd">            convert_pil: specifies whether images should be forced into PIL format or not.</span>
+<span class="sd">            target_keys: the sample keys to apply the pipeline to (when dictionaries are passed in).</span>
+<span class="sd">            linked_fate: specifies whether images given in a list/tuple should have the same fate or not.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">params</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="nb">dict</span><span class="p">),</span> <span class="s2">&quot;expected params to be passed in as a dictionary&quot;</span>
+        <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">probability</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;invalid probability value (range is [0,1]&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="p">{}</span> <span class="k">if</span> <span class="n">params</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">params</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">operation</span> <span class="o">=</span> <span class="n">operation</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">operation</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">operation_type</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">import_class</span><span class="p">(</span><span class="n">operation</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">opcall</span> <span class="o">=</span> <span class="n">operation_type</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">opcall</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">operation</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">probability</span> <span class="o">=</span> <span class="n">probability</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">convert_pil</span> <span class="o">=</span> <span class="n">convert_pil</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_keys</span> <span class="o">=</span> <span class="n">target_keys</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linked_fate</span> <span class="o">=</span> <span class="n">linked_fate</span></div>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_unpack</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">force_flatten</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">convert_pil</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">force_flatten</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">sample</span><span class="p">,</span> <span class="p">[</span><span class="kc">False</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+                <span class="n">flat_samples</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">cvts</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">:</span>
+                    <span class="n">out</span><span class="p">,</span> <span class="n">cvt</span> <span class="o">=</span> <span class="n">TransformWrapper</span><span class="o">.</span><span class="n">_unpack</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">force_flatten</span><span class="o">=</span><span class="n">force_flatten</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cvt</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+                        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)),</span> <span class="s2">&quot;unexpected out/cvt types&quot;</span>
+                        <span class="n">flat_samples</span> <span class="o">+=</span> <span class="nb">list</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+                        <span class="n">cvts</span> <span class="o">+=</span> <span class="nb">list</span><span class="p">(</span><span class="n">cvt</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">flat_samples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+                        <span class="n">cvts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cvt</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">flat_samples</span><span class="p">,</span> <span class="n">cvts</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">convert_pil</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+                <span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">and</span> <span class="n">sample</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> \
+                    <span class="n">sample</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">):</span>
+                <span class="c1"># PIL images cannot handle multi-channel non-byte arrays; we handle these manually</span>
+                <span class="n">flat_samples</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+                    <span class="n">flat_samples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">c</span><span class="p">]))</span>
+                <span class="k">return</span> <span class="n">flat_samples</span><span class="p">,</span> <span class="kc">True</span>  <span class="c1"># this is the only case where an array can be paired with a single cvt flag</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">out</span> <span class="o">=</span> <span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">sample</span><span class="p">))</span>
+                <span class="k">return</span> <span class="n">out</span><span class="p">,</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="n">sample</span><span class="p">,</span> <span class="kc">False</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_pack</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">cvts</span><span class="p">,</span> <span class="n">convert_pil</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">))</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cvts</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">))</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cvts</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="n">convert_pil</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cvts</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span> <span class="ow">and</span> <span class="n">cvts</span><span class="p">,</span> \
+                <span class="s2">&quot;unexpected cvts len w/ pil conversion (bad logic somewhere)&quot;</span>
+            <span class="k">assert</span> <span class="nb">all</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">]),</span> <span class="s2">&quot;unexpected packed list sample types&quot;</span>
+            <span class="n">samples</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">]</span>
+            <span class="k">assert</span> <span class="nb">all</span><span class="p">([</span><span class="n">s</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">]),</span> <span class="s2">&quot;unexpected packed list sample depths&quot;</span>
+            <span class="n">samples</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">]</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)],</span> <span class="p">[</span><span class="kc">False</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">cvt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cvts</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cvt</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+                <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cvt</span><span class="p">,</span> <span class="nb">bool</span><span class="p">),</span> <span class="s2">&quot;unexpected cvt type&quot;</span>
+                <span class="k">if</span> <span class="n">cvt</span><span class="p">:</span>
+                    <span class="k">assert</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">samples</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)),</span> <span class="s2">&quot;unexpected packed sample type&quot;</span>
+                    <span class="n">samples</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">samples</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+                    <span class="n">cvts</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">samples</span><span class="p">,</span> <span class="n">cvts</span>
+
+<div class="viewcode-block" id="TransformWrapper.__call__"><a class="viewcode-back" href="../../../thelper.transforms.html#thelper.transforms.wrappers.TransformWrapper.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="n">force_linked_fate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">op_seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">in_cvts</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Transforms a (dict) sample, a single image, or a list of images using a wrapped operation.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            sample: the sample or image(s) to transform (can also contain embedded lists/tuples of images).</span>
+<span class="sd">            force_linked_fate: override flag for recursive use allowing forced linking of arrays.</span>
+<span class="sd">            op_seed: seed to set before calling the wrapped operation.</span>
+<span class="sd">            in_cvts: holds the input conversion flag array (for recursive usage).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The transformed image(s), with the same list/tuple formatting as the input.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="c1"># recursive call for unpacking sample content w/ target keys</span>
+            <span class="k">assert</span> <span class="n">in_cvts</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;top-level call should never provide in_cvts&quot;</span>
+            <span class="c1"># capture non-scalar objects (according to numpy) if no keys are provided</span>
+            <span class="n">key_vals</span> <span class="o">=</span> <span class="p">[(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sample</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="p">(</span>
+                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_keys</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">is_scalar</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="ow">or</span>
+                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_keys</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_keys</span><span class="p">))]</span>
+            <span class="n">keys</span><span class="p">,</span> <span class="n">vals</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">key_vals</span><span class="p">))</span>
+            <span class="n">lengths</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">))</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lengths</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="n">lengths</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">lengths</span><span class="p">)</span> <span class="ow">and</span> <span class="n">lengths</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># interlace input lists for internal linked fate (if needed; otherwise, it won&#39;t change anything)</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="p">[[</span><span class="n">v</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">))</span> <span class="k">else</span>
+                         <span class="n">v</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lengths</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="bp">self</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">force_linked_fate</span><span class="o">=</span><span class="n">force_linked_fate</span><span class="p">,</span> <span class="n">op_seed</span><span class="o">=</span><span class="n">op_seed</span><span class="p">,</span> <span class="n">in_cvts</span><span class="o">=</span><span class="n">in_cvts</span><span class="p">)</span>
+                <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span> <span class="o">==</span> <span class="n">lengths</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;messed up something internally&quot;</span>
+                <span class="n">out_vals</span> <span class="o">=</span> <span class="p">[[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="p">[[</span><span class="n">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span>
+                <span class="k">for</span> <span class="n">idx1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">lengths</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+                    <span class="k">for</span> <span class="n">idx2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">out_vals</span><span class="p">)):</span>
+                        <span class="n">out_vals</span><span class="p">[</span><span class="n">idx2</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="n">idx1</span><span class="p">][</span><span class="n">idx2</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="n">idx1</span><span class="p">],</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="n">vals</span><span class="p">[</span><span class="n">idx1</span><span class="p">])</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="n">out_vals</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="bp">self</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">force_linked_fate</span><span class="o">=</span><span class="n">force_linked_fate</span><span class="p">,</span> <span class="n">op_seed</span><span class="o">=</span><span class="n">op_seed</span><span class="p">,</span> <span class="n">in_cvts</span><span class="o">=</span><span class="n">in_cvts</span><span class="p">)</span>
+            <span class="n">sample</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">vals</span><span class="p">[</span><span class="n">keys</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span> <span class="k">else</span> <span class="n">sample</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">}</span>
+            <span class="k">return</span> <span class="n">sample</span>
+        <span class="n">out_cvts</span> <span class="o">=</span> <span class="n">in_cvts</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">out_list</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">sample</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="p">(</span><span class="n">out_list</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">sample</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">([],</span> <span class="p">[])</span> <span class="k">if</span> <span class="n">out_cvts</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">out_list</span><span class="p">:</span>
+            <span class="n">sample</span> <span class="o">=</span> <span class="p">[</span><span class="n">sample</span><span class="p">]</span>
+        <span class="k">assert</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">]),</span> \
+            <span class="s2">&quot;sample transform wrapper cannot handle sample-in-sample (or dict-in-list) inputs&quot;</span>
+        <span class="n">skip_unpack</span> <span class="o">=</span> <span class="n">in_cvts</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">in_cvts</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span> <span class="ow">and</span> <span class="n">in_cvts</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">linked_fate</span> <span class="ow">or</span> <span class="n">force_linked_fate</span><span class="p">:</span>  <span class="c1"># process all content with the same operations below</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">skip_unpack</span><span class="p">:</span>
+                <span class="n">sample</span><span class="p">,</span> <span class="n">cvts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_unpack</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">convert_pil</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">convert_pil</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+                    <span class="n">sample</span> <span class="o">=</span> <span class="p">[</span><span class="n">sample</span><span class="p">]</span>
+                    <span class="n">cvts</span> <span class="o">=</span> <span class="p">[</span><span class="n">cvts</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">cvts</span> <span class="o">=</span> <span class="n">in_cvts</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">probability</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="ow">or</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">probability</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">op_seed</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">op_seed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">iinfo</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+                        <span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">cvts</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">force_linked_fate</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                      <span class="n">op_seed</span><span class="o">=</span><span class="n">op_seed</span><span class="p">,</span> <span class="n">in_cvts</span><span class="o">=</span><span class="n">cvts</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">opcall</span><span class="p">,</span> <span class="s2">&quot;set_seed&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">callable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">opcall</span><span class="o">.</span><span class="n">set_seed</span><span class="p">):</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">opcall</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="n">op_seed</span><span class="p">)</span>
+                        <span class="c1"># watch out: if operation is stochastic and we cannot seed above, then there is no</span>
+                        <span class="c1"># guarantee that the content will truly have a &#39;linked fate&#39; (this might cause issues!)</span>
+                        <span class="k">if</span> <span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                            <span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">opcall</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># each element of the top array will be processed independently below (current seeds are kept)</span>
+            <span class="n">cvts</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
+                <span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">cvts</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_unpack</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">convert_pil</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">convert_pil</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">probability</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="ow">or</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">probability</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+                        <span class="c1"># we will now force fate linkage for all sub-elements of this array</span>
+                        <span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">cvts</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">force_linked_fate</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                      <span class="n">op_seed</span><span class="o">=</span><span class="n">op_seed</span><span class="p">,</span> <span class="n">in_cvts</span><span class="o">=</span><span class="n">cvts</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                            <span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">opcall</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+        <span class="n">sample</span><span class="p">,</span> <span class="n">cvts</span> <span class="o">=</span> <span class="n">TransformWrapper</span><span class="o">.</span><span class="n">_pack</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">cvts</span><span class="p">,</span> <span class="n">convert_pil</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">convert_pil</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">cvts</span><span class="p">),</span> <span class="s2">&quot;messed up packing/unpacking logic&quot;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">skip_unpack</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">out_list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">cvts</span> <span class="o">=</span> <span class="n">cvts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">cvts</span><span class="p">)</span> <span class="k">if</span> <span class="n">out_cvts</span> <span class="k">else</span> <span class="n">sample</span></div>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a print-friendly representation of inner augmentation stages.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;(operation={repr(self.operation)}, params={repr(self.params)}, probability={repr(self.probability)}, &quot;</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;convert_pil={repr(self.convert_pil)}, target_keys={repr(self.target_keys)}, linked_fate={repr(self.linked_fate)})&quot;</span>
+
+    <span class="c1"># noinspection PyMethodMayBeStatic</span>
+<div class="viewcode-block" id="TransformWrapper.set_seed"><a class="viewcode-back" href="../../../thelper.transforms.html#thelper.transforms.wrappers.TransformWrapper.set_seed">[docs]</a>    <span class="k">def</span> <span class="nf">set_seed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the internal seed to use for stochastic ops.&quot;&quot;&quot;</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TransformWrapper.set_epoch"><a class="viewcode-back" href="../../../thelper.transforms.html#thelper.transforms.wrappers.TransformWrapper.set_epoch">[docs]</a>    <span class="k">def</span> <span class="nf">set_epoch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the current epoch number in order to change the behavior of some suboperations.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">epoch</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;invalid epoch value&quot;</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">opcall</span><span class="p">,</span> <span class="s2">&quot;set_epoch&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">callable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">opcall</span><span class="o">.</span><span class="n">set_epoch</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">opcall</span><span class="o">.</span><span class="n">set_epoch</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../use-cases.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

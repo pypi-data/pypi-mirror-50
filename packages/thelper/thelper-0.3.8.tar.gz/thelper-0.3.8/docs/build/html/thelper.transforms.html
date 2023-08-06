@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.transforms package &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing" href="contributing.html" />
+    <link rel="prev" title="thelper.train package" href="thelper.train.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="thelper.html" accesskey="U">thelper package</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-thelper.transforms">
+<span id="thelper-transforms-package"></span><h1>thelper.transforms package<a class="headerlink" href="#module-thelper.transforms" title="Permalink to this headline">¶</a></h1>
+<p>Transformation operations package.</p>
+<p>This package contains data transformation classes and wrappers for preprocessing,
+augmentation, and normalization of data samples.</p>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-thelper.transforms.composers">
+<span id="thelper-transforms-composers-module"></span><h2>thelper.transforms.composers module<a class="headerlink" href="#module-thelper.transforms.composers" title="Permalink to this headline">¶</a></h2>
+<p>Transformation composers module.</p>
+<p>All transforms should aim to be compatible with both numpy arrays and
+PyTorch tensors. By default, images are processed using <code class="docutils literal notranslate"><span class="pre">__call__</span></code>,
+meaning that for a given transformation <code class="docutils literal notranslate"><span class="pre">t</span></code>, we apply it via:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">image_transformed</span> <span class="o">=</span> <span class="n">t</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>All important parameters for an operation should also be passed in the
+constructor and exposed in the operation’s <code class="docutils literal notranslate"><span class="pre">__repr__</span></code> function so that
+external parsers can discover exactly how to reproduce their behavior. For
+now, these representations are used for debugging more than anything else.</p>
+<dl class="class">
+<dt id="thelper.transforms.composers.Compose">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.transforms.composers.</code><code class="sig-name descname">Compose</code><span class="sig-paren">(</span><em class="sig-param">transforms</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/composers.html#Compose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.composers.Compose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torchvision.transforms.transforms.Compose</span></code></p>
+<p>Composes several transforms together (with support for invert ops).</p>
+<p>This interface is fully compatible with <code class="docutils literal notranslate"><span class="pre">torchvision.transforms.Compose</span></code>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.transforms.composers.CustomStepCompose" title="thelper.transforms.composers.CustomStepCompose"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.transforms.composers.CustomStepCompose</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.transforms.composers.Compose.__getitem__">
+<code class="sig-name descname">__getitem__</code><span class="sig-paren">(</span><em class="sig-param">idx</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/composers.html#Compose.__getitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.composers.Compose.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the idx-th operation wrapped by the composer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.composers.Compose.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">transforms</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/composers.html#Compose.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.composers.Compose.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forwards the list of transformations to the base class.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.composers.Compose.invert">
+<code class="sig-name descname">invert</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/composers.html#Compose.invert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.composers.Compose.invert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tries to invert the transformations applied to a sample.</p>
+<p>Will throw if one of the transformations cannot be inverted.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.composers.Compose.set_epoch">
+<code class="sig-name descname">set_epoch</code><span class="sig-paren">(</span><em class="sig-param">epoch=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/composers.html#Compose.set_epoch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.composers.Compose.set_epoch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the current epoch number in order to change the behavior of some suboperations.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.composers.Compose.set_seed">
+<code class="sig-name descname">set_seed</code><span class="sig-paren">(</span><em class="sig-param">seed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/composers.html#Compose.set_seed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.composers.Compose.set_seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the internal seed to use for stochastic ops.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.transforms.composers.CustomStepCompose">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.transforms.composers.</code><code class="sig-name descname">CustomStepCompose</code><span class="sig-paren">(</span><em class="sig-param">milestones</em>, <em class="sig-param">last_epoch=-1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/composers.html#CustomStepCompose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.composers.CustomStepCompose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torchvision.transforms.transforms.Compose</span></code></p>
+<p>Composes several transforms together based on an epoch schedule.</p>
+<p>This interface is fully compatible with <code class="docutils literal notranslate"><span class="pre">torchvision.transforms.Compose</span></code>. It can be useful if
+some operations should change their behavior over the course of a training session. Note that
+all epoch indices are assumed to be 0-based.</p>
+<p>Usage example in Python:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># We will scale the resolution of input patches based on an arbitrary schedule</span>
+<span class="c1"># dsize = (16, 16)   if epoch &lt; 2         (16x16 patches before epoch 2)</span>
+<span class="c1"># dsize = (32, 32)   if 2 &lt;= epoch &lt; 4    (32x32 patches before epoch 4)</span>
+<span class="c1"># dsize = (64, 64)   if 4 &lt;= epoch &lt; 8    (64x64 patches before epoch 8)</span>
+<span class="c1"># dsize = (112, 112) if 8 &lt;= epoch &lt; 12   (112x112 patches before epoch 12)</span>
+<span class="c1"># dsize = (160, 160) if 12 &lt;= epoch &lt; 15  (160x160 patches before epoch 15)</span>
+<span class="c1"># dsize = (196, 196) if 15 &lt;= epoch &lt; 18  (196x196 patches before epoch 18)</span>
+<span class="c1"># dsize = (224, 224) if epoch &gt;= 18       (224x224 patches past epoch 18)</span>
+<span class="n">transforms</span> <span class="o">=</span> <span class="n">CustomStepCompose</span><span class="p">(</span><span class="n">milestones</span><span class="o">=</span><span class="p">{</span>
+    <span class="mi">0</span><span class="p">:</span> <span class="n">thelper</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="n">dsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">)),</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="n">thelper</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="n">dsize</span><span class="o">=</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">)),</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="n">thelper</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="n">dsize</span><span class="o">=</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">)),</span>
+    <span class="mi">8</span><span class="p">:</span> <span class="n">thelper</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="n">dsize</span><span class="o">=</span><span class="p">(</span><span class="mi">112</span><span class="p">,</span> <span class="mi">112</span><span class="p">)),</span>
+    <span class="mi">12</span><span class="p">:</span> <span class="n">thelper</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="n">dsize</span><span class="o">=</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="mi">160</span><span class="p">)),</span>
+    <span class="mi">15</span><span class="p">:</span> <span class="n">thelper</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="n">dsize</span><span class="o">=</span><span class="p">(</span><span class="mi">196</span><span class="p">,</span> <span class="mi">196</span><span class="p">)),</span>
+    <span class="mi">18</span><span class="p">:</span> <span class="n">thelper</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="n">dsize</span><span class="o">=</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">)),</span>
+<span class="p">})</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">transforms</span><span class="o">.</span><span class="n">set_epoch</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">loader</span><span class="p">:</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="n">transforms</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+        <span class="n">train</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stages</strong> – list of epochs where a new scaling factor is to be applied.</p></li>
+<li><p><strong>transforms</strong> – list of transformation to apply at each stage.</p></li>
+<li><p><strong>milestones</strong> – original milestones map provided in the constructor.</p></li>
+<li><p><strong>epoch</strong> – index of the current epoch.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.transforms.composers.Compose" title="thelper.transforms.composers.Compose"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.transforms.composers.Compose</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.transforms.composers.CustomStepCompose.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">img</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/composers.html#CustomStepCompose.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.composers.CustomStepCompose.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies the current stage of transformation operations to a sample.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.composers.CustomStepCompose.__getitem__">
+<code class="sig-name descname">__getitem__</code><span class="sig-paren">(</span><em class="sig-param">idx</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/composers.html#CustomStepCompose.__getitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.composers.CustomStepCompose.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the idx-th operation wrapped by the composer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.composers.CustomStepCompose.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">milestones</em>, <em class="sig-param">last_epoch=-1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/composers.html#CustomStepCompose.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.composers.CustomStepCompose.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives the milestone stages (or stage lists), and the initialization state.</p>
+<p>If the milestones do not include the first epoch (idx = 0), then no transform will be applied
+until the next specified epoch index. When last_epoch is -1, the training is assumed to start
+from scratch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>milestones</strong> – Map of epoch indices tied to transformation stages. Keys must be increasing.</p></li>
+<li><p><strong>last_epoch</strong> – The index of last epoch. Default: -1.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.composers.CustomStepCompose.invert">
+<code class="sig-name descname">invert</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/composers.html#CustomStepCompose.invert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.composers.CustomStepCompose.invert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tries to invert the transformations applied to a sample.</p>
+<p>Will throw if one of the transformations cannot be inverted.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.composers.CustomStepCompose.set_epoch">
+<code class="sig-name descname">set_epoch</code><span class="sig-paren">(</span><em class="sig-param">epoch=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/composers.html#CustomStepCompose.set_epoch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.composers.CustomStepCompose.set_epoch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the current epoch number in order to change the behavior of some suboperations.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.composers.CustomStepCompose.set_seed">
+<code class="sig-name descname">set_seed</code><span class="sig-paren">(</span><em class="sig-param">seed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/composers.html#CustomStepCompose.set_seed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.composers.CustomStepCompose.set_seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the internal seed to use for stochastic ops.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.composers.CustomStepCompose.step">
+<code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param">epoch=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/composers.html#CustomStepCompose.step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.composers.CustomStepCompose.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Advances the epoch tracker in order to change the behavior of some suboperations.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.transforms.operations">
+<span id="thelper-transforms-operations-module"></span><h2>thelper.transforms.operations module<a class="headerlink" href="#module-thelper.transforms.operations" title="Permalink to this headline">¶</a></h2>
+<p>Transformation operations module.</p>
+<p>All transforms should aim to be compatible with both numpy arrays and
+PyTorch tensors. By default, images are processed using <code class="docutils literal notranslate"><span class="pre">__call__</span></code>,
+meaning that for a given transformation <code class="docutils literal notranslate"><span class="pre">t</span></code>, we apply it via:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">image_transformed</span> <span class="o">=</span> <span class="n">t</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>All important parameters for an operation should also be passed in the
+constructor and exposed in the operation’s <code class="docutils literal notranslate"><span class="pre">__repr__</span></code> function so that
+external parsers can discover exactly how to reproduce their behavior. For
+now, these representations are used for debugging more than anything else.</p>
+<dl class="class">
+<dt id="thelper.transforms.operations.Affine">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.transforms.operations.</code><code class="sig-name descname">Affine</code><span class="sig-paren">(</span><em class="sig-param">transf</em>, <em class="sig-param">out_size=None</em>, <em class="sig-param">flags=None</em>, <em class="sig-param">border_mode=None</em>, <em class="sig-param">border_val=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Affine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Affine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Warps a given image using an affine matrix via OpenCV and numpy.</p>
+<p>This operation is deterministic. The code relies on OpenCV, meaning the border arguments
+must be compatible with <code class="docutils literal notranslate"><span class="pre">cv2.warpAffine</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>transf</strong> – the 2x3 transformation matrix passed to <code class="docutils literal notranslate"><span class="pre">cv2.warpAffine</span></code>.</p></li>
+<li><p><strong>out_size</strong> – target image size (tuple of width, height). If None, same as original.</p></li>
+<li><p><strong>flags</strong> – extra warp flags forwarded to <code class="docutils literal notranslate"><span class="pre">cv2.warpAffine</span></code>.</p></li>
+<li><p><strong>border_mode</strong> – border extrapolation mode forwarded to <code class="docutils literal notranslate"><span class="pre">cv2.warpAffine</span></code>.</p></li>
+<li><p><strong>border_val</strong> – border constant extrapolation value forwarded to <code class="docutils literal notranslate"><span class="pre">cv2.warpAffine</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.transforms.operations.Affine.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Affine.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Affine.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Warps a given image using an affine matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sample</strong> – the image to warp; should be a 2d or 3d numpy array.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The warped image.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.Affine.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">transf</em>, <em class="sig-param">out_size=None</em>, <em class="sig-param">flags=None</em>, <em class="sig-param">border_mode=None</em>, <em class="sig-param">border_val=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Affine.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Affine.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates and initializes affine warp parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>transf</strong> – the 2x3 transformation matrix passed to <code class="docutils literal notranslate"><span class="pre">cv2.warpAffine</span></code>.</p></li>
+<li><p><strong>out_size</strong> – target image size (tuple of width, height). If None, same as original.</p></li>
+<li><p><strong>flags</strong> – extra warp flags forwarded to <code class="docutils literal notranslate"><span class="pre">cv2.warpAffine</span></code>.</p></li>
+<li><p><strong>border_mode</strong> – border extrapolation mode forwarded to <code class="docutils literal notranslate"><span class="pre">cv2.warpAffine</span></code>.</p></li>
+<li><p><strong>border_val</strong> – border constant extrapolation value forwarded to <code class="docutils literal notranslate"><span class="pre">cv2.warpAffine</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.Affine.invert">
+<code class="sig-name descname">invert</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Affine.invert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Affine.invert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inverts the warp transformation, but only is the output image has not been cropped before.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.transforms.operations.CenterCrop">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.transforms.operations.</code><code class="sig-name descname">CenterCrop</code><span class="sig-paren">(</span><em class="sig-param">size</em>, <em class="sig-param">bordertype=0</em>, <em class="sig-param">borderval=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#CenterCrop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.CenterCrop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Returns a center crop from a given image via OpenCV and numpy.</p>
+<p>This operation is deterministic. The code relies on OpenCV, meaning the border arguments
+must be compatible with <code class="docutils literal notranslate"><span class="pre">cv2.copyMakeBorder</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>size</strong> – the size of the target crop (tuple of width, height).</p></li>
+<li><p><strong>relative</strong> – specifies whether the target crop size is relative to the image size or not.</p></li>
+<li><p><strong>bordertype</strong> – argument forwarded to <code class="docutils literal notranslate"><span class="pre">cv2.copyMakeBorder</span></code>.</p></li>
+<li><p><strong>borderval</strong> – argument forwarded to <code class="docutils literal notranslate"><span class="pre">cv2.copyMakeBorder</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.transforms.operations.CenterCrop.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#CenterCrop.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.CenterCrop.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extracts and returns a central crop from the provided image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sample</strong> – the image to generate the crop from; should be a 2d or 3d numpy array.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The center crop.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.CenterCrop.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">size</em>, <em class="sig-param">bordertype=0</em>, <em class="sig-param">borderval=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#CenterCrop.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.CenterCrop.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates and initializes center crop parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>size</strong> – size of the target crop, provided as tuple or list. If integer values are used,
+the size is assumed to be absolute. If floating point values are used, the size is
+assumed to be relative, and will be determined dynamically for each sample. If a
+tuple is used, it is assumed to be (width, height).</p></li>
+<li><p><strong>bordertype</strong> – border copy type to use when the image is too small for the required crop size.
+See <code class="docutils literal notranslate"><span class="pre">cv2.copyMakeBorder</span></code> for more information.</p></li>
+<li><p><strong>borderval</strong> – border value to use when the image is too small for the required crop size. See
+<code class="docutils literal notranslate"><span class="pre">cv2.copyMakeBorder</span></code> for more information.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.CenterCrop.invert">
+<code class="sig-name descname">invert</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#CenterCrop.invert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.CenterCrop.invert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies that this operation cannot be inverted, as data loss is incurred during image transformation.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.transforms.operations.Duplicator">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.transforms.operations.</code><code class="sig-name descname">Duplicator</code><span class="sig-paren">(</span><em class="sig-param">count</em>, <em class="sig-param">deepcopy=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Duplicator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Duplicator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.transforms.operations.NoTransform" title="thelper.transforms.operations.NoTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.transforms.operations.NoTransform</span></code></a></p>
+<p>Duplicates and returns a list of copies of the input sample.</p>
+<p>This operation is used in data augmentation pipelines that rely on probabilistic or preset transformations.
+It can produce a fixed number of simple copies or deep copies of the input samples as required.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Since the duplicates will be given directly to the data loader as part of the same minibatch, using too
+many copies can adversely affect gradient descent for that minibatch. To simply increase the total size
+of the training set while still allowing a proper shuffling of samples and/or to keep the minibatch size
+intact, we instead recommend setting the <code class="docutils literal notranslate"><span class="pre">train_scale</span></code> configuration value in the data loader. See
+<a class="reference internal" href="thelper.data.html#thelper.data.utils.create_loaders" title="thelper.data.utils.create_loaders"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.create_loaders()</span></code></a> for more information.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>count</strong> – number of copies to generate.</p></li>
+<li><p><strong>deepcopy</strong> – specifies whether to deep-copy samples or not.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.transforms.operations.Duplicator.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Duplicator.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Duplicator.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates and returns duplicates of the sample/object.</p>
+<p>If a dictionary is provided, its values will be expanded into lists that
+will contain all duplicates. Otherwise, the duplicates will be returned
+directly as a list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sample</strong> – the sample/object to duplicate.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of duplicated samples, or a dictionary of duplicate lists.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.Duplicator.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">count</em>, <em class="sig-param">deepcopy=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Duplicator.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Duplicator.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates and initializes duplication parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>count</strong> – number of copies to generate.</p></li>
+<li><p><strong>deepcopy</strong> – specifies whether to deep-copy samples or not.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.Duplicator.invert">
+<code class="sig-name descname">invert</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Duplicator.invert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Duplicator.invert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the first instance of the list of duplicates.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.transforms.operations.NoTransform">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.transforms.operations.</code><code class="sig-name descname">NoTransform</code><a class="reference internal" href="_modules/thelper/transforms/operations.html#NoTransform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.NoTransform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Used to flag some ops that should not be externally wrapped for sample/key handling.</p>
+<dl class="method">
+<dt id="thelper.transforms.operations.NoTransform.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#NoTransform.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.NoTransform.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Identity transform.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.NoTransform.invert">
+<code class="sig-name descname">invert</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#NoTransform.invert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.NoTransform.invert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Identity transform.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.transforms.operations.NormalizeMinMax">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.transforms.operations.</code><code class="sig-name descname">NormalizeMinMax</code><span class="sig-paren">(</span><em class="sig-param">min</em>, <em class="sig-param">max</em>, <em class="sig-param">out_type=&lt;class 'numpy.float32'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#NormalizeMinMax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.NormalizeMinMax" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Normalizes a given image using a set of minimum and maximum values.</p>
+<p>The samples will be transformed such that <code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">(s</span> <span class="pre">-</span> <span class="pre">min)</span> <span class="pre">/</span> <span class="pre">(max</span> <span class="pre">-</span> <span class="pre">min)</span></code>.</p>
+<p>Note that this operation is also not restricted to images.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>min</strong> – an array of minimum values to subtract with.</p></li>
+<li><p><strong>max</strong> – an array of maximum values to divide with.</p></li>
+<li><p><strong>out_type</strong> – the output data type to cast the normalization result to.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.transforms.operations.NormalizeMinMax.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#NormalizeMinMax.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.NormalizeMinMax.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalizes a given sample.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sample</strong> – the sample to normalize. If given as a PIL image, it</p></li>
+<li><p><strong>will be converted to a numpy array first.</strong></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The warped sample, in a numpy array of type <code class="docutils literal notranslate"><span class="pre">self.out_type</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.NormalizeMinMax.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">min</em>, <em class="sig-param">max</em>, <em class="sig-param">out_type=&lt;class 'numpy.float32'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#NormalizeMinMax.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.NormalizeMinMax.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates and initializes normalization parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>min</strong> – an array of minimum values to subtract with.</p></li>
+<li><p><strong>max</strong> – an array of maximum values to divide with.</p></li>
+<li><p><strong>out_type</strong> – the output data type to cast the normalization result to.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.NormalizeMinMax.invert">
+<code class="sig-name descname">invert</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#NormalizeMinMax.invert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.NormalizeMinMax.invert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inverts the normalization.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.transforms.operations.NormalizeZeroMeanUnitVar">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.transforms.operations.</code><code class="sig-name descname">NormalizeZeroMeanUnitVar</code><span class="sig-paren">(</span><em class="sig-param">mean</em>, <em class="sig-param">std</em>, <em class="sig-param">out_type=&lt;class 'numpy.float32'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#NormalizeZeroMeanUnitVar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.NormalizeZeroMeanUnitVar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Normalizes a given image using a set of mean and standard deviation parameters.</p>
+<p>The samples will be transformed such that <code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">(s</span> <span class="pre">-</span> <span class="pre">mean)</span> <span class="pre">/</span> <span class="pre">std</span></code>.</p>
+<p>This can be used for whitening; see <a class="reference external" href="https://en.wikipedia.org/wiki/Whitening_transformation">https://en.wikipedia.org/wiki/Whitening_transformation</a>
+for more information. Note that this operation is also not restricted to images.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mean</strong> – an array of mean values to subtract from data samples.</p></li>
+<li><p><strong>std</strong> – an array of standard deviation values to divide with.</p></li>
+<li><p><strong>out_type</strong> – the output data type to cast the normalization result to.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.transforms.operations.NormalizeZeroMeanUnitVar.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#NormalizeZeroMeanUnitVar.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.NormalizeZeroMeanUnitVar.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalizes a given sample.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sample</strong> – the sample to normalize. If given as a PIL image, it</p></li>
+<li><p><strong>will be converted to a numpy array first.</strong></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The warped sample, in a numpy array of type <code class="docutils literal notranslate"><span class="pre">self.out_type</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.NormalizeZeroMeanUnitVar.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">mean</em>, <em class="sig-param">std</em>, <em class="sig-param">out_type=&lt;class 'numpy.float32'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#NormalizeZeroMeanUnitVar.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.NormalizeZeroMeanUnitVar.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates and initializes normalization parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mean</strong> – an array of mean values to subtract from data samples.</p></li>
+<li><p><strong>std</strong> – an array of standard deviation values to divide with.</p></li>
+<li><p><strong>out_type</strong> – the output data type to cast the normalization result to.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.NormalizeZeroMeanUnitVar.invert">
+<code class="sig-name descname">invert</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#NormalizeZeroMeanUnitVar.invert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.NormalizeZeroMeanUnitVar.invert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inverts the normalization.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.transforms.operations.RandomResizedCrop">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.transforms.operations.</code><code class="sig-name descname">RandomResizedCrop</code><span class="sig-paren">(</span><em class="sig-param">output_size</em>, <em class="sig-param">input_size=(0.08</em>, <em class="sig-param">1.0)</em>, <em class="sig-param">ratio=(0.75</em>, <em class="sig-param">1.33)</em>, <em class="sig-param">probability=1.0</em>, <em class="sig-param">random_attempts=10</em>, <em class="sig-param">min_roi_iou=1.0</em>, <em class="sig-param">flags=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#RandomResizedCrop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.RandomResizedCrop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Returns a resized crop of a randomly selected image region.</p>
+<p>This operation is stochastic, and thus cannot be inverted. Each time the operation is called,
+a random check will determine whether a transformation is applied or not. The code relies on
+OpenCV, meaning the interpolation arguments must be compatible with <code class="docutils literal notranslate"><span class="pre">cv2.resize</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>output_size</strong> – size of the output crop, provided as a single element (<code class="docutils literal notranslate"><span class="pre">edge_size</span></code>) or as a
+two-element tuple or list (<code class="docutils literal notranslate"><span class="pre">[width,</span> <span class="pre">height]</span></code>). If integer values are used, the size is
+assumed to be absolute. If floating point values are used (i.e. in [0,1]), the output
+size is assumed to be relative to the original image size, and will be determined at
+execution time for each sample. If set to <code class="docutils literal notranslate"><span class="pre">None</span></code>, the crop will not be resized.</p></li>
+<li><p><strong>input_size</strong> – range of the input region sizes, provided as a pair of elements
+(<code class="docutils literal notranslate"><span class="pre">[min_edge_size,</span> <span class="pre">max_edge_size]</span></code>) or as a pair of tuples or lists
+(<code class="docutils literal notranslate"><span class="pre">[[min_width,</span> <span class="pre">min_height],</span> <span class="pre">[max_width,</span> <span class="pre">max_height]]</span></code>). If the pair-of-pairs format is
+used, the <code class="docutils literal notranslate"><span class="pre">ratio</span></code> argument cannot be used. If integer values are used, the ranges are
+assumed to be absolute. If floating point values are used (i.e. in [0,1]), the ranges
+are assumed to be relative to the original image size, and will be determined at
+execution time for each sample.</p></li>
+<li><p><strong>ratio</strong> – range of minimum/maximum input region aspect ratios to use. This argument cannot be
+used if the pair-of-pairs format is used for the <code class="docutils literal notranslate"><span class="pre">input_size</span></code> argument.</p></li>
+<li><p><strong>probability</strong> – the probability that the transformation will be applied when called; if not
+applied, the returned image will be the original.</p></li>
+<li><p><strong>random_attempts</strong> – the number of random sampling attempts to try before reverting to center
+or most-probably-valid crop generation.</p></li>
+<li><p><strong>min_roi_iou</strong> – minimum roi intersection over union (IoU) required for accepting a tile (in [0,1]).</p></li>
+<li><p><strong>flags</strong> – interpolation flag forwarded to <code class="docutils literal notranslate"><span class="pre">cv2.resize</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.transforms.operations.RandomResizedCrop.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">image</em>, <em class="sig-param">roi=None</em>, <em class="sig-param">mask=None</em>, <em class="sig-param">bboxes=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#RandomResizedCrop.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.RandomResizedCrop.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extracts and returns a random (resized) crop from the provided image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> – the image to generate the crop from. If given as a 2-element list, it is assumed to
+contain both the image and the roi (passed through a composer).</p></li>
+<li><p><strong>roi</strong> – the roi to check tile intersections with (may be <code class="docutils literal notranslate"><span class="pre">None</span></code>).</p></li>
+<li><p><strong>mask</strong> – a mask to crop simultaneously with the input image (may be <code class="docutils literal notranslate"><span class="pre">None</span></code>).</p></li>
+<li><p><strong>bboxes</strong> – a list or array of bounding boxes to crop with the input image (may be <code class="docutils literal notranslate"><span class="pre">None</span></code>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The randomly selected and resized crop. If mask and/or bboxes is given, the output will be
+a dictionary containing the results under the <code class="docutils literal notranslate"><span class="pre">image</span></code>, <code class="docutils literal notranslate"><span class="pre">mask</span></code>, and <code class="docutils literal notranslate"><span class="pre">bboxes</span></code> keys.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.RandomResizedCrop.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">output_size</em>, <em class="sig-param">input_size=(0.08</em>, <em class="sig-param">1.0)</em>, <em class="sig-param">ratio=(0.75</em>, <em class="sig-param">1.33)</em>, <em class="sig-param">probability=1.0</em>, <em class="sig-param">random_attempts=10</em>, <em class="sig-param">min_roi_iou=1.0</em>, <em class="sig-param">flags=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#RandomResizedCrop.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.RandomResizedCrop.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates and initializes center crop parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>output_size</strong> – size of the output crop, provided as a single element (<code class="docutils literal notranslate"><span class="pre">edge_size</span></code>) or as a
+two-element tuple or list (<code class="docutils literal notranslate"><span class="pre">[width,</span> <span class="pre">height]</span></code>). If integer values are used, the size is
+assumed to be absolute. If floating point values are used (i.e. in [0,1]), the output
+size is assumed to be relative to the original image size, and will be determined at
+execution time for each sample. If set to <code class="docutils literal notranslate"><span class="pre">None</span></code>, the crop will not be resized.</p></li>
+<li><p><strong>input_size</strong> – range of the input region sizes, provided as a pair of elements
+(<code class="docutils literal notranslate"><span class="pre">[min_edge_size,</span> <span class="pre">max_edge_size]</span></code>) or as a pair of tuples or lists
+(<code class="docutils literal notranslate"><span class="pre">[[min_width,</span> <span class="pre">min_height],</span> <span class="pre">[max_width,</span> <span class="pre">max_height]]</span></code>). If the pair-of-pairs format is
+used, the <code class="docutils literal notranslate"><span class="pre">ratio</span></code> argument cannot be used. If integer values are used, the ranges are
+assumed to be absolute. If floating point values are used (i.e. in [0,1]), the ranges
+are assumed to be relative to the original image size, and will be determined at
+execution time for each sample.</p></li>
+<li><p><strong>ratio</strong> – range of minimum/maximum input region aspect ratios to use. This argument cannot be
+used if the pair-of-pairs format is used for the <code class="docutils literal notranslate"><span class="pre">input_size</span></code> argument.</p></li>
+<li><p><strong>probability</strong> – the probability that the transformation will be applied when called; if not
+applied, the returned image will be the original.</p></li>
+<li><p><strong>random_attempts</strong> – the number of random sampling attempts to try before reverting to center
+or most-probably-valid crop generation.</p></li>
+<li><p><strong>min_roi_iou</strong> – minimum roi intersection over union (IoU) required for producing a tile.</p></li>
+<li><p><strong>flags</strong> – interpolation flag forwarded to <code class="docutils literal notranslate"><span class="pre">cv2.resize</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.RandomResizedCrop.invert">
+<code class="sig-name descname">invert</code><span class="sig-paren">(</span><em class="sig-param">image</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#RandomResizedCrop.invert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.RandomResizedCrop.invert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies that this operation cannot be inverted, as data loss is incurred during image transformation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.RandomResizedCrop.set_seed">
+<code class="sig-name descname">set_seed</code><span class="sig-paren">(</span><em class="sig-param">seed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#RandomResizedCrop.set_seed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.RandomResizedCrop.set_seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the internal seed to use for stochastic ops.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.transforms.operations.RandomShift">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.transforms.operations.</code><code class="sig-name descname">RandomShift</code><span class="sig-paren">(</span><em class="sig-param">min</em>, <em class="sig-param">max</em>, <em class="sig-param">probability=1.0</em>, <em class="sig-param">flags=None</em>, <em class="sig-param">border_mode=None</em>, <em class="sig-param">border_val=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#RandomShift"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.RandomShift" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Randomly translates an image in a provided range via OpenCV and numpy.</p>
+<p>This operation is stochastic, and thus cannot be inverted. Each time the operation is called,
+a random check will determine whether a transformation is applied or not. The code relies on
+OpenCV, meaning the border arguments must be compatible with <code class="docutils literal notranslate"><span class="pre">cv2.warpAffine</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>min</strong> – the minimum pixel shift that can be applied stochastically.</p></li>
+<li><p><strong>max</strong> – the maximum pixel shift that can be applied stochastically.</p></li>
+<li><p><strong>probability</strong> – the probability that the transformation will be applied when called.</p></li>
+<li><p><strong>flags</strong> – extra warp flags forwarded to <code class="docutils literal notranslate"><span class="pre">cv2.warpAffine</span></code>.</p></li>
+<li><p><strong>border_mode</strong> – border extrapolation mode forwarded to <code class="docutils literal notranslate"><span class="pre">cv2.warpAffine</span></code>.</p></li>
+<li><p><strong>border_val</strong> – border constant extrapolation value forwarded to <code class="docutils literal notranslate"><span class="pre">cv2.warpAffine</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.transforms.operations.RandomShift.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#RandomShift.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.RandomShift.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translates a given image using a predetermined min/max range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sample</strong> – the image to translate; should be a 2d or 3d numpy array.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The translated image.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.RandomShift.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">min</em>, <em class="sig-param">max</em>, <em class="sig-param">probability=1.0</em>, <em class="sig-param">flags=None</em>, <em class="sig-param">border_mode=None</em>, <em class="sig-param">border_val=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#RandomShift.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.RandomShift.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates and initializes shift parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>min</strong> – the minimum pixel shift that can be applied stochastically.</p></li>
+<li><p><strong>max</strong> – the maximum pixel shift that can be applied stochastically.</p></li>
+<li><p><strong>probability</strong> – the probability that the transformation will be applied when called.</p></li>
+<li><p><strong>flags</strong> – extra warp flags forwarded to <code class="docutils literal notranslate"><span class="pre">cv2.warpAffine</span></code>.</p></li>
+<li><p><strong>border_mode</strong> – border extrapolation mode forwarded to <code class="docutils literal notranslate"><span class="pre">cv2.warpAffine</span></code>.</p></li>
+<li><p><strong>border_val</strong> – border constant extrapolation value forwarded to <code class="docutils literal notranslate"><span class="pre">cv2.warpAffine</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.RandomShift.invert">
+<code class="sig-name descname">invert</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#RandomShift.invert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.RandomShift.invert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies that this operation cannot be inverted, as it is stochastic, and data loss occurs during transformation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.RandomShift.set_seed">
+<code class="sig-name descname">set_seed</code><span class="sig-paren">(</span><em class="sig-param">seed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#RandomShift.set_seed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.RandomShift.set_seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the internal seed to use for stochastic ops.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.transforms.operations.Resize">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.transforms.operations.</code><code class="sig-name descname">Resize</code><span class="sig-paren">(</span><em class="sig-param">dsize</em>, <em class="sig-param">fx=0</em>, <em class="sig-param">fy=0</em>, <em class="sig-param">interp=1</em>, <em class="sig-param">buffer=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Resize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Resize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Resizes a given image using OpenCV and numpy.</p>
+<p>This operation is deterministic. The code relies on OpenCV, meaning the interpolation arguments
+must be compatible with <code class="docutils literal notranslate"><span class="pre">cv2.resize</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>interp</strong> – interpolation type to use (forwarded to <code class="docutils literal notranslate"><span class="pre">cv2.resize</span></code>)</p></li>
+<li><p><strong>buffer</strong> – specifies whether a destination buffer should be used to avoid allocations</p></li>
+<li><p><strong>dsize</strong> – target image size (tuple of width, height).</p></li>
+<li><p><strong>dst</strong> – buffer used to avoid reallocations if <code class="docutils literal notranslate"><span class="pre">self.buffer</span> <span class="pre">==</span> <span class="pre">True</span></code></p></li>
+<li><p><strong>fx</strong> – argument forwarded to <code class="docutils literal notranslate"><span class="pre">cv2.resize</span></code>.</p></li>
+<li><p><strong>fy</strong> – argument forwarded to <code class="docutils literal notranslate"><span class="pre">cv2.resize</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.transforms.operations.Resize.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Resize.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Resize.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a resized copy of the provided image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sample</strong> – the image to resize; should be a 2d or 3d numpy array.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The resized image. May be allocated on the spot, or be a pointer to a local buffer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.Resize.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">dsize</em>, <em class="sig-param">fx=0</em>, <em class="sig-param">fy=0</em>, <em class="sig-param">interp=1</em>, <em class="sig-param">buffer=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Resize.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Resize.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates and initializes resize parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dsize</strong> – size of the target image, forwarded to <code class="docutils literal notranslate"><span class="pre">cv2.resize</span></code>.</p></li>
+<li><p><strong>fx</strong> – x-scaling factor, forwarded to <code class="docutils literal notranslate"><span class="pre">cv2.resize</span></code>.</p></li>
+<li><p><strong>fy</strong> – y-scaling factor, forwarded to <code class="docutils literal notranslate"><span class="pre">cv2.resize</span></code>.</p></li>
+<li><p><strong>interp</strong> – resize interpolation type, forwarded to <code class="docutils literal notranslate"><span class="pre">cv2.resize</span></code>.</p></li>
+<li><p><strong>buffer</strong> – specifies whether a destination buffer should be used to avoid allocations</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.Resize.invert">
+<code class="sig-name descname">invert</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Resize.invert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Resize.invert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies that this operation cannot be inverted, as data loss is incurred during image transformation.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.transforms.operations.Tile">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.transforms.operations.</code><code class="sig-name descname">Tile</code><span class="sig-paren">(</span><em class="sig-param">tile_size</em>, <em class="sig-param">tile_overlap=0.0</em>, <em class="sig-param">min_mask_iou=1.0</em>, <em class="sig-param">offset_overlap=False</em>, <em class="sig-param">bordertype=0</em>, <em class="sig-param">borderval=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Tile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Tile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Returns a list of tiles cut out from a given image.</p>
+<p>This operation can perform tiling given an optional mask with a target intersection over union (IoU) score,
+and with an optional overlap between tiles. The tiling is deterministic and can thus be inverted, but only
+if a mask is not used, as some image regions may be lost otherwise.</p>
+<p>If a mask is used, the first tile position is tested exhaustively by iterating over all input coordinates
+starting from the top-left corner of the image. Otherwise, the first tile position is set as (0,0). Then,
+all other tiles are found by offsetting frm these coordinates, and testing for IoU with the mask (if needed).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tile_size</strong> – size of the output tiles, provided as a single element (<code class="docutils literal notranslate"><span class="pre">edge_size</span></code>) or as a
+two-element tuple or list (<code class="docutils literal notranslate"><span class="pre">[width,</span> <span class="pre">height]</span></code>). If integer values are used, the size is
+assumed to be absolute. If floating point values are used (i.e. in [0,1]), the output
+size is assumed to be relative to the original image size, and will be determined at
+execution time for each image.</p></li>
+<li><p><strong>tile_overlap</strong> – overlap allowed between two neighboring tiles; should be a ratio in [0,1].</p></li>
+<li><p><strong>min_mask_iou</strong> – minimum mask intersection over union (IoU) required for accepting a tile (in [0,1]).</p></li>
+<li><p><strong>offset_overlap</strong> – specifies whether the overlap tiling should be offset outside the image or not.</p></li>
+<li><p><strong>bordertype</strong> – border copy type to use when the image is too small for the required crop size.
+See <code class="docutils literal notranslate"><span class="pre">cv2.copyMakeBorder</span></code> for more information.</p></li>
+<li><p><strong>borderval</strong> – border value to use when the image is too small for the required crop size. See
+<code class="docutils literal notranslate"><span class="pre">cv2.copyMakeBorder</span></code> for more information.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.transforms.operations.Tile.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">image</em>, <em class="sig-param">mask=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Tile.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Tile.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extracts and returns a list of tiles cut out from the given image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> – the image to cut into tiles. If given as a 2-element list, it is assumed to contain both
+the image and the mask (passed through a composer).</p></li>
+<li><p><strong>mask</strong> – the mask to check tile intersections with (may be <code class="docutils literal notranslate"><span class="pre">None</span></code>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of tiles (numpy-compatible images).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.Tile.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">tile_size</em>, <em class="sig-param">tile_overlap=0.0</em>, <em class="sig-param">min_mask_iou=1.0</em>, <em class="sig-param">offset_overlap=False</em>, <em class="sig-param">bordertype=0</em>, <em class="sig-param">borderval=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Tile.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Tile.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates and initializes tiling parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tile_size</strong> – size of the output tiles, provided as a single element (<code class="docutils literal notranslate"><span class="pre">edge_size</span></code>) or as a
+two-element tuple or list (<code class="docutils literal notranslate"><span class="pre">[width,</span> <span class="pre">height]</span></code>). If integer values are used, the size is
+assumed to be absolute. If floating point values are used (i.e. in [0,1]), the output
+size is assumed to be relative to the original image size, and will be determined at
+execution time for each image.</p></li>
+<li><p><strong>tile_overlap</strong> – overlap ratio between two consecutive (neighboring) tiles; should be in [0,1].</p></li>
+<li><p><strong>min_mask_iou</strong> – minimum mask intersection over union (IoU) required for producing a tile.</p></li>
+<li><p><strong>offset_overlap</strong> – specifies whether the overlap tiling should be offset outside the image or not.</p></li>
+<li><p><strong>bordertype</strong> – border copy type to use when the image is too small for the required crop size.
+See <code class="docutils literal notranslate"><span class="pre">cv2.copyMakeBorder</span></code> for more information.</p></li>
+<li><p><strong>borderval</strong> – border value to use when the image is too small for the required crop size. See
+<code class="docutils literal notranslate"><span class="pre">cv2.copyMakeBorder</span></code> for more information.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.Tile.count_tiles">
+<code class="sig-name descname">count_tiles</code><span class="sig-paren">(</span><em class="sig-param">image</em>, <em class="sig-param">mask=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Tile.count_tiles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Tile.count_tiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of tiles that would be cut out from the given image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> – the image to cut into tiles. If given as a 2-element list, it is assumed to contain both
+the image and the mask (passed through a composer).</p></li>
+<li><p><strong>mask</strong> – the mask to check tile intersections with (may be <code class="docutils literal notranslate"><span class="pre">None</span></code>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The number of tiles that would be cut with <a class="reference internal" href="#thelper.transforms.operations.Tile.__call__" title="thelper.transforms.operations.Tile.__call__"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.transforms.operations.Tile.__call__()</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.Tile.invert">
+<code class="sig-name descname">invert</code><span class="sig-paren">(</span><em class="sig-param">image</em>, <em class="sig-param">mask=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Tile.invert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Tile.invert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the reconstituted image from a list of tiles, or throws if a mask was used.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.transforms.operations.ToColor">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.transforms.operations.</code><code class="sig-name descname">ToColor</code><a class="reference internal" href="_modules/thelper/transforms/operations.html#ToColor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.ToColor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Converts a single-channel image to color (RGB).</p>
+<p>This operation is deterministic and reversible. It CANNOT be applied to images with
+more than one channel (HxWx1). The byte ordering (BGR or RGB) does not matter.</p>
+<dl class="method">
+<dt id="thelper.transforms.operations.ToColor.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#ToColor.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.ToColor.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.ToColor.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#ToColor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.ToColor.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does nothing, there’s no attribute to store for this operation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.ToColor.invert">
+<code class="sig-name descname">invert</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#ToColor.invert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.ToColor.invert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inverts the operation by calling the ‘ToGray’ operation.</p>
+<p>Note that this operation is probably lossy due to OpenCV’s grayscale conversion code
+which uses “0.21 R + 0.72 G + 0.07 B” to compute the luminosity of a pixel.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.transforms.operations.ToGray">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.transforms.operations.</code><code class="sig-name descname">ToGray</code><a class="reference internal" href="_modules/thelper/transforms/operations.html#ToGray"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.ToGray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Converts a multi-channel image to grayscale.</p>
+<p>This operation is deterministic, but not reversible. It can be applied to images with
+more than three channels (RGB) — in that case, it will compute their per-pixel mean
+value. Note that in any case, the last dimension (that corresponds to the channels) will
+remain and be of size 1.</p>
+<dl class="method">
+<dt id="thelper.transforms.operations.ToGray.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#ToGray.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.ToGray.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.ToGray.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#ToGray.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.ToGray.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does nothing, there’s no attribute to store for this operation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.ToGray.invert">
+<code class="sig-name descname">invert</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#ToGray.invert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.ToGray.invert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies that this operation cannot be inverted, as data loss occurs during transformation.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.transforms.operations.ToNumpy">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.transforms.operations.</code><code class="sig-name descname">ToNumpy</code><span class="sig-paren">(</span><em class="sig-param">reorder_bgr=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#ToNumpy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.ToNumpy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Converts and returns an image in numpy format from a <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code> or <code class="docutils literal notranslate"><span class="pre">PIL.Image</span></code> format.</p>
+<p>This operation is deterministic. The returns image will always be encoded as HxWxC, where
+if the input has three channels, the ordering might be optionally changed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><p><strong>reorder_bgr</strong> – specifies whether the channels should be reordered in OpenCV format.</p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.transforms.operations.ToNumpy.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#ToNumpy.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.ToNumpy.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts and returns an image in numpy format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sample</strong> – the image to convert; should be a tensor, numpy array, or PIL image.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The numpy-converted image.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.ToNumpy.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">reorder_bgr=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#ToNumpy.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.ToNumpy.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes transformation parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.ToNumpy.invert">
+<code class="sig-name descname">invert</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#ToNumpy.invert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.ToNumpy.invert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies that this operation cannot be inverted, as the original data type is unknown.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.transforms.operations.Transpose">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.transforms.operations.</code><code class="sig-name descname">Transpose</code><span class="sig-paren">(</span><em class="sig-param">axes</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Transpose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Transpose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Transposes an image via numpy.</p>
+<p>This operation is deterministic.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axes</strong> – the axes on which to apply the transpose; forwarded to <code class="docutils literal notranslate"><span class="pre">numpy.transpose</span></code>.</p></li>
+<li><p><strong>axes_inv</strong> – used to invert the tranpose; also forwarded to <code class="docutils literal notranslate"><span class="pre">numpy.transpose</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.transforms.operations.Transpose.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Transpose.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Transpose.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transposes a given image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sample</strong> – the image to transpose; should be a numpy array.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The transposed image.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.Transpose.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">axes</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Transpose.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Transpose.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates and initializes tranpose parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axes</strong> – the axes on which to apply the transpose; forwarded to <code class="docutils literal notranslate"><span class="pre">numpy.transpose</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.Transpose.invert">
+<code class="sig-name descname">invert</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Transpose.invert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Transpose.invert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invert-transposes a given image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sample</strong> – the image to invert-transpose; should be a numpy array.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The invert-transposed image.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.transforms.operations.Unsqueeze">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.transforms.operations.</code><code class="sig-name descname">Unsqueeze</code><span class="sig-paren">(</span><em class="sig-param">axis</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Unsqueeze"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Unsqueeze" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Expands a dimension in the input array via numpy/PyTorch.</p>
+<p>This operation is deterministic.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><p><strong>axis</strong> – the axis on which to apply the expansion.</p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.transforms.operations.Unsqueeze.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Unsqueeze.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Unsqueeze.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expands a dimension in the input array via numpy/PyTorch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sample</strong> – the array to expand.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The array with an extra dimension.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.Unsqueeze.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">axis</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Unsqueeze.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Unsqueeze.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates and initializes tranpose parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> – the axis on which to apply the expansion.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.operations.Unsqueeze.invert">
+<code class="sig-name descname">invert</code><span class="sig-paren">(</span><em class="sig-param">sample</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/operations.html#Unsqueeze.invert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.operations.Unsqueeze.invert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Squeezes a dimension in the input array via numpy/PyTorch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sample</strong> – the array to squeeze.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The array with one less dimension.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.transforms.utils">
+<span id="thelper-transforms-utils-module"></span><h2>thelper.transforms.utils module<a class="headerlink" href="#module-thelper.transforms.utils" title="Permalink to this headline">¶</a></h2>
+<p>Transformations utilities module.</p>
+<p>This module contains utility functions used to instantiate transformation/augmentation ops.</p>
+<dl class="function">
+<dt id="thelper.transforms.utils.load_augments">
+<code class="sig-prename descclassname">thelper.transforms.utils.</code><code class="sig-name descname">load_augments</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/utils.html#load_augments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.utils.load_augments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a data augmentation pipeline.</p>
+<p>An augmentation pipeline is essentially a specialized transformation pipeline that can be appended or
+prefixed to the base transforms defined for all samples. Augmentations are typically used to diversify
+the samples within the training set in order to help model generalization. They can also be applied to
+validation and test samples in order to get multiple responses for the same input so that they can
+be averaged/concatenated into a single output.</p>
+<p>Usage examples inside a session configuration file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
+<span class="c1"># the &#39;loaders&#39; field can contain several augmentation pipelines</span>
+<span class="c1"># (see &#39;thelper.data.utils.create_loaders&#39; for more information on these pipelines)</span>
+<span class="s2">&quot;loaders&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1"># ...</span>
+    <span class="c1"># the &#39;train_augments&#39; operations are applied to training samples only</span>
+    <span class="s2">&quot;train_augments&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># specifies whether to apply the augmentations before or after the base transforms</span>
+        <span class="s2">&quot;append&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+        <span class="s2">&quot;transforms&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="c1"># here, we use a single stage, which is actually an augmentor sub-pipeline</span>
+                <span class="c1"># that is purely probabilistic (i.e. it does not increase input sample count)</span>
+                <span class="s2">&quot;operation&quot;</span><span class="p">:</span> <span class="s2">&quot;Augmentor.Pipeline&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="c1"># the augmentor pipeline defines two operations: rotations and flips</span>
+                    <span class="s2">&quot;rotate_random_90&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;probability&quot;</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">},</span>
+                    <span class="s2">&quot;flip_random&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;probability&quot;</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="c1"># ...</span>
+<span class="p">}</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> – the configuration dictionary defining the meta parameters as well as the list of transformation
+operations of the augmentation pipeline.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A tuple that consists of a pipeline compatible with the <code class="docutils literal notranslate"><span class="pre">torchvision.transforms</span></code> interfaces, and
+a bool specifying whether this pipeline should be appended or prefixed to the base transforms.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.transforms.wrappers.AugmentorWrapper" title="thelper.transforms.wrappers.AugmentorWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.transforms.wrappers.AugmentorWrapper</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.transforms.utils.load_transforms" title="thelper.transforms.utils.load_transforms"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.transforms.utils.load_transforms()</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.data.html#thelper.data.utils.create_loaders" title="thelper.data.utils.create_loaders"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.create_loaders()</span></code></a></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.transforms.utils.load_transforms">
+<code class="sig-prename descclassname">thelper.transforms.utils.</code><code class="sig-name descname">load_transforms</code><span class="sig-paren">(</span><em class="sig-param">stages</em>, <em class="sig-param">avoid_transform_wrapper=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/utils.html#load_transforms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.utils.load_transforms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a transformation pipeline from a list of stages.</p>
+<p>Each entry in the provided list will be considered a stage in the pipeline. The ordering of the stages
+is important, as some transformations might not be compatible if taken out of order. The entries must
+each be dictionaries that define an operation, its parameters, and some meta-parameters (detailed below).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">operation</span></code> field of each stage will be used to dynamically import a specific type of operation to
+apply. The <code class="docutils literal notranslate"><span class="pre">params</span></code> field of each stage will then be used to pass parameters to the constructor of
+this operation.</p>
+<p>If an operation is identified as <code class="docutils literal notranslate"><span class="pre">&quot;Augmentor.Pipeline&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;albumentations.Compose&quot;</span></code>, it will be
+specially handled. In both case, the <code class="docutils literal notranslate"><span class="pre">params</span></code> field becomes mandatory in the stage dictionary, and it
+must specify the Augmentor or albumentations pipeline operation names and parameters (as a dictionary).
+Two additional optional config fields can then be set for Augmentor pipelines: <code class="docutils literal notranslate"><span class="pre">input_tensor</span></code> (bool)
+which specifies whether the previous stage provides a <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code> to the pipeline (default=False);
+and <code class="docutils literal notranslate"><span class="pre">output_tensor</span></code> (bool) which specifies whether the output of the pipeline should be converted into
+a tensor (default=False). For albumentations pipelines, two additional fields are also available, namely
+<code class="docutils literal notranslate"><span class="pre">bbox_params</span></code> (dict) and <code class="docutils literal notranslate"><span class="pre">keypoint_params</span></code> (dict). For more information on these, refer to the
+documentation of <code class="docutils literal notranslate"><span class="pre">albumentations.core.composition.Compose</span></code>. Finally, when unpacking dictionaries for
+albumentations pipelines, the keys associated to bounding boxes/masks/keypoints that must be forwarded
+to the composer can be specified via the <code class="docutils literal notranslate"><span class="pre">bboxes_key</span></code>, <code class="docutils literal notranslate"><span class="pre">mask_key</span></code>, and <code class="docutils literal notranslate"><span class="pre">keypoints_key</span></code> fields.</p>
+<p>All operations can also specify which sample components they should be applied to via the <code class="docutils literal notranslate"><span class="pre">target_key</span></code>
+field. This field can contain a single key (typically a string), or a list of keys. The operation will
+be applied at runtime to all values which are found in the samples with one of those keys. If no key is
+provided for an operation, it will be applied to all array-like components of the sample. Finally, all
+operations can specify a <code class="docutils literal notranslate"><span class="pre">linked_fate</span></code> field (bool) to specify whether the samples provided in lists
+should all have the same fate or not (default=True).</p>
+<p>Usage examples inside a session configuration file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
+<span class="c1"># the &#39;loaders&#39; field may contain several transformation pipelines</span>
+<span class="c1"># (see &#39;thelper.data.utils.create_loaders&#39; for more information on these pipelines)</span>
+<span class="s2">&quot;loaders&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1"># ...</span>
+    <span class="c1"># the &#39;base_transforms&#39; operations are applied to all loaded samples</span>
+    <span class="s2">&quot;base_transforms&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;operation&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="o">...</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;target_key&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="o">...</span> <span class="p">],</span>
+            <span class="s2">&quot;linked_fate&quot;</span><span class="p">:</span> <span class="o">...</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;operation&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="o">...</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;target_key&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="o">...</span> <span class="p">],</span>
+            <span class="s2">&quot;linked_fate&quot;</span><span class="p">:</span> <span class="o">...</span>
+        <span class="p">},</span>
+        <span class="o">...</span>
+    <span class="p">],</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>stages</strong> – a list defining a series of transformations to apply as a single pipeline.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A transformation pipeline object compatible with the <code class="docutils literal notranslate"><span class="pre">torchvision.transforms</span></code> interface.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.transforms.wrappers.AlbumentationsWrapper" title="thelper.transforms.wrappers.AlbumentationsWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.transforms.wrappers.AlbumentationsWrapper</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.transforms.wrappers.AugmentorWrapper" title="thelper.transforms.wrappers.AugmentorWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.transforms.wrappers.AugmentorWrapper</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.transforms.wrappers.TransformWrapper" title="thelper.transforms.wrappers.TransformWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.transforms.wrappers.TransformWrapper</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.transforms.utils.load_augments" title="thelper.transforms.utils.load_augments"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.transforms.utils.load_augments()</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.data.html#thelper.data.utils.create_loaders" title="thelper.data.utils.create_loaders"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.create_loaders()</span></code></a></div>
+</div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.transforms.wrappers">
+<span id="thelper-transforms-wrappers-module"></span><h2>thelper.transforms.wrappers module<a class="headerlink" href="#module-thelper.transforms.wrappers" title="Permalink to this headline">¶</a></h2>
+<p>Transformations wrappers module.</p>
+<p>The wrapper classes herein are used to either support inline operations on odd sample types (e.g. lists
+of images) or for external libraries (e.g. Augmentor).</p>
+<dl class="class">
+<dt id="thelper.transforms.wrappers.AlbumentationsWrapper">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.transforms.wrappers.</code><code class="sig-name descname">AlbumentationsWrapper</code><span class="sig-paren">(</span><em class="sig-param">transforms</em>, <em class="sig-param">to_tensor=None</em>, <em class="sig-param">bbox_params=None</em>, <em class="sig-param">add_targets=None</em>, <em class="sig-param">image_key='image'</em>, <em class="sig-param">bboxes_key='bboxes'</em>, <em class="sig-param">mask_key='mask'</em>, <em class="sig-param">keypoints_key='keypoints'</em>, <em class="sig-param">probability=1.0</em>, <em class="sig-param">cvt_kpts_to_bboxes=False</em>, <em class="sig-param">linked_fate=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/wrappers.html#AlbumentationsWrapper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.wrappers.AlbumentationsWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Albumentations pipeline wrapper that allows dictionary unpacking.</p>
+<p>See <a class="reference external" href="https://github.com/albu/albumentations">https://github.com/albu/albumentations</a> for more information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pipeline</strong> – the augmentor pipeline instance to apply to images.</p></li>
+<li><p><strong>image_key</strong> – the key to fetch images from (when dictionaries are passed in).</p></li>
+<li><p><strong>bboxes_key</strong> – the key to fetch bounding boxes from (when dictionaries are passed in).</p></li>
+<li><p><strong>mask_key</strong> – the key to fetch masks from (when dictionaries are passed in).</p></li>
+<li><p><strong>keypoints_key</strong> – the key to fetch keypoints from (when dictionaries are passed in).</p></li>
+<li><p><strong>cvt_kpts_to_bboxes</strong> – specifies whether keypoints should be converted to bboxes for compatbility.</p></li>
+<li><p><strong>linked_fate</strong> – specifies whether input list samples should all have the same fate or not.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.transforms.utils.load_transforms" title="thelper.transforms.utils.load_transforms"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.transforms.utils.load_transforms()</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.transforms.wrappers.AlbumentationsWrapper.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">sample</em>, <em class="sig-param">force_linked_fate=False</em>, <em class="sig-param">op_seed=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/wrappers.html#AlbumentationsWrapper.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.wrappers.AlbumentationsWrapper.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms a (dict) sample, a single image, or a list of images using the augmentor pipeline.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sample</strong> – the sample or image(s) to transform (can also contain embedded lists/tuples of images).</p></li>
+<li><p><strong>force_linked_fate</strong> – override flag for recursive use allowing forced linking of arrays.</p></li>
+<li><p><strong>op_seed</strong> – seed to set before calling the wrapped operation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The transformed image(s), with the same list/tuple formatting as the input.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.wrappers.AlbumentationsWrapper.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">transforms</em>, <em class="sig-param">to_tensor=None</em>, <em class="sig-param">bbox_params=None</em>, <em class="sig-param">add_targets=None</em>, <em class="sig-param">image_key='image'</em>, <em class="sig-param">bboxes_key='bboxes'</em>, <em class="sig-param">mask_key='mask'</em>, <em class="sig-param">keypoints_key='keypoints'</em>, <em class="sig-param">probability=1.0</em>, <em class="sig-param">cvt_kpts_to_bboxes=False</em>, <em class="sig-param">linked_fate=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/wrappers.html#AlbumentationsWrapper.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.wrappers.AlbumentationsWrapper.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives and stores an augmentor pipeline for later use.</p>
+<p>The pipeline itself is instantiated in <a class="reference internal" href="#thelper.transforms.utils.load_transforms" title="thelper.transforms.utils.load_transforms"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.transforms.utils.load_transforms()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.wrappers.AlbumentationsWrapper.set_epoch">
+<code class="sig-name descname">set_epoch</code><span class="sig-paren">(</span><em class="sig-param">epoch=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/wrappers.html#AlbumentationsWrapper.set_epoch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.wrappers.AlbumentationsWrapper.set_epoch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the current epoch number in order to change the behavior of some suboperations.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.wrappers.AlbumentationsWrapper.set_seed">
+<code class="sig-name descname">set_seed</code><span class="sig-paren">(</span><em class="sig-param">seed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/wrappers.html#AlbumentationsWrapper.set_seed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.wrappers.AlbumentationsWrapper.set_seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the internal seed to use for stochastic ops.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.transforms.wrappers.AugmentorWrapper">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.transforms.wrappers.</code><code class="sig-name descname">AugmentorWrapper</code><span class="sig-paren">(</span><em class="sig-param">pipeline</em>, <em class="sig-param">target_keys=None</em>, <em class="sig-param">linked_fate=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/wrappers.html#AugmentorWrapper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.wrappers.AugmentorWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Augmentor pipeline wrapper that allows pickling and multi-threading.</p>
+<p>See <a class="reference external" href="https://github.com/mdbloice/Augmentor">https://github.com/mdbloice/Augmentor</a> for more information. This wrapper was last updated to work
+with version 0.2.2 — more recent versions introduced yet unfixed (as of 2018/08) issues on some platforms.</p>
+<p>All original transforms are supported here. This wrapper also fixes the list output bug for single-image
+samples when using operations individually.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pipeline</strong> – the augmentor pipeline instance to apply to images.</p></li>
+<li><p><strong>target_keys</strong> – the sample keys to apply the pipeline to (when dictionaries are passed in).</p></li>
+<li><p><strong>linked_fate</strong> – specifies whether input list samples should all have the same fate or not.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.transforms.utils.load_transforms" title="thelper.transforms.utils.load_transforms"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.transforms.utils.load_transforms()</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.transforms.wrappers.AugmentorWrapper.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">sample</em>, <em class="sig-param">force_linked_fate=False</em>, <em class="sig-param">op_seed=None</em>, <em class="sig-param">in_cvts=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/wrappers.html#AugmentorWrapper.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.wrappers.AugmentorWrapper.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms a (dict) sample, a single image, or a list of images using the augmentor pipeline.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sample</strong> – the sample or image(s) to transform (can also contain embedded lists/tuples of images).</p></li>
+<li><p><strong>force_linked_fate</strong> – override flag for recursive use allowing forced linking of arrays.</p></li>
+<li><p><strong>op_seed</strong> – seed to set before calling the wrapped operation.</p></li>
+<li><p><strong>in_cvts</strong> – holds the input conversion flag array (for recursive usage).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The transformed image(s), with the same list/tuple formatting as the input.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.wrappers.AugmentorWrapper.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">pipeline</em>, <em class="sig-param">target_keys=None</em>, <em class="sig-param">linked_fate=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/wrappers.html#AugmentorWrapper.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.wrappers.AugmentorWrapper.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives and stores an augmentor pipeline for later use.</p>
+<p>The pipeline itself is instantiated in <a class="reference internal" href="#thelper.transforms.utils.load_transforms" title="thelper.transforms.utils.load_transforms"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.transforms.utils.load_transforms()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.wrappers.AugmentorWrapper.set_epoch">
+<code class="sig-name descname">set_epoch</code><span class="sig-paren">(</span><em class="sig-param">epoch=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/wrappers.html#AugmentorWrapper.set_epoch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.wrappers.AugmentorWrapper.set_epoch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the current epoch number in order to change the behavior of some suboperations.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.wrappers.AugmentorWrapper.set_seed">
+<code class="sig-name descname">set_seed</code><span class="sig-paren">(</span><em class="sig-param">seed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/wrappers.html#AugmentorWrapper.set_seed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.wrappers.AugmentorWrapper.set_seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the internal seed to use for stochastic ops.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.transforms.wrappers.TransformWrapper">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.transforms.wrappers.</code><code class="sig-name descname">TransformWrapper</code><span class="sig-paren">(</span><em class="sig-param">operation</em>, <em class="sig-param">params=None</em>, <em class="sig-param">probability=1</em>, <em class="sig-param">convert_pil=False</em>, <em class="sig-param">target_keys=None</em>, <em class="sig-param">linked_fate=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/wrappers.html#TransformWrapper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.wrappers.TransformWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Transform wrapper that allows operations on samples, lists, tuples, and single elements.</p>
+<p>Can be used to wrap the operations in <code class="docutils literal notranslate"><span class="pre">thelper.transforms</span></code> or in <code class="docutils literal notranslate"><span class="pre">torchvision.transforms</span></code>
+that only accept array-like objects as input. Will optionally force-convert content to PIL images.</p>
+<p>Can also be used to transform a list/tuple of images uniformly based on a shared dice roll, or
+to ensure that each image is transformed independently.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Stochastic transforms (e.g. <code class="docutils literal notranslate"><span class="pre">torchvision.transforms.RandomCrop</span></code>) will always treat each
+image in a list differently. If the same operations are to be applied to all images, you
+should consider using a series non-stochastic operations wrapped inside an instance of
+<code class="docutils literal notranslate"><span class="pre">torchvision.transforms.RandomApply</span></code>, or simply provide the probability of applying the
+transforms to this wrapper’s constructor.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>operation</strong> – the wrapped operation (callable object or class name string to import).</p></li>
+<li><p><strong>params</strong> – the parameters that are passed to the operation when init’d or called.</p></li>
+<li><p><strong>probability</strong> – the probability that the wrapped operation will be applied.</p></li>
+<li><p><strong>convert_pil</strong> – specifies whether images should be converted into PIL format or not.</p></li>
+<li><p><strong>target_keys</strong> – the sample keys to apply the transform to (when dictionaries are passed in).</p></li>
+<li><p><strong>linked_fate</strong> – specifies whether images given in a list/tuple should have the same fate or not.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.transforms.wrappers.TransformWrapper.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">sample</em>, <em class="sig-param">force_linked_fate=False</em>, <em class="sig-param">op_seed=None</em>, <em class="sig-param">in_cvts=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/wrappers.html#TransformWrapper.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.wrappers.TransformWrapper.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms a (dict) sample, a single image, or a list of images using a wrapped operation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sample</strong> – the sample or image(s) to transform (can also contain embedded lists/tuples of images).</p></li>
+<li><p><strong>force_linked_fate</strong> – override flag for recursive use allowing forced linking of arrays.</p></li>
+<li><p><strong>op_seed</strong> – seed to set before calling the wrapped operation.</p></li>
+<li><p><strong>in_cvts</strong> – holds the input conversion flag array (for recursive usage).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The transformed image(s), with the same list/tuple formatting as the input.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.wrappers.TransformWrapper.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">operation</em>, <em class="sig-param">params=None</em>, <em class="sig-param">probability=1</em>, <em class="sig-param">convert_pil=False</em>, <em class="sig-param">target_keys=None</em>, <em class="sig-param">linked_fate=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/wrappers.html#TransformWrapper.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.wrappers.TransformWrapper.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives and stores a torchvision transform operation for later use.</p>
+<p>If the operation is given as a string, it is assumed to be a class name and it will
+be imported. The parameters (if any) will then be given to the constructor of that
+class. Otherwise, the operation is assumed to be a callable object, and its parameters
+(if any) will be provided at call-time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>operation</strong> – the wrapped operation (callable object or class name string to import).</p></li>
+<li><p><strong>params</strong> – the parameters that are passed to the operation when init’d or called.</p></li>
+<li><p><strong>probability</strong> – the probability that the wrapped operation will be applied.</p></li>
+<li><p><strong>convert_pil</strong> – specifies whether images should be forced into PIL format or not.</p></li>
+<li><p><strong>target_keys</strong> – the sample keys to apply the pipeline to (when dictionaries are passed in).</p></li>
+<li><p><strong>linked_fate</strong> – specifies whether images given in a list/tuple should have the same fate or not.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.wrappers.TransformWrapper.set_epoch">
+<code class="sig-name descname">set_epoch</code><span class="sig-paren">(</span><em class="sig-param">epoch=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/wrappers.html#TransformWrapper.set_epoch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.wrappers.TransformWrapper.set_epoch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the current epoch number in order to change the behavior of some suboperations.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.transforms.wrappers.TransformWrapper.set_seed">
+<code class="sig-name descname">set_seed</code><span class="sig-paren">(</span><em class="sig-param">seed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/transforms/wrappers.html#TransformWrapper.set_seed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.transforms.wrappers.TransformWrapper.set_seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the internal seed to use for stochastic ops.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use-cases.html">Use Cases</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="thelper.html">thelper package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="thelper.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.cli">thelper.cli module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.typedefs">thelper.typedefs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.utils">thelper.utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/thelper.transforms.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="contributing.html" title="Contributing"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="thelper.train.html" title="thelper.train package"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

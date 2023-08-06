@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.nn.utils &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../../index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="../../../_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for thelper.nn.utils</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Neural network utility functions and classes.</span>
+
+<span class="sd">This module contains base interfaces and utility functions used to define and instantiate</span>
+<span class="sd">neural network models.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="k">import</span> <span class="n">abstractmethod</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span>
+
+<span class="kn">import</span> <span class="nn">thelper</span>
+<span class="kn">import</span> <span class="nn">thelper.nn</span>
+<span class="kn">import</span> <span class="nn">thelper.tasks</span>
+<span class="kn">import</span> <span class="nn">thelper.utils</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="create_model"><a class="viewcode-back" href="../../../thelper.nn.html#thelper.nn.utils.create_model">[docs]</a><span class="k">def</span> <span class="nf">create_model</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ckptdata</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Instantiates a model based on a provided task object.</span>
+
+<span class="sd">    The configuration must be given as a dictionary object. This dictionary will be parsed for a &#39;model&#39; field.</span>
+<span class="sd">    This field is expected to be a dictionary itself. It may then specify a type to instantiate as well as the</span>
+<span class="sd">    parameters to provide to that class constructor, or a path to a checkpoint from which a model should be loaded.</span>
+
+<span class="sd">    All models must derive from :class:`thelper.nn.utils.Module`, or they must be instantiable through</span>
+<span class="sd">    :class:`thelper.nn.utils.ExternalModule` (or one of its specialized classes). The provided task object will</span>
+<span class="sd">    be used to make sure that the model has the required input/output layers for the requested objective.</span>
+
+<span class="sd">    If checkpoint data is provided by the caller, the weights it contains will be loaded into the returned model.</span>
+
+<span class="sd">    Usage examples inside a session configuration file::</span>
+
+<span class="sd">        # ...</span>
+<span class="sd">        # the function will look for a &#39;model&#39; field in the provided config dict</span>
+<span class="sd">        &quot;model&quot;: {</span>
+<span class="sd">            # the type provides the class name to instantiate an object from</span>
+<span class="sd">            &quot;type&quot;: &quot;thelper.nn.mobilenet.MobileNetV2&quot;,</span>
+<span class="sd">            # the parameters listed below are passed to the model&#39;s constructor</span>
+<span class="sd">            &quot;params&quot;: {</span>
+<span class="sd">                # ...</span>
+<span class="sd">            }</span>
+<span class="sd">        # ...</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        config: a session dictionary that provides a &#39;model&#39; field containing a dictionary.</span>
+<span class="sd">        task: a task object that will be passed to the model&#39;s constructor in order to specialize it. Can be</span>
+<span class="sd">            ``None`` if a checkpoint is provided, and if the previous task is wanted instead of a new one.</span>
+<span class="sd">        save_dir: if not ``None``, a log file containing model information will be created there.</span>
+<span class="sd">        ckptdata: raw checkpoint data loaded via ``torch.load()``; the model will be given its previous state.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The instantiated model, compatible with the interface of both :class:`thelper.nn.utils.Module`</span>
+<span class="sd">        and ``torch.nn.Module``.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.nn.utils.Module`</span>
+<span class="sd">        | :class:`thelper.nn.utils.ExternalModule`</span>
+<span class="sd">        | :class:`thelper.tasks.utils.Task`</span>
+<span class="sd">        | :func:`thelper.utils.load_checkpoint`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">save_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">modules_logger_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="s2">&quot;logs&quot;</span><span class="p">,</span> <span class="s2">&quot;modules.log&quot;</span><span class="p">)</span>
+        <span class="n">modules_logger_format</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;[</span><span class="si">%(asctime)s</span><span class="s2"> - </span><span class="si">%(process)s</span><span class="s2">] </span><span class="si">%(levelname)s</span><span class="s2"> : </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">modules_logger_fh</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="n">modules_logger_path</span><span class="p">)</span>
+        <span class="n">modules_logger_fh</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">modules_logger_format</span><span class="p">)</span>
+        <span class="n">thelper</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">modules_logger_fh</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;loading model&quot;</span><span class="p">)</span>
+    <span class="n">model_config</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">config</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">model_config</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;model&quot;</span> <span class="ow">in</span> <span class="n">config</span> <span class="k">else</span> <span class="n">config</span>
+    <span class="k">if</span> <span class="n">model_config</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="s2">&quot;ckptdata&quot;</span> <span class="ow">in</span> <span class="n">model_config</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">ckptdata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;config asked to reload ckpt from path, but ckpt already loaded from elsewhere&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;model config asked for an older model to be loaded through a checkpoint&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model_config</span><span class="p">[</span><span class="s2">&quot;ckptdata&quot;</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;unexpected model config ckptdata field type (should be path)&quot;</span><span class="p">)</span>
+            <span class="n">map_location</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;map_location&quot;</span><span class="p">,</span> <span class="n">model_config</span><span class="p">,</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+            <span class="n">ckptdata</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">load_checkpoint</span><span class="p">(</span><span class="n">model_config</span><span class="p">[</span><span class="s2">&quot;ckptdata&quot;</span><span class="p">],</span> <span class="n">map_location</span><span class="o">=</span><span class="n">map_location</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;type&quot;</span> <span class="ow">in</span> <span class="n">model_config</span> <span class="ow">or</span> <span class="s2">&quot;params&quot;</span> <span class="ow">in</span> <span class="n">model_config</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;should not provide &#39;type&#39; or &#39;params&#39; fields in model config if loading a checkpoint&quot;</span><span class="p">)</span>
+    <span class="n">new_task</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">model_type</span><span class="p">,</span> <span class="n">model_params</span><span class="p">,</span> <span class="n">model_state</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">ckptdata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># if checkpoint available, instantiate old model, load weights, and reconfigure for new task</span>
+        <span class="k">if</span> <span class="s2">&quot;name&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ckptdata</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid checkpoint, cannot reload previous session name&quot;</span><span class="p">)</span>
+        <span class="n">new_task</span> <span class="o">=</span> <span class="n">task</span>  <span class="c1"># the &#39;new task&#39; will later be applied to specialize the model, once it is loaded</span>
+        <span class="n">supported_model_types</span> <span class="o">=</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">ScriptModule</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;model&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ckptdata</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">],</span> <span class="n">supported_model_types</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid checkpoint, cannot reload previous model state&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">],</span> <span class="n">torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">ScriptModule</span><span class="p">):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;loading model trace from session &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">],</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">)):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;loading model object directly from session &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;get_name&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">model</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span> <span class="o">!=</span> <span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;model_type&quot;</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;old model type mismatch with ckptdata type&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">],</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="c1"># assume that &#39;model&#39; is actually holding the state dictionary (must reinstantiate architecture)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;loading model type/params from session &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+            <span class="n">model_state</span> <span class="o">=</span> <span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="s2">&quot;task&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ckptdata</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;task&quot;</span><span class="p">],</span> <span class="p">(</span><span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Task</span><span class="p">,</span> <span class="nb">dict</span><span class="p">,</span> <span class="nb">str</span><span class="p">)):</span>
+                <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid checkpoint, cannot reload previous model task&quot;</span><span class="p">)</span>
+            <span class="n">task</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;task&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;task&quot;</span><span class="p">],</span> <span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">str</span><span class="p">))</span> <span class="k">else</span> <span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;task&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="s2">&quot;model_type&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ckptdata</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;model_type&quot;</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid checkpoint, cannot reload previous model type&quot;</span><span class="p">)</span>
+            <span class="n">model_type</span> <span class="o">=</span> <span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;model_type&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">model_type</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">import_class</span><span class="p">(</span><span class="n">model_type</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;model_params&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ckptdata</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;model_params&quot;</span><span class="p">],</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid checkpoint, cannot reload previous model params&quot;</span><span class="p">)</span>
+            <span class="n">model_params</span> <span class="o">=</span> <span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;model_params&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="s2">&quot;config&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ckptdata</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;config&quot;</span><span class="p">],</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid checkpoint, cannot reload previous session config&quot;</span><span class="p">)</span>
+            <span class="n">old_config</span> <span class="o">=</span> <span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;config&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="s2">&quot;model&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">old_config</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">old_config</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">],</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid checkpoint, cannot reload previous model config&quot;</span><span class="p">)</span>
+            <span class="n">old_model_config</span> <span class="o">=</span> <span class="n">old_config</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="s2">&quot;type&quot;</span> <span class="ow">in</span> <span class="n">old_model_config</span><span class="p">:</span>
+                <span class="n">old_model_type</span> <span class="o">=</span> <span class="n">old_model_config</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">old_model_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                    <span class="n">old_model_type</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">import_class</span><span class="p">(</span><span class="n">old_model_type</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">old_model_type</span> <span class="o">!=</span> <span class="n">model_type</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;old model config &#39;type&#39; field mismatch with ckptdata type&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">model_config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;must provide model config and/or checkpoint data to create a model&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;task&quot;</span> <span class="ow">in</span> <span class="n">model_config</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model_config</span><span class="p">[</span><span class="s2">&quot;task&quot;</span><span class="p">],</span> <span class="p">(</span><span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Task</span><span class="p">,</span> <span class="nb">dict</span><span class="p">,</span> <span class="nb">str</span><span class="p">)):</span>
+            <span class="n">new_task</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">model_config</span><span class="p">[</span><span class="s2">&quot;task&quot;</span><span class="p">])</span> \
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model_config</span><span class="p">[</span><span class="s2">&quot;task&quot;</span><span class="p">],</span> <span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">str</span><span class="p">))</span> <span class="k">else</span> <span class="n">model_config</span><span class="p">[</span><span class="s2">&quot;task&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Task</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">new_task</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Task</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;bad task type passed to create_model&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;loading model type/params current config&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;type&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">model_config</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">model_config</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;model config missing &#39;type&#39; field&quot;</span><span class="p">)</span>
+        <span class="n">model_type</span> <span class="o">=</span> <span class="n">model_config</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model_config</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">model_type</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">import_class</span><span class="p">(</span><span class="n">model_type</span><span class="p">)</span>
+        <span class="n">model_params</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;params&quot;</span><span class="p">,</span> <span class="n">model_config</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="n">model_state</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">([</span><span class="s2">&quot;weights&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;state_dict&quot;</span><span class="p">],</span> <span class="n">model_config</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">model_state</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model_state</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">model_state</span><span class="p">):</span>
+            <span class="n">model_state</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_state</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># if model not already loaded from checkpoint, instantiate it fully from type/params/task</span>
+        <span class="k">if</span> <span class="n">model_type</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">model_params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;messed up logic above&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;model_type = </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">model_type</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;model_params = </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">model_params</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isclass</span><span class="p">(</span><span class="n">model_type</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">model_type</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">model_type</span><span class="p">(</span><span class="n">task</span><span class="o">=</span><span class="n">task</span><span class="p">,</span> <span class="o">**</span><span class="n">model_params</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">task</span><span class="p">)</span> <span class="o">==</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Detection</span><span class="p">:</span>
+                <span class="n">model</span> <span class="o">=</span> <span class="n">ExternalDetectModule</span><span class="p">(</span><span class="n">model_type</span><span class="p">,</span> <span class="n">task</span><span class="o">=</span><span class="n">task</span><span class="p">,</span> <span class="o">**</span><span class="n">model_params</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">task</span><span class="p">)</span> <span class="o">==</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Classification</span><span class="p">:</span>
+                <span class="n">model</span> <span class="o">=</span> <span class="n">ExternalClassifModule</span><span class="p">(</span><span class="n">model_type</span><span class="p">,</span> <span class="n">task</span><span class="o">=</span><span class="n">task</span><span class="p">,</span> <span class="o">**</span><span class="n">model_params</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">model</span> <span class="o">=</span> <span class="n">ExternalModule</span><span class="p">(</span><span class="n">model_type</span><span class="p">,</span> <span class="n">task</span><span class="o">=</span><span class="n">task</span><span class="p">,</span> <span class="o">**</span><span class="n">model_params</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">model_state</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;loading state dictionary from checkpoint into model&quot;</span><span class="p">)</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">model_state</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">new_task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;task&quot;</span><span class="p">):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;previous model task = </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">task</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;set_task&quot;</span><span class="p">):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;refreshing model for new task = </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">new_task</span><span class="p">))</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">set_task</span><span class="p">(</span><span class="n">new_task</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;model missing &#39;set_task&#39; interface function&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;config&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">model</span><span class="o">.</span><span class="n">config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">model_params</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;summary&quot;</span><span class="p">):</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">model</span></div>
+
+
+<div class="viewcode-block" id="Module"><a class="viewcode-back" href="../../../thelper.nn.html#thelper.nn.utils.Module">[docs]</a><span class="k">class</span> <span class="nc">Module</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Model interface used to hold a task object.</span>
+
+<span class="sd">    This interface is built on top of ``torch.nn.Module`` and should remain fully compatible with it.</span>
+
+<span class="sd">    All models used in the framework should derive from this interface, and therefore expect a task object as</span>
+<span class="sd">    the first argument of their constructor. Their implementation may decide to ignore this task object when</span>
+<span class="sd">    building their internal layers, but using it should help specialize the network by specifying e.g. the</span>
+<span class="sd">    number of classes to support.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :func:`thelper.nn.utils.create_model`</span>
+<span class="sd">        | :class:`thelper.tasks.utils.Task`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Module.__init__"><a class="viewcode-back" href="../../../thelper.nn.html#thelper.nn.utils.Module.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives a task object to hold internally for model specialization.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">task</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Task</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;task must derive from thelper.tasks.Task&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">task</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">kwargs</span></div>
+
+<div class="viewcode-block" id="Module.forward"><a class="viewcode-back" href="../../../thelper.nn.html#thelper.nn.utils.Module.forward">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="nb">input</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Transforms an input tensor in order to generate a prediction.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="Module.set_task"><a class="viewcode-back" href="../../../thelper.nn.html#thelper.nn.utils.Module.set_task">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">set_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adapts the model to support a new task, replacing layers if needed.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="Module.summary"><a class="viewcode-back" href="../../../thelper.nn.html#thelper.nn.utils.Module.summary">[docs]</a>    <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Prints a summary of the model using the ``thelper.nn`` logger.&quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">size</span><span class="p">())</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">params</span><span class="p">])</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;module &#39;</span><span class="si">%s</span><span class="s2">&#39; parameter count: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_name</span><span class="p">(),</span> <span class="n">count</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Module.get_name"><a class="viewcode-back" href="../../../thelper.nn.html#thelper.nn.utils.Module.get_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the name of this module (by default, its fully qualified class name).&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__qualname__</span></div></div>
+
+
+<div class="viewcode-block" id="ExternalModule"><a class="viewcode-back" href="../../../thelper.nn.html#thelper.nn.utils.ExternalModule">[docs]</a><span class="k">class</span> <span class="nc">ExternalModule</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Model inteface used to hold a task object for an external implementation.</span>
+
+<span class="sd">    This interface is built on top of ``torch.nn.Module`` and should remain fully compatible with it. It is</span>
+<span class="sd">    automatically used when instantiating a model via :func:`thelper.nn.utils.create_model` that is not derived</span>
+<span class="sd">    from :class:`thelper.nn.utils.Module`. Its only purpose is to hold the task object, and redirect</span>
+<span class="sd">    :func:`thelper.nn.utils.Module.forward` to the actual model&#39;s transformation function. It can also be</span>
+<span class="sd">    specialized to automatically adapt some external models after their construction using the knowledge</span>
+<span class="sd">    contained in the task object.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.nn.utils.Module`</span>
+<span class="sd">        | :class:`thelper.nn.utils.ExternalClassifModule`</span>
+<span class="sd">        | :func:`thelper.nn.utils.create_model`</span>
+<span class="sd">        | :class:`thelper.tasks.utils.Task`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ExternalModule.__init__"><a class="viewcode-back" href="../../../thelper.nn.html#thelper.nn.utils.ExternalModule.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_type</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives a task object to hold internally for model specialization.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">task</span><span class="o">=</span><span class="n">task</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;instantiating external module &#39;</span><span class="si">%s</span><span class="s2">&#39;...&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">model_type</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_type</span> <span class="o">=</span> <span class="n">model_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model_type</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;forward&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;external module must implement &#39;forward&#39; method&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ExternalModule.load_state_dict"><a class="viewcode-back" href="../../../thelper.nn.html#thelper.nn.utils.ExternalModule.load_state_dict">[docs]</a>    <span class="k">def</span> <span class="nf">load_state_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state_dict</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Loads the state dict of an external model.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">state_dict</span><span class="o">=</span><span class="n">state_dict</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="n">strict</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ExternalModule.state_dict"><a class="viewcode-back" href="../../../thelper.nn.html#thelper.nn.utils.ExternalModule.state_dict">[docs]</a>    <span class="k">def</span> <span class="nf">state_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">destination</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">keep_vars</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the state dict of the external model.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(</span><span class="n">destination</span><span class="o">=</span><span class="n">destination</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">prefix</span><span class="p">,</span> <span class="n">keep_vars</span><span class="o">=</span><span class="n">keep_vars</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ExternalModule.forward"><a class="viewcode-back" href="../../../thelper.nn.html#thelper.nn.utils.ExternalModule.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Transforms an input tensor in order to generate a prediction.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ExternalModule.set_task"><a class="viewcode-back" href="../../../thelper.nn.html#thelper.nn.utils.ExternalModule.set_task">[docs]</a>    <span class="k">def</span> <span class="nf">set_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Stores the new task internally.</span>
+
+<span class="sd">        Note that since this external module handler is generic, it does not know what to do with the task,</span>
+<span class="sd">        so it just assumes that the model is already set up. Specialized external module handlers will instead</span>
+<span class="sd">        attempt to modify the model they wrap.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">task</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Task</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;task must derive from thelper.tasks.Task&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">task</span></div>
+
+<div class="viewcode-block" id="ExternalModule.summary"><a class="viewcode-back" href="../../../thelper.nn.html#thelper.nn.utils.ExternalModule.summary">[docs]</a>    <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Prints a summary of the model using the ``thelper.nn`` logger.&quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">size</span><span class="p">())</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">params</span><span class="p">])</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;module &#39;</span><span class="si">%s</span><span class="s2">&#39; parameter count: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_name</span><span class="p">(),</span> <span class="n">count</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ExternalModule.get_name"><a class="viewcode-back" href="../../../thelper.nn.html#thelper.nn.utils.ExternalModule.get_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the name of this module (by default, the fully qualified class name of the external model).&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_type</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_type</span><span class="o">.</span><span class="vm">__qualname__</span></div></div>
+
+
+<div class="viewcode-block" id="ExternalClassifModule"><a class="viewcode-back" href="../../../thelper.nn.html#thelper.nn.utils.ExternalClassifModule">[docs]</a><span class="k">class</span> <span class="nc">ExternalClassifModule</span><span class="p">(</span><span class="n">ExternalModule</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;External model interface specialization for classification tasks.</span>
+
+<span class="sd">    This interface will try to &#39;rewire&#39; the last fully connected layer of the models it instantiates to match</span>
+<span class="sd">    the number of classes to predict defined in the task object.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.nn.utils.Module`</span>
+<span class="sd">        | :class:`thelper.nn.utils.ExternalModule`</span>
+<span class="sd">        | :func:`thelper.nn.utils.create_model`</span>
+<span class="sd">        | :class:`thelper.tasks.classif.Classification`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ExternalClassifModule.__init__"><a class="viewcode-back" href="../../../thelper.nn.html#thelper.nn.utils.ExternalClassifModule.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_type</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives a task object to hold internally for model specialization, and tries to rewire the last &#39;fc&#39; layer.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">model_type</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nb_classes</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_task</span><span class="p">(</span><span class="n">task</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ExternalClassifModule.set_task"><a class="viewcode-back" href="../../../thelper.nn.html#thelper.nn.utils.ExternalClassifModule.set_task">[docs]</a>    <span class="k">def</span> <span class="nf">set_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Rewires the last fully connected layer of the wrapped network to fit the given number of classification targets.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">task</span><span class="p">)</span> <span class="o">!=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Classification</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;task passed to ExternalClassifModule should be &#39;thelper.tasks.Classification&#39;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nb_classes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">class_names</span><span class="p">)</span>
+        <span class="kn">import</span> <span class="nn">torchvision</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;fc&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fc</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fc</span><span class="o">.</span><span class="n">out_features</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_classes</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;reconnecting fc layer for outputting </span><span class="si">%d</span><span class="s2"> classes...&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_classes</span><span class="p">)</span>
+                <span class="n">nb_features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fc</span><span class="o">.</span><span class="n">in_features</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fc</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">nb_features</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_classes</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;classifier&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">classifier</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">classifier</span><span class="o">.</span><span class="n">out_features</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_classes</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;reconnecting classifier layer for outputting </span><span class="si">%d</span><span class="s2"> classes...&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_classes</span><span class="p">)</span>
+                <span class="n">nb_features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">classifier</span><span class="o">.</span><span class="n">in_features</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">classifier</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">nb_features</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_classes</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">squeezenet</span><span class="o">.</span><span class="n">SqueezeNet</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">num_classes</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_classes</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">classifier</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+                    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+                    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_classes</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+                    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+                    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">AvgPool2d</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">num_classes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_classes</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;could not reconnect fully connected layer for new classes; hope your model is already compatible...&quot;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="ExternalDetectModule"><a class="viewcode-back" href="../../../thelper.nn.html#thelper.nn.utils.ExternalDetectModule">[docs]</a><span class="k">class</span> <span class="nc">ExternalDetectModule</span><span class="p">(</span><span class="n">ExternalModule</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;External model interface specialization for object detection tasks.</span>
+
+<span class="sd">    This interface will try to &#39;rewire&#39; the last fully connected layer of the models it instantiates to match</span>
+<span class="sd">    the number of classes to predict defined in the task object.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.nn.utils.Module`</span>
+<span class="sd">        | :class:`thelper.nn.utils.ExternalModule`</span>
+<span class="sd">        | :func:`thelper.nn.utils.create_model`</span>
+<span class="sd">        | :class:`thelper.tasks.detect.Detection`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ExternalDetectModule.__init__"><a class="viewcode-back" href="../../../thelper.nn.html#thelper.nn.utils.ExternalDetectModule.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_type</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives a task object to hold internally for model specialization, and tries to rewire the last &#39;fc&#39; layer.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">model_type</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nb_classes</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_task</span><span class="p">(</span><span class="n">task</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ExternalDetectModule.set_task"><a class="viewcode-back" href="../../../thelper.nn.html#thelper.nn.utils.ExternalDetectModule.set_task">[docs]</a>    <span class="k">def</span> <span class="nf">set_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Rewires the last fully connected layer of the wrapped network to fit the given number of classification targets.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">task</span><span class="p">)</span> <span class="o">!=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Detection</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;task passed to ExternalClassifModule should be &#39;thelper.tasks.Detection&#39;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nb_classes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">class_names</span><span class="p">)</span>
+        <span class="kn">import</span> <span class="nn">torchvision</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;fc&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fc</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fc</span><span class="o">.</span><span class="n">out_features</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_classes</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;reconnecting fc layer for outputting </span><span class="si">%d</span><span class="s2"> classes...&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_classes</span><span class="p">)</span>
+                <span class="n">nb_features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fc</span><span class="o">.</span><span class="n">in_features</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fc</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">nb_features</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_classes</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;classifier&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">classifier</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">classifier</span><span class="o">.</span><span class="n">out_features</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_classes</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;reconnecting classifier layer for outputting </span><span class="si">%d</span><span class="s2"> classes...&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_classes</span><span class="p">)</span>
+                <span class="n">nb_features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">classifier</span><span class="o">.</span><span class="n">in_features</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">classifier</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">nb_features</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_classes</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;roi_heads&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">roi_heads</span><span class="p">,</span> <span class="s2">&quot;box_predictor&quot;</span><span class="p">):</span>
+            <span class="c1"># note: this part requires torchvision version &gt;= 0.3</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">roi_heads</span><span class="o">.</span><span class="n">box_predictor</span><span class="p">,</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">detection</span><span class="o">.</span><span class="n">faster_rcnn</span><span class="o">.</span><span class="n">FastRCNNPredictor</span><span class="p">):</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">roi_heads</span><span class="o">.</span><span class="n">box_predictor</span><span class="o">.</span><span class="n">cls_score</span><span class="o">.</span><span class="n">out_features</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_classes</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">roi_heads</span><span class="o">.</span><span class="n">box_predictor</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">detection</span><span class="o">.</span><span class="n">faster_rcnn</span><span class="o">.</span><span class="n">FastRCNNPredictor</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">roi_heads</span><span class="o">.</span><span class="n">box_predictor</span><span class="o">.</span><span class="n">cls_score</span><span class="o">.</span><span class="n">in_features</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_classes</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;unexpected box predictor type (missing impl)&quot;</span><span class="p">)</span>  <span class="c1"># @@@@@@ TODO</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;could not reconnect fully connected layer for new classes; hope your model is already compatible...&quot;</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../use-cases.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

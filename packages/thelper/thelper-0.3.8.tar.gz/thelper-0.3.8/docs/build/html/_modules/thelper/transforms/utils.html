@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.transforms.utils &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../../index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="../../../_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for thelper.transforms.utils</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Transformations utilities module.</span>
+
+<span class="sd">This module contains utility functions used to instantiate transformation/augmentation ops.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">import</span> <span class="nn">torchvision.transforms</span>
+<span class="kn">import</span> <span class="nn">torchvision.utils</span>
+
+<span class="kn">import</span> <span class="nn">thelper.utils</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="load_transforms"><a class="viewcode-back" href="../../../thelper.transforms.html#thelper.transforms.utils.load_transforms">[docs]</a><span class="k">def</span> <span class="nf">load_transforms</span><span class="p">(</span><span class="n">stages</span><span class="p">,</span> <span class="n">avoid_transform_wrapper</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Loads a transformation pipeline from a list of stages.</span>
+
+<span class="sd">    Each entry in the provided list will be considered a stage in the pipeline. The ordering of the stages</span>
+<span class="sd">    is important, as some transformations might not be compatible if taken out of order. The entries must</span>
+<span class="sd">    each be dictionaries that define an operation, its parameters, and some meta-parameters (detailed below).</span>
+
+<span class="sd">    The ``operation`` field of each stage will be used to dynamically import a specific type of operation to</span>
+<span class="sd">    apply. The ``params`` field of each stage will then be used to pass parameters to the constructor of</span>
+<span class="sd">    this operation.</span>
+
+<span class="sd">    If an operation is identified as ``&quot;Augmentor.Pipeline&quot;`` or ``&quot;albumentations.Compose&quot;``, it will be</span>
+<span class="sd">    specially handled. In both case, the ``params`` field becomes mandatory in the stage dictionary, and it</span>
+<span class="sd">    must specify the Augmentor or albumentations pipeline operation names and parameters (as a dictionary).</span>
+<span class="sd">    Two additional optional config fields can then be set for Augmentor pipelines: ``input_tensor`` (bool)</span>
+<span class="sd">    which specifies whether the previous stage provides a ``torch.Tensor`` to the pipeline (default=False);</span>
+<span class="sd">    and ``output_tensor`` (bool) which specifies whether the output of the pipeline should be converted into</span>
+<span class="sd">    a tensor (default=False). For albumentations pipelines, two additional fields are also available, namely</span>
+<span class="sd">    ``bbox_params`` (dict) and ``keypoint_params`` (dict). For more information on these, refer to the</span>
+<span class="sd">    documentation of ``albumentations.core.composition.Compose``. Finally, when unpacking dictionaries for</span>
+<span class="sd">    albumentations pipelines, the keys associated to bounding boxes/masks/keypoints that must be forwarded</span>
+<span class="sd">    to the composer can be specified via the ``bboxes_key``, ``mask_key``, and ``keypoints_key`` fields.</span>
+
+<span class="sd">    All operations can also specify which sample components they should be applied to via the ``target_key``</span>
+<span class="sd">    field. This field can contain a single key (typically a string), or a list of keys. The operation will</span>
+<span class="sd">    be applied at runtime to all values which are found in the samples with one of those keys. If no key is</span>
+<span class="sd">    provided for an operation, it will be applied to all array-like components of the sample. Finally, all</span>
+<span class="sd">    operations can specify a ``linked_fate`` field (bool) to specify whether the samples provided in lists</span>
+<span class="sd">    should all have the same fate or not (default=True).</span>
+
+<span class="sd">    Usage examples inside a session configuration file::</span>
+
+<span class="sd">        # ...</span>
+<span class="sd">        # the &#39;loaders&#39; field may contain several transformation pipelines</span>
+<span class="sd">        # (see &#39;thelper.data.utils.create_loaders&#39; for more information on these pipelines)</span>
+<span class="sd">        &quot;loaders&quot;: {</span>
+<span class="sd">            # ...</span>
+<span class="sd">            # the &#39;base_transforms&#39; operations are applied to all loaded samples</span>
+<span class="sd">            &quot;base_transforms&quot;: [</span>
+<span class="sd">                {</span>
+<span class="sd">                    &quot;operation&quot;: &quot;...&quot;,</span>
+<span class="sd">                    &quot;params&quot;: {</span>
+<span class="sd">                        ...</span>
+<span class="sd">                    },</span>
+<span class="sd">                    &quot;target_key&quot;: [ ... ],</span>
+<span class="sd">                    &quot;linked_fate&quot;: ...</span>
+<span class="sd">                },</span>
+<span class="sd">                {</span>
+<span class="sd">                    &quot;operation&quot;: &quot;...&quot;,</span>
+<span class="sd">                    &quot;params&quot;: {</span>
+<span class="sd">                        ...</span>
+<span class="sd">                    },</span>
+<span class="sd">                    &quot;target_key&quot;: [ ... ],</span>
+<span class="sd">                    &quot;linked_fate&quot;: ...</span>
+<span class="sd">                },</span>
+<span class="sd">                ...</span>
+<span class="sd">            ],</span>
+<span class="sd">        # ...</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        stages: a list defining a series of transformations to apply as a single pipeline.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A transformation pipeline object compatible with the ``torchvision.transforms`` interface.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.transforms.wrappers.AlbumentationsWrapper`</span>
+<span class="sd">        | :class:`thelper.transforms.wrappers.AugmentorWrapper`</span>
+<span class="sd">        | :class:`thelper.transforms.wrappers.TransformWrapper`</span>
+<span class="sd">        | :func:`thelper.transforms.utils.load_augments`</span>
+<span class="sd">        | :func:`thelper.data.utils.create_loaders`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stages</span><span class="p">,</span> <span class="nb">list</span><span class="p">),</span> <span class="s2">&quot;expected stages to be provided as a list&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">stages</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">True</span>  <span class="c1"># no-op transform, and dont-care append</span>
+    <span class="k">assert</span> <span class="nb">all</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">stage</span> <span class="ow">in</span> <span class="n">stages</span><span class="p">]),</span> <span class="s2">&quot;expected all stages to be provided as dictionaries&quot;</span>
+    <span class="n">operations</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">stage_idx</span><span class="p">,</span> <span class="n">stage</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">stages</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="s2">&quot;operation&quot;</span> <span class="ow">in</span> <span class="n">stage</span> <span class="ow">and</span> <span class="n">stage</span><span class="p">[</span><span class="s2">&quot;operation&quot;</span><span class="p">],</span> <span class="n">f</span><span class="s2">&quot;stage #</span><span class="si">{stage_idx}</span><span class="s2"> is missing its operation field&quot;</span>
+        <span class="n">operation_name</span> <span class="o">=</span> <span class="n">stage</span><span class="p">[</span><span class="s2">&quot;operation&quot;</span><span class="p">]</span>
+        <span class="n">operation_params</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">([</span><span class="s2">&quot;params&quot;</span><span class="p">,</span> <span class="s2">&quot;parameters&quot;</span><span class="p">],</span> <span class="n">stage</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">operation_params</span><span class="p">,</span> <span class="nb">dict</span><span class="p">),</span> <span class="n">f</span><span class="s2">&quot;stage #</span><span class="si">{stage_idx}</span><span class="s2"> parameters are not provided as a dictionary&quot;</span>
+        <span class="n">operation_targets</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="s2">&quot;target_key&quot;</span> <span class="ow">in</span> <span class="n">stage</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stage</span><span class="p">[</span><span class="s2">&quot;target_key&quot;</span><span class="p">],</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">)),</span> \
+                <span class="n">f</span><span class="s2">&quot;stage #</span><span class="si">{stage_idx}</span><span class="s2"> target keys are not provided as a list or string/int&quot;</span>
+            <span class="n">operation_targets</span> <span class="o">=</span> <span class="n">stage</span><span class="p">[</span><span class="s2">&quot;target_key&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stage</span><span class="p">[</span><span class="s2">&quot;target_key&quot;</span><span class="p">],</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="p">[</span><span class="n">stage</span><span class="p">[</span><span class="s2">&quot;target_key&quot;</span><span class="p">]]</span>
+        <span class="n">linked_fate</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">str2bool</span><span class="p">(</span><span class="n">stage</span><span class="p">[</span><span class="s2">&quot;linked_fate&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;linked_fate&quot;</span> <span class="ow">in</span> <span class="n">stage</span> <span class="k">else</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">operation_name</span> <span class="o">==</span> <span class="s2">&quot;Augmentor.Pipeline&quot;</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">Augmentor</span>
+            <span class="n">pipeline</span> <span class="o">=</span> <span class="n">Augmentor</span><span class="o">.</span><span class="n">Pipeline</span><span class="p">()</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">operation_params</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="n">operation_params</span><span class="p">,</span> \
+                <span class="s2">&quot;augmentor pipeline &#39;params&#39; field should contain dictionary of suboperations&quot;</span>
+            <span class="k">for</span> <span class="n">pipeline_op_name</span><span class="p">,</span> <span class="n">pipeline_op_params</span> <span class="ow">in</span> <span class="n">operation_params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="nb">getattr</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span> <span class="n">pipeline_op_name</span><span class="p">)(</span><span class="o">**</span><span class="n">pipeline_op_params</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;input_tensor&quot;</span> <span class="ow">in</span> <span class="n">stage</span> <span class="ow">and</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">str2bool</span><span class="p">(</span><span class="n">stage</span><span class="p">[</span><span class="s2">&quot;input_tensor&quot;</span><span class="p">]):</span>
+                <span class="n">operations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torchvision</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToPILImage</span><span class="p">())</span>
+            <span class="n">operations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thelper</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">wrappers</span><span class="o">.</span><span class="n">AugmentorWrapper</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span> <span class="n">operation_targets</span><span class="p">,</span> <span class="n">linked_fate</span><span class="p">))</span>
+            <span class="k">if</span> <span class="s2">&quot;output_tensor&quot;</span> <span class="ow">in</span> <span class="n">stage</span> <span class="ow">and</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">str2bool</span><span class="p">(</span><span class="n">stage</span><span class="p">[</span><span class="s2">&quot;output_tensor&quot;</span><span class="p">]):</span>
+                <span class="n">operations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torchvision</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">())</span>
+        <span class="k">elif</span> <span class="n">operation_name</span> <span class="o">==</span> <span class="s2">&quot;albumentations.Compose&quot;</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">operation_params</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="n">operation_params</span><span class="p">,</span> \
+                <span class="s2">&quot;albumentations pipeline &#39;params&#39; field should contain dictionary of suboperations&quot;</span>
+            <span class="n">suboperations</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">op_name</span><span class="p">,</span> <span class="n">op_params</span> <span class="ow">in</span> <span class="n">operation_params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">op_name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;albumentations.&quot;</span><span class="p">):</span>
+                    <span class="n">op_name</span> <span class="o">=</span> <span class="s2">&quot;albumentations.&quot;</span> <span class="o">+</span> <span class="n">op_name</span>
+                <span class="n">op_type</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">import_class</span><span class="p">(</span><span class="n">op_name</span><span class="p">)</span>
+                <span class="n">suboperations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">op_type</span><span class="p">(</span><span class="o">**</span><span class="n">op_params</span><span class="p">))</span>
+            <span class="n">probability</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;probability&quot;</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+            <span class="n">to_tensor</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;to_tensor&quot;</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="n">bbox_params</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;bbox_params&quot;</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="n">add_targets</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;add_targets&quot;</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="n">bboxes_key</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;bboxes_key&quot;</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span> <span class="s2">&quot;bbox&quot;</span><span class="p">)</span>
+            <span class="n">mask_key</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;mask_key&quot;</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span> <span class="s2">&quot;mask&quot;</span><span class="p">)</span>
+            <span class="n">keypoints_key</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;keypoints_key&quot;</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span> <span class="s2">&quot;keypoints&quot;</span><span class="p">)</span>
+            <span class="n">cvt_kpts_to_bboxes</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">str2bool</span><span class="p">(</span><span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;cvt_kpts_to_bboxes&quot;</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
+            <span class="n">operations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thelper</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">wrappers</span><span class="o">.</span><span class="n">AlbumentationsWrapper</span><span class="p">(</span>
+                <span class="n">transforms</span><span class="o">=</span><span class="n">suboperations</span><span class="p">,</span> <span class="n">to_tensor</span><span class="o">=</span><span class="n">to_tensor</span><span class="p">,</span> <span class="n">bbox_params</span><span class="o">=</span><span class="n">bbox_params</span><span class="p">,</span> <span class="n">add_targets</span><span class="o">=</span><span class="n">add_targets</span><span class="p">,</span>
+                <span class="n">image_key</span><span class="o">=</span><span class="n">operation_targets</span><span class="p">,</span> <span class="n">bboxes_key</span><span class="o">=</span><span class="n">bboxes_key</span><span class="p">,</span> <span class="n">mask_key</span><span class="o">=</span><span class="n">mask_key</span><span class="p">,</span> <span class="n">keypoints_key</span><span class="o">=</span><span class="n">keypoints_key</span><span class="p">,</span>
+                <span class="n">probability</span><span class="o">=</span><span class="n">probability</span><span class="p">,</span> <span class="n">cvt_kpts_to_bboxes</span><span class="o">=</span><span class="n">cvt_kpts_to_bboxes</span><span class="p">,</span> <span class="n">linked_fate</span><span class="o">=</span><span class="n">linked_fate</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">operation_type</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">import_class</span><span class="p">(</span><span class="n">operation_name</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">operation</span> <span class="o">=</span> <span class="n">operation_type</span><span class="p">(</span><span class="o">**</span><span class="n">operation_params</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;failed to create transform op </span><span class="si">{operation_name}</span><span class="s2"> with params:</span><span class="se">\n\t</span><span class="s2">{str(operation_params)}&quot;</span><span class="p">)</span>
+                <span class="k">raise</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">avoid_transform_wrapper</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">operation</span><span class="p">,</span> <span class="p">(</span><span class="n">thelper</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">wrappers</span><span class="o">.</span><span class="n">TransformWrapper</span><span class="p">,</span>
+                                                                          <span class="n">thelper</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">operations</span><span class="o">.</span><span class="n">NoTransform</span><span class="p">,</span>
+                                                                          <span class="n">torchvision</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">)):</span>
+                <span class="n">operations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thelper</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">wrappers</span><span class="o">.</span><span class="n">TransformWrapper</span><span class="p">(</span><span class="n">operation</span><span class="p">,</span>
+                                                                               <span class="n">target_keys</span><span class="o">=</span><span class="n">operation_targets</span><span class="p">,</span>
+                                                                               <span class="n">linked_fate</span><span class="o">=</span><span class="n">linked_fate</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">operations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">operation</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">operations</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">thelper</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">(</span><span class="n">operations</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">operations</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">operations</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="load_augments"><a class="viewcode-back" href="../../../thelper.transforms.html#thelper.transforms.utils.load_augments">[docs]</a><span class="k">def</span> <span class="nf">load_augments</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Loads a data augmentation pipeline.</span>
+
+<span class="sd">    An augmentation pipeline is essentially a specialized transformation pipeline that can be appended or</span>
+<span class="sd">    prefixed to the base transforms defined for all samples. Augmentations are typically used to diversify</span>
+<span class="sd">    the samples within the training set in order to help model generalization. They can also be applied to</span>
+<span class="sd">    validation and test samples in order to get multiple responses for the same input so that they can</span>
+<span class="sd">    be averaged/concatenated into a single output.</span>
+
+<span class="sd">    Usage examples inside a session configuration file::</span>
+
+<span class="sd">        # ...</span>
+<span class="sd">        # the &#39;loaders&#39; field can contain several augmentation pipelines</span>
+<span class="sd">        # (see &#39;thelper.data.utils.create_loaders&#39; for more information on these pipelines)</span>
+<span class="sd">        &quot;loaders&quot;: {</span>
+<span class="sd">            # ...</span>
+<span class="sd">            # the &#39;train_augments&#39; operations are applied to training samples only</span>
+<span class="sd">            &quot;train_augments&quot;: {</span>
+<span class="sd">                # specifies whether to apply the augmentations before or after the base transforms</span>
+<span class="sd">                &quot;append&quot;: false,</span>
+<span class="sd">                &quot;transforms&quot;: [</span>
+<span class="sd">                    {</span>
+<span class="sd">                        # here, we use a single stage, which is actually an augmentor sub-pipeline</span>
+<span class="sd">                        # that is purely probabilistic (i.e. it does not increase input sample count)</span>
+<span class="sd">                        &quot;operation&quot;: &quot;Augmentor.Pipeline&quot;,</span>
+<span class="sd">                        &quot;params&quot;: {</span>
+<span class="sd">                            # the augmentor pipeline defines two operations: rotations and flips</span>
+<span class="sd">                            &quot;rotate_random_90&quot;: {&quot;probability&quot;: 0.75},</span>
+<span class="sd">                            &quot;flip_random&quot;: {&quot;probability&quot;: 0.75}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    }</span>
+<span class="sd">                ]</span>
+<span class="sd">            },</span>
+<span class="sd">            # ...</span>
+<span class="sd">        }</span>
+<span class="sd">        # ...</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        config: the configuration dictionary defining the meta parameters as well as the list of transformation</span>
+<span class="sd">            operations of the augmentation pipeline.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A tuple that consists of a pipeline compatible with the ``torchvision.transforms`` interfaces, and</span>
+<span class="sd">        a bool specifying whether this pipeline should be appended or prefixed to the base transforms.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.transforms.wrappers.AugmentorWrapper`</span>
+<span class="sd">        | :func:`thelper.transforms.utils.load_transforms`</span>
+<span class="sd">        | :func:`thelper.data.utils.create_loaders`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="nb">dict</span><span class="p">),</span> <span class="s2">&quot;augmentation config should be provided as dictionary&quot;</span>
+    <span class="n">augments</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">augments_append</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="s2">&quot;append&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
+        <span class="n">augments_append</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">str2bool</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;append&quot;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="s2">&quot;transforms&quot;</span> <span class="ow">in</span> <span class="n">config</span> <span class="ow">and</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;transforms&quot;</span><span class="p">]:</span>
+        <span class="n">augments</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">load_transforms</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;transforms&quot;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">augments</span><span class="p">,</span> <span class="n">augments_append</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../use-cases.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

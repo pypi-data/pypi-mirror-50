@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>FAQ &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="Overview" href="overview.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="index.html">thelper-0.3.8</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="faq">
+<span id="id1"></span><h1>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h1>
+<p>We answer some of the simple and frequently asked questions about the framework below. If you think of
+any other question that should be in this list, send a mail to one of the maintainers, and it will be
+added here.</p>
+<div class="section" id="what-it-is">
+<h2>What it is…<a class="headerlink" href="#what-it-is" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>This framework is used to simplify the exploration, development, and testing of models that you
+create yourself, or that you import from other libraries or frameworks.</p></li>
+<li><p>This framework is used to enforce good reproducibility standards for your experiments via
+the use of global configuration files and checkpoints.</p></li>
+<li><p>This framework is used to easily swap, split, scale, combine, and augment datasets used in
+your experiments.</p></li>
+<li><p>This framework can help you fine-tune, debug, visualize, and understand the behavior of your
+models more easily.</p></li>
+<li><p>This framework is <strong>NOT</strong> used to obtain off-the-shelf solutions. In most cases, you will
+have to put in some work by at least modifying pre-existing configuration files.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="what-it-supports">
+<h2>What it supports…<a class="headerlink" href="#what-it-supports" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>PyTorch.</strong> For now, the entire backend is based on the design patterns, interfaces, and
+concepts of the PyTorch library (<a class="reference external" href="https://pytorch.org/">[more info]</a>).</p></li>
+<li><p>Image classification, segmentation, object detection, super-resolution, and generic regression
+tasks. More types of tasks are planned in the near future.</p></li>
+<li><p>Live evaluation and monitoring of predefined metrics. The framework implements <a class="reference internal" href="thelper.optim.html#module-thelper.optim.metrics"><span class="std std-ref">[several
+types of metrics]</span></a>, but custom metrics can also be
+defined and evaluated at run time.</p></li>
+<li><p>Data augmentation. The framework implements basic <a class="reference internal" href="thelper.transforms.html#module-thelper.transforms"><span class="std std-ref">[transformation operations and wrappers]</span></a> for large augmentation libraries such as
+<code class="docutils literal notranslate"><span class="pre">albumentations</span></code> (<a class="reference external" href="https://github.com/albu/albumentations">[more info]</a>).</p></li>
+<li><p>Model fine-tuning and exportation. Models obtained from the <code class="docutils literal notranslate"><span class="pre">torchvision</span></code> package (<a class="reference external" href="https://pytorch.org/docs/stable/torchvision/models.html">[more info]</a>) or pre-trained using the framework can be loaded and fine-tuned directly for any
+compatible task. They can also be exported in PyTorch-JIT/ONNX format for external inference.</p></li>
+<li><p>Tensorboard. Event logs are generated using <code class="docutils literal notranslate"><span class="pre">tensorboardX</span></code> (<a class="reference external" href="https://github.com/lanpa/tensorboardX">[more info]</a>) and may
+contain plots, visualizations, histograms, graph module trees and more.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="how-do-i">
+<h2>How do I…<a class="headerlink" href="#how-do-i" title="Permalink to this headline">¶</a></h2>
+<p>This section is still a work in progress; see the use case examples <a class="reference internal" href="use-cases.html#use-cases"><span class="std std-ref">[here]</span></a> for a list
+of code snippets and tutorials on how to use the framework. For high-level documentation, refer to the
+<a class="reference internal" href="user-guide.html#user-guide"><span class="std std-ref">[user guide]</span></a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-it-is">What it is…</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-it-supports">What it supports…</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-do-i">How do I…</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use-cases.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/faq.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="overview.html" title="Overview"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

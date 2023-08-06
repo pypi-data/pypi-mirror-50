@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.tasks package &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="thelper.train package" href="thelper.train.html" />
+    <link rel="prev" title="thelper.optim package" href="thelper.optim.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="thelper.html" accesskey="U">thelper package</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-thelper.tasks">
+<span id="thelper-tasks-package"></span><h1>thelper.tasks package<a class="headerlink" href="#module-thelper.tasks" title="Permalink to this headline">¶</a></h1>
+<p>Task definition package.</p>
+<p>This package contains classes and functions whose role is to define the input/output formats and operations
+expected from a trained model. This essentially defines the ‘goal’ of the model, and is used to specialize
+and automate its training.</p>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-thelper.tasks.classif">
+<span id="thelper-tasks-classif-module"></span><h2>thelper.tasks.classif module<a class="headerlink" href="#module-thelper.tasks.classif" title="Permalink to this headline">¶</a></h2>
+<p>Classification task interface module.</p>
+<p>This module contains a class that defines the objectives of models/trainers for classification tasks.</p>
+<dl class="class">
+<dt id="thelper.tasks.classif.Classification">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.tasks.classif.</code><code class="sig-name descname">Classification</code><span class="sig-paren">(</span><em class="sig-param">class_names</em>, <em class="sig-param">input_key</em>, <em class="sig-param">label_key</em>, <em class="sig-param">meta_keys=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/classif.html#Classification"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.classif.Classification" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.tasks.utils.Task" title="thelper.tasks.utils.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.utils.Task</span></code></a></p>
+<p>Interface for input labeling/classification tasks.</p>
+<p>This specialization requests that when given an input tensor, the trained model should
+provide prediction scores for each predefined label (or class). The label names are used
+here to help categorize samples, and to assure that two tasks are only identical when their
+label counts and ordering match.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#thelper.tasks.classif.Classification.class_names" title="thelper.tasks.classif.Classification.class_names"><strong>class_names</strong></a> – list of label (class) names to predict (each name should be a string).</p></li>
+<li><p><strong>input_key</strong> – the key used to fetch input tensors from a sample dictionary.</p></li>
+<li><p><strong>label_key</strong> – the key used to fetch label (class) names/indices from a sample dictionary.</p></li>
+<li><p><strong>meta_keys</strong> – the list of extra keys provided by the data parser inside each sample.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.tasks.utils.Task" title="thelper.tasks.utils.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.utils.Task</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.train.html#thelper.train.classif.ImageClassifTrainer" title="thelper.train.classif.ImageClassifTrainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.classif.ImageClassifTrainer</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.tasks.classif.Classification.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">class_names</em>, <em class="sig-param">input_key</em>, <em class="sig-param">label_key</em>, <em class="sig-param">meta_keys=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/classif.html#Classification.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.classif.Classification.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives and stores the class (or label) names to predict, the input tensor key, the
+groundtruth label (class) key, and the extra (meta) keys produced by the dataset parser(s).</p>
+<p>The class names can be provided as a list of strings, or as a path to a json file that
+contains such a list. The list must contain at least two items. All other arguments are
+used as-is to index dictionaries, and must therefore be key-compatible types.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.classif.Classification.check_compat">
+<code class="sig-name descname">check_compat</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">exact=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/classif.html#Classification.check_compat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.classif.Classification.check_compat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether the current task is compatible with the provided one or not.</p>
+<p>This is useful for sanity-checking, and to see if the inputs/outputs of two models
+are compatible. If <code class="docutils literal notranslate"><span class="pre">exact</span> <span class="pre">=</span> <span class="pre">True</span></code>, all fields will be checked for exact (perfect)
+compatibility (in this case, matching meta keys and class name order).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.classif.Classification.class_indices">
+<em class="property">property </em><code class="sig-name descname">class_indices</code><a class="headerlink" href="#thelper.tasks.classif.Classification.class_indices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the class-name-to-index map used for encoding labels as integers.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.classif.Classification.class_names">
+<em class="property">property </em><code class="sig-name descname">class_names</code><a class="headerlink" href="#thelper.tasks.classif.Classification.class_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of class names to be predicted.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.classif.Classification.get_class_sample_map">
+<code class="sig-name descname">get_class_sample_map</code><span class="sig-paren">(</span><em class="sig-param">samples</em>, <em class="sig-param">unset_key=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/classif.html#Classification.get_class_sample_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.classif.Classification.get_class_sample_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Splits a list of samples based on their labels into a map of sample lists.</p>
+<p>This function is useful if we need to split a dataset based on its label categories in
+order to sort it, augment it, or re-balance it. The samples do not need to be fully loaded
+for this to work, as only their label (gt) value will be queried. If a sample is missing
+its label, it will be ignored and left out of the generated dictionary unless a value is
+given for <code class="docutils literal notranslate"><span class="pre">unset_key</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samples</strong> – the samples to split, where each sample is provided as a dictionary.</p></li>
+<li><p><strong>unset_key</strong> – a key under which all unlabeled samples should be kept (<code class="docutils literal notranslate"><span class="pre">None</span></code> = ignore).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dictionary that maps each class label to its corresponding list of samples.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.classif.Classification.get_class_sizes">
+<code class="sig-name descname">get_class_sizes</code><span class="sig-paren">(</span><em class="sig-param">samples</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/classif.html#Classification.get_class_sizes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.classif.Classification.get_class_sizes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of samples, returns a map of sample counts for each class label.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.classif.Classification.get_compat">
+<code class="sig-name descname">get_compat</code><span class="sig-paren">(</span><em class="sig-param">task</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/classif.html#Classification.get_compat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.classif.Classification.get_compat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a task instance compatible with the current task and the given one.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.tasks.detect">
+<span id="thelper-tasks-detect-module"></span><h2>thelper.tasks.detect module<a class="headerlink" href="#module-thelper.tasks.detect" title="Permalink to this headline">¶</a></h2>
+<p>Detection task interface module.</p>
+<p>This module contains classes that define object detection utilities and task interfaces.</p>
+<dl class="class">
+<dt id="thelper.tasks.detect.BoundingBox">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.tasks.detect.</code><code class="sig-name descname">BoundingBox</code><span class="sig-paren">(</span><em class="sig-param">class_id</em>, <em class="sig-param">bbox</em>, <em class="sig-param">include_margin=True</em>, <em class="sig-param">difficult=False</em>, <em class="sig-param">occluded=False</em>, <em class="sig-param">truncated=False</em>, <em class="sig-param">iscrowd=False</em>, <em class="sig-param">confidence=None</em>, <em class="sig-param">image_id=None</em>, <em class="sig-param">task=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/detect.html#BoundingBox"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.detect.BoundingBox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Interface used to hold instance metadata for object detection tasks.</p>
+<p>Object detection trainers and display utilities in the framework will expect this interface to be
+used when parsing a predicted detection or an annotation. The base contents are based on the
+PASCALVOC metadata structure, and this class can be derived if necessary to contain more metadata.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#thelper.tasks.detect.BoundingBox.class_id" title="thelper.tasks.detect.BoundingBox.class_id"><strong>class_id</strong></a> – type identifier for the underlying object instance.</p></li>
+<li><p><a class="reference internal" href="#thelper.tasks.detect.BoundingBox.bbox" title="thelper.tasks.detect.BoundingBox.bbox"><strong>bbox</strong></a> – four-element tuple holding the (xmin,ymin,xmax,ymax) bounding box parameters.</p></li>
+<li><p><a class="reference internal" href="#thelper.tasks.detect.BoundingBox.include_margin" title="thelper.tasks.detect.BoundingBox.include_margin"><strong>include_margin</strong></a> – defines whether xmax/ymax is included in the bounding box area or not.</p></li>
+<li><p><a class="reference internal" href="#thelper.tasks.detect.BoundingBox.difficult" title="thelper.tasks.detect.BoundingBox.difficult"><strong>difficult</strong></a> – defines whether this instance is considered “difficult” (false by default).</p></li>
+<li><p><a class="reference internal" href="#thelper.tasks.detect.BoundingBox.occluded" title="thelper.tasks.detect.BoundingBox.occluded"><strong>occluded</strong></a> – defines whether this instance is considered “occluded” (false by default).</p></li>
+<li><p><a class="reference internal" href="#thelper.tasks.detect.BoundingBox.truncated" title="thelper.tasks.detect.BoundingBox.truncated"><strong>truncated</strong></a> – defines whether this instance is considered “truncated” (false by default).</p></li>
+<li><p><a class="reference internal" href="#thelper.tasks.detect.BoundingBox.iscrowd" title="thelper.tasks.detect.BoundingBox.iscrowd"><strong>iscrowd</strong></a> – defines whether this instance covers a “crowd” of objects or not (false by default).</p></li>
+<li><p><a class="reference internal" href="#thelper.tasks.detect.BoundingBox.confidence" title="thelper.tasks.detect.BoundingBox.confidence"><strong>confidence</strong></a> – scalar or array of prediction confidence values tied to class types (empty by default).</p></li>
+<li><p><a class="reference internal" href="#thelper.tasks.detect.BoundingBox.image_id" title="thelper.tasks.detect.BoundingBox.image_id"><strong>image_id</strong></a> – string used to identify the image containing this bounding box (i.e. file path or uuid).</p></li>
+<li><p><a class="reference internal" href="#thelper.tasks.detect.BoundingBox.task" title="thelper.tasks.detect.BoundingBox.task"><strong>task</strong></a> – reference to the task object that holds extra metadata regarding the content of the bbox (None by default).</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.tasks.utils.Task" title="thelper.tasks.utils.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.utils.Task</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.tasks.detect.Detection" title="thelper.tasks.detect.Detection"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.detect.Detection</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">class_id</em>, <em class="sig-param">bbox</em>, <em class="sig-param">include_margin=True</em>, <em class="sig-param">difficult=False</em>, <em class="sig-param">occluded=False</em>, <em class="sig-param">truncated=False</em>, <em class="sig-param">iscrowd=False</em>, <em class="sig-param">confidence=None</em>, <em class="sig-param">image_id=None</em>, <em class="sig-param">task=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/detect.html#BoundingBox.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives and stores low-level input detection metadata for later access.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.area">
+<em class="property">property </em><code class="sig-name descname">area</code><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.area" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a scalar indicating the total surface of the annotation (may be None if unknown/unspecified).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.bbox">
+<em class="property">property </em><code class="sig-name descname">bbox</code><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.bbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the bounding box tuple (xmin,ymin,xmax,ymax).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.bottom">
+<em class="property">property </em><code class="sig-name descname">bottom</code><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.bottom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the bottom bounding box edge origin offset value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.bottom_right">
+<em class="property">property </em><code class="sig-name descname">bottom_right</code><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.bottom_right" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the bottom right bounding box corner coordinates (x,y).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.centroid">
+<em class="property">property </em><code class="sig-name descname">centroid</code><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.centroid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the bounding box centroid coordinates (x,y).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.class_id">
+<em class="property">property </em><code class="sig-name descname">class_id</code><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.class_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the object class type identifier.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.confidence">
+<em class="property">property </em><code class="sig-name descname">confidence</code><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.confidence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the confidence value (or array of confidence values) associated to the predicted class types.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.decode">
+<em class="property">static </em><code class="sig-name descname">decode</code><span class="sig-paren">(</span><em class="sig-param">vec</em>, <em class="sig-param">format=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/detect.html#BoundingBox.decode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.decode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a BoundingBox object from a vectorized representation in a specified format.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.difficult">
+<em class="property">property </em><code class="sig-name descname">difficult</code><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.difficult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether this bounding box is considered “difficult” by the dataset (false by default).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.encode">
+<code class="sig-name descname">encode</code><span class="sig-paren">(</span><em class="sig-param">format=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/detect.html#BoundingBox.encode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.encode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a vectorizable representation of this bounding box in a specified format.</p>
+<p>WARNING: Encoding might cause information loss (e.g. task reference is discarded).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.height">
+<em class="property">property </em><code class="sig-name descname">height</code><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.height" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the height of the bounding box.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.image_id">
+<em class="property">property </em><code class="sig-name descname">image_id</code><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.image_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the image string identifier.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.include_margin">
+<em class="property">property </em><code class="sig-name descname">include_margin</code><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.include_margin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether xmax/ymax is included in the bounding box area or not</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.intersects">
+<code class="sig-name descname">intersects</code><span class="sig-paren">(</span><em class="sig-param">geom</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/detect.html#BoundingBox.intersects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.intersects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether the bounding box intersects a geometry (i.e. a 2D point or another bbox).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.iscrowd">
+<em class="property">property </em><code class="sig-name descname">iscrowd</code><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.iscrowd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether this instance covers a “crowd” of objects or not (false by default).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.left">
+<em class="property">property </em><code class="sig-name descname">left</code><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.left" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the left bounding box edge origin offset value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.occluded">
+<em class="property">property </em><code class="sig-name descname">occluded</code><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.occluded" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether this bounding box is considered “occluded” by the dataset (false by default).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.right">
+<em class="property">property </em><code class="sig-name descname">right</code><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.right" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the right bounding box edge origin offset value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.task">
+<em class="property">property </em><code class="sig-name descname">task</code><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the reference to the task object that holds extra metadata regarding the content of the bbox.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.top">
+<em class="property">property </em><code class="sig-name descname">top</code><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.top" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the top bounding box edge origin offset value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.top_left">
+<em class="property">property </em><code class="sig-name descname">top_left</code><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.top_left" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the top left bounding box corner coordinates (x,y).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.truncated">
+<em class="property">property </em><code class="sig-name descname">truncated</code><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.truncated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether this bounding box is considered “truncated” by the dataset (false by default).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.BoundingBox.width">
+<em class="property">property </em><code class="sig-name descname">width</code><a class="headerlink" href="#thelper.tasks.detect.BoundingBox.width" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the width of the bounding box.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.tasks.detect.Detection">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.tasks.detect.</code><code class="sig-name descname">Detection</code><span class="sig-paren">(</span><em class="sig-param">class_names</em>, <em class="sig-param">input_key</em>, <em class="sig-param">bboxes_key</em>, <em class="sig-param">meta_keys=None</em>, <em class="sig-param">input_shape=None</em>, <em class="sig-param">target_shape=None</em>, <em class="sig-param">target_min=None</em>, <em class="sig-param">target_max=None</em>, <em class="sig-param">background=None</em>, <em class="sig-param">color_map=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/detect.html#Detection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.detect.Detection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.tasks.regr.Regression" title="thelper.tasks.regr.Regression"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.regr.Regression</span></code></a></p>
+<p>Interface for object detection tasks.</p>
+<p>This specialization requests that when given an input image, the trained model should
+provide a list of bounding box (bbox) proposals that correspond to probable objects detected
+in the image.</p>
+<p>This specialized regression interface is currently used to help display functions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#thelper.tasks.detect.Detection.class_names" title="thelper.tasks.detect.Detection.class_names"><strong>class_names</strong></a> – map of class name-value pairs for object types to detect.</p></li>
+<li><p><strong>input_key</strong> – the key used to fetch input tensors from a sample dictionary.</p></li>
+<li><p><strong>bboxes_key</strong> – the key used to fetch target (groundtruth) bboxes from a sample dictionary.</p></li>
+<li><p><strong>meta_keys</strong> – the list of extra keys provided by the data parser inside each sample.</p></li>
+<li><p><strong>input_shape</strong> – a numpy-compatible shape to expect input images to possess.</p></li>
+<li><p><strong>target_shape</strong> – a numpy-compatible shape to expect the predictions to be in.</p></li>
+<li><p><strong>target_min</strong> – a 2-dim tensor containing minimum (x,y) bounding box corner values.</p></li>
+<li><p><strong>target_max</strong> – a 2-dim tensor containing maximum (x,y) bounding box corner values.</p></li>
+<li><p><a class="reference internal" href="#thelper.tasks.detect.Detection.background" title="thelper.tasks.detect.Detection.background"><strong>background</strong></a> – value of the ‘background’ label (if any) used in the class map.</p></li>
+<li><p><a class="reference internal" href="#thelper.tasks.detect.Detection.color_map" title="thelper.tasks.detect.Detection.color_map"><strong>color_map</strong></a> – map of class name-color pairs to use when displaying results.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.tasks.utils.Task" title="thelper.tasks.utils.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.utils.Task</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.tasks.regr.Regression" title="thelper.tasks.regr.Regression"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.regr.Regression</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.train.html#thelper.train.detect.ObjDetectTrainer" title="thelper.train.detect.ObjDetectTrainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.detect.ObjDetectTrainer</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.tasks.detect.Detection.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">class_names</em>, <em class="sig-param">input_key</em>, <em class="sig-param">bboxes_key</em>, <em class="sig-param">meta_keys=None</em>, <em class="sig-param">input_shape=None</em>, <em class="sig-param">target_shape=None</em>, <em class="sig-param">target_min=None</em>, <em class="sig-param">target_max=None</em>, <em class="sig-param">background=None</em>, <em class="sig-param">color_map=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/detect.html#Detection.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.detect.Detection.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives and stores the bbox types to detect, the input tensor key, the groundtruth
+bboxes list key, the extra (meta) keys produced by the dataset parser(s), and the color
+map used to color bboxes when displaying results.</p>
+<p>The class names can be provided as a list of strings, as a path to a json file that
+contains such a list, or as a map of predefined name-value pairs to use in gt maps.
+This list/map must contain at least two elements (background and one class). All
+other arguments are used as-is to index dictionaries, and must therefore be key-
+compatible types.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.Detection.background">
+<em class="property">property </em><code class="sig-name descname">background</code><a class="headerlink" href="#thelper.tasks.detect.Detection.background" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the ‘background’ label value used in loss functions (can be <code class="docutils literal notranslate"><span class="pre">None</span></code>).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.Detection.check_compat">
+<code class="sig-name descname">check_compat</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">exact=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/detect.html#Detection.check_compat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.detect.Detection.check_compat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether the current task is compatible with the provided one or not.</p>
+<p>This is useful for sanity-checking, and to see if the inputs/outputs of two models
+are compatible. If <code class="docutils literal notranslate"><span class="pre">exact</span> <span class="pre">=</span> <span class="pre">True</span></code>, all fields will be checked for exact (perfect)
+compatibility (in this case, matching meta keys and class maps).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.Detection.class_indices">
+<em class="property">property </em><code class="sig-name descname">class_indices</code><a class="headerlink" href="#thelper.tasks.detect.Detection.class_indices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the class-name-to-index map used for encoding labels as integers.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.Detection.class_names">
+<em class="property">property </em><code class="sig-name descname">class_names</code><a class="headerlink" href="#thelper.tasks.detect.Detection.class_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of class names to be predicted.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.Detection.color_map">
+<em class="property">property </em><code class="sig-name descname">color_map</code><a class="headerlink" href="#thelper.tasks.detect.Detection.color_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the color map used to swap label indices for colors when displaying results.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.Detection.get_class_sizes">
+<code class="sig-name descname">get_class_sizes</code><span class="sig-paren">(</span><em class="sig-param">samples</em>, <em class="sig-param">bbox_format=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/detect.html#Detection.get_class_sizes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.detect.Detection.get_class_sizes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of samples, returns a map of element counts for each object type.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.detect.Detection.get_compat">
+<code class="sig-name descname">get_compat</code><span class="sig-paren">(</span><em class="sig-param">task</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/detect.html#Detection.get_compat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.detect.Detection.get_compat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a task instance compatible with the current task and the given one.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.tasks.regr">
+<span id="thelper-tasks-regr-module"></span><h2>thelper.tasks.regr module<a class="headerlink" href="#module-thelper.tasks.regr" title="Permalink to this headline">¶</a></h2>
+<p>Regression task interface module.</p>
+<p>This module contains a class that defines the objectives of models/trainers for regression tasks.</p>
+<dl class="class">
+<dt id="thelper.tasks.regr.Regression">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.tasks.regr.</code><code class="sig-name descname">Regression</code><span class="sig-paren">(</span><em class="sig-param">input_key</em>, <em class="sig-param">target_key</em>, <em class="sig-param">meta_keys=None</em>, <em class="sig-param">input_shape=None</em>, <em class="sig-param">target_shape=None</em>, <em class="sig-param">target_type=None</em>, <em class="sig-param">target_min=None</em>, <em class="sig-param">target_max=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/regr.html#Regression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.regr.Regression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.tasks.utils.Task" title="thelper.tasks.utils.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.utils.Task</span></code></a></p>
+<p>Interface for n-dimension regression tasks.</p>
+<p>This specialization requests that when given an input tensor, the trained model should
+provide an n-dimensional target prediction. This is a fairly generic task that (unlike
+image classification and semantic segmentation) is not linked to a pre-existing set of
+possible solutions. The task interface is used to carry useful metadata for this task,
+e.g. input/output shapes, types, and min/max values for rounding/saturation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#thelper.tasks.regr.Regression.input_shape" title="thelper.tasks.regr.Regression.input_shape"><strong>input_shape</strong></a> – a numpy-compatible shape to expect model inputs to be in.</p></li>
+<li><p><a class="reference internal" href="#thelper.tasks.regr.Regression.target_shape" title="thelper.tasks.regr.Regression.target_shape"><strong>target_shape</strong></a> – a numpy-compatible shape to expect the predictions to be in.</p></li>
+<li><p><a class="reference internal" href="#thelper.tasks.regr.Regression.target_type" title="thelper.tasks.regr.Regression.target_type"><strong>target_type</strong></a> – a numpy-compatible type to cast the predictions to (if needed).</p></li>
+<li><p><a class="reference internal" href="#thelper.tasks.regr.Regression.target_min" title="thelper.tasks.regr.Regression.target_min"><strong>target_min</strong></a> – an n-dim tensor containing minimum target values (if applicable).</p></li>
+<li><p><a class="reference internal" href="#thelper.tasks.regr.Regression.target_max" title="thelper.tasks.regr.Regression.target_max"><strong>target_max</strong></a> – an n-dim tensor containing maximum target values (if applicable).</p></li>
+<li><p><strong>input_key</strong> – the key used to fetch input tensors from a sample dictionary.</p></li>
+<li><p><strong>target_key</strong> – the key used to fetch target (groundtruth) values from a sample dictionary.</p></li>
+<li><p><strong>meta_keys</strong> – the list of extra keys provided by the data parser inside each sample.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.tasks.utils.Task" title="thelper.tasks.utils.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.utils.Task</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.train.html#thelper.train.regr.RegressionTrainer" title="thelper.train.regr.RegressionTrainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.regr.RegressionTrainer</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.tasks.regr.SuperResolution" title="thelper.tasks.regr.SuperResolution"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.regr.SuperResolution</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.tasks.detect.Detection" title="thelper.tasks.detect.Detection"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.detect.Detection</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.tasks.regr.Regression.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">input_key</em>, <em class="sig-param">target_key</em>, <em class="sig-param">meta_keys=None</em>, <em class="sig-param">input_shape=None</em>, <em class="sig-param">target_shape=None</em>, <em class="sig-param">target_type=None</em>, <em class="sig-param">target_min=None</em>, <em class="sig-param">target_max=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/regr.html#Regression.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.regr.Regression.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives and stores the keys produced by the dataset parser(s).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.regr.Regression.check_compat">
+<code class="sig-name descname">check_compat</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">exact=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/regr.html#Regression.check_compat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.regr.Regression.check_compat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether the current task is compatible with the provided one or not.</p>
+<p>This is useful for sanity-checking, and to see if the inputs/outputs of two models
+are compatible. If <code class="docutils literal notranslate"><span class="pre">exact</span> <span class="pre">=</span> <span class="pre">True</span></code>, all fields will be checked for exact (perfect)
+compatibility (in this case, matching meta keys).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.regr.Regression.get_compat">
+<code class="sig-name descname">get_compat</code><span class="sig-paren">(</span><em class="sig-param">task</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/regr.html#Regression.get_compat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.regr.Regression.get_compat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a task instance compatible with the current task and the given one.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.regr.Regression.input_shape">
+<em class="property">property </em><code class="sig-name descname">input_shape</code><a class="headerlink" href="#thelper.tasks.regr.Regression.input_shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the shape of the input tensors to be processed by the model.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.regr.Regression.target_max">
+<em class="property">property </em><code class="sig-name descname">target_max</code><a class="headerlink" href="#thelper.tasks.regr.Regression.target_max" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the maximum target value(s) to be generated by the model.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.regr.Regression.target_min">
+<em class="property">property </em><code class="sig-name descname">target_min</code><a class="headerlink" href="#thelper.tasks.regr.Regression.target_min" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the minimum target value(s) to be generated by the model.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.regr.Regression.target_shape">
+<em class="property">property </em><code class="sig-name descname">target_shape</code><a class="headerlink" href="#thelper.tasks.regr.Regression.target_shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the shape of the output tensors to be generated by the model.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.regr.Regression.target_type">
+<em class="property">property </em><code class="sig-name descname">target_type</code><a class="headerlink" href="#thelper.tasks.regr.Regression.target_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the type of the output tensors to be generated by the model.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.tasks.regr.SuperResolution">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.tasks.regr.</code><code class="sig-name descname">SuperResolution</code><span class="sig-paren">(</span><em class="sig-param">input_key</em>, <em class="sig-param">target_key</em>, <em class="sig-param">meta_keys=None</em>, <em class="sig-param">input_shape=None</em>, <em class="sig-param">target_type=None</em>, <em class="sig-param">target_min=None</em>, <em class="sig-param">target_max=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/regr.html#SuperResolution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.regr.SuperResolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.tasks.regr.Regression" title="thelper.tasks.regr.Regression"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.regr.Regression</span></code></a></p>
+<p>Interface for super-resolution tasks.</p>
+<p>This specialization requests that when given an input tensor, the trained model should
+provide an identically-shape target prediction that essentially contains more (or more
+adequate) high-frequency spatial components.</p>
+<p>This specialized regression interface is currently used to help display functions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_shape</strong> – a numpy-compatible shape to expect model inputs/outputs to be in.</p></li>
+<li><p><strong>target_type</strong> – a numpy-compatible type to cast the predictions to (if needed).</p></li>
+<li><p><strong>target_min</strong> – an n-dim tensor containing minimum target values (if applicable).</p></li>
+<li><p><strong>target_max</strong> – an n-dim tensor containing maximum target values (if applicable).</p></li>
+<li><p><strong>input_key</strong> – the key used to fetch input tensors from a sample dictionary.</p></li>
+<li><p><strong>target_key</strong> – the key used to fetch target (groundtruth) values from a sample dictionary.</p></li>
+<li><p><strong>meta_keys</strong> – the list of extra keys provided by the data parser inside each sample.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.tasks.utils.Task" title="thelper.tasks.utils.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.utils.Task</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.tasks.regr.Regression" title="thelper.tasks.regr.Regression"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.regr.Regression</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.train.html#thelper.train.regr.RegressionTrainer" title="thelper.train.regr.RegressionTrainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.regr.RegressionTrainer</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.tasks.regr.SuperResolution.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">input_key</em>, <em class="sig-param">target_key</em>, <em class="sig-param">meta_keys=None</em>, <em class="sig-param">input_shape=None</em>, <em class="sig-param">target_type=None</em>, <em class="sig-param">target_min=None</em>, <em class="sig-param">target_max=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/regr.html#SuperResolution.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.regr.SuperResolution.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives and stores the keys produced by the dataset parser(s).</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.tasks.segm">
+<span id="thelper-tasks-segm-module"></span><h2>thelper.tasks.segm module<a class="headerlink" href="#module-thelper.tasks.segm" title="Permalink to this headline">¶</a></h2>
+<p>Segmentation task interface module.</p>
+<p>This module contains a class that defines the objectives of models/trainers for segmentation tasks.</p>
+<dl class="class">
+<dt id="thelper.tasks.segm.Segmentation">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.tasks.segm.</code><code class="sig-name descname">Segmentation</code><span class="sig-paren">(</span><em class="sig-param">class_names</em>, <em class="sig-param">input_key</em>, <em class="sig-param">label_map_key</em>, <em class="sig-param">meta_keys=None</em>, <em class="sig-param">dontcare=None</em>, <em class="sig-param">color_map=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/segm.html#Segmentation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.segm.Segmentation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.tasks.utils.Task" title="thelper.tasks.utils.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.utils.Task</span></code></a></p>
+<p>Interface for pixel-level labeling/classification (segmentation) tasks.</p>
+<p>This specialization requests that when given an input tensor, the trained model should
+provide prediction scores for each predefined label (or class), for each element of the
+input tensor. The label names are used here to help categorize samples, and to assure that
+two tasks are only identical when their label counts and ordering match.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#thelper.tasks.segm.Segmentation.class_names" title="thelper.tasks.segm.Segmentation.class_names"><strong>class_names</strong></a> – map of class name-value pairs to predict for each pixel.</p></li>
+<li><p><strong>input_key</strong> – the key used to fetch input tensors from a sample dictionary.</p></li>
+<li><p><strong>label_map_key</strong> – the key used to fetch label (class) maps from a sample dictionary.</p></li>
+<li><p><strong>meta_keys</strong> – the list of extra keys provided by the data parser inside each sample.</p></li>
+<li><p><a class="reference internal" href="#thelper.tasks.segm.Segmentation.dontcare" title="thelper.tasks.segm.Segmentation.dontcare"><strong>dontcare</strong></a> – value of the ‘dontcare’ label (if any) used in the class map.</p></li>
+<li><p><a class="reference internal" href="#thelper.tasks.segm.Segmentation.color_map" title="thelper.tasks.segm.Segmentation.color_map"><strong>color_map</strong></a> – map of class name-color pairs to use when displaying results.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.tasks.utils.Task" title="thelper.tasks.utils.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.utils.Task</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.train.html#thelper.train.segm.ImageSegmTrainer" title="thelper.train.segm.ImageSegmTrainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.segm.ImageSegmTrainer</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.tasks.segm.Segmentation.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">class_names</em>, <em class="sig-param">input_key</em>, <em class="sig-param">label_map_key</em>, <em class="sig-param">meta_keys=None</em>, <em class="sig-param">dontcare=None</em>, <em class="sig-param">color_map=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/segm.html#Segmentation.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.segm.Segmentation.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives and stores the class (or label) names to predict, the input tensor key,
+the groundtruth label (class) map key, the extra (meta) keys produced by the dataset
+parser(s), the ‘dontcare’ label value that might be present in gt maps (if any), and
+the color map used to swap label indices for colors when displaying results.</p>
+<p>The class names can be provided as a list of strings, as a path to a json file that
+contains such a list, or as a map of predefined name-value pairs to use in gt maps.
+This list/map must contain at least two elements. All other arguments are used as-is
+to index dictionaries, and must therefore be key-compatible types.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.segm.Segmentation.check_compat">
+<code class="sig-name descname">check_compat</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">exact=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/segm.html#Segmentation.check_compat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.segm.Segmentation.check_compat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether the current task is compatible with the provided one or not.</p>
+<p>This is useful for sanity-checking, and to see if the inputs/outputs of two models
+are compatible. If <code class="docutils literal notranslate"><span class="pre">exact</span> <span class="pre">=</span> <span class="pre">True</span></code>, all fields will be checked for exact (perfect)
+compatibility (in this case, matching meta keys and class maps).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.segm.Segmentation.class_indices">
+<em class="property">property </em><code class="sig-name descname">class_indices</code><a class="headerlink" href="#thelper.tasks.segm.Segmentation.class_indices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the class-name-to-index map used for encoding labels as integers.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.segm.Segmentation.class_names">
+<em class="property">property </em><code class="sig-name descname">class_names</code><a class="headerlink" href="#thelper.tasks.segm.Segmentation.class_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of class names to be predicted.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.segm.Segmentation.color_map">
+<em class="property">property </em><code class="sig-name descname">color_map</code><a class="headerlink" href="#thelper.tasks.segm.Segmentation.color_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the color map used to swap label indices for colors when displaying results.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.segm.Segmentation.dontcare">
+<em class="property">property </em><code class="sig-name descname">dontcare</code><a class="headerlink" href="#thelper.tasks.segm.Segmentation.dontcare" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the ‘dontcare’ label value used in loss functions (can be <code class="docutils literal notranslate"><span class="pre">None</span></code>).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.segm.Segmentation.get_class_sizes">
+<code class="sig-name descname">get_class_sizes</code><span class="sig-paren">(</span><em class="sig-param">samples</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/segm.html#Segmentation.get_class_sizes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.segm.Segmentation.get_class_sizes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of samples, returns a map of element counts for each class label.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.segm.Segmentation.get_compat">
+<code class="sig-name descname">get_compat</code><span class="sig-paren">(</span><em class="sig-param">task</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/segm.html#Segmentation.get_compat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.segm.Segmentation.get_compat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a task instance compatible with the current task and the given one.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.tasks.utils">
+<span id="thelper-tasks-utils-module"></span><h2>thelper.tasks.utils module<a class="headerlink" href="#module-thelper.tasks.utils" title="Permalink to this headline">¶</a></h2>
+<p>Task utility functions &amp; base interface module.</p>
+<p>This module contains utility functions used to instantiate tasks and check their compatibility,
+and the base interface used to define new tasks.</p>
+<dl class="class">
+<dt id="thelper.tasks.utils.Task">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.tasks.utils.</code><code class="sig-name descname">Task</code><span class="sig-paren">(</span><em class="sig-param">input_key</em>, <em class="sig-param">gt_key=None</em>, <em class="sig-param">meta_keys=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/utils.html#Task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.utils.Task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Basic task interface that defines a training objective and that holds sample i/o keys.</p>
+<p>Since the framework’s data loaders expect samples to be passed in as dictionaries, keys
+are required to obtain the input that should be forwarded to a model, and to obtain the
+groundtruth required for the evaluation of model predictions. Other keys might also be
+kept by this interface for reference (these are considered meta keys).</p>
+<p>Note that while this interface can be instantiated directly, trainers and models might
+not be provided enough information about their goal to be correctly instantiated. Thus,
+specialized task objects derived from this base class should be used if possible.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#thelper.tasks.utils.Task.input_key" title="thelper.tasks.utils.Task.input_key"><strong>input_key</strong></a> – the key used to fetch input tensors from a sample dictionary.</p></li>
+<li><p><a class="reference internal" href="#thelper.tasks.utils.Task.gt_key" title="thelper.tasks.utils.Task.gt_key"><strong>gt_key</strong></a> – the key used to fetch gt tensors from a sample dictionary.</p></li>
+<li><p><a class="reference internal" href="#thelper.tasks.utils.Task.meta_keys" title="thelper.tasks.utils.Task.meta_keys"><strong>meta_keys</strong></a> – the list of extra keys provided by the data parser inside each sample.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.tasks.classif.Classification" title="thelper.tasks.classif.Classification"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.classif.Classification</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.tasks.segm.Segmentation" title="thelper.tasks.segm.Segmentation"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.segm.Segmentation</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.tasks.regr.Regression" title="thelper.tasks.regr.Regression"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.regr.Regression</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.tasks.detect.Detection" title="thelper.tasks.detect.Detection"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.detect.Detection</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.tasks.utils.Task.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">input_key</em>, <em class="sig-param">gt_key=None</em>, <em class="sig-param">meta_keys=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/utils.html#Task.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.utils.Task.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives and stores the keys used to index dataset sample contents.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.utils.Task.check_compat">
+<code class="sig-name descname">check_compat</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">exact=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/utils.html#Task.check_compat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.utils.Task.check_compat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether the current task is compatible with the provided one or not.</p>
+<p>This is useful for sanity-checking, and to see if the inputs/outputs of two models
+are compatible. It should be overridden in derived classes to specialize the
+compatibility verification. If <code class="docutils literal notranslate"><span class="pre">exact</span> <span class="pre">=</span> <span class="pre">True</span></code>, all fields will be checked for
+exact compatibility.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.utils.Task.get_compat">
+<code class="sig-name descname">get_compat</code><span class="sig-paren">(</span><em class="sig-param">task</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/utils.html#Task.get_compat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.utils.Task.get_compat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a task instance compatible with the current task and the given one.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.utils.Task.gt_key">
+<em class="property">property </em><code class="sig-name descname">gt_key</code><a class="headerlink" href="#thelper.tasks.utils.Task.gt_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the key used to fetch groundtruth data tensors from a sample dictionary.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.utils.Task.input_key">
+<em class="property">property </em><code class="sig-name descname">input_key</code><a class="headerlink" href="#thelper.tasks.utils.Task.input_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the key used to fetch input data tensors from a sample dictionary.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.utils.Task.keys">
+<em class="property">property </em><code class="sig-name descname">keys</code><a class="headerlink" href="#thelper.tasks.utils.Task.keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of all keys used to carry tensors and metadata in samples.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.tasks.utils.Task.meta_keys">
+<em class="property">property </em><code class="sig-name descname">meta_keys</code><a class="headerlink" href="#thelper.tasks.utils.Task.meta_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of keys used to carry meta/auxiliary data in samples.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.tasks.utils.create_global_task">
+<code class="sig-prename descclassname">thelper.tasks.utils.</code><code class="sig-name descname">create_global_task</code><span class="sig-paren">(</span><em class="sig-param">tasks</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/utils.html#create_global_task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.utils.create_global_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a new task object that is compatible with a list of subtasks.</p>
+<p>When different datasets must be combined in a session, the tasks they define must also be
+merged. This functions allows us to do so as long as the tasks all share a common objective.
+If creating a globally-compatible task is impossible, this function will raise an exception.
+Otherwise, the returned task object can be used to replace the subtasks of all used datasets.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.tasks.utils.Task" title="thelper.tasks.utils.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.utils.Task</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.tasks.utils.create_task" title="thelper.tasks.utils.create_task"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.tasks.utils.create_task()</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.data.html#thelper.data.utils.create_parsers" title="thelper.data.utils.create_parsers"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.create_parsers()</span></code></a></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.tasks.utils.create_task">
+<code class="sig-prename descclassname">thelper.tasks.utils.</code><code class="sig-name descname">create_task</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/tasks/utils.html#create_task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.tasks.utils.create_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses a configuration dictionary or repr string and instantiates a task from it.</p>
+<p>If a string is provided, it will first be parsed to get the task type, and then the object will be
+instantiated by forwarding the parameters contained in the string to the constructor of that
+type. Note that it is important for this function to work that the constructor argument names
+match the names of parameters printed in the task’s <code class="docutils literal notranslate"><span class="pre">__repr__</span></code> function.</p>
+<p>If a dict is provided, it should contain a ‘type’ and a ‘params’ field with the values required
+for direct instantiation.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.tasks.utils.Task" title="thelper.tasks.utils.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.utils.Task</span></code></a></div>
+</div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use-cases.html">Use Cases</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="thelper.html">thelper package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="thelper.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.cli">thelper.cli module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.typedefs">thelper.typedefs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.utils">thelper.utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/thelper.tasks.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="thelper.train.html" title="thelper.train package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="thelper.optim.html" title="thelper.optim package"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

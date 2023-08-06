@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.optim.eval &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../../index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="../../../_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for thelper.optim.eval</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Evaluation classes/funcs module.</span>
+
+<span class="sd">This module contains procedures used to evaluate models and prediction results on specific</span>
+<span class="sd">tasks or datasets. These procedures may be used as part of metric classes (defined in</span>
+<span class="sd">:mod:`thelper.optim.metrics`) or high-level debug/drawing utilities.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">thelper</span>
+
+
+<div class="viewcode-block" id="compute_iou"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.eval.compute_iou">[docs]</a><span class="k">def</span> <span class="nf">compute_iou</span><span class="p">(</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes and returns the Intersection over Union (IoU) of two bounding boxes.&quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">BoundingBox</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bbox2</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">BoundingBox</span><span class="p">),</span> \
+        <span class="s2">&quot;unexpected input bounding box types&quot;</span>
+    <span class="k">assert</span> <span class="n">bbox1</span><span class="o">.</span><span class="n">include_margin</span> <span class="o">==</span> <span class="n">bbox2</span><span class="o">.</span><span class="n">include_margin</span><span class="p">,</span> <span class="s2">&quot;unexpected margin inclusion mismatch&quot;</span>
+    <span class="n">intersection_width</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">bbox1</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">bbox2</span><span class="o">.</span><span class="n">right</span><span class="p">)</span> <span class="o">-</span> <span class="nb">max</span><span class="p">(</span><span class="n">bbox1</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">bbox2</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+    <span class="n">intersection_height</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">bbox1</span><span class="o">.</span><span class="n">bottom</span><span class="p">,</span> <span class="n">bbox2</span><span class="o">.</span><span class="n">bottom</span><span class="p">)</span> <span class="o">-</span> <span class="nb">max</span><span class="p">(</span><span class="n">bbox1</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="n">bbox2</span><span class="o">.</span><span class="n">top</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">bbox1</span><span class="o">.</span><span class="n">include_margin</span><span class="p">:</span>
+        <span class="n">intersection_width</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">intersection_height</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">intersection_area</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">intersection_width</span><span class="p">)</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">intersection_height</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">intersection_area</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">bbox1</span><span class="o">.</span><span class="n">area</span> <span class="o">+</span> <span class="n">bbox2</span><span class="o">.</span><span class="n">area</span> <span class="o">-</span> <span class="n">intersection_area</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="compute_pascalvoc_metrics"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.eval.compute_pascalvoc_metrics">[docs]</a><span class="k">def</span> <span class="nf">compute_pascalvoc_metrics</span><span class="p">(</span><span class="n">pred_bboxes</span><span class="p">,</span> <span class="n">gt_bboxes</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">iou_threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;all-points&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes the metrics used by the VOC Pascal 2012 challenge.</span>
+
+<span class="sd">    This function is inspired from the &#39;Object Detection Metrics&#39; repository of Rafael Padilla.</span>
+<span class="sd">    See https://github.com/rafaelpadilla/Object-Detection-Metrics for more information.</span>
+<span class="sd">    The original code is distributed under the MIT License, Copyright (c) 2018 Rafael Padilla.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        pred_bboxes: list of bbox predictions generated by the model under evaluation.</span>
+<span class="sd">        gt_bboxes: list of groundtruth bounding boxes defined by the dataset.</span>
+<span class="sd">        task: task definition object that holds a vector of all class names.</span>
+<span class="sd">        iou_threshold: Intersection Over Union (IOU) threshold for true/false positive classification.</span>
+<span class="sd">        method: the evaluation method to use; can be the the latest &amp; official PASCAL VOC toolkit</span>
+<span class="sd">            approach (&quot;all-points&quot;), or the 11-point approach (&quot;11-points&quot;) described in the original</span>
+<span class="sd">            paper (&quot;The PASCAL Visual Object Classes(VOC) Challenge&quot;).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A dictionary containing evaluation information and metrics for each class. Each entry contains:</span>
+<span class="sd">        - ``precision``: array with the precision values;</span>
+<span class="sd">        - ``recall``: array with the recall values;</span>
+<span class="sd">        - ``AP``: average precision;</span>
+<span class="sd">        - ``interpolated precision``: interpolated precision values;</span>
+<span class="sd">        - ``interpolated recall``: interpolated recall values;</span>
+<span class="sd">        - ``total positives``: total number of ground truth positives;</span>
+<span class="sd">        - ``total TP``: total number of True Positive detections;</span>
+<span class="sd">        - ``total FP``: total number of False Negative detections.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pred_bboxes</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">))</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">BoundingBox</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">pred_bboxes</span><span class="p">]),</span> \
+        <span class="s2">&quot;invalid predictions format (expected list of bounding box objects)&quot;</span>
+    <span class="k">assert</span> <span class="nb">all</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">bbox</span><span class="o">.</span><span class="n">confidence</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">bbox</span><span class="o">.</span><span class="n">confidence</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">bbox</span> <span class="ow">in</span> <span class="n">pred_bboxes</span><span class="p">]),</span> \
+        <span class="s2">&quot;predicted bounding boxes must be provided with confidence values in [0,1]&quot;</span>
+    <span class="k">assert</span> <span class="nb">all</span><span class="p">([</span><span class="n">bbox</span><span class="o">.</span><span class="n">image_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">bbox</span> <span class="ow">in</span> <span class="n">pred_bboxes</span><span class="p">]),</span> <span class="s2">&quot;predicted bbox image id must be defined&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">gt_bboxes</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">))</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">BoundingBox</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">gt_bboxes</span><span class="p">]),</span> \
+        <span class="s2">&quot;invalid input groundtruth format (expected list of bounding box objects)&quot;</span>
+    <span class="k">assert</span> <span class="nb">all</span><span class="p">([</span><span class="n">bbox</span><span class="o">.</span><span class="n">image_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">bbox</span> <span class="ow">in</span> <span class="n">gt_bboxes</span><span class="p">]),</span> <span class="s2">&quot;gt bbox image id must be defined&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Detection</span><span class="p">)</span> <span class="ow">and</span> <span class="n">task</span><span class="o">.</span><span class="n">class_names</span><span class="p">,</span> <span class="s2">&quot;invalid task object (should be detection)&quot;</span>
+    <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">iou_threshold</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;invalid intersection over union value (should be in ]0,1])&quot;</span>
+    <span class="k">assert</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;all-points&quot;</span><span class="p">,</span> <span class="s2">&quot;11-points&quot;</span><span class="p">],</span> <span class="s2">&quot;invalid method (should be &#39;all-points&#39; or &#39;11-points&#39;)&quot;</span>
+    <span class="n">image_ids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">bbox</span><span class="o">.</span><span class="n">image_id</span> <span class="k">for</span> <span class="n">bbox</span> <span class="ow">in</span> <span class="n">pred_bboxes</span><span class="p">])</span> <span class="o">|</span> <span class="nb">set</span><span class="p">([</span><span class="n">bbox</span><span class="o">.</span><span class="n">image_id</span> <span class="k">for</span> <span class="n">bbox</span> <span class="ow">in</span> <span class="n">gt_bboxes</span><span class="p">]))</span>
+    <span class="n">image_ids</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">idx</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">image_ids</span><span class="p">)}</span>
+    <span class="n">gt_used_flags</span> <span class="o">=</span> <span class="p">[[[[</span><span class="n">bbox</span><span class="p">,</span> <span class="kc">False</span><span class="p">]</span> <span class="k">for</span> <span class="n">bbox</span> <span class="ow">in</span> <span class="n">gt_bboxes</span>
+                       <span class="k">if</span> <span class="p">(((</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">bbox</span><span class="o">.</span><span class="n">class_id</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">bbox</span><span class="o">.</span><span class="n">class_id</span> <span class="o">==</span> <span class="n">ci</span><span class="p">)</span> <span class="ow">or</span> <span class="n">bbox</span><span class="o">.</span><span class="n">class_id</span> <span class="o">==</span> <span class="n">cn</span><span class="p">)</span> <span class="ow">and</span>
+                           <span class="n">bbox</span><span class="o">.</span><span class="n">image_id</span> <span class="o">==</span> <span class="n">iid</span><span class="p">)]</span> <span class="k">for</span> <span class="n">iid</span> <span class="ow">in</span> <span class="n">image_ids</span><span class="p">]</span> <span class="k">for</span> <span class="n">ci</span><span class="p">,</span> <span class="n">cn</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">class_names</span><span class="p">)]</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">class_idx</span><span class="p">,</span> <span class="n">class_name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">class_names</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">background</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">class_name</span> <span class="o">==</span> <span class="s2">&quot;background&quot;</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">curr_pred_bboxes</span> <span class="o">=</span> <span class="p">[</span><span class="n">bbox</span> <span class="k">for</span> <span class="n">bbox</span> <span class="ow">in</span> <span class="n">pred_bboxes</span> <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">bbox</span><span class="o">.</span><span class="n">class_id</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">bbox</span><span class="o">.</span><span class="n">class_id</span> <span class="o">==</span> <span class="n">class_idx</span><span class="p">)</span> <span class="ow">or</span>
+                            <span class="n">bbox</span><span class="o">.</span><span class="n">class_id</span> <span class="o">==</span> <span class="n">class_name</span><span class="p">]</span>
+        <span class="n">curr_pred_bboxes</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">curr_pred_bboxes</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">bbox</span><span class="p">:</span> <span class="n">bbox</span><span class="o">.</span><span class="n">confidence</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">true_positives</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">curr_pred_bboxes</span><span class="p">))</span>
+        <span class="n">false_positives</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">curr_pred_bboxes</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">pred_bbox_idx</span><span class="p">,</span> <span class="n">pred_bbox</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">curr_pred_bboxes</span><span class="p">):</span>
+            <span class="n">curr_gt_bboxes</span> <span class="o">=</span> <span class="n">gt_used_flags</span><span class="p">[</span><span class="n">class_idx</span><span class="p">][</span><span class="n">image_ids</span><span class="p">[</span><span class="n">pred_bbox</span><span class="o">.</span><span class="n">image_id</span><span class="p">]]</span>
+            <span class="n">best_gt_bbox_idx</span><span class="p">,</span> <span class="n">best_gt_bbox_iou</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;-inf&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">gt_bbox_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">gt_bbox</span><span class="p">,</span> <span class="n">gt_bbox_flag</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">curr_gt_bboxes</span><span class="p">):</span>
+                <span class="n">iou</span> <span class="o">=</span> <span class="n">compute_iou</span><span class="p">(</span><span class="n">pred_bbox</span><span class="p">,</span> <span class="n">gt_bbox</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">iou</span> <span class="o">&gt;</span> <span class="n">best_gt_bbox_iou</span><span class="p">:</span>
+                    <span class="n">best_gt_bbox_iou</span> <span class="o">=</span> <span class="n">iou</span>
+                    <span class="n">best_gt_bbox_idx</span> <span class="o">=</span> <span class="n">gt_bbox_idx</span>
+            <span class="k">if</span> <span class="n">best_gt_bbox_iou</span> <span class="o">&gt;=</span> <span class="n">iou_threshold</span><span class="p">:</span>
+                <span class="n">curr_best_gt_bbox_used_flag</span> <span class="o">=</span> <span class="n">curr_gt_bboxes</span><span class="p">[</span><span class="n">best_gt_bbox_idx</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">curr_best_gt_bbox_used_flag</span><span class="p">:</span>
+                    <span class="n">true_positives</span><span class="p">[</span><span class="n">pred_bbox_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                    <span class="c1"># we can only use GT bboxes once, flag them as &#39;seen&#39; after that</span>
+                    <span class="n">curr_gt_bboxes</span><span class="p">[</span><span class="n">best_gt_bbox_idx</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># if best GT bbox was already used, we discard this detection</span>
+                    <span class="c1"># (note: we could do some combinatorial optim w/ hungarian method to solve ideally instead)</span>
+                    <span class="n">false_positives</span><span class="p">[</span><span class="n">pred_bbox_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># if we fail to meet the minimum iou threshold, discard this detection</span>
+                <span class="n">false_positives</span><span class="p">[</span><span class="n">pred_bbox_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">true_positive_cumsum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">true_positives</span><span class="p">)</span>
+        <span class="n">npos</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">bboxes</span><span class="p">)</span> <span class="k">for</span> <span class="n">bboxes</span> <span class="ow">in</span> <span class="n">gt_used_flags</span><span class="p">[</span><span class="n">class_idx</span><span class="p">]])</span>
+        <span class="n">recall</span> <span class="o">=</span> <span class="n">true_positive_cumsum</span> <span class="o">/</span> <span class="n">npos</span>
+        <span class="n">precision</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">true_positive_cumsum</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">false_positives</span><span class="p">)</span> <span class="o">+</span> <span class="n">true_positive_cumsum</span><span class="p">))</span>
+        <span class="n">avg_prec</span><span class="p">,</span> <span class="n">mpre</span><span class="p">,</span> <span class="n">mrec</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">compute_average_precision</span><span class="p">(</span><span class="n">precision</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">recall</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">method</span><span class="p">)</span>
+        <span class="n">ret</span><span class="p">[</span><span class="n">class_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;class_name&quot;</span><span class="p">:</span> <span class="n">class_name</span><span class="p">,</span>
+            <span class="s2">&quot;iou_threshold&quot;</span><span class="p">:</span> <span class="n">iou_threshold</span><span class="p">,</span>
+            <span class="s2">&quot;eval_method&quot;</span><span class="p">:</span> <span class="n">method</span><span class="p">,</span>
+            <span class="s2">&quot;precision&quot;</span><span class="p">:</span> <span class="n">precision</span><span class="p">,</span>
+            <span class="s2">&quot;recall&quot;</span><span class="p">:</span> <span class="n">recall</span><span class="p">,</span>
+            <span class="s2">&quot;AP&quot;</span><span class="p">:</span> <span class="n">avg_prec</span><span class="p">,</span>
+            <span class="s2">&quot;interpolated precision&quot;</span><span class="p">:</span> <span class="n">mpre</span><span class="p">,</span>
+            <span class="s2">&quot;interpolated recall&quot;</span><span class="p">:</span> <span class="n">mrec</span><span class="p">,</span>
+            <span class="s2">&quot;total positives&quot;</span><span class="p">:</span> <span class="n">npos</span><span class="p">,</span>
+            <span class="s2">&quot;total TP&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">true_positives</span><span class="p">),</span>
+            <span class="s2">&quot;total FP&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">false_positives</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="k">return</span> <span class="n">ret</span></div>
+
+
+<div class="viewcode-block" id="compute_average_precision"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.eval.compute_average_precision">[docs]</a><span class="k">def</span> <span class="nf">compute_average_precision</span><span class="p">(</span><span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;all-points&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes the average precision given an array of precision and recall values.</span>
+
+<span class="sd">    This function is inspired from the &#39;Object Detection Metrics&#39; repository of Rafael Padilla.</span>
+<span class="sd">    See https://github.com/rafaelpadilla/Object-Detection-Metrics for more information.</span>
+<span class="sd">    The original code is distributed under the MIT License, Copyright (c) 2018 Rafael Padilla.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        precision: list of precision values for the evaluated predictions of a class.</span>
+<span class="sd">        recall: list of recall values for the evaluated predictions of a class.</span>
+<span class="sd">        method: the evaluation method to use; can be the the latest &amp; official PASCAL VOC toolkit</span>
+<span class="sd">            approach (&quot;all-points&quot;), or the 11-point approach (&quot;11-points&quot;) described in the original</span>
+<span class="sd">            paper (&quot;The PASCAL Visual Object Classes(VOC) Challenge&quot;).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A 4-element tuple containing the average precision, rectified precision/recall arrays, and</span>
+<span class="sd">        the indices used for the integral.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">precision</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">([</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">precision</span><span class="p">])</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">recall</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">([</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">r</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">recall</span><span class="p">])</span>
+    <span class="k">assert</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;all-points&quot;</span><span class="p">,</span> <span class="s2">&quot;11-points&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;all-points&quot;</span><span class="p">:</span>
+        <span class="n">mprecision</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">*</span><span class="n">precision</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># pad with extrema</span>
+        <span class="c1"># run backwards through precision values, eliminate ridges</span>
+        <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mprecision</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">mprecision</span><span class="p">[</span><span class="n">idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">mprecision</span><span class="p">[</span><span class="n">idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">mprecision</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+        <span class="n">mrecall</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">*</span><span class="n">recall</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># pad with extrema</span>
+        <span class="c1"># eliminate duplicates</span>
+        <span class="n">idxs</span> <span class="o">=</span> <span class="p">[</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mrecall</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">mrecall</span><span class="p">[</span><span class="mi">1</span><span class="p">:][</span><span class="n">idx</span><span class="p">]</span> <span class="o">!=</span> <span class="n">mrecall</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">idx</span><span class="p">]]</span>
+        <span class="n">avg_prec</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1"># compute integral (AUC)</span>
+        <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">idxs</span><span class="p">:</span>
+            <span class="n">avg_prec</span> <span class="o">=</span> <span class="n">avg_prec</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">mrecall</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">-</span> <span class="n">mrecall</span><span class="p">[</span><span class="n">idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">mprecision</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">avg_prec</span><span class="p">,</span> <span class="n">mprecision</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">mprecision</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">mrecall</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">mprecision</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">idxs</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">mprecision</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">precision</span><span class="p">]</span>
+        <span class="n">rho_interp</span><span class="p">,</span> <span class="n">recall_val_id</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">ridxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">recall</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">r</span><span class="p">)</span>
+            <span class="n">rho_interp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">mprecision</span><span class="p">[</span><span class="n">ridxs</span><span class="o">.</span><span class="n">min</span><span class="p">():])</span> <span class="k">if</span> <span class="n">ridxs</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">recall_val_id</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+        <span class="n">avg_prec</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">rho_interp</span><span class="p">)</span> <span class="o">/</span> <span class="mi">11</span>
+        <span class="n">rvals</span> <span class="o">=</span> <span class="p">[</span><span class="n">recall_val_id</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="n">recall_val_id</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">pvals</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">*</span><span class="n">rho_interp</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">cc</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rvals</span><span class="p">)):</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">rvals</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">pvals</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cc</span><span class="p">:</span>
+                <span class="n">cc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">rvals</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">pvals</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cc</span><span class="p">:</span>
+                <span class="n">cc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">avg_prec</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cc</span><span class="p">],</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cc</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../use-cases.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

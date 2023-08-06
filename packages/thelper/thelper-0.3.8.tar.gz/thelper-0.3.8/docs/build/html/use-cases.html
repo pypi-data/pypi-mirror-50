@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Use Cases &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="thelper package" href="thelper.html" />
+    <link rel="prev" title="User Guide" href="user-guide.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="index.html">thelper-0.3.8</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="use-cases">
+<span id="id1"></span><h1>Use Cases<a class="headerlink" href="#use-cases" title="Permalink to this headline">¶</a></h1>
+<p>This section is still under construction. Some example configuration files are available in the
+<code class="docutils literal notranslate"><span class="pre">config</span></code> directory of the repository (<a class="reference external" href="https://github.com/plstcharles/thelper/tree/master/configs">[see them here]</a>). For high-level information on generic
+parts of the framework, refer to the <a class="reference internal" href="user-guide.html#user-guide"><span class="std std-ref">[user guide]</span></a>.</p>
+<div class="section" id="image-classification">
+<span id="use-cases-image-classif"></span><h2>Image classification<a class="headerlink" href="#image-classification" title="Permalink to this headline">¶</a></h2>
+<p>Building an image classifier is probably the simplest thing you can do with the framework. Here, we
+provide an in-depth look at a JSON configuration used to built a 10-class object classification model based
+on the CIFAR-10 dataset.</p>
+<p>As usual, we must define four different fields in our configuration for everything to work: the datasets,
+the data loaders, the model, and the trainer. First off, the dataset. As mentionned before, here we will
+work with the CIFAR-10 dataset provided by <code class="docutils literal notranslate"><span class="pre">torchvision</span></code>. We do so simply to have a configuration
+that can run “off-the-shelf”, but in reality, you will probably be using your own data. To learn how to
+create your own dataset interface and load your own data, see <a class="reference internal" href="#use-cases-dataset-new"><span class="std std-ref">[this section]</span></a>.
+So, for our simple task, we define the <code class="docutils literal notranslate"><span class="pre">datasets</span></code> field as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;datasets&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;cifar10&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;torchvision.datasets.CIFAR10&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;root&quot;</span><span class="p">:</span> <span class="s2">&quot;data/cifar/train&quot;</span><span class="p">,</span> <span class="s2">&quot;download&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">},</span>
+        <span class="s2">&quot;task&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.tasks.Classification&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;class_names&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s2">&quot;airplane&quot;</span><span class="p">,</span> <span class="s2">&quot;car&quot;</span><span class="p">,</span> <span class="s2">&quot;bird&quot;</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;deer&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;frog&quot;</span><span class="p">,</span> <span class="s2">&quot;horse&quot;</span><span class="p">,</span> <span class="s2">&quot;ship&quot;</span><span class="p">,</span> <span class="s2">&quot;truck&quot;</span>
+                <span class="p">],</span>
+                <span class="s2">&quot;input_key&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;label_key&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In summary, we will instantiate a single dataset named “cifar10” based on the <code class="docutils literal notranslate"><span class="pre">torchvision.datasets.CIFAR10</span></code>
+class. The constructor of that class will receive two arguments, namely the (relative) path where to save
+the data, and a boolean indicating that the dataset should be downloaded if not already available. More info
+on these two arguments can actually be found in the <a class="reference external" href="https://pytorch.org/docs/stable/torchvision/datasets.html#cifar">[PyTorch documentation]</a>. Here,
+since this dataset interface does not explicitly define a “task”, we need to provide one ourselves. Therefore,
+we add a “task” field in which we specify that the task type is related to classification, and provide the
+task’s construction arguments. In this case, this is the list of class names that correspond to the indices
+that the dataset interface will be associating to each loaded sample, and the key strings. Note that since
+<code class="docutils literal notranslate"><span class="pre">torchvision.datasets.CIFAR10</span></code> will be loading samples as tuples, so the key strings merely correspond to
+tuple indices.</p>
+<blockquote>
+<div></div></blockquote>
+<p>Next, we will define how this cute little dataset will be used to load training and/or evaluation data. This
+is accomplished through the <code class="docutils literal notranslate"><span class="pre">loaders</span></code> fields as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;loaders&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;train_split&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;cifar10&quot;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">},</span>
+    <span class="s2">&quot;valid_split&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;cifar10&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">},</span>
+    <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span>
+    <span class="s2">&quot;base_transforms&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;operation&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.transforms.NormalizeMinMax&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">127</span><span class="p">,</span> <span class="mi">127</span><span class="p">,</span> <span class="mi">127</span><span class="p">],</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;operation&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.transforms.Resize&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;dsize&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">]}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;operation&quot;</span><span class="p">:</span> <span class="s2">&quot;torchvision.transforms.ToTensor&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this example, we ask the training and validation data loaders to split the “cifar10” dataset we defined
+above using a 90%-10% ratio. By default, this split will be randomized, but repeatable across experiments.
+Seeds used to shuffle the data samples will be printed in the logs, and can even be set manually in this
+section if needed. Next, we set the batch size for all data loaders to 32, and define base transforms to
+apply to all samples. In this case, the transforms will normalize each 8-bit image by min-maxing it, resize
+it 224x224 (as required by our model), and finally transform it into a tensor. Many transformation operations
+can be defined in the <code class="docutils literal notranslate"><span class="pre">loaders</span></code> section, and it may be interesting to visualize the output before trying
+to feed it to a model. For more information on how to do so, see <a class="reference internal" href="#use-cases-dataset-viz"><span class="std std-ref">[this use case]</span></a>.</p>
+<p>Next, we will define the model architecture to train. Again, you might want to use your own architecture here.
+If so, refer to the <a class="reference internal" href="#use-cases-custom-model"><span class="std std-ref">[relevant use case]</span></a>. Here, we keep things extremely simple
+and rely on the pre-existing ResNet implementation located inside the framework:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.nn.resnet.ResNet&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Since this class can be instantiated as-is without having to provide any arguments (it defaults to ResNet-34),
+we do not even need to specify a “params” field. Once created, this model will be adapted to our classification
+problem by providing it the “task” object we defined in our dataset interface. This means that its default
+1000-class output layer will be updated to produce 10 outputs (since we have 10 classes).</p>
+<p>Finally, we define the <code class="docutils literal notranslate"><span class="pre">trainer</span></code> field to provide all remaining training parameters:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;trainer&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;epochs&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">&quot;monitor&quot;</span><span class="p">:</span> <span class="s2">&quot;accuracy&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;optimization&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;torch.nn.CrossEntropyLoss&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;optimizer&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;torch.optim.Adam&quot;</span><span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.optim.Accuracy&quot;</span><span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here, we limit the training to 5 epochs. The loss is a traditional cross-entropy, and we use Adam to
+update model weights via backprop. The loss function and optimizer could both receive extra parameters (using a
+“params” field once more), but we keep the defaults everywhere. Finally, we define a single metric to be
+evaluated during training (accuracy), and set it as the “monitoring” metric to use for early stopping.</p>
+<p>The complete configuration is shown below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;classif-cifar10&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;datasets&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;cifar10&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;torchvision.datasets.CIFAR10&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;root&quot;</span><span class="p">:</span> <span class="s2">&quot;data/cifar/train&quot;</span><span class="p">,</span> <span class="s2">&quot;download&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">},</span>
+            <span class="s2">&quot;task&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.tasks.Classification&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;class_names&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="s2">&quot;airplane&quot;</span><span class="p">,</span> <span class="s2">&quot;car&quot;</span><span class="p">,</span> <span class="s2">&quot;bird&quot;</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;deer&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;frog&quot;</span><span class="p">,</span> <span class="s2">&quot;horse&quot;</span><span class="p">,</span> <span class="s2">&quot;ship&quot;</span><span class="p">,</span> <span class="s2">&quot;truck&quot;</span>
+                    <span class="p">],</span>
+                    <span class="s2">&quot;input_key&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;label_key&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;loaders&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span>
+        <span class="s2">&quot;base_transforms&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;operation&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.transforms.NormalizeMinMax&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">127</span><span class="p">,</span> <span class="mi">127</span><span class="p">,</span> <span class="mi">127</span><span class="p">],</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">]</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;operation&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.transforms.Resize&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;dsize&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">]}</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;operation&quot;</span><span class="p">:</span> <span class="s2">&quot;torchvision.transforms.ToTensor&quot;</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;train_split&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;cifar10&quot;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">},</span>
+        <span class="s2">&quot;valid_split&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;cifar10&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.nn.resnet.ResNet&quot;</span><span class="p">},</span>
+    <span class="s2">&quot;trainer&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;epochs&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s2">&quot;monitor&quot;</span><span class="p">:</span> <span class="s2">&quot;accuracy&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;optimization&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;torch.nn.CrossEntropyLoss&quot;</span><span class="p">},</span>
+            <span class="s2">&quot;optimizer&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;torch.optim.Adam&quot;</span><span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.optim.Accuracy&quot;</span><span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Once saved to a json file, we will be able to launch the training session via:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ thelper new &lt;PATH_TO_CLASSIF_CIFAR10_CONFIG&gt;.json &lt;PATH_TO_OUTPUT_DIR&gt;
+</pre></div>
+</div>
+<p>The dataset will first be downloaded, split, and passed to data loaders. Then, the model will be
+instantiated, and all objects will be given to the trainer to start the session. Right away, some
+log files will be created in a new folder named “classif-cifar10” in the directory provided as
+the second argument on the command line. Once the training is complete, that folder will
+contain the model checkpoints as well as the final evaluation results.</p>
+</div>
+<div class="section" id="image-segmentation">
+<span id="use-cases-image-segm"></span><h2>Image segmentation<a class="headerlink" href="#image-segmentation" title="Permalink to this headline">¶</a></h2>
+<p>Section statement here &#64;&#64;&#64;&#64;&#64;&#64;</p>
+</div>
+<div class="section" id="object-detection">
+<span id="use-cases-obj-detect"></span><h2>Object Detection<a class="headerlink" href="#object-detection" title="Permalink to this headline">¶</a></h2>
+<p>Section statement here &#64;&#64;&#64;&#64;&#64;&#64;</p>
+</div>
+<div class="section" id="super-resolution">
+<span id="use-cases-super-res"></span><h2>Super-resolution<a class="headerlink" href="#super-resolution" title="Permalink to this headline">¶</a></h2>
+<p>Section statement here &#64;&#64;&#64;&#64;&#64;&#64;</p>
+</div>
+<div class="section" id="creating-a-new-dataset-interface">
+<span id="use-cases-dataset-new"></span><h2>Creating a new dataset interface<a class="headerlink" href="#creating-a-new-dataset-interface" title="Permalink to this headline">¶</a></h2>
+<p>Section statement here &#64;&#64;&#64;&#64;&#64;&#64;</p>
+</div>
+<div class="section" id="dataset-loader-visualization">
+<span id="use-cases-dataset-viz"></span><h2>Dataset/Loader visualization<a class="headerlink" href="#dataset-loader-visualization" title="Permalink to this headline">¶</a></h2>
+<p>Section statement here &#64;&#64;&#64;&#64;&#64;&#64;</p>
+</div>
+<div class="section" id="dataset-annotation">
+<span id="use-cases-dataset-annot"></span><h2>Dataset annotation<a class="headerlink" href="#dataset-annotation" title="Permalink to this headline">¶</a></h2>
+<p>Section statement here &#64;&#64;&#64;&#64;&#64;&#64;</p>
+</div>
+<div class="section" id="rebalancing-a-dataset">
+<span id="use-cases-dataset-rebalance"></span><h2>Rebalancing a dataset<a class="headerlink" href="#rebalancing-a-dataset" title="Permalink to this headline">¶</a></h2>
+<p>Section statement here &#64;&#64;&#64;&#64;&#64;&#64;</p>
+</div>
+<div class="section" id="exporting-a-dataset">
+<span id="use-cases-dataset-export"></span><h2>Exporting a dataset<a class="headerlink" href="#exporting-a-dataset" title="Permalink to this headline">¶</a></h2>
+<p>Section statement here &#64;&#64;&#64;&#64;&#64;&#64;</p>
+</div>
+<div class="section" id="defining-a-data-augmentation-pipeline">
+<span id="use-cases-dataset-augment"></span><h2>Defining a data augmentation pipeline<a class="headerlink" href="#defining-a-data-augmentation-pipeline" title="Permalink to this headline">¶</a></h2>
+<p>Section statement here &#64;&#64;&#64;&#64;&#64;&#64;</p>
+</div>
+<div class="section" id="supporting-a-custom-trainer">
+<span id="use-cases-custom-trainer"></span><h2>Supporting a custom trainer<a class="headerlink" href="#supporting-a-custom-trainer" title="Permalink to this headline">¶</a></h2>
+<p>Section statement here &#64;&#64;&#64;&#64;&#64;&#64;</p>
+</div>
+<div class="section" id="supporting-a-custom-task">
+<span id="use-cases-custom-task"></span><h2>Supporting a custom task<a class="headerlink" href="#supporting-a-custom-task" title="Permalink to this headline">¶</a></h2>
+<p>Section statement here &#64;&#64;&#64;&#64;&#64;&#64;</p>
+</div>
+<div class="section" id="supporting-a-custom-model">
+<span id="use-cases-custom-model"></span><h2>Supporting a custom model<a class="headerlink" href="#supporting-a-custom-model" title="Permalink to this headline">¶</a></h2>
+<p>Section statement here &#64;&#64;&#64;&#64;&#64;&#64;</p>
+</div>
+<div class="section" id="visualizing-metrics-using-tensorboardx">
+<span id="use-cases-tensorboardx"></span><h2>Visualizing metrics using <code class="docutils literal notranslate"><span class="pre">tensorboardX</span></code><a class="headerlink" href="#visualizing-metrics-using-tensorboardx" title="Permalink to this headline">¶</a></h2>
+<p>Section statement here &#64;&#64;&#64;&#64;&#64;&#64;</p>
+</div>
+<div class="section" id="manually-reloading-a-model">
+<span id="use-cases-model-reload"></span><h2>Manually reloading a model<a class="headerlink" href="#manually-reloading-a-model" title="Permalink to this headline">¶</a></h2>
+<p>Section statement here &#64;&#64;&#64;&#64;&#64;&#64;</p>
+</div>
+<div class="section" id="exporting-a-model">
+<span id="use-cases-model-export"></span><h2>Exporting a model<a class="headerlink" href="#exporting-a-model" title="Permalink to this headline">¶</a></h2>
+<p>Once you have trained a model (using the framework or otherwise), you might want to share
+it with others. Models are typically exported in two parts: architecture and weights. However,
+metadata related to the task the model was built for would be missing with only those two components.
+Here, we show a solution for exporting a classification model trained using the framework under ONNX,
+TraceScript, or pickle format along with its corresponding index-to-class-name mapping. Further down,
+we also give tips on similarly exporting a model trained in another framework.</p>
+<p>The advantage of ONNX and TraceScript exports is that whoever reloads your model does not need to have
+the class that you used to define the model’s architecture at hand. However, this approach might make
+fine-tuning or retraining your model more complicated (you should consider it a ‘read-only’ export).</p>
+<p>Models/checkpoints exported this way can be easily reloaded using the framework, and may also be
+opened manually by others to extract only the information they need.</p>
+<p>So, first off, let’s start by training a classification model using the following configuration:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;classif-cifar10&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;datasets&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;cifar10&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;torchvision.datasets.CIFAR10&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;root&quot;</span><span class="p">:</span> <span class="s2">&quot;data/cifar/train&quot;</span><span class="p">},</span>
+            <span class="s2">&quot;task&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.tasks.Classification&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;class_names&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="s2">&quot;airplane&quot;</span><span class="p">,</span> <span class="s2">&quot;car&quot;</span><span class="p">,</span> <span class="s2">&quot;bird&quot;</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;deer&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;frog&quot;</span><span class="p">,</span> <span class="s2">&quot;horse&quot;</span><span class="p">,</span> <span class="s2">&quot;ship&quot;</span><span class="p">,</span> <span class="s2">&quot;truck&quot;</span>
+                    <span class="p">],</span>
+                    <span class="s2">&quot;input_key&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;label_key&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;loaders&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span>
+        <span class="s2">&quot;base_transforms&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;operation&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.transforms.NormalizeMinMax&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">127</span><span class="p">,</span> <span class="mi">127</span><span class="p">,</span> <span class="mi">127</span><span class="p">],</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">]</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;operation&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.transforms.Resize&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;dsize&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">]}</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;operation&quot;</span><span class="p">:</span> <span class="s2">&quot;torchvision.transforms.ToTensor&quot;</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;train_split&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;cifar10&quot;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">},</span>
+        <span class="s2">&quot;valid_split&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;cifar10&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.nn.resnet.ResNet&quot;</span><span class="p">},</span>
+    <span class="s2">&quot;trainer&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;epochs&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s2">&quot;monitor&quot;</span><span class="p">:</span> <span class="s2">&quot;accuracy&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;optimization&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;torch.nn.CrossEntropyLoss&quot;</span><span class="p">},</span>
+            <span class="s2">&quot;optimizer&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;torch.optim.Adam&quot;</span><span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.optim.Accuracy&quot;</span><span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The above configuration essentially means that we will be training a ResNet model with
+default settings on CIFAR10 using all 10 classes. You can launch the training process via:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ thelper new &lt;PATH_TO_CLASSIF_CIFAR10_CONFIG&gt;.json &lt;PATH_TO_OUTPUT_DIR&gt;
+</pre></div>
+</div>
+<p>See the <a class="reference internal" href="user-guide.html#user-guide-cli-new"><span class="std std-ref">[user guide]</span></a> for more information on creating training
+sessions. Once that’s done, you should obtain a folder named <code class="docutils literal notranslate"><span class="pre">classif-cifar10</span></code> in your output
+directory that contains training logs as well as checkpoints. To export this model
+in a new checkpoint, we will use the following session configuration:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;export-classif-cifar10&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;ckptdata&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;PATH_TO_OUTPUT_DIR&gt;/classif-cifar10/checkpoints/ckpt.best.pth&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;export&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;ckpt_name&quot;</span><span class="p">:</span> <span class="s2">&quot;test-export.pth&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;trace_name&quot;</span><span class="p">:</span> <span class="s2">&quot;test-export.zip&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;save_raw&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+        <span class="s2">&quot;trace_input&quot;</span><span class="p">:</span> <span class="s2">&quot;torch.rand(1, 3, 224, 224)&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This configuration essentially specifies where to find the ‘best’ checkpoint for the model we
+just trained, and how to export a trace of it. For more information on the export operation, refer
+to <a class="reference internal" href="user-guide.html#user-guide-cli-export"><span class="std std-ref">[the user guide]</span></a>. We now provide the configuration as a JSON to
+the CLI one more:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ thelper export &lt;PATH_TO_EXPORT_CONFIG&gt;.json &lt;PATH_TO_OUTPUT_DIR&gt;
+</pre></div>
+</div>
+<p>If everything goes well, <code class="docutils literal notranslate"><span class="pre">&lt;PATH_TO_OUTPUT_DIR&gt;/export-classif-cifar10</span></code> should now contain a checkpoint
+with the exported model trace and all metadata required to reinstantiate it. Note that as of 2019/06,
+PyTorch exports model traces as zip files, meaning you will have to copy two files from the output
+session folder. In this case, that would be <code class="docutils literal notranslate"><span class="pre">test-export.pth</span></code> and <code class="docutils literal notranslate"><span class="pre">test-export.zip</span></code>.</p>
+<p>Finally, note that if you are attempting to export a model that was trained outside the framework, you
+will have to specify which task this model was trained for as well as the type of the model to instantiate
+and possibly the path to its weights in the <code class="docutils literal notranslate"><span class="pre">model</span></code> field of the configuration above. An example
+configuration is given below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;export-classif-custom&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;fully.qualified.name.to.model&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># here, provide all model constructor parameters</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;weights&quot;</span><span class="p">:</span> <span class="s2">&quot;path_to_model_state_dictionary.pth&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;export&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;ckpt_name&quot;</span><span class="p">:</span> <span class="s2">&quot;test-export.pth&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;trace_name&quot;</span><span class="p">:</span> <span class="s2">&quot;test-export.zip&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;save_raw&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+        <span class="s2">&quot;trace_input&quot;</span><span class="p">:</span> <span class="s2">&quot;torch.rand(1, 3, 224, 224)&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For more information on model importation, refer to the documentation of <a class="reference internal" href="thelper.nn.html#thelper.nn.utils.create_model" title="thelper.nn.utils.create_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">thelper.nn.utils.create_model()</span></code></a>.</p>
+<p><a class="reference external" href="#use-cases">[to top]</a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Use Cases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#image-classification">Image classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#image-segmentation">Image segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#object-detection">Object Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#super-resolution">Super-resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-new-dataset-interface">Creating a new dataset interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dataset-loader-visualization">Dataset/Loader visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dataset-annotation">Dataset annotation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rebalancing-a-dataset">Rebalancing a dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exporting-a-dataset">Exporting a dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#defining-a-data-augmentation-pipeline">Defining a data augmentation pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#supporting-a-custom-trainer">Supporting a custom trainer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#supporting-a-custom-task">Supporting a custom task</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#supporting-a-custom-model">Supporting a custom model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#visualizing-metrics-using-tensorboardx">Visualizing metrics using <code class="docutils literal notranslate"><span class="pre">tensorboardX</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#manually-reloading-a-model">Manually reloading a model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exporting-a-model">Exporting a model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/use-cases.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="thelper.html" title="thelper package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="user-guide.html" title="User Guide"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

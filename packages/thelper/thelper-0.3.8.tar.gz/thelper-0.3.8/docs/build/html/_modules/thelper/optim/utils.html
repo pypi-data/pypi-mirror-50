@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.optim.utils &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../../index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="../../../_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for thelper.optim.utils</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Optimization/metrics utility module.</span>
+
+<span class="sd">This module contains utility functions and tools used by the other modules of this package.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="kn">import</span> <span class="nn">thelper.optim.metrics</span>
+<span class="kn">import</span> <span class="nn">thelper.utils</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="create_loss_fn"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.utils.create_loss_fn">[docs]</a><span class="k">def</span> <span class="nf">create_loss_fn</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">loader</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">uploader</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Instantiates and returns the loss function to use for training.</span>
+
+<span class="sd">    The default way to specify the loss function to use is to provide a callable type to instantiate</span>
+<span class="sd">    as well as its initialization parameters. For example::</span>
+
+<span class="sd">        # ...</span>
+<span class="sd">        &quot;loss&quot;: {</span>
+<span class="sd">            # if we want to use PyTorch&#39;s cross entropy loss:</span>
+<span class="sd">            #  &gt;&gt;&gt; loss_fn = torch.nn.CrossEntropyLoss(**params)</span>
+<span class="sd">            #  &gt;&gt;&gt; ...</span>
+<span class="sd">            #  &gt;&gt;&gt; loss = loss_fn(pred, target)</span>
+<span class="sd">            &quot;type&quot;: &quot;torch.nn.CrossEntropyLoss&quot;</span>
+<span class="sd">            &quot;params&quot;: {</span>
+<span class="sd">                &quot;weight&quot;: [ ... ],</span>
+<span class="sd">                &quot;reduction&quot;: &quot;mean&quot;,</span>
+<span class="sd">                # ...</span>
+<span class="sd">            }</span>
+<span class="sd">        },</span>
+<span class="sd">        # ...</span>
+
+<span class="sd">    The loss function can also be queried from a member function of the model class, as such::</span>
+
+<span class="sd">        # ...</span>
+<span class="sd">        &quot;loss&quot;: {</span>
+<span class="sd">            # to query the model for the loss function:</span>
+<span class="sd">            #  &gt;&gt;&gt; loss_fn = model.get_loss_fn(**params)</span>
+<span class="sd">            #  &gt;&gt;&gt; ...</span>
+<span class="sd">            #  &gt;&gt;&gt; loss = loss_fn(pred, target)</span>
+<span class="sd">            &quot;model_getter&quot;: &quot;get_loss_fn&quot;</span>
+<span class="sd">            &quot;params&quot;: {</span>
+<span class="sd">                # ...</span>
+<span class="sd">            }</span>
+<span class="sd">        },</span>
+<span class="sd">        # ...</span>
+
+<span class="sd">    If the model is supposed to compute its own loss, we suggest creating a specialized trainer class. In that</span>
+<span class="sd">    case only, the &#39;loss&#39; field can be omitted from the session configuration file.</span>
+
+<span class="sd">    If the task is related to image classification or semantic segmentation, the classes can be weighted based</span>
+<span class="sd">    on extra parameters in the loss configuration. The strategy used to compute the weights is related to the</span>
+<span class="sd">    one in :class:`thelper.data.samplers.WeightedSubsetRandomSampler`. The exact parameters that are expected</span>
+<span class="sd">    for class reweighting are the following:</span>
+
+<span class="sd">    - ``weight_distribution`` (mandatory, toggle): the dictionary of weights assigned to each class, or the</span>
+<span class="sd">      rebalancing strategy to use. If omitted entirely, no class weighting will be performed.</span>
+<span class="sd">    - ``weight_param_name`` (optional, default=&quot;weight&quot;): name of the constructor parameter that expects the</span>
+<span class="sd">      weight list.</span>
+<span class="sd">    - ``weight_max`` (optional, default=inf): the maximum weight that can be assigned to a class.</span>
+<span class="sd">    - ``weight_min`` (optional, default=0): the minimum weight that can be assigned to a class.</span>
+<span class="sd">    - ``weight_norm`` (optional, default=True): specifies whether the weights should be normalized or not.</span>
+
+<span class="sd">    This function also supports an extra special parameter if the task is related to semantic segmentation:</span>
+<span class="sd">    ``ignore_index``. If this parameter is found and not ``None`` (integer), then the loss function will ignore</span>
+<span class="sd">    the given value when computing the loss of a sample. The exact parameters that are expected in this case are</span>
+<span class="sd">    the following:</span>
+
+<span class="sd">    - ``ignore_index_param_name`` (optional, default=&quot;ignore_index&quot;): name of the constructor parameter that expects</span>
+<span class="sd">      the ignore value.</span>
+<span class="sd">    - ``ignore_index_label_name`` (optional, default=&quot;dontcare&quot;): name of the label to pass the ignore value from.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># todo: add flag to toggle loss comp in validation? (add to trainer config maybe?)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;loading loss function&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">DataParallel</span><span class="p">):</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">module</span>  <span class="c1"># to avoid interface getter issues</span>
+    <span class="k">if</span> <span class="n">uploader</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">uploader</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">x</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;config should be provided as a dictionary&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">&quot;model_getter&quot;</span> <span class="ow">in</span> <span class="n">config</span> <span class="ow">and</span> <span class="s2">&quot;type&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;loss config cannot have both &#39;model_attrib_name&#39; and &#39;type&#39; fields&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">&quot;model_getter&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
+        <span class="n">model_getter_name</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;model_getter&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model_getter_name</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;unexpected model getter name type&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model_getter_name</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">callable</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model_getter_name</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid model getter attribute&quot;</span><span class="p">)</span>
+        <span class="n">loss_type</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model_getter_name</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="s2">&quot;type&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
+        <span class="n">loss_type</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">import_class</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;loss config missing &#39;type&#39; or &#39;model_attrib_name&#39; field&quot;</span><span class="p">)</span>
+    <span class="n">loss_params</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">([</span><span class="s2">&quot;params&quot;</span><span class="p">,</span> <span class="s2">&quot;parameters&quot;</span><span class="p">],</span> <span class="n">config</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="n">loss_params</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">loss_params</span><span class="p">)</span>  <span class="c1"># required here, we might add some parameters below</span>
+    <span class="k">if</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">str2bool</span><span class="p">(</span><span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;weight_classes&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span> <span class="ow">or</span> \
+       <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;weight_distribution&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">str2bool</span><span class="p">(</span><span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;weight_classes&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="kc">True</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;&#39;weight_classes&#39; now deprecated, set &#39;weight_distribution&#39; directly to toggle on&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">task</span><span class="p">,</span> <span class="p">(</span><span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Classification</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Segmentation</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;task type does not support class weighting&quot;</span><span class="p">)</span>
+        <span class="n">weight_param_name</span> <span class="o">=</span> <span class="s2">&quot;weight&quot;</span>
+        <span class="k">if</span> <span class="s2">&quot;weight_param_name&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
+            <span class="n">weight_param_name</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;weight_param_name&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s2">&quot;weight_distribution&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;missing &#39;weight_distribution&#39; field in loss config&quot;</span><span class="p">)</span>
+        <span class="n">weight_distrib</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;weight_distribution&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">weight_distrib</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">weight_distrib</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">label</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">class_names</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;weight distribution label &#39;</span><span class="si">%s</span><span class="s2">&#39; not in dataset class list&quot;</span> <span class="o">%</span> <span class="n">label</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+                    <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;expected weight distrib map to provide weights as floats directly&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">weight_distrib</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">weight_max</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;weight_max&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
+                <span class="n">weight_max</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;weight_max&quot;</span><span class="p">])</span>
+            <span class="n">weight_min</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="s2">&quot;weight_min&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
+                <span class="n">weight_min</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;weight_min&quot;</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">weight_distrib</span> <span class="o">!=</span> <span class="s2">&quot;uniform&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">loader</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">loader</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;cannot get class sizes, no training data available&quot;</span><span class="p">)</span>
+                <span class="n">label_sizes_map</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">get_class_sizes</span><span class="p">(</span><span class="n">loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+                <span class="n">weight_norm</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">label_sizes_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">label</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">class_names</span><span class="p">}</span>  <span class="c1"># counts don&#39;t matter</span>
+                <span class="n">weight_norm</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="s2">&quot;weight_norm&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
+                <span class="n">weight_norm</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">str2bool</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;weight_norm&quot;</span><span class="p">])</span>
+            <span class="n">weight_distrib</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_class_weights</span><span class="p">(</span><span class="n">label_sizes_map</span><span class="p">,</span> <span class="n">weight_distrib</span><span class="p">,</span> <span class="n">invmax</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                                  <span class="n">maxw</span><span class="o">=</span><span class="n">weight_max</span><span class="p">,</span> <span class="n">minw</span><span class="o">=</span><span class="n">weight_min</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">weight_norm</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;unexpected weight distribution strategy (should be map or string)&quot;</span><span class="p">)</span>
+        <span class="n">weight_list_str</span> <span class="o">=</span> <span class="s2">&quot;weight_distribution: {&quot;</span>
+        <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">weight_distrib</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">weight_list_str</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  </span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s2">: </span><span class="si">%s</span><span class="s2">,&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">weight_list_str</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">}&quot;</span><span class="p">)</span>
+        <span class="n">weight_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">weight_distrib</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="k">if</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">weight_distrib</span> <span class="k">else</span> <span class="mf">1.0</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">class_names</span><span class="p">]</span>
+        <span class="n">loss_params</span><span class="p">[</span><span class="n">weight_param_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">uploader</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">weight_list</span><span class="p">))</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">task</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Segmentation</span><span class="p">):</span>
+        <span class="n">ignore_index_param_name</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;ignore_index_param_name&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="s2">&quot;ignore_index&quot;</span><span class="p">)</span>
+        <span class="n">ignore_index_label_name</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;ignore_index_label_name&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="s2">&quot;dontcare&quot;</span><span class="p">)</span>
+        <span class="n">loss_sig</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">loss_type</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ignore_index_param_name</span> <span class="ow">in</span> <span class="n">loss_sig</span><span class="o">.</span><span class="n">parameters</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">ignore_index_label_name</span> <span class="o">!=</span> <span class="s2">&quot;dontcare&quot;</span><span class="p">:</span>
+                <span class="n">loss_params</span><span class="p">[</span><span class="n">ignore_index_param_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">class_indices</span><span class="p">[</span><span class="n">ignore_index_label_name</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">loss_params</span><span class="p">[</span><span class="n">ignore_index_param_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">dontcare</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_type</span><span class="p">(</span><span class="o">**</span><span class="n">loss_params</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">loss</span></div>
+
+
+<div class="viewcode-block" id="create_metrics"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.utils.create_metrics">[docs]</a><span class="k">def</span> <span class="nf">create_metrics</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Instantiates and returns the metrics defined in the configuration dictionary.</span>
+
+<span class="sd">    All arguments are expected to be handed in through the configuration via a dictionary named &#39;params&#39;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">thelper</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">create_consumers</span><span class="p">(</span><span class="n">config</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="create_optimizer"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.utils.create_optimizer">[docs]</a><span class="k">def</span> <span class="nf">create_optimizer</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Instantiates and returns the optimizer to use for training.</span>
+
+<span class="sd">    By default, the optimizer will be instantiated with the model parameters given as the first argument</span>
+<span class="sd">    of its constructor. All supplementary arguments are expected to be handed in through the configuration</span>
+<span class="sd">    via a dictionary named &#39;params&#39;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;loading optimizer&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;config should be provided as a dictionary&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">&quot;type&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">config</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;optimizer config missing &#39;type&#39; field&quot;</span><span class="p">)</span>
+    <span class="n">optimizer_type</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">import_class</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">])</span>
+    <span class="n">optimizer_params</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">([</span><span class="s2">&quot;params&quot;</span><span class="p">,</span> <span class="s2">&quot;parameters&quot;</span><span class="p">],</span> <span class="n">config</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">optimizer_type</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">()),</span> <span class="o">**</span><span class="n">optimizer_params</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">optimizer</span></div>
+
+
+<div class="viewcode-block" id="create_scheduler"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.utils.create_scheduler">[docs]</a><span class="k">def</span> <span class="nf">create_scheduler</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Instantiates and returns the learning rate scheduler to use for training.</span>
+
+<span class="sd">    All arguments are expected to be handed in through the configuration via a dictionary named &#39;params&#39;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;loading scheduler&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;config should be provided as a dictionary&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">&quot;type&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">config</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;scheduler config missing &#39;type&#39; field&quot;</span><span class="p">)</span>
+    <span class="n">scheduler_type</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">import_class</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">])</span>
+    <span class="n">scheduler_params</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">([</span><span class="s2">&quot;params&quot;</span><span class="p">,</span> <span class="s2">&quot;parameters&quot;</span><span class="p">],</span> <span class="n">config</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="n">scheduler</span> <span class="o">=</span> <span class="n">scheduler_type</span><span class="p">(</span><span class="n">optimizer</span><span class="p">,</span> <span class="o">**</span><span class="n">scheduler_params</span><span class="p">)</span>
+    <span class="n">scheduler_step_metric</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="s2">&quot;step_metric&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
+        <span class="n">scheduler_step_metric</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;step_metric&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">scheduler</span><span class="p">,</span> <span class="n">scheduler_step_metric</span></div>
+
+
+<div class="viewcode-block" id="get_lr"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.utils.get_lr">[docs]</a><span class="k">def</span> <span class="nf">get_lr</span><span class="p">(</span><span class="n">optimizer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the optimizer&#39;s learning rate, or 0 if not found.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">optimizer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">param_group</span> <span class="ow">in</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">param_groups</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;lr&quot;</span> <span class="ow">in</span> <span class="n">param_group</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">param_group</span><span class="p">[</span><span class="s2">&quot;lr&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="mi">0</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../use-cases.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

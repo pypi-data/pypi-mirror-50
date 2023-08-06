@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.data.samplers &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../../index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="../../../_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for thelper.data.samplers</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Samplers module.</span>
+
+<span class="sd">This module contains classes used for raw dataset rebalancing or augmentation.</span>
+
+<span class="sd">All samplers here should aim to be compatible with PyTorch&#39;s sampling interface</span>
+<span class="sd">(torch.utils.data.sampler.Sampler) so that they can be instantiated at runtime</span>
+<span class="sd">through a configuration file and used as the input of a data loader.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.utils.data.sampler</span>
+
+<span class="kn">import</span> <span class="nn">thelper.data.utils</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="WeightedSubsetRandomSampler"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.samplers.WeightedSubsetRandomSampler">[docs]</a><span class="k">class</span> <span class="nc">WeightedSubsetRandomSampler</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">sampler</span><span class="o">.</span><span class="n">Sampler</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Provides a rebalanced list of sample indices to use in a data loader.</span>
+
+<span class="sd">    Given a list of sample indices and the corresponding list of class labels, this sampler</span>
+<span class="sd">    will produce a new list of indices that rebalances the distribution of samples according</span>
+<span class="sd">    to a specified strategy. It can also optionally scale the dataset&#39;s total sample count to</span>
+<span class="sd">    avoid undersampling large classes as smaller ones get bigger.</span>
+
+<span class="sd">    The currently implemented strategies are:</span>
+
+<span class="sd">      * ``random``: will return a list of randomly picked samples based on the multinomial \</span>
+<span class="sd">        distribution of the initial class weights. This sampling is done with replacement, \</span>
+<span class="sd">        meaning that each index is picked independently of the already-picked ones.</span>
+
+<span class="sd">      * ``uniform``: will rebalance the dataset by normalizing the sample count of all classes, \</span>
+<span class="sd">        oversampling and undersampling as required to distribute all samples equally. All \</span>
+<span class="sd">        removed or duplicated samples are selected randomly without replacement.</span>
+
+<span class="sd">      * ``root``: will rebalance the dataset by normalizing class weight using an n-th degree \</span>
+<span class="sd">        root. More specifically, for a list of initial class weights :math:`W^0=\{w_1^0, w_2^0, ... w_n^0\}`, \</span>
+<span class="sd">        we compute the adjusted weight :math:`w_i` of each class via:</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">          w_i = \frac{\sqrt[\leftroot{-1}\uproot{3}n]{w_i^0}}{\sum_j\sqrt[\leftroot{-1}\uproot{3}n]{w_j^0}}</span>
+
+<span class="sd">        Then, according to the new distribution of weights, all classes are oversampled and</span>
+<span class="sd">        undersampled as required to reobtain the dataset&#39;s total sample count (which may be</span>
+<span class="sd">        scaled). All removed or duplicated samples are selected randomly without replacement.</span>
+
+<span class="sd">        Note that with the ``root`` strategy, if a very large root degree ``n`` is used, this</span>
+<span class="sd">        strategy is equivalent to ``uniform``. The ``root`` strategy essentially provides a</span>
+<span class="sd">        solution for extremely unbalanced datasets where uniform oversampling and undersampling</span>
+<span class="sd">        would be too aggressive.</span>
+
+<span class="sd">    By default, this interface will try to keep the dataset size constant and balance oversampling</span>
+<span class="sd">    with undersampling. If undersampling is undesired, the user can increase the total dataset</span>
+<span class="sd">    size via a scale factor. Finally, note that the rebalanced list of indices is generated by</span>
+<span class="sd">    this interface every time the ``__iter__`` function is called, meaning two consecutive lists</span>
+<span class="sd">    might not contain the exact same indices.</span>
+
+<span class="sd">    Example configuration file::</span>
+
+<span class="sd">        # ...</span>
+<span class="sd">        # the sampler is defined inside the &#39;loaders&#39; field</span>
+<span class="sd">        &quot;loaders&quot;: {</span>
+<span class="sd">            # ...</span>
+<span class="sd">            # this field is completely optional, and can be omitted entirely</span>
+<span class="sd">            &quot;sampler&quot;: {</span>
+<span class="sd">                # the type of the sampler we want to instantiate</span>
+<span class="sd">                &quot;type&quot;: &quot;thelper.data.samplers.WeightedSubsetRandomSampler&quot;,</span>
+<span class="sd">                # the parameters passed to the sampler&#39;s constructor</span>
+<span class="sd">                &quot;params&quot;: {</span>
+<span class="sd">                    &quot;stype&quot;: &quot;root3&quot;,</span>
+<span class="sd">                    &quot;scale&quot;: 1.2</span>
+<span class="sd">                },</span>
+<span class="sd">                # specifies whether the sampler should receive class labels</span>
+<span class="sd">                &quot;pass_labels&quot;: true</span>
+<span class="sd">            },</span>
+<span class="sd">            # ...</span>
+<span class="sd">        },</span>
+<span class="sd">        # ...</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        nb_samples: total number of samples to rebalance (i.e. scaled size of original dataset).</span>
+<span class="sd">        label_groups: map that splits all samples indices into groups based on labels.</span>
+<span class="sd">        stype: name of the rebalancing strategy to use.</span>
+<span class="sd">        indices: copy of the original list of sample indices provided in the constructor.</span>
+<span class="sd">        sample_weights: list of weights used for random sampling.</span>
+<span class="sd">        label_counts: number of samples in each class for the ``uniform`` and ``root`` strategies.</span>
+<span class="sd">        seeds: dictionary of seeds to use when initializing RNG state.</span>
+<span class="sd">        epoch: epoch number used to reinitialize the RNG to an epoch-specific state.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :func:`thelper.data.utils.create_loaders`</span>
+<span class="sd">        | :func:`thelper.data.utils.get_class_weights`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="WeightedSubsetRandomSampler.__init__"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.samplers.WeightedSubsetRandomSampler.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">stype</span><span class="o">=</span><span class="s2">&quot;uniform&quot;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">seeds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">epoch</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives sample indices, labels, rebalancing strategy, and dataset scaling factor.</span>
+
+<span class="sd">        This function will validate all input arguments, parse and categorize samples according to</span>
+<span class="sd">        labels, initialize rebalancing parameters, and determine sample counts for each valid class.</span>
+<span class="sd">        Note that an empty list of indices is an acceptable input; the resulting object will also</span>
+<span class="sd">        create and empty list of samples when ``__iter__`` is called.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            indices: list of integers representing the indices of samples of interest in the dataset.</span>
+<span class="sd">            labels: list of labels tied to the list of indices (must be the same length).</span>
+<span class="sd">            stype: rebalancing strategy given as a string. Should be either &quot;random&quot;, &quot;uniform&quot;, or</span>
+<span class="sd">                &quot;rootX&quot;, where the &#39;X&#39; is the degree to use in the root computation (float).</span>
+<span class="sd">            scale: scaling factor used to increase/decrease the final number of sample indices to</span>
+<span class="sd">                generate while rebalancing.</span>
+<span class="sd">            seeds: dictionary of seeds to use when initializing RNG state.</span>
+<span class="sd">            epoch: epoch number used to reinitialize the RNG to an epoch-specific state.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;expected indices and labels to be provided as lists&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;mismatched indices/labels list sizes&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="n">scale</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid scale parameter; should be greater than zero&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seeds</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">seeds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">seeds</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;unexpected seed pack type&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">seeds</span> <span class="o">=</span> <span class="n">seeds</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="n">epoch</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid epoch value&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span> <span class="o">=</span> <span class="n">epoch</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nb_samples</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span> <span class="o">*</span> <span class="n">scale</span><span class="p">))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_samples</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stype</span> <span class="o">=</span> <span class="n">stype</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">indices</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">label_groups</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">labels</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">label</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_groups</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">label_groups</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">indices</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">label_groups</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="n">idx</span><span class="p">]]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stype</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">stype</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;uniform&quot;</span><span class="p">,</span> <span class="s2">&quot;random&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="s2">&quot;root&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stype</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;unexpected sampling type&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">stype</span> <span class="o">==</span> <span class="s2">&quot;random&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sample_weights</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_groups</span><span class="p">[</span><span class="n">label</span><span class="p">])</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">weights</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_class_weights</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_groups</span><span class="p">,</span> <span class="n">stype</span><span class="p">,</span> <span class="n">invmax</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">label_counts</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="n">curr_nb_samples</span><span class="p">,</span> <span class="n">max_sample_label</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span>
+                <span class="k">for</span> <span class="n">label_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">indices</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_groups</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">label_counts</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nb_samples</span> <span class="o">*</span> <span class="n">weights</span><span class="p">[</span><span class="n">label</span><span class="p">])</span>
+                    <span class="n">curr_nb_samples</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_counts</span><span class="p">[</span><span class="n">label</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">max_sample_label</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_groups</span><span class="p">[</span><span class="n">label</span><span class="p">])</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_groups</span><span class="p">[</span><span class="n">max_sample_label</span><span class="p">]):</span>
+                        <span class="n">max_sample_label</span> <span class="o">=</span> <span class="n">label</span>
+                <span class="k">if</span> <span class="n">curr_nb_samples</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_samples</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">label_counts</span><span class="p">[</span><span class="n">max_sample_label</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_samples</span> <span class="o">-</span> <span class="n">curr_nb_samples</span></div>
+
+<div class="viewcode-block" id="WeightedSubsetRandomSampler.set_epoch"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.samplers.WeightedSubsetRandomSampler.set_epoch">[docs]</a>    <span class="k">def</span> <span class="nf">set_epoch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the current epoch number in order to offset the RNG state for sampling.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="n">epoch</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid epoch value&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span> <span class="o">=</span> <span class="n">epoch</span></div>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the list of rebalanced sample indices to load.</span>
+
+<span class="sd">        Note that the indices are repicked every time this function is called, meaning that samples</span>
+<span class="sd">        eliminated due to undersampling (or duplicated due to oversampling) might not receive the same</span>
+<span class="sd">        treatment twice.</span>
+
+<span class="sd">        This function will reseed the RNGs it uses every time it is called, and revert their state before</span>
+<span class="sd">        returning its output.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_samples</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">return</span> <span class="nb">iter</span><span class="p">([])</span>
+        <span class="n">rng_state</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="s2">&quot;torch&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">seeds</span><span class="p">:</span>
+            <span class="n">rng_state</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">get_rng_state</span><span class="p">()</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">seeds</span><span class="p">[</span><span class="s2">&quot;torch&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stype</span> <span class="o">==</span> <span class="s2">&quot;random&quot;</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indices</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span>
+                <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_weights</span><span class="p">),</span><span class="bp">self</span><span class="o">.</span><span class="n">nb_samples</span><span class="p">,</span> <span class="n">replacement</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">stype</span> <span class="o">==</span> <span class="s2">&quot;uniform&quot;</span> <span class="ow">or</span> <span class="s2">&quot;root&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stype</span><span class="p">:</span>
+            <span class="n">indices</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_counts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">max_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_groups</span><span class="p">[</span><span class="n">label</span><span class="p">])</span>
+                <span class="k">while</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">subidxs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randperm</span><span class="p">(</span><span class="n">max_samples</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">subidx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">max_samples</span><span class="p">)):</span>
+                        <span class="n">indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_groups</span><span class="p">[</span><span class="n">label</span><span class="p">][</span><span class="n">subidxs</span><span class="p">[</span><span class="n">subidx</span><span class="p">]])</span>
+                    <span class="n">count</span> <span class="o">-=</span> <span class="n">max_samples</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_samples</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;messed up something internally...&quot;</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">randperm</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">rng_state</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_rng_state</span><span class="p">(</span><span class="n">rng_state</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the number of sample indices that will be generated by this interface.</span>
+
+<span class="sd">        This number is the scaled size of the originally provided sample indices list.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_samples</span></div>
+
+
+<div class="viewcode-block" id="SubsetRandomSampler"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.samplers.SubsetRandomSampler">[docs]</a><span class="k">class</span> <span class="nc">SubsetRandomSampler</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">sampler</span><span class="o">.</span><span class="n">Sampler</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Samples elements randomly from a given list of indices, without replacement.</span>
+
+<span class="sd">    This specialization handles seeding based on the epoch number, and scaling (via duplication/decimation)</span>
+<span class="sd">    of samples.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        indices (list): a list of indices</span>
+<span class="sd">        seeds (dict): dictionary of seeds to use when initializing RNG state.</span>
+<span class="sd">        epoch (int): epoch number used to reinitialize the RNG to an epoch-specific state.</span>
+<span class="sd">        scale (float): scaling factor used to increase/decrease the final number of samples.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SubsetRandomSampler.__init__"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.samplers.SubsetRandomSampler.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">,</span> <span class="n">seeds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">epoch</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seeds</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">seeds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">seeds</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;unexpected seed pack type&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">seeds</span> <span class="o">=</span> <span class="n">seeds</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="n">epoch</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid epoch value&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span> <span class="o">=</span> <span class="n">epoch</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">indices</span> <span class="o">=</span> <span class="n">indices</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">))</span> <span class="ow">or</span> <span class="n">scale</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid scale parameter; should be greater than zero&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_samples</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indices</span><span class="p">)</span> <span class="o">*</span> <span class="n">scale</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="SubsetRandomSampler.set_epoch"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.samplers.SubsetRandomSampler.set_epoch">[docs]</a>    <span class="k">def</span> <span class="nf">set_epoch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the current epoch number in order to offset the RNG state for sampling.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="n">epoch</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid epoch value&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span> <span class="o">=</span> <span class="n">epoch</span></div>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">rng_state</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="s2">&quot;torch&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">seeds</span><span class="p">:</span>
+            <span class="n">rng_state</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">get_rng_state</span><span class="p">()</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">seeds</span><span class="p">[</span><span class="s2">&quot;torch&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span><span class="p">)</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">max_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indices</span><span class="p">)</span>
+        <span class="n">req_count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_samples</span>
+        <span class="k">while</span> <span class="n">req_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">subidxs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randperm</span><span class="p">(</span><span class="n">max_samples</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">subidx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">req_count</span><span class="p">,</span> <span class="n">max_samples</span><span class="p">)):</span>
+                <span class="n">indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indices</span><span class="p">[</span><span class="n">subidxs</span><span class="p">[</span><span class="n">subidx</span><span class="p">]])</span>
+            <span class="n">req_count</span> <span class="o">-=</span> <span class="n">max_samples</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">randperm</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">rng_state</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_rng_state</span><span class="p">(</span><span class="n">rng_state</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_samples</span></div>
+
+
+<div class="viewcode-block" id="SubsetSequentialSampler"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.samplers.SubsetSequentialSampler">[docs]</a><span class="k">class</span> <span class="nc">SubsetSequentialSampler</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">sampler</span><span class="o">.</span><span class="n">Sampler</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Samples element indices sequentially, always in the same order.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        indices (list): a list of indices</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SubsetSequentialSampler.__init__"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.samplers.SubsetSequentialSampler.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">indices</span> <span class="o">=</span> <span class="n">indices</span></div>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indices</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indices</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../use-cases.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

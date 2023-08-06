@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.cli &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="../../_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for thelper.cli</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Command-line module, for use with a ``__main__`` entrypoint.</span>
+
+<span class="sd">This module contains the primary functions used to create or resume a training session, to start a</span>
+<span class="sd">visualization session, or to start an annotation session. The basic argument that needs to be provided</span>
+<span class="sd">by the user to create any kind of session is a configuration dictionary. For sessions that produce</span>
+<span class="sd">outputs, the path to a directory where to save the data is also needed.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">tqdm</span>
+
+<span class="kn">import</span> <span class="nn">thelper</span>
+
+
+<div class="viewcode-block" id="create_session"><a class="viewcode-back" href="../../thelper.html#thelper.cli.create_session">[docs]</a><span class="k">def</span> <span class="nf">create_session</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Creates a session to train a model.</span>
+
+<span class="sd">    All generated outputs (model checkpoints and logs) will be saved in a directory named after the</span>
+<span class="sd">    session (the name itself is specified in ``config``), and located in ``save_dir``.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        config: a dictionary that provides all required data configuration and trainer parameters; see</span>
+<span class="sd">            :class:`thelper.train.base.Trainer` and :func:`thelper.data.utils.create_loaders` for more information.</span>
+<span class="sd">            Here, it is only expected to contain a ``name`` field that specifies the name of the session.</span>
+<span class="sd">        save_dir: the path to the root directory where the session directory should be saved. Note that</span>
+<span class="sd">            this is not the path to the session directory itself, but its parent, which may also contain</span>
+<span class="sd">            other session directories.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.train.base.Trainer`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_func_logger</span><span class="p">()</span>
+    <span class="k">if</span> <span class="s2">&quot;name&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">config</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;config missing &#39;name&#39; field&quot;</span><span class="p">)</span>
+    <span class="n">session_name</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;creating new training session &#39;</span><span class="si">%s</span><span class="s2">&#39;...&quot;</span> <span class="o">%</span> <span class="n">session_name</span><span class="p">)</span>
+    <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">setup_globals</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+    <span class="n">save_dir</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_save_dir</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="n">session_name</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;session will be saved at &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">save_dir</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">))</span>
+    <span class="n">task</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">valid_loader</span><span class="p">,</span> <span class="n">test_loader</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">create_loaders</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">create_model</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="n">save_dir</span><span class="p">)</span>
+    <span class="n">loaders</span> <span class="o">=</span> <span class="p">(</span><span class="n">train_loader</span><span class="p">,</span> <span class="n">valid_loader</span><span class="p">,</span> <span class="n">test_loader</span><span class="p">)</span>
+    <span class="n">trainer</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">create_trainer</span><span class="p">(</span><span class="n">session_name</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">loaders</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;starting trainer&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">train_loader</span><span class="p">:</span>
+        <span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">trainer</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;all done&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">trainer</span><span class="o">.</span><span class="n">outputs</span></div>
+
+
+<div class="viewcode-block" id="resume_session"><a class="viewcode-back" href="../../thelper.html#thelper.cli.resume_session">[docs]</a><span class="k">def</span> <span class="nf">resume_session</span><span class="p">(</span><span class="n">ckptdata</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eval_only</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Resumes a previously created training session.</span>
+
+<span class="sd">    Since the saved checkpoints contain the original session&#39;s configuration, the ``config`` argument</span>
+<span class="sd">    can be set to ``None`` if the session should simply pick up where it was interrupted. Otherwise,</span>
+<span class="sd">    the ``config`` argument can be set to a new configuration that will override the older one. This is</span>
+<span class="sd">    useful when fine-tuning a model, or when testing on a new dataset.</span>
+
+<span class="sd">    .. warning::</span>
+<span class="sd">        If a session is resumed with an overriding configuration, the user must make sure that the</span>
+<span class="sd">        inputs/outputs of the older model are compatible with the new parameters. For example, with</span>
+<span class="sd">        classifiers, this means that the number of classes parsed by the dataset (and thus to be</span>
+<span class="sd">        predicted by the model) should remain the same. This is a limitation of the framework that</span>
+<span class="sd">        should be addressed in a future update.</span>
+
+<span class="sd">    .. warning::</span>
+<span class="sd">        A resumed session will not be compatible with its original RNG states if the number of workers</span>
+<span class="sd">        used is changed. To get 100% reproducible results, make sure you run with the same worker count.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ckptdata: raw checkpoint data loaded via ``torch.load()``; it will be parsed by the various</span>
+<span class="sd">            parts of the framework that need to reload their previous state.</span>
+<span class="sd">        save_dir: the path to the root directory where the session directory should be saved. Note that</span>
+<span class="sd">            this is not the path to the session directory itself, but its parent, which may also contain</span>
+<span class="sd">            other session directories.</span>
+<span class="sd">        config: a dictionary that provides all required data configuration and trainer parameters; see</span>
+<span class="sd">            :class:`thelper.train.base.Trainer` and :func:`thelper.data.utils.create_loaders` for more information.</span>
+<span class="sd">            Here, it is only expected to contain a ``name`` field that specifies the name of the session.</span>
+<span class="sd">        eval_only: specifies whether training should be resumed or the model should only be evaluated.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.train.base.Trainer`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_func_logger</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">ckptdata</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">ckptdata</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;must provide valid checkpoint data to resume a session!&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">config</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">&quot;config&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ckptdata</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;config&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;checkpoint data missing &#39;config&#39; field&quot;</span><span class="p">)</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;config&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="s2">&quot;name&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">config</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;config missing &#39;name&#39; field&quot;</span><span class="p">)</span>
+    <span class="n">session_name</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;loading training session &#39;</span><span class="si">%s</span><span class="s2">&#39; objects...&quot;</span> <span class="o">%</span> <span class="n">session_name</span><span class="p">)</span>
+    <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">setup_globals</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+    <span class="n">save_dir</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_save_dir</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="n">session_name</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">resume</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;session will be saved at &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">save_dir</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">))</span>
+    <span class="n">new_task</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">valid_loader</span><span class="p">,</span> <span class="n">test_loader</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">create_loaders</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">&quot;task&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ckptdata</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;task&quot;</span><span class="p">]</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;task&quot;</span><span class="p">],</span> <span class="p">(</span><span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Task</span><span class="p">,</span> <span class="nb">str</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid checkpoint, cannot reload previous model task&quot;</span><span class="p">)</span>
+    <span class="n">old_task</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;task&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;task&quot;</span><span class="p">],</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;task&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">old_task</span><span class="o">.</span><span class="n">check_compat</span><span class="p">(</span><span class="n">new_task</span><span class="p">,</span> <span class="n">exact</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">compat_task</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">old_task</span><span class="o">.</span><span class="n">check_compat</span><span class="p">(</span><span class="n">new_task</span><span class="p">)</span> <span class="k">else</span> <span class="n">old_task</span><span class="o">.</span><span class="n">get_compat</span><span class="p">(</span><span class="n">new_task</span><span class="p">)</span>
+        <span class="n">choice</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">query_string</span><span class="p">(</span><span class="s2">&quot;Found discrepancy between old task from checkpoint and new task from config; &quot;</span><span class="o">+</span>
+                                            <span class="s2">&quot;which one would you like to resume the session with?</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>
+                                            <span class="n">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">old: {str(old_task)}</span><span class="se">\n\t</span><span class="s2">new: {str(new_task)}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>
+                                            <span class="p">(</span><span class="n">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">compat: {str(compat_task)}</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">compat_task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span> <span class="o">+</span>
+                                            <span class="s2">&quot;WARNING: if resuming with new or compat, some weights might be discarded!&quot;</span><span class="p">,</span>
+                                            <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;old&quot;</span><span class="p">,</span> <span class="s2">&quot;new&quot;</span><span class="p">,</span> <span class="s2">&quot;compat&quot;</span><span class="p">])</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="n">old_task</span> <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;old&quot;</span> <span class="k">else</span> <span class="n">new_task</span> <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;new&quot;</span> <span class="k">else</span> <span class="n">compat_task</span>
+        <span class="k">if</span> <span class="n">choice</span> <span class="o">!=</span> <span class="s2">&quot;old&quot;</span><span class="p">:</span>
+            <span class="c1"># saved optimizer state might cause issues with mismatched tasks, let&#39;s get rid of it</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;dumping optimizer state to avoid issues when resuming with modified task&quot;</span><span class="p">)</span>
+            <span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;optimizer&quot;</span><span class="p">],</span> <span class="n">ckptdata</span><span class="p">[</span><span class="s2">&quot;scheduler&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="n">new_task</span>
+    <span class="k">assert</span> <span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;invalid task&quot;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">create_model</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="n">save_dir</span><span class="p">,</span> <span class="n">ckptdata</span><span class="o">=</span><span class="n">ckptdata</span><span class="p">)</span>
+    <span class="n">loaders</span> <span class="o">=</span> <span class="p">(</span><span class="kc">None</span> <span class="k">if</span> <span class="n">eval_only</span> <span class="k">else</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">valid_loader</span><span class="p">,</span> <span class="n">test_loader</span><span class="p">)</span>
+    <span class="n">trainer</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">create_trainer</span><span class="p">(</span><span class="n">session_name</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">loaders</span><span class="p">,</span> <span class="n">ckptdata</span><span class="o">=</span><span class="n">ckptdata</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">eval_only</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;evaluating session &#39;</span><span class="si">%s</span><span class="s2">&#39; checkpoint @ epoch </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">trainer</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">trainer</span><span class="o">.</span><span class="n">current_epoch</span><span class="p">))</span>
+        <span class="n">trainer</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;resuming training session &#39;</span><span class="si">%s</span><span class="s2">&#39; @ epoch </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">trainer</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">trainer</span><span class="o">.</span><span class="n">current_epoch</span><span class="p">))</span>
+        <span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;all done&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">trainer</span><span class="o">.</span><span class="n">outputs</span></div>
+
+
+<div class="viewcode-block" id="visualize_data"><a class="viewcode-back" href="../../thelper.html#thelper.cli.visualize_data">[docs]</a><span class="k">def</span> <span class="nf">visualize_data</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Displays the images used in a training session.</span>
+
+<span class="sd">    This mode does not generate any output, and is only used to visualize the (transformed) images used</span>
+<span class="sd">    in a training session. This is useful to debug the data augmentation and base transformation pipelines</span>
+<span class="sd">    and make sure the modified images are valid. It does not attempt to load a model or instantiate a</span>
+<span class="sd">    trainer, meaning the related fields are not required inside ``config``.</span>
+
+<span class="sd">    If the configuration dictionary includes a &#39;loaders&#39; field, it will be parsed and used. Otherwise,</span>
+<span class="sd">    if only a &#39;datasets&#39; field is available, basic loaders will be instantiated to load the data. The</span>
+<span class="sd">    &#39;loaders&#39; field can also be ignored if &#39;ignore_loaders&#39; is found within the &#39;viz&#39; section of the config</span>
+<span class="sd">    and set to ``True``. Each minibatch will be displayed via pyplot or OpenCV. The display will block and</span>
+<span class="sd">    wait for user input, unless &#39;block&#39; is set within the &#39;viz&#39; section&#39;s &#39;kwargs&#39; config as ``False``.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        config: a dictionary that provides all required data configuration parameters; see</span>
+<span class="sd">            :func:`thelper.data.utils.create_loaders` for more information.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :func:`thelper.data.utils.create_loaders`</span>
+<span class="sd">        | :func:`thelper.data.utils.create_parsers`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_func_logger</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;creating visualization session...&quot;</span><span class="p">)</span>
+    <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">setup_globals</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+    <span class="n">viz_config</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;viz&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{})</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">viz_config</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;unexpected viz config type&quot;</span><span class="p">)</span>
+    <span class="n">ignore_loaders</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;ignore_loaders&quot;</span><span class="p">,</span> <span class="n">viz_config</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">viz_kwargs</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;kwargs&quot;</span><span class="p">,</span> <span class="n">viz_config</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{})</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">viz_kwargs</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;unexpected viz kwargs type&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">([</span><span class="s2">&quot;data_config&quot;</span><span class="p">,</span> <span class="s2">&quot;loaders&quot;</span><span class="p">],</span> <span class="n">config</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">ignore_loaders</span><span class="p">:</span>
+        <span class="n">datasets</span><span class="p">,</span> <span class="n">task</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">create_parsers</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+        <span class="n">loader_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">dataset_name</span><span class="p">:</span> <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset</span><span class="p">,)</span> <span class="k">for</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="c1"># we assume no transforms were done in the parser, and images are given as read by opencv</span>
+        <span class="n">viz_kwargs</span><span class="p">[</span><span class="s2">&quot;ch_transpose&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;ch_transpose&quot;</span><span class="p">,</span> <span class="n">viz_kwargs</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">viz_kwargs</span><span class="p">[</span><span class="s2">&quot;flip_bgr&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;flip_bgr&quot;</span><span class="p">,</span> <span class="n">viz_kwargs</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">task</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">valid_loader</span><span class="p">,</span> <span class="n">test_loader</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">create_loaders</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+        <span class="n">loader_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="n">train_loader</span><span class="p">,</span> <span class="s2">&quot;valid&quot;</span><span class="p">:</span> <span class="n">valid_loader</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="n">test_loader</span><span class="p">}</span>
+        <span class="c1"># we assume transforms were done in the loader, and images are given as expected by pytorch</span>
+        <span class="n">viz_kwargs</span><span class="p">[</span><span class="s2">&quot;ch_transpose&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;ch_transpose&quot;</span><span class="p">,</span> <span class="n">viz_kwargs</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">viz_kwargs</span><span class="p">[</span><span class="s2">&quot;flip_bgr&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;flip_bgr&quot;</span><span class="p">,</span> <span class="n">viz_kwargs</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="n">redraw</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">viz_kwargs</span><span class="p">[</span><span class="s2">&quot;block&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;block&quot;</span><span class="p">,</span> <span class="n">viz_kwargs</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="s2">&quot;quit&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">loader_map</span>
+    <span class="n">choices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">loader_map</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;quit&quot;</span><span class="p">]</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">choice</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">query_string</span><span class="p">(</span><span class="s2">&quot;Which loader would you like to visualize?&quot;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">choices</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;quit&quot;</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">loader</span> <span class="o">=</span> <span class="n">loader_map</span><span class="p">[</span><span class="n">choice</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">loader</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;loader &#39;</span><span class="si">%s</span><span class="s2">&#39; is empty&quot;</span> <span class="o">%</span> <span class="n">choice</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="n">batch_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">loader</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;initializing loader &#39;</span><span class="si">%s</span><span class="s2">&#39; with </span><span class="si">%d</span><span class="s2"> batches...&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">choice</span><span class="p">,</span> <span class="n">batch_count</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">loader</span><span class="p">):</span>
+            <span class="nb">input</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="n">task</span><span class="o">.</span><span class="n">input_key</span><span class="p">]</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="n">task</span><span class="o">.</span><span class="n">gt_key</span><span class="p">]</span> <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">gt_key</span> <span class="ow">in</span> <span class="n">sample</span> <span class="k">else</span> <span class="kc">None</span>
+            <span class="n">redraw</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">task</span><span class="o">=</span><span class="n">task</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="nb">input</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span> <span class="n">redraw</span><span class="o">=</span><span class="n">redraw</span><span class="p">,</span> <span class="o">**</span><span class="n">viz_kwargs</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;all done&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="annotate_data"><a class="viewcode-back" href="../../thelper.html#thelper.cli.annotate_data">[docs]</a><span class="k">def</span> <span class="nf">annotate_data</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Launches an annotation session for a dataset using a specialized GUI tool.</span>
+
+<span class="sd">    Note that the annotation type must be supported by the GUI tool. The annotations created by the user</span>
+<span class="sd">    during the session will be saved in the session directory.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        config: a dictionary that provides all required dataset and GUI tool configuration parameters; see</span>
+<span class="sd">            :func:`thelper.data.utils.create_parsers` and :func:`thelper.gui.utils.create_annotator` for more</span>
+<span class="sd">            information.</span>
+<span class="sd">        save_dir: the path to the root directory where the session directory should be saved. Note that</span>
+<span class="sd">            this is not the path to the session directory itself, but its parent, which may also contain</span>
+<span class="sd">            other session directories.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :func:`thelper.gui.annotators.Annotator`</span>
+<span class="sd">        | :func:`thelper.gui.annotators.ImageSegmentAnnotator`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># import gui here since it imports packages that will cause errors in CLI-only environments</span>
+    <span class="kn">import</span> <span class="nn">thelper.gui</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_func_logger</span><span class="p">()</span>
+    <span class="k">if</span> <span class="s2">&quot;name&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">config</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;config missing &#39;name&#39; field&quot;</span><span class="p">)</span>
+    <span class="n">session_name</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;creating annotation session &#39;</span><span class="si">%s</span><span class="s2">&#39;...&quot;</span> <span class="o">%</span> <span class="n">session_name</span><span class="p">)</span>
+    <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">setup_globals</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+    <span class="n">save_dir</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_save_dir</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="n">session_name</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;session will be saved at &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">save_dir</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">))</span>
+    <span class="n">datasets</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">create_parsers</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+    <span class="n">annotator</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">gui</span><span class="o">.</span><span class="n">create_annotator</span><span class="p">(</span><span class="n">session_name</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">datasets</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;starting annotator&quot;</span><span class="p">)</span>
+    <span class="n">annotator</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;all done&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="split_data"><a class="viewcode-back" href="../../thelper.html#thelper.cli.split_data">[docs]</a><span class="k">def</span> <span class="nf">split_data</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Launches a dataset splitting session.</span>
+
+<span class="sd">    This mode will generate an HDF5 archive that contains the split datasets defined in the session</span>
+<span class="sd">    configuration file. This archive can then be reused in a new training session to guarantee a fixed</span>
+<span class="sd">    distribution of training, validation, and testing samples. It can also be used outside the framework</span>
+<span class="sd">    in order to reproduce an experiment.</span>
+
+<span class="sd">    The configuration dictionary must minimally contain two sections: &#39;datasets&#39; and &#39;loaders&#39;. A third</span>
+<span class="sd">    section, &#39;split&#39;, can be used to provide settings regarding the archive packing and compression</span>
+<span class="sd">    approaches to use.</span>
+
+<span class="sd">    The HDF5 archive will be saved in the session&#39;s output directory.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        config: a dictionary that provides all required data configuration parameters; see</span>
+<span class="sd">            :func:`thelper.data.utils.create_loaders` for more information.</span>
+<span class="sd">        save_dir: the path to the root directory where the session directory should be saved. Note that</span>
+<span class="sd">            this is not the path to the session directory itself, but its parent, which may also contain</span>
+<span class="sd">            other session directories.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :func:`thelper.data.utils.create_loaders`</span>
+<span class="sd">        | :func:`thelper.data.utils.create_hdf5`</span>
+<span class="sd">        | :class:`thelper.data.parsers.HDF5Dataset`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_func_logger</span><span class="p">()</span>
+    <span class="k">if</span> <span class="s2">&quot;name&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">config</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;config missing &#39;name&#39; field&quot;</span><span class="p">)</span>
+    <span class="n">session_name</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+    <span class="n">split_config</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;split&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{})</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">split_config</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;unexpected split config type&quot;</span><span class="p">)</span>
+    <span class="n">compression</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="n">split_config</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{})</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">compression</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;compression params should be given as dictionary&quot;</span><span class="p">)</span>
+    <span class="n">archive_name</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;archive_name&quot;</span><span class="p">,</span> <span class="n">split_config</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">(</span><span class="n">session_name</span> <span class="o">+</span> <span class="s2">&quot;.hdf5&quot;</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;creating new splitting session &#39;</span><span class="si">%s</span><span class="s2">&#39;...&quot;</span> <span class="o">%</span> <span class="n">session_name</span><span class="p">)</span>
+    <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">setup_globals</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+    <span class="n">save_dir</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_save_dir</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="n">session_name</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;session will be saved at &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">save_dir</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">))</span>
+    <span class="n">task</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">valid_loader</span><span class="p">,</span> <span class="n">test_loader</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">create_loaders</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">)</span>
+    <span class="n">archive_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="n">archive_name</span><span class="p">)</span>
+    <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">create_hdf5</span><span class="p">(</span><span class="n">archive_path</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">valid_loader</span><span class="p">,</span> <span class="n">test_loader</span><span class="p">,</span> <span class="n">compression</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;all done&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="export_model"><a class="viewcode-back" href="../../thelper.html#thelper.cli.export_model">[docs]</a><span class="k">def</span> <span class="nf">export_model</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Launches a model exportation session.</span>
+
+<span class="sd">    This function will export a model defined via a configuration file into a new checkpoint that can be</span>
+<span class="sd">    loaded elsewhere. The model can be built using the framework, or provided via its type, construction</span>
+<span class="sd">    parameters, and weights. Its exported format will be compatible with the framework, and may also be an</span>
+<span class="sd">    optimized/compiled version obtained using PyTorch&#39;s JIT tracer.</span>
+
+<span class="sd">    The configuration dictionary must minimally contain a &#39;model&#39; section that provides details on the model</span>
+<span class="sd">    to be exported. A section named &#39;export&#39; can be used to provide settings regarding the exportation</span>
+<span class="sd">    approaches to use, and the task interface to save with the model. If a task is not explicitly defined in</span>
+<span class="sd">    the &#39;export&#39; section, the session configuration will be parsed for a &#39;datasets&#39; section that can be used</span>
+<span class="sd">    to define it. Otherwise, it must be provided through the model.</span>
+
+<span class="sd">    The exported checkpoint containing the model will be saved in the session&#39;s output directory.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        config: a dictionary that provides all required data configuration parameters; see</span>
+<span class="sd">            :func:`thelper.nn.utils.create_model` for more information.</span>
+<span class="sd">        save_dir: the path to the root directory where the session directory should be saved. Note that</span>
+<span class="sd">            this is not the path to the session directory itself, but its parent, which may also contain</span>
+<span class="sd">            other session directories.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :func:`thelper.nn.utils.create_model`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_func_logger</span><span class="p">()</span>
+    <span class="k">if</span> <span class="s2">&quot;name&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">config</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;config missing &#39;name&#39; field&quot;</span><span class="p">)</span>
+    <span class="n">session_name</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+    <span class="n">export_config</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;export&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{})</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">export_config</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;unexpected export config type&quot;</span><span class="p">)</span>
+    <span class="n">ckpt_name</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;ckpt_name&quot;</span><span class="p">,</span> <span class="n">export_config</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">(</span><span class="n">session_name</span> <span class="o">+</span> <span class="s2">&quot;.export.pth&quot;</span><span class="p">))</span>
+    <span class="n">trace_name</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;trace_name&quot;</span><span class="p">,</span> <span class="n">export_config</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">(</span><span class="n">session_name</span> <span class="o">+</span> <span class="s2">&quot;.trace.zip&quot;</span><span class="p">))</span>
+    <span class="n">save_raw</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;save_raw&quot;</span><span class="p">,</span> <span class="n">export_config</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">trace_input</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;trace_input&quot;</span><span class="p">,</span> <span class="n">export_config</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">task</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;task&quot;</span><span class="p">,</span> <span class="n">export_config</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)):</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">task</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="s2">&quot;datasets&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">task</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">create_parsers</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>  <span class="c1"># try to load via datasets...</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trace_input</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">trace_input</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">trace_input</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;exporting model &#39;</span><span class="si">%s</span><span class="s2">&#39;...&quot;</span> <span class="o">%</span> <span class="n">session_name</span><span class="p">)</span>
+    <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">setup_globals</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+    <span class="n">save_dir</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_save_dir</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="n">session_name</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;exported checkpoint will be saved at &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">save_dir</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">))</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">create_model</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="n">save_dir</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">task</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;task&quot;</span><span class="p">),</span> <span class="s2">&quot;model should have task attrib if not provided already&quot;</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">task</span>
+    <span class="n">log_stamp</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_log_stamp</span><span class="p">()</span>
+    <span class="n">model_type</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span>
+    <span class="n">model_params</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">config</span> <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">config</span> <span class="k">else</span> <span class="p">{}</span>
+    <span class="c1"># the saved state below should be kept compatible with the one in thelper.train.base._save</span>
+    <span class="n">export_state</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">session_name</span><span class="p">,</span>
+        <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="n">log_stamp</span><span class="p">,</span>
+        <span class="s2">&quot;git_sha1&quot;</span><span class="p">:</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_git_stamp</span><span class="p">(),</span>
+        <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="n">thelper</span><span class="o">.</span><span class="n">__version__</span><span class="p">,</span>
+        <span class="s2">&quot;task&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">task</span><span class="p">)</span> <span class="k">if</span> <span class="n">save_raw</span> <span class="k">else</span> <span class="n">task</span><span class="p">,</span>
+        <span class="s2">&quot;model_type&quot;</span><span class="p">:</span> <span class="n">model_type</span><span class="p">,</span>
+        <span class="s2">&quot;model_params&quot;</span><span class="p">:</span> <span class="n">model_params</span><span class="p">,</span>
+        <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="n">config</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="n">trace_input</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trace_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="n">trace_name</span><span class="p">)</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">trace_input</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">trace_path</span><span class="p">)</span>
+        <span class="n">export_state</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">trace_name</span>  <span class="c1"># will be loaded in thelper.utils.load_checkpoint</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">export_state</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span> <span class="k">if</span> <span class="n">save_raw</span> <span class="k">else</span> <span class="n">model</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">export_state</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="n">ckpt_name</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;all done&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="make_argparser"><a class="viewcode-back" href="../../thelper.html#thelper.cli.make_argparser">[docs]</a><span class="k">def</span> <span class="nf">make_argparser</span><span class="p">():</span>
+    <span class="c1"># type: () -&gt; argparse.ArgumentParser</span>
+    <span class="sd">&quot;&quot;&quot;Creates the (default) argument parser to use for the main entrypoint.</span>
+
+<span class="sd">    The argument parser will contain different &quot;operating modes&quot; that dictate the high-level behavior of the CLI. This</span>
+<span class="sd">    function may be modified in branches of the framework to add project-specific features.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ap</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;thelper model trainer application&#39;</span><span class="p">)</span>
+    <span class="n">ap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--version&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;prints the version of the library and exits&quot;</span><span class="p">)</span>
+    <span class="n">ap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-l&quot;</span><span class="p">,</span> <span class="s2">&quot;--log&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;path to the top-level log file (default: None)&quot;</span><span class="p">)</span>
+    <span class="n">ap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-v&quot;</span><span class="p">,</span> <span class="s2">&quot;--verbose&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;set logging terminal verbosity level (additive)&quot;</span><span class="p">)</span>
+    <span class="n">ap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--silent&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;deactivates all console logging activities&quot;</span><span class="p">)</span>
+    <span class="n">ap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--force-stdout&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;force logging output to stdout instead of stderr&quot;</span><span class="p">)</span>
+    <span class="n">subparsers</span> <span class="o">=</span> <span class="n">ap</span><span class="o">.</span><span class="n">add_subparsers</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Operating mode&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;mode&quot;</span><span class="p">)</span>
+    <span class="n">new_ap</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s2">&quot;new&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;creates a new session from a config file&quot;</span><span class="p">)</span>
+    <span class="n">new_ap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;cfg_path&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;path to the session configuration file&quot;</span><span class="p">)</span>
+    <span class="n">new_ap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;save_dir&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;path to the root directory where checkpoints should be saved&quot;</span><span class="p">)</span>
+    <span class="n">cl_new_ap</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s2">&quot;cl_new&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;creates a new session from a config file for the cluster&quot;</span><span class="p">)</span>
+    <span class="n">cl_new_ap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;cfg_path&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;path to the session configuration file&quot;</span><span class="p">)</span>
+    <span class="n">cl_new_ap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;save_dir&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;path to the root directory where checkpoints should be saved&quot;</span><span class="p">)</span>
+    <span class="n">resume_ap</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s2">&quot;resume&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;resume a session from a checkpoint file&quot;</span><span class="p">)</span>
+    <span class="n">resume_ap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;ckpt_path&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;path to the checkpoint (or save directory) to resume training from&quot;</span><span class="p">)</span>
+    <span class="n">resume_ap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-s&quot;</span><span class="p">,</span> <span class="s2">&quot;--save-dir&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;path to the root directory where checkpoints should be saved&quot;</span><span class="p">)</span>
+    <span class="n">resume_ap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-m&quot;</span><span class="p">,</span> <span class="s2">&quot;--map-location&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;map location for loading data (default=None)&quot;</span><span class="p">)</span>
+    <span class="n">resume_ap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="s2">&quot;--override-cfg&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;override config file path (default=None)&quot;</span><span class="p">)</span>
+    <span class="n">resume_ap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-e&quot;</span><span class="p">,</span> <span class="s2">&quot;--eval-only&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;only run evaluation pass (valid+test)&quot;</span><span class="p">)</span>
+    <span class="n">viz_ap</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s2">&quot;viz&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;visualize the loaded data for a training/eval session&quot;</span><span class="p">)</span>
+    <span class="n">viz_ap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;cfg_path&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;path to the session configuration file (or session save directory)&quot;</span><span class="p">)</span>
+    <span class="n">annot_ap</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s2">&quot;annot&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;launches a dataset annotation session with a GUI tool&quot;</span><span class="p">)</span>
+    <span class="n">annot_ap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;cfg_path&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;path to the session configuration file (or session save directory)&quot;</span><span class="p">)</span>
+    <span class="n">annot_ap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;save_dir&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;path to the root directory where annotations should be saved&quot;</span><span class="p">)</span>
+    <span class="n">split_ap</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s2">&quot;split&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;launches a dataset splitting session from a config file&quot;</span><span class="p">)</span>
+    <span class="n">split_ap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;cfg_path&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;path to the session configuration file (or session save directory)&quot;</span><span class="p">)</span>
+    <span class="n">split_ap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;save_dir&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;path to the root directory where the split hdf5 dataset archive should be saved&quot;</span><span class="p">)</span>
+    <span class="n">split_ap</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s2">&quot;export&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;launches a model exportation session from a config file&quot;</span><span class="p">)</span>
+    <span class="n">split_ap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;cfg_path&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;path to the session configuration file (or session save directory)&quot;</span><span class="p">)</span>
+    <span class="n">split_ap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;save_dir&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;path to the root directory where the exported checkpoint should be saved&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ap</span></div>
+
+
+<div class="viewcode-block" id="setup"><a class="viewcode-back" href="../../thelper.html#thelper.cli.setup">[docs]</a><span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">argparser</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># type: (Any, argparse.Namespace) -&gt; Union[int, argparse.Namespace]</span>
+    <span class="sd">&quot;&quot;&quot;Sets up the argument parser (if not already done externally) and parses the input CLI arguments.</span>
+
+<span class="sd">    This function may return an error code (integer) if the program should exit immediately. Otherwise, it will return</span>
+<span class="sd">    the parsed arguments to use in order to redirect the execution flow of the entrypoint.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">argparser</span> <span class="o">=</span> <span class="n">argparser</span> <span class="ow">or</span> <span class="n">make_argparser</span><span class="p">()</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">argparser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">version</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">thelper</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">mode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">argparser</span><span class="o">.</span><span class="n">print_help</span><span class="p">()</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">silent</span> <span class="ow">and</span> <span class="n">args</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;contradicting verbose/silent arguments provided&quot;</span><span class="p">)</span>
+    <span class="n">log_level</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">NOTSET</span>
+    <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">init_logger</span><span class="p">(</span><span class="n">log_level</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">log</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">force_stdout</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">args</span></div>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../thelper.html#thelper.cli.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">argparser</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Main entrypoint to use with console applications.</span>
+
+<span class="sd">    This function parses command line arguments and dispatches the execution based on the selected</span>
+<span class="sd">    operating mode. Run with ``--help`` for information on the available arguments.</span>
+
+<span class="sd">    .. warning::</span>
+<span class="sd">        If you are trying to resume a session that was previously executed using a now unavailable GPU,</span>
+<span class="sd">        you will have to force the checkpoint data to be loaded on CPU using ``--map-location=cpu`` (or</span>
+<span class="sd">        using ``-m=cpu``).</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :func:`thelper.cli.create_session`</span>
+<span class="sd">        | :func:`thelper.cli.resume_session`</span>
+<span class="sd">        | :func:`thelper.cli.visualize_data`</span>
+<span class="sd">        | :func:`thelper.cli.annotate_data`</span>
+<span class="sd">        | :func:`thelper.cli.split_data`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">setup</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">argparser</span><span class="o">=</span><span class="n">argparser</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">args</span>  <span class="c1"># CLI must exit immediately with provided error code</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;new&quot;</span> <span class="ow">or</span> <span class="n">args</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;cl_new&quot;</span><span class="p">:</span>
+        <span class="n">thelper</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;parsing config at &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">args</span><span class="o">.</span><span class="n">cfg_path</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">cfg_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fd</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;cl_new&quot;</span><span class="p">:</span>
+            <span class="n">trainer_config</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;trainer&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="n">device</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;device&quot;</span><span class="p">,</span> <span class="n">trainer_config</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">device</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;cannot specify device in config for cluster sessions, it is determined at runtime&quot;</span><span class="p">)</span>
+        <span class="n">create_session</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">save_dir</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;resume&quot;</span><span class="p">:</span>
+        <span class="n">ckptdata</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">load_checkpoint</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">ckpt_path</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">map_location</span><span class="p">,</span>
+                                                 <span class="n">always_load_latest</span><span class="o">=</span><span class="p">(</span><span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">eval_only</span><span class="p">))</span>
+        <span class="n">override_config</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">override_cfg</span><span class="p">:</span>
+            <span class="n">thelper</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;parsing override config at &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">args</span><span class="o">.</span><span class="n">override_cfg</span><span class="p">)</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">override_cfg</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+                <span class="n">override_config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fd</span><span class="p">)</span>
+        <span class="n">save_dir</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">save_dir</span>
+        <span class="k">if</span> <span class="n">save_dir</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ckpt_dir_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">ckpt_path</span><span class="p">))</span> \
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">ckpt_path</span><span class="p">)</span> <span class="k">else</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">ckpt_path</span><span class="p">)</span>
+            <span class="c1"># find session dir by looking for &#39;logs&#39; directory</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ckpt_dir_path</span><span class="p">,</span> <span class="s2">&quot;logs&quot;</span><span class="p">)):</span>
+                <span class="n">save_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ckpt_dir_path</span><span class="p">,</span> <span class="s2">&quot;..&quot;</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ckpt_dir_path</span><span class="p">,</span> <span class="s2">&quot;../logs&quot;</span><span class="p">)):</span>
+                <span class="n">save_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ckpt_dir_path</span><span class="p">,</span> <span class="s2">&quot;../..&quot;</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">save_dir</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">query_string</span><span class="p">(</span><span class="s2">&quot;Please provide the path to where the resumed session output should be saved:&quot;</span><span class="p">)</span>
+                <span class="n">save_dir</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_save_dir</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="n">dir_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">override_config</span><span class="p">)</span>
+        <span class="n">resume_session</span><span class="p">(</span><span class="n">ckptdata</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">override_config</span><span class="p">,</span> <span class="n">eval_only</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">eval_only</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">thelper</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;parsing config at &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">args</span><span class="o">.</span><span class="n">cfg_path</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">cfg_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fd</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;viz&quot;</span><span class="p">:</span>
+            <span class="n">visualize_data</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;annot&quot;</span><span class="p">:</span>
+            <span class="n">annotate_data</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">save_dir</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;export&quot;</span><span class="p">:</span>
+            <span class="n">export_model</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">save_dir</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># if args.mode == &quot;split&quot;:</span>
+            <span class="n">split_data</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">save_dir</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">0</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../use-cases.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

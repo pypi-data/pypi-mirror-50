@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.gui package &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="thelper.nn package" href="thelper.nn.html" />
+    <link rel="prev" title="thelper.data package" href="thelper.data.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="thelper.html" accesskey="U">thelper package</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-thelper.gui">
+<span id="thelper-gui-package"></span><h1>thelper.gui package<a class="headerlink" href="#module-thelper.gui" title="Permalink to this headline">¶</a></h1>
+<p>Graphical User Interface (GUI) package.</p>
+<p>This package contains various tools and annotators used to simplify user interactions with data
+or models. Since the training framework is CLI-based, these tools are not used to train models,
+but can be helpful when debugging them. They can also be used to annotate and explore datasets.</p>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-thelper.gui.annotators">
+<span id="thelper-gui-annotators-module"></span><h2>thelper.gui.annotators module<a class="headerlink" href="#module-thelper.gui.annotators" title="Permalink to this headline">¶</a></h2>
+<p>Graphical User Interface (GUI) annotator module.</p>
+<p>This module contains various annotators that define interactive ways to visualize and annotate
+data loaded via a dataset parser.</p>
+<dl class="class">
+<dt id="thelper.gui.annotators.Annotator">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.gui.annotators.</code><code class="sig-name descname">Annotator</code><span class="sig-paren">(</span><em class="sig-param">session_name</em>, <em class="sig-param">config</em>, <em class="sig-param">save_dir</em>, <em class="sig-param">datasets</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/gui/annotators.html#Annotator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.gui.annotators.Annotator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Abstract annotation tool used to define common functions for all GUI-based I/O.</p>
+<p>Example configuration file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
+<span class="s2">&quot;annotator&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1"># type of annotator to instantiate</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.gui.ImageSegmentAnnotator&quot;</span><span class="p">,</span>
+    <span class="c1"># ...</span>
+    <span class="c1"># provide all extra parameters to the specialized anntator here</span>
+    <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># ...</span>
+    <span class="p">}</span>
+<span class="p">},</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.gui.annotators.ImageSegmentAnnotator" title="thelper.gui.annotators.ImageSegmentAnnotator"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.gui.annotators.ImageSegmentAnnotator</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.gui.utils.create_annotator" title="thelper.gui.utils.create_annotator"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.gui.utils.create_annotator()</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.gui.annotators.Annotator.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">session_name</em>, <em class="sig-param">config</em>, <em class="sig-param">save_dir</em>, <em class="sig-param">datasets</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/gui/annotators.html#Annotator.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.gui.annotators.Annotator.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives the annotator configuration dictionary, parses it, and sets up the basic session attributes.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.gui.annotators.Annotator.run">
+<em class="property">abstract </em><code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/gui/annotators.html#Annotator.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.gui.annotators.Annotator.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays the GUI tool and blocks until it it closed by the user.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.gui.annotators.</code><code class="sig-name descname">ImageSegmentAnnotator</code><span class="sig-paren">(</span><em class="sig-param">session_name</em>, <em class="sig-param">config</em>, <em class="sig-param">save_dir</em>, <em class="sig-param">datasets</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/gui/annotators.html#ImageSegmentAnnotator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.gui.annotators.Annotator" title="thelper.gui.annotators.Annotator"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.gui.annotators.Annotator</span></code></a></p>
+<p>Annotator interface specialized for image segmentation annotation generation.</p>
+<p>This interface will create a GUI tool with a brush and a zoomed tooltip window that allows images
+to be painted over with predetermined class labels. The generated masks will then be saved in the
+session directory as PNG images.</p>
+<p>The configuration is expected to provide values for at least the following parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sample_input_key</span></code>: specifies the key to use when extracting images from loaded samples. This
+is typically a string defined by the dataset parser.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">labels</span></code>: provides a list of labels that will be available to use in the GUI. These labels are
+expected to be given as dictionaries that each define an <code class="docutils literal notranslate"><span class="pre">id</span></code> (uint8 value used in output masks),
+a <code class="docutils literal notranslate"><span class="pre">name</span></code> (string used for display/lookup purposes), and a color (3-element integer tuple).</p></li>
+</ul>
+<p>Other parameters can also be provided to alter the GUI’s default behavior:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">default_brush_radius</span></code>: the size of the brush at startup (default=10).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">background_id</span></code>: the integer id to use for the background label (default=0).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">window_zoom_crop_size</span></code>: the crop size displayed in the zoom tooltip (default=250x250).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">window_zoom_size</span></code>: the size of the zoom tooltip window (default=500x500).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">zoom_interp_type</span></code>: the interpolation type to use when zooming (default=cv2.INTER_NEAREST).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">start_sample_idx</span></code>: the index of the first sample to display (default=0).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">window_name</span></code>: the name of the main display window (default=image-segm-annotator).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">window_size</span></code>: the size of the main display window (default=1000).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">brush_thickness</span></code>: the size of the GUI brush tooltip border display (default=2).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gui_bar_size</span></code>: the width of the GUI bar displayed on top of the main window (default=50).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">default_mask_opacity</span></code>: the default opacity of the segmentation mask (default=0.3).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">default_fill_id</span></code>: the label id to fill all new masks with (default=0).</p></li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.gui.annotators.Annotator" title="thelper.gui.annotators.Annotator"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.gui.annotators.Annotator</span></code></a></div>
+</div>
+</div>
+<dl class="attribute">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.BRUSH_SIZE">
+<code class="sig-name descname">BRUSH_SIZE</code><em class="property"> = None</em><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.BRUSH_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.Brush">
+<em class="property">class </em><code class="sig-name descname">Brush</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/gui/annotators.html#ImageSegmentAnnotator.Brush"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.Brush" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Brush manager used to refresh/draw mask contents based on mouse input.</p>
+<dl class="method">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.Brush.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/gui/annotators.html#ImageSegmentAnnotator.Brush.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.Brush.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the input config and extracts brush-related parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.Brush.draw_stroke">
+<em class="property">static </em><code class="sig-name descname">draw_stroke</code><span class="sig-paren">(</span><em class="sig-param">mask</em>, <em class="sig-param">label_id</em>, <em class="sig-param">start</em>, <em class="sig-param">end</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/gui/annotators.html#ImageSegmentAnnotator.Brush.draw_stroke"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.Brush.draw_stroke" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draws a brush stroke on the mask with a given label id between two points.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.Brush.refresh">
+<code class="sig-name descname">refresh</code><span class="sig-paren">(</span><em class="sig-param">mask</em>, <em class="sig-param">label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/gui/annotators.html#ImageSegmentAnnotator.Brush.refresh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.Brush.refresh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetches the latest mouse state and updates the mask if necessary.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.CURRENT_KEY">
+<code class="sig-name descname">CURRENT_KEY</code><em class="property"> = -1</em><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.CURRENT_KEY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.GUI_BAR_SIZE">
+<code class="sig-name descname">GUI_BAR_SIZE</code><em class="property"> = None</em><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.GUI_BAR_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.GUI_DIRTY">
+<code class="sig-name descname">GUI_DIRTY</code><em class="property"> = True</em><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.GUI_DIRTY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.LATEST_PT">
+<code class="sig-name descname">LATEST_PT</code><em class="property"> = (-1, -1)</em><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.LATEST_PT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.LATEST_RAW_PT">
+<code class="sig-name descname">LATEST_RAW_PT</code><em class="property"> = (-1, -1)</em><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.LATEST_RAW_PT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.MASK_DIRTY">
+<code class="sig-name descname">MASK_DIRTY</code><em class="property"> = True</em><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.MASK_DIRTY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.MOUSE_FLAGS">
+<code class="sig-name descname">MOUSE_FLAGS</code><em class="property"> = 0</em><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.MOUSE_FLAGS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.WINDOW_SIZE">
+<code class="sig-name descname">WINDOW_SIZE</code><em class="property"> = None</em><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.WINDOW_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.ZoomTooltip">
+<em class="property">class </em><code class="sig-name descname">ZoomTooltip</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/gui/annotators.html#ImageSegmentAnnotator.ZoomTooltip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.ZoomTooltip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Zoom tooltip manager used to visualize image details based on mouse location.</p>
+<dl class="method">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.ZoomTooltip.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/gui/annotators.html#ImageSegmentAnnotator.ZoomTooltip.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.ZoomTooltip.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the input config and extracts zoom-related parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.ZoomTooltip.refresh">
+<code class="sig-name descname">refresh</code><span class="sig-paren">(</span><em class="sig-param">image</em>, <em class="sig-param">mask</em>, <em class="sig-param">mask_colormap</em>, <em class="sig-param">mask_opacity</em>, <em class="sig-param">coords</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/gui/annotators.html#ImageSegmentAnnotator.ZoomTooltip.refresh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.ZoomTooltip.refresh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetches the latest mouse position and updates the zoom window tooltip.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">session_name</em>, <em class="sig-param">config</em>, <em class="sig-param">save_dir</em>, <em class="sig-param">datasets</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/gui/annotators.html#ImageSegmentAnnotator.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the input samples and initializes the anntator GUI elements.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.get_mask_path">
+<code class="sig-name descname">get_mask_path</code><span class="sig-paren">(</span><em class="sig-param">index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/gui/annotators.html#ImageSegmentAnnotator.get_mask_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.get_mask_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the path where the mask of a specific sample should be located.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.handle_keys">
+<code class="sig-name descname">handle_keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/gui/annotators.html#ImageSegmentAnnotator.handle_keys"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.handle_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetches the latest keyboard press and updates the annotator state accordingly.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.load">
+<code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param">index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/gui/annotators.html#ImageSegmentAnnotator.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads the image and mask associated to a specific sample.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.on_mouse">
+<em class="property">static </em><code class="sig-name descname">on_mouse</code><span class="sig-paren">(</span><em class="sig-param">event</em>, <em class="sig-param">x</em>, <em class="sig-param">y</em>, <em class="sig-param">flags</em>, <em class="sig-param">param</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/gui/annotators.html#ImageSegmentAnnotator.on_mouse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.on_mouse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Callback entrypoint for opencv to register mouse movement/clicks.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.on_press">
+<em class="property">static </em><code class="sig-name descname">on_press</code><span class="sig-paren">(</span><em class="sig-param">key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/gui/annotators.html#ImageSegmentAnnotator.on_press"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.on_press" title="Permalink to this definition">¶</a></dt>
+<dd><p>Callback entrypoint for pynput to register keyboard presses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.refresh_gui">
+<code class="sig-name descname">refresh_gui</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/gui/annotators.html#ImageSegmentAnnotator.refresh_gui"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.refresh_gui" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates and displays the main window based on the latest changes.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.refresh_layers">
+<code class="sig-name descname">refresh_layers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/gui/annotators.html#ImageSegmentAnnotator.refresh_layers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.refresh_layers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the image, mask, and tool display layers based on the latest changes.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.gui.annotators.ImageSegmentAnnotator.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/gui/annotators.html#ImageSegmentAnnotator.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.gui.annotators.ImageSegmentAnnotator.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays the main window and other GUI elements in a loop until it is closed by the user.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.gui.utils">
+<span id="thelper-gui-utils-module"></span><h2>thelper.gui.utils module<a class="headerlink" href="#module-thelper.gui.utils" title="Permalink to this headline">¶</a></h2>
+<p>Graphical User Interface (GUI) utility module.</p>
+<p>This module contains various tools and utilities used to instantiate annotators and GUI elements.</p>
+<dl class="function">
+<dt id="thelper.gui.utils.create_annotator">
+<code class="sig-prename descclassname">thelper.gui.utils.</code><code class="sig-name descname">create_annotator</code><span class="sig-paren">(</span><em class="sig-param">session_name</em>, <em class="sig-param">save_dir</em>, <em class="sig-param">config</em>, <em class="sig-param">datasets</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/gui/utils.html#create_annotator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.gui.utils.create_annotator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiates a GUI annotation tool based on the type contained in the config dictionary.</p>
+<p>The tool type is expected to be in the configuration dictionary’s <cite>annotator</cite> field, under the <cite>type</cite> key. For more
+information on the configuration, refer to <a class="reference internal" href="#thelper.gui.annotators.Annotator" title="thelper.gui.annotators.Annotator"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.gui.annotators.Annotator</span></code></a>. The instantiated type must be
+compatible with the constructor signature of <a class="reference internal" href="#thelper.gui.annotators.Annotator" title="thelper.gui.annotators.Annotator"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.gui.annotators.Annotator</span></code></a>. The object’s constructor will
+be given the full config dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>session_name</strong> – name of the annotation session used for printing and to create output directories.</p></li>
+<li><p><strong>save_dir</strong> – path to the session directory where annotations and other outputs will be saved.</p></li>
+<li><p><strong>config</strong> – full configuration dictionary that will be parsed for annotator parameters.</p></li>
+<li><p><strong>datasets</strong> – map of named dataset parsers that will provide the data to annotate.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The fully-constructed annotator object, ready to begin annotation via its <code class="docutils literal notranslate"><span class="pre">run()</span></code> function.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.gui.annotators.Annotator" title="thelper.gui.annotators.Annotator"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.gui.annotators.Annotator</span></code></a></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.gui.utils.create_key_listener">
+<code class="sig-prename descclassname">thelper.gui.utils.</code><code class="sig-name descname">create_key_listener</code><span class="sig-paren">(</span><em class="sig-param">callback</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/gui/utils.html#create_key_listener"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.gui.utils.create_key_listener" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a key press listener based on pynput.keyboard (used for mocking).</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use-cases.html">Use Cases</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="thelper.html">thelper package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="thelper.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.cli">thelper.cli module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.typedefs">thelper.typedefs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.utils">thelper.utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/thelper.gui.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="thelper.nn.html" title="thelper.nn package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="thelper.data.html" title="thelper.data package"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

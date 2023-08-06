@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.tasks.utils &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../../index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="../../../_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for thelper.tasks.utils</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Task utility functions &amp; base interface module.</span>
+
+<span class="sd">This module contains utility functions used to instantiate tasks and check their compatibility,</span>
+<span class="sd">and the base interface used to define new tasks.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">thelper.typedefs</span>
+<span class="kn">import</span> <span class="nn">thelper.utils</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="create_task"><a class="viewcode-back" href="../../../thelper.tasks.html#thelper.tasks.utils.create_task">[docs]</a><span class="k">def</span> <span class="nf">create_task</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+    <span class="c1"># type: (Union[thelper.typedefs.ConfigDict, str]) -&gt; Task</span>
+    <span class="sd">&quot;&quot;&quot;Parses a configuration dictionary or repr string and instantiates a task from it.</span>
+
+<span class="sd">    If a string is provided, it will first be parsed to get the task type, and then the object will be</span>
+<span class="sd">    instantiated by forwarding the parameters contained in the string to the constructor of that</span>
+<span class="sd">    type. Note that it is important for this function to work that the constructor argument names</span>
+<span class="sd">    match the names of parameters printed in the task&#39;s ``__repr__`` function.</span>
+
+<span class="sd">    If a dict is provided, it should contain a &#39;type&#39; and a &#39;params&#39; field with the values required</span>
+<span class="sd">    for direct instantiation.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.tasks.utils.Task`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">config</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)),</span> \
+        <span class="s2">&quot;unexpected config type (should be str or dict)&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s2">&quot;type&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">config</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid field &#39;type&#39; in task config&quot;</span><span class="p">)</span>
+        <span class="n">task_type</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">import_class</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">])</span>
+        <span class="n">task_params</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key</span><span class="p">([</span><span class="s2">&quot;params&quot;</span><span class="p">,</span> <span class="s2">&quot;parameters&quot;</span><span class="p">],</span> <span class="n">config</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">task_params</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid field &#39;params&#39; in task config&quot;</span><span class="p">)</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="n">task_type</span><span class="p">(</span><span class="o">**</span><span class="n">task_params</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Task</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;the task must be derived from &#39;thelper.tasks.Task&#39;&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">task</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^[\w\.]+: &quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># for backwards compat (pre v0.3.0)</span>
+            <span class="n">task_type_name</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;: &quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="s2">&quot;.&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">task_type_name</span><span class="p">:</span>
+                <span class="c1"># dirty hotfix</span>
+                <span class="n">task_type_name</span> <span class="o">=</span> <span class="s2">&quot;thelper.tasks.&quot;</span> <span class="o">+</span> <span class="n">task_type_name</span>
+            <span class="n">task_type</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">import_class</span><span class="p">(</span><span class="n">task_type_name</span><span class="p">)</span>
+            <span class="n">task_params</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="s2">&quot;: &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;: &quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]))</span>
+            <span class="n">task</span> <span class="o">=</span> <span class="n">task_type</span><span class="p">(</span><span class="o">**</span><span class="n">task_params</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">task</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Task</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;the task must be derived from &#39;thelper.tasks.Task&#39;&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">task</span></div>
+
+
+<div class="viewcode-block" id="create_global_task"><a class="viewcode-back" href="../../../thelper.tasks.html#thelper.tasks.utils.create_global_task">[docs]</a><span class="k">def</span> <span class="nf">create_global_task</span><span class="p">(</span><span class="n">tasks</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a new task object that is compatible with a list of subtasks.</span>
+
+<span class="sd">    When different datasets must be combined in a session, the tasks they define must also be</span>
+<span class="sd">    merged. This functions allows us to do so as long as the tasks all share a common objective.</span>
+<span class="sd">    If creating a globally-compatible task is impossible, this function will raise an exception.</span>
+<span class="sd">    Otherwise, the returned task object can be used to replace the subtasks of all used datasets.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.tasks.utils.Task`</span>
+<span class="sd">        | :func:`thelper.tasks.utils.create_task`</span>
+<span class="sd">        | :func:`thelper.data.utils.create_parsers`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tasks</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;tasks should be provided as list&quot;</span><span class="p">)</span>
+    <span class="n">ref_task</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">tasks</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">task</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># skip all undefined tasks</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Task</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;all tasks should derive from thelper.tasks.Task&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ref_task</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># no reference task set; take the first instance and continue to next</span>
+            <span class="n">ref_task</span> <span class="o">=</span> <span class="n">task</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">ref_task</span><span class="p">)</span> <span class="o">!=</span> <span class="n">Task</span><span class="p">:</span>
+            <span class="c1"># reference task already specialized, we can ask it for compatible instances</span>
+            <span class="n">ref_task</span> <span class="o">=</span> <span class="n">ref_task</span><span class="o">.</span><span class="n">get_compat</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># otherwise, keep asking the new one to stay compatible with the base ref</span>
+            <span class="n">ref_task</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">get_compat</span><span class="p">(</span><span class="n">ref_task</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ref_task</span></div>
+
+
+<div class="viewcode-block" id="Task"><a class="viewcode-back" href="../../../thelper.tasks.html#thelper.tasks.utils.Task">[docs]</a><span class="k">class</span> <span class="nc">Task</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Basic task interface that defines a training objective and that holds sample i/o keys.</span>
+
+<span class="sd">    Since the framework&#39;s data loaders expect samples to be passed in as dictionaries, keys</span>
+<span class="sd">    are required to obtain the input that should be forwarded to a model, and to obtain the</span>
+<span class="sd">    groundtruth required for the evaluation of model predictions. Other keys might also be</span>
+<span class="sd">    kept by this interface for reference (these are considered meta keys).</span>
+
+<span class="sd">    Note that while this interface can be instantiated directly, trainers and models might</span>
+<span class="sd">    not be provided enough information about their goal to be correctly instantiated. Thus,</span>
+<span class="sd">    specialized task objects derived from this base class should be used if possible.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        input_key: the key used to fetch input tensors from a sample dictionary.</span>
+<span class="sd">        gt_key: the key used to fetch gt tensors from a sample dictionary.</span>
+<span class="sd">        meta_keys: the list of extra keys provided by the data parser inside each sample.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.tasks.classif.Classification`</span>
+<span class="sd">        | :class:`thelper.tasks.segm.Segmentation`</span>
+<span class="sd">        | :class:`thelper.tasks.regr.Regression`</span>
+<span class="sd">        | :class:`thelper.tasks.detect.Detection`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Task.__init__"><a class="viewcode-back" href="../../../thelper.tasks.html#thelper.tasks.utils.Task.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_key</span><span class="p">,</span> <span class="n">gt_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">meta_keys</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives and stores the keys used to index dataset sample contents.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_key</span> <span class="o">=</span> <span class="n">input_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span> <span class="o">=</span> <span class="n">gt_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta_keys</span> <span class="o">=</span> <span class="n">meta_keys</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">input_key</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the key used to fetch input data tensors from a sample dictionary.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_key</span>
+
+    <span class="nd">@input_key</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">input_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the input key used to fetch input data tensors from a sample dictionary.</span>
+
+<span class="sd">        The key can be of any type, as long as it can be used to index a dictionary. Print-</span>
+<span class="sd">        friendly types (e.g. string) are recommended for debugging. This key can never be</span>
+<span class="sd">        ``None``, as input tensors should always be available in loaded samples.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;input key cannot be `None` (input data should always be available)&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Hashable</span><span class="p">),</span> <span class="s2">&quot;key type must be hashable&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_input_key</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">gt_key</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the key used to fetch groundtruth data tensors from a sample dictionary.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gt_key</span>
+
+    <span class="nd">@gt_key</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">gt_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the key used to fetch groundtruth data tensors from a sample dictionary.</span>
+
+<span class="sd">        The key can be of any type, as long as it can be used to index a dictionary. Print-</span>
+<span class="sd">        friendly types (e.g. string) are recommended for debugging. If groundtruth is not</span>
+<span class="sd">        available through the dataset parsers, this key can be set to ``None``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Hashable</span><span class="p">),</span> <span class="s2">&quot;key type must be hashable&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_gt_key</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">meta_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the list of keys used to carry meta/auxiliary data in samples.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta_keys</span>
+
+    <span class="nd">@meta_keys</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">meta_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the list of keys used to carry meta/auxiliary data in samples.</span>
+
+<span class="sd">        The keys can be of any type, as long as they can be used to index a dictionary.</span>
+<span class="sd">        Print-friendly types (e.g. string) are recommended for debugging. This list can</span>
+<span class="sd">        be empty if no extra data is available.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)),</span> <span class="s2">&quot;meta keys should be provided as an array&quot;</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="p">[]</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">value</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">([</span><span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Hashable</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">value</span><span class="p">]),</span> \
+            <span class="s2">&quot;all meta key types must be hashable&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_meta_keys</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a list of all keys used to carry tensors and metadata in samples.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">input_key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">meta_keys</span><span class="p">]</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">]))</span>
+
+<div class="viewcode-block" id="Task.check_compat"><a class="viewcode-back" href="../../../thelper.tasks.html#thelper.tasks.utils.Task.check_compat">[docs]</a>    <span class="k">def</span> <span class="nf">check_compat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">exact</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns whether the current task is compatible with the provided one or not.</span>
+
+<span class="sd">        This is useful for sanity-checking, and to see if the inputs/outputs of two models</span>
+<span class="sd">        are compatible. It should be overridden in derived classes to specialize the</span>
+<span class="sd">        compatibility verification. If ``exact = True``, all fields will be checked for</span>
+<span class="sd">        exact compatibility.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">task</span><span class="p">)</span> <span class="o">==</span> <span class="n">Task</span> <span class="ow">and</span> \
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_key</span> <span class="o">==</span> <span class="n">task</span><span class="o">.</span><span class="n">input_key</span> <span class="ow">and</span>
+             <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">task</span><span class="o">.</span><span class="n">gt_key</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span> <span class="o">==</span> <span class="n">task</span><span class="o">.</span><span class="n">gt_key</span><span class="p">)</span> <span class="ow">and</span>
+             <span class="p">(</span><span class="ow">not</span> <span class="n">exact</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meta_keys</span><span class="p">)</span> <span class="o">==</span> <span class="nb">set</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">meta_keys</span><span class="p">)</span> <span class="ow">and</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span> <span class="o">==</span> <span class="n">task</span><span class="o">.</span><span class="n">gt_key</span><span class="p">)))</span></div>
+
+<div class="viewcode-block" id="Task.get_compat"><a class="viewcode-back" href="../../../thelper.tasks.html#thelper.tasks.utils.Task.get_compat">[docs]</a>    <span class="k">def</span> <span class="nf">get_compat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a task instance compatible with the current task and the given one.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">task</span><span class="p">)</span> <span class="o">==</span> <span class="n">Task</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;cannot create compatible task from types &#39;{type(task)}&#39; and &#39;{type(self)}&#39;&quot;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_compat</span><span class="p">(</span><span class="n">task</span><span class="p">),</span> <span class="n">f</span><span class="s2">&quot;cannot create compatible task between:</span><span class="se">\n\t</span><span class="s2">{str(self)}</span><span class="se">\n\t</span><span class="s2">{str(task)}&quot;</span>
+        <span class="k">return</span> <span class="n">Task</span><span class="p">(</span><span class="n">input_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_key</span><span class="p">,</span> <span class="n">gt_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span><span class="p">,</span> <span class="n">meta_keys</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meta_keys</span> <span class="o">+</span> <span class="n">task</span><span class="o">.</span><span class="n">meta_keys</span><span class="p">)))</span></div>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Creates a print-friendly representation of an abstract task.</span>
+
+<span class="sd">        Note that this representation might also be used to check the compatibility of tasks</span>
+<span class="sd">        without importing the whole framework. Therefore, it should contain all the necessary</span>
+<span class="sd">        information about the task. The name of the parameters herein should also match the</span>
+<span class="sd">        argument names given to the constructor in case we need to recreate a task object from</span>
+<span class="sd">        this string.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;(input_key={repr(self.input_key)}, gt_key={repr(self.gt_key)}, meta_keys={repr(self.meta_keys)})&quot;</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../use-cases.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

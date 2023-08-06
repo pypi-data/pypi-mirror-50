@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>User Guide &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Use Cases" href="use-cases.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="index.html">thelper-0.3.8</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="user-guide">
+<span id="id1"></span><h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
+<p>This guide provides an overview of the basic functionalities and typical use cases of the thelper
+framework. For installation instructions, refer to the installation guide <a class="reference internal" href="installation.html#install-guide"><span class="std std-ref">[here]</span></a>.</p>
+<p>Currently, the framework can be used to tackle image classification, image segmentation, object detection,
+image super-resolution, and generic regression tasks. Models for all of these tasks can be trained
+out-of-the-box using PyTorch. More task types are expected to follow in the future. The goal of the framework
+is not to solve those problems for you; its goal is to facilitate your model exploration and development
+process. This is achieved by providing a centralized interface for the control of all your experiment
+settings, by offering a simple solution for model checkpointing and fine-tuning, and by providing debugging
+tools and visualizations to help you understand your model’s behavior. It can also help users working with
+GPU clusters by keeping track of their jobs more easily. This framework will not directly give you the
+perfect solution for your particular problem, but it will help you discover a solution while enforcing
+good reproducibility standards.</p>
+<p>If your problem is related to one of the aforementioned tasks, and if you can solve this problem using
+a standard model architecture already included in PyTorch or in the framework itself, then you might be
+able to train and export a solution without writing a single line of code. It is however typical to
+work with a custom model, a custom trainer, or even a custom task/objective. This is also supported
+by the framework, as most classes can be either imported as-is, or they can derive from and replace the
+internal classes of the framework.</p>
+<p>In the sections below, we introduce the framework’s <a class="reference external" href="#command-line-interface">Command-Line Interface (CLI)</a>
+used to launch jobs, the <a class="reference external" href="#configuration-files">session configuration files</a> used to define the settings
+of these jobs, and the <a class="reference external" href="#session-directories">session directories</a> that contain job outputs. Use cases that
+show how to use different functionalities of the framework are available in <a class="reference internal" href="use-cases.html#use-cases"><span class="std std-ref">[a different section]</span></a>.</p>
+<hr class="docutils" />
+<div class="section" id="command-line-interface">
+<h2>Command-Line Interface<a class="headerlink" href="#command-line-interface" title="Permalink to this headline">¶</a></h2>
+<p>The Command-Line Interface (CLI) of the framework offers the main entrypoint from which jobs are executed.
+A number of different operations are supported; these are detailed in the following subsections, and
+listed <a class="reference internal" href="thelper.html#module-thelper.cli"><span class="std std-ref">[in the documentation]</span></a>. For now, note that these operations
+all rely on a configuration dictionary which is typically parsed from a JSON file. The fields of this
+dictionary that are required by each operation are detailed <a class="reference external" href="#configuration-files">in the next section</a>.</p>
+<p>Note that using the framework’s CLI is not mandatory. If you prefer bypassing it and creating your own
+high-level job dispatcher, you can do so by deconstructing one of the already-existing CLI entrypoints,
+and by calling the same high-level functions it uses to load the components you need. These might include
+for example <a class="reference internal" href="thelper.data.html#thelper.data.utils.create_loaders" title="thelper.data.utils.create_loaders"><code class="xref py py-meth docutils literal notranslate"><span class="pre">thelper.data.utils.create_loaders()</span></code></a> and <a class="reference internal" href="thelper.nn.html#thelper.nn.utils.create_model" title="thelper.nn.utils.create_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">thelper.nn.utils.create_model()</span></code></a>. Calling
+those functions directly may also be necessary if you intend on embedding the framework inside another
+application.</p>
+<div class="section" id="creating-a-training-session">
+<span id="user-guide-cli-new"></span><h3>Creating a training session<a class="headerlink" href="#creating-a-training-session" title="Permalink to this headline">¶</a></h3>
+<p>Usage from the terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ thelper new &lt;PATH_TO_CONFIG_FILE.json&gt; &lt;PATH_TO_SAVE_DIRECTORY&gt;
+</pre></div>
+</div>
+<p>To create a training session, the <code class="docutils literal notranslate"><span class="pre">new</span></code> operation of the CLI is used. This redirects the execution flow
+to <a class="reference internal" href="thelper.html#thelper.cli.create_session" title="thelper.cli.create_session"><code class="xref py py-meth docutils literal notranslate"><span class="pre">thelper.cli.create_session()</span></code></a>. The configuration dictionary that is provided must contain all sections
+required to train a model, namely <code class="docutils literal notranslate"><span class="pre">datasets</span></code>, <code class="docutils literal notranslate"><span class="pre">loaders</span></code>, <code class="docutils literal notranslate"><span class="pre">model</span></code>, and <code class="docutils literal notranslate"><span class="pre">trainer</span></code>. It is also mandatory
+to provide a <code class="docutils literal notranslate"><span class="pre">name</span></code> field in the global space for the training session to be properly identified later on.</p>
+<p>No distinction is made at this stage regarding the task that the training session is tackling. The nature
+of this task (e.g. image classification) will be deduced from the <code class="docutils literal notranslate"><span class="pre">datasets</span></code> section of the configuration
+later in the process. This CLI entrypoint can therefore be used to start training sessions for any task.</p>
+<p>Finally, note that since starting a training session produces logs and data, the path to a directory where
+the output can be created must be provided as the second argument.</p>
+</div>
+<div class="section" id="resuming-a-training-session">
+<span id="user-guide-cli-resume"></span><h3>Resuming a training session<a class="headerlink" href="#resuming-a-training-session" title="Permalink to this headline">¶</a></h3>
+<p>Usage from the terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ thelper resume &lt;PATH_TO_SESSION_DIR_OR_CHECKPT&gt; [-m MAP_LOCATION] [-c OVERRIDE_CFG] [...]
+</pre></div>
+</div>
+<p>If a previously created training session was halted for any reason, it is possible to resume it with the
+<code class="docutils literal notranslate"><span class="pre">resume</span></code> operation of the CLI. To do so, you must provide either the path to the session directory
+or to a checkpoint created by the framework. If a directory path is given, it will be searched for
+checkpoints and the latest one will be loaded. The training session will then be resumed using the
+loaded model and optimizer state, and subsequent outputs will be saved in the original session directory.</p>
+<p>A session can be resumed with an overriding configuration dictionary adding e.g. new metrics. If no
+configuration is provided at all, the original one contained in the loaded checkpoint will be used.
+Compatibility between an overriding configuration dictionary and the original one must be ensured by the
+user. A session can also be resumed only to evaluate the (best) trained model performance on the testing
+set. This is done by adding the <code class="docutils literal notranslate"><span class="pre">--eval-only</span></code> flag at the end of the command line. For more information
+on the parameters, see the documentation of <a class="reference internal" href="thelper.html#thelper.cli.resume_session" title="thelper.cli.resume_session"><code class="xref py py-meth docutils literal notranslate"><span class="pre">thelper.cli.resume_session()</span></code></a>.</p>
+</div>
+<div class="section" id="visualizing-data">
+<span id="user-guide-cli-viz"></span><h3>Visualizing data<a class="headerlink" href="#visualizing-data" title="Permalink to this headline">¶</a></h3>
+<p>Usage from the terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ thelper viz &lt;PATH_TO_CONFIG_FILE.json&gt;
+</pre></div>
+</div>
+<p>Visualizing the images that will be forwarded to the model during training after applying data
+augmentation operations can be useful to determine whether they still look natural or not. The <code class="docutils literal notranslate"><span class="pre">viz</span></code>
+operation of the CLI allows you to do just this. It relies on the dataset parsers or data loaders
+defined in a configuration dictionary that would normally be given to the CLI under the <code class="docutils literal notranslate"><span class="pre">new</span></code> or
+<code class="docutils literal notranslate"><span class="pre">resume</span></code> operation modes. For more information on this mode, see the documentation of
+<a class="reference internal" href="thelper.html#thelper.cli.visualize_data" title="thelper.cli.visualize_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">thelper.cli.visualize_data()</span></code></a>.</p>
+</div>
+<div class="section" id="annotating-data">
+<span id="user-guide-cli-annot"></span><h3>Annotating data<a class="headerlink" href="#annotating-data" title="Permalink to this headline">¶</a></h3>
+<p>Usage from the terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ thelper annot &lt;PATH_TO_CONFIG_FILE.json&gt; &lt;PATH_TO_SAVE_DIRECTORY&gt;
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">annot</span></code> CLI operation allows the user to browse a dataset and annotate individual samples from it
+using a specialized GUI tool. The configuration dictionary that is provided must contain a <code class="docutils literal notranslate"><span class="pre">datasets</span></code>
+section to define the parsers that load the data, and an <code class="docutils literal notranslate"><span class="pre">annotator</span></code> section that defines the GUI tool
+settings used to create annotations. During an annotation session, all annotations that are created by
+the user will be saved into the session directory. For more information on the parameters, refer to the
+documentation of <a class="reference internal" href="thelper.html#thelper.cli.annotate_data" title="thelper.cli.annotate_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">thelper.cli.annotate_data()</span></code></a>.</p>
+</div>
+<div class="section" id="split-data">
+<span id="user-guide-cli-split"></span><h3>Split data<a class="headerlink" href="#split-data" title="Permalink to this headline">¶</a></h3>
+<p>Usage from the terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ thelper split &lt;PATH_TO_CONFIG_FILE.json&gt; &lt;PATH_TO_SAVE_DIRECTORY&gt;
+</pre></div>
+</div>
+<p>When traning a model, the framework will typically split the datasets into non-overlapping data loaders.
+This split must be performed every time a training session is created or resumed. This can be a lengthy
+process based on the amount of preprocessing and parsing required by the dataset constructors. Using the
+<code class="docutils literal notranslate"><span class="pre">split</span></code> CLI operation allows the user to pre-compute this split and archive the training, validation,
+and test sets into a HDF5 archive. This archive can then be parsed by an interface provided in the
+framework to speed up the creation/resuming of training sessions, or simply for external tests. See
+<a class="reference internal" href="thelper.data.html#thelper.data.parsers.HDF5Dataset" title="thelper.data.parsers.HDF5Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.HDF5Dataset</span></code></a> for more information on the dataset interface, or
+<a class="reference internal" href="thelper.html#thelper.cli.split_data" title="thelper.cli.split_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">thelper.cli.split_data()</span></code></a> on the operation itself.</p>
+</div>
+<div class="section" id="export-model">
+<span id="user-guide-cli-export"></span><h3>Export model<a class="headerlink" href="#export-model" title="Permalink to this headline">¶</a></h3>
+<p>Usage from the terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ thelper export &lt;PATH_TO_CONFIG_FILE.json&gt; &lt;PATH_TO_SAVE_DIRECTORY&gt;
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">export</span></code> CLI operation allows the user to export a trained model for external use as defined in
+a configuration file. The export format is a new checkpoint that may optionally contain an optimized
+version of the model compiled using PyTorch’s JIT engine. This is still an experimental feature. See
+the documentation of <a class="reference internal" href="thelper.html#thelper.cli.export_model" title="thelper.cli.export_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">thelper.cli.export_model()</span></code></a> or the <a class="reference internal" href="use-cases.html#use-cases-model-export"><span class="std std-ref">[example here]</span></a>
+for more information.</p>
+<p><a class="reference external" href="#user-guide">[to top]</a></p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="configuration-files">
+<h2>Configuration Files<a class="headerlink" href="#configuration-files" title="Permalink to this headline">¶</a></h2>
+<p>Configuration files are at the heart of the framework. These essentially contain all the settings that
+might affect the behavior of a training session, and therefore of a trained model. The framework itself
+does not enforce that all parameters must be passed through the configuration file, but it is good to
+follow this principle, as it helps enforce reproducibility. Configuration files also essentially always
+contain a dictionary so that parameters can be split into sections. We thus often refer to them as
+‘configuration dictionaries’.</p>
+<p>The framework will automatically skips sections of the configuration file that it does not need to use or
+that it does not understand. This is useful when sections or subsections are added for custom needs, or
+when only a portion of the configuration is relevant to some use case (for example, the ‘visualization’
+mode of the CLI will only look at the datasets and data loaders sections).</p>
+<p>For now, all configuration files are expected to be in JSON format, but future versions of the framework
+will support YAML configurations as well as raw python modules (.py files) that define each subsection
+as a dictionary. Examples of complete configuration files used for various purposes are available in the
+<code class="docutils literal notranslate"><span class="pre">config</span></code> directory located with the code (<a class="reference external" href="https://github.com/plstcharles/thelper/tree/master/configs">[see them here]</a>).</p>
+<div class="section" id="datasets-section">
+<h3>Datasets section<a class="headerlink" href="#datasets-section" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">datasets</span></code> section of the configuration defines the dataset “parsers” that will be instantiated by
+the framework and passed to the data loaders. These are responsible for parsing the structure of a
+dataset and providing the total number of samples that it contains. Dataset parsers should expose a
+<code class="docutils literal notranslate"><span class="pre">__getitem__</span></code> function that returns an individual data sample when queried by index. The dataset parsers
+provided in the <code class="docutils literal notranslate"><span class="pre">torchvision.datasets</span></code> package are all fully compatible with these requirements.</p>
+<p>The configuration section itself should be built like a dictionary of objects to instantiate. The key
+associated with each parser is the name that will be used to refer to it internally as well as in the
+<code class="docutils literal notranslate"><span class="pre">loaders</span></code> section. If a dataset parser that does not derive from <a class="reference internal" href="thelper.data.html#thelper.data.parsers.Dataset" title="thelper.data.parsers.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.Dataset</span></code></a>
+is needed, you will have to specify a task object inside its definition. An example configuration based on
+the CIFAR10 class provided by <code class="docutils literal notranslate"><span class="pre">torchvision</span></code> (<a class="reference external" href="https://pytorch.org/docs/stable/torchvision/datasets.html#torchvision.datasets.CIFAR10">[more info here]</a>) is shown below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;datasets&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;cifar10_train&quot;</span><span class="p">:</span> <span class="p">{</span>  <span class="c1"># name of the first dataset parser</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;torchvision.datasets.CIFAR10&quot;</span><span class="p">,</span>  <span class="c1"># class to instantiate</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>  <span class="c1"># parameters forwarded to the class constructor</span>
+            <span class="s2">&quot;root&quot;</span><span class="p">:</span> <span class="s2">&quot;data/cifar/train&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+            <span class="s2">&quot;download&quot;</span><span class="p">:</span> <span class="n">true</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;task&quot;</span><span class="p">:</span> <span class="p">{</span>  <span class="c1"># task defined explicitely due to external type</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.tasks.Classification&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="c1"># by default, we just need to know the class names</span>
+                <span class="s2">&quot;class_names&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s2">&quot;airplane&quot;</span><span class="p">,</span> <span class="s2">&quot;car&quot;</span><span class="p">,</span> <span class="s2">&quot;bird&quot;</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;deer&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;frog&quot;</span><span class="p">,</span> <span class="s2">&quot;horse&quot;</span><span class="p">,</span> <span class="s2">&quot;ship&quot;</span><span class="p">,</span> <span class="s2">&quot;truck&quot;</span>
+                <span class="p">],</span>
+                <span class="c1"># torchvision loads samples as tuples; we map the indices</span>
+                <span class="s2">&quot;input_key&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>  <span class="c1"># input = element at index#0 in tuple</span>
+                <span class="s2">&quot;label_key&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span>   <span class="c1"># label = element at index#1 in tuple</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;cifar10_test&quot;</span><span class="p">:</span> <span class="p">{</span>  <span class="c1"># name of the second dataset parser</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;torchvision.datasets.CIFAR10&quot;</span><span class="p">,</span>  <span class="c1"># class to instantiate</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>  <span class="c1"># parameters forwarded to the class constructor</span>
+            <span class="s2">&quot;root&quot;</span><span class="p">:</span> <span class="s2">&quot;data/cifar/test&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>  <span class="c1"># here, fetch test data instead of train data</span>
+            <span class="s2">&quot;download&quot;</span><span class="p">:</span> <span class="n">true</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;task&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># we use the same task info as above, both will be merged</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.tasks.Classification&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;class_names&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s2">&quot;airplane&quot;</span><span class="p">,</span> <span class="s2">&quot;car&quot;</span><span class="p">,</span> <span class="s2">&quot;bird&quot;</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;deer&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;frog&quot;</span><span class="p">,</span> <span class="s2">&quot;horse&quot;</span><span class="p">,</span> <span class="s2">&quot;ship&quot;</span><span class="p">,</span> <span class="s2">&quot;truck&quot;</span>
+                <span class="p">],</span>
+                <span class="s2">&quot;input_key&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;label_key&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The example above defines two dataset parsers, <code class="docutils literal notranslate"><span class="pre">cifar10_train</span></code> and <code class="docutils literal notranslate"><span class="pre">cifar10_test</span></code>, that can now
+be referred to in the <code class="docutils literal notranslate"><span class="pre">loaders</span></code> section of a configuration file (<a class="reference external" href="#loaders-section">described next</a>).
+For more information on the instantiation of dataset parsers, refer to
+<a class="reference internal" href="thelper.data.html#thelper.data.utils.create_parsers" title="thelper.data.utils.create_parsers"><code class="xref py py-meth docutils literal notranslate"><span class="pre">thelper.data.utils.create_parsers()</span></code></a>.</p>
+</div>
+<div class="section" id="loaders-section">
+<h3>Loaders section<a class="headerlink" href="#loaders-section" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">loaders</span></code> section of the configuration defines all data loader-related settings including split
+ratios, samplers, batch sizes, base transforms and augmentations, seeds, memory pinning, and async
+worker count. The first important concept to understand here is that multiple data parsers (<a class="reference external" href="#datasets-section">defined
+earlier</a>) can be combined or split into one or more data loaders. Moreover, there
+are exactly three data loaders defined for all experiments: the training data loader, the validation data
+loader, and the test data loader. For more information on the fundamental role of each loader, see
+<a class="reference external" href="https://towardsdatascience.com/train-validation-and-test-sets-72cb40cba9e7">[this link]</a>. In short, data loaders deal with parsers to load and transform data samples efficiently
+before packing them into batches that we can feed our models.</p>
+<p>Some of the settings defined in this section apply to all three data loaders (e.g. memory pinning, base
+data transforms), while others can be specified for each loader individually (e.g. augmentations, batch
+size). The meta-settings that should always be set however are the split ratios that define the fraction
+of samples from each parser to use in a data loader. As shown in the example below, these ratios allow
+us to split a dataset into different loaders automatically, and without any possibility of data leakage
+between them. If all RNG seeds are set in this section, then the split will be reproducible between
+experiments. The split can also be precomputed using the <code class="docutils literal notranslate"><span class="pre">split</span></code> operation of the CLI (<a class="reference external" href="#split-data">click here
+for more information</a>).</p>
+<p>Besides, base transformations defined in this section are used to ensure that all samples loaded by
+parsers are compatible with the input format expected by the model during training. For example, typical
+image classification pipelines expect images to have a resolution of 224x224 pixels, with each color
+channel normalized to either the [-1, 1] range, or using pre-computed mean and standard deviation values.
+We can define such operations directly using the classes available in the <a class="reference internal" href="thelper.transforms.html#module-thelper.transforms" title="thelper.transforms"><code class="xref py py-mod docutils literal notranslate"><span class="pre">thelper.transforms</span></code></a>
+module. This is also demonstrated in the example configuration below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># note: this example is tied with the &quot;datasets&quot; example given earlier</span>
+<span class="s2">&quot;loaders&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span>     <span class="c1"># pack 32 images per minibatch (for all loaders)</span>
+    <span class="s2">&quot;test_seed&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>       <span class="c1"># fix the test set splitting seed</span>
+    <span class="s2">&quot;valid_seed&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>      <span class="c1"># fix the validation set splitting seed</span>
+    <span class="s2">&quot;torch_seed&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>      <span class="c1"># fix the PyTorch RNG seed for tranforms/augments</span>
+    <span class="s2">&quot;numpy_seed&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>      <span class="c1"># fix the numpy RNG seed for transforms/augments</span>
+    <span class="s2">&quot;random_seed&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>     <span class="c1"># fix the random package RNG seed for transforms/augments</span>
+    <span class="c1"># note: non-fixed seeds will be initialized randomly and printed in logs</span>
+    <span class="s2">&quot;workers&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>         <span class="c1"># each loader will be loading 4 minibatches in parallel</span>
+    <span class="s2">&quot;base_transforms&quot;</span><span class="p">:</span> <span class="p">[</span>  <span class="c1"># defines the operations to apply to all loaded samples</span>
+        <span class="p">{</span>
+            <span class="c1"># first, normalize 8-bit images to the [-1, 1] range</span>
+            <span class="s2">&quot;operation&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.transforms.NormalizeMinMax&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">127</span><span class="p">,</span> <span class="mi">127</span><span class="p">,</span> <span class="mi">127</span><span class="p">],</span>
+                <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="c1"># next, resize the CIFAR10 images to 224x224 for the model</span>
+            <span class="s2">&quot;operation&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.transforms.Resize&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;dsize&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="c1"># finally, transform the opencv/numpy arrays to torch.Tensor arrays</span>
+            <span class="s2">&quot;operation&quot;</span><span class="p">:</span> <span class="s2">&quot;torchvision.transforms.ToTensor&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="c1"># we reserve 20% of the samples from the training parser for validation</span>
+    <span class="s2">&quot;train_split&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;cifar10_train&quot;</span><span class="p">:</span> <span class="mf">0.8</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;valid_split&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;cifar10_train&quot;</span><span class="p">:</span> <span class="mf">0.2</span>
+    <span class="p">},</span>
+    <span class="c1"># we use 100% of the samples from the test parser for testing</span>
+    <span class="s2">&quot;test_split&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;cifar10_test&quot;</span><span class="p">:</span> <span class="mf">1.0</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The example above prepares the CIFAR10 data using a 80%-20% training-validation split, and keeps all
+the original CIFAR10 testing data for actual testing. All loaded samples will be normalized and resized
+to fit the expected input resolution of a typical model, as shown in the next subsection. This example
+however contains no data augmentation pipelines; refer to the <a class="reference internal" href="use-cases.html#use-cases-dataset-augment"><span class="std std-ref">[relevant sections here]</span></a> for actual usage examples. Similarly, no sampler is
+used above to rebalance the classes; <a class="reference internal" href="use-cases.html#use-cases-dataset-rebalance"><span class="std std-ref">[see here]</span></a> for a use case.
+Finally, for more information on other parameters that are not discussed here, refer to the documentation
+of <a class="reference internal" href="thelper.data.html#thelper.data.utils.create_loaders" title="thelper.data.utils.create_loaders"><code class="xref py py-meth docutils literal notranslate"><span class="pre">thelper.data.utils.create_loaders()</span></code></a>.</p>
+</div>
+<div class="section" id="model-section">
+<h3>Model section<a class="headerlink" href="#model-section" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">model</span></code> section of the configuration defines the model that will be trained, fine-tuned, evaluated,
+or exported during the session. The model can be defined in several ways. If you are creating a new model
+from scratch (i.e. using randomly initialized weights), you simply have to specify the type of the class
+that implements the model’s architecture along with its constructor’s parameters. This is shown in the
+example below for an instance of MobileNet:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.nn.mobilenet.MobileNetV2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;input_size&quot;</span><span class="p">:</span> <span class="mi">224</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this case, the constructor of <a class="reference internal" href="thelper.nn.html#thelper.nn.mobilenet.MobileNetV2" title="thelper.nn.mobilenet.MobileNetV2"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.mobilenet.MobileNetV2</span></code></a> will only receive a single
+argument, <code class="docutils literal notranslate"><span class="pre">input_size</span></code>, i.e. the size of the tensors it should expect as input. Some implementations
+of model architectures such as those in <code class="docutils literal notranslate"><span class="pre">torchvision.models</span></code> (<a class="reference external" href="https://pytorch.org/docs/stable/torchvision/models.html">[see them here]</a>) might allow you
+to specify a <code class="docutils literal notranslate"><span class="pre">pretrained</span></code> parameter. Setting this parameter to <code class="docutils literal notranslate"><span class="pre">True</span></code> will let you automatically
+download the weights of that model and thus allow you to fine-tune it directly:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;torchvision.models.resnet.resnet18&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;pretrained&quot;</span><span class="p">:</span> <span class="n">true</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The second option to fine-tune a model that is not available via <code class="docutils literal notranslate"><span class="pre">torchvision</span></code> is to specify the
+path to a checkpoint produced by the framework as such:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;ckptdata&quot;</span> <span class="p">:</span> <span class="s2">&quot;&lt;PATH_TO_ANY_THELPER_CHECKPOINT.pth&gt;&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>When using this approach, the framework will first open the checkpoint and reinstantiate the model using
+its original fully qualified class name and the parameters originally passed to its constructor. Then,
+that model will be checked for task compatibility, and its weights will finally be loaded in. For more
+information on the checkpoints produced by the framework, see the <a class="reference external" href="#checkpoints">[relevant section below]</a>.
+For more information on the model creation/loading process, refer to <a class="reference internal" href="thelper.nn.html#thelper.nn.utils.create_model" title="thelper.nn.utils.create_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">thelper.nn.utils.create_model()</span></code></a>.</p>
+</div>
+<div class="section" id="trainer-section">
+<h3>Trainer section<a class="headerlink" href="#trainer-section" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">trainer</span></code> section of the configuration defines trainer, optimization, and metric-related settings
+used in a session. These settings include the type of trainer to use, the number of epochs to train for,
+the list of metrics to compute during training, the name of the metric to continuously monitor for
+improvements, the loss function to use, the optimizer, the scheduler, and the device (CUDA or CPU) that
+the session should be executed on.</p>
+<p>First, note here that the type of trainer that is picked must be compatible with the task(s) exposed
+by the dataset parser(s) listed earlier in the configuration. If no trainer type is provided, the
+framework will automatically deduce which one to use for the current task. This deduction might fail
+for custom trainers/task combinations. If you are using a custom task, or if your model relies on multiple
+loss functions (or any other similar exotic thing), you might have to create your own trainer implementation
+derived from <a class="reference internal" href="thelper.train.html#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a>. Otherwise, see the trainers module (<a class="reference internal" href="thelper.train.html#module-thelper.train" title="thelper.train"><code class="xref py py-mod docutils literal notranslate"><span class="pre">thelper.train</span></code></a>)
+for a list of all available trainers.</p>
+<p>All optimization settings are grouped into the <code class="docutils literal notranslate"><span class="pre">optimization</span></code> subsection of the <code class="docutils literal notranslate"><span class="pre">trainer</span></code> section.
+While specifying a scheduler is optional, an optimizer and a loss function must always be specified.
+The loss function can be provided via the typical type/params setup (as shown below), or obtained from
+the model via a getter function. For more information on the latter option, see
+<a class="reference internal" href="thelper.optim.html#thelper.optim.utils.create_loss_fn" title="thelper.optim.utils.create_loss_fn"><code class="xref py py-meth docutils literal notranslate"><span class="pre">thelper.optim.utils.create_loss_fn()</span></code></a>. On the other hand, the nature of the optimizer and
+scheduler can only be specified via a type/param setup (as also shown below). The weights of the model
+specified in the last section will always be passed as the first argument of the optimizer’s
+constructor at runtime. This behavior is compatible with all optimizers defined by PyTorch (<a class="reference external" href="https://pytorch.org/docs/stable/optim.html">[more info
+here]</a>).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">trainer</span></code> section finally contains another subsection titled <code class="docutils literal notranslate"><span class="pre">metrics</span></code>. This subsection defines
+a dictionary of named metrics that should be continuously updated during training, and evaluated at the
+end of each epoch. Numerous types of metrics are already implemented in <a class="reference internal" href="thelper.optim.html#module-thelper.optim.metrics" title="thelper.optim.metrics"><code class="xref py py-mod docutils literal notranslate"><span class="pre">thelper.optim.metrics</span></code></a>,
+and many more will be added in the future. Metrics typically measure the performance of the model based
+on a specific criteria, but they can also do things like save model predictions and create graphs. A
+special “monitored” metric can also be defined in the <code class="docutils literal notranslate"><span class="pre">trainer</span></code> section, and it will be used to
+determine whether the model is improving or not during the training session. This is used to keep track
+of the “best” model weights while creating checkpoints, and it might also be used for scheduling.</p>
+<p>A complete example of a trainer configuration is shown below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;trainer&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1"># this example is in line with the earlier examples; we create a classifier</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.train.ImageClassifTrainer&quot;</span><span class="p">,</span>  <span class="c1"># type could be deduced automatically</span>
+    <span class="s2">&quot;device&quot;</span><span class="p">:</span> <span class="s2">&quot;cuda:all&quot;</span><span class="p">,</span>   <span class="c1"># by default, run the session on all GPUs in parallel</span>
+    <span class="s2">&quot;epochs&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>           <span class="c1"># run the session for a maximum of 50 epochs</span>
+    <span class="s2">&quot;save_freq&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>         <span class="c1"># save the model in a checkpoint every epoch</span>
+    <span class="s2">&quot;monitor&quot;</span><span class="p">:</span> <span class="s2">&quot;accuracy&quot;</span><span class="p">,</span>  <span class="c1"># monitor the &#39;accuracy&#39; metric defined below for improvements</span>
+    <span class="s2">&quot;use_tbx&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>        <span class="c1"># activate tensorboardX metric logging in output directory</span>
+    <span class="s2">&quot;optimization&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;torch.nn.CrossEntropyLoss&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{}</span>    <span class="c1"># empty sections like these can be omitted</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;optimizer&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;torch.optim.RMSprop&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="c1"># default learning rate used at the first epoch</span>
+                <span class="s2">&quot;weight_decay&quot;</span><span class="p">:</span> <span class="mf">0.00004</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;scheduler&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># here, we create a fancy scheduler that will check a metric for its steps</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;torch.optim.lr_scheduler.ReduceLROnPlateau&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="s2">&quot;max&quot;</span><span class="p">,</span>   <span class="c1"># since we will monitor accuracy, we want to maximize it</span>
+                <span class="s2">&quot;factor&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>   <span class="c1"># when a plateau is detected, decrease lr by 90%</span>
+                <span class="s2">&quot;patience&quot;</span><span class="p">:</span> <span class="mi">3</span>    <span class="c1"># wait three epochs with no improvement before stepping</span>
+            <span class="p">},</span>
+            <span class="c1"># now, we just name the metric defined below for the scheduler to use</span>
+            <span class="s2">&quot;step_metric&quot;</span><span class="p">:</span> <span class="s2">&quot;accuracy&quot;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span>  <span class="c1"># this is the list of all metrics we will be evaluating</span>
+        <span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="p">{</span>  <span class="c1"># the name of each metric should be unique</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.optim.Accuracy&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;top_k&quot;</span><span class="p">:</span> <span class="mi">1</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;confmat&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># this is a special consumer used to create confusion matrices</span>
+            <span class="c1"># (we can&#39;t monitor this one, as it is not an actual &quot;metric&quot;)</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.train.ConfusionMatrix&quot;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;test_metrics&quot;</span><span class="p">:</span> <span class="p">{</span>  <span class="c1"># metrics in this section will only be used for testing</span>
+        <span class="s2">&quot;logger&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># (can&#39;t monitor this one either, as it is not an actual &quot;metric&quot;)</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.train.ClassifLogger&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;top_k&quot;</span><span class="p">:</span> <span class="mi">3</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For more information on the metrics available in the framework, see <a class="reference internal" href="thelper.optim.html#module-thelper.optim.metrics" title="thelper.optim.metrics"><code class="xref py py-mod docutils literal notranslate"><span class="pre">thelper.optim.metrics</span></code></a>.</p>
+</div>
+<div class="section" id="annotator-section">
+<h3>Annotator section<a class="headerlink" href="#annotator-section" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">annotator</span></code> section of the configuration is used solely to define GUI-related settings during
+annotation sessions. For now, it should only contain the type and constructor parameters of the GUI
+tool that will be instantiated to create the annotations. An example is shown below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;annotator&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.gui.ImageSegmentAnnotator&quot;</span><span class="p">,</span>  <span class="c1"># type of annotator to instantiate</span>
+    <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;sample_input_key&quot;</span><span class="p">:</span> <span class="s2">&quot;image&quot;</span><span class="p">,</span>  <span class="c1"># this key is tied to the data parser&#39;s output</span>
+        <span class="s2">&quot;labels&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="c1"># for this example, we only use one brush type that draws using solid red</span>
+            <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">255</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;foreground&quot;</span><span class="p">,</span> <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">]}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this case, an image segmentation GUI is created that will allow the “image” loaded in each sample
+to be annotated by user with a brush tool. This section (as well as all GUI tools) are still
+experimental. For more information on annotators, refer to <a class="reference internal" href="thelper.gui.html#module-thelper.gui.annotators" title="thelper.gui.annotators"><code class="xref py py-mod docutils literal notranslate"><span class="pre">thelper.gui.annotators</span></code></a>.</p>
+</div>
+<div class="section" id="global-parameters">
+<h3>Global parameters<a class="headerlink" href="#global-parameters" title="Permalink to this headline">¶</a></h3>
+<p>Finally, session configurations can also contain global parameters located outside the main sections
+detailed so far. For example, the session name is a global flag which is often mandatory as it is used
+to identify the session and create its output directory. Other global parameters are used to change the
+behavior of imported package, or are just hacky solutions to problems that should be fixed otherwise.</p>
+<p>For now, the global parameters considered “of interest” are the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> : specifies the name of the session (mandatory in most operation modes).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cudnn_benchmark</span></code> : specifies whether to activate/deactivate cuDNN benchmarking mode.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cudnn_deterministic</span></code> : specifies whether to activate/deactivate cuDNN deterministic mode.</p></li>
+</ul>
+</div></blockquote>
+<p>Future global parameters will most likely be handled via <a class="reference internal" href="thelper.html#thelper.utils.setup_globals" title="thelper.utils.setup_globals"><code class="xref py py-meth docutils literal notranslate"><span class="pre">thelper.utils.setup_globals()</span></code></a>.</p>
+<p><a class="reference external" href="#user-guide">[to top]</a></p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="id8">
+<h2>Session Directories<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>If the framework is used in a way that requires it to produce outputs, they will always be located
+somewhere in the “session directory”. This directory is created in the root output directory provided
+to the CLI (also often called the “save” directory), and it is named after the session itself. The
+session directory contains three main folders that hold checkpoints, logs, and outputs. These are
+discussed in the following subsections. The general structure of a session directory is shown below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">session_directory_name</span><span class="o">&gt;</span>
+  <span class="o">|</span>
+  <span class="o">|--</span> <span class="n">checkpoints</span>
+  <span class="o">|</span>     <span class="o">|--</span> <span class="n">ckpt</span><span class="o">.</span><span class="mf">0000.</span><span class="o">&lt;</span><span class="n">platform</span><span class="o">&gt;-&lt;</span><span class="n">date</span><span class="o">&gt;-&lt;</span><span class="n">time</span><span class="o">&gt;.</span><span class="n">pth</span>
+  <span class="o">|</span>     <span class="o">|--</span> <span class="n">ckpt</span><span class="o">.</span><span class="mf">0001.</span><span class="o">&lt;</span><span class="n">platform</span><span class="o">&gt;-&lt;</span><span class="n">date</span><span class="o">&gt;-&lt;</span><span class="n">time</span><span class="o">&gt;.</span><span class="n">pth</span>
+  <span class="o">|</span>     <span class="o">|--</span> <span class="n">ckpt</span><span class="o">.</span><span class="mf">0002.</span><span class="o">&lt;</span><span class="n">platform</span><span class="o">&gt;-&lt;</span><span class="n">date</span><span class="o">&gt;-&lt;</span><span class="n">time</span><span class="o">&gt;.</span><span class="n">pth</span>
+  <span class="o">|</span>     <span class="o">|--</span> <span class="o">...</span>
+  <span class="o">|</span>     \<span class="o">--</span> <span class="n">ckpt</span><span class="o">.</span><span class="n">best</span><span class="o">.</span><span class="n">pth</span>
+  <span class="o">|</span>
+  <span class="o">|--</span> <span class="n">logs</span>
+  <span class="o">|</span>     <span class="o">|--</span> <span class="o">&lt;</span><span class="n">dataset1</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;.</span><span class="n">log</span>
+  <span class="o">|</span>     <span class="o">|--</span> <span class="o">&lt;</span><span class="n">dataset2</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;.</span><span class="n">log</span>
+  <span class="o">|</span>     <span class="o">|--</span> <span class="o">...</span>
+  <span class="o">|</span>     <span class="o">|--</span> <span class="n">config</span><span class="o">.&lt;</span><span class="n">platform</span><span class="o">&gt;-&lt;</span><span class="n">date</span><span class="o">&gt;-&lt;</span><span class="n">time</span><span class="o">&gt;.</span><span class="n">json</span>
+  <span class="o">|</span>     <span class="o">|--</span> <span class="n">data</span><span class="o">.</span><span class="n">log</span>
+  <span class="o">|</span>     <span class="o">|--</span> <span class="n">modules</span><span class="o">.</span><span class="n">log</span>
+  <span class="o">|</span>     <span class="o">|--</span> <span class="n">packages</span><span class="o">.</span><span class="n">log</span>
+  <span class="o">|</span>     <span class="o">|--</span> <span class="n">task</span><span class="o">.</span><span class="n">log</span>
+  <span class="o">|</span>     \<span class="o">--</span> <span class="n">trainer</span><span class="o">.</span><span class="n">log</span>
+  <span class="o">|</span>
+  <span class="o">|--</span> <span class="n">output</span>
+  <span class="o">|</span>     \<span class="o">--</span> <span class="o">&lt;</span><span class="n">session_directory_name</span><span class="o">&gt;</span>
+  <span class="o">|</span>           <span class="o">|--</span> <span class="n">train</span><span class="o">-&lt;</span><span class="n">platform</span><span class="o">&gt;-&lt;</span><span class="n">date</span><span class="o">&gt;-&lt;</span><span class="n">time</span><span class="o">&gt;</span>
+  <span class="o">|</span>           <span class="o">|</span>     <span class="o">|--</span> <span class="n">events</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">tfevents</span><span class="o">.&lt;</span><span class="n">something</span><span class="o">&gt;.&lt;</span><span class="n">platform</span><span class="o">&gt;</span>
+  <span class="o">|</span>           <span class="o">|</span>     \<span class="o">--</span> <span class="o">...</span>
+  <span class="o">|</span>           <span class="o">|</span>
+  <span class="o">|</span>           <span class="o">|--</span> <span class="n">valid</span><span class="o">-&lt;</span><span class="n">platform</span><span class="o">&gt;-&lt;</span><span class="n">date</span><span class="o">&gt;-&lt;</span><span class="n">time</span><span class="o">&gt;</span>
+  <span class="o">|</span>           <span class="o">|</span>     <span class="o">|--</span> <span class="n">events</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">tfevents</span><span class="o">.&lt;</span><span class="n">something</span><span class="o">&gt;.&lt;</span><span class="n">platform</span><span class="o">&gt;</span>
+  <span class="o">|</span>           <span class="o">|</span>     \<span class="o">--</span> <span class="o">...</span>
+  <span class="o">|</span>           <span class="o">|</span>
+  <span class="o">|</span>           <span class="o">|--</span> <span class="n">test</span><span class="o">-&lt;</span><span class="n">platform</span><span class="o">&gt;-&lt;</span><span class="n">date</span><span class="o">&gt;-&lt;</span><span class="n">time</span><span class="o">&gt;</span>
+  <span class="o">|</span>           <span class="o">|</span>     <span class="o">|--</span> <span class="n">events</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">tfevents</span><span class="o">.&lt;</span><span class="n">something</span><span class="o">&gt;.&lt;</span><span class="n">platform</span><span class="o">&gt;</span>
+  <span class="o">|</span>           <span class="o">|</span>     \<span class="o">--</span> <span class="o">...</span>
+  <span class="o">|</span>           <span class="o">|</span>
+  <span class="o">|</span>           \<span class="o">--</span> <span class="o">...</span>
+  <span class="o">|</span>
+  \<span class="o">--</span> <span class="n">config</span><span class="o">.</span><span class="n">latest</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+<div class="section" id="checkpoints">
+<h3>Checkpoints<a class="headerlink" href="#checkpoints" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">checkpoints</span></code> folder contains the binary files pickled by PyTorch that store all training data
+required to resume a session. These files are automatically saved at the end of each epoch during
+a training session. The checkpoints are named using the <code class="docutils literal notranslate"><span class="pre">ckpt.XXXX.YYYYY-ZZZZZZ-ZZZZZZ.pth</span></code> convention,
+where <code class="docutils literal notranslate"><span class="pre">XXXX</span></code> is the epoch index (0-based), <code class="docutils literal notranslate"><span class="pre">YYYYY</span></code> is the platform or hostname, and <code class="docutils literal notranslate"><span class="pre">ZZZZZZ-ZZZZZZ</span></code>
+defines the date and time of their creation (in YYYYMMDD-HHMMSS format). All checkpoints created by the
+framework during training will use this naming convention except for the <code class="docutils literal notranslate"><span class="pre">best</span></code> checkpoint that might
+be created in monitored training sessions (as part of early stopping and for final model evaluation). In
+this case, it will simply be named <code class="docutils literal notranslate"><span class="pre">ckpt.best.pth</span></code>. Its content is the same as other checkpoints however,
+and it is actually just a copy of the corresponding “best” checkpoint in the same directory.</p>
+<p>Checkpoints can be opened directly using <code class="docutils literal notranslate"><span class="pre">torch.load()</span></code>. They contain a dictionary with the following
+fields:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> : the name of the session. Used as a unique identifier for many types of output.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">epoch</span></code> : the epoch index (0-based) at the end of which the checkpoint was saved. This value is
+optional, and may only be saved in training sessions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iter</span></code> : the total number of iterations computed so far in the training session. This value is
+optional, and may only be saved in training sessions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code> : the name of the host that created the checkpoint and its time of creation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sha1</span></code> : the sha1 signature of the framework’s latest git commit. Used for debugging purposed only.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">version</span></code> : the version of the framework that created this checkpoint. Will be used for data and
+configuration file migration if necessary when reloading the checkpoint.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">task</span></code> : a copy or string representation of the task the model was being trained for. Used to
+keep track of expected model input/output mappings (e.g. class names).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">outputs</span></code> : the outputs (e.g. metrics) generated by the trainer for all epochs thus far. This object
+is optional, and may only be saved in training sessions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">model</span></code> : the weights (or “state dictionary”) of the model, or a path to where these weights may be
+found. This field can be used to hold a link to an external JIT trace or ONNX version of the model.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">model_type</span></code> : the type (or class name) of the model that may be used to reinstantiate it.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">model_params</span></code> : the constructor parameters of the model that may be used to reinstantiate it.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : the state of the optimizer at the end of the latest training epoch. This value is
+optional, and may only be saved in training sessions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scheduler</span></code> : the state of the scheduler at the end of the latest training epoch. This value is
+optional, and may only be saved in training sessions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">monitor_best</span></code> : the “best” value for the metric being monitorered so far. This value is optional,
+and may only be saved in training sessions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code> : the full session configuration directionary originally passed to the CLI entrypoint.</p></li>
+</ul>
+</div></blockquote>
+<p>By default, these fields do not contain pickled objects directly tied to the framework, meaning any
+PyTorch installation should be able to open a checkpoint without crashing. This also means that a model
+trained with this framework can be opened and reused in any other framework, as long as you are willing
+to extract its weights from the checkpoint yourself. An example of this procedure is given
+<a class="reference internal" href="use-cases.html#use-cases-model-reload"><span class="std std-ref">[here]</span></a>.</p>
+<p>Experimental support for checkpoint creation outside a training session is available through the CLI’s
+<code class="docutils literal notranslate"><span class="pre">export</span></code> operation. <a class="reference external" href="#export-model">See the section above for more information</a>.</p>
+</div>
+<div class="section" id="session-logs">
+<h3>Session logs<a class="headerlink" href="#session-logs" title="Permalink to this headline">¶</a></h3>
+<p>All information printed to the terminal during a session will also automatically be printed to files
+located in the <code class="docutils literal notranslate"><span class="pre">logs</span></code> folder of the session directory. Moreover, useful information about the
+training environment and datasets will be printed in other files in the same location. A brief
+description of these files is provided below:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;dataset_name&gt;.log</span></code> : contains metadata (in JSON format) of the named dataset, its loaded sample
+count, and the separation of its sample indices across the train/valid/test sets. Can be used to
+validate the data split and keep track of which sample is used in which set.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.&lt;PLATFORM&gt;-&lt;DATE&gt;-&lt;TIME&gt;.json</span></code> : backup of the (JSON) configuration file of the session
+that created or modified the current session directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data.log</span></code> : logger output that provides high-level information about the loaded dataset parsers
+including given names, sizes, task interfaces, and base transforms.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">modules.log</span></code> : logger output that provides details regarding the instantiated model type (class
+name), the parameters passed to its constructor, and a full list of its layers once constructed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">packages.log</span></code> : lists all packages installed in the runtime environment as well as their version.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">task.log</span></code> : provides the full string representation of the task object used during the session.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trainer.log</span></code> : logger output that details the training progress during the session. This file
+can become very large for long sessions; and might be rotated past a certain size in the future.</p></li>
+</ul>
+</div></blockquote>
+<p>Specialized CLI operations and trainers as well as custom implementations might create additional logs
+in this directory. In all cases, logs are provided as nice-to-have for debugging purposes only, and their
+content/structure might change in future versions.</p>
+</div>
+<div class="section" id="outputs">
+<h3>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h3>
+<p>Finally, the session directory contains an <code class="docutils literal notranslate"><span class="pre">output</span></code> folder that is used to store all the evaluation
+results generated by the metrics as well as the <code class="docutils literal notranslate"><span class="pre">tensorboard</span></code> event files. The first level of the
+<code class="docutils literal notranslate"><span class="pre">output</span></code> directory is named after the session itself so that it may easily be copied elsewhere
+without creating conflicts. This also allows <code class="docutils literal notranslate"><span class="pre">tensorboard</span></code> to display the session name in its UI.
+That folder then contains the training, validation, and testing outputs generated for each session.
+These outputs are separated so that individual curves can be turned on and off in <code class="docutils literal notranslate"><span class="pre">tensorboard</span></code>.
+A typical output directory loaded in <code class="docutils literal notranslate"><span class="pre">tensorboard</span></code> is shown below.</p>
+<a class="reference external image-reference" href="https://github.com/plstcharles/thelper/raw/master/docs/src/images/tensorboard_ex.jpg"><img alt="_images/tensorboard_ex.jpg" src="_images/tensorboard_ex.jpg" /></a>
+<p>In this example, the training and validation outputs of several sessions are combined. The metrics
+of each session that produced scalar values were used to generate plots. The scalars are evaluated
+once every epoch, and are grouped automatically in a section named <code class="docutils literal notranslate"><span class="pre">epoch</span></code>. The loss and learning
+rates are also automatically plotted in this section. Additional tabs holding model weight histograms
+and text outputs are also available. If a metric had been used that generated images, those would
+also be available in another tab.</p>
+<p>For more information on available metrics, see <a class="reference internal" href="thelper.optim.html#module-thelper.optim.metrics" title="thelper.optim.metrics"><code class="xref py py-mod docutils literal notranslate"><span class="pre">thelper.optim.metrics</span></code></a>. For more information
+about <code class="docutils literal notranslate"><span class="pre">tensorboard</span></code>, visit <a class="reference external" href="https://www.tensorflow.org/guide/summaries_and_tensorboard">[the official site]</a>.</p>
+<p><a class="reference external" href="#user-guide">[to top]</a></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#command-line-interface">Command-Line Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-files">Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">Session Directories</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="use-cases.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/user-guide.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="use-cases.html" title="Use Cases"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

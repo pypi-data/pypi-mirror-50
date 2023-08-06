@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Installation &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="User Guide" href="user-guide.html" />
+    <link rel="prev" title="FAQ" href="faq.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="index.html">thelper-0.3.8</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="installation">
+<span id="install-guide"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="anaconda">
+<h2>Anaconda<a class="headerlink" href="#anaconda" title="Permalink to this headline">¶</a></h2>
+<p>Starting with v0.2.5, the latest stable version of the framework can be installed directly (with its
+dependencies) via <a class="reference external" href="https://docs.anaconda.com/anaconda/install/">Anaconda</a>. In a conda environment,
+simply enter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda config --env --add channels plstcharles
+$ conda config --env --add channels conda-forge
+$ conda config --env --add channels pytorch
+$ conda config --env --add channels albumentations
+$ conda install thelper
+</pre></div>
+</div>
+<p>This should install the latest stable version of the framework on Windows and Linux, for Python
+3.6 or 3.7. You can check the release notes <a class="reference external" href="https://github.com/plstcharles/thelper/blob/master/CHANGELOG.rst">on GitHub</a>, and pre-built packages
+<a class="reference external" href="https://anaconda.org/plstcharles/thelper">here</a>.</p>
+</div>
+<div class="section" id="docker">
+<h2>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h2>
+<p>Starting with v0.3.2, the latest stable version of the framework is pre-built and available from the
+<a class="reference external" href="https://hub.docker.com/r/plstcharles/thelper">docker hub</a>. To get a copy, simply pull it via:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker pull plstcharles/thelper
+</pre></div>
+</div>
+<p>You should then be able to launch sessions in containers as such:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker run -it plstcharles/thelper thelper &lt;CLI_ARGS_HERE&gt;
+</pre></div>
+</div>
+<p>The image is built from <code class="docutils literal notranslate"><span class="pre">nvidia/cuda</span></code>, meaning that it is compatible with <code class="docutils literal notranslate"><span class="pre">nvidia-docker</span></code> and
+supports CUDA-enabled GPUs. To run a GPU-enabled container, install <a class="reference external" href="https://github.com/NVIDIA/nvidia-docker">the runtime using these
+instructions</a>, and add <code class="docutils literal notranslate"><span class="pre">--runtime=nvidia</span></code> to the arguments given to <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code>.</p>
+</div>
+<div class="section" id="installing-from-source">
+<h2>Installing from source<a class="headerlink" href="#installing-from-source" title="Permalink to this headline">¶</a></h2>
+<p>If you wish to modify the framework’s source code, follow the installation instructions below.</p>
+<div class="section" id="linux">
+<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
+<p>You can use the provided Makefile to automatically create a conda environment on your system that will contain
+the thelper framework and all its dependencies. In your terminal, simply enter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd &lt;THELPER_ROOT&gt;
+$ make install
+</pre></div>
+</div>
+<p>If you already have conda installed somewhere, you can force the Makefile to use it for the installation of the
+new environment by setting the <code class="docutils literal notranslate"><span class="pre">CONDA_HOME</span></code> variable before calling make:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ export CONDA_HOME=/some/path/to/miniconda3
+$ cd &lt;THELPER_ROOT&gt;
+$ make install
+</pre></div>
+</div>
+<p>The newly created conda environment will be called ‘thelper’, and can then be activated using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda activate thelper
+</pre></div>
+</div>
+<p>Or, assuming conda is not already in your path:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ source /some/path/to/miniconda3/bin/activate thelper
+</pre></div>
+</div>
+</div>
+<div class="section" id="other-systems">
+<h3>Other systems<a class="headerlink" href="#other-systems" title="Permalink to this headline">¶</a></h3>
+<p>If you cannot use the Makefile, you will have to install the dependencies yourself. These dependencies are
+listed in the <a class="reference external" href="https://github.com/plstcharles/thelper/blob/master/requirements.txt">requirements file</a>,
+and can also be installed using the conda environment configuration file provided <a class="reference external" href="https://github.com/plstcharles/thelper/blob/master/conda-env.yml">here</a>. For the latter
+case, call the following from your terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda env create --file &lt;THELPER_ROOT&gt;/conda-env.yml -n thelper
+</pre></div>
+</div>
+<p>Then, simply activate your environment and install the thelper package within it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda activate thelper
+$ pip install -e &lt;THELPER_ROOT&gt; --no-deps
+</pre></div>
+</div>
+<p>On the other hand, although it is <em>not</em> recommended since it tends to break PyTorch, you can install the dependencies
+directly through pip:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install -r &lt;THELPER_ROOT&gt;/requirements.txt
+$ pip install -e &lt;THELPER_ROOT&gt; --no-deps
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="testing-the-installation">
+<h2>Testing the installation<a class="headerlink" href="#testing-the-installation" title="Permalink to this headline">¶</a></h2>
+<p>You should now be able to print the thelper package version number to see if the package is properly installed and
+that all dependencies can be loaded at runtime:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(conda-env:thelper) username@hostname:~/devel/thelper$ python
+  Python X.Y.Z |Anaconda, Inc.| (default, YYY XX ZZZ, AA:BB:CC)
+  [GCC X.Y.Z] on linux
+  Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+  &gt;&gt;&gt; import thelper
+  &gt;&gt;&gt; print(thelper.__version__)
+  x.y.z
+</pre></div>
+</div>
+<p>You can now refer to the <a class="reference external" href="https://thelper.readthedocs.io/en/latest/user-guide.html">[user guide]</a> for more information on how to use the framework.</p>
+</div>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>The sphinx documentation is generated automatically via <a class="reference external" href="https://readthedocs.org/projects/thelper/">readthedocs.io</a>,
+but it might still be incomplete due to buggy apidoc usage/platform limitations. To build it yourself, use the makefile:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd &lt;THELPER_ROOT&gt;
+$ make docs
+</pre></div>
+</div>
+<p>The HTML documentation should then be generated inside <code class="docutils literal notranslate"><span class="pre">&lt;THELPER_ROOT&gt;/docs/build/html</span></code>. To browse it, simply open the
+<code class="docutils literal notranslate"><span class="pre">index.html</span></code> file there.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#anaconda">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-from-source">Installing from source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-the-installation">Testing the installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use-cases.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/installation.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="user-guide.html" title="User Guide"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="faq.html" title="FAQ"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

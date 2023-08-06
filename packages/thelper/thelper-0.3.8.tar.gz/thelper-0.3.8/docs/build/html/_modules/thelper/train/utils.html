@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.train.utils &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../../index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="../../../_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for thelper.train.utils</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Training/evaluation utilities module.</span>
+
+<span class="sd">This module contains utilities and tools used to instantiate training sessions. It also contains</span>
+<span class="sd">the prediction consumer interface used by metrics and loggers to receive iteration data during</span>
+<span class="sd">training. See :mod:`thelper.optim.metrics` for more information on metrics.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="k">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">AnyStr</span><span class="p">,</span> <span class="n">Optional</span>  <span class="c1"># noqa: F401</span>
+
+<span class="kn">import</span> <span class="nn">cv2</span> <span class="k">as</span> <span class="nn">cv</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sklearn.metrics</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="kn">import</span> <span class="nn">thelper.utils</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="PredictionConsumer"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.PredictionConsumer">[docs]</a><span class="k">class</span> <span class="nc">PredictionConsumer</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Abstract model prediction consumer class.</span>
+
+<span class="sd">    This interface defines basic functions required so that :class:`thelper.train.base.Trainer` can</span>
+<span class="sd">    figure out how to instantiate and update a model prediction consumer. The most notable class derived</span>
+<span class="sd">    from this interface is :class:`thelper.optim.metrics.Metric` which is used to monitor the</span>
+<span class="sd">    improvement of a model during a training session. Other prediction consumers defined in</span>
+<span class="sd">    :mod:`thelper.train.utils` will instead log predictions to local files, create graphs, etc.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a generic print-friendly string containing info about this consumer.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">+</span> <span class="s2">&quot;()&quot;</span>
+
+<div class="viewcode-block" id="PredictionConsumer.reset"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.PredictionConsumer.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Resets the internal state of the consumer.</span>
+
+<span class="sd">        May be called for example by the trainer between two evaluation epochs. The default implementation</span>
+<span class="sd">        does nothing, and if a reset behavior is needed, it should be implemented by the derived class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="PredictionConsumer.update"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.PredictionConsumer.update">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="c1"># see `thelper.typedefs.IterCallbackParams` for more info</span>
+               <span class="n">task</span><span class="p">,</span>  <span class="c1"># type: thelper.tasks.utils.Task</span>
+               <span class="nb">input</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.InputType</span>
+               <span class="n">pred</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.PredictionType</span>
+               <span class="n">target</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.TargetType</span>
+               <span class="n">sample</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.SampleType</span>
+               <span class="n">loss</span><span class="p">,</span>  <span class="c1"># type: Optional[float]</span>
+               <span class="n">iter_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_iters</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">epoch_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_epochs</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># type: (...) -&gt; None</span>
+        <span class="sd">&quot;&quot;&quot;Receives the latest prediction and groundtruth tensors from the training session.</span>
+
+<span class="sd">        The data given here will be &quot;consumed&quot; internally, but it should NOT be modified. For example,</span>
+<span class="sd">        a classification accuracy metric would accumulate the correct number of predictions in comparison</span>
+<span class="sd">        to groundtruth labels, while a plotting logger would add new corresponding dots to a curve.</span>
+
+<span class="sd">        Remember that input, prediction, and target tensors received here will all have a batch dimension!</span>
+
+<span class="sd">        The exact signature of this function should match the one of the callbacks defined in</span>
+<span class="sd">        :class:`thelper.train.base.Trainer` and specified by ``thelper.typedefs.IterCallbackParams``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
+
+
+<div class="viewcode-block" id="PredictionCallback"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.PredictionCallback">[docs]</a><span class="k">class</span> <span class="nc">PredictionCallback</span><span class="p">(</span><span class="n">PredictionConsumer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Callback function wrapper compatible with the consumer interface.</span>
+
+<span class="sd">    This interface is used to hide user-defined callbacks into the list of prediction consumers given</span>
+<span class="sd">    to trainer implementations. The callbacks must always be compatible with the list of arguments</span>
+<span class="sd">    defined by `thelper.typedefs.IterCallbackParams`, but may also receive extra arguments defined in</span>
+<span class="sd">    advance and passed to the constructor of this class.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        callback_func: user-defined function to call on every update from the trainer.</span>
+<span class="sd">        callback_kwargs: user-defined extra arguments to provide to the callback function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="PredictionCallback.__init__"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.PredictionCallback.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback_func</span><span class="p">,</span> <span class="n">callback_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">callback_func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> \
+            <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">callback_func</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">or</span> <span class="n">callable</span><span class="p">(</span><span class="n">callback_func</span><span class="p">)),</span> \
+            <span class="s2">&quot;invalid callback function, must be importable string or callable object&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">callback_func</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">callback_func</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">import_function</span><span class="p">(</span><span class="n">callback_func</span><span class="p">)</span>
+        <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_func_signature</span><span class="p">(</span><span class="n">callback_func</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">typedefs</span><span class="o">.</span><span class="n">IterCallbackParams</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">callback_kwargs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> \
+            <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">callback_kwargs</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span>
+             <span class="ow">not</span> <span class="nb">any</span><span class="p">([</span><span class="n">p</span> <span class="ow">in</span> <span class="n">callback_kwargs</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">thelper</span><span class="o">.</span><span class="n">typedefs</span><span class="o">.</span><span class="n">IterCallbackParams</span><span class="p">])),</span> \
+            <span class="s2">&quot;invalid callback kwargs (must be dict, and not contain overlap with default args)&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">callback_func</span> <span class="o">=</span> <span class="n">callback_func</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">callback_kwargs</span> <span class="o">=</span> <span class="n">callback_kwargs</span></div>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a generic print-friendly string containing info about this consumer.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;(callback_func={repr(self.callback_func)}, callback_kwargs={repr(self.callback_kwargs)})&quot;</span>
+
+<div class="viewcode-block" id="PredictionCallback.update"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.PredictionCallback.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Forwards the latest prediction data from the training session to the user callback.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback_func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">callback_kwargs</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="ClassifLogger"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.ClassifLogger">[docs]</a><span class="k">class</span> <span class="nc">ClassifLogger</span><span class="p">(</span><span class="n">PredictionConsumer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Classification output logger.</span>
+
+<span class="sd">    This class provides a simple logging interface for accumulating and saving the predictions of a classifier.</span>
+<span class="sd">    By default, all predictions will be logged. However, a confidence threshold can be set to focus on &quot;hard&quot;</span>
+<span class="sd">    samples if necessary. It also optionally offers tensorboardX-compatible output images that can be saved</span>
+<span class="sd">    locally or posted to tensorboard for browser-based visualization.</span>
+
+<span class="sd">    Usage examples inside a session configuration file::</span>
+
+<span class="sd">        # ...</span>
+<span class="sd">        # lists all metrics to instantiate as a dictionary</span>
+<span class="sd">        &quot;metrics&quot;: {</span>
+<span class="sd">            # ...</span>
+<span class="sd">            # this is the name of the example consumer; it is used for lookup/printing only</span>
+<span class="sd">            &quot;logger&quot;: {</span>
+<span class="sd">                # this type is used to instantiate the confusion matrix report object</span>
+<span class="sd">                &quot;type&quot;: &quot;thelper.train.utils.ClassifLogger&quot;,</span>
+<span class="sd">                &quot;params&quot;: {</span>
+<span class="sd">                    # log the three &#39;best&#39; predictions for each sample</span>
+<span class="sd">                    &quot;top_k&quot;: 3,</span>
+<span class="sd">                    # keep updating a set of 10 samples for visualization via tensorboardX</span>
+<span class="sd">                    &quot;viz_count&quot;: 10</span>
+<span class="sd">                }</span>
+<span class="sd">            },</span>
+<span class="sd">            # ...</span>
+<span class="sd">        }</span>
+<span class="sd">        # ...</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        top_k: number of &#39;best&#39; predictions to keep for each sample (along with the gt label).</span>
+<span class="sd">        conf_threshold: threshold used to eliminate all but the most uncertain predictions.</span>
+<span class="sd">        class_names: holds the list of class label names provided by the dataset parser. If it is not</span>
+<span class="sd">            provided when the constructor is called, it will be set by the trainer at runtime.</span>
+<span class="sd">        target_name: name of the targeted label (may be &#39;None&#39; if all classes are used).</span>
+<span class="sd">        target_idx: index of the targeted label (may be &#39;None&#39; if all classes are used).</span>
+<span class="sd">        viz_count: number of tensorboardX images to generate and update at each epoch.</span>
+<span class="sd">        report_count: number of samples to print in reports (use &#39;None&#39; if all samples must be printed).</span>
+<span class="sd">        log_keys: list of metadata field keys to copy from samples into the log for each prediction.</span>
+<span class="sd">        force_softmax: specifies whether a softmax operation should be applied to the prediction scores</span>
+<span class="sd">            obtained from the trainer.</span>
+<span class="sd">        score: array used to store prediction scores for logging.</span>
+<span class="sd">        true: array used to store groundtruth labels for logging.</span>
+<span class="sd">        meta: array used to store metadata pulled from samples for logging.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ClassifLogger.__init__"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.ClassifLogger.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">conf_threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">target_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">viz_count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">report_count</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">log_keys</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">force_softmax</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives the logging parameters &amp; the optional class label names used to decorate the log.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">top_k</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">top_k</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;invalid top-k value&quot;</span>
+        <span class="k">assert</span> <span class="n">conf_threshold</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">conf_threshold</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">conf_threshold</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">),</span> \
+            <span class="s2">&quot;classification confidence threshold should be &#39;None&#39; or float in ]0, 1]&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">viz_count</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">viz_count</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;invalid image count to visualize&quot;</span>
+        <span class="k">assert</span> <span class="n">report_count</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">report_count</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">report_count</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">),</span> <span class="s2">&quot;invalid report sample count&quot;</span>
+        <span class="k">assert</span> <span class="n">log_keys</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">log_keys</span><span class="p">,</span> <span class="nb">list</span><span class="p">),</span> <span class="s2">&quot;invalid list of sample keys to log&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">top_k</span> <span class="o">=</span> <span class="n">top_k</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_name</span> <span class="o">=</span> <span class="n">target_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_idx</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">class_names</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_class_names</span><span class="p">(</span><span class="n">class_names</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conf_threshold</span> <span class="o">=</span> <span class="n">conf_threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">viz_count</span> <span class="o">=</span> <span class="n">viz_count</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">report_count</span> <span class="o">=</span> <span class="n">report_count</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_keys</span> <span class="o">=</span> <span class="n">log_keys</span> <span class="k">if</span> <span class="n">log_keys</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">force_softmax</span> <span class="o">=</span> <span class="n">force_softmax</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">true</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a generic print-friendly string containing info about this consumer.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;(top_k={repr(self.top_k)}, conf_threshold={repr(self.conf_threshold)}, &quot;</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;class_names={repr(self.class_names)}, target_name={repr(self.target_name)}, &quot;</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;viz_count={repr(self.viz_count)}, report_count={repr(self.report_count)}, &quot;</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;log_keys={repr(self.log_keys)}, force_softmax={repr(self.force_softmax)})&quot;</span>
+
+<div class="viewcode-block" id="ClassifLogger.set_class_names"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.ClassifLogger.set_class_names">[docs]</a>    <span class="k">def</span> <span class="nf">set_class_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_names</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the class label names that must be predicted by the model.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">class_names</span><span class="p">,</span> <span class="nb">list</span><span class="p">),</span> <span class="s2">&quot;expected list for class names&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_names</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;not enough classes in provided class list&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_name</span> <span class="ow">in</span> <span class="n">class_names</span><span class="p">,</span> \
+                <span class="n">f</span><span class="s2">&quot;could not find target name {repr(self.target_name)} in class names list&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">target_idx</span> <span class="o">=</span> <span class="n">class_names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span> <span class="o">=</span> <span class="n">class_names</span></div>
+
+<div class="viewcode-block" id="ClassifLogger.update"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.ClassifLogger.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="c1"># see `thelper.typedefs.IterCallbackParams` for more info</span>
+               <span class="n">task</span><span class="p">,</span>  <span class="c1"># type: thelper.tasks.utils.Task</span>
+               <span class="nb">input</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.InputType</span>
+               <span class="n">pred</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.PredictionType</span>
+               <span class="n">target</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.TargetType</span>
+               <span class="n">sample</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.SampleType</span>
+               <span class="n">loss</span><span class="p">,</span>  <span class="c1"># type: Optional[float]</span>
+               <span class="n">iter_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_iters</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">epoch_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_epochs</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># type: (...) -&gt; None</span>
+        <span class="sd">&quot;&quot;&quot;Receives the latest predictions and target values from the training session.</span>
+
+<span class="sd">        The exact signature of this function should match the one of the callbacks defined in</span>
+<span class="sd">        :class:`thelper.train.base.Trainer` and specified by ``thelper.typedefs.IterCallbackParams``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;unexpected extra arguments present in update call&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Classification</span><span class="p">),</span> <span class="s2">&quot;classif report only impl for classif tasks&quot;</span>
+        <span class="k">assert</span> <span class="n">iter_idx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">max_iters</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">iter_idx</span> <span class="o">&lt;</span> <span class="n">max_iters</span><span class="p">,</span> \
+            <span class="s2">&quot;bad iteration indices given to update function&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="n">max_iters</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">max_iters</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">max_iters</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">max_iters</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_keys</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">class_names</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_class_names</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">class_names</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">target</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">target</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># only accumulate results when groundtruth is available</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">[</span><span class="n">iter_idx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">true</span><span class="p">[</span><span class="n">iter_idx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">array</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">array</span><span class="p">[</span><span class="n">iter_idx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">return</span>
+        <span class="k">assert</span> <span class="n">pred</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">target</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;current classif logger impl only supports batched 1D outputs&quot;</span>
+        <span class="k">assert</span> <span class="n">pred</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;prediction/gt tensors batch size mismatch&quot;</span>
+        <span class="k">assert</span> <span class="n">pred</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">),</span> <span class="s2">&quot;unexpected prediction class dimension size&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">force_softmax</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+                <span class="n">pred</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">[</span><span class="n">iter_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">pred</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">true</span><span class="p">[</span><span class="n">iter_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">meta_key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_keys</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">meta_key</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;could not extract sample field with key {repr(meta_key)}&quot;</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="n">meta_key</span><span class="p">]</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)),</span> <span class="n">f</span><span class="s2">&quot;field {repr(meta_key)} should be batched&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="n">meta_key</span><span class="p">][</span><span class="n">iter_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="n">val</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ClassifLogger.render"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.ClassifLogger.render">[docs]</a>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns an image of predicted outputs as a numpy-compatible RGBA image drawn by pyplot.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">viz_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">true</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>  <span class="c1"># TODO</span></div>
+
+<div class="viewcode-block" id="ClassifLogger.report"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.ClassifLogger.report">[docs]</a>    <span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the logged metadata of predicted samples.</span>
+
+<span class="sd">        The returned object is a print-friendly CSV string that can be consumed directly by tensorboardX. Note</span>
+<span class="sd">        that this string might be very long if the dataset is large (i.e. it will contain one line per sample).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">report_count</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">report_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">true</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">pack</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">[(</span><span class="o">*</span><span class="n">pack</span><span class="p">,</span> <span class="p">)</span> <span class="k">for</span> <span class="n">packs</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">true</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+                          <span class="k">if</span> <span class="n">packs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">pack</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">packs</span><span class="p">)]))</span>
+        <span class="n">logdata</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s2">&quot;pred&quot;</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">keys</span><span class="p">()],</span> <span class="n">pack</span><span class="p">)}</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">logdata</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">logdata</span><span class="o">.</span><span class="n">values</span><span class="p">()]),</span> <span class="s2">&quot;messed up unpacking&quot;</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;target_name,target_score&quot;</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top_k</span><span class="p">):</span>
+            <span class="n">header</span> <span class="o">+=</span> <span class="n">f</span><span class="s2">&quot;,pred_{k + 1}_name,pred_{k + 1}_score&quot;</span>
+        <span class="k">for</span> <span class="n">meta_key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_keys</span><span class="p">:</span>
+            <span class="n">header</span> <span class="o">+=</span> <span class="n">f</span><span class="s2">&quot;,{str(meta_key)}&quot;</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">sample_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">logdata</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">])):</span>
+            <span class="n">gt_label_idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">logdata</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">][</span><span class="n">sample_idx</span><span class="p">])</span>
+            <span class="n">pred_scores</span> <span class="o">=</span> <span class="n">logdata</span><span class="p">[</span><span class="s2">&quot;pred&quot;</span><span class="p">][</span><span class="n">sample_idx</span><span class="p">]</span>
+            <span class="n">sorted_score_idxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">pred_scores</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">sorted_scores</span> <span class="o">=</span> <span class="n">pred_scores</span><span class="p">[</span><span class="n">sorted_score_idxs</span><span class="p">]</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">conf_threshold</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">pred_scores</span><span class="p">[</span><span class="n">gt_label_idx</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">conf_threshold</span><span class="p">:</span>
+                <span class="n">entry</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.class_names[gt_label_idx]}</span><span class="s2">,</span><span class="si">{pred_scores[gt_label_idx]:2.4f}</span><span class="s2">&quot;</span>
+                <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top_k</span><span class="p">):</span>
+                    <span class="n">entry</span> <span class="o">+=</span> <span class="n">f</span><span class="s2">&quot;,{self.class_names[sorted_score_idxs[k]]},</span><span class="si">{sorted_scores[k]:2.4f}</span><span class="s2">&quot;</span>
+                <span class="k">for</span> <span class="n">meta_key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_keys</span><span class="p">:</span>
+                    <span class="n">entry</span> <span class="o">+=</span> <span class="n">f</span><span class="s2">&quot;,{str(logdata[meta_key][sample_idx])}&quot;</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">report_count</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">report_count</span><span class="p">:</span>
+                    <span class="k">break</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">header</span><span class="p">,</span> <span class="o">*</span><span class="n">lines</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="ClassifLogger.reset"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.ClassifLogger.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Toggles a reset of the internal state, emptying storage arrays.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">true</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="kc">None</span></div></div>
+
+
+<div class="viewcode-block" id="ClassifReport"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.ClassifReport">[docs]</a><span class="k">class</span> <span class="nc">ClassifReport</span><span class="p">(</span><span class="n">PredictionConsumer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Classification report interface.</span>
+
+<span class="sd">    This class provides a simple interface to ``sklearn.metrics.classification_report`` so that all</span>
+<span class="sd">    count-based metrics can be reported at once under a string-based representation.</span>
+
+<span class="sd">    Usage example inside a session configuration file::</span>
+
+<span class="sd">        # ...</span>
+<span class="sd">        # lists all metrics to instantiate as a dictionary</span>
+<span class="sd">        &quot;metrics&quot;: {</span>
+<span class="sd">            # ...</span>
+<span class="sd">            # this is the name of the example consumer; it is used for lookup/printing only</span>
+<span class="sd">            &quot;classifreport&quot;: {</span>
+<span class="sd">                # this type is used to instantiate the classification report object</span>
+<span class="sd">                &quot;type&quot;: &quot;thelper.train.utils.ClassifReport&quot;,</span>
+<span class="sd">                # we do not need to provide any parameters to the constructor, defaults are fine</span>
+<span class="sd">                &quot;params&quot;: {}</span>
+<span class="sd">            },</span>
+<span class="sd">            # ...</span>
+<span class="sd">        }</span>
+<span class="sd">        # ...</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        gen_report: report generator function, called at evaluation time to generate the output string.</span>
+<span class="sd">        class_names: holds the list of class label names provided by the dataset parser. If it is not</span>
+<span class="sd">            provided when the constructor is called, it will be set by the trainer at runtime.</span>
+<span class="sd">        pred: queue used to store the top-1 (best) predicted class indices at each iteration.</span>
+<span class="sd">        gt: queue used to store the groundtruth class indices at each iteration.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ClassifReport.__init__"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.ClassifReport.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">digits</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives the optional class names and arguments passed to the report generator function.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            class_names: holds the list of class label names provided by the dataset parser. If it is not</span>
+<span class="sd">                provided when the constructor is called, it will be set by the trainer at runtime.</span>
+<span class="sd">            sample_weight: sample weights, forwarded to ``sklearn.metrics.classification_report``.</span>
+<span class="sd">            digits: metrics output digit count, forwarded to ``sklearn.metrics.classification_report``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">gen_report</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">_class_names</span><span class="p">):</span>
+            <span class="n">_y_true</span> <span class="o">=</span> <span class="p">[</span><span class="n">_class_names</span><span class="p">[</span><span class="n">classid</span><span class="p">]</span> <span class="k">for</span> <span class="n">classid</span> <span class="ow">in</span> <span class="n">y_true</span><span class="p">]</span>
+            <span class="n">_y_pred</span> <span class="o">=</span> <span class="p">[</span><span class="n">_class_names</span><span class="p">[</span><span class="n">classid</span><span class="p">]</span> <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">classid</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">_class_names</span><span class="p">))</span> <span class="k">else</span> <span class="s2">&quot;&lt;unset&gt;&quot;</span> <span class="k">for</span> <span class="n">classid</span> <span class="ow">in</span> <span class="n">y_pred</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">_y_true</span><span class="p">,</span> <span class="n">_y_pred</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">digits</span><span class="o">=</span><span class="n">digits</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">gen_report</span> <span class="o">=</span> <span class="n">gen_report</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">class_names</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_class_names</span><span class="p">(</span><span class="n">class_names</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sample_weight</span> <span class="o">=</span> <span class="n">sample_weight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">digits</span> <span class="o">=</span> <span class="n">digits</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pred</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a generic print-friendly string containing info about this consumer.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;(class_names={repr(self.class_names)}, sample_weight={repr(self.sample_weight)}, digits={repr(self.digits)})&quot;</span>
+
+<div class="viewcode-block" id="ClassifReport.set_class_names"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.ClassifReport.set_class_names">[docs]</a>    <span class="k">def</span> <span class="nf">set_class_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_names</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the class label names that must be predicted by the model.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">class_names</span><span class="p">,</span> <span class="nb">list</span><span class="p">),</span> <span class="s2">&quot;expected list for class names&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_names</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;not enough classes in provided class list&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span> <span class="o">=</span> <span class="n">class_names</span></div>
+
+<div class="viewcode-block" id="ClassifReport.update"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.ClassifReport.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="c1"># see `thelper.typedefs.IterCallbackParams` for more info</span>
+               <span class="n">task</span><span class="p">,</span>  <span class="c1"># type: thelper.tasks.utils.Task</span>
+               <span class="nb">input</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.InputType</span>
+               <span class="n">pred</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.PredictionType</span>
+               <span class="n">target</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.TargetType</span>
+               <span class="n">sample</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.SampleType</span>
+               <span class="n">loss</span><span class="p">,</span>  <span class="c1"># type: Optional[float]</span>
+               <span class="n">iter_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_iters</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">epoch_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_epochs</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># type: (...) -&gt; None</span>
+        <span class="sd">&quot;&quot;&quot;Receives the latest predictions and target values from the training session.</span>
+
+<span class="sd">        The exact signature of this function should match the one of the callbacks defined in</span>
+<span class="sd">        :class:`thelper.train.base.Trainer` and specified by ``thelper.typedefs.IterCallbackParams``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;unexpected extra arguments present in update call&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Classification</span><span class="p">),</span> <span class="s2">&quot;classif report only impl for classif tasks&quot;</span>
+        <span class="k">assert</span> <span class="n">iter_idx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">max_iters</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">iter_idx</span> <span class="o">&lt;</span> <span class="n">max_iters</span><span class="p">,</span> \
+            <span class="s2">&quot;bad iteration indices given to update function&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pred</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">pred</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="n">max_iters</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">max_iters</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">max_iters</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">class_names</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_class_names</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">class_names</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">target</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">target</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># only accumulate results when groundtruth is available</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pred</span><span class="p">[</span><span class="n">iter_idx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="n">iter_idx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">return</span>
+        <span class="k">assert</span> <span class="n">pred</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">target</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;current classif report impl only supports batched 1D outputs&quot;</span>
+        <span class="k">assert</span> <span class="n">pred</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;prediction/gt tensors batch size mismatch&quot;</span>
+        <span class="k">assert</span> <span class="n">pred</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">),</span> <span class="s2">&quot;unexpected prediction class dimension size&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pred</span><span class="p">[</span><span class="n">iter_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">pred</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="n">iter_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ClassifReport.report"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.ClassifReport.report">[docs]</a>    <span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the classification report as a multi-line print-friendly string.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pred</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">pred</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">[(</span><span class="n">pred</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span> <span class="k">for</span> <span class="n">preds</span><span class="p">,</span> <span class="n">targets</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pred</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+                             <span class="k">if</span> <span class="n">targets</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">pred</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">targets</span><span class="p">)])</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gen_report</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">target</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">pred</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ClassifReport.reset"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.ClassifReport.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Toggles a reset of the metric&#39;s internal state, emptying queues.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pred</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="kc">None</span></div></div>
+
+
+<div class="viewcode-block" id="ConfusionMatrix"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.ConfusionMatrix">[docs]</a><span class="k">class</span> <span class="nc">ConfusionMatrix</span><span class="p">(</span><span class="n">PredictionConsumer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Confusion matrix report interface.</span>
+
+<span class="sd">    This class provides a simple interface to ``sklearn.metrics.confusion_matrix`` so that a full</span>
+<span class="sd">    confusion matrix can be easily reported under a string-based representation. It also offers a</span>
+<span class="sd">    tensorboardX-compatible output image that can be saved locally or posted to tensorboard for</span>
+<span class="sd">    browser-based visualization.</span>
+
+<span class="sd">    Usage example inside a session configuration file::</span>
+
+<span class="sd">        # ...</span>
+<span class="sd">        # lists all metrics to instantiate as a dictionary</span>
+<span class="sd">        &quot;metrics&quot;: {</span>
+<span class="sd">            # ...</span>
+<span class="sd">            # this is the name of the example consumer; it is used for lookup/printing only</span>
+<span class="sd">            &quot;confmat&quot;: {</span>
+<span class="sd">                # this type is used to instantiate the confusion matrix report object</span>
+<span class="sd">                &quot;type&quot;: &quot;thelper.train.utils.ConfusionMatrix&quot;,</span>
+<span class="sd">                # we do not need to provide any parameters to the constructor, defaults are fine</span>
+<span class="sd">                &quot;params&quot;: {}</span>
+<span class="sd">            },</span>
+<span class="sd">            # ...</span>
+<span class="sd">        }</span>
+<span class="sd">        # ...</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        matrix: report generator function, called at evaluation time to generate the output string.</span>
+<span class="sd">        class_names: holds the list of class label names provided by the dataset parser. If it is not</span>
+<span class="sd">            provided when the constructor is called, it will be set by the trainer at runtime.</span>
+<span class="sd">        draw_normalized: defines whether rendered confusion matrices should be normalized or not.</span>
+<span class="sd">        pred: queue used to store the top-1 (best) predicted class indices at each iteration.</span>
+<span class="sd">        gt: queue used to store the groundtruth class indices at each iteration.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ConfusionMatrix.__init__"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.ConfusionMatrix.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">draw_normalized</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives the optional class label names used to decorate the output string.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            class_names: holds the list of class label names provided by the dataset parser. If it is not</span>
+<span class="sd">                provided when the constructor is called, it will be set by the trainer at runtime.</span>
+<span class="sd">            draw_normalized: defines whether rendered confusion matrices should be normalized or not.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">gen_matrix</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">_class_names</span><span class="p">):</span>
+            <span class="n">_y_true</span> <span class="o">=</span> <span class="p">[</span><span class="n">_class_names</span><span class="p">[</span><span class="n">classid</span><span class="p">]</span> <span class="k">for</span> <span class="n">classid</span> <span class="ow">in</span> <span class="n">y_true</span><span class="p">]</span>
+            <span class="n">_y_pred</span> <span class="o">=</span> <span class="p">[</span><span class="n">_class_names</span><span class="p">[</span><span class="n">classid</span><span class="p">]</span> <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">classid</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">_class_names</span><span class="p">))</span> <span class="k">else</span> <span class="s2">&quot;&lt;unset&gt;&quot;</span> <span class="k">for</span> <span class="n">classid</span> <span class="ow">in</span> <span class="n">y_pred</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">_y_true</span><span class="p">,</span> <span class="n">_y_pred</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">_class_names</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">=</span> <span class="n">gen_matrix</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">draw_normalized</span> <span class="o">=</span> <span class="n">draw_normalized</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">class_names</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_class_names</span><span class="p">(</span><span class="n">class_names</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pred</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a generic print-friendly string containing info about this consumer.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;(class_names={repr(self.class_names)}, draw_normalized={repr(self.draw_normalized)})&quot;</span>
+
+<div class="viewcode-block" id="ConfusionMatrix.set_class_names"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.ConfusionMatrix.set_class_names">[docs]</a>    <span class="k">def</span> <span class="nf">set_class_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_names</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the class label names that must be predicted by the model.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">class_names</span><span class="p">,</span> <span class="nb">list</span><span class="p">),</span> <span class="s2">&quot;expected list for class names&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_names</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;not enough classes in provided class list&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span> <span class="o">=</span> <span class="n">class_names</span></div>
+
+<div class="viewcode-block" id="ConfusionMatrix.update"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.ConfusionMatrix.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="c1"># see `thelper.typedefs.IterCallbackParams` for more info</span>
+               <span class="n">task</span><span class="p">,</span>  <span class="c1"># type: thelper.tasks.utils.Task</span>
+               <span class="nb">input</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.InputType</span>
+               <span class="n">pred</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.PredictionType</span>
+               <span class="n">target</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.TargetType</span>
+               <span class="n">sample</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.SampleType</span>
+               <span class="n">loss</span><span class="p">,</span>  <span class="c1"># type: Optional[float]</span>
+               <span class="n">iter_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_iters</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">epoch_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_epochs</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># type: (...) -&gt; None</span>
+        <span class="sd">&quot;&quot;&quot;Receives the latest predictions and target values from the training session.</span>
+
+<span class="sd">        The exact signature of this function should match the one of the callbacks defined in</span>
+<span class="sd">        :class:`thelper.train.base.Trainer` and specified by ``thelper.typedefs.IterCallbackParams``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;unexpected extra arguments present in update call&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Classification</span><span class="p">),</span> <span class="s2">&quot;confmat only impl for classif tasks&quot;</span>
+        <span class="k">assert</span> <span class="n">iter_idx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">max_iters</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">iter_idx</span> <span class="o">&lt;</span> <span class="n">max_iters</span><span class="p">,</span> \
+            <span class="s2">&quot;bad iteration indices given to update function&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pred</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">pred</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="n">max_iters</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">max_iters</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">max_iters</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">class_names</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_class_names</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">class_names</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">target</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">target</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># only accumulate results when groundtruth is available</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pred</span><span class="p">[</span><span class="n">iter_idx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="n">iter_idx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">return</span>
+        <span class="k">assert</span> <span class="n">pred</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">target</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;current confmat impl only supports batched 1D outputs&quot;</span>
+        <span class="k">assert</span> <span class="n">pred</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;prediction/gt tensors batch size mismatch&quot;</span>
+        <span class="k">assert</span> <span class="n">pred</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">),</span> <span class="s2">&quot;unexpected prediction class dimension size&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pred</span><span class="p">[</span><span class="n">iter_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">pred</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="n">iter_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ConfusionMatrix.report"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.ConfusionMatrix.report">[docs]</a>    <span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the confusion matrix as a multi-line print-friendly string.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pred</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">pred</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">[(</span><span class="n">pred</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span> <span class="k">for</span> <span class="n">preds</span><span class="p">,</span> <span class="n">targets</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pred</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+                             <span class="k">if</span> <span class="n">targets</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">pred</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">targets</span><span class="p">)])</span>
+        <span class="n">confmat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">target</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">pred</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">stringify_confmat</span><span class="p">(</span><span class="n">confmat</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ConfusionMatrix.render"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.ConfusionMatrix.render">[docs]</a>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the confusion matrix as a numpy-compatible RGBA image drawn by pyplot.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pred</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">pred</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">[(</span><span class="n">pred</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span> <span class="k">for</span> <span class="n">preds</span><span class="p">,</span> <span class="n">targets</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pred</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+                             <span class="k">if</span> <span class="n">targets</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">pred</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">targets</span><span class="p">)])</span>
+        <span class="n">confmat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">target</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">pred</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">draw_confmat</span><span class="p">(</span><span class="n">confmat</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">draw_normalized</span><span class="p">)</span>
+            <span class="n">array</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">fig2array</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">array</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;failed to render confusion matrix; caught exception:</span><span class="se">\n</span><span class="s2">{str(e)}&quot;</span><span class="p">)</span>
+            <span class="c1"># return None if rendering fails (probably due to matplotlib on displayless server)</span>
+            <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="ConfusionMatrix.reset"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.ConfusionMatrix.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Toggles a reset of the metric&#39;s internal state, emptying queues.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pred</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="kc">None</span></div></div>
+
+
+<div class="viewcode-block" id="create_consumers"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.create_consumers">[docs]</a><span class="k">def</span> <span class="nf">create_consumers</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Instantiates and returns the prediction consumers defined in the configuration dictionary.</span>
+
+<span class="sd">    All arguments are expected to be handed in through the configuration via a dictionary named &#39;params&#39;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="nb">dict</span><span class="p">),</span> <span class="s2">&quot;config should be provided as a dictionary&quot;</span>
+    <span class="n">consumers</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">consumer_config</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">consumer_config</span><span class="p">,</span> <span class="nb">dict</span><span class="p">),</span> <span class="s2">&quot;consumer config should be provided as a dictionary&quot;</span>
+        <span class="k">assert</span> <span class="s2">&quot;type&quot;</span> <span class="ow">in</span> <span class="n">consumer_config</span> <span class="ow">and</span> <span class="n">consumer_config</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">],</span> <span class="s2">&quot;consumer config missing &#39;type&#39; field&quot;</span>
+        <span class="n">consumer_type</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">import_class</span><span class="p">(</span><span class="n">consumer_config</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">])</span>
+        <span class="n">consumer_params</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">([</span><span class="s2">&quot;params&quot;</span><span class="p">,</span> <span class="s2">&quot;parameters&quot;</span><span class="p">],</span> <span class="n">consumer_config</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">consumer</span> <span class="o">=</span> <span class="n">consumer_type</span><span class="p">(</span><span class="o">**</span><span class="n">consumer_params</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;failed to create consumer </span><span class="si">{consumer_config[&#39;type&#39;]}</span><span class="s2"> with params:</span><span class="se">\n\t</span><span class="s2">{str(consumer_params)}&quot;</span><span class="p">)</span>
+            <span class="k">raise</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">consumer</span><span class="p">,</span> <span class="n">PredictionConsumer</span><span class="p">),</span> <span class="s2">&quot;invalid consumer type, must derive from PredictionConsumer interface&quot;</span>
+        <span class="n">consumers</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">consumer</span>
+    <span class="k">return</span> <span class="n">consumers</span></div>
+
+
+<div class="viewcode-block" id="create_trainer"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.utils.create_trainer">[docs]</a><span class="k">def</span> <span class="nf">create_trainer</span><span class="p">(</span><span class="n">session_name</span><span class="p">,</span>    <span class="c1"># type: AnyStr</span>
+                   <span class="n">save_dir</span><span class="p">,</span>        <span class="c1"># type: AnyStr</span>
+                   <span class="n">config</span><span class="p">,</span>          <span class="c1"># type: thelper.typedefs.ConfigDict</span>
+                   <span class="n">model</span><span class="p">,</span>           <span class="c1"># type: thelper.typedefs.ModelType</span>
+                   <span class="n">task</span><span class="p">,</span>            <span class="c1"># type: thelper.tasks.Task</span>
+                   <span class="n">loaders</span><span class="p">,</span>         <span class="c1"># type: thelper.typedefs.MultiLoaderType</span>
+                   <span class="n">ckptdata</span><span class="o">=</span><span class="kc">None</span>    <span class="c1"># type: Optional[thelper.typedefs.CheckpointContentType]</span>
+                   <span class="p">):</span>               <span class="c1"># type: (...) -&gt; thelper.train.Trainer</span>
+    <span class="sd">&quot;&quot;&quot;Instantiates the trainer object based on the type contained in the config dictionary.</span>
+
+<span class="sd">    The trainer type is expected to be in the configuration dictionary&#39;s `trainer` field, under the `type` key. For more</span>
+<span class="sd">    information on the configuration, refer to :class:`thelper.train.base.Trainer`. The instantiated type must be</span>
+<span class="sd">    compatible with the constructor signature of :class:`thelper.train.base.Trainer`. The object&#39;s constructor will</span>
+<span class="sd">    be given the full config dictionary and the checkpoint data for resuming the session (if available).</span>
+
+<span class="sd">    If the trainer type is missing, it will be automatically deduced based on the task object.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        session_name: name of the training session used for printing and to create internal tensorboardX directories.</span>
+<span class="sd">        save_dir: path to the session directory where logs and checkpoints will be saved.</span>
+<span class="sd">        config: full configuration dictionary that will be parsed for trainer parameters and saved in checkpoints.</span>
+<span class="sd">        model: model to train/evaluate; should be compatible with :class:`thelper.nn.utils.Module`.</span>
+<span class="sd">        task: global task interface defining the type of model and training goal for the session.</span>
+<span class="sd">        loaders: a tuple containing the training/validation/test data loaders (a loader can be ``None`` if empty).</span>
+<span class="sd">        ckptdata: raw checkpoint to parse data from when resuming a session (if ``None``, will start from scratch).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The fully-constructed trainer object, ready to begin model training/evaluation.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.train.base.Trainer`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="s2">&quot;trainer&quot;</span> <span class="ow">in</span> <span class="n">config</span> <span class="ow">and</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;trainer&quot;</span><span class="p">],</span> <span class="s2">&quot;session configuration dictionary missing &#39;trainer&#39; section&quot;</span>
+    <span class="n">trainer_config</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;trainer&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="s2">&quot;type&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">trainer_config</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Classification</span><span class="p">):</span>
+            <span class="n">trainer_type</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">ImageClassifTrainer</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Detection</span><span class="p">):</span>
+            <span class="n">trainer_type</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">ObjDetectTrainer</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Regression</span><span class="p">):</span>
+            <span class="n">trainer_type</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">RegressionTrainer</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Segmentation</span><span class="p">):</span>
+            <span class="n">trainer_type</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">ImageSegmTrainer</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;unknown trainer type required for task &#39;{str(task)}&#39;&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">trainer_type</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">import_class</span><span class="p">(</span><span class="n">trainer_config</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">trainer_type</span><span class="p">(</span><span class="n">session_name</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">loaders</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">ckptdata</span><span class="o">=</span><span class="n">ckptdata</span><span class="p">)</span></div>
+
+
+<span class="c1"># noinspection PyUnusedLocal</span>
+<span class="k">def</span> <span class="nf">_draw_wrapper</span><span class="p">(</span><span class="n">task</span><span class="p">,</span>  <span class="c1"># type: thelper.tasks.utils.Task</span>
+                  <span class="nb">input</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.InputType</span>
+                  <span class="n">pred</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.PredictionType</span>
+                  <span class="n">target</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.TargetType</span>
+                  <span class="n">sample</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.SampleType</span>
+                  <span class="n">loss</span><span class="p">,</span>  <span class="c1"># type: Optional[float]</span>
+                  <span class="n">iter_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+                  <span class="n">max_iters</span><span class="p">,</span>  <span class="c1"># type: int</span>
+                  <span class="n">epoch_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+                  <span class="n">max_epochs</span><span class="p">,</span>  <span class="c1"># type: int</span>
+                  <span class="c1"># extra params added by callback interface below</span>
+                  <span class="n">output_path</span><span class="p">,</span>  <span class="c1"># type: str</span>
+                  <span class="n">save</span><span class="p">,</span>  <span class="c1"># type: bool</span>
+                  <span class="c1"># all extra params will be forwarded to the display call</span>
+                  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># type: (...) -&gt; None</span>
+    <span class="sd">&quot;&quot;&quot;Wrapper to :func:`thelper.utils.draw` used as a callback entrypoint for trainers.&quot;&quot;&quot;</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">task</span><span class="o">=</span><span class="n">task</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="nb">input</span><span class="p">,</span> <span class="n">pred</span><span class="o">=</span><span class="n">pred</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">save</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;unexpected redraw output (should be 2-elem tuple)&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="s2">&quot;path&quot;</span> <span class="ow">in</span> <span class="n">sample</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">],</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> \
+                <span class="s2">&quot;unexpected draw format (current implementation needs batch size = 1, and path metadata)&quot;</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+            <span class="n">cv</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># we&#39;re displaying with matplotlib, and have no clue on how to save the output</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../use-cases.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

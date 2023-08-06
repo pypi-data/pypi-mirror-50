@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.nn package &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="thelper.nn.sr package" href="thelper.nn.sr.html" />
+    <link rel="prev" title="thelper.gui package" href="thelper.gui.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="thelper.html" accesskey="U">thelper package</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-thelper.nn">
+<span id="thelper-nn-package"></span><h1>thelper.nn package<a class="headerlink" href="#module-thelper.nn" title="Permalink to this headline">¶</a></h1>
+<p>Neural network and model package.</p>
+<p>This package contains classes that define blocks and modules used in various neural network
+architectures. Most of these classes have been adapted from external sources; see their individual
+headers for more information.</p>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="thelper.nn.sr.html">thelper.nn.sr package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="thelper.nn.sr.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.nn.sr.html#module-thelper.nn.sr.srcnn">thelper.nn.sr.srcnn module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.nn.sr.html#module-thelper.nn.sr.vdsr">thelper.nn.sr.vdsr module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-thelper.nn.common">
+<span id="thelper-nn-common-module"></span><h2>thelper.nn.common module<a class="headerlink" href="#module-thelper.nn.common" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="thelper.nn.common.ConvBlock">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.common.</code><code class="sig-name descname">ConvBlock</code><span class="sig-paren">(</span><em class="sig-param">input_size</em>, <em class="sig-param">output_size</em>, <em class="sig-param">kernel_size=4</em>, <em class="sig-param">stride=2</em>, <em class="sig-param">padding=1</em>, <em class="sig-param">bias=True</em>, <em class="sig-param">activation='relu'</em>, <em class="sig-param">norm='batch'</em>, <em class="sig-param">groups=1</em>, <em class="sig-param">prelu_params=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/common.html#ConvBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.common.ConvBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="thelper.nn.common.ConvBlock.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">input_size</em>, <em class="sig-param">output_size</em>, <em class="sig-param">kernel_size=4</em>, <em class="sig-param">stride=2</em>, <em class="sig-param">padding=1</em>, <em class="sig-param">bias=True</em>, <em class="sig-param">activation='relu'</em>, <em class="sig-param">norm='batch'</em>, <em class="sig-param">groups=1</em>, <em class="sig-param">prelu_params=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/common.html#ConvBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.common.ConvBlock.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.common.ConvBlock.forward_act_bn">
+<code class="sig-name descname">forward_act_bn</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/common.html#ConvBlock.forward_act_bn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.common.ConvBlock.forward_act_bn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.common.ConvBlock.forward_bn_act">
+<code class="sig-name descname">forward_bn_act</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/common.html#ConvBlock.forward_bn_act"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.common.ConvBlock.forward_bn_act" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.common.DeconvBlock">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.common.</code><code class="sig-name descname">DeconvBlock</code><span class="sig-paren">(</span><em class="sig-param">input_size</em>, <em class="sig-param">output_size</em>, <em class="sig-param">kernel_size=4</em>, <em class="sig-param">stride=2</em>, <em class="sig-param">padding=1</em>, <em class="sig-param">bias=True</em>, <em class="sig-param">activation='relu'</em>, <em class="sig-param">norm='batch'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/common.html#DeconvBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.common.DeconvBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="thelper.nn.common.DeconvBlock.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">input_size</em>, <em class="sig-param">output_size</em>, <em class="sig-param">kernel_size=4</em>, <em class="sig-param">stride=2</em>, <em class="sig-param">padding=1</em>, <em class="sig-param">bias=True</em>, <em class="sig-param">activation='relu'</em>, <em class="sig-param">norm='batch'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/common.html#DeconvBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.common.DeconvBlock.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.common.DeconvBlock.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/common.html#DeconvBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.common.DeconvBlock.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.common.DenseBlock">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.common.</code><code class="sig-name descname">DenseBlock</code><span class="sig-paren">(</span><em class="sig-param">input_size</em>, <em class="sig-param">output_size</em>, <em class="sig-param">bias=True</em>, <em class="sig-param">activation='relu'</em>, <em class="sig-param">norm='batch'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/common.html#DenseBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.common.DenseBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="thelper.nn.common.DenseBlock.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">input_size</em>, <em class="sig-param">output_size</em>, <em class="sig-param">bias=True</em>, <em class="sig-param">activation='relu'</em>, <em class="sig-param">norm='batch'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/common.html#DenseBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.common.DenseBlock.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.common.DenseBlock.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/common.html#DenseBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.common.DenseBlock.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.common.PSBlock">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.common.</code><code class="sig-name descname">PSBlock</code><span class="sig-paren">(</span><em class="sig-param">input_size</em>, <em class="sig-param">output_size</em>, <em class="sig-param">scale_factor</em>, <em class="sig-param">kernel_size=3</em>, <em class="sig-param">stride=1</em>, <em class="sig-param">padding=1</em>, <em class="sig-param">bias=True</em>, <em class="sig-param">activation='relu'</em>, <em class="sig-param">norm='batch'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/common.html#PSBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.common.PSBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="thelper.nn.common.PSBlock.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">input_size</em>, <em class="sig-param">output_size</em>, <em class="sig-param">scale_factor</em>, <em class="sig-param">kernel_size=3</em>, <em class="sig-param">stride=1</em>, <em class="sig-param">padding=1</em>, <em class="sig-param">bias=True</em>, <em class="sig-param">activation='relu'</em>, <em class="sig-param">norm='batch'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/common.html#PSBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.common.PSBlock.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.common.PSBlock.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/common.html#PSBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.common.PSBlock.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.common.ResNetBlock">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.common.</code><code class="sig-name descname">ResNetBlock</code><span class="sig-paren">(</span><em class="sig-param">num_filter</em>, <em class="sig-param">kernel_size=3</em>, <em class="sig-param">stride=1</em>, <em class="sig-param">padding=1</em>, <em class="sig-param">bias=True</em>, <em class="sig-param">activation='relu'</em>, <em class="sig-param">norm='batch'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/common.html#ResNetBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.common.ResNetBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="thelper.nn.common.ResNetBlock.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">num_filter</em>, <em class="sig-param">kernel_size=3</em>, <em class="sig-param">stride=1</em>, <em class="sig-param">padding=1</em>, <em class="sig-param">bias=True</em>, <em class="sig-param">activation='relu'</em>, <em class="sig-param">norm='batch'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/common.html#ResNetBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.common.ResNetBlock.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.common.ResNetBlock.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/common.html#ResNetBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.common.ResNetBlock.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.common.Upsample2xBlock">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.common.</code><code class="sig-name descname">Upsample2xBlock</code><span class="sig-paren">(</span><em class="sig-param">input_size</em>, <em class="sig-param">output_size</em>, <em class="sig-param">bias=True</em>, <em class="sig-param">upsample='deconv'</em>, <em class="sig-param">activation='relu'</em>, <em class="sig-param">norm='batch'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/common.html#Upsample2xBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.common.Upsample2xBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="thelper.nn.common.Upsample2xBlock.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">input_size</em>, <em class="sig-param">output_size</em>, <em class="sig-param">bias=True</em>, <em class="sig-param">upsample='deconv'</em>, <em class="sig-param">activation='relu'</em>, <em class="sig-param">norm='batch'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/common.html#Upsample2xBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.common.Upsample2xBlock.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.common.Upsample2xBlock.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/common.html#Upsample2xBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.common.Upsample2xBlock.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.nn.common.shave">
+<code class="sig-prename descclassname">thelper.nn.common.</code><code class="sig-name descname">shave</code><span class="sig-paren">(</span><em class="sig-param">imgs</em>, <em class="sig-param">border_size=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/common.html#shave"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.common.shave" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="thelper.nn.common.weights_init_kaiming">
+<code class="sig-prename descclassname">thelper.nn.common.</code><code class="sig-name descname">weights_init_kaiming</code><span class="sig-paren">(</span><em class="sig-param">m</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/common.html#weights_init_kaiming"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.common.weights_init_kaiming" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="thelper.nn.common.weights_init_xavier">
+<code class="sig-prename descclassname">thelper.nn.common.</code><code class="sig-name descname">weights_init_xavier</code><span class="sig-paren">(</span><em class="sig-param">m</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/common.html#weights_init_xavier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.common.weights_init_xavier" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-thelper.nn.coordconv">
+<span id="thelper-nn-coordconv-module"></span><h2>thelper.nn.coordconv module<a class="headerlink" href="#module-thelper.nn.coordconv" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="thelper.nn.coordconv.AddCoords">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.coordconv.</code><code class="sig-name descname">AddCoords</code><span class="sig-paren">(</span><em class="sig-param">radius_channel=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/coordconv.html#AddCoords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.coordconv.AddCoords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="thelper.nn.coordconv.AddCoords.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">radius_channel=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/coordconv.html#AddCoords.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.coordconv.AddCoords.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.coordconv.AddCoords.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">in_tensor</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/coordconv.html#AddCoords.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.coordconv.AddCoords.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>in_tensor: (batch_size, channels, x_dim, y_dim)
+[0,0,0,0]   [0,1,2,3]
+[1,1,1,1]   [0,1,2,3]    &lt;&lt; (i,j)th coordinates of pixels added as separate channels
+[2,2,2,2]   [0,1,2,3]
+taken from mkocabas.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.coordconv.CoordConv2d">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.coordconv.</code><code class="sig-name descname">CoordConv2d</code><span class="sig-paren">(</span><em class="sig-param">in_channels</em>, <em class="sig-param">*args</em>, <em class="sig-param">radius_channel=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/coordconv.html#CoordConv2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.coordconv.CoordConv2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>add any additional coordinate channels to the input tensor</p>
+<dl class="method">
+<dt id="thelper.nn.coordconv.CoordConv2d.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">in_channels</em>, <em class="sig-param">*args</em>, <em class="sig-param">radius_channel=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/coordconv.html#CoordConv2d.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.coordconv.CoordConv2d.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.coordconv.CoordConv2d.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">in_tensor</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/coordconv.html#CoordConv2d.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.coordconv.CoordConv2d.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.coordconv.CoordConvTranspose">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.coordconv.</code><code class="sig-name descname">CoordConvTranspose</code><span class="sig-paren">(</span><em class="sig-param">radius_channel</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/coordconv.html#CoordConvTranspose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.coordconv.CoordConvTranspose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>CoordConvTranspose layer for segmentation tasks.</p>
+<dl class="method">
+<dt id="thelper.nn.coordconv.CoordConvTranspose.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">radius_channel</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/coordconv.html#CoordConvTranspose.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.coordconv.CoordConvTranspose.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.coordconv.CoordConvTranspose.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">in_tensor</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/coordconv.html#CoordConvTranspose.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.coordconv.CoordConvTranspose.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.nn.densenet">
+<span id="thelper-nn-densenet-module"></span><h2>thelper.nn.densenet module<a class="headerlink" href="#module-thelper.nn.densenet" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="thelper.nn.densenet.DenseNet">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.densenet.</code><code class="sig-name descname">DenseNet</code><span class="sig-paren">(</span><em class="sig-param">growth_rate=32</em>, <em class="sig-param">block_config=(6</em>, <em class="sig-param">12</em>, <em class="sig-param">24</em>, <em class="sig-param">16)</em>, <em class="sig-param">num_init_features=64</em>, <em class="sig-param">bn_size=4</em>, <em class="sig-param">drop_rate=0</em>, <em class="sig-param">num_classes=1000</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/densenet.html#DenseNet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.densenet.DenseNet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Densenet-BC model class, based on <a class="reference external" href="https://arxiv.org/pdf/1608.06993.pdf">“Densely Connected Convolutional Networks”</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>growth_rate</strong> (<em>int</em>) – how many filters to add each layer (<cite>k</cite> in paper)</p></li>
+<li><p><strong>block_config</strong> (<em>list of 4 ints</em>) – how many layers in each pooling block</p></li>
+<li><p><strong>num_init_features</strong> (<em>int</em>) – the number of filters to learn in the first convolution layer</p></li>
+<li><p><strong>bn_size</strong> (<em>int</em>) – multiplicative factor for number of bottle neck layers (i.e. <cite>bn_size * k features</cite>
+in the bottleneck layer)</p></li>
+<li><p><strong>drop_rate</strong> (<em>float</em>) – dropout rate after each dense layer</p></li>
+<li><p><strong>num_classes</strong> (<em>int</em>) – number of classification classes</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.nn.densenet.DenseNet.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">growth_rate=32</em>, <em class="sig-param">block_config=(6</em>, <em class="sig-param">12</em>, <em class="sig-param">24</em>, <em class="sig-param">16)</em>, <em class="sig-param">num_init_features=64</em>, <em class="sig-param">bn_size=4</em>, <em class="sig-param">drop_rate=0</em>, <em class="sig-param">num_classes=1000</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/densenet.html#DenseNet.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.densenet.DenseNet.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.densenet.DenseNet.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/densenet.html#DenseNet.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.densenet.DenseNet.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.nn.densenet.densenet121">
+<code class="sig-prename descclassname">thelper.nn.densenet.</code><code class="sig-name descname">densenet121</code><span class="sig-paren">(</span><em class="sig-param">pretrained=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/densenet.html#densenet121"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.densenet.densenet121" title="Permalink to this definition">¶</a></dt>
+<dd><p>Densenet-121 model from <a class="reference external" href="https://arxiv.org/pdf/1608.06993.pdf">“Densely Connected Convolutional Networks”</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pretrained</strong> (<em>bool</em>) – If True, returns a model pre-trained on ImageNet</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.nn.densenet.densenet169">
+<code class="sig-prename descclassname">thelper.nn.densenet.</code><code class="sig-name descname">densenet169</code><span class="sig-paren">(</span><em class="sig-param">pretrained=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/densenet.html#densenet169"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.densenet.densenet169" title="Permalink to this definition">¶</a></dt>
+<dd><p>Densenet-169 model from <a class="reference external" href="https://arxiv.org/pdf/1608.06993.pdf">“Densely Connected Convolutional Networks”</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pretrained</strong> (<em>bool</em>) – If True, returns a model pre-trained on ImageNet</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.nn.densenet.densenet201">
+<code class="sig-prename descclassname">thelper.nn.densenet.</code><code class="sig-name descname">densenet201</code><span class="sig-paren">(</span><em class="sig-param">pretrained=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/densenet.html#densenet201"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.densenet.densenet201" title="Permalink to this definition">¶</a></dt>
+<dd><p>Densenet-201 model from <a class="reference external" href="https://arxiv.org/pdf/1608.06993.pdf">“Densely Connected Convolutional Networks”</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pretrained</strong> (<em>bool</em>) – If True, returns a model pre-trained on ImageNet</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.nn.densenet.densenet161">
+<code class="sig-prename descclassname">thelper.nn.densenet.</code><code class="sig-name descname">densenet161</code><span class="sig-paren">(</span><em class="sig-param">pretrained=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/densenet.html#densenet161"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.densenet.densenet161" title="Permalink to this definition">¶</a></dt>
+<dd><p>Densenet-161 model from <a class="reference external" href="https://arxiv.org/pdf/1608.06993.pdf">“Densely Connected Convolutional Networks”</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pretrained</strong> (<em>bool</em>) – If True, returns a model pre-trained on ImageNet</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.nn.fcn">
+<span id="thelper-nn-fcn-module"></span><h2>thelper.nn.fcn module<a class="headerlink" href="#module-thelper.nn.fcn" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="thelper.nn.fcn.FCN32s">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.fcn.</code><code class="sig-name descname">FCN32s</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">init_vgg16=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/fcn.html#FCN32s"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.fcn.FCN32s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.nn.utils.Module" title="thelper.nn.utils.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.utils.Module</span></code></a></p>
+<dl class="method">
+<dt id="thelper.nn.fcn.FCN32s.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">init_vgg16=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/fcn.html#FCN32s.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.fcn.FCN32s.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives a task object to hold internally for model specialization.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.fcn.FCN32s.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/fcn.html#FCN32s.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.fcn.FCN32s.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms an input tensor in order to generate a prediction.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.fcn.FCN32s.init_vgg16_params">
+<code class="sig-name descname">init_vgg16_params</code><span class="sig-paren">(</span><em class="sig-param">vgg16</em>, <em class="sig-param">copy_fc8=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/fcn.html#FCN32s.init_vgg16_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.fcn.FCN32s.init_vgg16_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.fcn.FCN32s.set_task">
+<code class="sig-name descname">set_task</code><span class="sig-paren">(</span><em class="sig-param">task</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/fcn.html#FCN32s.set_task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.fcn.FCN32s.set_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adapts the model to support a new task, replacing layers if needed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.nn.fcn.get_upsampling_weight">
+<code class="sig-prename descclassname">thelper.nn.fcn.</code><code class="sig-name descname">get_upsampling_weight</code><span class="sig-paren">(</span><em class="sig-param">in_channels</em>, <em class="sig-param">out_channels</em>, <em class="sig-param">kernel_size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/fcn.html#get_upsampling_weight"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.fcn.get_upsampling_weight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-thelper.nn.inceptionresnetv2">
+<span id="thelper-nn-inceptionresnetv2-module"></span><h2>thelper.nn.inceptionresnetv2 module<a class="headerlink" href="#module-thelper.nn.inceptionresnetv2" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="thelper.nn.inceptionresnetv2.BasicConv2d">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.inceptionresnetv2.</code><code class="sig-name descname">BasicConv2d</code><span class="sig-paren">(</span><em class="sig-param">in_planes</em>, <em class="sig-param">out_planes</em>, <em class="sig-param">kernel_size</em>, <em class="sig-param">stride</em>, <em class="sig-param">padding=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#BasicConv2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.BasicConv2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="thelper.nn.inceptionresnetv2.BasicConv2d.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">in_planes</em>, <em class="sig-param">out_planes</em>, <em class="sig-param">kernel_size</em>, <em class="sig-param">stride</em>, <em class="sig-param">padding=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#BasicConv2d.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.BasicConv2d.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.inceptionresnetv2.BasicConv2d.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#BasicConv2d.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.BasicConv2d.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.inceptionresnetv2.Block17">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.inceptionresnetv2.</code><code class="sig-name descname">Block17</code><span class="sig-paren">(</span><em class="sig-param">scale=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#Block17"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.Block17" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="thelper.nn.inceptionresnetv2.Block17.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">scale=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#Block17.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.Block17.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.inceptionresnetv2.Block17.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#Block17.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.Block17.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.inceptionresnetv2.Block35">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.inceptionresnetv2.</code><code class="sig-name descname">Block35</code><span class="sig-paren">(</span><em class="sig-param">scale=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#Block35"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.Block35" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="thelper.nn.inceptionresnetv2.Block35.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">scale=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#Block35.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.Block35.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.inceptionresnetv2.Block35.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#Block35.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.Block35.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.inceptionresnetv2.Block8">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.inceptionresnetv2.</code><code class="sig-name descname">Block8</code><span class="sig-paren">(</span><em class="sig-param">scale=1.0</em>, <em class="sig-param">noReLU=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#Block8"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.Block8" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="thelper.nn.inceptionresnetv2.Block8.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">scale=1.0</em>, <em class="sig-param">noReLU=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#Block8.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.Block8.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.inceptionresnetv2.Block8.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#Block8.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.Block8.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.inceptionresnetv2.InceptionResNetV2">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.inceptionresnetv2.</code><code class="sig-name descname">InceptionResNetV2</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">input_channels=3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#InceptionResNetV2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.InceptionResNetV2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.nn.utils.Module" title="thelper.nn.utils.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.utils.Module</span></code></a></p>
+<dl class="method">
+<dt id="thelper.nn.inceptionresnetv2.InceptionResNetV2.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">input_channels=3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#InceptionResNetV2.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.InceptionResNetV2.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives a task object to hold internally for model specialization.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.inceptionresnetv2.InceptionResNetV2.features">
+<code class="sig-name descname">features</code><span class="sig-paren">(</span><em class="sig-param">input</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#InceptionResNetV2.features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.InceptionResNetV2.features" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.inceptionresnetv2.InceptionResNetV2.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">input</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#InceptionResNetV2.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.InceptionResNetV2.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms an input tensor in order to generate a prediction.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.inceptionresnetv2.InceptionResNetV2.logits">
+<code class="sig-name descname">logits</code><span class="sig-paren">(</span><em class="sig-param">features</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#InceptionResNetV2.logits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.InceptionResNetV2.logits" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.inceptionresnetv2.InceptionResNetV2.set_task">
+<code class="sig-name descname">set_task</code><span class="sig-paren">(</span><em class="sig-param">task</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#InceptionResNetV2.set_task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.InceptionResNetV2.set_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adapts the model to support a new task, replacing layers if needed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.inceptionresnetv2.Mixed_5b">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.inceptionresnetv2.</code><code class="sig-name descname">Mixed_5b</code><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#Mixed_5b"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.Mixed_5b" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="thelper.nn.inceptionresnetv2.Mixed_5b.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#Mixed_5b.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.Mixed_5b.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.inceptionresnetv2.Mixed_5b.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#Mixed_5b.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.Mixed_5b.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.inceptionresnetv2.Mixed_6a">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.inceptionresnetv2.</code><code class="sig-name descname">Mixed_6a</code><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#Mixed_6a"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.Mixed_6a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="thelper.nn.inceptionresnetv2.Mixed_6a.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#Mixed_6a.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.Mixed_6a.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.inceptionresnetv2.Mixed_6a.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#Mixed_6a.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.Mixed_6a.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.inceptionresnetv2.Mixed_7a">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.inceptionresnetv2.</code><code class="sig-name descname">Mixed_7a</code><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#Mixed_7a"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.Mixed_7a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="thelper.nn.inceptionresnetv2.Mixed_7a.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#Mixed_7a.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.Mixed_7a.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.inceptionresnetv2.Mixed_7a.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/inceptionresnetv2.html#Mixed_7a.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.inceptionresnetv2.Mixed_7a.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.nn.lenet">
+<span id="thelper-nn-lenet-module"></span><h2>thelper.nn.lenet module<a class="headerlink" href="#module-thelper.nn.lenet" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="thelper.nn.lenet.LeNet">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.lenet.</code><code class="sig-name descname">LeNet</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">input_shape=(1</em>, <em class="sig-param">28</em>, <em class="sig-param">28)</em>, <em class="sig-param">conv1_filters=6</em>, <em class="sig-param">conv2_filters=16</em>, <em class="sig-param">hidden1_size=120</em>, <em class="sig-param">hidden2_size=84</em>, <em class="sig-param">output_size=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/lenet.html#LeNet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.lenet.LeNet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.nn.utils.Module" title="thelper.nn.utils.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.utils.Module</span></code></a></p>
+<p>LeNet CNN implementation.</p>
+<p>See <a class="reference external" href="http://yann.lecun.com/exdb/lenet/">http://yann.lecun.com/exdb/lenet/</a> for more information.</p>
+<p>This is NOT a modern architecture; it is only provided here for tutorial purposes.</p>
+<dl class="method">
+<dt id="thelper.nn.lenet.LeNet.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">input_shape=(1</em>, <em class="sig-param">28</em>, <em class="sig-param">28)</em>, <em class="sig-param">conv1_filters=6</em>, <em class="sig-param">conv2_filters=16</em>, <em class="sig-param">hidden1_size=120</em>, <em class="sig-param">hidden2_size=84</em>, <em class="sig-param">output_size=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/lenet.html#LeNet.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.lenet.LeNet.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives a task object to hold internally for model specialization.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.lenet.LeNet.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/lenet.html#LeNet.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.lenet.LeNet.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms an input tensor in order to generate a prediction.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.lenet.LeNet.set_task">
+<code class="sig-name descname">set_task</code><span class="sig-paren">(</span><em class="sig-param">task</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/lenet.html#LeNet.set_task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.lenet.LeNet.set_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adapts the model to support a new task, replacing layers if needed.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.nn.mobilenet">
+<span id="thelper-nn-mobilenet-module"></span><h2>thelper.nn.mobilenet module<a class="headerlink" href="#module-thelper.nn.mobilenet" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="thelper.nn.mobilenet.InvertedResidual">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.mobilenet.</code><code class="sig-name descname">InvertedResidual</code><span class="sig-paren">(</span><em class="sig-param">inp</em>, <em class="sig-param">oup</em>, <em class="sig-param">stride</em>, <em class="sig-param">expand_ratio</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/mobilenet.html#InvertedResidual"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.mobilenet.InvertedResidual" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="thelper.nn.mobilenet.InvertedResidual.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">inp</em>, <em class="sig-param">oup</em>, <em class="sig-param">stride</em>, <em class="sig-param">expand_ratio</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/mobilenet.html#InvertedResidual.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.mobilenet.InvertedResidual.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.mobilenet.InvertedResidual.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/mobilenet.html#InvertedResidual.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.mobilenet.InvertedResidual.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.mobilenet.MobileNetV2">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.mobilenet.</code><code class="sig-name descname">MobileNetV2</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">input_size=224</em>, <em class="sig-param">width_mult=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/mobilenet.html#MobileNetV2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.mobilenet.MobileNetV2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.nn.utils.Module" title="thelper.nn.utils.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.utils.Module</span></code></a></p>
+<dl class="method">
+<dt id="thelper.nn.mobilenet.MobileNetV2.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">input_size=224</em>, <em class="sig-param">width_mult=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/mobilenet.html#MobileNetV2.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.mobilenet.MobileNetV2.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives a task object to hold internally for model specialization.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.mobilenet.MobileNetV2.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/mobilenet.html#MobileNetV2.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.mobilenet.MobileNetV2.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms an input tensor in order to generate a prediction.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.mobilenet.MobileNetV2.set_task">
+<code class="sig-name descname">set_task</code><span class="sig-paren">(</span><em class="sig-param">task</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/mobilenet.html#MobileNetV2.set_task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.mobilenet.MobileNetV2.set_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adapts the model to support a new task, replacing layers if needed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.nn.mobilenet.conv_1x1_bn">
+<code class="sig-prename descclassname">thelper.nn.mobilenet.</code><code class="sig-name descname">conv_1x1_bn</code><span class="sig-paren">(</span><em class="sig-param">inp</em>, <em class="sig-param">oup</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/mobilenet.html#conv_1x1_bn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.mobilenet.conv_1x1_bn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="thelper.nn.mobilenet.conv_bn">
+<code class="sig-prename descclassname">thelper.nn.mobilenet.</code><code class="sig-name descname">conv_bn</code><span class="sig-paren">(</span><em class="sig-param">inp</em>, <em class="sig-param">oup</em>, <em class="sig-param">stride</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/mobilenet.html#conv_bn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.mobilenet.conv_bn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-thelper.nn.resnet">
+<span id="thelper-nn-resnet-module"></span><h2>thelper.nn.resnet module<a class="headerlink" href="#module-thelper.nn.resnet" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="thelper.nn.resnet.BasicBlock">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.resnet.</code><code class="sig-name descname">BasicBlock</code><span class="sig-paren">(</span><em class="sig-param">inplanes</em>, <em class="sig-param">planes</em>, <em class="sig-param">stride=1</em>, <em class="sig-param">downsample=None</em>, <em class="sig-param">coordconv=False</em>, <em class="sig-param">radius_channel=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#BasicBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.BasicBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.nn.resnet.Module" title="thelper.nn.resnet.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.resnet.Module</span></code></a></p>
+<dl class="method">
+<dt id="thelper.nn.resnet.BasicBlock.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">inplanes</em>, <em class="sig-param">planes</em>, <em class="sig-param">stride=1</em>, <em class="sig-param">downsample=None</em>, <em class="sig-param">coordconv=False</em>, <em class="sig-param">radius_channel=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#BasicBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.BasicBlock.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.resnet.BasicBlock.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#BasicBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.BasicBlock.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <a class="reference internal" href="#thelper.nn.resnet.Module" title="thelper.nn.resnet.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></a> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.resnet.Bottleneck">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.resnet.</code><code class="sig-name descname">Bottleneck</code><span class="sig-paren">(</span><em class="sig-param">inplanes</em>, <em class="sig-param">planes</em>, <em class="sig-param">stride=1</em>, <em class="sig-param">downsample=None</em>, <em class="sig-param">coordconv=False</em>, <em class="sig-param">radius_channel=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#Bottleneck"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.Bottleneck" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.nn.resnet.Module" title="thelper.nn.resnet.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.resnet.Module</span></code></a></p>
+<dl class="method">
+<dt id="thelper.nn.resnet.Bottleneck.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">inplanes</em>, <em class="sig-param">planes</em>, <em class="sig-param">stride=1</em>, <em class="sig-param">downsample=None</em>, <em class="sig-param">coordconv=False</em>, <em class="sig-param">radius_channel=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#Bottleneck.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.Bottleneck.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="thelper.nn.resnet.Bottleneck.expansion">
+<code class="sig-name descname">expansion</code><em class="property"> = 4</em><a class="headerlink" href="#thelper.nn.resnet.Bottleneck.expansion" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.resnet.Bottleneck.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#Bottleneck.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.Bottleneck.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <a class="reference internal" href="#thelper.nn.resnet.Module" title="thelper.nn.resnet.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></a> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.resnet.ConvTailNet">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.resnet.</code><code class="sig-name descname">ConvTailNet</code><span class="sig-paren">(</span><em class="sig-param">n_inputs</em>, <em class="sig-param">num_classes</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#ConvTailNet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.ConvTailNet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="thelper.nn.resnet.ConvTailNet.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">n_inputs</em>, <em class="sig-param">num_classes</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#ConvTailNet.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.ConvTailNet.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.resnet.ConvTailNet.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#ConvTailNet.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.ConvTailNet.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <a class="reference internal" href="#thelper.nn.resnet.Module" title="thelper.nn.resnet.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></a> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.resnet.FCResNet">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.resnet.</code><code class="sig-name descname">FCResNet</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">ckptdata</em>, <em class="sig-param">map_location='cpu'</em>, <em class="sig-param">avgpool_size=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#FCResNet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.FCResNet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.nn.resnet.ResNet" title="thelper.nn.resnet.ResNet"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.resnet.ResNet</span></code></a></p>
+<dl class="method">
+<dt id="thelper.nn.resnet.FCResNet.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">ckptdata</em>, <em class="sig-param">map_location='cpu'</em>, <em class="sig-param">avgpool_size=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#FCResNet.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.FCResNet.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives a task object to hold internally for model specialization.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.resnet.FCResNet.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#FCResNet.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.FCResNet.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms an input tensor in order to generate a prediction.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.resnet.FCResNet.set_task">
+<code class="sig-name descname">set_task</code><span class="sig-paren">(</span><em class="sig-param">task</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#FCResNet.set_task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.FCResNet.set_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adapts the model to support a new task, replacing layers if needed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.resnet.Module">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.resnet.</code><code class="sig-name descname">Module</code><span class="sig-paren">(</span><em class="sig-param">inplanes</em>, <em class="sig-param">planes</em>, <em class="sig-param">stride=1</em>, <em class="sig-param">downsample=None</em>, <em class="sig-param">coordconv=False</em>, <em class="sig-param">radius_channel=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#Module"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.Module" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="thelper.nn.resnet.Module.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">inplanes</em>, <em class="sig-param">planes</em>, <em class="sig-param">stride=1</em>, <em class="sig-param">downsample=None</em>, <em class="sig-param">coordconv=False</em>, <em class="sig-param">radius_channel=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#Module.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.Module.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="thelper.nn.resnet.Module.expansion">
+<code class="sig-name descname">expansion</code><em class="property"> = 1</em><a class="headerlink" href="#thelper.nn.resnet.Module.expansion" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.resnet.ResNet">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.resnet.</code><code class="sig-name descname">ResNet</code><span class="sig-paren">(</span><em class="sig-param">task, block=&lt;class 'thelper.nn.resnet.BasicBlock'&gt;, layers=[3, 4, 6, 3], strides=[1, 2, 2, 2], input_channels=3, flexible_input_res=False, pool_size=7, coordconv=False, radius_channel=True, pretrained=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#ResNet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.ResNet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.nn.utils.Module" title="thelper.nn.utils.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.utils.Module</span></code></a></p>
+<dl class="method">
+<dt id="thelper.nn.resnet.ResNet.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">task, block=&lt;class 'thelper.nn.resnet.BasicBlock'&gt;, layers=[3, 4, 6, 3], strides=[1, 2, 2, 2], input_channels=3, flexible_input_res=False, pool_size=7, coordconv=False, radius_channel=True, pretrained=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#ResNet.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.ResNet.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives a task object to hold internally for model specialization.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.resnet.ResNet.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#ResNet.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.ResNet.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms an input tensor in order to generate a prediction.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.resnet.ResNet.set_task">
+<code class="sig-name descname">set_task</code><span class="sig-paren">(</span><em class="sig-param">task</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#ResNet.set_task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.ResNet.set_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adapts the model to support a new task, replacing layers if needed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.resnet.ResNetFullyConv">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.resnet.</code><code class="sig-name descname">ResNetFullyConv</code><span class="sig-paren">(</span><em class="sig-param">task, block=&lt;class 'thelper.nn.resnet.BasicBlock'&gt;, layers=[3, 4, 6, 3], strides=[1, 2, 2, 2], input_channels=3, flexible_input_res=False, pool_size=7, coordconv=False, radius_channel=True, pretrained=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#ResNetFullyConv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.ResNetFullyConv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.nn.resnet.ResNet" title="thelper.nn.resnet.ResNet"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.resnet.ResNet</span></code></a></p>
+<dl class="method">
+<dt id="thelper.nn.resnet.ResNetFullyConv.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">task, block=&lt;class 'thelper.nn.resnet.BasicBlock'&gt;, layers=[3, 4, 6, 3], strides=[1, 2, 2, 2], input_channels=3, flexible_input_res=False, pool_size=7, coordconv=False, radius_channel=True, pretrained=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#ResNetFullyConv.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.ResNetFullyConv.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives a task object to hold internally for model specialization.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.resnet.ResNetFullyConv.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#ResNetFullyConv.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.ResNetFullyConv.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms an input tensor in order to generate a prediction.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.resnet.ResNetFullyConv.set_task">
+<code class="sig-name descname">set_task</code><span class="sig-paren">(</span><em class="sig-param">task</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#ResNetFullyConv.set_task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.ResNetFullyConv.set_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adapts the model to support a new task, replacing layers if needed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.resnet.SqueezeExcitationBlock">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.resnet.</code><code class="sig-name descname">SqueezeExcitationBlock</code><span class="sig-paren">(</span><em class="sig-param">inplanes</em>, <em class="sig-param">planes</em>, <em class="sig-param">stride=1</em>, <em class="sig-param">downsample=None</em>, <em class="sig-param">reduction=16</em>, <em class="sig-param">coordconv=False</em>, <em class="sig-param">radius_channel=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#SqueezeExcitationBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.SqueezeExcitationBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.nn.resnet.Module" title="thelper.nn.resnet.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.resnet.Module</span></code></a></p>
+<dl class="method">
+<dt id="thelper.nn.resnet.SqueezeExcitationBlock.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">inplanes</em>, <em class="sig-param">planes</em>, <em class="sig-param">stride=1</em>, <em class="sig-param">downsample=None</em>, <em class="sig-param">reduction=16</em>, <em class="sig-param">coordconv=False</em>, <em class="sig-param">radius_channel=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#SqueezeExcitationBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.SqueezeExcitationBlock.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.resnet.SqueezeExcitationBlock.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#SqueezeExcitationBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.SqueezeExcitationBlock.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <a class="reference internal" href="#thelper.nn.resnet.Module" title="thelper.nn.resnet.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></a> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.resnet.SqueezeExcitationLayer">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.resnet.</code><code class="sig-name descname">SqueezeExcitationLayer</code><span class="sig-paren">(</span><em class="sig-param">channel</em>, <em class="sig-param">reduction=16</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#SqueezeExcitationLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.SqueezeExcitationLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="thelper.nn.resnet.SqueezeExcitationLayer.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">channel</em>, <em class="sig-param">reduction=16</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#SqueezeExcitationLayer.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.SqueezeExcitationLayer.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.resnet.SqueezeExcitationLayer.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/resnet.html#SqueezeExcitationLayer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.resnet.SqueezeExcitationLayer.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <a class="reference internal" href="#thelper.nn.resnet.Module" title="thelper.nn.resnet.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></a> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.nn.utils">
+<span id="thelper-nn-utils-module"></span><h2>thelper.nn.utils module<a class="headerlink" href="#module-thelper.nn.utils" title="Permalink to this headline">¶</a></h2>
+<p>Neural network utility functions and classes.</p>
+<p>This module contains base interfaces and utility functions used to define and instantiate
+neural network models.</p>
+<dl class="class">
+<dt id="thelper.nn.utils.ExternalClassifModule">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.utils.</code><code class="sig-name descname">ExternalClassifModule</code><span class="sig-paren">(</span><em class="sig-param">model_type</em>, <em class="sig-param">task</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/utils.html#ExternalClassifModule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.utils.ExternalClassifModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.nn.utils.ExternalModule" title="thelper.nn.utils.ExternalModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.utils.ExternalModule</span></code></a></p>
+<p>External model interface specialization for classification tasks.</p>
+<p>This interface will try to ‘rewire’ the last fully connected layer of the models it instantiates to match
+the number of classes to predict defined in the task object.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.nn.utils.Module" title="thelper.nn.utils.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.utils.Module</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.nn.utils.ExternalModule" title="thelper.nn.utils.ExternalModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.utils.ExternalModule</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.nn.utils.create_model" title="thelper.nn.utils.create_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.nn.utils.create_model()</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.tasks.html#thelper.tasks.classif.Classification" title="thelper.tasks.classif.Classification"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.classif.Classification</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.nn.utils.ExternalClassifModule.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">model_type</em>, <em class="sig-param">task</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/utils.html#ExternalClassifModule.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.utils.ExternalClassifModule.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives a task object to hold internally for model specialization, and tries to rewire the last ‘fc’ layer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.utils.ExternalClassifModule.set_task">
+<code class="sig-name descname">set_task</code><span class="sig-paren">(</span><em class="sig-param">task</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/utils.html#ExternalClassifModule.set_task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.utils.ExternalClassifModule.set_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rewires the last fully connected layer of the wrapped network to fit the given number of classification targets.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.utils.ExternalDetectModule">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.utils.</code><code class="sig-name descname">ExternalDetectModule</code><span class="sig-paren">(</span><em class="sig-param">model_type</em>, <em class="sig-param">task</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/utils.html#ExternalDetectModule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.utils.ExternalDetectModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.nn.utils.ExternalModule" title="thelper.nn.utils.ExternalModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.utils.ExternalModule</span></code></a></p>
+<p>External model interface specialization for object detection tasks.</p>
+<p>This interface will try to ‘rewire’ the last fully connected layer of the models it instantiates to match
+the number of classes to predict defined in the task object.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.nn.utils.Module" title="thelper.nn.utils.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.utils.Module</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.nn.utils.ExternalModule" title="thelper.nn.utils.ExternalModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.utils.ExternalModule</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.nn.utils.create_model" title="thelper.nn.utils.create_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.nn.utils.create_model()</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.tasks.html#thelper.tasks.detect.Detection" title="thelper.tasks.detect.Detection"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.detect.Detection</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.nn.utils.ExternalDetectModule.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">model_type</em>, <em class="sig-param">task</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/utils.html#ExternalDetectModule.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.utils.ExternalDetectModule.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives a task object to hold internally for model specialization, and tries to rewire the last ‘fc’ layer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.utils.ExternalDetectModule.set_task">
+<code class="sig-name descname">set_task</code><span class="sig-paren">(</span><em class="sig-param">task</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/utils.html#ExternalDetectModule.set_task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.utils.ExternalDetectModule.set_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rewires the last fully connected layer of the wrapped network to fit the given number of classification targets.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.utils.ExternalModule">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.utils.</code><code class="sig-name descname">ExternalModule</code><span class="sig-paren">(</span><em class="sig-param">model_type</em>, <em class="sig-param">task</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/utils.html#ExternalModule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.utils.ExternalModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.nn.utils.Module" title="thelper.nn.utils.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.utils.Module</span></code></a></p>
+<p>Model inteface used to hold a task object for an external implementation.</p>
+<p>This interface is built on top of <code class="docutils literal notranslate"><span class="pre">torch.nn.Module</span></code> and should remain fully compatible with it. It is
+automatically used when instantiating a model via <a class="reference internal" href="#thelper.nn.utils.create_model" title="thelper.nn.utils.create_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.nn.utils.create_model()</span></code></a> that is not derived
+from <a class="reference internal" href="#thelper.nn.utils.Module" title="thelper.nn.utils.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.utils.Module</span></code></a>. Its only purpose is to hold the task object, and redirect
+<a class="reference internal" href="#thelper.nn.utils.Module.forward" title="thelper.nn.utils.Module.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.nn.utils.Module.forward()</span></code></a> to the actual model’s transformation function. It can also be
+specialized to automatically adapt some external models after their construction using the knowledge
+contained in the task object.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.nn.utils.Module" title="thelper.nn.utils.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.utils.Module</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.nn.utils.ExternalClassifModule" title="thelper.nn.utils.ExternalClassifModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.utils.ExternalClassifModule</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.nn.utils.create_model" title="thelper.nn.utils.create_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.nn.utils.create_model()</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.tasks.html#thelper.tasks.utils.Task" title="thelper.tasks.utils.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.utils.Task</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.nn.utils.ExternalModule.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">model_type</em>, <em class="sig-param">task</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/utils.html#ExternalModule.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.utils.ExternalModule.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives a task object to hold internally for model specialization.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.utils.ExternalModule.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">*input</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/utils.html#ExternalModule.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.utils.ExternalModule.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms an input tensor in order to generate a prediction.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.utils.ExternalModule.get_name">
+<code class="sig-name descname">get_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/utils.html#ExternalModule.get_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.utils.ExternalModule.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of this module (by default, the fully qualified class name of the external model).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.utils.ExternalModule.load_state_dict">
+<code class="sig-name descname">load_state_dict</code><span class="sig-paren">(</span><em class="sig-param">state_dict</em>, <em class="sig-param">strict=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/utils.html#ExternalModule.load_state_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.utils.ExternalModule.load_state_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads the state dict of an external model.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.utils.ExternalModule.set_task">
+<code class="sig-name descname">set_task</code><span class="sig-paren">(</span><em class="sig-param">task</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/utils.html#ExternalModule.set_task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.utils.ExternalModule.set_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores the new task internally.</p>
+<p>Note that since this external module handler is generic, it does not know what to do with the task,
+so it just assumes that the model is already set up. Specialized external module handlers will instead
+attempt to modify the model they wrap.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.utils.ExternalModule.state_dict">
+<code class="sig-name descname">state_dict</code><span class="sig-paren">(</span><em class="sig-param">destination=None</em>, <em class="sig-param">prefix=''</em>, <em class="sig-param">keep_vars=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/utils.html#ExternalModule.state_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.utils.ExternalModule.state_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the state dict of the external model.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.utils.ExternalModule.summary">
+<code class="sig-name descname">summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/utils.html#ExternalModule.summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.utils.ExternalModule.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints a summary of the model using the <code class="docutils literal notranslate"><span class="pre">thelper.nn</span></code> logger.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.nn.utils.Module">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.nn.utils.</code><code class="sig-name descname">Module</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/utils.html#Module"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.utils.Module" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Model interface used to hold a task object.</p>
+<p>This interface is built on top of <code class="docutils literal notranslate"><span class="pre">torch.nn.Module</span></code> and should remain fully compatible with it.</p>
+<p>All models used in the framework should derive from this interface, and therefore expect a task object as
+the first argument of their constructor. Their implementation may decide to ignore this task object when
+building their internal layers, but using it should help specialize the network by specifying e.g. the
+number of classes to support.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.nn.utils.create_model" title="thelper.nn.utils.create_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.nn.utils.create_model()</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.tasks.html#thelper.tasks.utils.Task" title="thelper.tasks.utils.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.utils.Task</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.nn.utils.Module.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/utils.html#Module.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.utils.Module.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives a task object to hold internally for model specialization.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.utils.Module.forward">
+<em class="property">abstract </em><code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">*input</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/utils.html#Module.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.utils.Module.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms an input tensor in order to generate a prediction.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.utils.Module.get_name">
+<code class="sig-name descname">get_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/utils.html#Module.get_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.utils.Module.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of this module (by default, its fully qualified class name).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.utils.Module.set_task">
+<em class="property">abstract </em><code class="sig-name descname">set_task</code><span class="sig-paren">(</span><em class="sig-param">task</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/utils.html#Module.set_task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.utils.Module.set_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adapts the model to support a new task, replacing layers if needed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.nn.utils.Module.summary">
+<code class="sig-name descname">summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/utils.html#Module.summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.utils.Module.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints a summary of the model using the <code class="docutils literal notranslate"><span class="pre">thelper.nn</span></code> logger.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.nn.utils.create_model">
+<code class="sig-prename descclassname">thelper.nn.utils.</code><code class="sig-name descname">create_model</code><span class="sig-paren">(</span><em class="sig-param">config</em>, <em class="sig-param">task</em>, <em class="sig-param">save_dir=None</em>, <em class="sig-param">ckptdata=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/nn/utils.html#create_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.nn.utils.create_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiates a model based on a provided task object.</p>
+<p>The configuration must be given as a dictionary object. This dictionary will be parsed for a ‘model’ field.
+This field is expected to be a dictionary itself. It may then specify a type to instantiate as well as the
+parameters to provide to that class constructor, or a path to a checkpoint from which a model should be loaded.</p>
+<p>All models must derive from <a class="reference internal" href="#thelper.nn.utils.Module" title="thelper.nn.utils.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.utils.Module</span></code></a>, or they must be instantiable through
+<a class="reference internal" href="#thelper.nn.utils.ExternalModule" title="thelper.nn.utils.ExternalModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.utils.ExternalModule</span></code></a> (or one of its specialized classes). The provided task object will
+be used to make sure that the model has the required input/output layers for the requested objective.</p>
+<p>If checkpoint data is provided by the caller, the weights it contains will be loaded into the returned model.</p>
+<p>Usage examples inside a session configuration file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
+<span class="c1"># the function will look for a &#39;model&#39; field in the provided config dict</span>
+<span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1"># the type provides the class name to instantiate an object from</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.nn.mobilenet.MobileNetV2&quot;</span><span class="p">,</span>
+    <span class="c1"># the parameters listed below are passed to the model&#39;s constructor</span>
+    <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># ...</span>
+    <span class="p">}</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> – a session dictionary that provides a ‘model’ field containing a dictionary.</p></li>
+<li><p><strong>task</strong> – a task object that will be passed to the model’s constructor in order to specialize it. Can be
+<code class="docutils literal notranslate"><span class="pre">None</span></code> if a checkpoint is provided, and if the previous task is wanted instead of a new one.</p></li>
+<li><p><strong>save_dir</strong> – if not <code class="docutils literal notranslate"><span class="pre">None</span></code>, a log file containing model information will be created there.</p></li>
+<li><p><strong>ckptdata</strong> – raw checkpoint data loaded via <code class="docutils literal notranslate"><span class="pre">torch.load()</span></code>; the model will be given its previous state.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The instantiated model, compatible with the interface of both <a class="reference internal" href="#thelper.nn.utils.Module" title="thelper.nn.utils.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.utils.Module</span></code></a>
+and <code class="docutils literal notranslate"><span class="pre">torch.nn.Module</span></code>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.nn.utils.Module" title="thelper.nn.utils.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.utils.Module</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.nn.utils.ExternalModule" title="thelper.nn.utils.ExternalModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.utils.ExternalModule</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.tasks.html#thelper.tasks.utils.Task" title="thelper.tasks.utils.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.tasks.utils.Task</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.html#thelper.utils.load_checkpoint" title="thelper.utils.load_checkpoint"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.utils.load_checkpoint()</span></code></a></div>
+</div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use-cases.html">Use Cases</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="thelper.html">thelper package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="thelper.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.cli">thelper.cli module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.typedefs">thelper.typedefs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.utils">thelper.utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/thelper.nn.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="thelper.nn.sr.html" title="thelper.nn.sr package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="thelper.gui.html" title="thelper.gui package"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.data.parsers &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../../index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="../../../_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for thelper.data.parsers</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Dataset parsers module.</span>
+
+<span class="sd">This module contains dataset parser interfaces and base classes that define basic i/o</span>
+<span class="sd">operations so that the framework can automatically interact with training data.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="k">import</span> <span class="n">abstractmethod</span>
+
+<span class="kn">import</span> <span class="nn">cv2</span> <span class="k">as</span> <span class="nn">cv</span>
+<span class="kn">import</span> <span class="nn">h5py</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">PIL</span>
+<span class="kn">import</span> <span class="nn">PIL.Image</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.utils.data</span>
+
+<span class="kn">import</span> <span class="nn">thelper.tasks</span>
+<span class="kn">import</span> <span class="nn">thelper.utils</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Dataset"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.Dataset">[docs]</a><span class="k">class</span> <span class="nc">Dataset</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Abstract dataset parsing interface that holds a task and a list of sample dictionaries.</span>
+
+<span class="sd">    This interface helps fix a failure of PyTorch&#39;s dataset interface (``torch.utils.data.Dataset``):</span>
+<span class="sd">    the lack of identity associated with the components of a sample. In short, a data sample loaded by a</span>
+<span class="sd">    dataset typically contains the input data that should be forwarded to a model as well as the expected</span>
+<span class="sd">    prediction of the model (i.e. the &#39;groundtruth&#39;) that will be used to compute the loss. These two</span>
+<span class="sd">    elements are typically paired in a tuple that can then be provided to the data loader for batching.</span>
+<span class="sd">    Problems however arise when the model has multiple inputs or outputs, when the sample needs to carry</span>
+<span class="sd">    supplemental metadata to simplify debugging, or when transformation operations need to be applied</span>
+<span class="sd">    only to specific elements of the sample. Here, we fix this issue by specifying that all samples must</span>
+<span class="sd">    be provided to data loaders as dictionaries. The keys of these dictionaries explicitly define which</span>
+<span class="sd">    value(s) should be transformed, which should be forwarded to the model, which are the expected model</span>
+<span class="sd">    predictions, and which are only used for debugging. The keys are defined via the task object that is</span>
+<span class="sd">    generated by the dataset or specified via the configuration file (see :class:`thelper.tasks.utils.Task`</span>
+<span class="sd">    for more information).</span>
+
+<span class="sd">    To properly use this interface, a derived class must thus implement :func:`thelper.data.parsers.Dataset.__getitem__`,</span>
+<span class="sd">    provide proper ``self.task`` and ``self.samples`` attributes.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        transforms: function or object that should be applied to all loaded samples in order to</span>
+<span class="sd">            return the data in the requested transformed/augmented state.</span>
+<span class="sd">        deepcopy: specifies whether this dataset interface should be deep-copied inside</span>
+<span class="sd">            :class:`thelper.data.loaders.LoaderFactory` so that it may be shared between</span>
+<span class="sd">            different threads. This is false by default, as we assume datasets do not contain a state</span>
+<span class="sd">            or buffer that might cause problems in multi-threaded data loaders.</span>
+<span class="sd">        samples: list of dictionaries containing the data that is ready to be forwarded to the</span>
+<span class="sd">            data loader. Note that relatively costly operations (such as reading images from a disk</span>
+<span class="sd">            or pre-transforming them) should be delayed until the :func:`thelper.data.parsers.Dataset.__getitem__`</span>
+<span class="sd">            function is called, as they will most likely then be accomplished in a separate thread.</span>
+<span class="sd">            Once loaded, these samples should never be modified by another part of the framework. For</span>
+<span class="sd">            example, transformation and augmentation operations will always be applied to copies</span>
+<span class="sd">            of these samples.</span>
+<span class="sd">        task: object used to define what keys are used to index the loaded data into sample dictionaries.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.data.parsers.ExternalDataset`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Dataset.__init__"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.Dataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transforms</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">deepcopy</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Dataset parser constructor.</span>
+
+<span class="sd">        In order for derived datasets to be instantiated automatically by the framework from a configuration</span>
+<span class="sd">        file, they must minimally accept a &#39;transforms&#39; argument like the shown one here.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            transforms: function or object that should be applied to all loaded samples in order to</span>
+<span class="sd">                return the data in the requested transformed/augmented state.</span>
+<span class="sd">            deepcopy: specifies whether this dataset interface should be deep-copied inside</span>
+<span class="sd">                :class:`thelper.data.loaders.LoaderFactory` so that it may be shared between</span>
+<span class="sd">                different threads. This is false by default, as we assume datasets do not contain a state</span>
+<span class="sd">                or buffer that might cause problems in multi-threaded data loaders.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Dataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transforms</span> <span class="o">=</span> <span class="n">transforms</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">deepcopy</span> <span class="o">=</span> <span class="n">deepcopy</span>  <span class="c1"># will determine if we deepcopy in each loader</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">samples</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># must be set by the derived class as a list of dictionaries</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># must be set by the derived class as a valid task object</span></div>
+
+    <span class="k">def</span> <span class="nf">_get_derived_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a pretty-print version of the derived class&#39;s name.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__qualname__</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the total number of samples available from this dataset interface.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns an iterator over the dataset&#39;s samples.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">)):</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+
+<div class="viewcode-block" id="Dataset.__getitem__"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.Dataset.__getitem__">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the data sample (a dictionary) for a specific (0-based) index.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">transforms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the transformation operations to apply to this dataset&#39;s loaded samples.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transforms</span>
+
+    <span class="nd">@transforms</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">transforms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transforms</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the transformation operations to apply to this dataset&#39;s loaded samples.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">transforms</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="s2">&quot;__call__&quot;</span><span class="p">)</span> <span class="ow">or</span> \
+            <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">([</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="s2">&quot;__call__&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">transforms</span><span class="p">])),</span> \
+            <span class="s2">&quot;transformations should be callable (or list of callables)&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_transforms</span> <span class="o">=</span> <span class="n">transforms</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;specifies whether this dataset interface should be deep-copied inside</span>
+<span class="sd">        :class:`thelper.data.loaders.LoaderFactory` so that it may be shared between</span>
+<span class="sd">        different threads. This is false by default, as we assume datasets do not contain a state</span>
+<span class="sd">        or buffer that might cause problems in multi-threaded data loaders.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_deepcopy</span>
+
+    <span class="nd">@deepcopy</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">deepcopy</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">deepcopy</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">deepcopy</span><span class="p">,</span> <span class="nb">bool</span><span class="p">),</span> <span class="s2">&quot;deepcopy flag should be boolean&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_deepcopy</span> <span class="o">=</span> <span class="n">deepcopy</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">task</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the task object associated with this dataset interface.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task</span>
+
+    <span class="nd">@task</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the task object associated with this dataset interface.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">task</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Task</span><span class="p">),</span> <span class="s2">&quot;invalid task&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_task</span> <span class="o">=</span> <span class="n">task</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">samples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the list of internal samples held by this dataset interface.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_samples</span>
+
+    <span class="nd">@samples</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">samples</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">Dataset</span><span class="p">))</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="s2">&quot;__getitem__&quot;</span><span class="p">),</span> \
+            <span class="s2">&quot;invalid samples (should be list of dicts, dataset, or it should have &#39;__getitem__&#39; attrib)&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_samples</span> <span class="o">=</span> <span class="n">samples</span>
+
+    <span class="k">def</span> <span class="nf">_getitems</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idxs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a list of dictionaries corresponding to the sliced sample indices.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">idxs</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;unexpected input (should be slice)&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">*</span><span class="n">idxs</span><span class="o">.</span><span class="n">indices</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)))]</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a print-friendly representation of this dataset.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_derived_name</span><span class="p">()</span> <span class="o">+</span> <span class="n">f</span><span class="s2">&quot;(transforms={repr(self.transforms)}, deepcopy={repr(self.deepcopy)})&quot;</span></div>
+
+
+<div class="viewcode-block" id="HDF5Dataset"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.HDF5Dataset">[docs]</a><span class="k">class</span> <span class="nc">HDF5Dataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;HDF5 dataset specialization interface.</span>
+
+<span class="sd">    This specialization is compatible with the HDF5 packages made by the CLI&#39;s &quot;split&quot; operation. The</span>
+<span class="sd">    archives it loads contains pre-split datasets that can be reloaded without having to resplit their</span>
+<span class="sd">    data. The archive also contains useful metadata, and a task interface.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        archive: file descriptor for the opened hdf5 dataset.</span>
+<span class="sd">        subset: hdf5 group section representing the targeted set.</span>
+<span class="sd">        target_args: list decompression args required for each sample key.</span>
+<span class="sd">        source: source logstamp of the hdf5 dataset.</span>
+<span class="sd">        git_sha1: framework git tag of the hdf5 dataset.</span>
+<span class="sd">        version: version of the framework that saved the hdf5 dataset.</span>
+<span class="sd">        orig_config: configuration used to originally generate the hdf5 dataset.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :func:`thelper.cli.split_data`</span>
+<span class="sd">        | :func:`thelper.data.utils.create_hdf5`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="HDF5Dataset.__init__"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.HDF5Dataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">transforms</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;HDF5 dataset parser constructor.</span>
+
+<span class="sd">        This constructor receives the path to the HDF5 archive as well as a subset indicating which</span>
+<span class="sd">        section of the archive to load. By default, it loads the training set.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">HDF5Dataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">transforms</span><span class="o">=</span><span class="n">transforms</span><span class="p">,</span> <span class="n">deepcopy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">subset</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="s2">&quot;valid&quot;</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;unrecognized subset &#39;</span><span class="si">{subset}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">archive</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">git_sha1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;git_sha1&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;version&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;task&quot;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orig_config</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;config&quot;</span><span class="p">])</span>
+        <span class="n">compr_config</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;compression&quot;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">subset</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">archive</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;subset &#39;</span><span class="si">{subset}</span><span class="s2">&#39; not found in hdf5 archive&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">archive</span><span class="p">[</span><span class="n">subset</span><span class="p">]</span>
+        <span class="n">sample_count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subset</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">samples</span> <span class="o">=</span> <span class="p">[{}]</span> <span class="o">*</span> <span class="n">sample_count</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_args</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">keys</span><span class="p">:</span>
+            <span class="n">dset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subset</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">assert</span> <span class="n">dset</span><span class="o">.</span><span class="n">len</span><span class="p">()</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">)</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">dset</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;orig_dtype&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;orig_dtype&quot;</span> <span class="ow">in</span> <span class="n">dset</span><span class="o">.</span><span class="n">attrs</span> <span class="k">else</span> <span class="kc">None</span>
+            <span class="n">shape</span> <span class="o">=</span> <span class="n">dset</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;orig_shape&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;orig_shape&quot;</span> <span class="ow">in</span> <span class="n">dset</span><span class="o">.</span><span class="n">attrs</span> <span class="k">else</span> <span class="kc">None</span>
+            <span class="n">compr_config</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">compr_config</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{})</span>
+            <span class="n">compr_type</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="n">compr_config</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+            <span class="n">compr_kwargs</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;decode_params&quot;</span><span class="p">,</span> <span class="n">compr_config</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{})</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">target_args</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;dset&quot;</span><span class="p">:</span> <span class="n">dset</span><span class="p">,</span> <span class="s2">&quot;dtype&quot;</span><span class="p">:</span> <span class="n">dtype</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;compr_type&quot;</span><span class="p">:</span> <span class="n">compr_type</span><span class="p">,</span> <span class="s2">&quot;compr_kwargs&quot;</span><span class="p">:</span> <span class="n">compr_kwargs</span><span class="p">}</span></div>
+
+    <span class="k">def</span> <span class="nf">_unpack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dset</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">compr_type</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">compr_kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">dtype</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">decode_data</span><span class="p">(</span><span class="n">dset</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">compr_type</span><span class="p">,</span> <span class="o">**</span><span class="n">compr_kwargs</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">array</span> <span class="o">=</span> <span class="n">dset</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">shape</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">array</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>  <span class="c1"># reassemble string if needed</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">array</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">array</span>
+
+<div class="viewcode-block" id="HDF5Dataset.__getitem__"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.HDF5Dataset.__getitem__">[docs]</a>    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the data sample (a dictionary) for a specific (0-based) index.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitems</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;sample index is out-of-range&quot;</span><span class="p">)</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_unpack</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;dset&quot;</span><span class="p">],</span> <span class="n">idx</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;dtype&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;shape&quot;</span><span class="p">],</span>
+                                    <span class="n">args</span><span class="p">[</span><span class="s2">&quot;compr_type&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;compr_kwargs&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">args</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_args</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transforms</span><span class="p">:</span>
+            <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transforms</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sample</span></div>
+
+<div class="viewcode-block" id="HDF5Dataset.close"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.HDF5Dataset.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Closes the internal HDF5 file.&quot;&quot;&quot;</span>
+        <span class="c1"># note: if we dont do it explicitly, it will be done by the garbage collector on destruction, but it might take time...</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div></div>
+
+
+<div class="viewcode-block" id="ClassificationDataset"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.ClassificationDataset">[docs]</a><span class="k">class</span> <span class="nc">ClassificationDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Classification dataset specialization interface.</span>
+
+<span class="sd">    This specialization receives some extra parameters in its constructor and automatically defines</span>
+<span class="sd">    a :class:`thelper.tasks.classif.Classification` task based on those. The derived class must still</span>
+<span class="sd">    implement :func:`thelper.data.parsers.ClassificationDataset.__getitem__`, and it must still store its</span>
+<span class="sd">    samples as dictionaries in ``self.samples`` to behave properly.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.data.parsers.Dataset`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ClassificationDataset.__init__"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.ClassificationDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_names</span><span class="p">,</span> <span class="n">input_key</span><span class="p">,</span> <span class="n">label_key</span><span class="p">,</span> <span class="n">meta_keys</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">transforms</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">deepcopy</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Classification dataset parser constructor.</span>
+
+<span class="sd">        This constructor receives all extra arguments necessary to build a classification task object.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            class_names: list of all class names (or labels) that will be associated with the samples.</span>
+<span class="sd">            input_key: key used to index the input data in the loaded samples.</span>
+<span class="sd">            label_key: key used to index the label (or class name) in the loaded samples.</span>
+<span class="sd">            meta_keys: list of extra keys that will be available in the loaded samples.</span>
+<span class="sd">            transforms: function or object that should be applied to all loaded samples in order to</span>
+<span class="sd">                return the data in the requested transformed/augmented state.</span>
+<span class="sd">            deepcopy: specifies whether this dataset interface should be deep-copied inside</span>
+<span class="sd">                :class:`thelper.data.loaders.LoaderFactory` so that it may be shared between</span>
+<span class="sd">                different threads. This is false by default, as we assume datasets do not contain a state</span>
+<span class="sd">                or buffer that might cause problems in multi-threaded data loaders.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ClassificationDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">transforms</span><span class="o">=</span><span class="n">transforms</span><span class="p">,</span> <span class="n">deepcopy</span><span class="o">=</span><span class="n">deepcopy</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Classification</span><span class="p">(</span><span class="n">class_names</span><span class="p">,</span> <span class="n">input_key</span><span class="p">,</span> <span class="n">label_key</span><span class="p">,</span> <span class="n">meta_keys</span><span class="o">=</span><span class="n">meta_keys</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ClassificationDataset.__getitem__"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.ClassificationDataset.__getitem__">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the data sample (a dictionary) for a specific (0-based) index.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
+
+
+<div class="viewcode-block" id="SegmentationDataset"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.SegmentationDataset">[docs]</a><span class="k">class</span> <span class="nc">SegmentationDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Segmentation dataset specialization interface.</span>
+
+<span class="sd">    This specialization receives some extra parameters in its constructor and automatically defines</span>
+<span class="sd">    its task (:class:`thelper.tasks.segm.Segmentation`) based on those. The derived class must still</span>
+<span class="sd">    implement :func:`thelper.data.parsers.SegmentationDataset.__getitem__`, and it must still store its</span>
+<span class="sd">    samples as dictionaries in ``self.samples`` to behave properly.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.data.parsers.Dataset`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SegmentationDataset.__init__"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.SegmentationDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_names</span><span class="p">,</span> <span class="n">input_key</span><span class="p">,</span> <span class="n">label_map_key</span><span class="p">,</span> <span class="n">meta_keys</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dontcare</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">transforms</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">deepcopy</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Segmentation dataset parser constructor.</span>
+
+<span class="sd">        This constructor receives all extra arguments necessary to build a segmentation task object.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            class_names: list of all class names (or labels) that must be predicted in the image.</span>
+<span class="sd">            input_key: key used to index the input image in the loaded samples.</span>
+<span class="sd">            label_map_key: key used to index the label map in the loaded samples.</span>
+<span class="sd">            meta_keys: list of extra keys that will be available in the loaded samples.</span>
+<span class="sd">            transforms: function or object that should be applied to all loaded samples in order to</span>
+<span class="sd">                return the data in the requested transformed/augmented state.</span>
+<span class="sd">            deepcopy: specifies whether this dataset interface should be deep-copied inside</span>
+<span class="sd">                :class:`thelper.data.loaders.LoaderFactory` so that it may be shared between</span>
+<span class="sd">                different threads. This is false by default, as we assume datasets do not contain a state</span>
+<span class="sd">                or buffer that might cause problems in multi-threaded data loaders.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SegmentationDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">transforms</span><span class="o">=</span><span class="n">transforms</span><span class="p">,</span> <span class="n">deepcopy</span><span class="o">=</span><span class="n">deepcopy</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Segmentation</span><span class="p">(</span><span class="n">class_names</span><span class="p">,</span> <span class="n">input_key</span><span class="p">,</span> <span class="n">label_map_key</span><span class="p">,</span> <span class="n">meta_keys</span><span class="o">=</span><span class="n">meta_keys</span><span class="p">,</span> <span class="n">dontcare</span><span class="o">=</span><span class="n">dontcare</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SegmentationDataset.__getitem__"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.SegmentationDataset.__getitem__">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the data sample (a dictionary) for a specific (0-based) index.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
+
+
+<div class="viewcode-block" id="ImageDataset"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.ImageDataset">[docs]</a><span class="k">class</span> <span class="nc">ImageDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Image dataset specialization interface.</span>
+
+<span class="sd">    This specialization is used to parse simple image folders, and it does not fulfill the requirements of any</span>
+<span class="sd">    specialized task constructors due to the lack of groundtruth data support. Therefore, it returns a basic task</span>
+<span class="sd">    object (:class:`thelper.tasks.utils.Task`) with no set value for the groundtruth key, and it cannot be used to</span>
+<span class="sd">    directly train a model. It can however be useful when simply visualizing, annotating, or testing raw data</span>
+<span class="sd">    from a simple directory structure.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.data.parsers.Dataset`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ImageDataset.__init__"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.ImageDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">transforms</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">image_key</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="n">path_key</span><span class="o">=</span><span class="s2">&quot;path&quot;</span><span class="p">,</span> <span class="n">idx_key</span><span class="o">=</span><span class="s2">&quot;idx&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Image dataset parser constructor.</span>
+
+<span class="sd">        This constructor exposes some of the configurable keys used to index sample dictionaries.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ImageDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">transforms</span><span class="o">=</span><span class="n">transforms</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">root</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid input data root &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_key</span> <span class="o">=</span> <span class="n">image_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path_key</span> <span class="o">=</span> <span class="n">path_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">idx_key</span> <span class="o">=</span> <span class="n">idx_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">samples</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">folder</span><span class="p">,</span> <span class="n">subfolder</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+                <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">file</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">ext</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;.jpeg&quot;</span><span class="p">,</span> <span class="s2">&quot;.bmp&quot;</span><span class="p">,</span> <span class="s2">&quot;.png&quot;</span><span class="p">,</span> <span class="s2">&quot;.ppm&quot;</span><span class="p">,</span> <span class="s2">&quot;.pgm&quot;</span><span class="p">,</span> <span class="s2">&quot;.tif&quot;</span><span class="p">]:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="bp">self</span><span class="o">.</span><span class="n">path_key</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">file</span><span class="p">)})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Task</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_key</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">path_key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">idx_key</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="ImageDataset.__getitem__"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.ImageDataset.__getitem__">[docs]</a>    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the data sample (a dictionary) for a specific (0-based) index.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitems</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;sample index is out-of-range&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">)</span> <span class="o">+</span> <span class="n">idx</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="n">image_path</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">path_key</span><span class="p">]</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid image at &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">image_path</span><span class="p">)</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image_key</span><span class="p">:</span> <span class="n">image</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">idx_key</span><span class="p">:</span> <span class="n">idx</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">sample</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transforms</span><span class="p">:</span>
+            <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transforms</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sample</span></div></div>
+
+
+<div class="viewcode-block" id="ImageFolderDataset"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.ImageFolderDataset">[docs]</a><span class="k">class</span> <span class="nc">ImageFolderDataset</span><span class="p">(</span><span class="n">ClassificationDataset</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Image folder dataset specialization interface for classification tasks.</span>
+
+<span class="sd">    This specialization is used to parse simple image subfolders, and it essentially replaces the very</span>
+<span class="sd">    basic ``torchvision.datasets.ImageFolder`` interface with similar functionalities. It it used to provide</span>
+<span class="sd">    a proper task interface as well as path metadata in each loaded packet for metrics/logging output.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.data.parsers.ImageDataset`</span>
+<span class="sd">        | :class:`thelper.data.parsers.ClassificationDataset`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ImageFolderDataset.__init__"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.ImageFolderDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">transforms</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">image_key</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="n">label_key</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="n">path_key</span><span class="o">=</span><span class="s2">&quot;path&quot;</span><span class="p">,</span> <span class="n">idx_key</span><span class="o">=</span><span class="s2">&quot;idx&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Image folder dataset parser constructor.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">root</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid input data root &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+        <span class="n">class_map</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">child</span><span class="p">)):</span>
+                <span class="n">class_map</span><span class="p">[</span><span class="n">child</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">class_map</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;could not find any image folders at &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+        <span class="n">image_exts</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;.jpeg&quot;</span><span class="p">,</span> <span class="s2">&quot;.bmp&quot;</span><span class="p">,</span> <span class="s2">&quot;.png&quot;</span><span class="p">,</span> <span class="s2">&quot;.ppm&quot;</span><span class="p">,</span> <span class="s2">&quot;.pgm&quot;</span><span class="p">,</span> <span class="s2">&quot;.tif&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_key</span> <span class="o">=</span> <span class="n">image_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path_key</span> <span class="o">=</span> <span class="n">path_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">idx_key</span> <span class="o">=</span> <span class="n">idx_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_key</span> <span class="o">=</span> <span class="n">label_key</span>
+        <span class="n">samples</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">class_name</span> <span class="ow">in</span> <span class="n">class_map</span><span class="p">:</span>
+            <span class="n">class_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">class_name</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">folder</span><span class="p">,</span> <span class="n">subfolder</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">class_folder</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+                    <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">file</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">ext</span> <span class="ow">in</span> <span class="n">image_exts</span><span class="p">:</span>
+                        <span class="n">class_map</span><span class="p">[</span><span class="n">class_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">samples</span><span class="p">))</span>
+                        <span class="n">samples</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">path_key</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">file</span><span class="p">),</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">label_key</span><span class="p">:</span> <span class="n">class_name</span>
+                        <span class="p">})</span>
+        <span class="n">class_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">class_map</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">}</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">class_map</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;could not locate any subdir in &#39;</span><span class="si">%s</span><span class="s2">&#39; with images to load&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+        <span class="n">meta_keys</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">path_key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">idx_key</span><span class="p">]</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ImageFolderDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">class_names</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">class_map</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">input_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">image_key</span><span class="p">,</span>
+                                                 <span class="n">label_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">label_key</span><span class="p">,</span> <span class="n">meta_keys</span><span class="o">=</span><span class="n">meta_keys</span><span class="p">,</span> <span class="n">transforms</span><span class="o">=</span><span class="n">transforms</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">samples</span> <span class="o">=</span> <span class="n">samples</span></div>
+
+<div class="viewcode-block" id="ImageFolderDataset.__getitem__"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.ImageFolderDataset.__getitem__">[docs]</a>    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the data sample (a dictionary) for a specific (0-based) index.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitems</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;sample index is out-of-range&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">)</span> <span class="o">+</span> <span class="n">idx</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="n">image_path</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">path_key</span><span class="p">]</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid image at &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">image_path</span><span class="p">)</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image_key</span><span class="p">:</span> <span class="n">image</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">idx_key</span><span class="p">:</span> <span class="n">idx</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">sample</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transforms</span><span class="p">:</span>
+            <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transforms</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sample</span></div></div>
+
+
+<div class="viewcode-block" id="SuperResFolderDataset"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.SuperResFolderDataset">[docs]</a><span class="k">class</span> <span class="nc">SuperResFolderDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Image folder dataset specialization interface for super-resolution tasks.</span>
+
+<span class="sd">    This specialization is used to parse simple image subfolders, and it essentially replaces the very</span>
+<span class="sd">    basic ``torchvision.datasets.ImageFolder`` interface with similar functionalities. It it used to provide</span>
+<span class="sd">    a proper task interface as well as path/class metadata in each loaded packet for metrics/logging output.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SuperResFolderDataset.__init__"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.SuperResFolderDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">downscale_factor</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">rescale_lowres</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">center_crop</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">transforms</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">lowres_image_key</span><span class="o">=</span><span class="s2">&quot;lowres_image&quot;</span><span class="p">,</span> <span class="n">highres_image_key</span><span class="o">=</span><span class="s2">&quot;highres_image&quot;</span><span class="p">,</span> <span class="n">path_key</span><span class="o">=</span><span class="s2">&quot;path&quot;</span><span class="p">,</span> <span class="n">idx_key</span><span class="o">=</span><span class="s2">&quot;idx&quot;</span><span class="p">,</span> <span class="n">label_key</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Image folder dataset parser constructor.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">downscale_factor</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="n">downscale_factor</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">downscale_factor</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">downscale_factor</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="n">downscale_factor</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid downscale factor (should be greater than one)&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">downscale_factor</span> <span class="o">=</span> <span class="n">downscale_factor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rescale_lowres</span> <span class="o">=</span> <span class="n">rescale_lowres</span>
+        <span class="k">if</span> <span class="n">center_crop</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">center_crop</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+                <span class="n">center_crop</span> <span class="o">=</span> <span class="p">(</span><span class="n">center_crop</span><span class="p">,</span> <span class="n">center_crop</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">center_crop</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+                <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid center crop size type&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">center_crop</span> <span class="o">=</span> <span class="n">center_crop</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">root</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid input data root &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+        <span class="n">class_map</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">child</span><span class="p">)):</span>
+                <span class="n">class_map</span><span class="p">[</span><span class="n">child</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">class_map</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;could not find any image folders at &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+        <span class="n">image_exts</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;.jpeg&quot;</span><span class="p">,</span> <span class="s2">&quot;.bmp&quot;</span><span class="p">,</span> <span class="s2">&quot;.png&quot;</span><span class="p">,</span> <span class="s2">&quot;.ppm&quot;</span><span class="p">,</span> <span class="s2">&quot;.pgm&quot;</span><span class="p">,</span> <span class="s2">&quot;.tif&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lowres_image_key</span> <span class="o">=</span> <span class="n">lowres_image_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">highres_image_key</span> <span class="o">=</span> <span class="n">highres_image_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path_key</span> <span class="o">=</span> <span class="n">path_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">idx_key</span> <span class="o">=</span> <span class="n">idx_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_key</span> <span class="o">=</span> <span class="n">label_key</span>  <span class="c1"># to provide folder names</span>
+        <span class="n">samples</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">class_name</span> <span class="ow">in</span> <span class="n">class_map</span><span class="p">:</span>
+            <span class="n">class_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">class_name</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">folder</span><span class="p">,</span> <span class="n">subfolder</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">class_folder</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+                    <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">file</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">ext</span> <span class="ow">in</span> <span class="n">image_exts</span><span class="p">:</span>
+                        <span class="n">class_map</span><span class="p">[</span><span class="n">class_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">samples</span><span class="p">))</span>
+                        <span class="n">samples</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">path_key</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">file</span><span class="p">),</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">label_key</span><span class="p">:</span> <span class="n">class_name</span>
+                        <span class="p">})</span>
+        <span class="n">class_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">class_map</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">}</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">class_map</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;could not locate any subdir in &#39;</span><span class="si">%s</span><span class="s2">&#39; with images to load&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+        <span class="n">meta_keys</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">path_key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">idx_key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_key</span><span class="p">]</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SuperResFolderDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">transforms</span><span class="o">=</span><span class="n">transforms</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">SuperResolution</span><span class="p">(</span><span class="n">input_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lowres_image_key</span><span class="p">,</span> <span class="n">target_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">highres_image_key</span><span class="p">,</span> <span class="n">meta_keys</span><span class="o">=</span><span class="n">meta_keys</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">samples</span> <span class="o">=</span> <span class="n">samples</span></div>
+
+<div class="viewcode-block" id="SuperResFolderDataset.__getitem__"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.SuperResFolderDataset.__getitem__">[docs]</a>    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the data sample (a dictionary) for a specific (0-based) index.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitems</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;sample index is out-of-range&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">)</span> <span class="o">+</span> <span class="n">idx</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="n">image_path</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">path_key</span><span class="p">]</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid image at &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">image_path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">center_crop</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">tl</span> <span class="o">=</span> <span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">center_crop</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span>
+                  <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">center_crop</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">br</span> <span class="o">=</span> <span class="p">(</span><span class="n">tl</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">center_crop</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tl</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">center_crop</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">safe_crop</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">tl</span><span class="p">,</span> <span class="n">br</span><span class="p">)</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">downscale_factor</span>
+        <span class="n">image_lowres</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">dsize</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">fx</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span> <span class="n">fy</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rescale_lowres</span><span class="p">:</span>
+            <span class="n">image_lowres</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">image_lowres</span><span class="p">,</span> <span class="n">dsize</span><span class="o">=</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">lowres_image_key</span><span class="p">:</span> <span class="n">image_lowres</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">highres_image_key</span><span class="p">:</span> <span class="n">image</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">idx_key</span><span class="p">:</span> <span class="n">idx</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">sample</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transforms</span><span class="p">:</span>
+            <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transforms</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sample</span></div></div>
+
+
+<div class="viewcode-block" id="ExternalDataset"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.ExternalDataset">[docs]</a><span class="k">class</span> <span class="nc">ExternalDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;External dataset interface.</span>
+
+<span class="sd">    This interface allows external classes to be instantiated automatically in the framework through</span>
+<span class="sd">    a configuration file, as long as they themselves provide implementations for  ``__getitem__`` and</span>
+<span class="sd">    ``__len__``. This includes all derived classes of ``torch.utils.data.Dataset`` such as</span>
+<span class="sd">    ``torchvision.datasets.ImageFolder``, and the specialized versions such as ``torchvision.datasets.CIFAR10``.</span>
+
+<span class="sd">    Note that for this interface to be compatible with our runtime instantiation rules, the constructor</span>
+<span class="sd">    needs to receive a fully constructed task object. This object is currently constructed in</span>
+<span class="sd">    :func:`thelper.data.utils.create_parsers` based on extra parameters; see the code there for more</span>
+<span class="sd">    information.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        dataset_type: type of the internally instantiated or provided dataset object.</span>
+<span class="sd">        warned_dictionary: specifies whether the user was warned about missing keys in the output</span>
+<span class="sd">            samples dictionaries.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.data.parsers.Dataset`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ExternalDataset.__init__"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.ExternalDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">transforms</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">deepcopy</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;External dataset parser constructor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            dataset: fully qualified name of the dataset object to instantiate, or the dataset itself.</span>
+<span class="sd">            task: fully constructed task object providing key information for sample loading.</span>
+<span class="sd">            transforms: function or object that should be applied to all loaded samples in order to</span>
+<span class="sd">                return the data in the requested transformed/augmented state.</span>
+<span class="sd">            deepcopy: specifies whether this dataset interface should be deep-copied inside</span>
+<span class="sd">                :class:`thelper.data.loaders.LoaderFactory` so that it may be shared between</span>
+<span class="sd">                different threads. This is false by default, as we assume datasets do not contain a state</span>
+<span class="sd">                or buffer that might cause problems in multi-threaded data loaders.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ExternalDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">transforms</span><span class="o">=</span><span class="n">transforms</span><span class="p">,</span> <span class="n">deepcopy</span><span class="o">=</span><span class="n">deepcopy</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">dataset</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">import_class</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dataset</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s2">&quot;__getitem__&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s2">&quot;__len__&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;external dataset type must implement &#39;__getitem__&#39; and &#39;__len__&#39; methods&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isclass</span><span class="p">(</span><span class="n">dataset</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">samples</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">samples</span> <span class="o">=</span> <span class="n">dataset</span>
+        <span class="k">if</span> <span class="n">task</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Task</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;task type must derive from thelper.tasks.Task&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataset_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">task</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warned_dictionary</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+    <span class="k">def</span> <span class="nf">_get_derived_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a pretty-print version of the external class&#39;s name.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_type</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_type</span><span class="o">.</span><span class="vm">__qualname__</span>
+
+<div class="viewcode-block" id="ExternalDataset.__getitem__"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.parsers.ExternalDataset.__getitem__">[docs]</a>    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the data sample (a dictionary) for a specific (0-based) index.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitems</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;sample index is out-of-range&quot;</span><span class="p">)</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">sample</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># since might have provided an invalid sample count before, it&#39;s dangerous to skip empty samples here</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid sample received in external dataset impl&quot;</span><span class="p">)</span>
+        <span class="n">warn_dictionary</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+            <span class="n">out_sample_list</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">key_idx</span><span class="p">,</span> <span class="n">subs</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">subs</span><span class="p">,</span> <span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">):</span>
+                    <span class="n">subs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">subs</span><span class="p">)</span>
+                <span class="n">out_sample_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subs</span><span class="p">)</span>
+            <span class="n">sample</span> <span class="o">=</span> <span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">key_idx</span><span class="p">):</span> <span class="n">out_sample_list</span><span class="p">[</span><span class="n">key_idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">key_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">out_sample_list</span><span class="p">))}</span>
+            <span class="n">warn_dictionary</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)):</span>
+            <span class="n">sample</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;0&quot;</span><span class="p">:</span> <span class="n">sample</span><span class="p">}</span>
+            <span class="n">warn_dictionary</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">warn_dictionary</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">warned_dictionary</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;dataset &#39;</span><span class="si">%s</span><span class="s2">&#39; not returning samples as dictionaries;&quot;</span>
+                           <span class="s2">&quot; will blindly map elements to their indices&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_derived_name</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warned_dictionary</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transforms</span><span class="p">:</span>
+            <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transforms</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sample</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../use-cases.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

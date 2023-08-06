@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper package &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="thelper.data package" href="thelper.data.html" />
+    <link rel="prev" title="Use Cases" href="use-cases.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="index.html">thelper-0.3.8</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-thelper">
+<span id="thelper-package"></span><h1>thelper package<a class="headerlink" href="#module-thelper" title="Permalink to this headline">¶</a></h1>
+<p>Top-level package for the ‘thelper’ framework.</p>
+<p>Running <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">thelper</span></code> will recursively import all important subpackages and modules.</p>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="thelper.data.html">thelper.data package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="thelper.data.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.data.html#module-thelper.data.loaders">thelper.data.loaders module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.data.html#module-thelper.data.parsers">thelper.data.parsers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.data.html#module-thelper.data.pascalvoc">thelper.data.pascalvoc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.data.html#module-thelper.data.samplers">thelper.data.samplers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.data.html#module-thelper.data.utils">thelper.data.utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="thelper.gui.html">thelper.gui package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="thelper.gui.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.gui.html#module-thelper.gui.annotators">thelper.gui.annotators module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.gui.html#module-thelper.gui.utils">thelper.gui.utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="thelper.nn.html">thelper.nn package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="thelper.nn.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="thelper.nn.sr.html">thelper.nn.sr package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="thelper.nn.sr.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="thelper.nn.sr.html#module-thelper.nn.sr.srcnn">thelper.nn.sr.srcnn module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="thelper.nn.sr.html#module-thelper.nn.sr.vdsr">thelper.nn.sr.vdsr module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.nn.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.nn.html#module-thelper.nn.common">thelper.nn.common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.nn.html#module-thelper.nn.coordconv">thelper.nn.coordconv module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.nn.html#module-thelper.nn.densenet">thelper.nn.densenet module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.nn.html#module-thelper.nn.fcn">thelper.nn.fcn module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.nn.html#module-thelper.nn.inceptionresnetv2">thelper.nn.inceptionresnetv2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.nn.html#module-thelper.nn.lenet">thelper.nn.lenet module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.nn.html#module-thelper.nn.mobilenet">thelper.nn.mobilenet module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.nn.html#module-thelper.nn.resnet">thelper.nn.resnet module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.nn.html#module-thelper.nn.utils">thelper.nn.utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="thelper.optim.html">thelper.optim package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="thelper.optim.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.optim.html#module-thelper.optim.eval">thelper.optim.eval module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.optim.html#module-thelper.optim.metrics">thelper.optim.metrics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.optim.html#module-thelper.optim.schedulers">thelper.optim.schedulers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.optim.html#module-thelper.optim.utils">thelper.optim.utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="thelper.tasks.html">thelper.tasks package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="thelper.tasks.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.tasks.html#module-thelper.tasks.classif">thelper.tasks.classif module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.tasks.html#module-thelper.tasks.detect">thelper.tasks.detect module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.tasks.html#module-thelper.tasks.regr">thelper.tasks.regr module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.tasks.html#module-thelper.tasks.segm">thelper.tasks.segm module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.tasks.html#module-thelper.tasks.utils">thelper.tasks.utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="thelper.train.html">thelper.train package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="thelper.train.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.train.html#module-thelper.train.base">thelper.train.base module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.train.html#module-thelper.train.classif">thelper.train.classif module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.train.html#module-thelper.train.detect">thelper.train.detect module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.train.html#module-thelper.train.regr">thelper.train.regr module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.train.html#module-thelper.train.segm">thelper.train.segm module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.train.html#module-thelper.train.utils">thelper.train.utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="thelper.transforms.html">thelper.transforms package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="thelper.transforms.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.transforms.html#module-thelper.transforms.composers">thelper.transforms.composers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.transforms.html#module-thelper.transforms.operations">thelper.transforms.operations module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.transforms.html#module-thelper.transforms.utils">thelper.transforms.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.transforms.html#module-thelper.transforms.wrappers">thelper.transforms.wrappers module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-thelper.cli">
+<span id="thelper-cli-module"></span><h2>thelper.cli module<a class="headerlink" href="#module-thelper.cli" title="Permalink to this headline">¶</a></h2>
+<p>Command-line module, for use with a <code class="docutils literal notranslate"><span class="pre">__main__</span></code> entrypoint.</p>
+<p>This module contains the primary functions used to create or resume a training session, to start a
+visualization session, or to start an annotation session. The basic argument that needs to be provided
+by the user to create any kind of session is a configuration dictionary. For sessions that produce
+outputs, the path to a directory where to save the data is also needed.</p>
+<dl class="function">
+<dt id="thelper.cli.annotate_data">
+<code class="sig-prename descclassname">thelper.cli.</code><code class="sig-name descname">annotate_data</code><span class="sig-paren">(</span><em class="sig-param">config</em>, <em class="sig-param">save_dir</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/cli.html#annotate_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.cli.annotate_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launches an annotation session for a dataset using a specialized GUI tool.</p>
+<p>Note that the annotation type must be supported by the GUI tool. The annotations created by the user
+during the session will be saved in the session directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> – a dictionary that provides all required dataset and GUI tool configuration parameters; see
+<a class="reference internal" href="thelper.data.html#thelper.data.utils.create_parsers" title="thelper.data.utils.create_parsers"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.create_parsers()</span></code></a> and <a class="reference internal" href="thelper.gui.html#thelper.gui.utils.create_annotator" title="thelper.gui.utils.create_annotator"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.gui.utils.create_annotator()</span></code></a> for more
+information.</p></li>
+<li><p><strong>save_dir</strong> – the path to the root directory where the session directory should be saved. Note that
+this is not the path to the session directory itself, but its parent, which may also contain
+other session directories.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="thelper.gui.html#thelper.gui.annotators.Annotator" title="thelper.gui.annotators.Annotator"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.gui.annotators.Annotator()</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.gui.html#thelper.gui.annotators.ImageSegmentAnnotator" title="thelper.gui.annotators.ImageSegmentAnnotator"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.gui.annotators.ImageSegmentAnnotator()</span></code></a></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.cli.create_session">
+<code class="sig-prename descclassname">thelper.cli.</code><code class="sig-name descname">create_session</code><span class="sig-paren">(</span><em class="sig-param">config</em>, <em class="sig-param">save_dir</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/cli.html#create_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.cli.create_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a session to train a model.</p>
+<p>All generated outputs (model checkpoints and logs) will be saved in a directory named after the
+session (the name itself is specified in <code class="docutils literal notranslate"><span class="pre">config</span></code>), and located in <code class="docutils literal notranslate"><span class="pre">save_dir</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> – a dictionary that provides all required data configuration and trainer parameters; see
+<a class="reference internal" href="thelper.train.html#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a> and <a class="reference internal" href="thelper.data.html#thelper.data.utils.create_loaders" title="thelper.data.utils.create_loaders"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.create_loaders()</span></code></a> for more information.
+Here, it is only expected to contain a <code class="docutils literal notranslate"><span class="pre">name</span></code> field that specifies the name of the session.</p></li>
+<li><p><strong>save_dir</strong> – the path to the root directory where the session directory should be saved. Note that
+this is not the path to the session directory itself, but its parent, which may also contain
+other session directories.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="thelper.train.html#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.cli.export_model">
+<code class="sig-prename descclassname">thelper.cli.</code><code class="sig-name descname">export_model</code><span class="sig-paren">(</span><em class="sig-param">config</em>, <em class="sig-param">save_dir</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/cli.html#export_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.cli.export_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launches a model exportation session.</p>
+<p>This function will export a model defined via a configuration file into a new checkpoint that can be
+loaded elsewhere. The model can be built using the framework, or provided via its type, construction
+parameters, and weights. Its exported format will be compatible with the framework, and may also be an
+optimized/compiled version obtained using PyTorch’s JIT tracer.</p>
+<p>The configuration dictionary must minimally contain a ‘model’ section that provides details on the model
+to be exported. A section named ‘export’ can be used to provide settings regarding the exportation
+approaches to use, and the task interface to save with the model. If a task is not explicitly defined in
+the ‘export’ section, the session configuration will be parsed for a ‘datasets’ section that can be used
+to define it. Otherwise, it must be provided through the model.</p>
+<p>The exported checkpoint containing the model will be saved in the session’s output directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> – a dictionary that provides all required data configuration parameters; see
+<a class="reference internal" href="thelper.nn.html#thelper.nn.utils.create_model" title="thelper.nn.utils.create_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.nn.utils.create_model()</span></code></a> for more information.</p></li>
+<li><p><strong>save_dir</strong> – the path to the root directory where the session directory should be saved. Note that
+this is not the path to the session directory itself, but its parent, which may also contain
+other session directories.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="thelper.nn.html#thelper.nn.utils.create_model" title="thelper.nn.utils.create_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.nn.utils.create_model()</span></code></a></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.cli.main">
+<code class="sig-prename descclassname">thelper.cli.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param">args=None</em>, <em class="sig-param">argparser=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/cli.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.cli.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main entrypoint to use with console applications.</p>
+<p>This function parses command line arguments and dispatches the execution based on the selected
+operating mode. Run with <code class="docutils literal notranslate"><span class="pre">--help</span></code> for information on the available arguments.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you are trying to resume a session that was previously executed using a now unavailable GPU,
+you will have to force the checkpoint data to be loaded on CPU using <code class="docutils literal notranslate"><span class="pre">--map-location=cpu</span></code> (or
+using <code class="docutils literal notranslate"><span class="pre">-m=cpu</span></code>).</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.cli.create_session" title="thelper.cli.create_session"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.cli.create_session()</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.cli.resume_session" title="thelper.cli.resume_session"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.cli.resume_session()</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.cli.visualize_data" title="thelper.cli.visualize_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.cli.visualize_data()</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.cli.annotate_data" title="thelper.cli.annotate_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.cli.annotate_data()</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.cli.split_data" title="thelper.cli.split_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.cli.split_data()</span></code></a></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.cli.make_argparser">
+<code class="sig-prename descclassname">thelper.cli.</code><code class="sig-name descname">make_argparser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/cli.html#make_argparser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.cli.make_argparser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the (default) argument parser to use for the main entrypoint.</p>
+<p>The argument parser will contain different “operating modes” that dictate the high-level behavior of the CLI. This
+function may be modified in branches of the framework to add project-specific features.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.cli.resume_session">
+<code class="sig-prename descclassname">thelper.cli.</code><code class="sig-name descname">resume_session</code><span class="sig-paren">(</span><em class="sig-param">ckptdata</em>, <em class="sig-param">save_dir</em>, <em class="sig-param">config=None</em>, <em class="sig-param">eval_only=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/cli.html#resume_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.cli.resume_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resumes a previously created training session.</p>
+<p>Since the saved checkpoints contain the original session’s configuration, the <code class="docutils literal notranslate"><span class="pre">config</span></code> argument
+can be set to <code class="docutils literal notranslate"><span class="pre">None</span></code> if the session should simply pick up where it was interrupted. Otherwise,
+the <code class="docutils literal notranslate"><span class="pre">config</span></code> argument can be set to a new configuration that will override the older one. This is
+useful when fine-tuning a model, or when testing on a new dataset.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If a session is resumed with an overriding configuration, the user must make sure that the
+inputs/outputs of the older model are compatible with the new parameters. For example, with
+classifiers, this means that the number of classes parsed by the dataset (and thus to be
+predicted by the model) should remain the same. This is a limitation of the framework that
+should be addressed in a future update.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>A resumed session will not be compatible with its original RNG states if the number of workers
+used is changed. To get 100% reproducible results, make sure you run with the same worker count.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ckptdata</strong> – raw checkpoint data loaded via <code class="docutils literal notranslate"><span class="pre">torch.load()</span></code>; it will be parsed by the various
+parts of the framework that need to reload their previous state.</p></li>
+<li><p><strong>save_dir</strong> – the path to the root directory where the session directory should be saved. Note that
+this is not the path to the session directory itself, but its parent, which may also contain
+other session directories.</p></li>
+<li><p><strong>config</strong> – a dictionary that provides all required data configuration and trainer parameters; see
+<a class="reference internal" href="thelper.train.html#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a> and <a class="reference internal" href="thelper.data.html#thelper.data.utils.create_loaders" title="thelper.data.utils.create_loaders"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.create_loaders()</span></code></a> for more information.
+Here, it is only expected to contain a <code class="docutils literal notranslate"><span class="pre">name</span></code> field that specifies the name of the session.</p></li>
+<li><p><strong>eval_only</strong> – specifies whether training should be resumed or the model should only be evaluated.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="thelper.train.html#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.cli.setup">
+<code class="sig-prename descclassname">thelper.cli.</code><code class="sig-name descname">setup</code><span class="sig-paren">(</span><em class="sig-param">args=None</em>, <em class="sig-param">argparser=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/cli.html#setup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.cli.setup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets up the argument parser (if not already done externally) and parses the input CLI arguments.</p>
+<p>This function may return an error code (integer) if the program should exit immediately. Otherwise, it will return
+the parsed arguments to use in order to redirect the execution flow of the entrypoint.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.cli.split_data">
+<code class="sig-prename descclassname">thelper.cli.</code><code class="sig-name descname">split_data</code><span class="sig-paren">(</span><em class="sig-param">config</em>, <em class="sig-param">save_dir</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/cli.html#split_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.cli.split_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launches a dataset splitting session.</p>
+<p>This mode will generate an HDF5 archive that contains the split datasets defined in the session
+configuration file. This archive can then be reused in a new training session to guarantee a fixed
+distribution of training, validation, and testing samples. It can also be used outside the framework
+in order to reproduce an experiment.</p>
+<p>The configuration dictionary must minimally contain two sections: ‘datasets’ and ‘loaders’. A third
+section, ‘split’, can be used to provide settings regarding the archive packing and compression
+approaches to use.</p>
+<p>The HDF5 archive will be saved in the session’s output directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> – a dictionary that provides all required data configuration parameters; see
+<a class="reference internal" href="thelper.data.html#thelper.data.utils.create_loaders" title="thelper.data.utils.create_loaders"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.create_loaders()</span></code></a> for more information.</p></li>
+<li><p><strong>save_dir</strong> – the path to the root directory where the session directory should be saved. Note that
+this is not the path to the session directory itself, but its parent, which may also contain
+other session directories.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="thelper.data.html#thelper.data.utils.create_loaders" title="thelper.data.utils.create_loaders"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.create_loaders()</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.data.html#thelper.data.utils.create_hdf5" title="thelper.data.utils.create_hdf5"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.create_hdf5()</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.data.html#thelper.data.parsers.HDF5Dataset" title="thelper.data.parsers.HDF5Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.data.parsers.HDF5Dataset</span></code></a></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.cli.visualize_data">
+<code class="sig-prename descclassname">thelper.cli.</code><code class="sig-name descname">visualize_data</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/cli.html#visualize_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.cli.visualize_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays the images used in a training session.</p>
+<p>This mode does not generate any output, and is only used to visualize the (transformed) images used
+in a training session. This is useful to debug the data augmentation and base transformation pipelines
+and make sure the modified images are valid. It does not attempt to load a model or instantiate a
+trainer, meaning the related fields are not required inside <code class="docutils literal notranslate"><span class="pre">config</span></code>.</p>
+<p>If the configuration dictionary includes a ‘loaders’ field, it will be parsed and used. Otherwise,
+if only a ‘datasets’ field is available, basic loaders will be instantiated to load the data. The
+‘loaders’ field can also be ignored if ‘ignore_loaders’ is found within the ‘viz’ section of the config
+and set to <code class="docutils literal notranslate"><span class="pre">True</span></code>. Each minibatch will be displayed via pyplot or OpenCV. The display will block and
+wait for user input, unless ‘block’ is set within the ‘viz’ section’s ‘kwargs’ config as <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> – a dictionary that provides all required data configuration parameters; see
+<a class="reference internal" href="thelper.data.html#thelper.data.utils.create_loaders" title="thelper.data.utils.create_loaders"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.create_loaders()</span></code></a> for more information.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="thelper.data.html#thelper.data.utils.create_loaders" title="thelper.data.utils.create_loaders"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.create_loaders()</span></code></a></div>
+<div class="line"><a class="reference internal" href="thelper.data.html#thelper.data.utils.create_parsers" title="thelper.data.utils.create_parsers"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.data.utils.create_parsers()</span></code></a></div>
+</div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.typedefs">
+<span id="thelper-typedefs-module"></span><h2>thelper.typedefs module<a class="headerlink" href="#module-thelper.typedefs" title="Permalink to this headline">¶</a></h2>
+<p>Typing definitions for thelper.</p>
+<dl class="class">
+<dt id="thelper.typedefs.DataLoader">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.typedefs.</code><code class="sig-name descname">DataLoader</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">batch_size=1</em>, <em class="sig-param">shuffle=False</em>, <em class="sig-param">sampler=None</em>, <em class="sig-param">batch_sampler=None</em>, <em class="sig-param">num_workers=0</em>, <em class="sig-param">collate_fn=&lt;function default_collate&gt;</em>, <em class="sig-param">pin_memory=False</em>, <em class="sig-param">drop_last=False</em>, <em class="sig-param">timeout=0</em>, <em class="sig-param">worker_init_fn=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/typedefs.html#DataLoader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.typedefs.DataLoader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.dataloader.DataLoader</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="thelper.typedefs.LoaderType">
+<code class="sig-prename descclassname">thelper.typedefs.</code><code class="sig-name descname">LoaderType</code><a class="headerlink" href="#thelper.typedefs.LoaderType" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#thelper.typedefs.DataLoader" title="thelper.typedefs.DataLoader"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.typedefs.DataLoader</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="thelper.typedefs.ModelType">
+<code class="sig-prename descclassname">thelper.typedefs.</code><code class="sig-name descname">ModelType</code><a class="headerlink" href="#thelper.typedefs.ModelType" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#thelper.typedefs.Module" title="thelper.typedefs.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.typedefs.Module</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.typedefs.Module">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.typedefs.</code><code class="sig-name descname">Module</code><a class="reference internal" href="_modules/thelper/typedefs.html#Module"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.typedefs.Module" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.typedefs.Task">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.typedefs.</code><code class="sig-name descname">Task</code><a class="reference internal" href="_modules/thelper/typedefs.html#Task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.typedefs.Task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.utils">
+<span id="thelper-utils-module"></span><h2>thelper.utils module<a class="headerlink" href="#module-thelper.utils" title="Permalink to this headline">¶</a></h2>
+<p>General utilities module.</p>
+<p>This module only contains non-ML specific functions, i/o helpers,
+and matplotlib/pyplot drawing calls.</p>
+<dl class="class">
+<dt id="thelper.utils.Struct">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">Struct</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#Struct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.Struct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Generic runtime-defined C-like data structure (maps constructor elements to fields).</p>
+<dl class="method">
+<dt id="thelper.utils.Struct.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#Struct.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.Struct.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.apply_color_map">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">apply_color_map</code><span class="sig-paren">(</span><em class="sig-param">image</em>, <em class="sig-param">colormap</em>, <em class="sig-param">dst=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#apply_color_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.apply_color_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies a color map to an image of 8-bit color indices; works similarly to cv2.applyColorMap (v3.3.1).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.check_func_signature">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">check_func_signature</code><span class="sig-paren">(</span><em class="sig-param">func</em>, <em class="sig-param">params</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#check_func_signature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.check_func_signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether the signature of a function matches the expected parameter list.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.clipstr">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">clipstr</code><span class="sig-paren">(</span><em class="sig-param">s</em>, <em class="sig-param">size</em>, <em class="sig-param">fill=' '</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#clipstr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.clipstr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clips a string to a specific length, with an optional fill character.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.decode_data">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">decode_data</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">approach='lz4'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#decode_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.decode_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decodes a binary array using a given coding approach.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – the binary array to decode.</p></li>
+<li><p><strong>approach</strong> – the encoding; supports <cite>none</cite>, <cite>lz4</cite>, <cite>jpg</cite>, <cite>png</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.utils.encode_data" title="thelper.utils.encode_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.utils.encode_data()</span></code></a></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.download_file">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">download_file</code><span class="sig-paren">(</span><em class="sig-param">url</em>, <em class="sig-param">root</em>, <em class="sig-param">filename</em>, <em class="sig-param">md5=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#download_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.download_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Downloads a file from a given URL to a local destination.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> – path to query for the file (query will be based on urllib).</p></li>
+<li><p><strong>root</strong> – destination folder where the file should be saved.</p></li>
+<li><p><strong>filename</strong> – destination name for the file.</p></li>
+<li><p><strong>md5</strong> – optional, for md5 integrity check.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The path to the downloaded file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.draw">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">draw</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">input</em>, <em class="sig-param">pred=None</em>, <em class="sig-param">target=None</em>, <em class="sig-param">block=False</em>, <em class="sig-param">ch_transpose=True</em>, <em class="sig-param">flip_bgr=False</em>, <em class="sig-param">redraw=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#draw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.draw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draws and returns a figure of a model input/predictions/targets using pyplot or OpenCV.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.draw_bbox">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">draw_bbox</code><span class="sig-paren">(</span><em class="sig-param">image</em>, <em class="sig-param">tl</em>, <em class="sig-param">br</em>, <em class="sig-param">text</em>, <em class="sig-param">color</em>, <em class="sig-param">box_thickness=2</em>, <em class="sig-param">font_thickness=1</em>, <em class="sig-param">font_scale=0.4</em>, <em class="sig-param">show=False</em>, <em class="sig-param">block=False</em>, <em class="sig-param">win_name='bbox'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#draw_bbox"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.draw_bbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draws a single bounding box on a given image (used in <a class="reference internal" href="#thelper.utils.draw_bboxes" title="thelper.utils.draw_bboxes"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.utils.draw_bboxes()</span></code></a>).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.draw_bboxes">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">draw_bboxes</code><span class="sig-paren">(</span><em class="sig-param">images</em>, <em class="sig-param">preds=None</em>, <em class="sig-param">bboxes=None</em>, <em class="sig-param">color_map=None</em>, <em class="sig-param">redraw=None</em>, <em class="sig-param">block=False</em>, <em class="sig-param">min_confidence=0.5</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#draw_bboxes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.draw_bboxes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draws and returns a set of bounding box prediction results.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.draw_classifs">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">draw_classifs</code><span class="sig-paren">(</span><em class="sig-param">images</em>, <em class="sig-param">preds=None</em>, <em class="sig-param">labels=None</em>, <em class="sig-param">class_names_map=None</em>, <em class="sig-param">redraw=None</em>, <em class="sig-param">block=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#draw_classifs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.draw_classifs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draws and returns a set of classification results.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.draw_confmat">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">draw_confmat</code><span class="sig-paren">(</span><em class="sig-param">confmat</em>, <em class="sig-param">class_list</em>, <em class="sig-param">size_inch=(5</em>, <em class="sig-param">5)</em>, <em class="sig-param">dpi=320</em>, <em class="sig-param">normalize=False</em>, <em class="sig-param">keep_unset=False</em>, <em class="sig-param">show=False</em>, <em class="sig-param">block=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#draw_confmat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.draw_confmat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draws and returns an a confusion matrix figure using pyplot.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.draw_errbars">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">draw_errbars</code><span class="sig-paren">(</span><em class="sig-param">labels</em>, <em class="sig-param">min_values</em>, <em class="sig-param">max_values</em>, <em class="sig-param">stddev_values</em>, <em class="sig-param">mean_values</em>, <em class="sig-param">xlabel=''</em>, <em class="sig-param">ylabel='Raw Value'</em>, <em class="sig-param">show=False</em>, <em class="sig-param">block=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#draw_errbars"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.draw_errbars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draws and returns an error bar histogram figure using pyplot.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.draw_histogram">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">draw_histogram</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">bins=50</em>, <em class="sig-param">xlabel=''</em>, <em class="sig-param">ylabel='Proportion'</em>, <em class="sig-param">show=False</em>, <em class="sig-param">block=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#draw_histogram"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.draw_histogram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draws and returns a histogram figure using pyplot.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.draw_images">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">draw_images</code><span class="sig-paren">(</span><em class="sig-param">images</em>, <em class="sig-param">captions=None</em>, <em class="sig-param">redraw=None</em>, <em class="sig-param">show=True</em>, <em class="sig-param">block=False</em>, <em class="sig-param">use_cv2=True</em>, <em class="sig-param">cv2_flip_bgr=True</em>, <em class="sig-param">img_shape=None</em>, <em class="sig-param">max_img_size=None</em>, <em class="sig-param">grid_size_x=None</em>, <em class="sig-param">grid_size_y=None</em>, <em class="sig-param">caption_opts=None</em>, <em class="sig-param">window_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#draw_images"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.draw_images" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draws a set of images with optional captions.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.draw_pascalvoc_curve">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">draw_pascalvoc_curve</code><span class="sig-paren">(</span><em class="sig-param">metrics</em>, <em class="sig-param">size_inch=(5</em>, <em class="sig-param">5)</em>, <em class="sig-param">dpi=320</em>, <em class="sig-param">show=False</em>, <em class="sig-param">block=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#draw_pascalvoc_curve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.draw_pascalvoc_curve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draws and returns a precision-recall curve according to pascalvoc metrics.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.draw_popbars">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">draw_popbars</code><span class="sig-paren">(</span><em class="sig-param">labels</em>, <em class="sig-param">counts</em>, <em class="sig-param">xlabel=''</em>, <em class="sig-param">ylabel='Pop. Count'</em>, <em class="sig-param">show=False</em>, <em class="sig-param">block=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#draw_popbars"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.draw_popbars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draws and returns a bar histogram figure using pyplot.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.draw_predicts">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">draw_predicts</code><span class="sig-paren">(</span><em class="sig-param">images</em>, <em class="sig-param">preds=None</em>, <em class="sig-param">targets=None</em>, <em class="sig-param">swap_channels=False</em>, <em class="sig-param">redraw=None</em>, <em class="sig-param">block=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#draw_predicts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.draw_predicts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draws and returns a set of generic prediction results.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.draw_roc_curve">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">draw_roc_curve</code><span class="sig-paren">(</span><em class="sig-param">fpr</em>, <em class="sig-param">tpr</em>, <em class="sig-param">labels=None</em>, <em class="sig-param">size_inch=(5</em>, <em class="sig-param">5)</em>, <em class="sig-param">dpi=320</em>, <em class="sig-param">show=False</em>, <em class="sig-param">block=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#draw_roc_curve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.draw_roc_curve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draws and returns an ROC curve figure using pyplot.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.draw_segments">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">draw_segments</code><span class="sig-paren">(</span><em class="sig-param">images</em>, <em class="sig-param">preds=None</em>, <em class="sig-param">masks=None</em>, <em class="sig-param">color_map=None</em>, <em class="sig-param">redraw=None</em>, <em class="sig-param">block=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#draw_segments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.draw_segments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draws and returns a set of segmentation results.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.encode_data">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">encode_data</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">approach='lz4'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#encode_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.encode_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encodes a numpy array using a given coding approach.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – the numpy array to encode.</p></li>
+<li><p><strong>approach</strong> – the encoding; supports <cite>none</cite>, <cite>lz4</cite>, <cite>jpg</cite>, <cite>png</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.utils.decode_data" title="thelper.utils.decode_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.utils.decode_data()</span></code></a></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.extract_tar">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">extract_tar</code><span class="sig-paren">(</span><em class="sig-param">filepath</em>, <em class="sig-param">root</em>, <em class="sig-param">flags='r:gz'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#extract_tar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.extract_tar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extracts the content of a tar file to a specific location.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> – location of the tar archive.</p></li>
+<li><p><strong>root</strong> – where to extract the archive’s content.</p></li>
+<li><p><strong>flags</strong> – extra flags passed to <code class="docutils literal notranslate"><span class="pre">tarfile.open</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.fig2array">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">fig2array</code><span class="sig-paren">(</span><em class="sig-param">fig</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#fig2array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.fig2array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms a pyplot figure into a numpy-compatible RGB array.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.get_available_cuda_devices">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">get_available_cuda_devices</code><span class="sig-paren">(</span><em class="sig-param">attempts_per_device=5</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#get_available_cuda_devices"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.get_available_cuda_devices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests all visible cuda devices and returns a list of available ones.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>List of available cuda device IDs (integers). An empty list means no
+cuda device is available, and the app should fallback to cpu.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.get_bgr_from_hsl">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">get_bgr_from_hsl</code><span class="sig-paren">(</span><em class="sig-param">hue</em>, <em class="sig-param">sat</em>, <em class="sig-param">light</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#get_bgr_from_hsl"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.get_bgr_from_hsl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a single HSL triplet (0-360 hue, 0-1 sat &amp; lightness) into an 8-bit RGB triplet.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.get_caller_name">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">get_caller_name</code><span class="sig-paren">(</span><em class="sig-param">skip=2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#get_caller_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.get_caller_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of a caller in the format module.class.method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>skip</strong> – specifies how many levels of stack to skip while getting the caller.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An empty string is returned if skipped levels exceed stack height; otherwise,
+returns the requested caller name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.get_class_logger">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">get_class_logger</code><span class="sig-paren">(</span><em class="sig-param">skip=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#get_class_logger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.get_class_logger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shorthand to get logger for current class frame.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.get_displayable_heatmap">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">get_displayable_heatmap</code><span class="sig-paren">(</span><em class="sig-param">array</em>, <em class="sig-param">convert_rgb=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#get_displayable_heatmap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.get_displayable_heatmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a ‘displayable’ array that has been min-maxed and mapped to color triplets.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.get_displayable_image">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">get_displayable_image</code><span class="sig-paren">(</span><em class="sig-param">image</em>, <em class="sig-param">grayscale=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#get_displayable_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.get_displayable_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a ‘displayable’ image that has been normalized and padded to three channels.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.get_env_list">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">get_env_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#get_env_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.get_env_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of all packages installed in the current environment.</p>
+<p>If the required packages cannot be imported, the returned list will be empty. Note that some
+packages may not be properly detected by this approach, and it is pretty hacky, so use it with
+a grain of salt (i.e. logging is fine).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.get_file_paths">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">get_file_paths</code><span class="sig-paren">(</span><em class="sig-param">input_path</em>, <em class="sig-param">data_root</em>, <em class="sig-param">allow_glob=False</em>, <em class="sig-param">can_be_dir=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#get_file_paths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.get_file_paths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse a wildcard-compatible file name pattern at a given root level for valid file paths.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.get_func_logger">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">get_func_logger</code><span class="sig-paren">(</span><em class="sig-param">skip=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#get_func_logger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.get_func_logger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shorthand to get logger for current function frame.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.get_git_stamp">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">get_git_stamp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#get_git_stamp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.get_git_stamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a print-friendly SHA signature for the framework’s underlying git repository (if found).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.get_glob_paths">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">get_glob_paths</code><span class="sig-paren">(</span><em class="sig-param">input_glob_pattern</em>, <em class="sig-param">can_be_dir=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#get_glob_paths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.get_glob_paths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse a wildcard-compatible file name pattern for valid file paths.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.get_key">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">get_key</code><span class="sig-paren">(</span><em class="sig-param">key</em>, <em class="sig-param">config</em>, <em class="sig-param">msg=None</em>, <em class="sig-param">delete=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#get_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.get_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a value given a dictionary key, throwing if not available.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.get_key_def">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">get_key_def</code><span class="sig-paren">(</span><em class="sig-param">key</em>, <em class="sig-param">config</em>, <em class="sig-param">default=None</em>, <em class="sig-param">msg=None</em>, <em class="sig-param">delete=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#get_key_def"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.get_key_def" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a value given a dictionary key, or the default value if it cannot be found.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.get_label_color_mapping">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">get_label_color_mapping</code><span class="sig-paren">(</span><em class="sig-param">idx</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#get_label_color_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.get_label_color_mapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the PASCAL VOC color triplet for a given label index.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.get_log_stamp">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">get_log_stamp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#get_log_stamp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.get_log_stamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a print-friendly and filename-friendly identification string containing platform and time.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.get_save_dir">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">get_save_dir</code><span class="sig-paren">(</span><em class="sig-param">out_root</em>, <em class="sig-param">dir_name</em>, <em class="sig-param">config=None</em>, <em class="sig-param">resume=False</em>, <em class="sig-param">backup_ext='.json'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#get_save_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.get_save_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a directory path in which the app can save its data.</p>
+<p>If a folder with name <code class="docutils literal notranslate"><span class="pre">dir_name</span></code> already exists in the directory <code class="docutils literal notranslate"><span class="pre">out_root</span></code>, then the user will be
+asked to pick a new name. If the user refuses, <code class="docutils literal notranslate"><span class="pre">sys.exit(1)</span></code> is called. If config is not <code class="docutils literal notranslate"><span class="pre">None</span></code>, it
+will be saved to the output directory as a json file. Finally, a <code class="docutils literal notranslate"><span class="pre">logs</span></code> directory will also be created
+in the output directory for writing logger files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>out_root</strong> – path to the directory root where the save directory should be created.</p></li>
+<li><p><strong>dir_name</strong> – name of the save directory to create. If it already exists, a new one will be requested.</p></li>
+<li><p><strong>config</strong> – dictionary of app configuration parameters. Used to overwrite i/o queries, and will be
+written to the save directory in json format to test writing. Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>resume</strong> – specifies whether this session is new, or resumed from an older one (in the latter
+case, overwriting is allowed, and the user will never have to choose a new folder)</p></li>
+<li><p><strong>backup_ext</strong> – extension to use when creating configuration file backups.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The path to the created save directory for this session.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.import_class">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">import_class</code><span class="sig-paren">(</span><em class="sig-param">fullname</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#import_class"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.import_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>General-purpose runtime class importer.</p>
+<dl class="simple">
+<dt>Supported syntax:</dt><dd><ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">module.package.Class</span></code> will import the fully qualified <code class="docutils literal notranslate"><span class="pre">Class</span></code> located
+in <code class="docutils literal notranslate"><span class="pre">package</span></code> from the <em>installed</em> <code class="docutils literal notranslate"><span class="pre">module</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/some/path/mod.pkg.Cls</span></code> will import <code class="docutils literal notranslate"><span class="pre">Cls</span></code> as fully qualified <code class="docutils literal notranslate"><span class="pre">mod.pkg.Cls</span></code> from
+<code class="docutils literal notranslate"><span class="pre">/some/path</span></code> directory</p></li>
+</ol>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>fullname</strong> – the fully qualified class name to be imported.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The imported class.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.import_function">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">import_function</code><span class="sig-paren">(</span><em class="sig-param">fullname</em>, <em class="sig-param">params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#import_function"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.import_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>General-purpose runtime function importer, with support for param binding.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fullname</strong> – the fully qualified function name to be imported.</p></li>
+<li><p><strong>params</strong> – optional params dictionary to bind to the function call via functools.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The imported function, with optionally bound parameters.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.init_logger">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">init_logger</code><span class="sig-paren">(</span><em class="sig-param">log_level=0</em>, <em class="sig-param">filename=None</em>, <em class="sig-param">force_stdout=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#init_logger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.init_logger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes the framework logger with a specific filter level, and optional file output.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.is_scalar">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">is_scalar</code><span class="sig-paren">(</span><em class="sig-param">val</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#is_scalar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.is_scalar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether the input value is a scalar according to numpy and PyTorch.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.load_checkpoint">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">load_checkpoint</code><span class="sig-paren">(</span><em class="sig-param">ckpt</em>, <em class="sig-param">map_location=None</em>, <em class="sig-param">always_load_latest=False</em>, <em class="sig-param">check_version=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#load_checkpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.load_checkpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a session checkpoint via PyTorch, check its compatibility, and returns its data.</p>
+<p>If the <code class="docutils literal notranslate"><span class="pre">ckpt</span></code> parameter is a path to a valid directory, then that directly will be searched for
+a checkpoint. If multiple checkpoints are found, the latest will be returned (based on the epoch
+index in its name). iF <code class="docutils literal notranslate"><span class="pre">always_load_latest</span></code> is set to False and if a checkpoint named
+<code class="docutils literal notranslate"><span class="pre">ckpt.best.pth</span></code> is found, it will be returned instead.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ckpt</strong> – a file-like object or a path to the checkpoint file or session directory.</p></li>
+<li><p><strong>map_location</strong> – a function, string or a dict specifying how to remap storage
+locations. See <code class="docutils literal notranslate"><span class="pre">torch.load</span></code> for more information.</p></li>
+<li><p><strong>always_load_latest</strong> – toggles whether to always try to load the latest checkpoint
+if a session directory is provided (instead of loading the ‘best’ checkpoint).</p></li>
+<li><p><strong>check_version</strong> – toggles whether the checkpoint’s version should be checked for
+compatibility issues, and query the user for how to proceed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Content of the checkpoint (a dictionary).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.lreplace">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">lreplace</code><span class="sig-paren">(</span><em class="sig-param">string</em>, <em class="sig-param">old_prefix</em>, <em class="sig-param">new_prefix</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#lreplace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.lreplace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replaces a single occurrence of <cite>old_prefix</cite> in the given string by <cite>new_prefix</cite>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.migrate_checkpoint">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">migrate_checkpoint</code><span class="sig-paren">(</span><em class="sig-param">ckptdata</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#migrate_checkpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.migrate_checkpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Migrates the content of an incompatible or outdated checkpoint to the current version of the framework.</p>
+<p>This function might not be able to fix all backward compatibility issues (e.g. it cannot fix class interfaces
+that were changed). Perfect reproductibility of tests cannot be guaranteed either if this migration tool is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ckptdata</strong> – checkpoint data in dictionary form obtained via <code class="docutils literal notranslate"><span class="pre">thelper.utils.load_checkpoint</span></code>. Note that
+the data contained in this dictionary will be modified in-place.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An updated checkpoint dictionary that should be compatible with the current version of the framework.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.migrate_config">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">migrate_config</code><span class="sig-paren">(</span><em class="sig-param">config</em>, <em class="sig-param">cfg_ver_str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#migrate_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.migrate_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Migrates the content of an incompatible or outdated configuration to the current version of the framework.</p>
+<p>This function might not be able to fix all backward compatibility issues (e.g. it cannot fix class interfaces
+that were changed). Perfect reproductibility of tests cannot be guaranteed either if this migration tool is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> – session configuration dictionary obtained e.g. by parsing a JSON file. Note that the data contained
+in this dictionary will be modified in-place.</p></li>
+<li><p><strong>cfg_ver_str</strong> – string representing the version for which the configuration was created (e.g. “0.2.0”).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An updated configuration dictionary that should be compatible with the current version of the framework.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.query_string">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">query_string</code><span class="sig-paren">(</span><em class="sig-param">question</em>, <em class="sig-param">choices=None</em>, <em class="sig-param">default=None</em>, <em class="sig-param">allow_empty=False</em>, <em class="sig-param">bypass=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#query_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.query_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asks the user a question and returns the answer (a generic string).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>question</strong> – the string that is presented to the user.</p></li>
+<li><p><strong>choices</strong> – a list of predefined choices that the user can pick from. If
+<code class="docutils literal notranslate"><span class="pre">None</span></code>, then whatever the user types will be accepted.</p></li>
+<li><p><strong>default</strong> – the presumed answer if the user just hits <code class="docutils literal notranslate"><span class="pre">&lt;Enter&gt;</span></code>. If <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+then an answer is required to continue.</p></li>
+<li><p><strong>allow_empty</strong> – defines whether an empty answer should be accepted.</p></li>
+<li><p><strong>bypass</strong> – the returned value if the <code class="docutils literal notranslate"><span class="pre">bypass_queries</span></code> global variable is set to
+<code class="docutils literal notranslate"><span class="pre">True</span></code>. Can be <code class="docutils literal notranslate"><span class="pre">None</span></code>, in which case the function will throw an exception.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The string entered by the user.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.query_yes_no">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">query_yes_no</code><span class="sig-paren">(</span><em class="sig-param">question</em>, <em class="sig-param">default=None</em>, <em class="sig-param">bypass=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#query_yes_no"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.query_yes_no" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asks the user a yes/no question and returns the answer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>question</strong> – the string that is presented to the user.</p></li>
+<li><p><strong>default</strong> – the presumed answer if the user just hits <code class="docutils literal notranslate"><span class="pre">&lt;Enter&gt;</span></code>. It must be ‘yes’,
+‘no’, or <code class="docutils literal notranslate"><span class="pre">None</span></code> (meaning an answer is required).</p></li>
+<li><p><strong>bypass</strong> – the option to select if the <code class="docutils literal notranslate"><span class="pre">bypass_queries</span></code> global variable is set to
+<code class="docutils literal notranslate"><span class="pre">True</span></code>. Can be <code class="docutils literal notranslate"><span class="pre">None</span></code>, in which case the function will throw an exception.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> for ‘yes’, or <code class="docutils literal notranslate"><span class="pre">False</span></code> for ‘no’ (or their respective variations).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.reporthook">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">reporthook</code><span class="sig-paren">(</span><em class="sig-param">count</em>, <em class="sig-param">block_size</em>, <em class="sig-param">total_size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#reporthook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.reporthook" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report hook used to display a download progression bar when using urllib requests.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.resolve_import">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">resolve_import</code><span class="sig-paren">(</span><em class="sig-param">fullname</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#resolve_import"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.resolve_import" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class name resolver.</p>
+<p>Takes a string corresponding to a module and class fullname to be imported with <a class="reference internal" href="#thelper.utils.import_class" title="thelper.utils.import_class"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.utils.import_class()</span></code></a>
+and resolves any back compatibility issues related to renamed or moved classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>fullname</strong> – the fully qualified class name to be resolved.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The resolved class fullname.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.safe_crop">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">safe_crop</code><span class="sig-paren">(</span><em class="sig-param">image</em>, <em class="sig-param">tl</em>, <em class="sig-param">br</em>, <em class="sig-param">bordertype=0</em>, <em class="sig-param">borderval=0</em>, <em class="sig-param">force_copy=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#safe_crop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.safe_crop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Safely crops a region from within an image, padding borders if needed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> – the image to crop (provided as a numpy array).</p></li>
+<li><p><strong>tl</strong> – a tuple or list specifying the (x,y) coordinates of the top-left crop corner.</p></li>
+<li><p><strong>br</strong> – a tuple or list specifying the (x,y) coordinates of the bottom-right crop corner.</p></li>
+<li><p><strong>bordertype</strong> – border copy type to use when the image is too small for the required crop size.
+See <code class="docutils literal notranslate"><span class="pre">cv2.copyMakeBorder</span></code> for more information.</p></li>
+<li><p><strong>borderval</strong> – border value to use when the image is too small for the required crop size. See
+<code class="docutils literal notranslate"><span class="pre">cv2.copyMakeBorder</span></code> for more information.</p></li>
+<li><p><strong>force_copy</strong> – defines whether to force a copy of the target image region even when it can be
+avoided.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The cropped image.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.save_config">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">save_config</code><span class="sig-paren">(</span><em class="sig-param">config</em>, <em class="sig-param">path</em>, <em class="sig-param">force_convert=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#save_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.save_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the given session/object configuration dictionary to the provided path.</p>
+<p>The type of file that is created is based on the extension specified in the path. If the file
+cannot hold some of the objects within the configuration, they will be converted to strings before
+serialization, unless <cite>force_convert</cite> is set to <cite>False</cite> (in which case the function will raise
+an exception).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> – the session/object configuration dictionary to save.</p></li>
+<li><p><strong>path</strong> – the path specifying where to create the output file. The extension used will determine
+what type of backup to create (e.g. Pickle = .pkl, JSON = .json).</p></li>
+<li><p><strong>force_convert</strong> – specifies whether non-serializable types should be converted if necessary.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.save_env_list">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">save_env_list</code><span class="sig-paren">(</span><em class="sig-param">path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#save_env_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.save_env_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves a list of all packages installed in the current environment to a log file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> – the path where the log file should be created.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.setup_cudnn">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">setup_cudnn</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#setup_cudnn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.setup_cudnn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the provided config for CUDNN flags and sets up PyTorch accordingly.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.setup_cv2">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">setup_cv2</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#setup_cv2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.setup_cv2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the provided config for OpenCV flags and sets up its global state accordingly.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.setup_globals">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">setup_globals</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#setup_globals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.setup_globals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the provided config for global flags and sets up the global state accordingly.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.setup_plt">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">setup_plt</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#setup_plt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.setup_plt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the provided config for matplotlib flags and sets up its global state accordingly.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.str2bool">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">str2bool</code><span class="sig-paren">(</span><em class="sig-param">s</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#str2bool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.str2bool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a string to a boolean.</p>
+<p>If the lower case version of the provided string matches any of ‘true’, ‘1’, or
+‘yes’, then the function returns <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.str2size">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">str2size</code><span class="sig-paren">(</span><em class="sig-param">input_str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#str2size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.str2size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a (WIDTH, HEIGHT) integer size tuple from a string formatted as ‘WxH’.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.stringify_confmat">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">stringify_confmat</code><span class="sig-paren">(</span><em class="sig-param">confmat</em>, <em class="sig-param">class_list</em>, <em class="sig-param">hide_zeroes=False</em>, <em class="sig-param">hide_diagonal=False</em>, <em class="sig-param">hide_threshold=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#stringify_confmat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.stringify_confmat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms a confusion matrix array obtained in list or numpy format into a printable string.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.utils.to_numpy">
+<code class="sig-prename descclassname">thelper.utils.</code><code class="sig-name descname">to_numpy</code><span class="sig-paren">(</span><em class="sig-param">array</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/utils.html#to_numpy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.utils.to_numpy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a list or PyTorch tensor to numpy. Does nothing if already a numpy array.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use-cases.html">Use Cases</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">thelper package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-thelper.cli">thelper.cli module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-thelper.typedefs">thelper.typedefs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-thelper.utils">thelper.utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/thelper.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="thelper.data.html" title="thelper.data package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="use-cases.html" title="Use Cases"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

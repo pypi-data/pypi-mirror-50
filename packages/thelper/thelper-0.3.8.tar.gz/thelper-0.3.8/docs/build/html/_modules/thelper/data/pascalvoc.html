@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.data.pascalvoc &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../../index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="../../../_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for thelper.data.pascalvoc</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;PASCAL VOC dataset parser module.</span>
+
+<span class="sd">This module contains a dataset parser used to load the PASCAL Visual Object Classes (VOC) dataset for</span>
+<span class="sd">semantic segmentation or object detection. See http://host.robots.ox.ac.uk/pascal/VOC/ for more info.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span>
+
+<span class="kn">import</span> <span class="nn">cv2</span> <span class="k">as</span> <span class="nn">cv</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">thelper.data</span>
+<span class="kn">import</span> <span class="nn">thelper.tasks</span>
+<span class="kn">import</span> <span class="nn">thelper.utils</span>
+<span class="kn">from</span> <span class="nn">thelper.data.parsers</span> <span class="k">import</span> <span class="n">Dataset</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="PASCALVOC"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.pascalvoc.PASCALVOC">[docs]</a><span class="k">class</span> <span class="nc">PASCALVOC</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;PASCAL VOC dataset parser.</span>
+
+<span class="sd">    This class can be used to parse the PASCAL VOC dataset for either semantic segmentation or object</span>
+<span class="sd">    detection. The task object it exposes will be changed accordingly. In all cases, the 2012 version</span>
+<span class="sd">    of the dataset will be used.</span>
+
+<span class="sd">    TODO: Add support for semantic instance segmentation.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.data.parsers.Dataset`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_label_name_map</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;background&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;aeroplane&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;bicycle&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">&quot;bird&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s2">&quot;boat&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s2">&quot;bottle&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s2">&quot;bus&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+        <span class="s2">&quot;car&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+        <span class="s2">&quot;cat&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+        <span class="s2">&quot;chair&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+        <span class="s2">&quot;cow&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s2">&quot;diningtable&quot;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span>
+        <span class="s2">&quot;dog&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+        <span class="s2">&quot;horse&quot;</span><span class="p">:</span> <span class="mi">13</span><span class="p">,</span>
+        <span class="s2">&quot;motorbike&quot;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+        <span class="s2">&quot;person&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="s2">&quot;pottedplant&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+        <span class="s2">&quot;sheep&quot;</span><span class="p">:</span> <span class="mi">17</span><span class="p">,</span>
+        <span class="s2">&quot;sofa&quot;</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span>
+        <span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="mi">19</span><span class="p">,</span>
+        <span class="s2">&quot;tvmonitor&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="s2">&quot;dontcare&quot;</span><span class="p">:</span> <span class="mi">255</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">_dontcare_val</span> <span class="o">=</span> <span class="mi">255</span>
+    <span class="n">_supported_tasks</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;detect&quot;</span><span class="p">,</span> <span class="s2">&quot;segm&quot;</span><span class="p">]</span>
+    <span class="n">_supported_subsets</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="s2">&quot;trainval&quot;</span><span class="p">,</span> <span class="s2">&quot;val&quot;</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">]</span>
+    <span class="n">_train_archive_name</span> <span class="o">=</span> <span class="s2">&quot;VOCtrainval_11-May-2012.tar&quot;</span>
+    <span class="n">_test_archive_name</span> <span class="o">=</span> <span class="s2">&quot;VOC2012test.tar&quot;</span>
+    <span class="n">_train_archive_url</span> <span class="o">=</span> <span class="s2">&quot;http://pjreddie.com/media/files/&quot;</span> <span class="o">+</span> <span class="n">_train_archive_name</span>
+    <span class="n">_test_archive_url</span> <span class="o">=</span> <span class="s2">&quot;http://pjreddie.com/media/files/&quot;</span> <span class="o">+</span> <span class="n">_test_archive_name</span>
+    <span class="n">_train_archive_md5</span> <span class="o">=</span> <span class="s2">&quot;6cd6e144f989b92b3379bac3b3de84fd&quot;</span>
+    <span class="n">_test_archive_md5</span> <span class="o">=</span> <span class="s2">&quot;9065beb292b6c291fad82b2725749fda&quot;</span>
+
+<div class="viewcode-block" id="PASCALVOC.__init__"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.pascalvoc.PASCALVOC.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">task</span><span class="o">=</span><span class="s2">&quot;segm&quot;</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="s2">&quot;trainval&quot;</span><span class="p">,</span> <span class="n">target_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">preload</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_difficult</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">use_occluded</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_truncated</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transforms</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">image_key</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="n">sample_name_key</span><span class="o">=</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">idx_key</span><span class="o">=</span><span class="s2">&quot;idx&quot;</span><span class="p">,</span>
+                 <span class="n">image_path_key</span><span class="o">=</span><span class="s2">&quot;image_path&quot;</span><span class="p">,</span> <span class="n">gt_path_key</span><span class="o">=</span><span class="s2">&quot;gt_path&quot;</span><span class="p">,</span> <span class="n">bboxes_key</span><span class="o">=</span><span class="s2">&quot;bboxes&quot;</span><span class="p">,</span> <span class="n">label_map_key</span><span class="o">=</span><span class="s2">&quot;label_map&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_name</span> <span class="o">=</span> <span class="n">task</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_supported_tasks</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;unrecognized task type &#39;</span><span class="si">{self.task_name}</span><span class="s2">&#39;&quot;</span>
+        <span class="k">assert</span> <span class="n">subset</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_supported_subsets</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;unrecognized data subset &#39;</span><span class="si">{subset}</span><span class="s2">&#39;&quot;</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+        <span class="n">devkit_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s2">&quot;VOCdevkit&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">devkit_path</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="n">download</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;invalid PASCALVOC devkit path &#39;</span><span class="si">{devkit_path}</span><span class="s2">&#39;&quot;</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;downloading training data archive...&quot;</span><span class="p">)</span>
+            <span class="n">train_archive_path</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">download_file</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_train_archive_url</span><span class="p">,</span>
+                                                             <span class="n">root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_train_archive_name</span><span class="p">,</span>
+                                                             <span class="bp">self</span><span class="o">.</span><span class="n">_train_archive_md5</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;extracting training data archive...&quot;</span><span class="p">)</span>
+            <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">extract_tar</span><span class="p">(</span><span class="n">train_archive_path</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;r:&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;downloading test data archive...&quot;</span><span class="p">)</span>
+            <span class="n">test_archive_path</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">download_file</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_test_archive_url</span><span class="p">,</span>
+                                                            <span class="n">root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_test_archive_name</span><span class="p">,</span>
+                                                            <span class="bp">self</span><span class="o">.</span><span class="n">_test_archive_md5</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;extracting test data archive...&quot;</span><span class="p">)</span>
+            <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">extract_tar</span><span class="p">(</span><span class="n">test_archive_path</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;r:&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">devkit_path</span><span class="p">),</span> <span class="s2">&quot;messed up PASCALVOC devkit tar extraction&quot;</span>
+        <span class="n">dataset_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">devkit_path</span><span class="p">,</span> <span class="s2">&quot;VOC2012&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">),</span> <span class="n">f</span><span class="s2">&quot;could not locate dataset folder &#39;VOC2012&#39; at &#39;</span><span class="si">{devkit_path}</span><span class="s2">&#39;&quot;</span>
+        <span class="n">imagesets_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">,</span> <span class="s2">&quot;ImageSets&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">),</span> <span class="n">f</span><span class="s2">&quot;could not locate image sets folder at &#39;</span><span class="si">{imagesets_path}</span><span class="s2">&#39;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">transforms</span><span class="o">=</span><span class="n">transforms</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preload</span> <span class="o">=</span> <span class="n">preload</span>
+        <span class="c1"># should use_difficult be true for training, but false for validation?</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_key</span> <span class="o">=</span> <span class="n">image_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">idx_key</span> <span class="o">=</span> <span class="n">idx_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sample_name_key</span> <span class="o">=</span> <span class="n">sample_name_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_path_key</span> <span class="o">=</span> <span class="n">image_path_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gt_path_key</span> <span class="o">=</span> <span class="n">gt_path_key</span>
+        <span class="n">meta_keys</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_name_key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_path_key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gt_path_key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">idx_key</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">image_set_name</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">valid_sample_names</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">target_labels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target_labels</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="n">target_labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">target_labels</span><span class="p">]</span>
+            <span class="k">assert</span> <span class="n">target_labels</span> <span class="ow">or</span> <span class="nb">all</span><span class="p">([</span><span class="n">label</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_label_name_map</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">target_labels</span><span class="p">]),</span> \
+                <span class="s2">&quot;target labels should be given as list of names (strings) that already exist&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">label_name_map</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_label_name_map</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">target_labels</span> <span class="ow">or</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;background&quot;</span> <span class="ow">or</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;dontcare&quot;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">label_name_map</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_name_map</span><span class="p">)</span> <span class="k">if</span> <span class="n">name</span> <span class="o">!=</span> <span class="s2">&quot;dontcare&quot;</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dontcare_val</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">label_name_map</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_label_name_map</span><span class="p">)</span>
+        <span class="c1"># if using target labels, must rely on image set luts to confirm content</span>
+        <span class="k">if</span> <span class="n">target_labels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">valid_sample_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_name_map</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">label</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;background&quot;</span><span class="p">,</span> <span class="s2">&quot;dontcare&quot;</span><span class="p">]:</span>
+                    <span class="k">continue</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">imagesets_path</span><span class="p">,</span> <span class="s2">&quot;Main&quot;</span><span class="p">,</span> <span class="n">label</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">subset</span> <span class="o">+</span> <span class="s2">&quot;.txt&quot;</span><span class="p">))</span> <span class="k">as</span> <span class="n">image_subset_fd</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">image_subset_fd</span><span class="p">:</span>
+                        <span class="n">sample_name</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+                        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                            <span class="n">valid_sample_names</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">sample_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_colors</span> <span class="o">=</span> <span class="p">{</span><span class="n">idx</span><span class="p">:</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_label_color_mapping</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_label_name_map</span><span class="p">[</span><span class="n">name</span><span class="p">])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                             <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">idx</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_name_map</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="n">color_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">idx</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_colors</span><span class="p">[</span><span class="n">idx</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_name_map</span><span class="o">.</span><span class="n">values</span><span class="p">()}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_name</span> <span class="o">==</span> <span class="s2">&quot;detect&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;dontcare&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_name_map</span><span class="p">:</span>
+                <span class="k">del</span> <span class="n">color_map</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">label_name_map</span><span class="p">[</span><span class="s2">&quot;dontcare&quot;</span><span class="p">]]</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_name_map</span><span class="p">[</span><span class="s2">&quot;dontcare&quot;</span><span class="p">]</span>  <span class="c1"># no need for obj detection</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span> <span class="o">=</span> <span class="n">bboxes_key</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Detection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_name_map</span><span class="p">,</span> <span class="n">input_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">image_key</span><span class="p">,</span>
+                                                <span class="n">bboxes_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span><span class="p">,</span> <span class="n">meta_keys</span><span class="o">=</span><span class="n">meta_keys</span><span class="p">,</span>
+                                                <span class="n">background</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">label_name_map</span><span class="p">[</span><span class="s2">&quot;background&quot;</span><span class="p">],</span>
+                                                <span class="n">color_map</span><span class="o">=</span><span class="n">color_map</span><span class="p">)</span>
+            <span class="n">image_set_name</span> <span class="o">=</span> <span class="s2">&quot;Main&quot;</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_name</span> <span class="o">==</span> <span class="s2">&quot;segm&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span> <span class="o">=</span> <span class="n">label_map_key</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Segmentation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_name_map</span><span class="p">,</span> <span class="n">input_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">image_key</span><span class="p">,</span>
+                                                   <span class="n">label_map_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span><span class="p">,</span> <span class="n">meta_keys</span><span class="o">=</span><span class="n">meta_keys</span><span class="p">,</span>
+                                                   <span class="n">dontcare</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_dontcare_val</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="n">color_map</span><span class="p">)</span>
+            <span class="n">image_set_name</span> <span class="o">=</span> <span class="s2">&quot;Segmentation&quot;</span>
+        <span class="n">imageset_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">imagesets_path</span><span class="p">,</span> <span class="n">image_set_name</span><span class="p">,</span> <span class="n">subset</span> <span class="o">+</span> <span class="s2">&quot;.txt&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">imageset_path</span><span class="p">),</span> <span class="s2">&quot;cannot locate sample set file at &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">imageset_path</span>
+        <span class="n">image_folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">,</span> <span class="s2">&quot;JPEGImages&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">image_folder_path</span><span class="p">),</span> <span class="s2">&quot;cannot locate image folder at &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">image_folder_path</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">imageset_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">image_subset_fd</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">valid_sample_names</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">sample_names</span> <span class="o">=</span> <span class="n">image_subset_fd</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sample_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">sample_name</span> <span class="ow">in</span> <span class="n">image_subset_fd</span><span class="p">:</span>
+                    <span class="n">sample_name</span> <span class="o">=</span> <span class="n">sample_name</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">sample_name</span> <span class="ow">in</span> <span class="n">valid_sample_names</span><span class="p">:</span>
+                        <span class="n">sample_names</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">sample_name</span><span class="p">)</span>
+                <span class="n">sample_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sample_names</span><span class="p">)</span>
+        <span class="n">action</span> <span class="o">=</span> <span class="s2">&quot;preloading&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">preload</span> <span class="k">else</span> <span class="s2">&quot;initializing&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> pascal voc dataset for task=&#39;</span><span class="si">%s</span><span class="s2">&#39; and set=&#39;</span><span class="si">%s</span><span class="s2">&#39;...&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_name</span><span class="p">,</span> <span class="n">subset</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">samples</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">preload</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">def</span> <span class="nf">tqdm</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">x</span>
+        <span class="k">for</span> <span class="n">sample_name</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">sample_names</span><span class="p">):</span>
+            <span class="n">annotation_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">,</span> <span class="s2">&quot;Annotations&quot;</span><span class="p">,</span> <span class="n">sample_name</span> <span class="o">+</span> <span class="s2">&quot;.xml&quot;</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">annotation_file_path</span><span class="p">),</span> <span class="s2">&quot;cannot load annotation file for sample &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">sample_name</span>
+            <span class="n">annotation</span> <span class="o">=</span> <span class="n">xml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">ElementTree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">annotation_file_path</span><span class="p">)</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span>
+            <span class="k">assert</span> <span class="n">annotation</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;annotation&quot;</span><span class="p">,</span> <span class="s2">&quot;unexpected xml content&quot;</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">annotation</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;filename&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+            <span class="n">image_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">image_folder_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">image_path</span><span class="p">),</span> <span class="s2">&quot;cannot locate image for sample &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">sample_name</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">preload</span><span class="p">:</span>
+                <span class="n">image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+                <span class="k">assert</span> <span class="n">image</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;could not load image &#39;</span><span class="si">%s</span><span class="s2">&#39; via opencv&quot;</span> <span class="o">%</span> <span class="n">image_path</span>
+            <span class="n">gt</span><span class="p">,</span> <span class="n">gt_path</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_name</span> <span class="o">==</span> <span class="s2">&quot;segm&quot;</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="nb">int</span><span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;segmented&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;unexpected segmented flag for sample &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">sample_name</span>
+                <span class="n">gt_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">,</span> <span class="s2">&quot;SegmentationClass&quot;</span><span class="p">,</span> <span class="n">sample_name</span> <span class="o">+</span> <span class="s2">&quot;.png&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">preload</span><span class="p">:</span>
+                    <span class="n">gt</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">gt_path</span><span class="p">)</span>
+                    <span class="k">assert</span> <span class="n">gt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">gt</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;unexpected gt shape for sample &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">sample_name</span>
+                    <span class="n">gt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode_label_map</span><span class="p">(</span><span class="n">gt</span><span class="p">)</span>
+                    <span class="c1">#gt_decoded = self.decode_label_map(gt)</span>
+                    <span class="c1">#assert np.array_equal(cv.imread(gt_path), gt_decoded), &quot;messed up encoding/decoding functions&quot;</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_name</span> <span class="o">==</span> <span class="s2">&quot;detect&quot;</span><span class="p">:</span>
+                <span class="n">gt_path</span> <span class="o">=</span> <span class="n">annotation_file_path</span>
+                <span class="n">gt</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">annotation</span><span class="o">.</span><span class="n">iter</span><span class="p">(</span><span class="s2">&quot;object&quot;</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">use_difficult</span> <span class="ow">and</span> <span class="n">obj</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;difficult&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+                        <span class="k">continue</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">use_occluded</span> <span class="ow">and</span> <span class="n">obj</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;occluded&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+                        <span class="k">continue</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">use_truncated</span> <span class="ow">and</span> <span class="n">obj</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;truncated&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+                        <span class="k">continue</span>
+                    <span class="n">bbox</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;bndbox&quot;</span><span class="p">)</span>
+                    <span class="n">label</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+                    <span class="k">if</span> <span class="n">label</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_name_map</span><span class="p">:</span>
+                        <span class="k">continue</span>  <span class="c1"># user is skipping some labels from the complete set</span>
+                    <span class="n">image_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+                    <span class="n">gt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">BoundingBox</span><span class="p">(</span><span class="n">class_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">label_name_map</span><span class="p">[</span><span class="n">label</span><span class="p">],</span>
+                                                       <span class="n">bbox</span><span class="o">=</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">bbox</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;xmin&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">bbox</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;ymin&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">),</span>
+                                                             <span class="nb">int</span><span class="p">(</span><span class="n">bbox</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;xmax&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">bbox</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;ymax&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)),</span>
+                                                       <span class="n">difficult</span><span class="o">=</span><span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">str2bool</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;difficult&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">),</span>
+                                                       <span class="n">occluded</span><span class="o">=</span><span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">str2bool</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;occluded&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">),</span>
+                                                       <span class="n">truncated</span><span class="o">=</span><span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">str2bool</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;truncated&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">),</span>
+                                                       <span class="n">confidence</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">image_id</span><span class="o">=</span><span class="n">image_id</span><span class="p">,</span> <span class="n">task</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="p">))</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">gt</span><span class="p">:</span>
+                    <span class="k">continue</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sample_name_key</span><span class="p">:</span> <span class="n">sample_name</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">image_path_key</span><span class="p">:</span> <span class="n">image_path</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">gt_path_key</span><span class="p">:</span> <span class="n">gt_path</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">image_key</span><span class="p">:</span> <span class="n">image</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span><span class="p">:</span> <span class="n">gt</span><span class="p">,</span>
+            <span class="p">})</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;initialized </span><span class="si">%d</span><span class="s2"> samples&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="PASCALVOC.__getitem__"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.pascalvoc.PASCALVOC.__getitem__">[docs]</a>    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the data sample (a dictionary) for a specific (0-based) index.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitems</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">),</span> <span class="s2">&quot;sample index is out-of-range&quot;</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">)</span> <span class="o">+</span> <span class="n">idx</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">preload</span><span class="p">:</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">image_path_key</span><span class="p">])</span>
+            <span class="k">assert</span> <span class="n">image</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;could not load image &#39;</span><span class="si">%s</span><span class="s2">&#39; via opencv&quot;</span> <span class="o">%</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">image_path_key</span><span class="p">]</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># BGR to RGB</span>
+            <span class="n">gt</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_name</span> <span class="o">==</span> <span class="s2">&quot;segm&quot;</span><span class="p">:</span>
+                <span class="n">gt</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">gt_path_key</span><span class="p">])</span>
+                <span class="k">assert</span> <span class="n">gt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">gt</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;unexpected gt shape for sample &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_name_key</span><span class="p">]</span>
+                <span class="n">gt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode_label_map</span><span class="p">(</span><span class="n">gt</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_name</span> <span class="o">==</span> <span class="s2">&quot;detect&quot;</span><span class="p">:</span>
+                <span class="n">gt</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">image_key</span><span class="p">]</span>
+            <span class="n">gt</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span><span class="p">]</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sample_name_key</span><span class="p">:</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_name_key</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image_path_key</span><span class="p">:</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">image_path_key</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gt_path_key</span><span class="p">:</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">gt_path_key</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image_key</span><span class="p">:</span> <span class="n">image</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span><span class="p">:</span> <span class="n">gt</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">idx_key</span><span class="p">:</span> <span class="n">idx</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">image_key</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">any</span><span class="p">([</span><span class="n">s</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">image_key</span><span class="p">]</span><span class="o">.</span><span class="n">strides</span><span class="p">]):</span>
+            <span class="c1"># fix unsupported negative strides in PyTorch &lt;= 1.1.0</span>
+            <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">image_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">image_key</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transforms</span><span class="p">:</span>
+            <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transforms</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sample</span></div>
+
+<div class="viewcode-block" id="PASCALVOC.decode_label_map"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.pascalvoc.PASCALVOC.decode_label_map">[docs]</a>    <span class="k">def</span> <span class="nf">decode_label_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_map</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a color image from a label indices map.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">label_map</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">and</span> <span class="n">label_map</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;unexpected label map type/shape, should be 2D np.ndarray&quot;</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">label_map</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">fill_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_dontcare_val</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">label_idx</span><span class="p">,</span> <span class="n">label_color</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_colors</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">output</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">label_map</span> <span class="o">==</span> <span class="n">label_idx</span><span class="p">)]</span> <span class="o">=</span> <span class="n">label_color</span>
+        <span class="k">return</span> <span class="n">output</span></div>
+
+<div class="viewcode-block" id="PASCALVOC.encode_label_map"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.pascalvoc.PASCALVOC.encode_label_map">[docs]</a>    <span class="k">def</span> <span class="nf">encode_label_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_map</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a map of label indices from a color image.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">label_map</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">and</span> <span class="n">label_map</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">or</span> <span class="n">label_map</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">,</span> \
+            <span class="s2">&quot;unexpected label map type/shape, should be 3D np.ndarray&quot;</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">label_map</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">fill_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_dontcare_val</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+        <span class="c1"># TODO: loss might not like uint8, check for useless convs later</span>
+        <span class="k">for</span> <span class="n">label_idx</span><span class="p">,</span> <span class="n">label_color</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_colors</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">label_map</span> <span class="o">==</span> <span class="n">label_color</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">label_idx</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../use-cases.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

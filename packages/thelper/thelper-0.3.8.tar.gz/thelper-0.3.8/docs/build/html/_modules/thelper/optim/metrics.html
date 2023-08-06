@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.optim.metrics &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../../index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="../../../_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for thelper.optim.metrics</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Metrics module.</span>
+
+<span class="sd">This module contains classes that implement metrics used to monitor training sessions and evaluate models.</span>
+<span class="sd">These metrics should all inherit from :class:`thelper.optim.metrics.Metric` to allow them to be dynamically</span>
+<span class="sd">instantiated by the framework from a configuration file, and evaluated automatically inside a training</span>
+<span class="sd">session. For more information on this, refer to :class:`thelper.train.base.Trainer`.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="k">import</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Optional</span>  <span class="c1"># noqa: F401</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sklearn.metrics</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="kn">import</span> <span class="nn">thelper.utils</span>
+<span class="kn">from</span> <span class="nn">thelper.train.utils</span> <span class="k">import</span> <span class="n">PredictionConsumer</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Metric"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.Metric">[docs]</a><span class="k">class</span> <span class="nc">Metric</span><span class="p">(</span><span class="n">PredictionConsumer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Abstract metric interface.</span>
+
+<span class="sd">    This interface defines basic functions required so that :class:`thelper.train.base.Trainer` can</span>
+<span class="sd">    figure out how to instantiate, update, and optimize a given metric while training/evaluating a model.</span>
+
+<span class="sd">    All metrics, by definition, must be &#39;optimizable&#39;. This means that they should return a scalar value</span>
+<span class="sd">    when &#39;evaluated&#39; and define an optimal goal (-inf or +inf). If this is not possible, then the class</span>
+<span class="sd">    should probably be derived using the more generic :class:`thelper.train.utils.PredictionConsumer`</span>
+<span class="sd">    instead.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">minimize</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;-inf&quot;</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;Possible value of the ``goal`` attribute of this metric.&quot;&quot;&quot;</span>
+
+    <span class="n">maximize</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;Possible value of the ``goal`` attribute of this metric.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Metric.update"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.Metric.update">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="c1"># see `thelper.typedefs.IterCallbackParams` for more info</span>
+               <span class="n">task</span><span class="p">,</span>  <span class="c1"># type: thelper.tasks.utils.Task</span>
+               <span class="nb">input</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.InputType</span>
+               <span class="n">pred</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.PredictionType</span>
+               <span class="n">target</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.TargetType</span>
+               <span class="n">sample</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.SampleType</span>
+               <span class="n">loss</span><span class="p">,</span>  <span class="c1"># type: Optional[float]</span>
+               <span class="n">iter_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_iters</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">epoch_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_epochs</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># type: (...) -&gt; None</span>
+        <span class="sd">&quot;&quot;&quot;Receives the latest prediction and groundtruth tensors from the training session.</span>
+
+<span class="sd">        The data given here will be &quot;consumed&quot; internally, but it should NOT be modified. For example,</span>
+<span class="sd">        a classification accuracy metric might accumulate the correct number of predictions in comparison</span>
+<span class="sd">        to groundtruth labels, but never alter those predictions. The iteration/epoch indices may be</span>
+<span class="sd">        used to &#39;reset&#39; the internal state of this object when needed (for example, at the start of each</span>
+<span class="sd">        new epoch).</span>
+
+<span class="sd">        Remember that input, prediction, and target tensors received here will all have a batch dimension!</span>
+
+<span class="sd">        The exact signature of this function should match the one of the callbacks defined in</span>
+<span class="sd">        :class:`thelper.train.base.Trainer` and specified by ``thelper.typedefs.IterCallbackParams``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="Metric.eval"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.Metric.eval">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the metric&#39;s evaluation result.</span>
+
+<span class="sd">        The returned value should be a scalar. As a model improves, this scalar should get closer</span>
+<span class="sd">        to the optimization goal (defined through the &#39;goal&#39; attribute). This value will be queried</span>
+<span class="sd">        at the end of each training epoch by the trainer.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">goal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the scalar optimization goal of the metric.</span>
+
+<span class="sd">        The returned goal can be the ``minimize`` or ``maximize`` members of ``thelper.optim.metrics.Metric``</span>
+<span class="sd">        if the class&#39;s evaluation returns a scalar value, and ``None`` otherwise. The trainer will</span>
+<span class="sd">        check this value to see if monitoring the metric&#39;s evaluation result progression is possible.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">live_eval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns whether this metric can/should be evaluated at every backprop iteration or not.</span>
+
+<span class="sd">        By default, this returns ``True``, but implementations that are quite slow may return ``False``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="Accuracy"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.Accuracy">[docs]</a><span class="k">class</span> <span class="nc">Accuracy</span><span class="p">(</span><span class="n">Metric</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Classification accuracy metric interface.</span>
+
+<span class="sd">    This is a scalar metric used to monitor the label prediction accuracy of a model. By default,</span>
+<span class="sd">    it works in ``top-k`` mode, meaning that the evaluation result is given by:</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">      \text{accuracy} = \frac{\text{nb. correct predictions}}{\text{nb. total predictions}} \cdot 100</span>
+
+<span class="sd">    When :math:`k&gt;1`, a &#39;correct&#39; prediction is obtained if any of the model&#39;s top :math:`k` predictions</span>
+<span class="sd">    (i.e. the :math:`k` predictions with the highest score) match the groundtruth label. Otherwise, if</span>
+<span class="sd">    :math:`k=1`, then only the top prediction is compared to the groundtruth label. Note that for</span>
+<span class="sd">    binary classification problems, :math:`k` should always be set to 1.</span>
+
+<span class="sd">    This metric&#39;s goal is to maximize its value :math:`\in [0,100]` (a percentage is returned).</span>
+
+<span class="sd">    Usage example inside a session configuration file::</span>
+
+<span class="sd">        # ...</span>
+<span class="sd">        # lists all metrics to instantiate as a dictionary</span>
+<span class="sd">        &quot;metrics&quot;: {</span>
+<span class="sd">            # ...</span>
+<span class="sd">            # this is the name of the example metric; it is used for lookup/printing only</span>
+<span class="sd">            &quot;top_5_accuracy&quot;: {</span>
+<span class="sd">                # this type is used to instantiate the accuracy metric</span>
+<span class="sd">                &quot;type&quot;: &quot;thelper.optim.metrics.Accuracy&quot;,</span>
+<span class="sd">                # these parameters are passed to the wrapper&#39;s constructor</span>
+<span class="sd">                &quot;params&quot;: {</span>
+<span class="sd">                    # the top prediction count to check for a match with the groundtruth</span>
+<span class="sd">                    &quot;top_k&quot;: 5</span>
+<span class="sd">                }</span>
+<span class="sd">            },</span>
+<span class="sd">            # ...</span>
+<span class="sd">        }</span>
+<span class="sd">        # ...</span>
+
+<span class="sd">    Todo: add support for &#39;dont care&#39; target value?</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        top_k: number of top predictions to consider when matching with the groundtruth (default=1).</span>
+<span class="sd">        max_win_size: maximum moving average window size to use (default=None, which equals dataset size).</span>
+<span class="sd">        correct: total number of correct predictions stored using an array for window-based averaging.</span>
+<span class="sd">        total: total number of predictions stored using an array for window-based averaging.</span>
+<span class="sd">        warned_eval_bad: toggles whether the division-by-zero warning has been flagged or not.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Accuracy.__init__"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.Accuracy.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_win_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives the number of predictions to consider for matches (``top_k``) and the moving average</span>
+<span class="sd">        window size (``window_size``).</span>
+
+<span class="sd">        Note that by default, if ``max_win_size`` is not provided here, the value given to ``max_iters`` on</span>
+<span class="sd">        the first update call will be used instead to fix the sliding window length. In any case, the</span>
+<span class="sd">        smallest of ``max_iters`` and ``max_win_size`` will be used to determine the actual window size.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">top_k</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">top_k</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;invalid top-k value&quot;</span>
+        <span class="k">assert</span> <span class="n">max_win_size</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">max_win_size</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">max_win_size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">),</span> \
+            <span class="s2">&quot;invalid max sliding window size (should be positive integer)&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">top_k</span> <span class="o">=</span> <span class="n">top_k</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_win_size</span> <span class="o">=</span> <span class="n">max_win_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">correct</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># will be instantiated on first iter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># will be instantiated on first iter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warned_eval_bad</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a generic print-friendly string containing info about this metric.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;(top_k={repr(self.top_k)}, max_win_size={repr(self.max_win_size)})&quot;</span>
+
+<div class="viewcode-block" id="Accuracy.update"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.Accuracy.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="c1"># see `thelper.typedefs.IterCallbackParams` for more info</span>
+               <span class="n">task</span><span class="p">,</span>  <span class="c1"># type: thelper.tasks.utils.Task</span>
+               <span class="nb">input</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.InputType</span>
+               <span class="n">pred</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.PredictionType</span>
+               <span class="n">target</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.TargetType</span>
+               <span class="n">sample</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.SampleType</span>
+               <span class="n">loss</span><span class="p">,</span>  <span class="c1"># type: Optional[float]</span>
+               <span class="n">iter_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_iters</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">epoch_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_epochs</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># type: (...) -&gt; None</span>
+        <span class="sd">&quot;&quot;&quot;Receives the latest class prediction and groundtruth labels from the training session.</span>
+
+<span class="sd">        This function computes and accumulate the number of correct and total predictions in</span>
+<span class="sd">        the internal arrays, cycling over the iteration index if the maximum window length is reached.</span>
+
+<span class="sd">        The exact signature of this function should match the one of the callbacks defined in</span>
+<span class="sd">        :class:`thelper.train.base.Trainer` and specified by ``thelper.typedefs.IterCallbackParams``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;unexpected extra arguments present in update call&quot;</span>
+        <span class="k">assert</span> <span class="n">iter_idx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">max_iters</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">iter_idx</span> <span class="o">&lt;</span> <span class="n">max_iters</span><span class="p">,</span> \
+            <span class="s2">&quot;bad iteration indices given to metric update function&quot;</span>
+        <span class="n">curr_win_size</span> <span class="o">=</span> <span class="n">max_iters</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_win_size</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_win_size</span><span class="p">,</span> <span class="n">max_iters</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">correct</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">correct</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="n">curr_win_size</span><span class="p">:</span>
+            <span class="c1"># each &#39;iteration&#39; will have a corresponding bin with counts for that batch</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">correct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">curr_win_size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">total</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">curr_win_size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+        <span class="n">curr_idx</span> <span class="o">=</span> <span class="n">iter_idx</span> <span class="o">%</span> <span class="n">curr_win_size</span>
+        <span class="k">if</span> <span class="n">target</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">target</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># only accumulate results when groundtruth is available</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">correct</span><span class="p">[</span><span class="n">curr_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">total</span><span class="p">[</span><span class="n">curr_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">return</span>
+        <span class="k">assert</span> <span class="n">pred</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="n">target</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;prediction/gt tensors dim mismatch (should be BxCx[...] and Bx[...])&quot;</span>
+        <span class="k">assert</span> <span class="n">pred</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;prediction/gt tensors batch size mismatch&quot;</span>
+        <span class="k">assert</span> <span class="n">pred</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">pred</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span> <span class="o">==</span> <span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s2">&quot;prediction/gt tensors array size mismatch&quot;</span>
+        <span class="n">top_k</span> <span class="o">=</span> <span class="n">pred</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top_k</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">top_k</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+        <span class="n">true_k</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">top_k</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">correct</span><span class="p">[</span><span class="n">curr_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">top_k</span><span class="p">,</span> <span class="n">true_k</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total</span><span class="p">[</span><span class="n">curr_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Accuracy.eval"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.Accuracy.eval">[docs]</a>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the current accuracy (in percentage) based on the accumulated prediction counts.</span>
+
+<span class="sd">        Will issue a warning if no predictions have been accumulated yet.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">total</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">total</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">total</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">warned_eval_bad</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">warned_eval_bad</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;category accuracy eval result invalid (set as 0.0), no results accumulated&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="mf">0.0</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">correct</span><span class="p">))</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">total</span><span class="p">)))</span> <span class="o">*</span> <span class="mi">100</span></div>
+
+<div class="viewcode-block" id="Accuracy.reset"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.Accuracy.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Toggles a reset of the metric&#39;s internal state, deallocating count arrays.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">correct</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">goal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the scalar optimization goal of this metric (maximization).&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Metric</span><span class="o">.</span><span class="n">maximize</span></div>
+
+
+<div class="viewcode-block" id="MeanAbsoluteError"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.MeanAbsoluteError">[docs]</a><span class="k">class</span> <span class="nc">MeanAbsoluteError</span><span class="p">(</span><span class="n">Metric</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Mean absolute error metric interface.</span>
+
+<span class="sd">    This is a scalar metric used to monitor the mean absolute deviation (or error) for a model&#39;s</span>
+<span class="sd">    predictions. This regression metric can be described as:</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        e(x, y) = E = \{e_1,\dots,e_N\}^\top, \quad</span>
+<span class="sd">        e_n = \left| x_n - y_n \right|,</span>
+
+<span class="sd">    where :math:`N` is the batch size. If ``reduction`` is not ``&#39;none&#39;``, then:</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        \text{MAE}(x, y) =</span>
+<span class="sd">        \begin{cases}</span>
+<span class="sd">            \operatorname{mean}(E), &amp; \text{if reduction } = \text{mean.}\\</span>
+<span class="sd">            \operatorname{sum}(E),  &amp; \text{if reduction } = \text{sum.}</span>
+<span class="sd">        \end{cases}</span>
+
+<span class="sd">    `x` and `y` are tensors of arbitrary shapes with a total of `n` elements each.</span>
+
+<span class="sd">    Usage example inside a session configuration file::</span>
+
+<span class="sd">        # ...</span>
+<span class="sd">        # lists all metrics to instantiate as a dictionary</span>
+<span class="sd">        &quot;metrics&quot;: {</span>
+<span class="sd">            # ...</span>
+<span class="sd">            # this is the name of the example metric; it is used for lookup/printing only</span>
+<span class="sd">            &quot;mae&quot;: {</span>
+<span class="sd">                # this type is used to instantiate the error metric</span>
+<span class="sd">                &quot;type&quot;: &quot;thelper.optim.metrics.MeanAbsoluteError&quot;,</span>
+<span class="sd">                &quot;params&quot;: {</span>
+<span class="sd">                    &quot;reduction&quot;: &quot;mean&quot;</span>
+<span class="sd">                }</span>
+<span class="sd">            },</span>
+<span class="sd">            # ...</span>
+<span class="sd">        }</span>
+<span class="sd">        # ...</span>
+
+<span class="sd">    Todo: add support for &#39;dont care&#39; target value?</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        max_win_size: maximum moving average window size to use (default=None, which equals dataset size).</span>
+<span class="sd">        reduction: string representing the tensor reduction strategy to use.</span>
+<span class="sd">        errors: array of error values stored for window-based averaging.</span>
+<span class="sd">        warned_eval_bad: toggles whether the division-by-zero warning has been flagged or not.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="MeanAbsoluteError.__init__"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.MeanAbsoluteError.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">max_win_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives the reduction strategy and the moving average window size (``window_size``).</span>
+
+<span class="sd">        Note that by default, if ``max_win_size`` is not provided here, the value given to ``max_iters`` on</span>
+<span class="sd">        the first update call will be used instead to fix the sliding window length. In any case, the</span>
+<span class="sd">        smallest of ``max_iters`` and ``max_win_size`` will be used to determine the actual window size.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">max_win_size</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">max_win_size</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">max_win_size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">),</span> \
+            <span class="s2">&quot;invalid max sliding window size (should be positive integer)&quot;</span>
+        <span class="k">assert</span> <span class="n">reduction</span> <span class="o">!=</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="s2">&quot;metric must absolutely return a scalar, must reduce&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reduction</span> <span class="o">=</span> <span class="n">reduction</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_win_size</span> <span class="o">=</span> <span class="n">max_win_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">errors</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># will be instantiated on first iter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warned_eval_bad</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a generic print-friendly string containing info about this metric.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;(reduction={repr(self.reduction)}, max_win_size={repr(self.max_win_size)})&quot;</span>
+
+<div class="viewcode-block" id="MeanAbsoluteError.update"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.MeanAbsoluteError.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="c1"># see `thelper.typedefs.IterCallbackParams` for more info</span>
+               <span class="n">task</span><span class="p">,</span>  <span class="c1"># type: thelper.tasks.utils.Task</span>
+               <span class="nb">input</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.InputType</span>
+               <span class="n">pred</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.PredictionType</span>
+               <span class="n">target</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.TargetType</span>
+               <span class="n">sample</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.SampleType</span>
+               <span class="n">loss</span><span class="p">,</span>  <span class="c1"># type: Optional[float]</span>
+               <span class="n">iter_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_iters</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">epoch_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_epochs</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># type: (...) -&gt; None</span>
+        <span class="sd">&quot;&quot;&quot;Receives the latest predictions and target values from the training session.</span>
+
+<span class="sd">        This function computes and accumulates the L1 distance between predictions and targets in the</span>
+<span class="sd">        internal array, cycling over the iteration index if the maximum window length is reached.</span>
+
+<span class="sd">        The exact signature of this function should match the one of the callbacks defined in</span>
+<span class="sd">        :class:`thelper.train.base.Trainer` and specified by ``thelper.typedefs.IterCallbackParams``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;unexpected extra arguments present in update call&quot;</span>
+        <span class="k">assert</span> <span class="n">iter_idx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">max_iters</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">iter_idx</span> <span class="o">&lt;</span> <span class="n">max_iters</span><span class="p">,</span> \
+            <span class="s2">&quot;bad iteration indices given to metric update function&quot;</span>
+        <span class="n">curr_win_size</span> <span class="o">=</span> <span class="n">max_iters</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_win_size</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_win_size</span><span class="p">,</span> <span class="n">max_iters</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">errors</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="n">curr_win_size</span><span class="p">:</span>
+            <span class="c1"># each &#39;iteration&#39; will have a corresponding bin with the average L1 loss for that batch</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">curr_win_size</span><span class="p">)</span>
+        <span class="n">curr_idx</span> <span class="o">=</span> <span class="n">iter_idx</span> <span class="o">%</span> <span class="n">curr_win_size</span>
+        <span class="k">if</span> <span class="n">target</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">target</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># only accumulate results when groundtruth is available</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">errors</span><span class="p">[</span><span class="n">curr_idx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">return</span>
+        <span class="k">assert</span> <span class="n">pred</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;prediction/gt tensors shape mismatch&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">errors</span><span class="p">[</span><span class="n">curr_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">l1_loss</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reduction</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="MeanAbsoluteError.eval"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.MeanAbsoluteError.eval">[docs]</a>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the current (average) mean absolute error based on the accumulated values.</span>
+
+<span class="sd">        Will issue a warning if no predictions have been accumulated yet.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">errors</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">([</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">errors</span> <span class="k">if</span> <span class="n">d</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">warned_eval_bad</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">warned_eval_bad</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;mean absolute error eval result invalid (set as 0.0), no results accumulated&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="mf">0.0</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">errors</span> <span class="k">if</span> <span class="n">d</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="MeanAbsoluteError.reset"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.MeanAbsoluteError.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Toggles a reset of the metric&#39;s internal state, deallocating the errors array.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">errors</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">goal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the scalar optimization goal of this metric (minimization).&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Metric</span><span class="o">.</span><span class="n">minimize</span></div>
+
+
+<div class="viewcode-block" id="MeanSquaredError"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.MeanSquaredError">[docs]</a><span class="k">class</span> <span class="nc">MeanSquaredError</span><span class="p">(</span><span class="n">Metric</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Mean squared error metric interface.</span>
+
+<span class="sd">    This is a scalar metric used to monitor the mean squared deviation (or error) for a model&#39;s</span>
+<span class="sd">    predictions. This regression metric can be described as:</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        e(x, y) = E = \{e_1,\dots,e_N\}^\top, \quad</span>
+<span class="sd">        e_n = \left( x_n - y_n \right)^2,</span>
+
+<span class="sd">    where :math:`N` is the batch size. If ``reduction`` is not ``&#39;none&#39;``, then:</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        \text{MSE}(x, y) =</span>
+<span class="sd">        \begin{cases}</span>
+<span class="sd">            \operatorname{mean}(E), &amp; \text{if reduction } = \text{mean.}\\</span>
+<span class="sd">            \operatorname{sum}(E),  &amp; \text{if reduction } = \text{sum.}</span>
+<span class="sd">        \end{cases}</span>
+
+<span class="sd">    `x` and `y` are tensors of arbitrary shapes with a total of `n` elements each.</span>
+
+<span class="sd">    Usage example inside a session configuration file::</span>
+
+<span class="sd">        # ...</span>
+<span class="sd">        # lists all metrics to instantiate as a dictionary</span>
+<span class="sd">        &quot;metrics&quot;: {</span>
+<span class="sd">            # ...</span>
+<span class="sd">            # this is the name of the example metric; it is used for lookup/printing only</span>
+<span class="sd">            &quot;mse&quot;: {</span>
+<span class="sd">                # this type is used to instantiate the error metric</span>
+<span class="sd">                &quot;type&quot;: &quot;thelper.optim.metrics.MeanSquaredError&quot;,</span>
+<span class="sd">                &quot;params&quot;: {</span>
+<span class="sd">                    &quot;reduction&quot;: &quot;mean&quot;</span>
+<span class="sd">                }</span>
+<span class="sd">            },</span>
+<span class="sd">            # ...</span>
+<span class="sd">        }</span>
+<span class="sd">        # ...</span>
+
+<span class="sd">    Todo: add support for &#39;dont care&#39; target value?</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        max_win_size: maximum moving average window size to use (default=None, which equals dataset size).</span>
+<span class="sd">        reduction: string representing the tensor reduction strategy to use.</span>
+<span class="sd">        errors: array of error values stored for window-based averaging.</span>
+<span class="sd">        warned_eval_bad: toggles whether the division-by-zero warning has been flagged or not.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="MeanSquaredError.__init__"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.MeanSquaredError.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">max_win_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives the reduction strategy and the moving average window size (``window_size``).</span>
+
+<span class="sd">        Note that by default, if ``max_win_size`` is not provided here, the value given to ``max_iters`` on</span>
+<span class="sd">        the first update call will be used instead to fix the sliding window length. In any case, the</span>
+<span class="sd">        smallest of ``max_iters`` and ``max_win_size`` will be used to determine the actual window size.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">max_win_size</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">max_win_size</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">max_win_size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">),</span> \
+            <span class="s2">&quot;invalid max sliding window size (should be positive integer)&quot;</span>
+        <span class="k">assert</span> <span class="n">reduction</span> <span class="o">!=</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="s2">&quot;metric must absolutely return a scalar, must reduce&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reduction</span> <span class="o">=</span> <span class="n">reduction</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_win_size</span> <span class="o">=</span> <span class="n">max_win_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">errors</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># will be instantiated on first iter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warned_eval_bad</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a generic print-friendly string containing info about this metric.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;(reduction={repr(self.reduction)}, max_win_size={repr(self.max_win_size)})&quot;</span>
+
+<div class="viewcode-block" id="MeanSquaredError.update"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.MeanSquaredError.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="c1"># see `thelper.typedefs.IterCallbackParams` for more info</span>
+               <span class="n">task</span><span class="p">,</span>  <span class="c1"># type: thelper.tasks.utils.Task</span>
+               <span class="nb">input</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.InputType</span>
+               <span class="n">pred</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.PredictionType</span>
+               <span class="n">target</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.TargetType</span>
+               <span class="n">sample</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.SampleType</span>
+               <span class="n">loss</span><span class="p">,</span>  <span class="c1"># type: Optional[float]</span>
+               <span class="n">iter_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_iters</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">epoch_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_epochs</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># type: (...) -&gt; None</span>
+        <span class="sd">&quot;&quot;&quot;Receives the latest predictions and target values from the training session.</span>
+
+<span class="sd">        This function computes and accumulates the mean squared error between predictions and targets in</span>
+<span class="sd">        the internal array, cycling over the iteration index if the maximum window length is reached.</span>
+
+<span class="sd">        The exact signature of this function should match the one of the callbacks defined in</span>
+<span class="sd">        :class:`thelper.train.base.Trainer` and specified by ``thelper.typedefs.IterCallbackParams``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;unexpected extra arguments present in update call&quot;</span>
+        <span class="k">assert</span> <span class="n">iter_idx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">max_iters</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">iter_idx</span> <span class="o">&lt;</span> <span class="n">max_iters</span><span class="p">,</span> \
+            <span class="s2">&quot;bad iteration indices given to metric update function&quot;</span>
+        <span class="n">curr_win_size</span> <span class="o">=</span> <span class="n">max_iters</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_win_size</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_win_size</span><span class="p">,</span> <span class="n">max_iters</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">errors</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="n">curr_win_size</span><span class="p">:</span>
+            <span class="c1"># each &#39;iteration&#39; will have a corresponding bin with the average MSE loss for that batch</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">curr_win_size</span><span class="p">)</span>
+        <span class="n">curr_idx</span> <span class="o">=</span> <span class="n">iter_idx</span> <span class="o">%</span> <span class="n">curr_win_size</span>
+        <span class="k">if</span> <span class="n">target</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">target</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># only accumulate results when groundtruth is available</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">errors</span><span class="p">[</span><span class="n">curr_idx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">return</span>
+        <span class="k">assert</span> <span class="n">pred</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;prediction/gt tensors shape mismatch&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">errors</span><span class="p">[</span><span class="n">curr_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">mse_loss</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reduction</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="MeanSquaredError.eval"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.MeanSquaredError.eval">[docs]</a>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the current (average) mean squared error based on the accumulated values.</span>
+
+<span class="sd">        Will issue a warning if no predictions have been accumulated yet.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">errors</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">([</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">errors</span> <span class="k">if</span> <span class="n">d</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">warned_eval_bad</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">warned_eval_bad</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;mean squared error eval result invalid (set as 0.0), no results accumulated&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="mf">0.0</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">errors</span> <span class="k">if</span> <span class="n">d</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="MeanSquaredError.reset"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.MeanSquaredError.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Toggles a reset of the metric&#39;s internal state, deallocating the errors array.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">errors</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">goal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the scalar optimization goal of this metric (minimization).&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Metric</span><span class="o">.</span><span class="n">minimize</span></div>
+
+
+<div class="viewcode-block" id="ExternalMetric"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.ExternalMetric">[docs]</a><span class="k">class</span> <span class="nc">ExternalMetric</span><span class="p">(</span><span class="n">Metric</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;External metric wrapping interface.</span>
+
+<span class="sd">    This interface is used to wrap external metrics and use them in the training framework. The metrics</span>
+<span class="sd">    of ``sklearn.metrics`` are good candidates that have been used extensively with this interface in</span>
+<span class="sd">    the past, but those of other libraries might also be compatible.</span>
+
+<span class="sd">    Along with the name of the class to import and its constructor&#39;s parameters, the user must provide</span>
+<span class="sd">    a handling mode that specifies how prediction and groundtruth data should be handled in this wrapper.</span>
+<span class="sd">    Also, extra arguments such as target label names, goal information, and window sizes can be provided</span>
+<span class="sd">    for specific use cases related to the selected handling mode.</span>
+
+<span class="sd">    For now, two metric handling modes (both related to classification) are supported:</span>
+
+<span class="sd">      * ``classif_best``: the wrapper will accumulate the predicted and groundtruth classification \</span>
+<span class="sd">        labels forwarded by the trainer and provide them to the external metric for evaluation. If \</span>
+<span class="sd">        a target label name is specified, then only classifications related to that label will be \</span>
+<span class="sd">        accumulated. This is the handling mode required for count-based classification metrics such \</span>
+<span class="sd">        as accuracy, F-Measure, precision, recall, etc.</span>
+
+<span class="sd">      * ``classif_score``: the wrapper will accumulate the prediction score of the targeted label \</span>
+<span class="sd">        along with a boolean that indicates whether this label was the groundtruth label or not. This \</span>
+<span class="sd">        is the handling mode required for score-based classification metrics such as when computing \</span>
+<span class="sd">        the area under the ROC curve (AUC).</span>
+
+<span class="sd">    Usage examples inside a session configuration file::</span>
+
+<span class="sd">        # ...</span>
+<span class="sd">        # lists all metrics to instantiate as a dictionary</span>
+<span class="sd">        &quot;metrics&quot;: {</span>
+<span class="sd">            # ...</span>
+<span class="sd">            # this is the name of the first example metric; it is used for lookup/printing only</span>
+<span class="sd">            &quot;f1_score_reject&quot;: {</span>
+<span class="sd">                # this type is used to instantiate the wrapper</span>
+<span class="sd">                &quot;type&quot;: &quot;thelper.optim.metrics.ExternalMetric&quot;,</span>
+<span class="sd">                # these parameters are passed to the wrapper&#39;s constructor</span>
+<span class="sd">                &quot;params&quot;: {</span>
+<span class="sd">                    # the external class to import</span>
+<span class="sd">                    &quot;metric_name&quot;: &quot;sklearn.metrics.f1_score&quot;,</span>
+<span class="sd">                    # the parameters passed to the external class&#39;s constructor</span>
+<span class="sd">                    &quot;metric_params&quot;: {},</span>
+<span class="sd">                    # the wrapper metric handling mode</span>
+<span class="sd">                    &quot;metric_type&quot;: &quot;classif_best&quot;,</span>
+<span class="sd">                    # the target class name (note: dataset-specific)</span>
+<span class="sd">                    &quot;target_name&quot;: &quot;reject&quot;,</span>
+<span class="sd">                    # the goal type of the external metric</span>
+<span class="sd">                    &quot;metric_goal&quot;: &quot;max&quot;</span>
+<span class="sd">                }</span>
+<span class="sd">            },</span>
+<span class="sd">            # this is the name of the second example metric; it is used for lookup/printing only</span>
+<span class="sd">            &quot;roc_auc_accept&quot;: {</span>
+<span class="sd">                # this type is used to instantiate the wrapper</span>
+<span class="sd">                &quot;type&quot;: &quot;thelper.optim.metrics.ExternalMetric&quot;,</span>
+<span class="sd">                # these parameters are passed to the wrapper&#39;s constructor</span>
+<span class="sd">                &quot;params&quot;: {</span>
+<span class="sd">                    # the external class to import</span>
+<span class="sd">                    &quot;metric_name&quot;: &quot;sklearn.metrics.roc_auc_score&quot;,</span>
+<span class="sd">                    # the parameters passed to the external class&#39;s constructor</span>
+<span class="sd">                    &quot;metric_params&quot;: {},</span>
+<span class="sd">                    # the wrapper metric handling mode</span>
+<span class="sd">                    &quot;metric_type&quot;: &quot;classif_score&quot;,</span>
+<span class="sd">                    # the target class name (note: dataset-specific)</span>
+<span class="sd">                    &quot;target_name&quot;: &quot;accept&quot;,</span>
+<span class="sd">                    # the goal type of the external metric</span>
+<span class="sd">                    &quot;metric_goal&quot;: &quot;max&quot;</span>
+<span class="sd">                }</span>
+<span class="sd">            },</span>
+<span class="sd">            # ...</span>
+<span class="sd">        }</span>
+<span class="sd">        # ...</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        metric_goal: goal of the external metric, used for monitoring. Can be ``min`` or ``max``.</span>
+<span class="sd">        metric_type: handling mode of the external metric. Can only be one of the predetermined values.</span>
+<span class="sd">        metric: type of the external metric that will be instantiated when ``eval`` is called.</span>
+<span class="sd">        metric_params: dictionary of parameters passed to the external metric on instantiation.</span>
+<span class="sd">        target_name: name of the targeted label. Used only in handling modes related to classification.</span>
+<span class="sd">        target_idx: index of the targeted label. Used only in handling modes related to classification.</span>
+<span class="sd">        class_names: holds the list of class label names provided by the dataset parser. If it is not</span>
+<span class="sd">            provided when the constructor is called, it will be set by the trainer at runtime.</span>
+<span class="sd">        force_softmax: specifies whether a softmax operation should be applied to the prediction scores</span>
+<span class="sd">            obtained from the trainer. Only used with the &quot;classif_score&quot; handling mode.</span>
+<span class="sd">        max_win_size: maximum moving average window size to use (default=None, which equals dataset size).</span>
+<span class="sd">        pred: queue used to store predictions-related values for window-based averaging.</span>
+<span class="sd">        target: queue used to store groundtruth-related values for window-based averaging.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ExternalMetric.__init__"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.ExternalMetric.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metric_name</span><span class="p">,</span> <span class="n">metric_type</span><span class="p">,</span> <span class="n">metric_goal</span><span class="p">,</span> <span class="n">metric_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">target_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">class_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_win_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">force_softmax</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">live_eval</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives all necessary arguments for wrapper initialization and external metric instantiation.</span>
+
+<span class="sd">        See :class:`thelper.optim.metrics.ExternalMetric` for information on arguments.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">metric_name</span><span class="p">,</span> <span class="nb">str</span><span class="p">),</span> <span class="s2">&quot;metric_name must be fully qualifiied class name to import&quot;</span>
+        <span class="k">assert</span> <span class="n">metric_params</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">metric_params</span><span class="p">,</span> <span class="nb">dict</span><span class="p">),</span> <span class="s2">&quot;metric_params must be dictionary&quot;</span>
+        <span class="n">supported_handling_types</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;classif_top1&quot;</span><span class="p">,</span> <span class="s2">&quot;classif_best&quot;</span><span class="p">,</span>  <span class="c1"># the former is for backwards-compat with the latter</span>
+            <span class="s2">&quot;classif_scores&quot;</span><span class="p">,</span> <span class="s2">&quot;classif_score&quot;</span><span class="p">,</span>  <span class="c1"># the former is for backwards-compat with the latter</span>
+            <span class="s2">&quot;regression&quot;</span><span class="p">,</span>  <span class="c1"># missing impl, work in progress @@@ TODO</span>
+        <span class="p">]</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">metric_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">metric_type</span> <span class="ow">in</span> <span class="n">supported_handling_types</span><span class="p">,</span> \
+            <span class="n">f</span><span class="s2">&quot;unknown metric type {repr(metric_type)}&quot;</span>
+        <span class="k">if</span> <span class="n">metric_type</span> <span class="o">==</span> <span class="s2">&quot;classif_top1&quot;</span><span class="p">:</span>
+            <span class="n">metric_type</span> <span class="o">=</span> <span class="s2">&quot;classif_best&quot;</span>  <span class="c1"># they are identical, just overwrite for backwards compat</span>
+        <span class="k">if</span> <span class="n">metric_type</span> <span class="o">==</span> <span class="s2">&quot;classif_scores&quot;</span><span class="p">:</span>
+            <span class="n">metric_type</span> <span class="o">=</span> <span class="s2">&quot;classif_score&quot;</span>  <span class="c1"># they are identical, just overwrite for backwards compat</span>
+        <span class="k">assert</span> <span class="n">metric_goal</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">metric_goal</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;max&quot;</span><span class="p">,</span> <span class="s2">&quot;min&quot;</span><span class="p">],</span> <span class="s2">&quot;unexpected goal type&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metric_goal</span> <span class="o">=</span> <span class="n">Metric</span><span class="o">.</span><span class="n">maximize</span> <span class="k">if</span> <span class="n">metric_goal</span> <span class="o">==</span> <span class="s2">&quot;max&quot;</span> <span class="k">else</span> <span class="n">Metric</span><span class="o">.</span><span class="n">minimize</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metric_type</span> <span class="o">=</span> <span class="n">metric_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metric_name</span> <span class="o">=</span> <span class="n">metric_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">import_class</span><span class="p">(</span><span class="n">metric_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metric_params</span> <span class="o">=</span> <span class="n">metric_params</span> <span class="k">if</span> <span class="n">metric_params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_name</span> <span class="o">=</span> <span class="n">target_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_idx</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">force_softmax</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="s2">&quot;classif&quot;</span> <span class="ow">in</span> <span class="n">metric_type</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">class_names</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">set_class_names</span><span class="p">(</span><span class="n">class_names</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">metric_type</span> <span class="o">==</span> <span class="s2">&quot;classif_score&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">force_softmax</span> <span class="o">=</span> <span class="n">force_softmax</span>  <span class="c1"># only useful in this case</span>
+        <span class="c1"># elif &quot;regression&quot; in metric_type: missing impl for custom handling @@@</span>
+        <span class="k">assert</span> <span class="n">max_win_size</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">max_win_size</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">max_win_size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">),</span> \
+            <span class="s2">&quot;invalid max sliding window size (should be positive integer)&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_win_size</span> <span class="o">=</span> <span class="n">max_win_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pred</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># will be instantiated on first iter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># will be instantiated on first iter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_live_eval</span> <span class="o">=</span> <span class="n">live_eval</span>  <span class="c1"># could be &#39;False&#39; for external impls that are pretty slow to eval</span></div>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a generic print-friendly string containing info about this metric.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;(metric_name={repr(self.metric_name)}, metric_type={repr(self.metric_type)}, &quot;</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;metric_goal={&#39;min&#39; if self.goal == Metric.minimize else &#39;max&#39;}, &quot;</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;metric_params={repr(self.metric_params)}, target_name={repr(self.target_name)}, &quot;</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;class_names={repr(self.class_names)}, max_win_size={repr(self.max_win_size)}, &quot;</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;force_softmax={repr(self.force_softmax)})&quot;</span>
+
+<div class="viewcode-block" id="ExternalMetric.set_class_names"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.ExternalMetric.set_class_names">[docs]</a>    <span class="k">def</span> <span class="nf">set_class_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_names</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the class label names that must be predicted by the model.</span>
+
+<span class="sd">        This is only useful in metric handling modes related to classification. The goal of having</span>
+<span class="sd">        class names here is to translate a target class label (provided in the constructor) into a</span>
+<span class="sd">        target class index. This is required as predictions are not mapped to their original names</span>
+<span class="sd">        (in string format) before being forwarded to this object by the trainer.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="s2">&quot;classif&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_type</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">class_names</span><span class="p">,</span> <span class="nb">list</span><span class="p">),</span> <span class="s2">&quot;expected list for class names&quot;</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_names</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;not enough classes in provided class list&quot;</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_name</span> <span class="ow">in</span> <span class="n">class_names</span><span class="p">,</span> \
+                    <span class="n">f</span><span class="s2">&quot;could not find target name {repr(self.target_name)} in class names list&quot;</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">target_idx</span> <span class="o">=</span> <span class="n">class_names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_name</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span> <span class="o">=</span> <span class="n">class_names</span></div>
+
+<div class="viewcode-block" id="ExternalMetric.update"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.ExternalMetric.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="c1"># see `thelper.typedefs.IterCallbackParams` for more info</span>
+               <span class="n">task</span><span class="p">,</span>  <span class="c1"># type: thelper.tasks.utils.Task</span>
+               <span class="nb">input</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.InputType</span>
+               <span class="n">pred</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.PredictionType</span>
+               <span class="n">target</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.TargetType</span>
+               <span class="n">sample</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.SampleType</span>
+               <span class="n">loss</span><span class="p">,</span>  <span class="c1"># type: Optional[float]</span>
+               <span class="n">iter_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_iters</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">epoch_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_epochs</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># type: (...) -&gt; None</span>
+        <span class="sd">&quot;&quot;&quot;Receives the latest predictions and target values from the training session.</span>
+
+<span class="sd">        The handling of the data received here will depend on the current metric&#39;s handling mode.</span>
+
+<span class="sd">        The exact signature of this function should match the one of the callbacks defined in</span>
+<span class="sd">        :class:`thelper.train.base.Trainer` and specified by ``thelper.typedefs.IterCallbackParams``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;unexpected extra arguments present in update call&quot;</span>
+        <span class="k">assert</span> <span class="n">iter_idx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">max_iters</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">iter_idx</span> <span class="o">&lt;</span> <span class="n">max_iters</span><span class="p">,</span> \
+            <span class="s2">&quot;bad iteration indices given to metric update function&quot;</span>
+        <span class="n">curr_win_size</span> <span class="o">=</span> <span class="n">max_iters</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_win_size</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_win_size</span><span class="p">,</span> <span class="n">max_iters</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pred</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">pred</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="n">curr_win_size</span><span class="p">:</span>
+            <span class="c1"># each &#39;iteration&#39; will have a corresponding bin with counts for that batch</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">curr_win_size</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">curr_win_size</span><span class="p">)</span>
+        <span class="n">curr_idx</span> <span class="o">=</span> <span class="n">iter_idx</span> <span class="o">%</span> <span class="n">curr_win_size</span>
+        <span class="k">if</span> <span class="s2">&quot;classif&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_type</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="s2">&quot;class_names&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">task</span><span class="o">.</span><span class="n">class_names</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">set_class_names</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">class_names</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">target</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">target</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># only accumulate results when groundtruth is available</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pred</span><span class="p">[</span><span class="n">curr_idx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="n">curr_idx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">return</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_idx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> \
+                <span class="n">f</span><span class="s2">&quot;could not map target name &#39;</span><span class="si">{self.target_name}</span><span class="s2">&#39; to target idx, missing class list&quot;</span>
+            <span class="k">assert</span> <span class="n">pred</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">target</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;current ext metric implementation only supports batched 1D outputs&quot;</span>
+            <span class="k">assert</span> <span class="n">pred</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;prediction/gt tensors batch size mismatch&quot;</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_idx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">pred_label</span> <span class="o">=</span> <span class="n">pred</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_type</span> <span class="o">==</span> <span class="s2">&quot;classif_best&quot;</span><span class="p">:</span>
+                    <span class="k">assert</span> <span class="n">pred_label</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="o">==</span> <span class="n">target</span><span class="o">.</span><span class="n">numel</span><span class="p">(),</span> <span class="s2">&quot;pred/target classification element count mismatch&quot;</span>
+                    <span class="n">must_keep</span> <span class="o">=</span> <span class="p">[</span><span class="n">y_pred</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_idx</span> <span class="ow">or</span> <span class="n">y_true</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_idx</span> <span class="k">for</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">pred_label</span><span class="p">,</span> <span class="n">target</span><span class="p">)]</span>
+                    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">keep</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">must_keep</span><span class="p">):</span>
+                        <span class="k">if</span> <span class="n">keep</span><span class="p">:</span>
+                            <span class="n">y_true</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_idx</span><span class="p">)</span>
+                            <span class="n">y_pred</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pred_label</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_idx</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>  <span class="c1"># self.metric_type == &quot;classif_score&quot;</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">force_softmax</span><span class="p">:</span>
+                        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+                            <span class="n">pred</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">tgt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
+                        <span class="n">y_true</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tgt</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_idx</span><span class="p">)</span>
+                        <span class="n">y_pred</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pred</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_idx</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="n">curr_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_true</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pred</span><span class="p">[</span><span class="n">curr_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_pred</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_type</span> <span class="o">!=</span> <span class="s2">&quot;classif_score&quot;</span><span class="p">,</span> <span class="s2">&quot;score-based classif analysis (e.g. roc auc) must specify target label&quot;</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_type</span> <span class="o">==</span> <span class="s2">&quot;classif_best&quot;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="n">curr_idx</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">target</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">numel</span><span class="p">())]</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">pred</span><span class="p">[</span><span class="n">curr_idx</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">pred</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">numel</span><span class="p">())]</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># if self.metric_type == &quot;regression&quot;:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="ExternalMetric.eval"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.ExternalMetric.eval">[docs]</a>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the external metric&#39;s evaluation result.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="s2">&quot;classif&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_type</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">pred</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="s2">&quot;internal window size mismatch&quot;</span>
+            <span class="n">pred</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">[(</span><span class="n">pred</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span> <span class="k">for</span> <span class="n">preds</span><span class="p">,</span> <span class="n">targets</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pred</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+                                 <span class="k">if</span> <span class="n">targets</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">pred</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">targets</span><span class="p">)])</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">metric_params</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># if self.metric_type == &quot;regression&quot;:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="ExternalMetric.reset"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.ExternalMetric.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Toggles a reset of the metric&#39;s internal state, emptying pred/target queues.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pred</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">goal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the scalar optimization goal of this metric (user-defined).&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_goal</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">live_eval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns whether this metric can/should be evaluated at every backprop iteration or not.</span>
+
+<span class="sd">        By default, this returns ``True``, but implementations that are quite slow may return ``False``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_live_eval</span></div>
+
+
+<div class="viewcode-block" id="ROCCurve"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.ROCCurve">[docs]</a><span class="k">class</span> <span class="nc">ROCCurve</span><span class="p">(</span><span class="n">Metric</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Receiver operating characteristic (ROC) computation interface.</span>
+
+<span class="sd">    This class provides an interface to ``sklearn.metrics.roc_curve`` and ``sklearn.metrics.roc_auc_score``</span>
+<span class="sd">    that can produce various types of ROC-related information including the area under the curve (AUC), the</span>
+<span class="sd">    false positive and negative rates for various operating points, and the ROC curve itself as an image</span>
+<span class="sd">    (also compatible with tensorboardX).</span>
+
+<span class="sd">    By default, evaluating this metric returns the Area Under the Curve (AUC). If a target operating point is</span>
+<span class="sd">    set, it will instead return the false positive/negative prediction rate of the model at that point.</span>
+
+<span class="sd">    Usage examples inside a session configuration file::</span>
+
+<span class="sd">        # ...</span>
+<span class="sd">        # lists all metrics to instantiate as a dictionary</span>
+<span class="sd">        &quot;metrics&quot;: {</span>
+<span class="sd">            # ...</span>
+<span class="sd">            # this is the name of the first example; it will output the AUC of the &quot;reject&quot; class</span>
+<span class="sd">            &quot;roc_reject_auc&quot;: {</span>
+<span class="sd">                # this type is used to instantiate the ROC metric</span>
+<span class="sd">                &quot;type&quot;: &quot;thelper.optim.metrics.ROCCurve&quot;,</span>
+<span class="sd">                # these parameters are passed to the constructor</span>
+<span class="sd">                &quot;params&quot;: {</span>
+<span class="sd">                    # the name of the class to evaluate</span>
+<span class="sd">                    &quot;target_name&quot;: &quot;reject&quot;</span>
+<span class="sd">                }</span>
+<span class="sd">            },</span>
+<span class="sd">            # this is the name of the second example; it will output the FPR at TPR=0.99</span>
+<span class="sd">            &quot;roc_reject_0.99tpr&quot;: {</span>
+<span class="sd">                # this type is used to instantiate the ROC metric</span>
+<span class="sd">                &quot;type&quot;: &quot;thelper.optim.metrics.ROCCurve&quot;,</span>
+<span class="sd">                # these parameters are passed to the constructor</span>
+<span class="sd">                &quot;params&quot;: {</span>
+<span class="sd">                    # the name of the class to evaluate</span>
+<span class="sd">                    &quot;target_name&quot;: &quot;reject&quot;,</span>
+<span class="sd">                    # the target true positive rate (TPR) operating point</span>
+<span class="sd">                    &quot;target_tpr&quot;: 0.99</span>
+<span class="sd">                }</span>
+<span class="sd">            },</span>
+<span class="sd">            # ...</span>
+<span class="sd">        }</span>
+<span class="sd">        # ...</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        target_inv: used to target all classes except the named one(s); experimental!</span>
+<span class="sd">        target_name: name of targeted class to generate the roc curve/auc information for.</span>
+<span class="sd">        target_tpr: target operating point in terms of true positive rate (provided in constructor).</span>
+<span class="sd">        target_fpr: target operating point in terms of false positive rate (provided in constructor).</span>
+<span class="sd">        target_idx: index of the targeted class, mapped from target_name using the class_names list.</span>
+<span class="sd">        class_names: holds the list of class label names provided by the dataset parser. If it is not</span>
+<span class="sd">            provided when the constructor is called, it will be set by the trainer at runtime.</span>
+<span class="sd">        force_softmax: specifies whether a softmax operation should be applied to the prediction scores</span>
+<span class="sd">            obtained from the trainer.</span>
+<span class="sd">        curve: roc curve generator function, called at evaluation time to generate the output string.</span>
+<span class="sd">        auc: auc score generator function, called at evaluation time to generate the output string.</span>
+<span class="sd">        score: queue used to store prediction score values for window-based averaging.</span>
+<span class="sd">        true: queue used to store groundtruth label values for window-based averaging.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ROCCurve.__init__"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.ROCCurve.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_name</span><span class="p">,</span> <span class="n">target_tpr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">target_fpr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">force_softmax</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">drop_intermediate</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives the target class/operating point info, log parameters, and roc computation arguments.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            target_name: name of targeted class to generate the roc curve/auc information for.</span>
+<span class="sd">            target_tpr: target operating point in terms of true positive rate (provided in constructor).</span>
+<span class="sd">            target_fpr: target operating point in terms of false positive rate (provided in constructor).</span>
+<span class="sd">            class_names: holds the list of class label names provided by the dataset parser. If it is not</span>
+<span class="sd">                provided when the constructor is called, it will be set by the trainer at runtime.</span>
+<span class="sd">            force_softmax: specifies whether a softmax operation should be applied to the prediction scores</span>
+<span class="sd">                obtained from the trainer.</span>
+<span class="sd">            sample_weight: passed to ``sklearn.metrics.roc_curve`` and ``sklearn.metrics.roc_auc_score``.</span>
+<span class="sd">            drop_intermediate: passed to ``sklearn.metrics.roc_curve``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">target_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;must provide a target (class) name for ROC metric&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_inv</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target_name</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">target_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;!&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">target_inv</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">target_name</span> <span class="o">=</span> <span class="n">target_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;!&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">target_name</span> <span class="o">=</span> <span class="n">target_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_tpr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_fpr</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+        <span class="k">assert</span> <span class="n">target_tpr</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">target_fpr</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;must specify only one of target_fpr and target_tpr, not both&quot;</span>
+        <span class="k">if</span> <span class="n">target_tpr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">target_fpr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">target_xpr</span> <span class="o">=</span> <span class="n">target_tpr</span> <span class="k">if</span> <span class="n">target_tpr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">target_fpr</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target_xpr</span><span class="p">,</span> <span class="nb">float</span><span class="p">),</span> <span class="s2">&quot;expected float type for target operating point&quot;</span>
+            <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">target_xpr</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;invalid target operation point value (must be in [0,1])&quot;</span>
+            <span class="k">if</span> <span class="n">target_tpr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">target_tpr</span> <span class="o">=</span> <span class="n">target_tpr</span>
+            <span class="k">else</span><span class="p">:</span>  <span class="c1"># if target_fpr is not None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">target_fpr</span> <span class="o">=</span> <span class="n">target_fpr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_idx</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">class_names</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_class_names</span><span class="p">(</span><span class="n">class_names</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">force_softmax</span> <span class="o">=</span> <span class="n">force_softmax</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sample_weight</span> <span class="o">=</span> <span class="n">sample_weight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">drop_intermediate</span> <span class="o">=</span> <span class="n">drop_intermediate</span>
+
+        <span class="k">def</span> <span class="nf">gen_curve</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_score</span><span class="p">,</span> <span class="n">_target_idx</span><span class="p">,</span> <span class="n">_target_inv</span><span class="p">,</span> <span class="n">_sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">_drop_intermediate</span><span class="o">=</span><span class="n">drop_intermediate</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="n">_target_idx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;missing positive target idx at run time&quot;</span>
+            <span class="n">_y_true</span><span class="p">,</span> <span class="n">_y_score</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">sample_idx</span><span class="p">,</span> <span class="n">label_idx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">y_true</span><span class="p">):</span>
+                <span class="n">_y_true</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label_idx</span> <span class="o">!=</span> <span class="n">_target_idx</span> <span class="k">if</span> <span class="n">_target_inv</span> <span class="k">else</span> <span class="n">label_idx</span> <span class="o">==</span> <span class="n">_target_idx</span><span class="p">)</span>
+                <span class="n">_y_score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y_score</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">,</span> <span class="n">_target_idx</span><span class="p">]</span> <span class="k">if</span> <span class="n">_target_inv</span> <span class="k">else</span> <span class="n">y_score</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">,</span> <span class="n">_target_idx</span><span class="p">])</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">roc_curve</span><span class="p">(</span><span class="n">_y_true</span><span class="p">,</span> <span class="n">_y_score</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">_sample_weight</span><span class="p">,</span> <span class="n">drop_intermediate</span><span class="o">=</span><span class="n">_drop_intermediate</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">res</span>
+
+        <span class="k">def</span> <span class="nf">gen_auc</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_score</span><span class="p">,</span> <span class="n">_target_idx</span><span class="p">,</span> <span class="n">_target_inv</span><span class="p">,</span> <span class="n">_sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="n">_target_idx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;missing positive target idx at run time&quot;</span>
+            <span class="n">_y_true</span><span class="p">,</span> <span class="n">_y_score</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">sample_idx</span><span class="p">,</span> <span class="n">label_idx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">y_true</span><span class="p">):</span>
+                <span class="n">_y_true</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label_idx</span> <span class="o">!=</span> <span class="n">_target_idx</span> <span class="k">if</span> <span class="n">_target_inv</span> <span class="k">else</span> <span class="n">label_idx</span> <span class="o">==</span> <span class="n">_target_idx</span><span class="p">)</span>
+                <span class="n">_y_score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y_score</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">,</span> <span class="n">_target_idx</span><span class="p">]</span> <span class="k">if</span> <span class="n">_target_inv</span> <span class="k">else</span> <span class="n">y_score</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">,</span> <span class="n">_target_idx</span><span class="p">])</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">_y_true</span><span class="p">,</span> <span class="n">_y_score</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">_sample_weight</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">res</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">curve</span> <span class="o">=</span> <span class="n">gen_curve</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">auc</span> <span class="o">=</span> <span class="n">gen_auc</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">true</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a generic print-friendly string containing info about this metric.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;(target_name={repr(self.target_name)}, target_tpr={repr(self.target_tpr)}, &quot;</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;target_fpr={repr(self.target_fpr)}, class_names={repr(self.class_names)}, &quot;</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;force_softmax={repr(self.force_softmax)}, sample_weight={repr(self.sample_weight)}, &quot;</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;drop_intermediate={repr(self.drop_intermediate)})&quot;</span>
+
+<div class="viewcode-block" id="ROCCurve.set_class_names"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.ROCCurve.set_class_names">[docs]</a>    <span class="k">def</span> <span class="nf">set_class_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_names</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the class label names that must be predicted by the model.</span>
+
+<span class="sd">        This allows the target class name to be mapped to a target class index.</span>
+
+<span class="sd">        The current implementation of :class:`thelper.train.base.Trainer` will automatically</span>
+<span class="sd">        call this function at runtime if it is available, and provide the dataset&#39;s classes as a</span>
+<span class="sd">        list of strings.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">class_names</span><span class="p">,</span> <span class="nb">list</span><span class="p">),</span> <span class="s2">&quot;expected list for class names&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_names</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;not enough classes in provided class list&quot;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_name</span> <span class="ow">in</span> <span class="n">class_names</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;could not find target {repr(self.target_name)} in class list&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_idx</span> <span class="o">=</span> <span class="n">class_names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span> <span class="o">=</span> <span class="n">class_names</span></div>
+
+<div class="viewcode-block" id="ROCCurve.update"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.ROCCurve.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="c1"># see `thelper.typedefs.IterCallbackParams` for more info</span>
+               <span class="n">task</span><span class="p">,</span>  <span class="c1"># type: thelper.tasks.utils.Task</span>
+               <span class="nb">input</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.InputType</span>
+               <span class="n">pred</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.PredictionType</span>
+               <span class="n">target</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.TargetType</span>
+               <span class="n">sample</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.SampleType</span>
+               <span class="n">loss</span><span class="p">,</span>  <span class="c1"># type: Optional[float]</span>
+               <span class="n">iter_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_iters</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">epoch_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_epochs</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># type: (...) -&gt; None</span>
+        <span class="sd">&quot;&quot;&quot;Receives the latest predictions and target values from the training session.</span>
+
+<span class="sd">        The exact signature of this function should match the one of the callbacks defined in</span>
+<span class="sd">        :class:`thelper.train.base.Trainer` and specified by ``thelper.typedefs.IterCallbackParams``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;unexpected extra arguments present in update call&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Classification</span><span class="p">),</span> <span class="s2">&quot;roc curve only impl for classif tasks&quot;</span>
+        <span class="k">assert</span> <span class="n">iter_idx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">max_iters</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">iter_idx</span> <span class="o">&lt;</span> <span class="n">max_iters</span><span class="p">,</span> \
+            <span class="s2">&quot;bad iteration indices given to metric update function&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="n">max_iters</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">max_iters</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">max_iters</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">class_names</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_class_names</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">class_names</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">target</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">target</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># only accumulate results when groundtruth is available</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">[</span><span class="n">iter_idx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">true</span><span class="p">[</span><span class="n">iter_idx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">return</span>
+        <span class="k">assert</span> <span class="n">pred</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">target</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;current classif report impl only supports batched 1D outputs&quot;</span>
+        <span class="k">assert</span> <span class="n">pred</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;prediction/gt tensors batch size mismatch&quot;</span>
+        <span class="k">assert</span> <span class="n">pred</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">),</span> <span class="s2">&quot;unexpected prediction class dimension size&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">force_softmax</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+                <span class="n">pred</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">[</span><span class="n">iter_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">pred</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">true</span><span class="p">[</span><span class="n">iter_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ROCCurve.eval"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.ROCCurve.eval">[docs]</a>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the evaluation result (AUC/TPR/FPR).</span>
+
+<span class="sd">        If no target operating point is set, the returned value is the AUC for the target class. If a</span>
+<span class="sd">        target TPR is set, the returned value is the FPR for that operating point. If a target FPR is set,</span>
+<span class="sd">        the returned value is the TPR for that operating point.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">true</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">score</span><span class="p">,</span> <span class="n">true</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">[(</span><span class="n">score</span><span class="p">,</span> <span class="n">true</span><span class="p">)</span> <span class="k">for</span> <span class="n">scores</span><span class="p">,</span> <span class="n">trues</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">true</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="n">trues</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">score</span><span class="p">,</span> <span class="n">true</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">trues</span><span class="p">)])</span>
+        <span class="c1"># if we did not specify a target operating point in terms of true/false positive rate, return AUC</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_tpr</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_fpr</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">auc</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">true</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_idx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_inv</span><span class="p">)</span>
+        <span class="c1"># otherwise, find the opposite rate at the requested target operating point</span>
+        <span class="n">_fpr</span><span class="p">,</span> <span class="n">_tpr</span><span class="p">,</span> <span class="n">_thrs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">curve</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">true</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_idx</span><span class="p">,</span>
+                                       <span class="bp">self</span><span class="o">.</span><span class="n">target_inv</span><span class="p">,</span> <span class="n">_drop_intermediate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">thrs</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">_fpr</span><span class="p">,</span> <span class="n">_tpr</span><span class="p">,</span> <span class="n">_thrs</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_tpr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">tpr</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_tpr</span><span class="p">:</span>
+                <span class="c1"># print(&quot;for target tpr = %.5f, fpr = %.5f at threshold = %f&quot; % (self.target_tpr, fpr, thrs))</span>
+                <span class="k">return</span> <span class="n">fpr</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_fpr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">fpr</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_fpr</span><span class="p">:</span>
+                <span class="c1"># print(&quot;for target fpr = %.5f, tpr = %.5f at threshold = %f&quot; % (self.target_fpr, tpr, thrs))</span>
+                <span class="k">return</span> <span class="n">tpr</span>
+        <span class="c1"># if we did not find a proper rate match above, return worse possible value</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_tpr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># print(&quot;for target tpr = %.5f, fpr = 1.0 at threshold = min&quot; % self.target_tpr)</span>
+            <span class="k">return</span> <span class="mf">1.0</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># if self.target_fpr is not None:</span>
+            <span class="c1"># print(&quot;for target fpr = %.5f, tpr = 0.0 at threshold = max&quot; % self.target_fpr)</span>
+            <span class="k">return</span> <span class="mf">0.0</span></div>
+
+<div class="viewcode-block" id="ROCCurve.render"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.ROCCurve.render">[docs]</a>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the ROC curve as a numpy-compatible RGBA image drawn by pyplot.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">score</span><span class="p">,</span> <span class="n">true</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">[(</span><span class="n">score</span><span class="p">,</span> <span class="n">true</span><span class="p">)</span> <span class="k">for</span> <span class="n">scores</span><span class="p">,</span> <span class="n">trues</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">true</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="n">trues</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">score</span><span class="p">,</span> <span class="n">true</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">trues</span><span class="p">)])</span>
+        <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">curve</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">true</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_idx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_inv</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">draw_roc_curve</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
+            <span class="n">array</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">fig2array</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">array</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;failed to render roc curve; caught exception:</span><span class="se">\n</span><span class="s2">{str(e)}&quot;</span><span class="p">)</span>
+            <span class="c1"># return None if rendering fails (probably due to matplotlib on displayless server)</span>
+            <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="ROCCurve.reset"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.ROCCurve.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Toggles a reset of the metric&#39;s internal state, emptying queues.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">true</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">goal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the scalar optimization goal of this metric (variable based on target op point).&quot;&quot;&quot;</span>
+        <span class="c1"># if we did not specify a target operating point in terms of true/false positive rate, return AUC</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_tpr</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_fpr</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Metric</span><span class="o">.</span><span class="n">maximize</span>  <span class="c1"># AUC must be maximized</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_tpr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Metric</span><span class="o">.</span><span class="n">minimize</span>  <span class="c1"># fpr must be minimized</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># if self.target_fpr is not None:</span>
+            <span class="k">return</span> <span class="n">Metric</span><span class="o">.</span><span class="n">maximize</span>  <span class="c1"># tpr must be maximized</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">live_eval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns whether this metric can/should be evaluated at every backprop iteration or not.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># some operating modes might be pretty slow, check back impl later</span></div>
+
+
+<div class="viewcode-block" id="PSNR"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.PSNR">[docs]</a><span class="k">class</span> <span class="nc">PSNR</span><span class="p">(</span><span class="n">Metric</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Peak Signal-to-Noise Ratio (PSNR) metric interface.</span>
+
+<span class="sd">    This is a scalar metric used to monitor the change in quality of a signal (or image) following a</span>
+<span class="sd">    transformation. For more information, see its definition on `[Wikipedia]`__.</span>
+
+<span class="sd">    .. __: https://en.wikipedia.org/wiki/Peak_signal-to-noise_ratio</span>
+
+<span class="sd">    The PSNR (in decibels, dB) between a modified signal :math:`x` and its original version :math:`y` is</span>
+<span class="sd">    defined as:</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        \text{PSNR}(x, y) = 10 * \log_{10} \Bigg( \frac{R^2}{\text{MSE}(x, y)} \Bigg)</span>
+
+<span class="sd">    where :math:`\text{MSE}(x, y)` returns the mean squared error (see :class:`thelper.optim.metrics.MeanSquaredError`</span>
+<span class="sd">    for more information), and :math:`R` is the maximum possible value for a single element in the input signal</span>
+<span class="sd">    (i.e. its maximum &quot;range&quot;).</span>
+
+<span class="sd">    Usage example inside a session configuration file::</span>
+
+<span class="sd">        # ...</span>
+<span class="sd">        # lists all metrics to instantiate as a dictionary</span>
+<span class="sd">        &quot;metrics&quot;: {</span>
+<span class="sd">            # ...</span>
+<span class="sd">            # this is the name of the example metric; it is used for lookup/printing only</span>
+<span class="sd">            &quot;psnr&quot;: {</span>
+<span class="sd">                # this type is used to instantiate the metric</span>
+<span class="sd">                &quot;type&quot;: &quot;thelper.optim.metrics.PSNR&quot;,</span>
+<span class="sd">                &quot;params&quot;: {</span>
+<span class="sd">                    &quot;data_range&quot;: &quot;255&quot;</span>
+<span class="sd">                }</span>
+<span class="sd">            },</span>
+<span class="sd">            # ...</span>
+<span class="sd">        }</span>
+<span class="sd">        # ...</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        max_win_size: maximum moving average window size to use (default=None, which equals dataset size).</span>
+<span class="sd">        data_range: maximum value of an element in the target signal.</span>
+<span class="sd">        psnrs: array of psnr values stored for window-based averaging.</span>
+<span class="sd">        warned_eval_bad: toggles whether the division-by-zero warning has been flagged or not.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="PSNR.__init__"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.PSNR.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_range</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">max_win_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives all necessary initialization arguments to compute signal PSNRs,</span>
+
+<span class="sd">        See :class:`thelper.optim.metrics.PSNR` for information on arguments.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_win_size</span> <span class="o">=</span> <span class="n">max_win_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">psnrs</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># will be instantiated on first iter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warned_eval_bad</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_range</span> <span class="o">=</span> <span class="n">data_range</span></div>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a generic print-friendly string containing info about this metric.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;(data_range={repr(self.data_range)}, max_win_size={repr(self.max_win_size)})&quot;</span>
+
+<div class="viewcode-block" id="PSNR.update"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.PSNR.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="c1"># see `thelper.typedefs.IterCallbackParams` for more info</span>
+               <span class="n">task</span><span class="p">,</span>  <span class="c1"># type: thelper.tasks.utils.Task</span>
+               <span class="nb">input</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.InputType</span>
+               <span class="n">pred</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.PredictionType</span>
+               <span class="n">target</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.TargetType</span>
+               <span class="n">sample</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.SampleType</span>
+               <span class="n">loss</span><span class="p">,</span>  <span class="c1"># type: Optional[float]</span>
+               <span class="n">iter_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_iters</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">epoch_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_epochs</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># type: (...) -&gt; None</span>
+        <span class="sd">&quot;&quot;&quot;Receives the latest predictions and target values from the training session.</span>
+
+<span class="sd">        The exact signature of this function should match the one of the callbacks defined in</span>
+<span class="sd">        :class:`thelper.train.base.Trainer` and specified by ``thelper.typedefs.IterCallbackParams``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;unexpected extra arguments present in update call&quot;</span>
+        <span class="k">assert</span> <span class="n">iter_idx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">max_iters</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">iter_idx</span> <span class="o">&lt;</span> <span class="n">max_iters</span><span class="p">,</span> \
+            <span class="s2">&quot;bad iteration indices given to metric update function&quot;</span>
+        <span class="n">curr_win_size</span> <span class="o">=</span> <span class="n">max_iters</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_win_size</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_win_size</span><span class="p">,</span> <span class="n">max_iters</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">psnrs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">psnrs</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="n">curr_win_size</span><span class="p">:</span>
+            <span class="c1"># each &#39;iteration&#39; will have a corresponding bin with the psnr for that batch</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">psnrs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">curr_win_size</span><span class="p">)</span>
+        <span class="n">curr_idx</span> <span class="o">=</span> <span class="n">iter_idx</span> <span class="o">%</span> <span class="n">curr_win_size</span>
+        <span class="k">if</span> <span class="n">target</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">target</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># only accumulate results when groundtruth is available</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">psnrs</span><span class="p">[</span><span class="n">curr_idx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">return</span>
+        <span class="k">assert</span> <span class="n">pred</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;prediction/gt tensors shape mismatch&quot;</span>
+        <span class="n">mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> <span class="o">-</span> <span class="n">target</span><span class="o">.</span><span class="n">numpy</span><span class="p">()),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">psnrs</span><span class="p">[</span><span class="n">curr_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_range</span> <span class="o">/</span> <span class="n">mse</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PSNR.eval"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.PSNR.eval">[docs]</a>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the current (average) PSNR based on the accumulated values.</span>
+
+<span class="sd">        Will issue a warning if no predictions have been accumulated yet.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">psnrs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">psnrs</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">([</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">psnrs</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">warned_eval_bad</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">warned_eval_bad</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;psnr eval result invalid (set as 0.0), no results accumulated&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="mf">0.0</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">psnrs</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="PSNR.reset"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.PSNR.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Toggles a reset of the metric&#39;s internal state, deallocating the psnrs array.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">psnrs</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">goal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the scalar optimization goal of this metric (maximization).&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Metric</span><span class="o">.</span><span class="n">maximize</span></div>
+
+
+<div class="viewcode-block" id="AveragePrecision"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.AveragePrecision">[docs]</a><span class="k">class</span> <span class="nc">AveragePrecision</span><span class="p">(</span><span class="n">Metric</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Object detection average precision score from PascalVOC.</span>
+
+<span class="sd">    This metric is computed based on the evaluator function implemented in :mod:`thelper.optim.eval`.</span>
+<span class="sd">    It can target a single class at a time, or produce the mean average precision for all classes.</span>
+
+<span class="sd">    Usage example inside a session configuration file::</span>
+
+<span class="sd">        # ...</span>
+<span class="sd">        # lists all metrics to instantiate as a dictionary</span>
+<span class="sd">        &quot;metrics&quot;: {</span>
+<span class="sd">            # ...</span>
+<span class="sd">            # this is the name of the example metric; it is used for lookup/printing only</span>
+<span class="sd">            &quot;mAP&quot;: {</span>
+<span class="sd">                # this type is used to instantiate the AP metric</span>
+<span class="sd">                &quot;type&quot;: &quot;thelper.optim.metrics.AveragePrecision&quot;,</span>
+<span class="sd">                # these parameters are passed to the wrapper&#39;s constructor</span>
+<span class="sd">                &quot;params&quot;: {</span>
+<span class="sd">                    # no parameters means we will compute the mAP</span>
+<span class="sd">                }</span>
+<span class="sd">            },</span>
+<span class="sd">            # ...</span>
+<span class="sd">        }</span>
+<span class="sd">        # ...</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        target_class: name of the class to target; if &#39;None&#39;, will compute mAP instead of AP.</span>
+<span class="sd">        iou_threshold: Intersection Over Union (IOU) threshold for true/false positive classification.</span>
+<span class="sd">        method: the evaluation method to use; can be the the latest &amp; official PASCAL VOC toolkit</span>
+<span class="sd">            approach (&quot;all-points&quot;), or the 11-point approach (&quot;11-points&quot;) described in the original</span>
+<span class="sd">            paper (&quot;The PASCAL Visual Object Classes(VOC) Challenge&quot;).</span>
+<span class="sd">        max_win_size: maximum moving average window size to use (default=None, which equals dataset size).</span>
+<span class="sd">        preds: array holding the predicted bounding boxes for all input samples.</span>
+<span class="sd">        targets: array holding the target bounding boxes for all input samples.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="AveragePrecision.__init__"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.AveragePrecision.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_class</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">iou_threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;all-points&quot;</span><span class="p">,</span> <span class="n">max_win_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes metric attributes.</span>
+
+<span class="sd">        Note that by default, if ``max_win_size`` is not provided here, the value given to ``max_iters`` on</span>
+<span class="sd">        the first update call will be used instead to fix the sliding window length. In any case, the</span>
+<span class="sd">        smallest of ``max_iters`` and ``max_win_size`` will be used to determine the actual window size.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">max_win_size</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">max_win_size</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">max_win_size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">),</span> \
+            <span class="s2">&quot;invalid max sliding window size (should be positive integer)&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_class</span> <span class="o">=</span> <span class="n">target_class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iou_threshold</span> <span class="o">=</span> <span class="n">iou_threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">method</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_win_size</span> <span class="o">=</span> <span class="n">max_win_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preds</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># will be instantiated on first iter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">targets</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># will be instantiated on first iter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a generic print-friendly string containing info about this metric.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;(target_class={repr(self.target_class)}, max_win_size={repr(self.max_win_size)})&quot;</span>
+
+<div class="viewcode-block" id="AveragePrecision.update"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.AveragePrecision.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="c1"># see `thelper.typedefs.IterCallbackParams` for more info</span>
+               <span class="n">task</span><span class="p">,</span>  <span class="c1"># type: thelper.tasks.utils.Task</span>
+               <span class="nb">input</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.InputType</span>
+               <span class="n">pred</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.PredictionType</span>
+               <span class="n">target</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.TargetType</span>
+               <span class="n">sample</span><span class="p">,</span>  <span class="c1"># type: thelper.typedefs.SampleType</span>
+               <span class="n">loss</span><span class="p">,</span>  <span class="c1"># type: Optional[float]</span>
+               <span class="n">iter_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_iters</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">epoch_idx</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="n">max_epochs</span><span class="p">,</span>  <span class="c1"># type: int</span>
+               <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># type: (...) -&gt; None</span>
+        <span class="sd">&quot;&quot;&quot;Receives the latest bbox predictions and targets from the training session.</span>
+
+<span class="sd">        The exact signature of this function should match the one of the callbacks defined in</span>
+<span class="sd">        :class:`thelper.train.base.Trainer` and specified by ``thelper.typedefs.IterCallbackParams``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;unexpected extra arguments present in update call&quot;</span>
+        <span class="k">assert</span> <span class="n">iter_idx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">max_iters</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">iter_idx</span> <span class="o">&lt;</span> <span class="n">max_iters</span><span class="p">,</span> \
+            <span class="s2">&quot;bad iteration indices given to metric update function&quot;</span>
+        <span class="n">curr_win_size</span> <span class="o">=</span> <span class="n">max_iters</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_win_size</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_win_size</span><span class="p">,</span> <span class="n">max_iters</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">preds</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">preds</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="n">curr_win_size</span><span class="p">:</span>
+            <span class="c1"># each &#39;iteration&#39; will have a corresponding bin with counts for that batch</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">preds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">curr_win_size</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">targets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">curr_win_size</span><span class="p">)</span>
+        <span class="n">curr_idx</span> <span class="o">=</span> <span class="n">iter_idx</span> <span class="o">%</span> <span class="n">curr_win_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">task</span>  <span class="c1"># keep reference for eval only</span>
+        <span class="k">if</span> <span class="n">target</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">target</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># only accumulate results when groundtruth is available (should we though? affects false negative count)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">preds</span><span class="p">[</span><span class="n">curr_idx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="p">[</span><span class="n">curr_idx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">pred</span><span class="p">:</span>
+            <span class="n">pred</span> <span class="o">=</span> <span class="p">[[]]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span>
+                    <span class="nb">all</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">detect</span><span class="o">.</span><span class="n">BoundingBox</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">b</span><span class="p">])</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">pred</span><span class="p">])</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span>
+                    <span class="nb">all</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">detect</span><span class="o">.</span><span class="n">BoundingBox</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">b</span><span class="p">])</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">target</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preds</span><span class="p">[</span><span class="n">curr_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">pred</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="p">[</span><span class="n">curr_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span></div>
+
+<div class="viewcode-block" id="AveragePrecision.eval"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.AveragePrecision.eval">[docs]</a>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the current accuracy (in percentage) based on the accumulated prediction counts.</span>
+
+<span class="sd">        Will issue a warning if no predictions have been accumulated yet.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">preds</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="s2">&quot;internal window size mismatch&quot;</span>
+        <span class="n">pred</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">[(</span><span class="n">pred</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span> <span class="k">for</span> <span class="n">preds</span><span class="p">,</span> <span class="n">targets</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">preds</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="p">)</span>
+                             <span class="k">if</span> <span class="n">targets</span> <span class="k">for</span> <span class="n">pred</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">targets</span><span class="p">)])</span>
+        <span class="c1"># maybe need to concat?</span>
+        <span class="n">pred</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">pred</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>  <span class="c1"># possible due to image ids</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># no predictions made by model</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">)</span>
+        <span class="n">metrics</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">eval</span><span class="o">.</span><span class="n">compute_pascalvoc_metrics</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="p">,</span>
+                                                               <span class="bp">self</span><span class="o">.</span><span class="n">iou_threshold</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_class</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># compute mAP wrt classes that have at least one positive sample</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">m</span><span class="p">[</span><span class="s2">&quot;AP&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">metrics</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">m</span><span class="p">[</span><span class="s2">&quot;total positives&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">metrics</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">target_class</span><span class="p">][</span><span class="s2">&quot;AP&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="AveragePrecision.reset"><a class="viewcode-back" href="../../../thelper.optim.html#thelper.optim.metrics.AveragePrecision.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Toggles a reset of the metric&#39;s internal state, deallocating bbox arrays.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preds</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">targets</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">goal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the scalar optimization goal of this metric (maximization).&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Metric</span><span class="o">.</span><span class="n">maximize</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">live_eval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns whether this metric can/should be evaluated at every backprop iteration or not.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># the current PascalVOC implementation is preeetty slow with lots of bboxes</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../use-cases.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

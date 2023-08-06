@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.gui.utils &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../../index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="../../../_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for thelper.gui.utils</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Graphical User Interface (GUI) utility module.</span>
+
+<span class="sd">This module contains various tools and utilities used to instantiate annotators and GUI elements.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">import</span> <span class="nn">thelper.utils</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="create_key_listener"><a class="viewcode-back" href="../../../thelper.gui.html#thelper.gui.utils.create_key_listener">[docs]</a><span class="k">def</span> <span class="nf">create_key_listener</span><span class="p">(</span><span class="n">callback</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a key press listener based on pynput.keyboard (used for mocking).&quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">pynput.keyboard</span>
+    <span class="k">return</span> <span class="n">pynput</span><span class="o">.</span><span class="n">keyboard</span><span class="o">.</span><span class="n">Listener</span><span class="p">(</span><span class="n">on_press</span><span class="o">=</span><span class="n">callback</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="create_annotator"><a class="viewcode-back" href="../../../thelper.gui.html#thelper.gui.utils.create_annotator">[docs]</a><span class="k">def</span> <span class="nf">create_annotator</span><span class="p">(</span><span class="n">session_name</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">datasets</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Instantiates a GUI annotation tool based on the type contained in the config dictionary.</span>
+
+<span class="sd">    The tool type is expected to be in the configuration dictionary&#39;s `annotator` field, under the `type` key. For more</span>
+<span class="sd">    information on the configuration, refer to :class:`thelper.gui.annotators.Annotator`. The instantiated type must be</span>
+<span class="sd">    compatible with the constructor signature of :class:`thelper.gui.annotators.Annotator`. The object&#39;s constructor will</span>
+<span class="sd">    be given the full config dictionary.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        session_name: name of the annotation session used for printing and to create output directories.</span>
+<span class="sd">        save_dir: path to the session directory where annotations and other outputs will be saved.</span>
+<span class="sd">        config: full configuration dictionary that will be parsed for annotator parameters.</span>
+<span class="sd">        datasets: map of named dataset parsers that will provide the data to annotate.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The fully-constructed annotator object, ready to begin annotation via its ``run()`` function.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.gui.annotators.Annotator`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="s2">&quot;annotator&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">config</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;annotator&quot;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;config missing &#39;annotator&#39; field&quot;</span><span class="p">)</span>
+    <span class="n">annotator_config</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;annotator&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="s2">&quot;type&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">annotator_config</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">annotator_config</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;annotator config missing &#39;type&#39; field&quot;</span><span class="p">)</span>
+    <span class="n">annotator_type</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">import_class</span><span class="p">(</span><span class="n">annotator_config</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">annotator_type</span><span class="p">(</span><span class="n">session_name</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">,</span> <span class="n">datasets</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../use-cases.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

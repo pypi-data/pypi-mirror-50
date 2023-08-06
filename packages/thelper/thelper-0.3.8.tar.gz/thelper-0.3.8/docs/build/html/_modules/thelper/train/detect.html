@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.train.detect &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../../index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="../../../_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for thelper.train.detect</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Object detection trainer/evaluator implementation module.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">AnyStr</span>  <span class="c1"># noqa: F401</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.optim</span>
+<span class="kn">import</span> <span class="nn">torchvision</span>
+
+<span class="kn">import</span> <span class="nn">thelper.typedefs</span> <span class="k">as</span> <span class="nn">typ</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">import</span> <span class="nn">thelper.utils</span>
+<span class="kn">from</span> <span class="nn">thelper.train.base</span> <span class="k">import</span> <span class="n">Trainer</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="ObjDetectTrainer"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.detect.ObjDetectTrainer">[docs]</a><span class="k">class</span> <span class="nc">ObjDetectTrainer</span><span class="p">(</span><span class="n">Trainer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Trainer interface specialized for object detection.</span>
+
+<span class="sd">    This class implements the abstract functions of :class:`thelper.train.base.Trainer` required to train/evaluate</span>
+<span class="sd">    a model for object detection (i.e. 2D bounding box regression). It also provides a utility function for fetching</span>
+<span class="sd">    i/o packets (input images, bounding boxes) from a sample, and that converts those into tensors for forwarding</span>
+<span class="sd">    and loss estimation.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.train.base.Trainer`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ObjDetectTrainer.__init__"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.detect.ObjDetectTrainer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">session_name</span><span class="p">,</span>    <span class="c1"># type: AnyStr</span>
+                 <span class="n">save_dir</span><span class="p">,</span>        <span class="c1"># type: AnyStr</span>
+                 <span class="n">model</span><span class="p">,</span>           <span class="c1"># type: thelper.typedefs.ModelType</span>
+                 <span class="n">task</span><span class="p">,</span>            <span class="c1"># type: thelper.tasks.Task</span>
+                 <span class="n">loaders</span><span class="p">,</span>         <span class="c1"># type: thelper.typedefs.MultiLoaderType</span>
+                 <span class="n">config</span><span class="p">,</span>          <span class="c1"># type: thelper.typedefs.ConfigDict</span>
+                 <span class="n">ckptdata</span><span class="o">=</span><span class="kc">None</span>    <span class="c1"># type: typ.Optional[thelper.typedefs.CheckpointContentType]</span>
+                 <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives session parameters, parses tensor/target keys from task object, and sets up metrics.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">session_name</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">loaders</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">ckptdata</span><span class="o">=</span><span class="n">ckptdata</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">Detection</span><span class="p">),</span> <span class="s2">&quot;expected task to be object detection&quot;</span></div>
+
+    <span class="k">def</span> <span class="nf">_to_tensor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fetches and returns tensors of inputs and targets from a batched sample dictionary.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="nb">dict</span><span class="p">),</span> <span class="s2">&quot;trainer expects samples to come in dicts for key-based usage&quot;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">input_key</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;could not find input key &#39;</span><span class="si">{self.task.input_key}</span><span class="s2">&#39; in sample dict&quot;</span>
+        <span class="n">input_val</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">input_key</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">input_val</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="n">input_val</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">input_val</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">input_val</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">),</span> <span class="s2">&quot;unexpected input type; should be torch.Tensor&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">input_shape</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">input_val</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">input_shape</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> \
+                <span class="s2">&quot;expected input as Nx[shape] where N = batch size&quot;</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">input_shape</span> <span class="o">==</span> <span class="n">input_val</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> \
+                <span class="n">f</span><span class="s2">&quot;invalid input shape; got &#39;</span><span class="si">{input_val.shape[1:]}</span><span class="s2">&#39;, expected &#39;</span><span class="si">{self.task.input_shape}</span><span class="s2">&#39;&quot;</span>
+        <span class="k">assert</span> <span class="n">input_val</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;input image stack should be 4-dim to be decomposed into list of images&quot;</span>
+        <span class="c1"># unpack input images into list (as required by torchvision preproc)</span>
+        <span class="n">input_val</span> <span class="o">=</span> <span class="p">[</span><span class="n">input_val</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">input_val</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+        <span class="n">bboxes</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">gt_key</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">:</span>
+            <span class="n">bboxes</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">gt_key</span><span class="p">]</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bboxes</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">bset</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">for</span> <span class="n">bset</span> <span class="ow">in</span> <span class="n">bboxes</span><span class="p">]),</span> \
+                <span class="s2">&quot;bboxes should be provided as a list of lists (dims = batch x bboxes-per-image)&quot;</span>
+            <span class="k">assert</span> <span class="nb">all</span><span class="p">([</span><span class="nb">all</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">BoundingBox</span><span class="p">)</span> <span class="k">for</span> <span class="n">box</span> <span class="ow">in</span> <span class="n">bset</span><span class="p">])</span> <span class="k">for</span> <span class="n">bset</span> <span class="ow">in</span> <span class="n">bboxes</span><span class="p">]),</span> \
+                <span class="s2">&quot;bboxes should be provided as a thelper.data.BoundingBox-compat object&quot;</span>
+            <span class="k">assert</span> <span class="nb">all</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="n">b</span><span class="o">.</span><span class="n">image_id</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bset</span> <span class="k">if</span> <span class="n">b</span><span class="o">.</span><span class="n">image_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">]))</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">bset</span> <span class="ow">in</span> <span class="n">bboxes</span><span class="p">]),</span> \
+                <span class="s2">&quot;some bboxes tied to a single image have different reference ids&quot;</span>
+            <span class="c1"># here, we follow the format used in torchvision (&gt;=0.3) for forwarding targets to detection models</span>
+            <span class="c1"># (see https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html for more info)</span>
+            <span class="n">bboxes</span> <span class="o">=</span> <span class="p">[{</span>
+                <span class="s2">&quot;boxes&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">as_tensor</span><span class="p">([[</span><span class="o">*</span><span class="n">b</span><span class="o">.</span><span class="n">bbox</span><span class="p">]</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bset</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+                <span class="s2">&quot;labels&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">as_tensor</span><span class="p">([</span><span class="n">b</span><span class="o">.</span><span class="n">class_id</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bset</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span>
+                <span class="s2">&quot;image_id&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">as_tensor</span><span class="p">([</span><span class="n">b</span><span class="o">.</span><span class="n">image_id</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bset</span><span class="p">]),</span>
+                <span class="s2">&quot;area&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">as_tensor</span><span class="p">([</span><span class="n">b</span><span class="o">.</span><span class="n">area</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bset</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+                <span class="s2">&quot;iscrowd&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">as_tensor</span><span class="p">([</span><span class="n">b</span><span class="o">.</span><span class="n">iscrowd</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bset</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span>
+                <span class="s2">&quot;refs&quot;</span><span class="p">:</span> <span class="n">bset</span>
+            <span class="p">}</span> <span class="k">for</span> <span class="n">bset</span> <span class="ow">in</span> <span class="n">bboxes</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">input_val</span><span class="p">,</span> <span class="n">bboxes</span>
+
+    <span class="k">def</span> <span class="nf">_from_tensor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bboxes</span><span class="p">,</span> <span class="n">sample</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fetches and returns a list of bbox objects from a model-specific representation.&quot;&quot;&quot;</span>
+        <span class="c1"># for now, we can only unpack torchvision-format bbox dictionary lists (everything else will throw)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bboxes</span><span class="p">,</span> <span class="nb">list</span><span class="p">),</span> <span class="s2">&quot;input should be list since we do batch predictions&quot;</span>
+        <span class="k">if</span> <span class="nb">all</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">and</span>
+                <span class="nb">all</span><span class="p">([</span><span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;boxes&quot;</span><span class="p">,</span> <span class="s2">&quot;labels&quot;</span><span class="p">,</span> <span class="s2">&quot;scores&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">d</span><span class="p">])</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">bboxes</span><span class="p">]):</span>
+            <span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bboxes</span><span class="p">):</span>
+                <span class="n">boxes</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;boxes&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
+                <span class="n">labels</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
+                <span class="n">scores</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;scores&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
+                <span class="k">assert</span> <span class="n">boxes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">labels</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="n">boxes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">scores</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;mismatched tensor dims&quot;</span>
+                <span class="n">curr_output</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">box_idx</span><span class="p">,</span> <span class="n">box</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">boxes</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">sample</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">gt_key</span> <span class="ow">in</span> <span class="n">sample</span> <span class="ow">and</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">gt_key</span><span class="p">][</span><span class="n">batch_idx</span><span class="p">]:</span>
+                        <span class="n">gt_box</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">gt_key</span><span class="p">][</span><span class="n">batch_idx</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># use first gt box to get image-level props</span>
+                        <span class="n">out</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">BoundingBox</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">box_idx</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">box</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="n">scores</span><span class="p">[</span><span class="n">box_idx</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>
+                                                       <span class="n">image_id</span><span class="o">=</span><span class="n">gt_box</span><span class="o">.</span><span class="n">image_id</span><span class="p">,</span> <span class="n">task</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="p">)</span>
+
+                    <span class="k">elif</span> <span class="n">sample</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="s2">&quot;idx&quot;</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">:</span>
+                        <span class="n">out</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">BoundingBox</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">box_idx</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">box</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="n">scores</span><span class="p">[</span><span class="n">box_idx</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>
+                                                       <span class="n">image_id</span><span class="o">=</span><span class="n">sample</span><span class="p">[</span><span class="s2">&quot;idx&quot;</span><span class="p">][</span><span class="n">batch_idx</span><span class="p">],</span> <span class="n">task</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">out</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">BoundingBox</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">box_idx</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">box</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="n">scores</span><span class="p">[</span><span class="n">box_idx</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>
+                                                       <span class="n">task</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="p">)</span>
+                    <span class="n">curr_output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+                <span class="n">outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">curr_output</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">outputs</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;unrecognized packed bboxes vector format&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ObjDetectTrainer.train_epoch"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.detect.ObjDetectTrainer.train_epoch">[docs]</a>    <span class="k">def</span> <span class="nf">train_epoch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">dev</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">loader</span><span class="p">,</span> <span class="n">metrics</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Trains the model for a single epoch using the provided objects.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            model: the model to train that is already uploaded to the target device(s).</span>
+<span class="sd">            epoch: the epoch index we are training for (0-based).</span>
+<span class="sd">            dev: the target device that tensors should be uploaded to.</span>
+<span class="sd">            loss: the loss function used to evaluate model fidelity.</span>
+<span class="sd">            optimizer: the optimizer used for back propagation.</span>
+<span class="sd">            loader: the data loader used to get transformed training samples.</span>
+<span class="sd">            metrics: the dictionary of metrics/consumers to update every iteration.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">loss</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;current implementation assumes that loss is computed inside the model&quot;</span>
+        <span class="k">assert</span> <span class="n">optimizer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;missing optimizer&quot;</span>
+        <span class="k">assert</span> <span class="n">loader</span><span class="p">,</span> <span class="s2">&quot;no available data to load&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">metrics</span><span class="p">,</span> <span class="nb">dict</span><span class="p">),</span> <span class="s2">&quot;expect metrics as dict object&quot;</span>
+        <span class="n">epoch_loss</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">epoch_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">loader</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;fetching data loader samples...&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">sample</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">loader</span><span class="p">):</span>
+            <span class="n">images</span><span class="p">,</span> <span class="n">targets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_tensor</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="n">targets</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">([</span><span class="ow">not</span> <span class="n">bset</span> <span class="k">for</span> <span class="n">bset</span> <span class="ow">in</span> <span class="n">targets</span><span class="p">]),</span> \
+                <span class="s2">&quot;groundtruth required when training a model&quot;</span>
+            <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+            <span class="n">targets_dev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_move_tensor</span><span class="p">(</span><span class="n">targets</span><span class="p">,</span> <span class="n">dev</span><span class="p">)</span>
+            <span class="n">images_dev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_move_tensor</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">dev</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">ExternalModule</span><span class="p">):</span>
+                <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">model</span>  <span class="c1"># temporarily unwrap to simplify code below</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">detection</span><span class="o">.</span><span class="n">generalized_rcnn</span><span class="o">.</span><span class="n">GeneralizedRCNN</span><span class="p">),</span> \
+                <span class="s2">&quot;unknown/unhandled detection model type&quot;</span>  <span class="c1"># user should probably implement their own trainer</span>
+            <span class="c1"># unfortunately, the default generalized RCNN model forward does not return predictions while training...</span>
+            <span class="c1"># loss_dict = model(images=images_dev, targets=targets)  # we basically reimplement this call below</span>
+            <span class="n">original_image_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">images_dev</span><span class="p">]</span>
+            <span class="n">images_dev</span><span class="p">,</span> <span class="n">targets_dev</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">images_dev</span><span class="p">,</span> <span class="n">targets_dev</span><span class="p">)</span>
+            <span class="n">features</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">backbone</span><span class="p">(</span><span class="n">images_dev</span><span class="o">.</span><span class="n">tensors</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+                <span class="n">features</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="n">features</span><span class="p">)])</span>
+            <span class="n">proposals</span><span class="p">,</span> <span class="n">proposal_losses</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">rpn</span><span class="p">(</span><span class="n">images_dev</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">targets_dev</span><span class="p">)</span>
+            <span class="n">pred</span><span class="p">,</span> <span class="n">pred_losses</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">roi_heads</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">proposals</span><span class="p">,</span> <span class="n">images_dev</span><span class="o">.</span><span class="n">image_sizes</span><span class="p">,</span> <span class="n">targets_dev</span><span class="p">)</span>
+            <span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">postprocess</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">images_dev</span><span class="o">.</span><span class="n">image_sizes</span><span class="p">,</span> <span class="n">original_image_sizes</span><span class="p">)</span>
+            <span class="n">iter_loss</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">loss</span> <span class="k">for</span> <span class="n">loss</span> <span class="ow">in</span> <span class="p">{</span><span class="o">**</span><span class="n">pred_losses</span><span class="p">,</span> <span class="o">**</span><span class="n">proposal_losses</span><span class="p">}</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+            <span class="n">iter_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+            <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+            <span class="n">pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_from_tensor</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">sample</span><span class="p">)</span>
+            <span class="n">target_bboxes</span> <span class="o">=</span> <span class="p">[</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;refs&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">targets</span><span class="p">]</span>
+            <span class="c1"># pack image list back into 4d tensor</span>
+            <span class="n">images</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">images</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">images</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">torch</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">iter_loss</span> <span class="o">=</span> <span class="n">iter_loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">metrics</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="n">metric</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">task</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="n">images</span><span class="p">,</span> <span class="n">pred</span><span class="o">=</span><span class="n">pred</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">target_bboxes</span><span class="p">,</span>
+                              <span class="n">sample</span><span class="o">=</span><span class="n">sample</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="n">iter_loss</span><span class="p">,</span> <span class="n">iter_idx</span><span class="o">=</span><span class="n">idx</span><span class="p">,</span> <span class="n">max_iters</span><span class="o">=</span><span class="n">epoch_size</span><span class="p">,</span>
+                              <span class="n">epoch_idx</span><span class="o">=</span><span class="n">epoch</span><span class="p">,</span> <span class="n">max_epochs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">epochs</span><span class="p">)</span>
+            <span class="n">epoch_loss</span> <span class="o">+=</span> <span class="n">iter_loss</span>
+        <span class="n">epoch_loss</span> <span class="o">/=</span> <span class="n">epoch_size</span>
+        <span class="k">return</span> <span class="n">epoch_loss</span></div>
+
+<div class="viewcode-block" id="ObjDetectTrainer.eval_epoch"><a class="viewcode-back" href="../../../thelper.train.html#thelper.train.detect.ObjDetectTrainer.eval_epoch">[docs]</a>    <span class="k">def</span> <span class="nf">eval_epoch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">dev</span><span class="p">,</span> <span class="n">loader</span><span class="p">,</span> <span class="n">metrics</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Evaluates the model using the provided objects.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            model: the model to evaluate that is already uploaded to the target device(s).</span>
+<span class="sd">            epoch: the epoch index we are training for (0-based).</span>
+<span class="sd">            dev: the target device that tensors should be uploaded to.</span>
+<span class="sd">            loader: the data loader used to get transformed valid/test samples.</span>
+<span class="sd">            metrics: the dictionary of metrics/consumers to update every iteration.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">loader</span><span class="p">,</span> <span class="s2">&quot;no available data to load&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">metrics</span><span class="p">,</span> <span class="nb">dict</span><span class="p">),</span> <span class="s2">&quot;expect metrics as dict object&quot;</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">epoch_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">loader</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;fetching data loader samples...&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">sample</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">loader</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">skip_eval_iter</span><span class="p">:</span>
+                    <span class="k">continue</span>  <span class="c1"># skip until previous iter count (if set externally; no effect otherwise)</span>
+                <span class="n">images</span><span class="p">,</span> <span class="n">targets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_tensor</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+                <span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_move_tensor</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">dev</span><span class="p">))</span>
+                <span class="n">pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_from_tensor</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">sample</span><span class="p">)</span>
+                <span class="n">target_bboxes</span> <span class="o">=</span> <span class="p">[</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;refs&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">targets</span><span class="p">]</span>
+                <span class="c1"># pack image list back into 4d tensor</span>
+                <span class="n">images</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">images</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">images</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">torch</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">metrics</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                    <span class="n">metric</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">task</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="n">images</span><span class="p">,</span> <span class="n">pred</span><span class="o">=</span><span class="n">pred</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">target_bboxes</span><span class="p">,</span>
+                                  <span class="n">sample</span><span class="o">=</span><span class="n">sample</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">iter_idx</span><span class="o">=</span><span class="n">idx</span><span class="p">,</span> <span class="n">max_iters</span><span class="o">=</span><span class="n">epoch_size</span><span class="p">,</span>
+                                  <span class="n">epoch_idx</span><span class="o">=</span><span class="n">epoch</span><span class="p">,</span> <span class="n">max_epochs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">epochs</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../use-cases.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

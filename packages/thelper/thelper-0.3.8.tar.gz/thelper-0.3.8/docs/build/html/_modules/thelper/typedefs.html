@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.typedefs &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="../../_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for thelper.typedefs</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Typing definitions for thelper.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">AnyStr</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>  <span class="c1"># noqa: F401</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+
+    <span class="kn">from</span> <span class="nn">thelper.tasks.utils</span> <span class="k">import</span> <span class="n">Task</span>
+    <span class="kn">from</span> <span class="nn">thelper.nn.utils</span> <span class="k">import</span> <span class="n">Module</span>
+    <span class="kn">from</span> <span class="nn">thelper.data.loaders</span> <span class="k">import</span> <span class="n">DataLoader</span>
+
+<span class="k">else</span><span class="p">:</span>
+
+<div class="viewcode-block" id="Task"><a class="viewcode-back" href="../../thelper.html#thelper.typedefs.Task">[docs]</a>    <span class="k">class</span> <span class="nc">Task</span><span class="p">:</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Module"><a class="viewcode-back" href="../../thelper.html#thelper.typedefs.Module">[docs]</a>    <span class="k">class</span> <span class="nc">Module</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="DataLoader"><a class="viewcode-back" href="../../thelper.html#thelper.typedefs.DataLoader">[docs]</a>    <span class="k">class</span> <span class="nc">DataLoader</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<span class="n">ArrayType</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+<span class="n">ArrayShapeType</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span>
+<span class="n">OneOrManyArrayType</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">ArrayType</span><span class="p">],</span> <span class="n">ArrayType</span><span class="p">]</span>
+<span class="n">LabelColorMapType</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">ArrayType</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">ArrayType</span><span class="p">]]</span>
+<span class="n">LabelIndex</span> <span class="o">=</span> <span class="n">AnyStr</span>
+<span class="n">LabelType</span> <span class="o">=</span> <span class="n">AnyStr</span>
+<span class="n">LabelDict</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">[</span><span class="n">LabelIndex</span><span class="p">,</span> <span class="n">LabelType</span><span class="p">]</span>
+<span class="n">LabelList</span> <span class="o">=</span> <span class="n">List</span><span class="p">[</span><span class="n">LabelType</span><span class="p">]</span>
+<span class="n">DrawingType</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Figure</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span>
+
+<span class="n">SampleType</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">AnyStr</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="n">Any</span><span class="p">]</span>
+<span class="n">InputType</span><span class="p">,</span> <span class="n">PredictionType</span><span class="p">,</span> <span class="n">TargetType</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span>
+
+<span class="n">IterCallbackType</span> <span class="o">=</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Task</span><span class="p">,</span> <span class="n">InputType</span><span class="p">,</span> <span class="n">PredictionType</span><span class="p">,</span> <span class="n">TargetType</span><span class="p">,</span>
+                                      <span class="n">SampleType</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span>
+<span class="n">IterCallbackParams</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;task&quot;</span><span class="p">,</span>  <span class="c1"># the task object that defines class names, min/max target values, etc.</span>
+    <span class="s2">&quot;input&quot;</span><span class="p">,</span>  <span class="c1"># the (batched) input tensor given to the model in order to generate a prediction</span>
+    <span class="s2">&quot;pred&quot;</span><span class="p">,</span>  <span class="c1"># the (batched) tensor generated by the model containing predicted value(s)</span>
+    <span class="s2">&quot;target&quot;</span><span class="p">,</span>  <span class="c1"># the (batched) tensor containing target (groundtruth) prediction value(s)</span>
+    <span class="s2">&quot;sample&quot;</span><span class="p">,</span>  <span class="c1"># the minibatch sample dictionary assembled by the data loader</span>
+    <span class="s2">&quot;loss&quot;</span><span class="p">,</span>  <span class="c1"># the loss computed by the model for the current iteration (may be None)</span>
+    <span class="s2">&quot;iter_idx&quot;</span><span class="p">,</span>  <span class="c1"># the index of the iteration (or sample index) in the current epoch</span>
+    <span class="s2">&quot;max_iters&quot;</span><span class="p">,</span>  <span class="c1"># the total number of iterations in the current epoch</span>
+    <span class="s2">&quot;epoch_idx&quot;</span><span class="p">,</span>  <span class="c1"># the index of the current epoch</span>
+    <span class="s2">&quot;max_epochs&quot;</span>  <span class="c1"># the total (maximum) number of epochs the model should be trained for</span>
+<span class="p">]</span>
+
+<span class="n">ConfigIndex</span> <span class="o">=</span> <span class="n">AnyStr</span>
+<span class="n">ConfigValue</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">AnyStr</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
+<span class="n">ConfigDict</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">[</span><span class="n">ConfigIndex</span><span class="p">,</span> <span class="n">ConfigValue</span><span class="p">]</span>
+
+<span class="n">CheckpointLoadingType</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">AnyStr</span><span class="p">,</span> <span class="n">io</span><span class="o">.</span><span class="n">FileIO</span><span class="p">]</span>
+<span class="n">CheckpointContentType</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">[</span><span class="n">AnyStr</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+<span class="n">MapLocationType</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">Callable</span><span class="p">,</span> <span class="n">AnyStr</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="n">AnyStr</span><span class="p">,</span> <span class="n">AnyStr</span><span class="p">]]</span>
+
+<span class="n">ModelType</span> <span class="o">=</span> <span class="n">Module</span>
+<span class="n">LoaderType</span> <span class="o">=</span> <span class="n">DataLoader</span>
+<span class="n">MultiLoaderType</span> <span class="o">=</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="n">LoaderType</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">LoaderType</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">LoaderType</span><span class="p">]]</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../use-cases.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

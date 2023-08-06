@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.tasks.classif &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../../index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="../../../_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for thelper.tasks.classif</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Classification task interface module.</span>
+
+<span class="sd">This module contains a class that defines the objectives of models/trainers for classification tasks.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Optional</span>  <span class="c1"># noqa: F401</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="kn">import</span> <span class="nn">thelper.utils</span>
+<span class="kn">from</span> <span class="nn">thelper.tasks.utils</span> <span class="k">import</span> <span class="n">Task</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Classification"><a class="viewcode-back" href="../../../thelper.tasks.html#thelper.tasks.classif.Classification">[docs]</a><span class="k">class</span> <span class="nc">Classification</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Interface for input labeling/classification tasks.</span>
+
+<span class="sd">    This specialization requests that when given an input tensor, the trained model should</span>
+<span class="sd">    provide prediction scores for each predefined label (or class). The label names are used</span>
+<span class="sd">    here to help categorize samples, and to assure that two tasks are only identical when their</span>
+<span class="sd">    label counts and ordering match.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        class_names: list of label (class) names to predict (each name should be a string).</span>
+<span class="sd">        input_key: the key used to fetch input tensors from a sample dictionary.</span>
+<span class="sd">        label_key: the key used to fetch label (class) names/indices from a sample dictionary.</span>
+<span class="sd">        meta_keys: the list of extra keys provided by the data parser inside each sample.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.tasks.utils.Task`</span>
+<span class="sd">        | :class:`thelper.train.classif.ImageClassifTrainer`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Classification.__init__"><a class="viewcode-back" href="../../../thelper.tasks.html#thelper.tasks.classif.Classification.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_names</span><span class="p">,</span> <span class="n">input_key</span><span class="p">,</span> <span class="n">label_key</span><span class="p">,</span> <span class="n">meta_keys</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives and stores the class (or label) names to predict, the input tensor key, the</span>
+<span class="sd">        groundtruth label (class) key, and the extra (meta) keys produced by the dataset parser(s).</span>
+
+<span class="sd">        The class names can be provided as a list of strings, or as a path to a json file that</span>
+<span class="sd">        contains such a list. The list must contain at least two items. All other arguments are</span>
+<span class="sd">        used as-is to index dictionaries, and must therefore be key-compatible types.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Classification</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">input_key</span><span class="p">,</span> <span class="n">label_key</span><span class="p">,</span> <span class="n">meta_keys</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span> <span class="o">=</span> <span class="n">class_names</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">class_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the list of class names to be predicted.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_class_names</span>
+
+    <span class="nd">@class_names</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">class_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_names</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the list of class names to be predicted.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">class_names</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">class_names</span><span class="p">):</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">class_names</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+                <span class="n">class_names</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fd</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">class_names</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="nb">all</span><span class="p">([</span><span class="n">idx</span> <span class="ow">in</span> <span class="n">class_names</span> <span class="ow">or</span> <span class="nb">str</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span> <span class="ow">in</span> <span class="n">class_names</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">class_names</span><span class="p">))]),</span> \
+                <span class="s2">&quot;missing class indices (all integers must be consecutive)&quot;</span>
+            <span class="n">class_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key</span><span class="p">([</span><span class="n">idx</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">idx</span><span class="p">)],</span> <span class="n">class_names</span><span class="p">)</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">class_names</span><span class="p">))]</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">class_names</span><span class="p">,</span> <span class="nb">list</span><span class="p">),</span> <span class="s2">&quot;expected class names to be provided as an array&quot;</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">class_names</span><span class="p">]),</span> <span class="s2">&quot;all classes must be named with strings&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_names</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;should have at least one class!&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_names</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">class_names</span><span class="p">)):</span>
+            <span class="c1"># no longer throwing here, imagenet possesses such a case (&#39;crane#134&#39; and &#39;crane#517&#39;)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;found duplicated name in class list, might be a data entry problem...&quot;</span><span class="p">)</span>
+            <span class="n">class_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">if</span> <span class="n">class_names</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;#&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+                           <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">class_names</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_class_names</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">class_names</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_class_indices</span> <span class="o">=</span> <span class="p">{</span><span class="n">class_name</span><span class="p">:</span> <span class="n">idx</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">class_name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">class_names</span><span class="p">)}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">class_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the class-name-to-index map used for encoding labels as integers.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_class_indices</span>
+
+    <span class="nd">@class_indices</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">class_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_indices</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the class-name-to-index map used for encoding labels as integers.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">class_indices</span><span class="p">,</span> <span class="nb">dict</span><span class="p">),</span> <span class="s2">&quot;class indices must be provided as dictionary&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span> <span class="o">=</span> <span class="n">class_indices</span>
+
+<div class="viewcode-block" id="Classification.get_class_sizes"><a class="viewcode-back" href="../../../thelper.tasks.html#thelper.tasks.classif.Classification.get_class_sizes">[docs]</a>    <span class="k">def</span> <span class="nf">get_class_sizes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Given a list of samples, returns a map of sample counts for each class label.&quot;&quot;&quot;</span>
+        <span class="n">class_idxs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_class_sample_map</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">class_name</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_idxs</span><span class="p">[</span><span class="n">class_name</span><span class="p">])</span> <span class="k">for</span> <span class="n">class_name</span> <span class="ow">in</span> <span class="n">class_idxs</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="Classification.get_class_sample_map"><a class="viewcode-back" href="../../../thelper.tasks.html#thelper.tasks.classif.Classification.get_class_sample_map">[docs]</a>    <span class="k">def</span> <span class="nf">get_class_sample_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">unset_key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Splits a list of samples based on their labels into a map of sample lists.</span>
+
+<span class="sd">        This function is useful if we need to split a dataset based on its label categories in</span>
+<span class="sd">        order to sort it, augment it, or re-balance it. The samples do not need to be fully loaded</span>
+<span class="sd">        for this to work, as only their label (gt) value will be queried. If a sample is missing</span>
+<span class="sd">        its label, it will be ignored and left out of the generated dictionary unless a value is</span>
+<span class="sd">        given for ``unset_key``.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            samples: the samples to split, where each sample is provided as a dictionary.</span>
+<span class="sd">            unset_key: a key under which all unlabeled samples should be kept (``None`` = ignore).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A dictionary that maps each class label to its corresponding list of samples.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">samples</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="nb">list</span><span class="p">),</span> <span class="s2">&quot;invalid sample list &quot;</span>
+        <span class="n">sample_idxs</span> <span class="o">=</span> <span class="p">{</span><span class="n">class_name</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">class_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">}</span>
+        <span class="kn">import</span> <span class="nn">collections</span>
+        <span class="k">if</span> <span class="n">unset_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">unset_key</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Hashable</span><span class="p">),</span> <span class="s2">&quot;unset class name key should be hashable&quot;</span>
+            <span class="k">assert</span> <span class="n">unset_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sample_idxs</span><span class="p">,</span> <span class="s2">&quot;unset class name key cannot already be in class names list&quot;</span>
+            <span class="n">sample_idxs</span><span class="p">[</span><span class="n">unset_key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">sample_idx</span><span class="p">,</span> <span class="n">sample</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">samples</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">unset_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">class_name</span> <span class="o">=</span> <span class="n">unset_key</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">continue</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">class_name</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span><span class="p">]</span>
+                <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">class_name</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">))</span> <span class="ow">and</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">is_scalar</span><span class="p">(</span><span class="n">class_name</span><span class="p">),</span> \
+                    <span class="s2">&quot;unexpected sample label type (need scalar, string or int)&quot;</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">class_name</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                    <span class="k">assert</span> <span class="n">class_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;label &#39;</span><span class="si">{class_name}</span><span class="s2">&#39; not found in original task class names list&quot;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">class_name</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+                        <span class="n">class_name</span> <span class="o">=</span> <span class="n">class_name</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+                    <span class="c1"># dataset must already be using indices, we will forgive this...</span>
+                    <span class="c1"># (this is pretty much always the case for torchvision datasets)</span>
+                    <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">class_name</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">),</span> <span class="s2">&quot;class name given as out-of-range index&quot;</span>
+                    <span class="n">class_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">[</span><span class="n">class_name</span><span class="p">]</span>
+            <span class="n">sample_idxs</span><span class="p">[</span><span class="n">class_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sample_idx</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sample_idxs</span></div>
+
+<div class="viewcode-block" id="Classification.check_compat"><a class="viewcode-back" href="../../../thelper.tasks.html#thelper.tasks.classif.Classification.check_compat">[docs]</a>    <span class="k">def</span> <span class="nf">check_compat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">exact</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="c1"># type: (Classification, Optional[bool]) -&gt; bool</span>
+        <span class="sd">&quot;&quot;&quot;Returns whether the current task is compatible with the provided one or not.</span>
+
+<span class="sd">        This is useful for sanity-checking, and to see if the inputs/outputs of two models</span>
+<span class="sd">        are compatible. If ``exact = True``, all fields will be checked for exact (perfect)</span>
+<span class="sd">        compatibility (in this case, matching meta keys and class name order).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">Classification</span><span class="p">):</span>
+            <span class="c1"># if both tasks are related to classification, gt keys and class names must match</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_key</span> <span class="o">==</span> <span class="n">task</span><span class="o">.</span><span class="n">input_key</span> <span class="ow">and</span> \
+                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">task</span><span class="o">.</span><span class="n">gt_key</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span> <span class="o">==</span> <span class="n">task</span><span class="o">.</span><span class="n">gt_key</span><span class="p">)</span> <span class="ow">and</span> \
+                <span class="nb">all</span><span class="p">([</span><span class="bp">cls</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span> <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="n">task</span><span class="o">.</span><span class="n">class_names</span><span class="p">])</span> <span class="ow">and</span> \
+                <span class="p">(</span><span class="ow">not</span> <span class="n">exact</span> <span class="ow">or</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">class_names</span> <span class="o">==</span> <span class="n">task</span><span class="o">.</span><span class="n">class_names</span> <span class="ow">and</span>
+                               <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meta_keys</span><span class="p">)</span> <span class="o">==</span> <span class="nb">set</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">meta_keys</span><span class="p">)</span> <span class="ow">and</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span> <span class="o">==</span> <span class="n">task</span><span class="o">.</span><span class="n">gt_key</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">task</span><span class="p">)</span> <span class="o">==</span> <span class="n">Task</span><span class="p">:</span>
+            <span class="c1"># if &#39;task&#39; simply has no gt, compatibility rests on input key only</span>
+            <span class="k">return</span> <span class="ow">not</span> <span class="n">exact</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_key</span> <span class="o">==</span> <span class="n">task</span><span class="o">.</span><span class="n">input_key</span> <span class="ow">and</span> <span class="n">task</span><span class="o">.</span><span class="n">gt_key</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="Classification.get_compat"><a class="viewcode-back" href="../../../thelper.tasks.html#thelper.tasks.classif.Classification.get_compat">[docs]</a>    <span class="k">def</span> <span class="nf">get_compat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a task instance compatible with the current task and the given one.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">Classification</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">task</span><span class="p">)</span> <span class="o">==</span> <span class="n">Task</span><span class="p">,</span> \
+            <span class="n">f</span><span class="s2">&quot;cannot create compatible task from types &#39;{type(task)}&#39; and &#39;{type(self)}&#39;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">Classification</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_key</span> <span class="o">==</span> <span class="n">task</span><span class="o">.</span><span class="n">input_key</span><span class="p">,</span> <span class="s2">&quot;input key mismatch, cannot create compatible task&quot;</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">task</span><span class="o">.</span><span class="n">gt_key</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span> <span class="o">==</span> <span class="n">task</span><span class="o">.</span><span class="n">gt_key</span><span class="p">,</span> \
+                <span class="s2">&quot;gt key mismatch, cannot create compatible task&quot;</span>
+            <span class="n">meta_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meta_keys</span> <span class="o">+</span> <span class="n">task</span><span class="o">.</span><span class="n">meta_keys</span><span class="p">))</span>
+            <span class="c1"># cannot use set for class names, order needs to stay intact!</span>
+            <span class="n">class_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span> <span class="o">+</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">task</span><span class="o">.</span><span class="n">class_names</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">Classification</span><span class="p">(</span><span class="n">class_names</span><span class="o">=</span><span class="n">class_names</span><span class="p">,</span> <span class="n">input_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_key</span><span class="p">,</span>
+                                  <span class="n">label_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span><span class="p">,</span> <span class="n">meta_keys</span><span class="o">=</span><span class="n">meta_keys</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">task</span><span class="p">)</span> <span class="o">==</span> <span class="n">Task</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_compat</span><span class="p">(</span><span class="n">task</span><span class="p">),</span> <span class="n">f</span><span class="s2">&quot;cannot create compatible task between:</span><span class="se">\n\t</span><span class="s2">{str(self)}</span><span class="se">\n\t</span><span class="s2">{str(task)}&quot;</span>
+            <span class="n">meta_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meta_keys</span> <span class="o">+</span> <span class="n">task</span><span class="o">.</span><span class="n">meta_keys</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">Classification</span><span class="p">(</span><span class="n">class_names</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">,</span> <span class="n">input_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_key</span><span class="p">,</span>
+                                  <span class="n">label_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gt_key</span><span class="p">,</span> <span class="n">meta_keys</span><span class="o">=</span><span class="n">meta_keys</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Creates a print-friendly representation of a classification task.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;(class_names={repr(self.class_names)}, input_key={repr(self.input_key)}, &quot;</span> <span class="o">+</span> \
+            <span class="n">f</span><span class="s2">&quot;label_key={repr(self.gt_key)}, meta_keys={repr(self.meta_keys)})&quot;</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../use-cases.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

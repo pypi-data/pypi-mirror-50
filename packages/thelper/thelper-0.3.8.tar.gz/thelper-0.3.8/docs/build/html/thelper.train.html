@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.train package &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="thelper.transforms package" href="thelper.transforms.html" />
+    <link rel="prev" title="thelper.tasks package" href="thelper.tasks.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="thelper.html" accesskey="U">thelper package</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-thelper.train">
+<span id="thelper-train-package"></span><h1>thelper.train package<a class="headerlink" href="#module-thelper.train" title="Permalink to this headline">¶</a></h1>
+<p>Trainer package.</p>
+<p>This package contains classes specialized for training models on various tasks.</p>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-thelper.train.base">
+<span id="thelper-train-base-module"></span><h2>thelper.train.base module<a class="headerlink" href="#module-thelper.train.base" title="Permalink to this headline">¶</a></h2>
+<p>Model training/evaluation base interface module.</p>
+<p>This module contains the interface required to train and/or evaluate a model based on different tasks. The trainers
+based on this interface are instantiated in launched sessions based on configuration dictionaries.</p>
+<dl class="class">
+<dt id="thelper.train.base.Trainer">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.train.base.</code><code class="sig-name descname">Trainer</code><span class="sig-paren">(</span><em class="sig-param">session_name</em>, <em class="sig-param">save_dir</em>, <em class="sig-param">model</em>, <em class="sig-param">task</em>, <em class="sig-param">loaders</em>, <em class="sig-param">config</em>, <em class="sig-param">ckptdata=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/base.html#Trainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.base.Trainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Abstract trainer interface that defines basic session i/o and setup operations.</p>
+<p>This interface defines the general behavior of a training session which includes configuration parsing, tensorboard
+setup, metrics and goal setup, and loss/optimizer setup. It also provides utilities for uploading models and tensors
+on specific devices, and for saving the state of a session. This interface should be specialized for every task by
+implementing the <code class="docutils literal notranslate"><span class="pre">train_epoch</span></code> and <code class="docutils literal notranslate"><span class="pre">eval_epoch</span></code> functions in a derived class. See
+<a class="reference internal" href="#thelper.train.classif.ImageClassifTrainer" title="thelper.train.classif.ImageClassifTrainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.classif.ImageClassifTrainer</span></code></a> for an example.</p>
+<p>The main parameters that will be parsed by this interface from a configuration dictionary are the following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">epochs</span></code> (mandatory if training): number of epochs to train for; one epoch is one iteration over all mini-batches.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimization</span></code> (mandatory if training): sub-dictionary containing types and extra parameters required for
+instantiating the loss, optimizer, and scheduler objects. See the code of each related loading function for more
+information on special parameters.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">save_freq</span></code> (optional, default=1): checkpoint save frequency (will save every epoch multiple of given number).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">save_raw</span></code> (optional, default=True): specifies whether to save raw types or thelper objects in checkpoints.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">use_tbx</span></code> (optional, default=False): defines whether to use tensorboardX writers for logging or not.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">device</span></code> (optional): specifies which device to train/evaluate the model on (default=all available).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metrics</span></code>: list of metrics to instantiate and update during training/evaluation; see related loading function for
+more information.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">monitor</span></code>: specifies the name of the metric that should be monitored on the validation set for model improvement.</p></li>
+</ul>
+<p>Example configuration file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
+<span class="s2">&quot;trainer&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1"># type of trainer to instantiate (linked to task type)</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.train.ImageClassifTrainer&quot;</span><span class="p">,</span>
+    <span class="c1"># train for 40 epochs</span>
+    <span class="s2">&quot;epochs&quot;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
+    <span class="c1"># save every 5 epochs</span>
+    <span class="s2">&quot;save_freq&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="c1"># monitor validation accuracy and save best model based on that</span>
+    <span class="s2">&quot;monitor&quot;</span><span class="p">:</span> <span class="s2">&quot;accuracy&quot;</span><span class="p">,</span>
+    <span class="c1"># optimization parameters block</span>
+    <span class="s2">&quot;optimization&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># all types &amp; params below provided by PyTorch</span>
+        <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;torch.nn.CrossEntropyLoss&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;optimizer&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;torch.optim.SGD&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+                <span class="s2">&quot;momentum&quot;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span>
+                <span class="s2">&quot;weight_decay&quot;</span><span class="p">:</span> <span class="mf">1e-06</span><span class="p">,</span>
+                <span class="s2">&quot;nesterov&quot;</span><span class="p">:</span> <span class="n">true</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;scheduler&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;torch.optim.lr_scheduler.StepLR&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;step_size&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+                <span class="s2">&quot;step_size&quot;</span><span class="p">:</span> <span class="mf">0.1</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1"># in this example, we use two consumers in total</span>
+    <span class="c1"># (one metric for monitoring, and one for logging)</span>
+    <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.optim.Accuracy&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;fullreport&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.train.ClassifReport&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>logger</strong> – used to output debug/warning/error messages to session log.</p></li>
+<li><p><strong>name</strong> – name of the session, used for printing and creating log folders.</p></li>
+<li><p><strong>epochs</strong> – number of epochs to train the model for.</p></li>
+<li><p><strong>optimization_config</strong> – dictionary of optim-related parameters, parsed at training time.</p></li>
+<li><p><strong>save_freq</strong> – frequency of checkpoint saves while training (i.e. save every X epochs).</p></li>
+<li><p><strong>save_raw</strong> – specifies whether to save raw types or thelper objects in checkpoints.</p></li>
+<li><p><strong>checkpoint_dir</strong> – session checkpoint output directory (located within ‘save_dir’).</p></li>
+<li><p><strong>use_tbx</strong> – defines whether to use tensorboardX writers for logging or not.</p></li>
+<li><p><strong>model</strong> – model to train; will be uploaded to target device(s) at runtime.</p></li>
+<li><p><strong>config</strong> – full configuration dictionary of the session; will be incorporated into all saved checkpoints.</p></li>
+<li><p><strong>devices</strong> – list of (cuda) device IDs to upload the model/tensors to; can be empty if only the CPU is available.</p></li>
+<li><p><strong>monitor</strong> – name of the training/validation metric that should be monitored for model improvement.</p></li>
+</ul>
+</dd>
+</dl>
+<p>TODO: move static utils to their related modules</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.train.classif.ImageClassifTrainer" title="thelper.train.classif.ImageClassifTrainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.classif.ImageClassifTrainer</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.train.segm.ImageSegmTrainer" title="thelper.train.segm.ImageSegmTrainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.segm.ImageSegmTrainer</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.train.detect.ObjDetectTrainer" title="thelper.train.detect.ObjDetectTrainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.detect.ObjDetectTrainer</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.train.regr.RegressionTrainer" title="thelper.train.regr.RegressionTrainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.regr.RegressionTrainer</span></code></a></div>
+<div class="line"><a class="reference internal" href="#thelper.train.utils.create_trainer" title="thelper.train.utils.create_trainer"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.train.utils.create_trainer()</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.train.base.Trainer.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">session_name</em>, <em class="sig-param">save_dir</em>, <em class="sig-param">model</em>, <em class="sig-param">task</em>, <em class="sig-param">loaders</em>, <em class="sig-param">config</em>, <em class="sig-param">ckptdata=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/base.html#Trainer.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.base.Trainer.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives the trainer configuration dictionary, parses it, and sets up the session.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.base.Trainer.eval">
+<code class="sig-name descname">eval</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/base.html#Trainer.eval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.base.Trainer.eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts the evaluation process.</p>
+<p>This function will evaluate the model using the test data (or the validation data, if no test data is available),
+and return the results. Note that the code related to the forwarding of samples inside the model itself is implemented
+in a derived class via <a class="reference internal" href="#thelper.train.base.Trainer.eval_epoch" title="thelper.train.base.Trainer.eval_epoch"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.train.base.Trainer.eval_epoch()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.base.Trainer.eval_epoch">
+<em class="property">abstract </em><code class="sig-name descname">eval_epoch</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">epoch</em>, <em class="sig-param">dev</em>, <em class="sig-param">loader</em>, <em class="sig-param">metrics</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/base.html#Trainer.eval_epoch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.base.Trainer.eval_epoch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluates the model using the provided objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – the model to evaluate that is already uploaded to the target device(s).</p></li>
+<li><p><strong>epoch</strong> – the epoch index we are training for (0-based).</p></li>
+<li><p><strong>dev</strong> – the target device that tensors should be uploaded to.</p></li>
+<li><p><strong>loader</strong> – the data loader used to get transformed valid/test samples.</p></li>
+<li><p><strong>metrics</strong> – the dictionary of metrics/consumers to update every iteration.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.base.Trainer.train">
+<code class="sig-name descname">train</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/base.html#Trainer.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.base.Trainer.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts the training process.</p>
+<p>This function will train the model until the required number of epochs is reached, and then evaluate it
+on the test data. The setup of loggers, tensorboard writers is done here, so is model improvement tracking
+via monitored metrics. However, the code related to loss computation and back propagation is implemented in
+a derived class via <a class="reference internal" href="#thelper.train.base.Trainer.train_epoch" title="thelper.train.base.Trainer.train_epoch"><code class="xref py py-func docutils literal notranslate"><span class="pre">thelper.train.base.Trainer.train_epoch()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.base.Trainer.train_epoch">
+<em class="property">abstract </em><code class="sig-name descname">train_epoch</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">epoch</em>, <em class="sig-param">dev</em>, <em class="sig-param">loss</em>, <em class="sig-param">optimizer</em>, <em class="sig-param">loader</em>, <em class="sig-param">metrics</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/base.html#Trainer.train_epoch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.base.Trainer.train_epoch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trains the model for a single epoch using the provided objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – the model to train that is already uploaded to the target device(s).</p></li>
+<li><p><strong>epoch</strong> – the epoch index we are training for (0-based).</p></li>
+<li><p><strong>dev</strong> – the target device that tensors should be uploaded to.</p></li>
+<li><p><strong>loss</strong> – the loss function used to evaluate model fidelity.</p></li>
+<li><p><strong>optimizer</strong> – the optimizer used for back propagation.</p></li>
+<li><p><strong>loader</strong> – the data loader used to get transformed training samples.</p></li>
+<li><p><strong>metrics</strong> – the dictionary of metrics/consumers to update every iteration.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.train.classif">
+<span id="thelper-train-classif-module"></span><h2>thelper.train.classif module<a class="headerlink" href="#module-thelper.train.classif" title="Permalink to this headline">¶</a></h2>
+<p>Classification trainer/evaluator implementation module.</p>
+<dl class="class">
+<dt id="thelper.train.classif.ImageClassifTrainer">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.train.classif.</code><code class="sig-name descname">ImageClassifTrainer</code><span class="sig-paren">(</span><em class="sig-param">session_name</em>, <em class="sig-param">save_dir</em>, <em class="sig-param">model</em>, <em class="sig-param">task</em>, <em class="sig-param">loaders</em>, <em class="sig-param">config</em>, <em class="sig-param">ckptdata=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/classif.html#ImageClassifTrainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.classif.ImageClassifTrainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a></p>
+<p>Trainer interface specialized for image classification.</p>
+<p>This class implements the abstract functions of <a class="reference internal" href="#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a> required to train/evaluate
+a model for image classification or recognition. It also provides a utility function for fetching i/o packets
+(images, class labels) from a sample, and that converts those into tensors for forwarding and loss estimation.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.train.classif.ImageClassifTrainer.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">session_name</em>, <em class="sig-param">save_dir</em>, <em class="sig-param">model</em>, <em class="sig-param">task</em>, <em class="sig-param">loaders</em>, <em class="sig-param">config</em>, <em class="sig-param">ckptdata=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/classif.html#ImageClassifTrainer.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.classif.ImageClassifTrainer.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives session parameters, parses image/label keys from task object, and sets up metrics.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.classif.ImageClassifTrainer.eval_epoch">
+<code class="sig-name descname">eval_epoch</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">epoch</em>, <em class="sig-param">dev</em>, <em class="sig-param">loader</em>, <em class="sig-param">metrics</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/classif.html#ImageClassifTrainer.eval_epoch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.classif.ImageClassifTrainer.eval_epoch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluates the model using the provided objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – the model to evaluate that is already uploaded to the target device(s).</p></li>
+<li><p><strong>epoch</strong> – the epoch index we are training for (0-based).</p></li>
+<li><p><strong>dev</strong> – the target device that tensors should be uploaded to.</p></li>
+<li><p><strong>loader</strong> – the data loader used to get transformed valid/test samples.</p></li>
+<li><p><strong>metrics</strong> – the dictionary of metrics/consumers to update every iteration.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.classif.ImageClassifTrainer.train_epoch">
+<code class="sig-name descname">train_epoch</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">epoch</em>, <em class="sig-param">dev</em>, <em class="sig-param">loss</em>, <em class="sig-param">optimizer</em>, <em class="sig-param">loader</em>, <em class="sig-param">metrics</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/classif.html#ImageClassifTrainer.train_epoch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.classif.ImageClassifTrainer.train_epoch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trains the model for a single epoch using the provided objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – the model to train that is already uploaded to the target device(s).</p></li>
+<li><p><strong>epoch</strong> – the epoch index we are training for (0-based).</p></li>
+<li><p><strong>dev</strong> – the target device that tensors should be uploaded to.</p></li>
+<li><p><strong>loss</strong> – the loss function used to evaluate model fidelity.</p></li>
+<li><p><strong>optimizer</strong> – the optimizer used for back propagation.</p></li>
+<li><p><strong>loader</strong> – the data loader used to get transformed training samples.</p></li>
+<li><p><strong>metrics</strong> – the dictionary of metrics/consumers to update every iteration.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.train.detect">
+<span id="thelper-train-detect-module"></span><h2>thelper.train.detect module<a class="headerlink" href="#module-thelper.train.detect" title="Permalink to this headline">¶</a></h2>
+<p>Object detection trainer/evaluator implementation module.</p>
+<dl class="class">
+<dt id="thelper.train.detect.ObjDetectTrainer">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.train.detect.</code><code class="sig-name descname">ObjDetectTrainer</code><span class="sig-paren">(</span><em class="sig-param">session_name</em>, <em class="sig-param">save_dir</em>, <em class="sig-param">model</em>, <em class="sig-param">task</em>, <em class="sig-param">loaders</em>, <em class="sig-param">config</em>, <em class="sig-param">ckptdata=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/detect.html#ObjDetectTrainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.detect.ObjDetectTrainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a></p>
+<p>Trainer interface specialized for object detection.</p>
+<p>This class implements the abstract functions of <a class="reference internal" href="#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a> required to train/evaluate
+a model for object detection (i.e. 2D bounding box regression). It also provides a utility function for fetching
+i/o packets (input images, bounding boxes) from a sample, and that converts those into tensors for forwarding
+and loss estimation.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.train.detect.ObjDetectTrainer.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">session_name</em>, <em class="sig-param">save_dir</em>, <em class="sig-param">model</em>, <em class="sig-param">task</em>, <em class="sig-param">loaders</em>, <em class="sig-param">config</em>, <em class="sig-param">ckptdata=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/detect.html#ObjDetectTrainer.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.detect.ObjDetectTrainer.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives session parameters, parses tensor/target keys from task object, and sets up metrics.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.detect.ObjDetectTrainer.eval_epoch">
+<code class="sig-name descname">eval_epoch</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">epoch</em>, <em class="sig-param">dev</em>, <em class="sig-param">loader</em>, <em class="sig-param">metrics</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/detect.html#ObjDetectTrainer.eval_epoch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.detect.ObjDetectTrainer.eval_epoch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluates the model using the provided objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – the model to evaluate that is already uploaded to the target device(s).</p></li>
+<li><p><strong>epoch</strong> – the epoch index we are training for (0-based).</p></li>
+<li><p><strong>dev</strong> – the target device that tensors should be uploaded to.</p></li>
+<li><p><strong>loader</strong> – the data loader used to get transformed valid/test samples.</p></li>
+<li><p><strong>metrics</strong> – the dictionary of metrics/consumers to update every iteration.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.detect.ObjDetectTrainer.train_epoch">
+<code class="sig-name descname">train_epoch</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">epoch</em>, <em class="sig-param">dev</em>, <em class="sig-param">loss</em>, <em class="sig-param">optimizer</em>, <em class="sig-param">loader</em>, <em class="sig-param">metrics</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/detect.html#ObjDetectTrainer.train_epoch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.detect.ObjDetectTrainer.train_epoch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trains the model for a single epoch using the provided objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – the model to train that is already uploaded to the target device(s).</p></li>
+<li><p><strong>epoch</strong> – the epoch index we are training for (0-based).</p></li>
+<li><p><strong>dev</strong> – the target device that tensors should be uploaded to.</p></li>
+<li><p><strong>loss</strong> – the loss function used to evaluate model fidelity.</p></li>
+<li><p><strong>optimizer</strong> – the optimizer used for back propagation.</p></li>
+<li><p><strong>loader</strong> – the data loader used to get transformed training samples.</p></li>
+<li><p><strong>metrics</strong> – the dictionary of metrics/consumers to update every iteration.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.train.regr">
+<span id="thelper-train-regr-module"></span><h2>thelper.train.regr module<a class="headerlink" href="#module-thelper.train.regr" title="Permalink to this headline">¶</a></h2>
+<p>Regression trainer/evaluator implementation module.</p>
+<dl class="class">
+<dt id="thelper.train.regr.RegressionTrainer">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.train.regr.</code><code class="sig-name descname">RegressionTrainer</code><span class="sig-paren">(</span><em class="sig-param">session_name</em>, <em class="sig-param">save_dir</em>, <em class="sig-param">model</em>, <em class="sig-param">task</em>, <em class="sig-param">loaders</em>, <em class="sig-param">config</em>, <em class="sig-param">ckptdata=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/regr.html#RegressionTrainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.regr.RegressionTrainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a></p>
+<p>Trainer interface specialized for generic (n-dim) regression.</p>
+<p>This class implements the abstract functions of <a class="reference internal" href="#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a> required to train/evaluate
+a model for generic regression (i.e. n-dim target value prediction). It also provides a utility function
+for fetching i/o packets (input tensors, target values) from a sample, and that converts those into tensors for
+forwarding and loss estimation.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.train.regr.RegressionTrainer.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">session_name</em>, <em class="sig-param">save_dir</em>, <em class="sig-param">model</em>, <em class="sig-param">task</em>, <em class="sig-param">loaders</em>, <em class="sig-param">config</em>, <em class="sig-param">ckptdata=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/regr.html#RegressionTrainer.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.regr.RegressionTrainer.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives session parameters, parses tensor/target keys from task object, and sets up metrics.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.regr.RegressionTrainer.eval_epoch">
+<code class="sig-name descname">eval_epoch</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">epoch</em>, <em class="sig-param">dev</em>, <em class="sig-param">loader</em>, <em class="sig-param">metrics</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/regr.html#RegressionTrainer.eval_epoch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.regr.RegressionTrainer.eval_epoch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluates the model using the provided objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – the model to evaluate that is already uploaded to the target device(s).</p></li>
+<li><p><strong>epoch</strong> – the epoch index we are training for (0-based).</p></li>
+<li><p><strong>dev</strong> – the target device that tensors should be uploaded to.</p></li>
+<li><p><strong>loader</strong> – the data loader used to get transformed valid/test samples.</p></li>
+<li><p><strong>metrics</strong> – the dictionary of metrics/consumers to update every iteration.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.regr.RegressionTrainer.train_epoch">
+<code class="sig-name descname">train_epoch</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">epoch</em>, <em class="sig-param">dev</em>, <em class="sig-param">loss</em>, <em class="sig-param">optimizer</em>, <em class="sig-param">loader</em>, <em class="sig-param">metrics</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/regr.html#RegressionTrainer.train_epoch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.regr.RegressionTrainer.train_epoch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trains the model for a single epoch using the provided objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – the model to train that is already uploaded to the target device(s).</p></li>
+<li><p><strong>epoch</strong> – the epoch index we are training for (0-based).</p></li>
+<li><p><strong>dev</strong> – the target device that tensors should be uploaded to.</p></li>
+<li><p><strong>loss</strong> – the loss function used to evaluate model fidelity.</p></li>
+<li><p><strong>optimizer</strong> – the optimizer used for back propagation.</p></li>
+<li><p><strong>loader</strong> – the data loader used to get transformed training samples.</p></li>
+<li><p><strong>metrics</strong> – the dictionary of metrics/consumers to update every iteration.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.train.segm">
+<span id="thelper-train-segm-module"></span><h2>thelper.train.segm module<a class="headerlink" href="#module-thelper.train.segm" title="Permalink to this headline">¶</a></h2>
+<p>Segmentation trainer/evaluator implementation module.</p>
+<dl class="class">
+<dt id="thelper.train.segm.ImageSegmTrainer">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.train.segm.</code><code class="sig-name descname">ImageSegmTrainer</code><span class="sig-paren">(</span><em class="sig-param">session_name</em>, <em class="sig-param">save_dir</em>, <em class="sig-param">model</em>, <em class="sig-param">task</em>, <em class="sig-param">loaders</em>, <em class="sig-param">config</em>, <em class="sig-param">ckptdata=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/segm.html#ImageSegmTrainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.segm.ImageSegmTrainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a></p>
+<p>Trainer interface specialized for image segmentation.</p>
+<p>This class implements the abstract functions of <a class="reference internal" href="#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a> required to train/evaluate
+a model for image segmentation (i.e. pixel-level classification/labeling). It also provides a utility function
+for fetching i/o packets (images, class labels) from a sample, and that converts those into tensors for forwarding
+and loss estimation.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a></div>
+</div>
+</div>
+<dl class="method">
+<dt id="thelper.train.segm.ImageSegmTrainer.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">session_name</em>, <em class="sig-param">save_dir</em>, <em class="sig-param">model</em>, <em class="sig-param">task</em>, <em class="sig-param">loaders</em>, <em class="sig-param">config</em>, <em class="sig-param">ckptdata=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/segm.html#ImageSegmTrainer.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.segm.ImageSegmTrainer.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives session parameters, parses image/label keys from task object, and sets up metrics.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.segm.ImageSegmTrainer.eval_epoch">
+<code class="sig-name descname">eval_epoch</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">epoch</em>, <em class="sig-param">dev</em>, <em class="sig-param">loader</em>, <em class="sig-param">metrics</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/segm.html#ImageSegmTrainer.eval_epoch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.segm.ImageSegmTrainer.eval_epoch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluates the model using the provided objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – the model to evaluate that is already uploaded to the target device(s).</p></li>
+<li><p><strong>epoch</strong> – the epoch index we are training for (0-based).</p></li>
+<li><p><strong>dev</strong> – the target device that tensors should be uploaded to.</p></li>
+<li><p><strong>loader</strong> – the data loader used to get transformed valid/test samples.</p></li>
+<li><p><strong>metrics</strong> – the dictionary of metrics/consumers to update every iteration.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.segm.ImageSegmTrainer.train_epoch">
+<code class="sig-name descname">train_epoch</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">epoch</em>, <em class="sig-param">dev</em>, <em class="sig-param">loss</em>, <em class="sig-param">optimizer</em>, <em class="sig-param">loader</em>, <em class="sig-param">metrics</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/segm.html#ImageSegmTrainer.train_epoch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.segm.ImageSegmTrainer.train_epoch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trains the model for a single epoch using the provided objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – the model to train that is already uploaded to the target device(s).</p></li>
+<li><p><strong>epoch</strong> – the epoch index we are training for (0-based).</p></li>
+<li><p><strong>dev</strong> – the target device that tensors should be uploaded to.</p></li>
+<li><p><strong>loss</strong> – the loss function used to evaluate model fidelity.</p></li>
+<li><p><strong>optimizer</strong> – the optimizer used for back propagation.</p></li>
+<li><p><strong>loader</strong> – the data loader used to get transformed training samples.</p></li>
+<li><p><strong>metrics</strong> – the dictionary of metrics/consumers to update every iteration.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-thelper.train.utils">
+<span id="thelper-train-utils-module"></span><h2>thelper.train.utils module<a class="headerlink" href="#module-thelper.train.utils" title="Permalink to this headline">¶</a></h2>
+<p>Training/evaluation utilities module.</p>
+<p>This module contains utilities and tools used to instantiate training sessions. It also contains
+the prediction consumer interface used by metrics and loggers to receive iteration data during
+training. See <a class="reference internal" href="thelper.optim.html#module-thelper.optim.metrics" title="thelper.optim.metrics"><code class="xref py py-mod docutils literal notranslate"><span class="pre">thelper.optim.metrics</span></code></a> for more information on metrics.</p>
+<dl class="class">
+<dt id="thelper.train.utils.ClassifLogger">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.train.utils.</code><code class="sig-name descname">ClassifLogger</code><span class="sig-paren">(</span><em class="sig-param">top_k=1</em>, <em class="sig-param">conf_threshold=None</em>, <em class="sig-param">class_names=None</em>, <em class="sig-param">target_name=None</em>, <em class="sig-param">viz_count=0</em>, <em class="sig-param">report_count=None</em>, <em class="sig-param">log_keys=None</em>, <em class="sig-param">force_softmax=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#ClassifLogger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.ClassifLogger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.train.utils.PredictionConsumer" title="thelper.train.utils.PredictionConsumer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.utils.PredictionConsumer</span></code></a></p>
+<p>Classification output logger.</p>
+<p>This class provides a simple logging interface for accumulating and saving the predictions of a classifier.
+By default, all predictions will be logged. However, a confidence threshold can be set to focus on “hard”
+samples if necessary. It also optionally offers tensorboardX-compatible output images that can be saved
+locally or posted to tensorboard for browser-based visualization.</p>
+<p>Usage examples inside a session configuration file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
+<span class="c1"># lists all metrics to instantiate as a dictionary</span>
+<span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1"># ...</span>
+    <span class="c1"># this is the name of the example consumer; it is used for lookup/printing only</span>
+    <span class="s2">&quot;logger&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># this type is used to instantiate the confusion matrix report object</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.train.utils.ClassifLogger&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># log the three &#39;best&#39; predictions for each sample</span>
+            <span class="s2">&quot;top_k&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+            <span class="c1"># keep updating a set of 10 samples for visualization via tensorboardX</span>
+            <span class="s2">&quot;viz_count&quot;</span><span class="p">:</span> <span class="mi">10</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1"># ...</span>
+<span class="p">}</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>top_k</strong> – number of ‘best’ predictions to keep for each sample (along with the gt label).</p></li>
+<li><p><strong>conf_threshold</strong> – threshold used to eliminate all but the most uncertain predictions.</p></li>
+<li><p><strong>class_names</strong> – holds the list of class label names provided by the dataset parser. If it is not
+provided when the constructor is called, it will be set by the trainer at runtime.</p></li>
+<li><p><strong>target_name</strong> – name of the targeted label (may be ‘None’ if all classes are used).</p></li>
+<li><p><strong>target_idx</strong> – index of the targeted label (may be ‘None’ if all classes are used).</p></li>
+<li><p><strong>viz_count</strong> – number of tensorboardX images to generate and update at each epoch.</p></li>
+<li><p><strong>report_count</strong> – number of samples to print in reports (use ‘None’ if all samples must be printed).</p></li>
+<li><p><strong>log_keys</strong> – list of metadata field keys to copy from samples into the log for each prediction.</p></li>
+<li><p><strong>force_softmax</strong> – specifies whether a softmax operation should be applied to the prediction scores
+obtained from the trainer.</p></li>
+<li><p><strong>score</strong> – array used to store prediction scores for logging.</p></li>
+<li><p><strong>true</strong> – array used to store groundtruth labels for logging.</p></li>
+<li><p><strong>meta</strong> – array used to store metadata pulled from samples for logging.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.train.utils.ClassifLogger.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">top_k=1</em>, <em class="sig-param">conf_threshold=None</em>, <em class="sig-param">class_names=None</em>, <em class="sig-param">target_name=None</em>, <em class="sig-param">viz_count=0</em>, <em class="sig-param">report_count=None</em>, <em class="sig-param">log_keys=None</em>, <em class="sig-param">force_softmax=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#ClassifLogger.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.ClassifLogger.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives the logging parameters &amp; the optional class label names used to decorate the log.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.utils.ClassifLogger.render">
+<code class="sig-name descname">render</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#ClassifLogger.render"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.ClassifLogger.render" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an image of predicted outputs as a numpy-compatible RGBA image drawn by pyplot.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.utils.ClassifLogger.report">
+<code class="sig-name descname">report</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#ClassifLogger.report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.ClassifLogger.report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the logged metadata of predicted samples.</p>
+<p>The returned object is a print-friendly CSV string that can be consumed directly by tensorboardX. Note
+that this string might be very long if the dataset is large (i.e. it will contain one line per sample).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.utils.ClassifLogger.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#ClassifLogger.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.ClassifLogger.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggles a reset of the internal state, emptying storage arrays.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.utils.ClassifLogger.set_class_names">
+<code class="sig-name descname">set_class_names</code><span class="sig-paren">(</span><em class="sig-param">class_names</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#ClassifLogger.set_class_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.ClassifLogger.set_class_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the class label names that must be predicted by the model.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.utils.ClassifLogger.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">input</em>, <em class="sig-param">pred</em>, <em class="sig-param">target</em>, <em class="sig-param">sample</em>, <em class="sig-param">loss</em>, <em class="sig-param">iter_idx</em>, <em class="sig-param">max_iters</em>, <em class="sig-param">epoch_idx</em>, <em class="sig-param">max_epochs</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#ClassifLogger.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.ClassifLogger.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives the latest predictions and target values from the training session.</p>
+<p>The exact signature of this function should match the one of the callbacks defined in
+<a class="reference internal" href="#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a> and specified by <code class="docutils literal notranslate"><span class="pre">thelper.typedefs.IterCallbackParams</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.train.utils.ClassifReport">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.train.utils.</code><code class="sig-name descname">ClassifReport</code><span class="sig-paren">(</span><em class="sig-param">class_names=None</em>, <em class="sig-param">sample_weight=None</em>, <em class="sig-param">digits=4</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#ClassifReport"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.ClassifReport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.train.utils.PredictionConsumer" title="thelper.train.utils.PredictionConsumer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.utils.PredictionConsumer</span></code></a></p>
+<p>Classification report interface.</p>
+<p>This class provides a simple interface to <code class="docutils literal notranslate"><span class="pre">sklearn.metrics.classification_report</span></code> so that all
+count-based metrics can be reported at once under a string-based representation.</p>
+<p>Usage example inside a session configuration file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
+<span class="c1"># lists all metrics to instantiate as a dictionary</span>
+<span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1"># ...</span>
+    <span class="c1"># this is the name of the example consumer; it is used for lookup/printing only</span>
+    <span class="s2">&quot;classifreport&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># this type is used to instantiate the classification report object</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.train.utils.ClassifReport&quot;</span><span class="p">,</span>
+        <span class="c1"># we do not need to provide any parameters to the constructor, defaults are fine</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{}</span>
+    <span class="p">},</span>
+    <span class="c1"># ...</span>
+<span class="p">}</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gen_report</strong> – report generator function, called at evaluation time to generate the output string.</p></li>
+<li><p><strong>class_names</strong> – holds the list of class label names provided by the dataset parser. If it is not
+provided when the constructor is called, it will be set by the trainer at runtime.</p></li>
+<li><p><strong>pred</strong> – queue used to store the top-1 (best) predicted class indices at each iteration.</p></li>
+<li><p><strong>gt</strong> – queue used to store the groundtruth class indices at each iteration.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.train.utils.ClassifReport.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">class_names=None</em>, <em class="sig-param">sample_weight=None</em>, <em class="sig-param">digits=4</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#ClassifReport.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.ClassifReport.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives the optional class names and arguments passed to the report generator function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>class_names</strong> – holds the list of class label names provided by the dataset parser. If it is not
+provided when the constructor is called, it will be set by the trainer at runtime.</p></li>
+<li><p><strong>sample_weight</strong> – sample weights, forwarded to <code class="docutils literal notranslate"><span class="pre">sklearn.metrics.classification_report</span></code>.</p></li>
+<li><p><strong>digits</strong> – metrics output digit count, forwarded to <code class="docutils literal notranslate"><span class="pre">sklearn.metrics.classification_report</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.utils.ClassifReport.report">
+<code class="sig-name descname">report</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#ClassifReport.report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.ClassifReport.report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the classification report as a multi-line print-friendly string.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.utils.ClassifReport.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#ClassifReport.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.ClassifReport.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggles a reset of the metric’s internal state, emptying queues.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.utils.ClassifReport.set_class_names">
+<code class="sig-name descname">set_class_names</code><span class="sig-paren">(</span><em class="sig-param">class_names</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#ClassifReport.set_class_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.ClassifReport.set_class_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the class label names that must be predicted by the model.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.utils.ClassifReport.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">input</em>, <em class="sig-param">pred</em>, <em class="sig-param">target</em>, <em class="sig-param">sample</em>, <em class="sig-param">loss</em>, <em class="sig-param">iter_idx</em>, <em class="sig-param">max_iters</em>, <em class="sig-param">epoch_idx</em>, <em class="sig-param">max_epochs</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#ClassifReport.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.ClassifReport.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives the latest predictions and target values from the training session.</p>
+<p>The exact signature of this function should match the one of the callbacks defined in
+<a class="reference internal" href="#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a> and specified by <code class="docutils literal notranslate"><span class="pre">thelper.typedefs.IterCallbackParams</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.train.utils.ConfusionMatrix">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.train.utils.</code><code class="sig-name descname">ConfusionMatrix</code><span class="sig-paren">(</span><em class="sig-param">class_names=None</em>, <em class="sig-param">draw_normalized=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#ConfusionMatrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.ConfusionMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.train.utils.PredictionConsumer" title="thelper.train.utils.PredictionConsumer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.utils.PredictionConsumer</span></code></a></p>
+<p>Confusion matrix report interface.</p>
+<p>This class provides a simple interface to <code class="docutils literal notranslate"><span class="pre">sklearn.metrics.confusion_matrix</span></code> so that a full
+confusion matrix can be easily reported under a string-based representation. It also offers a
+tensorboardX-compatible output image that can be saved locally or posted to tensorboard for
+browser-based visualization.</p>
+<p>Usage example inside a session configuration file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
+<span class="c1"># lists all metrics to instantiate as a dictionary</span>
+<span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1"># ...</span>
+    <span class="c1"># this is the name of the example consumer; it is used for lookup/printing only</span>
+    <span class="s2">&quot;confmat&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># this type is used to instantiate the confusion matrix report object</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;thelper.train.utils.ConfusionMatrix&quot;</span><span class="p">,</span>
+        <span class="c1"># we do not need to provide any parameters to the constructor, defaults are fine</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{}</span>
+    <span class="p">},</span>
+    <span class="c1"># ...</span>
+<span class="p">}</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>matrix</strong> – report generator function, called at evaluation time to generate the output string.</p></li>
+<li><p><strong>class_names</strong> – holds the list of class label names provided by the dataset parser. If it is not
+provided when the constructor is called, it will be set by the trainer at runtime.</p></li>
+<li><p><strong>draw_normalized</strong> – defines whether rendered confusion matrices should be normalized or not.</p></li>
+<li><p><strong>pred</strong> – queue used to store the top-1 (best) predicted class indices at each iteration.</p></li>
+<li><p><strong>gt</strong> – queue used to store the groundtruth class indices at each iteration.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.train.utils.ConfusionMatrix.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">class_names=None</em>, <em class="sig-param">draw_normalized=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#ConfusionMatrix.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.ConfusionMatrix.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives the optional class label names used to decorate the output string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>class_names</strong> – holds the list of class label names provided by the dataset parser. If it is not
+provided when the constructor is called, it will be set by the trainer at runtime.</p></li>
+<li><p><strong>draw_normalized</strong> – defines whether rendered confusion matrices should be normalized or not.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.utils.ConfusionMatrix.render">
+<code class="sig-name descname">render</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#ConfusionMatrix.render"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.ConfusionMatrix.render" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the confusion matrix as a numpy-compatible RGBA image drawn by pyplot.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.utils.ConfusionMatrix.report">
+<code class="sig-name descname">report</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#ConfusionMatrix.report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.ConfusionMatrix.report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the confusion matrix as a multi-line print-friendly string.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.utils.ConfusionMatrix.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#ConfusionMatrix.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.ConfusionMatrix.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggles a reset of the metric’s internal state, emptying queues.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.utils.ConfusionMatrix.set_class_names">
+<code class="sig-name descname">set_class_names</code><span class="sig-paren">(</span><em class="sig-param">class_names</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#ConfusionMatrix.set_class_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.ConfusionMatrix.set_class_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the class label names that must be predicted by the model.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.utils.ConfusionMatrix.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">input</em>, <em class="sig-param">pred</em>, <em class="sig-param">target</em>, <em class="sig-param">sample</em>, <em class="sig-param">loss</em>, <em class="sig-param">iter_idx</em>, <em class="sig-param">max_iters</em>, <em class="sig-param">epoch_idx</em>, <em class="sig-param">max_epochs</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#ConfusionMatrix.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.ConfusionMatrix.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives the latest predictions and target values from the training session.</p>
+<p>The exact signature of this function should match the one of the callbacks defined in
+<a class="reference internal" href="#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a> and specified by <code class="docutils literal notranslate"><span class="pre">thelper.typedefs.IterCallbackParams</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.train.utils.PredictionCallback">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.train.utils.</code><code class="sig-name descname">PredictionCallback</code><span class="sig-paren">(</span><em class="sig-param">callback_func</em>, <em class="sig-param">callback_kwargs=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#PredictionCallback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.PredictionCallback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#thelper.train.utils.PredictionConsumer" title="thelper.train.utils.PredictionConsumer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.utils.PredictionConsumer</span></code></a></p>
+<p>Callback function wrapper compatible with the consumer interface.</p>
+<p>This interface is used to hide user-defined callbacks into the list of prediction consumers given
+to trainer implementations. The callbacks must always be compatible with the list of arguments
+defined by <cite>thelper.typedefs.IterCallbackParams</cite>, but may also receive extra arguments defined in
+advance and passed to the constructor of this class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>callback_func</strong> – user-defined function to call on every update from the trainer.</p></li>
+<li><p><strong>callback_kwargs</strong> – user-defined extra arguments to provide to the callback function.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="thelper.train.utils.PredictionCallback.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">callback_func</em>, <em class="sig-param">callback_kwargs=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#PredictionCallback.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.PredictionCallback.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.utils.PredictionCallback.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#PredictionCallback.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.PredictionCallback.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forwards the latest prediction data from the training session to the user callback.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="thelper.train.utils.PredictionConsumer">
+<em class="property">class </em><code class="sig-prename descclassname">thelper.train.utils.</code><code class="sig-name descname">PredictionConsumer</code><a class="reference internal" href="_modules/thelper/train/utils.html#PredictionConsumer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.PredictionConsumer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Abstract model prediction consumer class.</p>
+<p>This interface defines basic functions required so that <a class="reference internal" href="#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a> can
+figure out how to instantiate and update a model prediction consumer. The most notable class derived
+from this interface is <a class="reference internal" href="thelper.optim.html#thelper.optim.metrics.Metric" title="thelper.optim.metrics.Metric"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.optim.metrics.Metric</span></code></a> which is used to monitor the
+improvement of a model during a training session. Other prediction consumers defined in
+<a class="reference internal" href="#module-thelper.train.utils" title="thelper.train.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">thelper.train.utils</span></code></a> will instead log predictions to local files, create graphs, etc.</p>
+<dl class="method">
+<dt id="thelper.train.utils.PredictionConsumer.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#PredictionConsumer.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.PredictionConsumer.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the internal state of the consumer.</p>
+<p>May be called for example by the trainer between two evaluation epochs. The default implementation
+does nothing, and if a reset behavior is needed, it should be implemented by the derived class.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="thelper.train.utils.PredictionConsumer.update">
+<em class="property">abstract </em><code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param">task</em>, <em class="sig-param">input</em>, <em class="sig-param">pred</em>, <em class="sig-param">target</em>, <em class="sig-param">sample</em>, <em class="sig-param">loss</em>, <em class="sig-param">iter_idx</em>, <em class="sig-param">max_iters</em>, <em class="sig-param">epoch_idx</em>, <em class="sig-param">max_epochs</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#PredictionConsumer.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.PredictionConsumer.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives the latest prediction and groundtruth tensors from the training session.</p>
+<p>The data given here will be “consumed” internally, but it should NOT be modified. For example,
+a classification accuracy metric would accumulate the correct number of predictions in comparison
+to groundtruth labels, while a plotting logger would add new corresponding dots to a curve.</p>
+<p>Remember that input, prediction, and target tensors received here will all have a batch dimension!</p>
+<p>The exact signature of this function should match the one of the callbacks defined in
+<a class="reference internal" href="#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a> and specified by <code class="docutils literal notranslate"><span class="pre">thelper.typedefs.IterCallbackParams</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.train.utils.create_consumers">
+<code class="sig-prename descclassname">thelper.train.utils.</code><code class="sig-name descname">create_consumers</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#create_consumers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.create_consumers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiates and returns the prediction consumers defined in the configuration dictionary.</p>
+<p>All arguments are expected to be handed in through the configuration via a dictionary named ‘params’.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="thelper.train.utils.create_trainer">
+<code class="sig-prename descclassname">thelper.train.utils.</code><code class="sig-name descname">create_trainer</code><span class="sig-paren">(</span><em class="sig-param">session_name</em>, <em class="sig-param">save_dir</em>, <em class="sig-param">config</em>, <em class="sig-param">model</em>, <em class="sig-param">task</em>, <em class="sig-param">loaders</em>, <em class="sig-param">ckptdata=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thelper/train/utils.html#create_trainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#thelper.train.utils.create_trainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiates the trainer object based on the type contained in the config dictionary.</p>
+<p>The trainer type is expected to be in the configuration dictionary’s <cite>trainer</cite> field, under the <cite>type</cite> key. For more
+information on the configuration, refer to <a class="reference internal" href="#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a>. The instantiated type must be
+compatible with the constructor signature of <a class="reference internal" href="#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a>. The object’s constructor will
+be given the full config dictionary and the checkpoint data for resuming the session (if available).</p>
+<p>If the trainer type is missing, it will be automatically deduced based on the task object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>session_name</strong> – name of the training session used for printing and to create internal tensorboardX directories.</p></li>
+<li><p><strong>save_dir</strong> – path to the session directory where logs and checkpoints will be saved.</p></li>
+<li><p><strong>config</strong> – full configuration dictionary that will be parsed for trainer parameters and saved in checkpoints.</p></li>
+<li><p><strong>model</strong> – model to train/evaluate; should be compatible with <a class="reference internal" href="thelper.nn.html#thelper.nn.utils.Module" title="thelper.nn.utils.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.nn.utils.Module</span></code></a>.</p></li>
+<li><p><strong>task</strong> – global task interface defining the type of model and training goal for the session.</p></li>
+<li><p><strong>loaders</strong> – a tuple containing the training/validation/test data loaders (a loader can be <code class="docutils literal notranslate"><span class="pre">None</span></code> if empty).</p></li>
+<li><p><strong>ckptdata</strong> – raw checkpoint to parse data from when resuming a session (if <code class="docutils literal notranslate"><span class="pre">None</span></code>, will start from scratch).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The fully-constructed trainer object, ready to begin model training/evaluation.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#thelper.train.base.Trainer" title="thelper.train.base.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">thelper.train.base.Trainer</span></code></a></div>
+</div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use-cases.html">Use Cases</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="thelper.html">thelper package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="thelper.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.cli">thelper.cli module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.typedefs">thelper.typedefs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thelper.html#module-thelper.utils">thelper.utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/thelper.train.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="thelper.transforms.html" title="thelper.transforms package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="thelper.tasks.html" title="thelper.tasks package"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

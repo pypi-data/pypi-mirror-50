@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>thelper.data.utils &#8212; thelper 0.3.8 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../../index.html">thelper-0.3.8</a> &#187;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    
+        <div class="badge">
+            <a href="https://github.com/plstcharles/thelper/">Fork me on GitHub</a>
+            <img src="../../../_static/right-red@2x.png">
+        </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for thelper.data.utils</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Dataset utility functions and tools.</span>
+
+<span class="sd">This module contains utility functions and tools used to instantiate data loaders and parsers.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">import</span> <span class="nn">h5py</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">tqdm</span>
+
+<span class="kn">import</span> <span class="nn">thelper.tasks</span>
+<span class="kn">import</span> <span class="nn">thelper.transforms</span>
+<span class="kn">import</span> <span class="nn">thelper.utils</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="create_loaders"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.utils.create_loaders">[docs]</a><span class="k">def</span> <span class="nf">create_loaders</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Prepares the task and data loaders for a model trainer based on a provided data configuration.</span>
+
+<span class="sd">    This function will parse a configuration dictionary and extract all the information required to</span>
+<span class="sd">    instantiate the requested dataset parsers. Then, combining the task metadata of all these parsers, it</span>
+<span class="sd">    will evenly split the available samples into three sets (training, validation, test) to be handled by</span>
+<span class="sd">    different data loaders. These will finally be returned along with the (global) task object.</span>
+
+<span class="sd">    The configuration dictionary is expected to contain two fields: ``loaders``, which specifies all</span>
+<span class="sd">    parameters required for establishing the dataset split, shuffling seeds, and batch size (these are</span>
+<span class="sd">    listed and detailed below); and ``datasets``, which lists the dataset parser interfaces to instantiate</span>
+<span class="sd">    as well as their parameters. For more information on the ``datasets`` field, refer to</span>
+<span class="sd">    :func:`thelper.data.utils.create_parsers`.</span>
+
+<span class="sd">    The parameters expected in the &#39;loaders&#39; configuration field are the following:</span>
+
+<span class="sd">    - ``&lt;train_/valid_/test_&gt;batch_size`` (mandatory): specifies the (mini)batch size to use in data</span>
+<span class="sd">      loaders. If you get an &#39;out of memory&#39; error at runtime, try reducing it.</span>
+<span class="sd">    - ``&lt;train_/valid_/test_&gt;collate_fn`` (optional): specifies the collate function to use in data</span>
+<span class="sd">      loaders. The default one is typically fine, but some datasets might require a custom function.</span>
+<span class="sd">    - ``shuffle`` (optional, default=True): specifies whether the data loaders should shuffle</span>
+<span class="sd">      their samples or not.</span>
+<span class="sd">    - ``test_seed`` (optional): specifies the RNG seed to use when splitting test data. If no seed</span>
+<span class="sd">      is specified, the RNG will be initialized with a device-specific or time-related seed.</span>
+<span class="sd">    - ``valid_seed`` (optional): specifies the RNG seed to use when splitting validation data. If no</span>
+<span class="sd">      seed is specified, the RNG will be initialized with a device-specific or time-related seed.</span>
+<span class="sd">    - ``torch_seed`` (optional): specifies the RNG seed to use for torch-related stochastic operations</span>
+<span class="sd">      (e.g. for data augmentation). If no seed is specified, the RNG will be initialized with a</span>
+<span class="sd">      device-specific or time-related seed.</span>
+<span class="sd">    - ``numpy_seed`` (optional): specifies the RNG seed to use for numpy-related stochastic operations</span>
+<span class="sd">      (e.g. for data augmentation). If no seed is specified, the RNG will be initialized with a</span>
+<span class="sd">      device-specific or time-related seed.</span>
+<span class="sd">    - ``random_seed`` (optional): specifies the RNG seed to use for stochastic operations with python&#39;s</span>
+<span class="sd">      &#39;random&#39; package. If no seed is specified, the RNG will be initialized with a device-specific or</span>
+<span class="sd">      time-related seed.</span>
+<span class="sd">    - ``workers`` (optional, default=1): specifies the number of threads to use to preload batches in</span>
+<span class="sd">      parallel; can be 0 (loading will be on main thread), or an integer &gt;= 1.</span>
+<span class="sd">    - ``pin_memory`` (optional, default=False): specifies whether the data loaders will copy tensors</span>
+<span class="sd">      into CUDA-pinned memory before returning them.</span>
+<span class="sd">    - ``drop_last`` (optional, default=False): specifies whether to drop the last incomplete batch</span>
+<span class="sd">      or not if the dataset size is not a multiple of the batch size.</span>
+<span class="sd">    - ``sampler`` (optional): specifies a type of sampler and its constructor parameters to be used</span>
+<span class="sd">      in the data loaders. This can be used for example to help rebalance a dataset based on its</span>
+<span class="sd">      class distribution. See :mod:`thelper.data.samplers` for more information.</span>
+<span class="sd">    - ``augments`` (optional): provides a list of transformation operations used to augment all samples</span>
+<span class="sd">      of a dataset. See :func:`thelper.transforms.utils.load_augments` for more info.</span>
+<span class="sd">    - ``train_augments`` (optional): provides a list of transformation operations used to augment the</span>
+<span class="sd">      training samples of a dataset. See :func:`thelper.transforms.utils.load_augments` for more info.</span>
+<span class="sd">    - ``valid_augments`` (optional): provides a list of transformation operations used to augment the</span>
+<span class="sd">      validation samples of a dataset. See :func:`thelper.transforms.utils.load_augments` for more info.</span>
+<span class="sd">    - ``test_augments`` (optional): provides a list of transformation operations used to augment the</span>
+<span class="sd">      test samples of a dataset. See :func:`thelper.transforms.utils.load_augments` for more info.</span>
+<span class="sd">    - ``eval_augments`` (optional): provides a list of transformation operations used to augment the</span>
+<span class="sd">      validation and test samples of a dataset. See :func:`thelper.transforms.utils.load_augments` for more info.</span>
+<span class="sd">    - ``base_transforms`` (optional): provides a list of transformation operations to apply to all</span>
+<span class="sd">      loaded samples. This list will be passed to the constructor of all instantiated dataset parsers.</span>
+<span class="sd">      See :func:`thelper.transforms.utils.load_transforms` for more info.</span>
+<span class="sd">    - ``train_split`` (optional): provides the proportion of samples of each dataset to hand off to the</span>
+<span class="sd">      training data loader. These proportions are given in a dictionary format (``name: ratio``).</span>
+<span class="sd">    - ``valid_split`` (optional): provides the proportion of samples of each dataset to hand off to the</span>
+<span class="sd">      validation data loader. These proportions are given in a dictionary format (``name: ratio``).</span>
+<span class="sd">    - ``test_split`` (optional): provides the proportion of samples of each dataset to hand off to the</span>
+<span class="sd">      test data loader. These proportions are given in a dictionary format (``name: ratio``).</span>
+<span class="sd">    - ``skip_verif`` (optional, default=True): specifies whether the dataset split should be verified</span>
+<span class="sd">      if resuming a session by parsing the log files generated earlier.</span>
+<span class="sd">    - ``skip_split_norm`` (optional, default=False): specifies whether the question about normalizing</span>
+<span class="sd">      the split ratios should be skipped or not.</span>
+<span class="sd">    - ``skip_class_balancing`` (optional, default=False): specifies whether the balancing of class</span>
+<span class="sd">      labels should be skipped in case the task is classification-related.</span>
+
+<span class="sd">    Example configuration file::</span>
+
+<span class="sd">        # ...</span>
+<span class="sd">        &quot;loaders&quot;: {</span>
+<span class="sd">            &quot;batch_size&quot;: 128,  # batch size to use in data loaders</span>
+<span class="sd">            &quot;shuffle&quot;: true,  # specifies that the data should be shuffled</span>
+<span class="sd">            &quot;workers&quot;: 4,  # number of threads to pre-fetch data batches with</span>
+<span class="sd">            &quot;sampler&quot;: {  # we can use a data sampler to rebalance classes (optional)</span>
+<span class="sd">                # see e.g. &#39;thelper.data.samplers.WeightedSubsetRandomSampler&#39;</span>
+<span class="sd">                # ...</span>
+<span class="sd">            },</span>
+<span class="sd">            &quot;train_augments&quot;: { # training data augmentation operations</span>
+<span class="sd">                # see &#39;thelper.transforms.utils.load_augments&#39;</span>
+<span class="sd">                # ...</span>
+<span class="sd">            },</span>
+<span class="sd">            &quot;eval_augments&quot;: { # evaluation (valid/test) data augmentation operations</span>
+<span class="sd">                # see &#39;thelper.transforms.utils.load_augments&#39;</span>
+<span class="sd">                # ...</span>
+<span class="sd">            },</span>
+<span class="sd">            &quot;base_transforms&quot;: { # global sample transformation operations</span>
+<span class="sd">                # see &#39;thelper.transforms.utils.load_transforms&#39;</span>
+<span class="sd">                # ...</span>
+<span class="sd">            },</span>
+<span class="sd">            # finally, we define a 80%-10%-10% split for our data</span>
+<span class="sd">            # (we could instead use one dataset for training and one for testing)</span>
+<span class="sd">            &quot;train_split&quot;: {</span>
+<span class="sd">                &quot;dataset_A&quot;: 0.8</span>
+<span class="sd">                &quot;dataset_B&quot;: 0.8</span>
+<span class="sd">            },</span>
+<span class="sd">            &quot;valid_split&quot;: {</span>
+<span class="sd">                &quot;dataset_A&quot;: 0.1</span>
+<span class="sd">                &quot;dataset_B&quot;: 0.1</span>
+<span class="sd">            },</span>
+<span class="sd">            &quot;test_split&quot;: {</span>
+<span class="sd">                &quot;dataset_A&quot;: 0.1</span>
+<span class="sd">                &quot;dataset_B&quot;: 0.1</span>
+<span class="sd">            }</span>
+<span class="sd">            # (note that the dataset names above are defined in the field below)</span>
+<span class="sd">        },</span>
+<span class="sd">        &quot;datasets&quot;: {</span>
+<span class="sd">            &quot;dataset_A&quot;: {</span>
+<span class="sd">                # type of dataset interface to instantiate</span>
+<span class="sd">                &quot;type&quot;: &quot;...&quot;,</span>
+<span class="sd">                &quot;params&quot;: {</span>
+<span class="sd">                    # ...</span>
+<span class="sd">                }</span>
+<span class="sd">            },</span>
+<span class="sd">            &quot;dataset_B&quot;: {</span>
+<span class="sd">                # type of dataset interface to instantiate</span>
+<span class="sd">                &quot;type&quot;: &quot;...&quot;,</span>
+<span class="sd">                &quot;params&quot;: {</span>
+<span class="sd">                    # ...</span>
+<span class="sd">                },</span>
+<span class="sd">                # if it does not derive from &#39;thelper.data.parsers.Dataset&#39;, a task is needed:</span>
+<span class="sd">                &quot;task&quot;: {</span>
+<span class="sd">                    # this type must derive from &#39;thelper.tasks.Task&#39;</span>
+<span class="sd">                    &quot;type&quot;: &quot;...&quot;,</span>
+<span class="sd">                    &quot;params&quot;: {</span>
+<span class="sd">                        # ...</span>
+<span class="sd">                    }</span>
+<span class="sd">                }</span>
+<span class="sd">            },</span>
+<span class="sd">            # ...</span>
+<span class="sd">        },</span>
+<span class="sd">        # ...</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        config: a dictionary that provides all required data configuration information under two fields,</span>
+<span class="sd">            namely &#39;datasets&#39; and &#39;loaders&#39;.</span>
+<span class="sd">        save_dir: the path to the root directory where the session directory should be saved. Note that</span>
+<span class="sd">            this is not the path to the session directory itself, but its parent, which may also contain</span>
+<span class="sd">            other session directories.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A 4-element tuple that contains: 1) the global task object to specialize models and trainers with;</span>
+<span class="sd">        2) the training data loader; 3) the validation data loader; and 4) the test data loader.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :func:`thelper.data.utils.create_parsers`</span>
+<span class="sd">        | :func:`thelper.transforms.utils.load_augments`</span>
+<span class="sd">        | :func:`thelper.transforms.utils.load_transforms`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logstamp</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_log_stamp</span><span class="p">()</span>
+    <span class="n">repover</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">__version__</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_git_stamp</span><span class="p">()</span>
+    <span class="n">session_name</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;name&quot;</span> <span class="ow">in</span> <span class="n">config</span> <span class="k">else</span> <span class="s2">&quot;session&quot;</span>
+    <span class="n">data_logger_dir</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">save_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">data_logger_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="s2">&quot;logs&quot;</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">data_logger_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">data_logger_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_logger_dir</span><span class="p">,</span> <span class="s2">&quot;data.log&quot;</span><span class="p">)</span>
+        <span class="n">data_logger_format</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;[</span><span class="si">%(asctime)s</span><span class="s2"> - </span><span class="si">%(process)s</span><span class="s2">] </span><span class="si">%(levelname)s</span><span class="s2"> : </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">data_logger_fh</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="n">data_logger_path</span><span class="p">)</span>
+        <span class="n">data_logger_fh</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">data_logger_format</span><span class="p">)</span>
+        <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">data_logger_fh</span><span class="p">)</span>
+        <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;created data log for session &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">session_name</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;loading data usage config&quot;</span><span class="p">)</span>
+    <span class="c1"># todo: &#39;data_config&#39; field is deprecated, might be removed later</span>
+    <span class="k">if</span> <span class="s2">&quot;data_config&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;using &#39;data_config&#39; field in configuration dictionary is deprecated; switch it to &#39;loaders&#39;&quot;</span><span class="p">)</span>
+    <span class="n">loaders_config</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key</span><span class="p">([</span><span class="s2">&quot;data_config&quot;</span><span class="p">,</span> <span class="s2">&quot;loaders&quot;</span><span class="p">],</span> <span class="n">config</span><span class="p">)</span>
+    <span class="c1"># noinspection PyProtectedMember</span>
+    <span class="kn">from</span> <span class="nn">thelper.data.loaders</span> <span class="k">import</span> <span class="n">LoaderFactory</span> <span class="k">as</span> <span class="n">LoaderFactory</span>
+    <span class="n">loader_factory</span> <span class="o">=</span> <span class="n">LoaderFactory</span><span class="p">(</span><span class="n">loaders_config</span><span class="p">)</span>
+    <span class="n">datasets</span><span class="p">,</span> <span class="n">task</span> <span class="o">=</span> <span class="n">create_parsers</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">loader_factory</span><span class="o">.</span><span class="n">get_base_transforms</span><span class="p">())</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">datasets</span> <span class="ow">or</span> <span class="n">task</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid dataset configuration (got empty list)&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;parsed dataset: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">dataset</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;task info: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">task</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;splitting datasets and creating loaders...&quot;</span><span class="p">)</span>
+    <span class="n">train_idxs</span><span class="p">,</span> <span class="n">valid_idxs</span><span class="p">,</span> <span class="n">test_idxs</span> <span class="o">=</span> <span class="n">loader_factory</span><span class="o">.</span><span class="n">get_split</span><span class="p">(</span><span class="n">datasets</span><span class="p">,</span> <span class="n">task</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">save_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_logger_dir</span><span class="p">,</span> <span class="s2">&quot;task.log&quot;</span><span class="p">),</span> <span class="s2">&quot;a+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+            <span class="n">fd</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;session: </span><span class="si">%s</span><span class="s2">-</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">session_name</span><span class="p">,</span> <span class="n">logstamp</span><span class="p">))</span>
+            <span class="n">fd</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;version: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">repover</span><span class="p">)</span>
+            <span class="n">fd</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">task</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">dataset_log_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_logger_dir</span><span class="p">,</span> <span class="n">dataset_name</span> <span class="o">+</span> <span class="s2">&quot;.log&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">loader_factory</span><span class="o">.</span><span class="n">skip_verif</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">dataset_log_file</span><span class="p">):</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;verifying sample list for dataset &#39;</span><span class="si">%s</span><span class="s2">&#39;...&quot;</span> <span class="o">%</span> <span class="n">dataset_name</span><span class="p">)</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dataset_log_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+                    <span class="n">log_content</span> <span class="o">=</span> <span class="n">fd</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">log_content</span> <span class="ow">or</span> <span class="n">log_content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;{&quot;</span><span class="p">:</span>
+                        <span class="c1"># could not find new style (json) dataset log, cannot easily parse and compare this log</span>
+                        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;cannot verify that old split is similar to new split, log is out-of-date&quot;</span><span class="p">)</span>
+                        <span class="k">continue</span>
+                    <span class="n">log_content</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">log_content</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="s2">&quot;samples&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">log_content</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">log_content</span><span class="p">[</span><span class="s2">&quot;samples&quot;</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+                        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;unexpected dataset log content (bad &#39;samples&#39; field)&quot;</span><span class="p">)</span>
+                    <span class="n">samples_old</span> <span class="o">=</span> <span class="n">log_content</span><span class="p">[</span><span class="s2">&quot;samples&quot;</span><span class="p">]</span>
+                    <span class="n">samples_new</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">samples</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s2">&quot;samples&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">samples</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="p">[]</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">samples_old</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">samples_new</span><span class="p">):</span>
+                        <span class="n">query_msg</span> <span class="o">=</span> <span class="s2">&quot;Old sample list for dataset &#39;</span><span class="si">%s</span><span class="s2">&#39; mismatch with current sample list; proceed anyway?&quot;</span>
+                        <span class="n">answer</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">query_yes_no</span><span class="p">(</span><span class="n">query_msg</span><span class="p">,</span> <span class="n">bypass</span><span class="o">=</span><span class="s2">&quot;n&quot;</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">answer</span><span class="p">:</span>
+                            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;sample list mismatch with previous run; user aborted&quot;</span><span class="p">)</span>
+                            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                        <span class="k">break</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">breaking</span> <span class="o">=</span> <span class="kc">False</span>
+                        <span class="k">for</span> <span class="n">set_name</span><span class="p">,</span> <span class="n">idxs</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s2">&quot;train_idxs&quot;</span><span class="p">,</span> <span class="s2">&quot;valid_idxs&quot;</span><span class="p">,</span> <span class="s2">&quot;test_idxs&quot;</span><span class="p">],</span>
+                                                  <span class="p">[</span><span class="n">train_idxs</span><span class="p">[</span><span class="n">dataset_name</span><span class="p">],</span> <span class="n">valid_idxs</span><span class="p">[</span><span class="n">dataset_name</span><span class="p">],</span> <span class="n">test_idxs</span><span class="p">[</span><span class="n">dataset_name</span><span class="p">]]):</span>
+                            <span class="c1"># index values were paired in tuples earlier, 0=idx, 1=label</span>
+                            <span class="k">if</span> <span class="n">log_content</span><span class="p">[</span><span class="n">set_name</span><span class="p">]</span> <span class="o">!=</span> <span class="p">[</span><span class="n">idx</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">idxs</span><span class="p">]:</span>
+                                <span class="n">query_msg</span> <span class="o">=</span> <span class="s2">&quot;Old indices list for dataset &#39;</span><span class="si">%s</span><span class="s2">&#39; mismatch with current indices&quot;</span> \
+                                            <span class="s2">&quot;list (&#39;</span><span class="si">%s</span><span class="s2">&#39;); proceed anyway?&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">dataset_name</span><span class="p">,</span> <span class="n">set_name</span><span class="p">)</span>
+                                <span class="n">answer</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">query_yes_no</span><span class="p">(</span><span class="n">query_msg</span><span class="p">,</span> <span class="n">bypass</span><span class="o">=</span><span class="s2">&quot;n&quot;</span><span class="p">)</span>
+                                <span class="k">if</span> <span class="ow">not</span> <span class="n">answer</span><span class="p">:</span>
+                                    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;indices list mismatch with previous run; user aborted&quot;</span><span class="p">)</span>
+                                    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                                <span class="n">breaking</span> <span class="o">=</span> <span class="kc">True</span>
+                                <span class="k">break</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">breaking</span><span class="p">:</span>
+                            <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="n">sample_new</span><span class="p">,</span> <span class="n">sample_old</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">samples_new</span><span class="p">,</span> <span class="n">samples_old</span><span class="p">)):</span>
+                                <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">sample_new</span><span class="p">)</span> <span class="o">!=</span> <span class="n">sample_old</span><span class="p">:</span>
+                                    <span class="n">query_msg</span> <span class="o">=</span> <span class="s2">&quot;Old sample #</span><span class="si">%d</span><span class="s2"> for dataset &#39;</span><span class="si">%s</span><span class="s2">&#39; mismatch with current #</span><span class="si">%d</span><span class="s2">; proceed anyway?&quot;</span> \
+                                                <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">old: </span><span class="si">%s</span><span class="se">\n\t</span><span class="s2">new: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">sample_old</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">sample_new</span><span class="p">))</span>
+                                    <span class="n">answer</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">query_yes_no</span><span class="p">(</span><span class="n">query_msg</span><span class="p">,</span> <span class="n">bypass</span><span class="o">=</span><span class="s2">&quot;n&quot;</span><span class="p">)</span>
+                                    <span class="k">if</span> <span class="ow">not</span> <span class="n">answer</span><span class="p">:</span>
+                                        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;sample list mismatch with previous run; user aborted&quot;</span><span class="p">)</span>
+                                        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                                    <span class="k">break</span>
+        <span class="k">for</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">dataset_log_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_logger_dir</span><span class="p">,</span> <span class="n">dataset_name</span> <span class="o">+</span> <span class="s2">&quot;.log&quot;</span><span class="p">)</span>
+            <span class="n">samples</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">samples</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s2">&quot;samples&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">samples</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="p">[]</span>
+            <span class="n">log_content</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;session_name&quot;</span><span class="p">:</span> <span class="n">session_name</span><span class="p">,</span>
+                    <span class="s2">&quot;logstamp&quot;</span><span class="p">:</span> <span class="n">logstamp</span><span class="p">,</span>
+                    <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="n">repover</span><span class="p">,</span>
+                    <span class="s2">&quot;dataset&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">dataset</span><span class="p">),</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;samples&quot;</span><span class="p">:</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span> <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">],</span>
+                <span class="c1"># index values were paired in tuples earlier, 0=idx, 1=label</span>
+                <span class="s2">&quot;train_idxs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">idx</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">train_idxs</span><span class="p">[</span><span class="n">dataset_name</span><span class="p">]],</span>
+                <span class="s2">&quot;valid_idxs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">idx</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">valid_idxs</span><span class="p">[</span><span class="n">dataset_name</span><span class="p">]],</span>
+                <span class="s2">&quot;test_idxs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">idx</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">test_idxs</span><span class="p">[</span><span class="n">dataset_name</span><span class="p">]]</span>
+            <span class="p">}</span>
+            <span class="c1"># now, always overwrite, as it can get too big otherwise</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dataset_log_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+                <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">log_content</span><span class="p">,</span> <span class="n">fd</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">train_loader</span><span class="p">,</span> <span class="n">valid_loader</span><span class="p">,</span> <span class="n">test_loader</span> <span class="o">=</span> <span class="n">loader_factory</span><span class="o">.</span><span class="n">create_loaders</span><span class="p">(</span><span class="n">datasets</span><span class="p">,</span> <span class="n">train_idxs</span><span class="p">,</span> <span class="n">valid_idxs</span><span class="p">,</span> <span class="n">test_idxs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">task</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">valid_loader</span><span class="p">,</span> <span class="n">test_loader</span></div>
+
+
+<div class="viewcode-block" id="create_parsers"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.utils.create_parsers">[docs]</a><span class="k">def</span> <span class="nf">create_parsers</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">base_transforms</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Instantiates dataset parsers based on a provided dictionary.</span>
+
+<span class="sd">    This function will instantiate dataset parsers as defined in a name-type-param dictionary. If multiple</span>
+<span class="sd">    datasets are instantiated, this function will also verify their task compatibility and return the global</span>
+<span class="sd">    task. The dataset interfaces themselves should be derived from :class:`thelper.data.parsers.Dataset`, be</span>
+<span class="sd">    compatible with :class:`thelper.data.parsers.ExternalDataset`, or should provide a &#39;task&#39; field specifying</span>
+<span class="sd">    all the information related to sample dictionary keys and model i/o.</span>
+
+<span class="sd">    The provided configuration will be parsed for a &#39;datasets&#39; dictionary entry. The keys in this dictionary</span>
+<span class="sd">    are treated as unique dataset names and are used for lookups. The value associated to each key (or dataset</span>
+<span class="sd">    name) should be a type-params dictionary that can be parsed to instantiate the dataset interface.</span>
+
+<span class="sd">    An example configuration dictionary is given in :func:`thelper.data.utils.create_loaders`.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        config: a dictionary that provides unique dataset names and parameters needed for instantiation under</span>
+<span class="sd">            the &#39;datasets&#39; field.</span>
+<span class="sd">        base_transforms: the transform operation that should be applied to all loaded samples, and that</span>
+<span class="sd">            will be provided to the constructor of all instantiated dataset parsers.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A 2-element tuple that contains: 1) the list of dataset interfaces/parsers that were instantiated; and</span>
+<span class="sd">        2) a task object compatible with all of those (see :class:`thelper.tasks.utils.Task` for more information).</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :func:`thelper.data.utils.create_loaders`</span>
+<span class="sd">        | :class:`thelper.data.parsers.Dataset`</span>
+<span class="sd">        | :class:`thelper.data.parsers.ExternalDataset`</span>
+<span class="sd">        | :class:`thelper.tasks.utils.Task`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;unexpected session config type&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">&quot;datasets&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">config</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;datasets&quot;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;config missing &#39;datasets&#39; field (must contain dict or str value)&quot;</span><span class="p">)</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;datasets&quot;</span><span class="p">]</span>  <span class="c1"># no need to keep the full config here</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">config</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">config</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;.json&quot;</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+                <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fd</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;&#39;datasets&#39; string should point to valid json file&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;loading datasets templates&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;invalid datasets config type (must be dictionary)&quot;</span><span class="p">)</span>
+    <span class="n">datasets</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">tasks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">dataset_config</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataset_config</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="p">):</span>
+            <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_config</span>
+            <span class="n">task</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">task</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;loading dataset &#39;</span><span class="si">%s</span><span class="s2">&#39; configuration...&quot;</span> <span class="o">%</span> <span class="n">dataset_name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;type&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dataset_config</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;missing field &#39;type&#39; for instantiation of dataset &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">dataset_name</span><span class="p">)</span>
+            <span class="n">dataset_type</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">import_class</span><span class="p">(</span><span class="n">dataset_config</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">])</span>
+            <span class="n">dataset_params</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">([</span><span class="s2">&quot;params&quot;</span><span class="p">,</span> <span class="s2">&quot;parameters&quot;</span><span class="p">],</span> <span class="n">dataset_config</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="n">transforms</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="s2">&quot;transforms&quot;</span> <span class="ow">in</span> <span class="n">dataset_config</span> <span class="ow">and</span> <span class="n">dataset_config</span><span class="p">[</span><span class="s2">&quot;transforms&quot;</span><span class="p">]:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;loading custom transforms for dataset &#39;</span><span class="si">%s</span><span class="s2">&#39;...&quot;</span> <span class="o">%</span> <span class="n">dataset_name</span><span class="p">)</span>
+                <span class="n">transforms</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">load_transforms</span><span class="p">(</span><span class="n">dataset_config</span><span class="p">[</span><span class="s2">&quot;transforms&quot;</span><span class="p">])</span>
+                <span class="k">if</span> <span class="n">base_transforms</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">transforms</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span><span class="n">transforms</span><span class="p">,</span> <span class="n">base_transforms</span><span class="p">])</span>
+            <span class="k">elif</span> <span class="n">base_transforms</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">transforms</span> <span class="o">=</span> <span class="n">base_transforms</span>
+            <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">dataset_type</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="p">):</span>
+                <span class="c1"># assume that the dataset is derived from thelper.data.parsers.Dataset (it is fully sampling-ready)</span>
+                <span class="n">dataset_sig</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">dataset_type</span><span class="p">)</span>
+                <span class="k">if</span> <span class="s2">&quot;config&quot;</span> <span class="ow">in</span> <span class="n">dataset_sig</span><span class="o">.</span><span class="n">parameters</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+                    <span class="c1"># @@@@ for backward compatibility only, will be removed in v0.3</span>
+                    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_type</span><span class="p">(</span><span class="n">transforms</span><span class="o">=</span><span class="n">transforms</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">dataset_params</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_type</span><span class="p">(</span><span class="n">transforms</span><span class="o">=</span><span class="n">transforms</span><span class="p">,</span> <span class="o">**</span><span class="n">dataset_params</span><span class="p">)</span>
+                <span class="k">if</span> <span class="s2">&quot;task&quot;</span> <span class="ow">in</span> <span class="n">dataset_config</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;&#39;task&#39; field detected in dataset &#39;</span><span class="si">%s</span><span class="s2">&#39; config; dataset&#39;s default task will be ignored&quot;</span> <span class="o">%</span> <span class="n">dataset_name</span><span class="p">)</span>
+                    <span class="n">task</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">dataset_config</span><span class="p">[</span><span class="s2">&quot;task&quot;</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">task</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">task</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s2">&quot;task&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dataset_config</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">dataset_config</span><span class="p">[</span><span class="s2">&quot;task&quot;</span><span class="p">]:</span>
+                    <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;external dataset &#39;</span><span class="si">%s</span><span class="s2">&#39; must define task interface in its configuration dict&quot;</span> <span class="o">%</span> <span class="n">dataset_name</span><span class="p">)</span>
+                <span class="n">task</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">dataset_config</span><span class="p">[</span><span class="s2">&quot;task&quot;</span><span class="p">])</span>
+                <span class="c1"># assume that __getitem__ and __len__ are implemented, but we need to make it sampling-ready</span>
+                <span class="n">dataset</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">ExternalDataset</span><span class="p">(</span><span class="n">dataset_type</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">transforms</span><span class="o">=</span><span class="n">transforms</span><span class="p">,</span> <span class="o">**</span><span class="n">dataset_params</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">task</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;parsed task interface should not be None anymore (old code doing something strange?)&quot;</span><span class="p">)</span>
+        <span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+        <span class="n">datasets</span><span class="p">[</span><span class="n">dataset_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset</span>
+    <span class="k">return</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">thelper</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">create_global_task</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="create_hdf5"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.utils.create_hdf5">[docs]</a><span class="k">def</span> <span class="nf">create_hdf5</span><span class="p">(</span><span class="n">archive_path</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">valid_loader</span><span class="p">,</span> <span class="n">test_loader</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">config_backup</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Saves the samples loaded from train/valid/test data loaders into an HDF5 archive.</span>
+
+<span class="sd">    The loaded minibatches are decomposed into individual samples. The keys provided via the task interface are used</span>
+<span class="sd">    to fetch elements (input, groundtruth, ...) from the samples, and save them in the archive. The archive will</span>
+<span class="sd">    contain three groups (`train`, `valid`, and `test`), and each group will contain a dataset for each element</span>
+<span class="sd">    originally found in the samples.</span>
+
+<span class="sd">    Note that the compression operates at the sample level, not at the dataset level. This means that elements of</span>
+<span class="sd">    each sample will be compressed individually, not as an array. Therefore, if you are trying to compress very</span>
+<span class="sd">    correlated samples (e.g. frames in a video sequence), this approach will be pretty bad.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        archive_path: path pointing where the HDF5 archive should be created.</span>
+<span class="sd">        task: task object that defines the input, groundtruth, and meta keys tied to elements that should be</span>
+<span class="sd">            parsed from loaded samples and saved in the HDF5 archive.</span>
+<span class="sd">        train_loader: training data loader (can be `None`).</span>
+<span class="sd">        valid_loader: validation data loader (can be `None`).</span>
+<span class="sd">        test_loader: testing data loader (can be `None`).</span>
+<span class="sd">        compression: the compression configuration dictionary that will be parsed to determine how sample</span>
+<span class="sd">            elements should be compressed. If a mapping is missing, that element will not be compressed.</span>
+<span class="sd">        config_backup: optional session configuration file that should be saved in the HDF5 archive.</span>
+
+<span class="sd">    Example compression configuration::</span>
+
+<span class="sd">        # the config is given as a dictionary</span>
+<span class="sd">        {</span>
+<span class="sd">            # each field is a key that corresponds to an element in each sample</span>
+<span class="sd">            &quot;key1&quot;: {</span>
+<span class="sd">                # the &#39;type&#39; identifies the compression approach to use</span>
+<span class="sd">                # (see thelper.utils.encode_data for more information)</span>
+<span class="sd">                &quot;type&quot;: &quot;jpg&quot;,</span>
+<span class="sd">                # extra parameters might be needed to encode the data</span>
+<span class="sd">                # (see thelper.utils.encode_data for more information)</span>
+<span class="sd">                &quot;encode_params&quot;: {}</span>
+<span class="sd">                # these parameters are packed and kept for decoding</span>
+<span class="sd">                # (see thelper.utils.decode_data for more information)</span>
+<span class="sd">                &quot;decode_params&quot;: {&quot;flags&quot;: &quot;cv.IMREAD_COLOR&quot;}</span>
+<span class="sd">            },</span>
+<span class="sd">            &quot;key2&quot;: {</span>
+<span class="sd">                # this explicitly means that no encoding should be performed</span>
+<span class="sd">                &quot;type&quot;: &quot;none&quot;</span>
+<span class="sd">            },</span>
+<span class="sd">            ...</span>
+<span class="sd">            # if a key is missing, its elements will not be compressed</span>
+<span class="sd">        }</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :func:`thelper.cli.split_data`</span>
+<span class="sd">        | :class:`thelper.data.parsers.HDF5Dataset`</span>
+<span class="sd">        | :func:`thelper.utils.encode_data`</span>
+<span class="sd">        | :func:`thelper.utils.decode_data`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">compression</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">compression</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="n">config_backup</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">config_backup</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">archive_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+        <span class="n">fd</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_log_stamp</span><span class="p">()</span>
+        <span class="n">fd</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;git_sha1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_git_stamp</span><span class="p">()</span>
+        <span class="n">fd</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;version&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">__version__</span>
+        <span class="n">fd</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;task&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+        <span class="n">fd</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;config&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">config_backup</span><span class="p">)</span>
+        <span class="n">fd</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;compression&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">compression</span><span class="p">)</span>
+        <span class="n">dtype</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">special_dtype</span><span class="p">(</span><span class="n">vlen</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+        <span class="n">target_keys</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">keys</span>
+
+        <span class="k">def</span> <span class="nf">create_dataset</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">max_len</span><span class="p">,</span> <span class="n">array_template</span><span class="p">,</span> <span class="n">compr_args</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">array_template</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">dset</span> <span class="o">=</span> <span class="n">fd</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">max_len</span><span class="p">,),</span> <span class="n">maxshape</span><span class="o">=</span><span class="p">(</span><span class="n">max_len</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+                <span class="n">dset</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;orig_dtype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">array_template</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+                <span class="n">dset</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;orig_shape&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">array_template</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>  <span class="c1"># removes batch dim</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">is_scalar</span><span class="p">(</span><span class="n">array_template</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="k">if</span> <span class="s2">&quot;type&quot;</span> <span class="ow">in</span> <span class="n">compr_args</span> <span class="ow">and</span> <span class="n">compr_args</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;none&quot;</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;cannot compress scalar elements&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">array_template</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">):</span>
+                    <span class="n">dset</span> <span class="o">=</span> <span class="n">fd</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">max_len</span><span class="p">,),</span> <span class="n">maxshape</span><span class="o">=</span><span class="p">(</span><span class="n">max_len</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">array_template</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">dset</span> <span class="o">=</span> <span class="n">fd</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">max_len</span><span class="p">,),</span> <span class="n">maxshape</span><span class="o">=</span><span class="p">(</span><span class="n">max_len</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+                    <span class="n">dset</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;orig_dtype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">array_template</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+                    <span class="n">dset</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;orig_shape&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>
+            <span class="k">return</span> <span class="n">dset</span>
+
+        <span class="k">def</span> <span class="nf">fill_dataset</span><span class="p">(</span><span class="n">dset</span><span class="p">,</span> <span class="n">dset_idx</span><span class="p">,</span> <span class="n">array_idx</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">compr</span><span class="p">,</span> <span class="o">**</span><span class="n">compr_kwargs</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">array</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">dset</span><span class="p">[</span><span class="n">dset_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">encode_data</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">array_idx</span><span class="p">],</span> <span class="n">compr</span><span class="p">,</span> <span class="o">**</span><span class="n">compr_kwargs</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">array</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">):</span>
+                <span class="n">sample</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">array_idx</span><span class="p">]</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">array_idx</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">)</span> <span class="k">else</span> <span class="n">array</span><span class="p">[</span><span class="n">array_idx</span><span class="p">]</span>
+                <span class="n">dset</span><span class="p">[</span><span class="n">dset_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">dset</span><span class="p">[</span><span class="n">dset_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">array_idx</span><span class="p">]</span>
+
+        <span class="k">def</span> <span class="nf">get_compr_args</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{})</span>
+            <span class="n">compr_type</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+            <span class="n">encode_params</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_key_def</span><span class="p">(</span><span class="s2">&quot;encode_params&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{})</span>
+            <span class="k">return</span> <span class="n">compr_type</span><span class="p">,</span> <span class="n">encode_params</span>
+
+        <span class="k">for</span> <span class="n">loader</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="p">[(</span><span class="n">train_loader</span><span class="p">,</span> <span class="s2">&quot;train&quot;</span><span class="p">),</span> <span class="p">(</span><span class="n">valid_loader</span><span class="p">,</span> <span class="s2">&quot;valid&quot;</span><span class="p">),</span> <span class="p">(</span><span class="n">test_loader</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">)]:</span>
+            <span class="k">if</span> <span class="n">loader</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">max_dataset_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">loader</span><span class="p">)</span> <span class="o">*</span> <span class="n">loader</span><span class="o">.</span><span class="n">batch_size</span>
+            <span class="n">datasets</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">target_keys</span><span class="p">}</span>
+            <span class="n">datasets_len</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">target_keys</span><span class="p">}</span>
+            <span class="n">datasets_compr</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">get_compr_args</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">compression</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">target_keys</span><span class="p">}</span>
+            <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">loader</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="n">f</span><span class="s2">&quot;packing </span><span class="si">{group}</span><span class="s2"> loader&quot;</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">target_keys</span><span class="p">:</span>
+                    <span class="n">tensor</span> <span class="o">=</span> <span class="n">thelper</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+                    <span class="k">if</span> <span class="n">datasets</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">datasets</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">create_dataset</span><span class="p">(</span><span class="n">group</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">key</span><span class="p">,</span> <span class="n">max_dataset_len</span><span class="p">,</span> <span class="n">tensor</span><span class="p">,</span> <span class="n">datasets_compr</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+                    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+                        <span class="n">fill_dataset</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">datasets_len</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">idx</span><span class="p">,</span> <span class="n">tensor</span><span class="p">,</span> <span class="n">datasets_compr</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="o">**</span><span class="n">datasets_compr</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+                        <span class="n">datasets_len</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">datasets_len</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span> <span class="o">==</span> <span class="mi">1</span>
+            <span class="n">fd</span><span class="p">[</span><span class="n">group</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">datasets_len</span><span class="p">[</span><span class="n">task</span><span class="o">.</span><span class="n">input_key</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">target_keys</span><span class="p">:</span>
+                <span class="n">datasets</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">datasets_len</span><span class="p">[</span><span class="n">key</span><span class="p">],))</span></div>
+
+
+<div class="viewcode-block" id="get_class_weights"><a class="viewcode-back" href="../../../thelper.data.html#thelper.data.utils.get_class_weights">[docs]</a><span class="k">def</span> <span class="nf">get_class_weights</span><span class="p">(</span><span class="n">label_map</span><span class="p">,</span> <span class="n">stype</span><span class="p">,</span> <span class="n">invmax</span><span class="p">,</span> <span class="n">maxw</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">),</span> <span class="n">minw</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a map of adjusted class weights based on a given rebalancing strategy.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        label_map: map of index lists or sample counts tied to class labels.</span>
+<span class="sd">        stype: weighting strategy (&#39;uniform&#39;, &#39;linear&#39;, or &#39;rootX&#39;); see :class:`thelper.data.samplers.WeightedSubsetRandomSampler`</span>
+<span class="sd">            for more information on these.</span>
+<span class="sd">        invmax: specifies whether to max-invert the weight vector (thus creating cost factors) or not (default=True).</span>
+<span class="sd">        maxw: maximum allowed weight value (applied after invmax, if required).</span>
+<span class="sd">        minw: minimum allowed weight value (applied after invmax, if required).</span>
+<span class="sd">        norm: specifies whether the returned weights should be normalized (default=True, i.e. normalized).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Map of adjusted weights tied to class labels.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        | :class:`thelper.data.samplers.WeightedSubsetRandomSampler`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">label_map</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">any</span><span class="p">([</span><span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">int</span><span class="p">))</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">label_map</span><span class="o">.</span><span class="n">values</span><span class="p">()]):</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;unexpected label map type&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">stype</span> <span class="o">==</span> <span class="s2">&quot;uniform&quot;</span><span class="p">:</span>
+        <span class="n">label_weights</span> <span class="o">=</span> <span class="p">{</span><span class="n">label</span><span class="p">:</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">label_map</span><span class="p">)</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">label_map</span><span class="p">}</span>
+    <span class="k">elif</span> <span class="n">stype</span> <span class="o">==</span> <span class="s2">&quot;linear&quot;</span> <span class="ow">or</span> <span class="s2">&quot;root&quot;</span> <span class="ow">in</span> <span class="n">stype</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">stype</span> <span class="o">==</span> <span class="s2">&quot;root&quot;</span> <span class="ow">or</span> <span class="n">stype</span> <span class="o">==</span> <span class="s2">&quot;linear&quot;</span><span class="p">:</span>
+            <span class="n">rpow</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rpow</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">stype</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">label_sizes</span> <span class="o">=</span> <span class="p">{</span><span class="n">label</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="n">v</span> <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">label_map</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="n">label_weights</span> <span class="o">=</span> <span class="p">{</span><span class="n">label</span><span class="p">:</span> <span class="p">(</span><span class="n">lsize</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">label_sizes</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span> <span class="o">**</span> <span class="n">rpow</span> <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">lsize</span> <span class="ow">in</span> <span class="n">label_sizes</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;unknown label weighting strategy&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">invmax</span><span class="p">:</span>
+        <span class="n">label_weights</span> <span class="o">=</span> <span class="p">{</span><span class="n">label</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="n">label_weights</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="mf">1e-6</span><span class="p">)</span> <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">label_weights</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="n">label_weights</span> <span class="o">=</span> <span class="p">{</span><span class="n">label</span><span class="p">:</span> <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">minw</span><span class="p">),</span> <span class="n">maxw</span><span class="p">)</span> <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">label_weights</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="k">if</span> <span class="n">norm</span><span class="p">:</span>
+        <span class="n">tot_weight</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">label_weights</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span>
+        <span class="n">label_weights</span> <span class="o">=</span> <span class="p">{</span><span class="n">label</span><span class="p">:</span> <span class="n">weight</span> <span class="o">/</span> <span class="n">tot_weight</span> <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">label_weights</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="k">return</span> <span class="n">label_weights</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../use-cases.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../thelper.html">thelper package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Pierre-Luc St-Charles.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>
