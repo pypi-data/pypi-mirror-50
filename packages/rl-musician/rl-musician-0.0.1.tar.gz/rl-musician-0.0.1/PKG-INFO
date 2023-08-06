@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: rl-musician
+Version: 0.0.1
+Summary: Composition of music with reinforcement learning.
+Home-page: https://github.com/Nikolay-Lysenko/rl-musician
+Author: Nikolay Lysenko
+Author-email: nikolay-lysenco@yandex.ru
+License: MIT
+Description: # RL Musician
+        
+        Composition of music with reinforcement learning. Coming soon.
+        
+Keywords: ai_music algorithmic_composition reinforcement_learning
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Artistic Software
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
