@@ -1,0 +1,30 @@
+Metadata-Version: 1.2
+Name: CrawlerDetect
+Version: 0.0.1
+Summary: CrawlerDetect is a Python class for detecting bots/crawlers/spiders via the user agent.
+Home-page: https://github.com/moskrc/CrawlerDetect
+Author: Vitalii
+Author-email: moskrc@gmail.com
+License: BSD
+Download-URL: https://github.com/moskrc/CrawlerDetect/tarball/0.0.1
+Project-URL: Documentation, https://crawlerdetect.readthedocs.io
+Description: UNKNOWN
+Keywords: crawler,crawler detect,crawler detector,crawlerdetect,python crawler detect
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Environment :: Console
+Classifier: Environment :: Web Environment
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Internet :: WWW/HTTP :: Indexing/Search
+Classifier: Topic :: Internet
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Python: >=3.4, <4
