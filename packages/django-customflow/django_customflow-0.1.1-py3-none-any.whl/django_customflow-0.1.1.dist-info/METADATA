@@ -1,0 +1,17 @@
+Metadata-Version: 2.0
+Name: django-customflow
+Version: 0.1.1
+Summary: A custom workflow with Django
+Home-page: https://github.com/Brad19940809/django-customflow
+Author: Brad
+Author-email: xiaoleluo2@gmail.com
+Maintainer: Brad
+Maintainer-email: xiaoleluo2@gmail.com
+License: MIT
+Keywords: workflow,django,flow
+Platform: UNKNOWN
+Requires-Dist: django
+
+UNKNOWN
+
+

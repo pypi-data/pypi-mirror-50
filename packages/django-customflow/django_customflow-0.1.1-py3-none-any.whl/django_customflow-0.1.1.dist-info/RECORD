@@ -1,0 +1,16 @@
+django_customflow/__init__.py,sha256=HJEMPNUpx8ElBrl9cYB75gZ1bN5BS0ZnoLC4eABXlDk,76
+django_customflow/mixins.py,sha256=6woHE9EYdyIprV6ljpXpkYwEbxuy_TkHATMHXVNJx-g,3540
+django_customflow/models.py,sha256=jWIiMB5Ln1yslFm-rS6RUp_MrTsI9AelIJpXKfIWOXw,11067
+django_customflow/utils.py,sha256=mKjMwMNGNiyxCtiJxk7Y4XDCBYvlogtCiyL8RGdXfjQ,10286
+django_customflow/conditions/__init__.py,sha256=AF9K75G_LhL1hzIDRee1HJkipR3Q0sc2EhAnsdJ5DLI,78
+django_customflow/conditions/base.py,sha256=TOj6HzcDHUJJvalj8ffKnECpnMVqWiDxT3MpDWhBfrI,226
+django_customflow/migrations/0001_initial.py,sha256=yZmHubbbSz_UDGWgrFB__uiADmxiE0oYLsAxOq050q0,5612
+django_customflow/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_customflow/tasks/__init__.py,sha256=9FUnOflmkqvWMgKfvsB4NaOeSkEvP0Jci5NLoqpI4w0,76
+django_customflow/tasks/base.py,sha256=B9w0QjjXFvwcp87vvwsE3SiXbg6xYmeaSrFYuAlbg_8,221
+django_customflow-0.1.1.dist-info/DESCRIPTION.rst,sha256=OCTuuN6LcWulhHS3d5rfjdsQtW22n7HENFRh6jC6ego,10
+django_customflow-0.1.1.dist-info/METADATA,sha256=Ue1-ngHQmnB8x_fKrne8x05JL-s-JRI8H5NEfHTUUiU,360
+django_customflow-0.1.1.dist-info/RECORD,,
+django_customflow-0.1.1.dist-info/WHEEL,sha256=rNo05PbNqwnXiIHFsYm0m22u4Zm6YJtugFG2THx4w3g,92
+django_customflow-0.1.1.dist-info/metadata.json,sha256=2SReaBdecXgID3DIovxdMzmYGcWZzH0029gBE56dOWI,602
+django_customflow-0.1.1.dist-info/top_level.txt,sha256=Z_3TQv2rg8QZf19k-Lg3o-HBrfxMJ4U7Hb54lP-Ms34,18
