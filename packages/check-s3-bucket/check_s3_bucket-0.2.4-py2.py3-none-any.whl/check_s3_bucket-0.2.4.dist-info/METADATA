@@ -1,0 +1,79 @@
+Metadata-Version: 2.1
+Name: check-s3-bucket
+Version: 0.2.4
+Summary: Check that a file was added to an S3 bucket in the given time
+    window and is of a reasonable size.
+Home-page: https://www.shore.co.il/git/check_s3_bucket
+Author: Nimrod Adar
+Author-email: nimrod@shore.co.il
+License: MIT
+Keywords: nagios s3 aws monitoring
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: System Administrators
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: MIT License
+Requires-Dist: pytz
+Requires-Dist: botocore
+
+check_s3_bucket
+###############
+
+Check that a filename matching the regex was added to the bucket in the given time window.
+
+Usage
+-----
+
+.. code:: shell
+
+    $ check_s3_bucket --help
+    usage: check_s3_bucket [-h]
+                           bucket [prefix] [age_warning_threshold]
+                           [age_critical_threshold] [size_warning_threshold]
+                           [size_critical_threshold]
+
+    Check that a file was added to an S3 bucket in the given time window and is of
+    a reasonable size.
+
+    positional arguments:
+      bucket                S3 bucket to check
+      prefix                Filter files by this prefix
+      age_warning_threshold
+                            Warning threshold for the age of the latest file in
+                            hours (defaults to 24)
+      age_critical_threshold
+                            Critical threshold for the age of the latest file in
+                            hours (defaults to 48)
+      size_warning_threshold
+                            Warning threshold for the difference in size between
+                            the latest 2 files in percents (default to 25)
+      size_critical_threshold
+                            Critical threshold for the difference in size between
+                            the latest 2 files in percents (default to 50)
+
+    optional arguments:
+      -h, --help            show this help message and exit
+
+
+License
+-------
+
+This software is licensed under the MIT license (see the :code:`LICENSE.txt`
+file).
+
+Author
+------
+
+Nimrod Adar, `contact me <nimrod@shore.co.il>`_ or visit my `website
+<https://www.shore.co.il/>`_. Patches are welcome via `git send-email
+<http://git-scm.com/book/en/v2/Git-Commands-Email>`_. The repository is located
+at: https://www.shore.co.il/git/.
+
+
