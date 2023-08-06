@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: sc_FlowGrid
+Version: 0.1
+Summary: FlowGrid implemented in Scanpy
+Home-page: https://github.com/VCCRI/FlowGrid
+Author: Xiunan Fang
+Author-email: xiunan@hku.hk
+License: MIT
+Download-URL: https://github.com/xfanuu/FlowGrid/archive/v_01.tar.gz
+Description: UNKNOWN
+Keywords: Single Cell RNA-seq,Scanpy,Clustering
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
