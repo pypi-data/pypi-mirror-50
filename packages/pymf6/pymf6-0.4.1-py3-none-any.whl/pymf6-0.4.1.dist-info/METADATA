@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: pymf6
+Version: 0.4.1
+Summary: Python Wrapper for MODFLOW 6
+Home-page: https://github.com/hydrocomputing/pymf6
+Author: Mike Müller
+Author-email: mmueller@hydrocomputing.com
+License: MIT
+Platform: any
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Hydrology
+Requires-Dist: numpy
+
+Python Wrapper for MODFLOW 6
+
+
