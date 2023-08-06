@@ -1,0 +1,13 @@
+gurux_serial/GXSerial.py,sha256=Uq8WLrNEQ2Q7O0LEYHrzJbLm6suwS75ErBcw9AK7jTM,16668
+gurux_serial/_GXSynchronousMediaBase.py,sha256=i1BFYYS-RrSKuw1wq1SK9JIk3O8WNI-FG5VEbAZTAzA,10437
+gurux_serial/__init__.py,sha256=cixSrUYtFg_NGkP0D0iksfUsVz_KEDzcfrZtl7oLUSA,1240
+gurux_serial/handlers/GXLinuxHandler.py,sha256=Eb90bZ_3iD34jx69CMzscYmCzGehs5hgHIh58Y_JDuE,14436
+gurux_serial/handlers/GXSettings.py,sha256=ByDDrO77FgDRcYIS0QhjVXeqkoCX2Srvne_rsszosOM,1663
+gurux_serial/handlers/GXWindowsHandler.py,sha256=K2BainzAbhho-FiOHxC1N4YFhAOuHM9tdMnDsC3eRC8,20462
+gurux_serial/handlers/IGXNative.py,sha256=As802YUzcLTrQ0ZqIuIPMFGADOZA6p1Itv1-MKlWCnk,4588
+gurux_serial/handlers/__init__.py,sha256=gcvdTubLsdroahBI1FZn8IzB6kjR91V-7sUyMCUTeMQ,1292
+gurux_serial-1.0.1.dist-info/LICENSE,sha256=T6mWn1i6NFnjK-jfyeG7ZjsJbnOi3O_oVM9mdgRthBg,18385
+gurux_serial-1.0.1.dist-info/METADATA,sha256=F3MqTnx91OQr6zAUfb6XcIL5X9QLPef_BcEvSccIgPQ,569
+gurux_serial-1.0.1.dist-info/WHEEL,sha256=QBOOAdG2icRHGBs2s94rfaUlHrdfNBp-TceubUYCwOE,97
+gurux_serial-1.0.1.dist-info/top_level.txt,sha256=NIh0XsXrBxo-OPBDDwonRe1U35RvUOJMzXG61w8egR4,13
+gurux_serial-1.0.1.dist-info/RECORD,,
