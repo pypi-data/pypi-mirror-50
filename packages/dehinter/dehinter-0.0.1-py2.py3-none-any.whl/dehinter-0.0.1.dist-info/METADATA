@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: dehinter
+Version: 0.0.1
+Summary: A tool for the removal of TrueType instruction sets (hints) in fonts
+Home-page: https://github.com/source-foundry/dehinter
+Author: Source Foundry Authors and Contributors
+Author-email: chris@sourcefoundry.org
+License: Apache License v2.0
+Platform: Any
+Classifier: Environment :: Console
+Classifier: Environment :: Other Environment
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Text Processing :: Fonts
+Classifier: Topic :: Multimedia :: Graphics
+Classifier: Topic :: Multimedia :: Graphics :: Graphics Conversion
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
+Requires-Dist: fontTools (==3.44.0)
+Provides-Extra: dev
+Requires-Dist: wheel ; extra == 'dev'
+Requires-Dist: setuptools ; extra == 'dev'
+Requires-Dist: twine ; extra == 'dev'
+
+# dehinter
+
+
+## License
+
+   Copyright 2019 Source Foundry Authors and Contributors
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
