@@ -1,0 +1,11 @@
+setup.py
+dpd_info_client_api/__init__.py
+dpd_info_client_api/api.py
+dpd_info_client_api/infoapi.py
+dpd_info_client_api/settings.py
+dpd_info_client_api.egg-info/PKG-INFO
+dpd_info_client_api.egg-info/SOURCES.txt
+dpd_info_client_api.egg-info/dependency_links.txt
+dpd_info_client_api.egg-info/requires.txt
+dpd_info_client_api.egg-info/top_level.txt
+dpd_info_client_api.egg-info/zip-safe

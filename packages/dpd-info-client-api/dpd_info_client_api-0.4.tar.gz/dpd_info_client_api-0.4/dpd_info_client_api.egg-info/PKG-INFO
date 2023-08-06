@@ -1,0 +1,23 @@
+Metadata-Version: 1.1
+Name: dpd-info-client-api
+Version: 0.4
+Summary: Client for DPD WSDL API.
+Home-page: https://github.com/haloween/dpd-client-info-service-api-python
+Author: Tomasz Utracki-Janeta
+Author-email: halgravity+githubrepo@gmail.com
+License: MIT
+Description: UNKNOWN
+Keywords: dpd,courier,api,service,info,parcel,shipping label,wsdl,api
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Framework :: Django :: 1.9
+Classifier: Framework :: Django :: 2.0
+Classifier: Framework :: Django :: 2.1
+Classifier: Framework :: Django :: 2.2
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
