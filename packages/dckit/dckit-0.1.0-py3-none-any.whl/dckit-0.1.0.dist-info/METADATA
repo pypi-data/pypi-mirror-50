@@ -1,0 +1,56 @@
+Metadata-Version: 2.1
+Name: dckit
+Version: 0.1.0
+Summary: Graphical toolkit for RT-DC data management
+Home-page: https://github.com/ZELLMECHANIK-DRESDEN/DCKit
+Author: Paul Müller
+Author-email: dev@craban.de
+License: GPL v3
+Keywords: RT-DC,deformability,cytometry,zellmechanik
+Platform: ALL
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Science/Research
+Requires-Python: >=3.6, <4
+Requires-Dist: shapeout (==0.9.5)
+Requires-Dist: dclab[all] (==0.14.2)
+Requires-Dist: h5py (>=2.8.0)
+Requires-Dist: pyqt5
+
+|DCKit|
+=======
+
+|PyPI Version| |Status Win|
+
+
+**DCKit** is a graphical toolkit for performing several tasks that
+would otherwise be only available via the
+dclab command line interface or via external tools such as HDFView.
+
+
+Installation
+------------
+A Windows installer is available from the release page.
+If you have Python 3 installed, you may also use pip to install DCKit:
+::
+
+    pip install dckit
+
+
+Testing
+-------
+
+::
+
+    pip install -e .
+    python setup.py test
+
+
+.. |DCKit| image:: https://raw.github.com/ZELLMECHANIK-DRESDEN/DCKit/master/docs/logo/dckit_h50.png
+.. |PyPI Version| image:: https://img.shields.io/pypi/v/dckit.svg
+   :target: https://pypi.python.org/pypi/dckit
+.. |Status Win| image:: https://img.shields.io/appveyor/ci/paulmueller/DCKIT/master.svg
+   :target: https://ci.appveyor.com/project/paulmueller/DCKit
+
+
+
