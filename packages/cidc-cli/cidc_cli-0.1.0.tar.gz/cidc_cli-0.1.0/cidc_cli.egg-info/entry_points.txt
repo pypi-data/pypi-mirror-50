@@ -1,0 +1,4 @@
+[console_scripts]
+cidc = cli2.cli:cidc
+cidc_cli = cli.interface.cli:main
+
