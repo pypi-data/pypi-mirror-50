@@ -1,0 +1,41 @@
+Metadata-Version: 1.1
+Name: CalcMin
+Version: 0.0.1
+Summary: CalcMin
+Home-page: https://github.com/Data-to-Knowledge/CalcMin
+Author: Mike Kittridge
+Author-email: mullenkamp1@gmail.com
+License: Apache
+Description: CalcMin
+        ===================================================================
+        
+        
+        
+        .. Documentation
+        .. --------------
+        .. The primary documentation for the package can be found `here <http://eto.readthedocs.io>`_.
+        
+        Installation
+        ------------
+        CalcMin can be installed via pip or conda::
+        
+          pip install calcmin
+        
+        or::
+        
+          conda install -c mullenkamp calcmin
+        
+        The core dependency is `Pandas <http://pandas.pydata.org/pandas-docs/stable/>`_.
+        
+Keywords: calcmin
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
