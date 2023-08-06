@@ -1,0 +1,36 @@
+kedro.io.JSONLocalDataSet
+=========================
+
+.. currentmodule:: kedro.io
+
+.. autoclass:: JSONLocalDataSet
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      
+      JSONLocalDataSet.DEFAULT_LOAD_ARGS
+      JSONLocalDataSet.DEFAULT_SAVE_ARGS
+   
+   
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      
+      JSONLocalDataSet.__init__
+      JSONLocalDataSet.exists
+      JSONLocalDataSet.from_config
+      JSONLocalDataSet.load
+      JSONLocalDataSet.release
+      JSONLocalDataSet.save
+    
+   

@@ -1,0 +1,36 @@
+kedro.io.SQLTableDataSet
+========================
+
+.. currentmodule:: kedro.io
+
+.. autoclass:: SQLTableDataSet
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      
+      SQLTableDataSet.DEFAULT_LOAD_ARGS
+      SQLTableDataSet.DEFAULT_SAVE_ARGS
+   
+   
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      
+      SQLTableDataSet.__init__
+      SQLTableDataSet.exists
+      SQLTableDataSet.from_config
+      SQLTableDataSet.load
+      SQLTableDataSet.release
+      SQLTableDataSet.save
+    
+   
