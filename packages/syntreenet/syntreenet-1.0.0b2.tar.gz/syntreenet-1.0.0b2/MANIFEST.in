@@ -1,0 +1,2 @@
+include *.rst *.cfg *.txt
+include src/grammars/*.peg

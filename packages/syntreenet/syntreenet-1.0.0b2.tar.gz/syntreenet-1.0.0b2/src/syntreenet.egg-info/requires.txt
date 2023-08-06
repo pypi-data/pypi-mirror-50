@@ -1,0 +1,4 @@
+parsimonious==0.8.1
+
+[testing]
+nose2[coverage_plugin]>=0.9.1
