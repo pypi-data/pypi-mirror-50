@@ -1,0 +1,52 @@
+#!python
+import sys
+import os
+import ast
+
+SDHOME = "{0}/.sdshell".format(os.getenv('HOME'))
+DATAPATH = "{0}/data".format(SDHOME)
+CRLDATAFILE = "{0}/curl.out".format(DATAPATH)
+
+debug = 0
+
+def printdebug(*argv):
+    str = ''
+    global debug
+
+    for arg in argv:
+        str += arg
+
+    if (debug == 1): print(" ioctl.log: {0}".format(str))
+
+def main(argv):
+    global debug
+    line = []
+    crliostr = ''
+    data = argv[2]
+
+    ioctldata = ast.literal_eval(argv[1])
+    debug = int(ioctldata['debug'])
+
+    #printdebug(SDHOME)
+    #printdebug(DATAPATH)
+    #printdebug(CRLDATAFILE)
+    printdebug("ioctldata[{0}]".format(ioctldata));
+    printdebug("cli data length [{0}] ioctl.datalen[{1}]".format(len(data), ioctldata['datalen']))
+    if (int(ioctldata['datalen']) != len(data)):
+        printdebug("Data length mismatch !!!")
+        return -2
+
+    #Convert string to dictionary format
+    crldix = ast.literal_eval(data)
+
+    for drive in crldix['files']:
+        #print(drive)
+        print("|{0}|{1}|{2}|{3}|".format(drive['createdTime'], drive['id'], drive['name'], drive['webViewLink']))
+
+    return 0
+
+if __name__ == "__main__":
+    retval = main(sys.argv)
+    exit(retval)
+
+#eof

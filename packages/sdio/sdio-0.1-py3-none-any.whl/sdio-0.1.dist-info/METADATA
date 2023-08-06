@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: sdio
+Version: 0.1
+Summary: A SD io-ctl
+Home-page: https://github.com/javatechy/dokr
+Author: ShanmugK
+Author-email: shanmugk@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+import setuptools
+
+
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
+
+setuptools.setup(
+     name='sdio',  
+     version='0.1',
+     scripts=['sdio'] ,
+     author="ShanmugK",
+     author_email="shanmugk@gmail.com",
+     description="A SD io-ctl",
+     long_description=long_description,
+   long_description_content_type="text/markdown",
+     url="https://github.com/javatechy/dokr",
+     packages=setuptools.find_packages(),
+     classifiers=[
+         "Programming Language :: Python :: 3",
+         "License :: OSI Approved :: MIT License",
+         "Operating System :: OS Independent",
+     ],
+ )
+
+
