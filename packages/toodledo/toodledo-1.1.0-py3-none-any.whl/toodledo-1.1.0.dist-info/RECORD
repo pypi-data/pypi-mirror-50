@@ -1,0 +1,14 @@
+toodledo/__init__.py,sha256=8v6oOg1nK7lWvjBDtx5HkC-Sz1LnxcG_21PbKNX4s3M,395
+toodledo/account.py,sha256=KwKw_e-0qtI3lhY4J3rfWnOx9qgabE46e6TwmYLuT1c,792
+toodledo/authorization.py,sha256=MIPI76tQOZB9PslDYcAmSAYrlHEuze3HIvvn0_WHfHU,906
+toodledo/context.py,sha256=p5wc93bFR5gad-mb-SbUKhXMqboBZ5BRpXnRNYVPWsw,723
+toodledo/custom_fields.py,sha256=rCXL6MtIRRnRoUMq_xoLoFAE-7CDzoV2-FGTepG60ok,3281
+toodledo/errors.py,sha256=VJ0RIwGoHsA7YD1XX8t6czufimV9SW4z62gkoEC9SOo,1678
+toodledo/folder.py,sha256=OZLsBQb6T-3AN8gBRNKax6tlqo1QWZd-pI_kVZ5RbDc,806
+toodledo/storage.py,sha256=BGxc6RBpoeIsEuu5_vNjjBYjTgO4cktn4FmVx0OiQsA,496
+toodledo/task.py,sha256=272DWhOB7BA7fLWuH7__Dwe2zez8vXSbJ0k2fmIJMz0,1863
+toodledo/transport.py,sha256=faTaDmn5obH71UIZrY-aYQ99rOR69DJfWDrKhDDs1V8,7889
+toodledo/types.py,sha256=Ty2z1yGX4feGUJpBmjm-W25VERfHqTF4u1HJmp4QFTo,579
+toodledo-1.1.0.dist-info/WHEEL,sha256=m7_EWfYWVp7uNOTdFEhPb5K49PyhIPAZSRl16cJVmb0,85
+toodledo-1.1.0.dist-info/METADATA,sha256=uqpbFboVbZ37aR3CyR1hv5bkAfjVQKA2U1Afzn1JCEY,1348
+toodledo-1.1.0.dist-info/RECORD,,
