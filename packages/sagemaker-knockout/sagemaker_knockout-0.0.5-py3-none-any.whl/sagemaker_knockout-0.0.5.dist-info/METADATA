@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: sagemaker-knockout
+Version: 0.0.5
+Summary: Shutdown your SageMaker instance when it's not active
+Home-page: https://github.com/mariokostelac/sagemaker-knockout
+Author: Mario Kostelac
+Author-email: mario.kostelac@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: psutil
+Requires-Dist: gputil
+Requires-Dist: daemonize
+Requires-Dist: click
+
+# sagemaker-knockout
+Shutdown SageMaker instance when it's not active!
+
+
