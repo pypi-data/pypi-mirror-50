@@ -1,0 +1,2 @@
+recursive-include entity_selector_jupyter_widget/static *.*
+include frontend_entity_selector_jupyter_widget.json
