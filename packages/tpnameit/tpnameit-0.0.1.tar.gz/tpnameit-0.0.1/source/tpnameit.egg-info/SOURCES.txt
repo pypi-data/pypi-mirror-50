@@ -1,0 +1,15 @@
+LICENSE
+README.rst
+setup.cfg
+setup.py
+source/tpNameIt/__init__.py
+source/tpNameIt/__version__.py
+source/tpNameIt/core/__init__.py
+source/tpNameIt/core/nameit.py
+source/tpNameIt/core/namelib.py
+source/tpnameit.egg-info/PKG-INFO
+source/tpnameit.egg-info/SOURCES.txt
+source/tpnameit.egg-info/dependency_links.txt
+source/tpnameit.egg-info/not-zip-safe
+source/tpnameit.egg-info/requires.txt
+source/tpnameit.egg-info/top_level.txt
