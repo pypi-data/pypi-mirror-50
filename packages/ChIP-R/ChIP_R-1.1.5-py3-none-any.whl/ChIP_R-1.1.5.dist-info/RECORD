@@ -1,0 +1,16 @@
+ChIP_R-1.1.5.data/scripts/chipr,sha256=KndM4B8nXwMmefEKzjjveKX2Lw-UsWm28oJLteKZYBI,186
+chipr/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+chipr/__main__.py,sha256=54QAKnZqEZUaCeZ8nyfi4CSQj3-d-NzXZcxvK5Ha8lY,114
+chipr/bed.py,sha256=d_GPqv8vduF7PfOLZiFieix-g0Izlw58WMZSP-sgjF0,49179
+chipr/bigbed.py,sha256=PQJtImLlYztJA2B97Cwx7bbKLaOtLCYhOVQ3CxI_1pA,2146
+chipr/chipr.py,sha256=OLjWkM8cmE49VT1AUloYXU7DPmoSnnXUvuLMLzv6UWY,5558
+chipr/ival.py,sha256=2kBWhQV8h8x7MRmNuBPe3vJWEorl8UfOIuUFcekbma0,14672
+chipr/multipletesting.py,sha256=TCyrbzqSQE_Mp-tdFOC0MHL7FuHRzNBJc64T3yNR_f4,9031
+chipr/petprocessing.py,sha256=dCZQu7uH61ZxxUFSN-5bgQnZhnwTYcbDWCsSpmMwFUo,8674
+chipr/rankprod.py,sha256=LYXGlnYcxIZZG9nCyiUbv1-h7fMGdpJKcTeiR1x9JX8,70140
+ChIP_R-1.1.5.dist-info/LICENSE,sha256=Czg9WmPaZE9ijZnDOXbqZIftiaqlnwsyV5kt6sEXHms,35821
+ChIP_R-1.1.5.dist-info/METADATA,sha256=1T9gDJZPZN_0VqrZlAmKc8S-qzIbvQI285IJgv5D-ik,4969
+ChIP_R-1.1.5.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+ChIP_R-1.1.5.dist-info/entry_points.txt,sha256=QKf4MBqDIpPaoQAD6_NP8hyaFwnSYFi96bd_E40gYIM,76
+ChIP_R-1.1.5.dist-info/top_level.txt,sha256=aq_D77otkJyhrWkWnRgE6Hfyx5JE0GX38Ga0O-DhfKQ,6
+ChIP_R-1.1.5.dist-info/RECORD,,
