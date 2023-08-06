@@ -1,0 +1,17 @@
+Metadata-Version: 1.2
+Name: aioapollo
+Version: 0.0.1
+Summary: ('纯异步的apollo客户端，支持实时和延迟的获取配置信息', 'Pure asynchronous Apollo client to support real-time and delayed access to configuration information')
+Home-page: https://github.com/beincy/aioapollo
+Author: beincy
+Author-email: bianhui0524@sina.com
+Maintainer: 卞辉(beincy)
+Maintainer-email: bianhui0524@sina.com
+License: MIT
+Description: UNKNOWN
+Platform: all
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
