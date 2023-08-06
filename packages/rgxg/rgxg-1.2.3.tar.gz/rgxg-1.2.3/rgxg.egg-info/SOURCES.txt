@@ -1,0 +1,11 @@
+setup.py
+rgxg/__init__.py
+rgxg/_range.py
+rgxg/alternation.py
+rgxg/exrex.py
+rgxg/rgxg.py
+rgxg.egg-info/PKG-INFO
+rgxg.egg-info/SOURCES.txt
+rgxg.egg-info/dependency_links.txt
+rgxg.egg-info/entry_points.txt
+rgxg.egg-info/top_level.txt
