@@ -1,0 +1,11 @@
+README.md
+setup.py
+faro/__init__.py
+faro/database.py
+faro/table.py
+faro.egg-info/PKG-INFO
+faro.egg-info/SOURCES.txt
+faro.egg-info/dependency_links.txt
+faro.egg-info/not-zip-safe
+faro.egg-info/requires.txt
+faro.egg-info/top_level.txt
