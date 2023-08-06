@@ -1,0 +1,16 @@
+numpy
+simpy
+networkx
+shapely
+scipy
+netCDF4
+matplotlib
+IPython
+geopy
+pyproj
+sphinx_rtd_theme
+
+[testing]
+pytest
+pytest-cov
+pytest-timeout
