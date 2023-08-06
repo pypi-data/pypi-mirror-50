@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: airconditioner
+Version: 0.9.2
+Summary: Yaml based DAG configurator for airflow
+Home-page: https://github.com/m1racoli/airconditioner
+Author: Cedrik Neumann
+Author-email: contact@m1racoli.io
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Provides-Extra: dev

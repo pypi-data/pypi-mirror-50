@@ -1,0 +1,8 @@
+pyyaml
+apache-airflow~=1.8
+
+[dev]
+behave
+autopep8
+pylint
+python-semantic-release
