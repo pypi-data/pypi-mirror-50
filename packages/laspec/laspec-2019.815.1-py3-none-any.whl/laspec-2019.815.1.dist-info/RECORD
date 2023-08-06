@@ -1,0 +1,16 @@
+laspec/__init__.py,sha256=kU_71QbUwrVsJ3vSk9V49IFF0Gkio_7m3wWJFBXqlwE,55
+laspec/convolution.py,sha256=hba4ER0JSNyJHTXQj6XycCtUHq4QLrl2Oh8tDectq4w,18196
+laspec/lamost.py,sha256=2wQWCjdKZx6-zjsmLx_lJIdtjxoGhm5PoZz9IuHUqu0,4824
+laspec/line_indices.py,sha256=EfbQLSUb4Pn9UUg1gfjhQ6lutz1Qg-4p_gwlIKHjCRA,21682
+laspec/read_spectrum.py,sha256=NSrErO6t7_aHSaR8RvffI366fG9r3JIusD4WQzjigto,7759
+laspec/spec.py,sha256=Po5ITRWfD_Zz3w4caY-tJeHGLiBAXUnTtx9FjoZl7Q0,7236
+laspec/old/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+laspec/old/echelle.py,sha256=8WKrkt8Cn8c9d_YkC_p4tF981AtJ1BQSJK7QusI8R5Q,4215
+laspec/old/pollux.py,sha256=3iYwp9uZGShVNOROcDcJnc8I4nNH3tGsxPZL1x5KWA0,305
+laspec/old/radial_velocity.py,sha256=0bPJO5-I_KTF3RBRh99WTmVEsRaIkuPEVTzi8SaWHCI,443
+laspec/old/spec_quick_view.py,sha256=lLolvYsNq22qsiMD1n1o0RJqbBwbj-T1BRj7EGXZabo,14339
+laspec-2019.815.1.dist-info/LICENSE,sha256=P0EiWM-GNtK7Fyw5LQIF-kd0R9a1_lnq9Em9e4LKsNY,1065
+laspec-2019.815.1.dist-info/METADATA,sha256=FNWXHgQEMXu-CDUI9tfQvJvhb59BVaBkdHeIzuRtw1M,1463
+laspec-2019.815.1.dist-info/WHEEL,sha256=_NOXIqFgOaYmlm9RJLPQZ13BJuEIrp5jx5ptRD5uh3Y,92
+laspec-2019.815.1.dist-info/top_level.txt,sha256=UofAe30CFy17Ltt4NdsEZPkFvyzuDgbttrEHDgxd9PY,7
+laspec-2019.815.1.dist-info/RECORD,,
