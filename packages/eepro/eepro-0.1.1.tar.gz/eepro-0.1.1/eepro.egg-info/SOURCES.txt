@@ -1,0 +1,11 @@
+MANIFEST.in
+setup.py
+eepro/__init__.py
+eepro/eepro.py
+eepro/test_eepro.py
+eepro.egg-info/PKG-INFO
+eepro.egg-info/SOURCES.txt
+eepro.egg-info/dependency_links.txt
+eepro.egg-info/entry_points.txt
+eepro.egg-info/requires.txt
+eepro.egg-info/top_level.txt

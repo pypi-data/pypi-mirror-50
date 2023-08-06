@@ -1,0 +1,3 @@
+[console_scripts]
+eepro = eepro.eepro:main
+
