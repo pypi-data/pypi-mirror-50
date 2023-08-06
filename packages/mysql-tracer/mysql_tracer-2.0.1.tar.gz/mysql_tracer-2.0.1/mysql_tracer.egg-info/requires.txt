@@ -1,0 +1,6 @@
+mysql-connector-python==8.0.17
+keyring==19.0.2
+
+[dev]
+pytest==5.0.1
+mock==3.0.5
