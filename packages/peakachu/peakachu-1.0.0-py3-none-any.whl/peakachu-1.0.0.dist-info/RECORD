@@ -1,0 +1,15 @@
+peakachu/__init__.py,sha256=woGi6Hhtx8y4PgzTcgz3twE1bDqoGhM7xWvZkXZ5P9k,113
+peakachu/apa.py,sha256=_SIphN72y79okr6HHjvqUM8CeVO5Qn13-1btwpQql04,809
+peakachu/calculate_depth.py,sha256=MQwwZJYSZW3HO09ixTqLrH8ob2n9qma-_97cmt0_T9Q,561
+peakachu/call_loops.py,sha256=wES2SFYd-fjxI1Hwlq1bRQGu1vzGPR0BoDZ2rAGK5TM,2312
+peakachu/peakacluster.py,sha256=sqVNzk1GfwkQYRo04dSzSwOmHJp6KExlHyrPJ3XAAwM,4502
+peakachu/scoreUtils.py,sha256=3hGevbjVxblyFL_ScJtzQFbXilGCDDgayHOFzvN5h9Y,3364
+peakachu/score_chromosome.py,sha256=J9_XEspEgFrFMaiJia44Z0m6JX6mlLwyfL3jpdnoEWY,1028
+peakachu/score_genome.py,sha256=bOAnd9klRhbUwLEt-wPVDJWCV8Kupo_pOCWVnInX-bk,1052
+peakachu/trainUtils.py,sha256=FdHJMsOE5rBW_2_9PNzTnDtrvIT860q2x6jHWA64DJI,5447
+peakachu/train_models.py,sha256=wvm-0OJmM9NdGpWPh3-_lqu_1I_xHqX7O4QgeRYcGyU,2021
+peakachu-1.0.0.data/scripts/peakachu,sha256=L8igcDQk5YA5aMBtEVULSB-U0605YKIqYMkGYQjv_eY,3994
+peakachu-1.0.0.dist-info/METADATA,sha256=ptTULUk3u4g5AoTwqBS_rO_8ANUYEPEmSsAf_j5_bY4,641
+peakachu-1.0.0.dist-info/RECORD,,
+peakachu-1.0.0.dist-info/WHEEL,sha256=FRuHuBX28RTgsOL603qIpbSc2WeDgbsFBWKj9XFOCpg,92
+peakachu-1.0.0.dist-info/top_level.txt,sha256=ybvGJgG0R83lHVZWqz3oF85gO9FznnnOo9e5AAJky6w,9
