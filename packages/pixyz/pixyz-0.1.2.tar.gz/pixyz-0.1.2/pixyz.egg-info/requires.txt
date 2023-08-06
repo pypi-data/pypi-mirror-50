@@ -1,0 +1,7 @@
+torch>=1.0
+torchvision
+tqdm
+scipy
+sympy>=1.4
+ipython
+tensorboardX
