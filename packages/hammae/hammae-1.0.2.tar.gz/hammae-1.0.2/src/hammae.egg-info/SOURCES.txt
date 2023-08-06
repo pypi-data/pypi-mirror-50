@@ -1,0 +1,13 @@
+CHANGES.txt
+MANIFEST.in
+README.txt
+setup.cfg
+setup.py
+tox.ini
+src/hammae.py
+src/tests.py
+src/hammae.egg-info/PKG-INFO
+src/hammae.egg-info/SOURCES.txt
+src/hammae.egg-info/dependency_links.txt
+src/hammae.egg-info/top_level.txt
+src/hammae.egg-info/zip-safe
