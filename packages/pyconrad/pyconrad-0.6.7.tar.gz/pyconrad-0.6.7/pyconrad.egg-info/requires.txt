@@ -1,0 +1,14 @@
+jpype1==0.7
+numpy
+pathlib
+urllib3
+pyevtk
+setuptools
+vtk
+procbridge
+cppimport
+joblib
+appdirs
+
+[opencl]
+pyopencl
