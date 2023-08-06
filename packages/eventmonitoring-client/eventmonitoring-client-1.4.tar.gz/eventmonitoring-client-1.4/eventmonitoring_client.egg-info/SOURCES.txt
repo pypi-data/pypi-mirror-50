@@ -1,0 +1,9 @@
+setup.py
+event_monitoring/__init__.py
+event_monitoring/utils.py
+event_monitoring/version.py
+eventmonitoring_client.egg-info/PKG-INFO
+eventmonitoring_client.egg-info/SOURCES.txt
+eventmonitoring_client.egg-info/dependency_links.txt
+eventmonitoring_client.egg-info/requires.txt
+eventmonitoring_client.egg-info/top_level.txt
