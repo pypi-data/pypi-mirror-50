@@ -1,0 +1,9 @@
+README.rst
+setup.cfg
+setup.py
+src/subclass_register/__init__.py
+src/subclass_register/subclass_register.py
+src/subclass_register.egg-info/PKG-INFO
+src/subclass_register.egg-info/SOURCES.txt
+src/subclass_register.egg-info/dependency_links.txt
+src/subclass_register.egg-info/top_level.txt
