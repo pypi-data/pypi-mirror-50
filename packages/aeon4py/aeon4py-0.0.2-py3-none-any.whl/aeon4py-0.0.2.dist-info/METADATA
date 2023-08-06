@@ -1,0 +1,17 @@
+Metadata-Version: 2.0
+Name: aeon4py
+Version: 0.0.2
+Summary: Aeon for Python
+Home-page: https://ultigit.ultimatesoftware.com/projects/VT/repos/aeon-python-client/browse
+Author: Genesis
+Author-email: dev-genesis@ultimatesoftware.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Dist: aeoncloud
+Requires-Dist: py4j
+
+# Aeon Python Client
+
+
