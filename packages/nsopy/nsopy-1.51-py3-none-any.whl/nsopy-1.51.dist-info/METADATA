@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: nsopy
+Version: 1.51
+Summary: Non-smooth optimization for Python
+Home-page: https://github.com/robin-vjc/nsopy
+Author: Robin Vujanic
+Author-email: vjc.robin@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/robin-vjc/nsopy/archive/1.51.tar.gz
+Keywords: non-smooth,distributed,optimization,python
+Platform: UNKNOWN
+Requires-Dist: colorama (>=0.3.7)
+Requires-Dist: numpy (>=1.11.2)
+Requires-Dist: pandas (>=0.19.0)
+Requires-Dist: python-dateutil (>=2.5.3)
+Requires-Dist: pytz (>=2016.7)
+Requires-Dist: six (>=1.10.0)
+
+UNKNOWN
+
+
