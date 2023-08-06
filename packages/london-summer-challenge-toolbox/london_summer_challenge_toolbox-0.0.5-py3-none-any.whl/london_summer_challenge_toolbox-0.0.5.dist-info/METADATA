@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: london-summer-challenge-toolbox
+Version: 0.0.5
+Summary: Toolbox for London summer challenge
+Home-page: UNKNOWN
+Author: Auquan Team
+Author-email: qqadmins@auquan.com
+License: MIT
+Keywords: auquan finance trading backtesting development
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Requires-Dist: plotly
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: bs4
+Requires-Dist: scipy
+Requires-Dist: sklearn
+Requires-Dist: lxml
+Requires-Dist: auquan-toolbox
+
+# Toolbox for London Summer Challenge 2019
+
+This is a companion package for London Summer Challenge 2019 for more info visit
+[Auquan](https://www.auquan.com) to start participating in quant competitions.
+
+
