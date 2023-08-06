@@ -1,0 +1,12 @@
+README.rst
+setup.py
+bin/curpy.bat
+curpy/__init__.py
+curpy/__main__.py
+curpy/api.py
+curpy/cli.py
+curpy/helpers.py
+curpy.egg-info/PKG-INFO
+curpy.egg-info/SOURCES.txt
+curpy.egg-info/dependency_links.txt
+curpy.egg-info/top_level.txt

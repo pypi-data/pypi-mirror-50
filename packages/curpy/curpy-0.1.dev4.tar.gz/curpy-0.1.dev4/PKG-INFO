@@ -1,0 +1,32 @@
+Metadata-Version: 1.1
+Name: curpy
+Version: 0.1.dev4
+Summary: A tool for converting between currencies
+Home-page: https://github.com/seblin/curpy
+Author: Sebastian Linke
+Author-email: Seb_Linke@arcor.de
+License: GPL v3
+Description: How to install
+        ==============
+        
+        ``pip install curpy``
+        
+        How to use
+        ==========
+        
+        ``python -m curpy --help``
+        
+        Example
+        =======
+        
+        ``python -m curpy "42.23 EUR in USD"``
+        
+Platform: any
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: System :: Shells
