@@ -1,0 +1,12 @@
+README.md
+setup.py
+anna_cli/__init__.py
+anna_cli/__main__.py
+anna_cli/group.py
+anna_cli/persist.py
+anna_cli.egg-info/PKG-INFO
+anna_cli.egg-info/SOURCES.txt
+anna_cli.egg-info/dependency_links.txt
+anna_cli.egg-info/entry_points.txt
+anna_cli.egg-info/requires.txt
+anna_cli.egg-info/top_level.txt
