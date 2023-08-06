@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: hypothesmith
+Version: 0.0.2
+Summary: Hypothesis strategies for generating Python programs, something like CSmith
+Home-page: https://github.com/Zac-HD/hypothesmith
+Author: Zac Hatfield-Dodds
+Author-email: zac@hypothesis.works
+License: MPL 2.0
+Keywords: python testing fuzzing property-based-testing
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Framework :: Hypothesis
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Testing
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: hypothesis (>=4.32.3)
+Requires-Dist: lark-parser (>=0.7.2)
+
+# hypothesmith
+Hypothesis strategies for generating Python programs, something like CSmith.
+
+This is definitely pre-alpha, but if you want to play with it feel free!
+You can even keep the shiny pieces when - not if - it breaks.
+
+Get it today with `pip install hypothesmith`, or by cloning the GitHub repo.
+You can run the tests, such as they are, with `tox` on Python 3.6 or later.
+
+
