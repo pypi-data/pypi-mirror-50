@@ -1,0 +1,10 @@
+django
+django-prometheus
+django-cors-headers
+channels
+channels_redis
+asgiref
+PyYAML
+redis
+piwikapi
+twine
