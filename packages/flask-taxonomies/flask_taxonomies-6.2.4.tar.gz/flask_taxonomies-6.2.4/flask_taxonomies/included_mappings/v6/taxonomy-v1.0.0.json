@@ -1,0 +1,36 @@
+{
+    "TaxonomyTerm": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "keyword"
+            },
+            "slug": {
+                "type": "keyword"
+            },
+            "path": {
+                "type": "text"
+            },
+            "title": {
+                "type": "multilingual-v1.0.0.json#/MultilingualString"
+            },
+            "links": {
+                "type": "nested",
+                "properties": {
+                    "self": {
+                        "type": "keyword"
+                    },
+                    "tree": {
+                        "type": "keyword"
+                    },
+                    "parent": {
+                        "type": "keyword"
+                    },
+                    "parent_tree": {
+                        "type": "keyword"
+                    }
+                }
+            }
+        }
+    }
+}
