@@ -1,0 +1,96 @@
+Metadata-Version: 2.1
+Name: mflux-ai
+Version: 0.3.0
+Summary: Open source code for the mflux-ai python package
+Home-page: https://github.com/AIAScience/mflux-ai-python
+Author: AIA Science AS
+Author-email: mflux.ai@aiascience.com
+License: Apache License 2.0
+Keywords: mflux_ai
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: joblib (<1)
+Requires-Dist: minio (<5,>=4)
+Requires-Dist: requests
+
+========
+mflux-ai
+========
+
+
+.. image:: https://img.shields.io/pypi/v/mflux_ai.svg
+        :target: https://pypi.python.org/pypi/mflux_ai
+
+.. image:: https://img.shields.io/travis/AIAScience/mflux-ai-python.svg?branch=master
+        :target: https://travis-ci.org/AIAScience/mflux-ai-python
+
+Open source code for the :code:`mflux-ai` python library.
+
+Features
+--------
+- Fetch connection strings and tell MLflow how to connect with MFlux.ai
+- Download and upload objects/datasets from/to the MFlux.ai cloud service
+
+Quickstart
+----------
+Installation
+
+    pip install mflux-ai
+
+Basic usage
+
+.. code:: python
+
+    import mflux_ai
+
+    mflux_ai.init("INSERT_YOUR_PROJECT_TOKEN_HERE")
+
+    # MLflow now knows how to connect with your project server, hosted on MFlux.ai
+
+Store and retrieve datasets
+
+.. code:: python
+
+    my_dataset = np.zeros(shape=(10000, 100), dtype=np.float32)
+    dataset_filename = "my-dataset.pkl"
+
+    mflux_ai.put_dataset(my_dataset, dataset_filename)
+
+    my_loaded_dataset = mflux_ai.get_dataset(dataset_filename)
+
+    assert_array_equal(my_dataset, my_loaded_dataset)
+
+
+=======
+History
+=======
+
+v0.3.0 (2019-08-16)
+-------------------
+
+* Add a function :code:`init` that will eventually replace :code:`set_env_vars`. Check if the provided project token is valid.
+
+v0.2.1 (2019-08-16)
+-------------------
+
+* Set licence to Apache License 2.0. Transition from pre-alpha to alpha.
+
+v0.2.0 (2019-08-14)
+-------------------
+
+* Add convenience functions for storing and retrieving datasets
+
+v0.1.1 (2019-08-14)
+-------------------
+
+* First release on PyPI. Has support for setting environment variables for MLflow based on an MFlux.ai project token.
+
+
