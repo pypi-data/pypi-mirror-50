@@ -1,0 +1,3 @@
+[console_scripts]
+pypise = pypise.Pypise:main
+
