@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: ahrefs_api_python
+Version: 0.0.1
+Summary: This is the python library for using ahrefs.com API
+Home-page: https://github.com/spremotely/ahrefs_api_python
+Author: sp.remotely
+Author-email: dev.sergey.popov@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Console
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
