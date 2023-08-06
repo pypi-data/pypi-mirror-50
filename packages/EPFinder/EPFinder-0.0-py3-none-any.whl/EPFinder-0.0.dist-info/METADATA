@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: EPFinder
+Version: 0.0
+Summary: An Efficient Plagiarism Code Detection Approach For Large Scale Student Assignments
+Home-page: UNKNOWN
+Author: caozixuan
+Author-email: 1240292104@qq.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: pandas
+
+UNKNOWN
+
+
