@@ -1,0 +1,13 @@
+README.md
+setup.cfg
+setup.py
+clier/__init__.py
+clier/main.py
+clier.egg-info/PKG-INFO
+clier.egg-info/SOURCES.txt
+clier.egg-info/dependency_links.txt
+clier.egg-info/requires.txt
+clier.egg-info/top_level.txt
+test/__init__.py
+test/_input_mock.py
+test/greet.py
