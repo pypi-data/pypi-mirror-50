@@ -1,0 +1,8 @@
+include README.md
+include TODO
+include LICENSE.txt
+include doc/*
+include applications/*.desktop
+include tests/*.py
+include test/testdata/*
+include data/*
