@@ -1,0 +1,14 @@
+smplx/__init__.py,sha256=HMmMGEF7ziEoAxMC7zgdD2jlwdh1AlobmAqFdsBaqD4,796
+smplx/body_models.py,sha256=KBrOtcjquBRYapojXWb9W9Pn_nl9fQcD9-VPVwXXCGg,41238
+smplx/lbs.py,sha256=DioEoHz8silEwpJsMMWfcs3doeHKU430nBYBD-yneDE,13418
+smplx/utils.py,sha256=iLRFSDzuz_srIoRblQmYDPD3o0EdX3ghb-axFDatzpI,1631
+smplx/vertex_ids.py,sha256=bcceKMZjGz356WAFrIVMzt4V0agChT_sHqMwMXpL7RY,2101
+smplx/vertex_joint_selector.py,sha256=eKC79ufZ_RTuK_ZgIcfr6NL-WP0gkhdBKp6LT-dxcX8,2761
+tools/__init__.py,sha256=y0-PwOAXC-QnTm_77CTYwsPHvADJ5DREV8Ezx7HE_sc,784
+tools/clean_ch.py,sha256=Yp7D519JILFBkSi1ruvhQYRvmM2a-jc-3Oyh0zeSel8,2236
+tools/merge_smplh_mano.py,sha256=87iJO1c5KsSPoAd3wqlfz7d7jnk1aVc6U3xbdN2Aa6I,3172
+smplx-0.1.12.dist-info/LICENSE,sha256=IjLy-cj2IpxXnEUVrEtUGCTJzvWX05wNxMF-rL9gEUw,6228
+smplx-0.1.12.dist-info/METADATA,sha256=H-QIA9HEZmvFTMKwlHBD5UMC8U9ApIyQty9dTFjLT0c,7911
+smplx-0.1.12.dist-info/WHEEL,sha256=_OfpK4bWOib5kHbXgC6xhPw-kdAw9Ks7_xlOUIiTiwQ,92
+smplx-0.1.12.dist-info/top_level.txt,sha256=6HsISld8hUbaCWp4w0MszUhAWmggD38VFPNunhYkQyM,12
+smplx-0.1.12.dist-info/RECORD,,
