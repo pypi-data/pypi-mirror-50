@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: firefox-open-tabs
+Version: 0.1.0
+Summary: Get information about currently opened tabs in Firefox
+Home-page: https://github.com/nelimee/firefox_open_tabs
+Author: Adrien Suau
+Author-email: adrien.suau@protonmail.com
+License: CeCILL-B
+Platform: UNKNOWN
+Description-Content-Type: text/x-rst
+Requires-Dist: lz4
+Provides-Extra: dev
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: setuptools ; extra == 'dev'
+Requires-Dist: wheel ; extra == 'dev'
+Requires-Dist: twine ; extra == 'dev'
+
+``firefox_open_tabs``
+=====================
+
+A small tool to recover information about the currently opened tabs in Firefox.
+
+
+
