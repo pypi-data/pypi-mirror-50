@@ -1,0 +1,10 @@
+setup.py
+shellcmd/__init__.py
+shellcmd/__main__.py
+shellcmd/shellcmd.py
+shellcmd.egg-info/PKG-INFO
+shellcmd.egg-info/SOURCES.txt
+shellcmd.egg-info/dependency_links.txt
+shellcmd.egg-info/entry_points.txt
+shellcmd.egg-info/requires.txt
+shellcmd.egg-info/top_level.txt

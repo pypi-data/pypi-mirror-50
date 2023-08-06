@@ -1,0 +1,3 @@
+[pyloco.task]
+shellcmd = shellcmd:entry_task
+
