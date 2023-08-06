@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+pygithubctl/__init__.py
+pygithubctl/configurer.py
+pygithubctl/pygithubctl.py
+pygithubctl.egg-info/PKG-INFO
+pygithubctl.egg-info/SOURCES.txt
+pygithubctl.egg-info/dependency_links.txt
+pygithubctl.egg-info/entry_points.txt
+pygithubctl.egg-info/not-zip-safe
+pygithubctl.egg-info/requires.txt
+pygithubctl.egg-info/top_level.txt
