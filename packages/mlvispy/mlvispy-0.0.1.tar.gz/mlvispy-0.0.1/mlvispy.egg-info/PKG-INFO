@@ -1,0 +1,11 @@
+Metadata-Version: 1.2
+Name: mlvispy
+Version: 0.0.1
+Summary: A wrapper around react components for use in jupyter notebooks
+Home-page: https://github.com/
+Author: Hong Wang
+Author-email: hongw@uber.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.7

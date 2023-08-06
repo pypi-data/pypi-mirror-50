@@ -1,0 +1,11 @@
+README.md
+setup.py
+mlvispy/__init__.py
+mlvispy/class_builder.py
+mlvispy.egg-info/PKG-INFO
+mlvispy.egg-info/SOURCES.txt
+mlvispy.egg-info/dependency_links.txt
+mlvispy.egg-info/not-zip-safe
+mlvispy.egg-info/requires.txt
+mlvispy.egg-info/top_level.txt
+mlvispy/static/index.js
