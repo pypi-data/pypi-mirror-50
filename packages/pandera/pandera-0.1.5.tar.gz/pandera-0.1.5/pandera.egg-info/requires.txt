@@ -1,0 +1,9 @@
+numpy>=1.9.0
+pandas>=0.23.0
+wrapt
+
+[:python_version < "2.7"]
+scipy
+
+[:python_version < "3.4"]
+enum34
