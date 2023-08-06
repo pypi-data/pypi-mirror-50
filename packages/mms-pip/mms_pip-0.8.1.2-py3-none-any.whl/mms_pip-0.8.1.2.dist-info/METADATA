@@ -1,0 +1,413 @@
+Metadata-Version: 2.1
+Name: mms-pip
+Version: 0.8.1.2
+Summary: A custom MMS/GDWH module for python
+Home-page: https://source.cloud.google.com/v135-5683-alice-ksk-explore/mms-pip
+Author: Josef Goppold, Tobias Hoke
+Author-email: goppold@mediamarktsaturn.com, hoke@mediamarktsaturn.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: google-cloud-logging (>=1.10.0)
+Requires-Dist: google-cloud-datastore (>=1.8.0)
+Requires-Dist: google-cloud-bigquery (>=1.16.0)
+Requires-Dist: google-cloud-storage (>=1.15.0)
+Requires-Dist: gcsfs (>=0.1.2)
+Requires-Dist: pyarrow (>=0.12.1)
+Requires-Dist: pandas (>=0.24.1)
+Requires-Dist: redis (>=3.0.1)
+Requires-Dist: google-auth (>=1.5.0)
+
+# mms-pip
+Public Python module from the Data-Access Team of MediaMarktSaturn Technology.
+
+!!!!!!!! ATTENTION: BETA VERSION !!!!!!!!!!
+```
+pip install mms-pip --upgrade
+```
+Topics:
+1. gcp_logger
+2. redis_handler
+3. bq_handler
+4. gcs_handler
+5. redis_handler
+6. auth_handler
+
+___
+
+## 1. gcp_logger
+
+Log Module for standardized log purposes.
+
+### How to use:
+
+#### 1.1 Import module:
+
+```python
+from mms.gcp_logger import Logger
+```
+
+#### 1.2 Initalize the logger:
+
+```python
+# Cloud Function Logging:
+logger = Logger(service_name, run_id, project_id, function_name, resource_type)
+logger = Logger(service_name='my-service', run_id='lksjdf2', project_id='my-project-id', function_name='ppx-price-updates-de-gcs-bq', resource_type='cloud_function')
+
+# App Engine Logging:
+logger = Logger(service_name, run_id, project_id, module_id, version_id, resource_type)
+logger = Logger(service_name='my-service', run_id='lksjdfl98', project_id='v135-5683-alice-ksk-explore', module_id='app-flex-sample-service', version_id='v0.0.1', resource_type='gae_app')
+
+# Compute Engine:
+logger = Logger(service_name, run_id, project_id, resource_type)
+logger = Logger(service_name='my-service', run_id='lksjdfl98', project_id='v135-5683-alice-ksk-explore', resource_type='gce_instance')
+
+# Kubernetes Engine: 
+logger = Logger(service_name, run_id, project_id, cluster_name, container_name, location, namespace_name, resource_type)
+logger = Logger(service_name='my-service', run_id='id12345', project_id='v135-5683-alice-ksk-explore', cluster_name='jg-k8-testcluster', container_name=CONTAINER_NAME, location=ZONE, namespace_name='default', resource_type='k8s_container')
+
+# Cloud Run (Serverless):
+logger = Logger(service_name, run_id, project_id, revision_version, resource_type)
+logger = Logger(service_name='my-service', run_id='lksjdfl98', project_id='v135-5683-alice-ksk-explore', revision_version='my-service-00003', resource_type='cloud_run_revision')
+
+# Dataproc:
+logger = Logger(service_name, run_id, project_id, cluster_name, location, resource_type)
+logger = Logger(service_name='my-service', run_id='lksjdfl98', project_id='v135-5683-alice-ksk-explore', cluster_name='my-cluster', location='europe-west4', resource_type='cloud_dataproc_cluster')
+
+# Cloud Composer:
+logger = Logger(service_name, run_id, project_id, environment_name, location, resource_type)
+logger = Logger(service_name='my-service', run_id='lksjdfl98', project_id='v135-5683-alice-ksk-explore', environment_name='my-composer-environment', location='europe-west4', resource_type='cloud_composer_environment')
+
+```
+
+
+The following resource_types are supported:
+
+- Cloud Function: 'cloud_function'
+- App Engine: 'gae_app'
+- Compute Engine: 'gce_instance'
+- Kubernetes: 'k8s_container'
+- Cloud Run (serverless): 'cloud_run_revision'
+- Dataproc: 'cloud_dataproc_cluster'
+- Cloud Composer: 'cloud_composer_environment'
+
+When resource type is unrecoginzable logs will be processed to 'Global'
+
+
+#### 1.3 Use the logger:
+
+```python
+logger.info('your message')
+logger.warning('your message')
+logger.error('your message')
+logger.critical('your message')
+logger.debug('your message')
+```
+
+The logs are visible in Stackdriver Logging via:
+- GAE Application -> Module_id -> Version_id for App Engine.
+- Or under Cloudfunctions -> Function_id
+- Or under GCE VM Instance -> Instance_id
+- Or under Kubernetes Container -> cluster_name -> namespace_name -> container_name 
+- Or under Cloud Run Revision -> service_name -> revision_name 
+- Or under Global
+
+### Important
+
+This log tool only works in App Engine Standard/Flexible, Cloud Function, Compute Engine and Kubernetes, Cloud Run (Serverless) environment.
+
+For local testing please set the boolean flag 'local_run' during initialization to 'True'
+
+### How we log
+
+We initialize the logger only in the "app.py" file. From there every log entry will be written - Modules used within app.py need to return the exceptions to the caller so
+error etc. get logged at one central point within app.py.
+
+
+___
+
+
+## 2. datastore_handler
+
+Python script for easy interacting with Google Cloud Datastore (DS)
+
+### How to use:
+
+#### 2.1 Import Datastore class:
+```python
+from mms.datastore_handler import Datastore
+```
+#### 2.2 Initalize the datastore handler:
+```python
+ds_handler = Datastore()
+```
+#### 2.3 Use the Datastore handler:
+
+You can set/get an **id** or a **name** in Datastore. For this package if you specify the parameter **name** as a string, than it's a name in Datastore. If you specify the parameter **name** as an integer, than it's an id in Datastore. 
+
+- Creating a new Entity: 
+```python
+ds_handler.put_new_entity(kind='kind_name', prop_df={'property1': 1, 'property2'='Test String'}, name='The Name/ID of the Entity')
+```
+**kind** and **prop_df** is required, **name** is optional (Google generates an ID for you)
+
+- Getting and deleting Entity: 
+```python
+result_entitiy_dict = ds_handler.get_entity(kind='kind_name', name='The Name/ID of the Entity')
+ds_handler.delete_entity(kind='kind_name', name='The Name/ID of the Entity')
+```
+
+- Updating Entity: 
+```python
+ds_handler.update_entity(kind='kind_name', name='The Name/ID of the Entity', prop_df={'property1': 1, 'property2'='Test String'})
+```
+You cannot update specific properties of an entity. The Updates must include all properties that should be persisted. Whenever you need to do an update, you need to first retrieve the existing entity as a whole, then update one or more properties by setting new values on **prop_df** and update the entity.
+
+
+- Get all Entities of a specific kind: 
+```python
+result = ds_handler.get_all_of_a_kind('kind_name')
+```
+
+- Query Datastore: 
+With only one Filter: 
+```python
+with_one_filter = ["property1", "=", 1]
+result1 = ds_handler.query(kind="TestKind1", filter=with_one_filter)
+```
+With two or more Filter: 
+```
+with_more_filter = [["property1", "=", 1], ["property3", "<=", 3.33]]
+result2 = ds_handler.query(kind="TestKind1", filter=with_more_filter)
+```
+
+___
+
+
+## 3. bq_handler
+
+Python script for easy interacting with Google Cloud BigQuery (BQ)
+
+### How to use:
+
+#### 3.1 Import BigQuery class:
+```python
+from mms.bq_handler import BQ
+```
+#### 3.2 Initalize the BigQuery handler:
+There are two Options: 
+
+i) Without default values: 
+```python
+bq_handler = BQ()
+```
+
+ii) With default values (i. e. if you only work with one dataset or table): 
+```python
+bq_handler = BQ(dataset_id='default_dataset_id', table_id='default_table_id')
+```
+Every time a **dataset_id** and/or a **table_id** is not specified in a specific method of the BQ class, the method will use the default dataset_id and/or table_id of the **bq_handler**. 
+
+
+
+You can also specify a **project_id** and/or a **cred_file_path** (credential file path) if you need it.
+
+#### 3.3 Use the BigQuery handler:
+- Creating a new Dataset: 
+```python
+# With default values from bq_handler
+bq_handler.create_dataset()
+
+# Without defaults:
+bq_handler.create_dataset('test_dataset_id')
+```
+
+
+- Creating a new Table (dataset have to exists): 
+```python
+from google.cloud import bigquery
+SCHEMA = [bigquery.SchemaField('full_name', 'STRING', mode='required', description="Visitor's Name"),
+          bigquery.SchemaField('visit_time', 'TIMESTAMP', mode='required', description="Visit Time"),
+          bigquery.SchemaField('visit_length', 'INT64', mode='required', description="Length of Visit in Seconds"),
+          bigquery.SchemaField('sentiment', 'FLOAT64', mode='required', description="Calculated Happiness Score")]
+
+# With default values from bq_handler
+bq_handler.create_table(SCHEMA)
+
+# Without defaults:
+bq_handler.create_table(SCHEMA, dataset_id='test_dataset_id', table_id='test_table_id')
+
+# You can also create a table with day partitioning and/or with clustering:
+bq_handler.create_table(SCHEMA, dataset_id='test_dataset_id', table_id='test_table_id', partitioning_field='_PARTITIONTIME', require_partition_filter=True, clustering_fields=['visit_time'])
+# _PARTITIONTIME is the default partitioning of BigQuery
+```
+
+- Checking if a table exists or not (ATTENTION: No guarantees! See source code.):
+```python
+# With default values from bq_handler
+check = bq_handler.check_if_table_exists()
+
+# Without defaults:
+check = bq_handler.check_if_table_exists(dataset_id='test_dataset_id', table_id='test_table_id')
+```
+
+- Getting a schema of an existing table:
+```python
+# With default values from bq_handler
+schema = bq_handler.get_schema()
+
+# Without defaults:
+schema = bq_handler.get_schema(dataset_id='test_dataset_id', table_id='test_table_id')
+```
+
+- Streaming a row into an existing BQ table (append to table):
+```python
+# Create Dictionary:  
+data = {'full_name': 'Max Mustermann', 'visit_time': '2019-07-23 13:45:07.372826 UTC', 'visit_length': 100, 'sentiment': 1.111}
+
+# With default values from bq_handler
+bq_handler.streaming_insert_single_json(data)
+
+# Without defaults:
+bq_handler.streaming_insert_single_json(data, dataset_id='test_dataset_id', table_id='test_table_id')
+```
+
+
+- Running a query and get results as a dataframe:
+```python 
+query = '''
+SELECT * FROM `v135-5683-playground-goppold.test_dataset_id.test_table_id`
+'''
+df = bq_handler.run_query(query)
+```
+
+
+
+
+___
+
+
+## 4. gcs_handler
+
+Python script for easy interacting with Google Cloud Storage (GCS)
+
+### How to use:
+
+#### 4.1 Import GCS class:
+```python
+from mms.gcs_handler import GCS
+```
+#### 4.2 Initalize the GCS handler:
+TODO
+#### 4.3 Use the GCS handler:
+TODO
+
+
+___
+
+
+## 5. redis_handler
+
+Python script for easy usage of the Python redis class.
+
+### How to use:
+
+#### 5.1 Import Redis class:
+```python
+from mms.redis_handler import Redis
+```
+#### 5.2 Initalize the redis handler:
+TODO
+#### 5.3 Use the redis handler:
+TODO
+
+
+
+## 6. auth_handler.py
+https://cloud.google.com/run/docs/authenticating/service-to-service
+
+First, you'll need to configure the receiving service to accept requests from the calling service:
+Grant the Cloud Run Invoker (roles/run.invoker) role to the calling service identity on the receiving service.
+
+TODO
+
+
+```
+python3 setup.py sdist bdist_wheel
+
+python3 -m twine upload dist/*
+```
+
+
+___
+
+####  TODOs
+- Complete README
+- Add Docstrings to Python scripts
+
+___
+
+
+#### CHANGELOG:
+
+##### 0.5.3:
+
+ - Local Run option was introduced -> initialization flag can be set
+
+
+##### 0.5.4: 
+
+- Added 'service_name' to Logger class -> needs to be given in the arguments
+
+
+##### 0.5.5:
+
+- Change the logname for each log entry to the specific service_name
+- Added Cloud Run (Serverless as new source)
+
+##### 0.5.6:
+
+- Logname bugfix
+
+##### 0.5.7:
+
+- Cloud run logging code refinement 
+
+##### 0.5.9:
+
+- Change default values from None to empty string
+
+
+##### 0.6.0:
+
+- Added Dataproc as new log resource 'cloud_dataproc_cluster'
+
+
+##### 0.6.1:
+
+- Added Cloud Composer as new log resource 'cloud_composer_environment'
+
+##### 0.7.0: 
+
+- Added Datastore Handler for GCP for easy interaction with Google Cloud Datastore
+
+##### 0.8.0: 
+
+- Added BigQuery and GCS Handler for GCP for easy interaction with Google Cloud BigQuery and Storage
+
+
+##### 0.8.1: 
+
+- Added auth_handler for service to service jwt tokens (Google Cloud Run)
+
+##### 0.8.1.1 and 0.8.1.2:
+- Changed Readme
+
+
+***
+Tobias Hoke - Josef Goppold - 09.08.2019
+
+
