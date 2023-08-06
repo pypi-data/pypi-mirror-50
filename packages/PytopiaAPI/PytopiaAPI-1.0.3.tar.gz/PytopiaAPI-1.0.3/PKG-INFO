@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: PytopiaAPI
+Version: 1.0.3
+Summary: A python API for Utopia Ecosystem
+Home-page: https://github.com/Dest0re/PytopiaAPI
+Author: Dest0re
+Author-email: tihokaenglichman@gmail.com
+License: UNKNOWN
+Description: # PytopiaAPI
+        Python API for Utopia Client.
+        
+        
+        ## How to use?
+        ```py
+        import PytopiaAPI
+        uapi = PytopiaAPI.PytopiaAPI(YOURTOKEN)
+        a = uapi.getSystemInfo()
+        print(a)
+        ```
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
