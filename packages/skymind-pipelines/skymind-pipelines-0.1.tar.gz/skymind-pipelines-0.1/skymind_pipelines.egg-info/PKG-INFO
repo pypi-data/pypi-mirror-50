@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: skymind-pipelines
+Version: 0.1
+Summary: pipelines: Deploy your machine learning experiments with Skymind Pipelines
+Home-page: https://github.com/SkymindIO/pipelines
+Author: Max Pumperla
+Author-email: max@skymind.io
+License: Apache
+Description: pipelines: Deploy your machine learning experiments with Skymind Pipelines
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Provides-Extra: tests
