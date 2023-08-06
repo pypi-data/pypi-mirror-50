@@ -1,0 +1,6 @@
+{% if k8s and k8s.namespace %}
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: {{ k8s.namespace }}
+{% endif %}

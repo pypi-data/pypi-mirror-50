@@ -1,0 +1,66 @@
+{% if k8s and k8s.service and k8s.service.enabled %}
+
+{% if k8s.service.namespace or k8s.namespace %}
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: {{ k8s.service.namespace or k8s.namespace }}
+---
+{% endif %}
+
+kind: {{ k8s.service.kind or 'Service' }}
+apiVersion: {{ k8s.service.apiVersion or 'v1' }}
+metadata:
+  name: {{ k8s.service.name or k8s.name + '-svc' }}
+
+  {% if k8s.service.namespace or k8s.namespace %}
+  namespace: {{ k8s.service.namespace or k8s.namespace }}
+  {% endif %}
+
+  labels:
+    htjs: "true"
+    htjs-app: "{{ k8s.name }}"
+    htjs-app-version: "{{ k8s.version or '0.0.1' }}"
+
+    app: {{ k8s.name }}
+    {% if k8s.service.labels %}
+    {% for label in k8s.service.labels.items() %}
+    {{ label[0] }}: {{ label[1] }}
+    {% endfor %}
+    {% endif %}
+spec:
+  selector:
+    app: {{ k8s.name }}
+
+  {% if k8s.service.ports %}
+  ports:
+    {% if k8s.service.ports is iterable %}
+    {% for port in k8s.service.ports %}
+    {% if port is mapping %}
+    - protocol: {{ port.protocol or 'TCP' }}
+      port: {{ port.port }}
+      targetPort: {{ port.targetPort or port.port }}
+      name: {{ port.protocol or 'TCP' | lower }}-{{ port.port }}
+      {% if port.nodePort %}
+      nodePort: {{ port.nodePort }}
+      {% endif %}
+    {% elif port is number %}
+    - protocol: TCP
+      port: {{ port }}
+      targetPort: {{ port }}
+      name: tcp-{{ port }}
+    {% endif %}
+    {% endfor %}
+    {% else %}
+    - protocol: TCP
+      port: {{ k8s.service.ports }}
+      targetPort: {{ k8s.service.ports }}
+      name: tcp-{{ k8s.service.ports }}
+    {% endif %}
+  {% endif %}
+
+  {% if k8s.service.type %}
+  type: {{ k8s.service.type }}
+  {% endif %}
+
+{% endif %}

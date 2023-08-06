@@ -1,0 +1,59 @@
+{% if k8s and k8s.ingress and k8s.ingress.enabled %}
+
+{% if k8s.ingress.namespace or k8s.namespace %}
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: {{ k8s.ingress.namespace or k8s.namespace }}
+---
+{% endif %}
+
+kind: {{ k8s.ingress.kind or 'Ingress' }}
+apiVersion: {{ k8s.ingress.apiVersion or 'networking.k8s.io/v1beta1' }}
+metadata:
+  name: {{ k8s.ingress.name or k8s.name + '-ingress' }}
+
+  {% if k8s.ingress.namespace or k8s.namespace %}
+  namespace: {{ k8s.ingress.namespace or k8s.namespace }}
+  {% endif %}
+
+  labels:
+    htjs: "true"
+    htjs-app: "{{ k8s.name }}"
+    htjs-app-version: "{{ k8s.version or '0.0.1' }}"
+spec:
+  {% if k8s.ingress.tls %}
+  tls:
+    {% for item in k8s.ingress.tls %}
+    - hosts:
+      {% for host in item.hosts %}
+      - {{ host }}
+      {% endfor %}
+      secretName: {{ item.secretName }}
+    {% endfor %}
+  {% endif %}
+
+  rules:
+    {% for rule in k8s.ingress.rules %}
+    {% if rule.host %}
+    - host: {{ rule.host }}
+      http:
+    {% else %}
+    - http:
+    {% endif %}
+        paths:
+          {% if rule.paths %}
+          {% for path in rule.paths %}
+          - path: {{ path.path or '/' }}
+            backend:
+              serviceName: {{ path.serviceName or k8s.service.name or k8s.name + '-svc' }}
+              servicePort: {{ path.servicePort or k8s.service.ports[loop.index0].targetPort or k8s.service.ports[loop.index0].port }}
+          {% endfor %}
+          {% else %}
+          - path: /
+            backend:
+              serviceName: {{ k8s.service.name or k8s.name + '-svc' }}
+              servicePort: {{ k8s.service.ports[loop.index0].targetPort or k8s.service.ports[loop.index0].port }}
+          {% endif %}
+    {% endfor %}
+{% endif %}
