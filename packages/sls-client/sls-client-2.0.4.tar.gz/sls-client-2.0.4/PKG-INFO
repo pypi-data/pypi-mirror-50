@@ -1,0 +1,26 @@
+Metadata-Version: 1.1
+Name: sls-client
+Version: 2.0.4
+Summary: A python client for the Simple Lookup Service
+Home-page: https://github.com/esnet/python-sls-client
+Author: Sowmya Balasubramanian
+Author-email: sowmya@es.net
+License: 3-clause BSD License
+Description: ============================
+        Lookup Service Python Client
+        ============================
+        
+        Currently, Python supports only query client.
+        
+        The pyth
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Networking
