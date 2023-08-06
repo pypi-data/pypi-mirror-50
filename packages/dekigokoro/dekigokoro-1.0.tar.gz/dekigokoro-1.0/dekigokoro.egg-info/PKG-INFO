@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: dekigokoro
+Version: 1.0
+Summary: An asynchronous wrapper for the Dekigokoro API.
+Home-page: https://github.com/broman/dekigokoro.py
+Author: broman
+Author-email: ryan@broman.dev
+License: MIT
+Download-URL: https://github.com/broman/dekigokoro.py/archive/v1.0.tar.gz
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
