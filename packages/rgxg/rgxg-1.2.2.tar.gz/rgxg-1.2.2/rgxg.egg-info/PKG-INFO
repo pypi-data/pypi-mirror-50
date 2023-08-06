@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: rgxg
+Version: 1.2.2
+Summary: ReGular eXpression Generator
+Home-page: https://github.com/zevtyardt
+Author: Val (zvtyrdt.id)
+Author-email: alviandtm@gmail.com
+License: MIT
+Description: UNKNOWN
+Keywords: Regular Expression Generator Toolkit
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Documentation
