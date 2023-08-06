@@ -1,0 +1,10 @@
+README.rst
+setup.cfg
+setup.py
+apigatewaydisconnectapi.egg-info/PKG-INFO
+apigatewaydisconnectapi.egg-info/SOURCES.txt
+apigatewaydisconnectapi.egg-info/dependency_links.txt
+apigatewaydisconnectapi.egg-info/top_level.txt
+src/apigatewaydisconnectapi/__init__.py
+src/apigatewaydisconnectapi/models/apigatewaydisconnectapi/2018-11-29/paginators-1.json
+src/apigatewaydisconnectapi/models/apigatewaydisconnectapi/2018-11-29/service-2.json
