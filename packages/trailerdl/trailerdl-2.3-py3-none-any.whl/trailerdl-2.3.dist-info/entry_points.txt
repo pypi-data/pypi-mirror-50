@@ -1,0 +1,3 @@
+[console_scripts]
+trailerdl = trailerdl.cli:cli
+
