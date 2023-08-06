@@ -1,0 +1,3 @@
+include virustyper/forward_typing_primers.fasta
+include virustyper/reverse_typing_primers.fasta
+include virustyper/virus_typer_alleles.fasta

@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+setup.py
+virus_typer.egg-info/PKG-INFO
+virus_typer.egg-info/SOURCES.txt
+virus_typer.egg-info/dependency_links.txt
+virus_typer.egg-info/entry_points.txt
+virus_typer.egg-info/top_level.txt
+virustyper/__init__.py
+virustyper/forward_typing_primers.fasta
+virustyper/reverse_typing_primers.fasta
+virustyper/virus_typer_alleles.fasta
+virustyper/virustyper.py
+virustyper/virustyper_db.py

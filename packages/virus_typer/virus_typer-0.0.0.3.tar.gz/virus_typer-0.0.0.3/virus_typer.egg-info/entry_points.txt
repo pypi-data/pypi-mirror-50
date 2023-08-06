@@ -1,0 +1,4 @@
+[console_scripts]
+virustyper = virustyper.virustyper:main
+virustyper_create_db = virustyper.virustyper_db:main
+
