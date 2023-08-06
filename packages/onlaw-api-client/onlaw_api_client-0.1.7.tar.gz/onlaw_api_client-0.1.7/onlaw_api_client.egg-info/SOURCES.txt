@@ -1,0 +1,10 @@
+README.md
+setup.cfg
+setup.py
+onlaw_api_client/__init__.py
+onlaw_api_client/client.py
+onlaw_api_client.egg-info/PKG-INFO
+onlaw_api_client.egg-info/SOURCES.txt
+onlaw_api_client.egg-info/dependency_links.txt
+onlaw_api_client.egg-info/requires.txt
+onlaw_api_client.egg-info/top_level.txt
