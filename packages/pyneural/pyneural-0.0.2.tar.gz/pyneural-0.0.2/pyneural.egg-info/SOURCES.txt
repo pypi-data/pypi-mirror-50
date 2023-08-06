@@ -1,0 +1,10 @@
+README.md
+setup.py
+pyneural/__init__.py
+pyneural/brain.py
+pyneural/neurons.py
+pyneural/save_manager.py
+pyneural.egg-info/PKG-INFO
+pyneural.egg-info/SOURCES.txt
+pyneural.egg-info/dependency_links.txt
+pyneural.egg-info/top_level.txt
