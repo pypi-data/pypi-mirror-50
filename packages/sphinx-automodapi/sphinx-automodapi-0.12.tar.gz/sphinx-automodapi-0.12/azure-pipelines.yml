@@ -1,0 +1,24 @@
+schedules:
+- cron: '0 8 1 * *'
+  displayName: 'Monthly cron'
+  branches:
+    include:
+    - master
+  always: 'true'
+
+jobs:
+
+- template: azure-template.yml
+  parameters:
+    name: Linux
+    os: linux
+
+- template: azure-template.yml
+  parameters:
+    name: MacOSX
+    os: macosx
+
+- template: azure-template.yml
+  parameters:
+    name: Windows
+    os: windows
