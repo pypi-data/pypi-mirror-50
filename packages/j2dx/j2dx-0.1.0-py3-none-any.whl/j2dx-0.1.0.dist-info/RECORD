@@ -1,0 +1,16 @@
+LICENSE,sha256=OXLcl0T2SZ8Pmy2_dmlvKuetivmyPd5m1q-Gyd-zaYY,35149
+j2dx/__init__.py,sha256=BkmyE2tuXHINFu1yMR_d_r-jEmh-qvsjgwPX_Le_efE,3754
+j2dx/nix/device.py,sha256=y7NdxaV2MXSSxaWfjxNVVVWKCIDt6yYCCPA3TVcjeOw,5291
+j2dx/nix/setup.py,sha256=-DyMgBmiz8djZLUzmY0b8_tVZRfKrOKHMUqs-N5XZRk,1121
+j2dx/win/ViGEm/client.py,sha256=IqZ2p9LPOSn3NDcmzIx5YR1sjY5eBCf6bWNhjpaqtj8,5025
+j2dx/win/ViGEm/x64/ViGEmClient.dll,sha256=dwnwInXASl5BgQfB0E1ipY-qi1GVhIwCvNceyh5rBIw,25088
+j2dx/win/ViGEm/x64/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+j2dx/win/ViGEm/x86/ViGEmClient.dll,sha256=kZkVerPB_sSvQrAYzwUJ1uF_hKjWl7cksfKxVYarRy0,19456
+j2dx/win/ViGEm/x86/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+j2dx/win/device.py,sha256=VYdumx0iZSJ8bqKiAW9JwS9uJuawxk0mQDtbtToNvsI,7982
+j2dx/win/setup.py,sha256=IdWbvqizcLjfZ3K9mzYgt9RniTJMWKXkME8SmIzlQJw,1501
+j2dx-0.1.0.dist-info/entry_points.txt,sha256=M-MaWk5NDWnUo6yyXv1d61MIBJG1XVCDAN3Am43yn7I,34
+j2dx-0.1.0.dist-info/LICENSE,sha256=OXLcl0T2SZ8Pmy2_dmlvKuetivmyPd5m1q-Gyd-zaYY,35149
+j2dx-0.1.0.dist-info/WHEEL,sha256=f_L0I4hqSDuunYLcjib7afhVEQa4uCwremk0_wPx54s,85
+j2dx-0.1.0.dist-info/METADATA,sha256=AqFA0kq7JTPQrq1Z81xSxNgPR-PAyBb71IeAiaHK-zk,3968
+j2dx-0.1.0.dist-info/RECORD,,
