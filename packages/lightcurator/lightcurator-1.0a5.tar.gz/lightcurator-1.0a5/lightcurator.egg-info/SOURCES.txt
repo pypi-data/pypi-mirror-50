@@ -1,0 +1,16 @@
+MANIFEST.in
+README.md
+license.txt
+requirements.txt
+setup.py
+lightcurator/__init__.py
+lightcurator/calibration.py
+lightcurator/lcdb.py
+lightcurator/lightcurve.py
+lightcurator.egg-info/PKG-INFO
+lightcurator.egg-info/SOURCES.txt
+lightcurator.egg-info/dependency_links.txt
+lightcurator.egg-info/requires.txt
+lightcurator.egg-info/top_level.txt
+tests/__init__.py
+tests/test_lightcurve.py
