@@ -1,0 +1,15 @@
+esig/ERROR_MESSAGE,sha256=Fr6GlocmZORg4GKbTbVLkKzlviONxYy7FzHYG7id_rk,883
+esig/VERSION,sha256=B6d0oGoNa-OhJvIp7L8M8bjJ9gMleOWGkMWfsgLkCWM,6
+esig/__init__.py,sha256=xJjzGz7BRTybz0ITLR_Rd8JbWn9siGV_fWvH8cdCgv8,1804
+esig/install_helpers.py,sha256=SXWNb1ATB1T_sgMJ2hfobl2Lm-EHQPkg0QC5isPFyj4,37539
+esig/tosig.cp37-win_amd64.pyd,sha256=v62Z5W4XQlckHhkSHZ-WuGh-hLDJTp8AowBgGCYyZLw,2470400
+esig/tests/__init__.py,sha256=ZQILJXAaBz2gKQWVlpAnpf3dOzWNvhZ35RM3-0xBT8Y,951
+esig/tests/auxiliaryfunct.py,sha256=8D14rojbjRMBApDnT3PMg3cmjirAVZGMsww_Zom6h8c,17207
+esig/tests/esigtests.py,sha256=IauwONg4H_Am3onPYZ3dVzK8vfx8wcQluWI8gz-uZ98,9579
+esig/tests/test_package.py,sha256=1LTVMzV6NYf_k3Qb0VvS3fjFwnJkRfauj27U3QL3DSI,3712
+esig-0.6.31.dist-info/AUTHORS,sha256=JmVd7u0DWNNOE2Z1a0r17-t39I_fsD1RTIswvb9f1Ro,549
+esig-0.6.31.dist-info/LICENSE,sha256=IsGR_xcqumzNSr2smynaE0ZwaQxhFrNBD11CMqmW-RA,35827
+esig-0.6.31.dist-info/METADATA,sha256=pQTpXwrSjoKxsXmJnwHBlWeb6fZHC7RMncCgTLnEnB0,915
+esig-0.6.31.dist-info/WHEEL,sha256=rpJIxsZQulJdxSTRRlB5eKYFBr_5T7UwADMbZS3uepA,106
+esig-0.6.31.dist-info/top_level.txt,sha256=F1eEcl8RqWaqM2uiFckw6psL2BknGzFQS44-WMtHetA,5
+esig-0.6.31.dist-info/RECORD,,
