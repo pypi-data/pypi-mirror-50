@@ -1,0 +1,26 @@
+<!-- templates/base.html -->
+{% load static %}
+<html>
+    <head>
+        <title> blog</title>
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:rel="stylesheet">
+        <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <div class="nav-left">
+                <h1><a href="{% url 'blog:home' %}">blogs</a></h1>
+            </div>
+            <div class="nav-left">
+                <h1><a href="{% url 'contact:contact' %}">Contact us</a></h1>
+            </div>
+            <div class="nav-right">
+                <a href="{% url 'blog:post_new' %}">+ New Blog Post</a>
+            </div>
+        </header>
+        <div>
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </body>
+</html>
