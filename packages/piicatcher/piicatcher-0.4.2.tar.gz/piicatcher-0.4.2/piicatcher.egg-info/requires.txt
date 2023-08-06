@@ -1,0 +1,13 @@
+commonregex
+coverage
+cryptography
+nose
+peewee
+psycopg2-binary
+pymysql
+pypi-publisher
+pytest
+spacy
+sphinx
+sphinx_rtd_theme
+tableprint
