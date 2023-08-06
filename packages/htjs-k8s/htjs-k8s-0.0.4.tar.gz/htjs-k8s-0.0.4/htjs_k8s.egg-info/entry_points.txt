@@ -1,0 +1,3 @@
+[console_scripts]
+htjs-k8s = htjs_k8s.cli:main
+
