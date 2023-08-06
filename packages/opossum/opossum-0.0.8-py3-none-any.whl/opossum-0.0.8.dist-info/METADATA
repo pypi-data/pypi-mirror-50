@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: opossum
+Version: 0.0.8
+Summary: Simulated Data Generating Process
+Home-page: https://humboldt-wi.github.io/blog/research/
+Author: Tobias Krebs, Julian Winkel
+Author-email: julian.winkel@hu-berlin.de
+License: MIT
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: statsmodels
+Requires-Dist: seaborn
+Requires-Dist: matplotlib
+Requires-Dist: time
+Requires-Dist: scipy
+Requires-Dist: os
+
+UNKNOWN
+
+
