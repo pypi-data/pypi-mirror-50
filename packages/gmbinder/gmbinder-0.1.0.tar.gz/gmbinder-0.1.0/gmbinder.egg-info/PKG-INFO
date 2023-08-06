@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: gmbinder
+Version: 0.1.0
+Summary: Python binding of gmbinder API and cli tool
+Home-page: http://www.foopackage.com/
+Author: Tristan Sweeney
+Author-email: sweeney.tr@husky.neu.edu
+License: GPLv3
+Description: # gmbinder
+        
+        Python binding of GMBinder API and CLI tool.
+        
+        # To install
+        ```bash
+        # Note: To ommit save to pdf requirements, exclude [PDF]
+        pip3 install gmbinder[PDF]
+        ```
+Platform: UNKNOWN
+Provides-Extra: PDF
