@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: yayconf
+Version: 0.1.0b2
+Summary: Yet another yaml based configuration library
+Home-page: UNKNOWN
+Author: Amritanshu Pandey
+Author-email: amritanshu16@outlook.com
+License: Apache
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.6
+Requires-Dist: pyyaml
+Provides-Extra: test
+Requires-Dist: flake8 ; extra == 'test'
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-mock ; extra == 'test'
+Requires-Dist: pytest-faker ; extra == 'test'
+
+UNKNOWN
+
+
