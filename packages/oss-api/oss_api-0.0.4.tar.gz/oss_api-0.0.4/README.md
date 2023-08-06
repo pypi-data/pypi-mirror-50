@@ -1,0 +1,27 @@
+# OSS_API
+
+Allows to script the creation of scenarios and uploading of layers to OSS for displaying in synapps.
+
+## installation
+`pip install git+https://IMDCdocker:#######@gitlab.com:imdc/packages/oss_api`
+
+## command line interface
+
+1. configure the project id: `oss configure -p 42`
+2. create a scenario: `oss createScenario -n "new scenario"` # scenario_id = e.g. 108
+3. Upload a *.tif / *.shp file: `oss uploadLayer -i 108 -f D:\shapefile.shp -s shapefile.sld -n "new layer" -g Group1`
+
+## python interface
+
+```python
+from oss_api import configure, createScenario, uploadLayer
+import os
+
+configure(project=42)
+scen = createScenario(name="Testing new scenario")
+
+layers = [r"D:\dev\testdata\subcatchments.shp", r"D:\dev\testdata\dem.tif"]
+
+for idx, layer in enumerate(layers):
+    uploadLayer(scenario=scen, name=os.path.basename(layer), filename=layer, sld="polygon", group="Group+%d"%idx)
+```
