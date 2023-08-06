@@ -1,0 +1,34 @@
+{% if k8s and k8s.configMap and k8s.configMap.enabled %}
+
+{% if k8s.configMap.namespace or k8s.namespace %}
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: {{ k8s.configMap.namespace or k8s.namespace }}
+---
+{% endif %}
+
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ k8s.configMap.name or k8s.name + '-conf' }}
+
+  {% if k8s.configMap.namespace or k8s.namespace %}
+  namespace: {{ k8s.configMap.namespace or k8s.namespace }}
+  {% endif %}
+
+  labels:
+    htjs: "true"
+    htjs-app: "{{ k8s.name }}"
+    htjs-app-version: "{{ k8s.version or '0.0.1' }}"
+
+{% if k8s.configMap.data %}
+data:
+  {% for k, v in k8s.configMap.data.items() %}
+  {{ k }}: /
+    {% for name, value in v.items %}
+    {{ name }}={{ values }}
+    {% endfor %}
+  {% endfor %}
+{% endif %}
+{% endif %}
