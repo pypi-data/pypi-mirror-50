@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: AutoAILib
+Version: 0.2.dev0
+Summary: UNKNOWN
+Home-page: UNKNOWN
+Author: Matthew Mulhall
+Author-email: matthewlmulhall@gmail.com
+License: GNU GPLv3
+Description: AutoAI
+        This repository is a compilation of scripts that I have created in my time working with machine learning. These scripts aim to automate the annoying and silly parts of ML, allowing you to focus on what is important.
+         AutoAi.manual_test(model, testing_dir, labels) 
+         This function tests a model given labels and testing data. It then compiles the results in a CSV file, and groups the results by class, and by correct and incorrect.
+        
+         Model - Path of model that you want to test or model object.
+         Testing_dir - Path to the directory with your testing data.
+         Labels - Dictionary of the classes, in form (index:class_name)
+        
+         AutoAi.compile_data(src, dest, num_imgs_per_class=0, train_ratio=.7, validation_ratio=.2, test_ratio=.1) 
+        
+        
+         Src - Path to a folder that contains a folder for each class and then data examples in those class folders. 
+         Dest - Path to a folder where you want the data to end up. 
+         Num_imgs_per_class - This number of images will be added to the original set for each class through transforms. The theoretical limit for this would be 3! * original images per class 
+        
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
