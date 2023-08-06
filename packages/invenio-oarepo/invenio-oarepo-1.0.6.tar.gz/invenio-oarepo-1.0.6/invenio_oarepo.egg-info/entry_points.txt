@@ -1,0 +1,12 @@
+[console_scripts]
+oarepo = invenio_app.cli:cli
+
+[invenio_base.blueprints]
+invenio_oarepo = invenio_oarepo.views:blueprint
+
+[invenio_config.module]
+invenio_oarepo = invenio_oarepo.config
+
+[invenio_i18n.translations]
+messages = invenio_oarepo
+
