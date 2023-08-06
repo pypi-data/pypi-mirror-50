@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: irapi
+Version: 0.1.0
+Summary: InnoRPA common API package
+Home-page: https://github.com/kevinblade/rpa-commons
+Author: Kevin Cho
+Author-email: kevin.innorules@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# InnoRPA API Package
+
+## This is a innoRPA API package.
+
+* ## Install the Package locally
+```
+  $ pip install .
+
+  and then use it as follow.
+  >>> import irapi
+  >>> print irpa.getValue()
+```
+
+* ## Publishing on PyPi
+```
+  $ python setup.py bdist_wheel
+  $ python -m pip install dist/irapi-0.1-py2-none-any.whl
+  $ python -m twine upload dist/*
+```
+
+* ## Install the Package from PyPi
+```
+  $ pip install irapi
+```
+
