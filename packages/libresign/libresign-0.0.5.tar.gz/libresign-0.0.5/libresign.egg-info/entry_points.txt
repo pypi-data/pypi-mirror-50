@@ -1,0 +1,3 @@
+[console_scripts]
+libresign = libresign:run_script
+
