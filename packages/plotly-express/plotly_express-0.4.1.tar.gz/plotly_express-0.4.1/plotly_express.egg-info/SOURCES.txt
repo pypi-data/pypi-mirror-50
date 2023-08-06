@@ -1,0 +1,11 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+plotly_express/__init__.py
+plotly_express.egg-info/PKG-INFO
+plotly_express.egg-info/SOURCES.txt
+plotly_express.egg-info/dependency_links.txt
+plotly_express.egg-info/requires.txt
+plotly_express.egg-info/top_level.txt
