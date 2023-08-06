@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: evohome-async
+Version: 0.3.3b3
+Summary: An async Python client for connecting to the Evohome webservice
+Home-page: https://github.com/zxdavb/evohome-async/
+Author: Andrew Stock & David Bonnes
+Author-email: zxdavb@bonnes.me
+License: Apache 2
+Download-URL: https://github.com/zxdavb/evohome-async/tarball/0.3.3b3
+Description: evohome-client
+        ==============
+        
+        Build status: [![CircleCI](https://circleci.com/gh/watchforstock/evohome-client.svg?style=svg)](https://circleci.com/gh/watchforstock/evohome-client)
+        
+        Python client to access the Evohome web service
+        
+        Documentation (in progress) at http://evohome-client.readthedocs.org/en/latest/
+        
+        Provides Evohome support for Home Assistant. See http://home-assistant.io/components/evohome/
+        
+Keywords: evohome,total connect comfort,round thermostat
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Description-Content-Type: text/markdown
