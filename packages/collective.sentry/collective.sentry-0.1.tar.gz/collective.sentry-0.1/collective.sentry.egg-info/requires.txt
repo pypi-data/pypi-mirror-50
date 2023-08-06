@@ -1,0 +1,5 @@
+setuptools
+sentry-sdk
+
+[tests]
+zope.testing
