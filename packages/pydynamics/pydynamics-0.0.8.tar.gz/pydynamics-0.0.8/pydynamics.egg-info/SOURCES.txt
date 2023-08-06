@@ -1,0 +1,11 @@
+README.md
+setup.py
+pydynamics/__init__.py
+pydynamics/client.py
+pydynamics/querybuilder.py
+pydynamics/token.py
+pydynamics.egg-info/PKG-INFO
+pydynamics.egg-info/SOURCES.txt
+pydynamics.egg-info/dependency_links.txt
+pydynamics.egg-info/requires.txt
+pydynamics.egg-info/top_level.txt
