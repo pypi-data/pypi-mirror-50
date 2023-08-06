@@ -1,0 +1,6 @@
+PySoundFile>=0.9.0.post1
+librosa>=0.6.3
+numpy>=1.16.1
+pandas>=0.24.1
+click
+natsort
