@@ -1,0 +1,102 @@
+Metadata-Version: 1.0
+Name: ucenter-sdk
+Version: 1.0.13
+Summary: YIDU UCenter SDK.
+Home-page: UNKNOWN
+Author: shiwei.ma
+Author-email: shiwei.ma@yiducloud.cn
+License: UNKNOWN
+Description: ===========
+        Ucenter SDK
+        ===========
+        :Info: 该组件是提供给应用方使用的，用来访问用户中心功能的SDK
+        :Author: shiwei.ma (shiwei.ma@yiducloud.cn)
+        :Maintainer: qibin.jin(qibin.jin@yiducloud.cn), shiwei.ma(shiwei.ma@yiducloud.cn)
+        
+        About
+        =====
+        ucenter-sdk 是架构组新用户中心系统提供的SDK。
+        用于辅助内部应用开发者快速接入新用户中心，对接并完成如： ``登录`` ， ``用户信息管理`` ， ``应用信息管理`` ， ``权限管理`` ， ``单点登录功能`` ， ``应用间授权管理等功能`` 。
+        部分文档已经更新和发布，包括一个简明教程，用户指南和 `API参考手册 <http://ucenter.test.inner.yiducloud.cn/ipacenter1/apidoc>`_ 。
+        
+        Supported Ucenter Versions
+        ==========================
+        ucenter-sdk 现支持Ucenter v2.0.0
+        
+        Installation
+        ============
+        我们推荐使用 `pip <https://pip.pypa.io/>`_ 。你可以使用 ``pip install -i http://devpi.intra.yiducloud.cn/root/yiducloud/+simple/ --trusted-host devpi.intra.yiducloud.cn -U ucenter-sdk`` 来安装它。
+        
+        Dependencies
+        ============
+        ucenter-sdk 所依赖的可以通过 `pip <https://pip.pypa.io/>`_ 安装。
+        使用ucenter-sdk 你需要满足:
+        
+        - requests>=2.1.0
+        
+        Examples
+        ========
+        Some simple examples of what MongoEngine code looks like:
+        
+        .. code :: python
+        
+            # -*- coding:utf-8 -*-
+            from ucenter_sdk import uc_call
+            
+            # 应用名，应用必须在统一用户中心中有注册
+            # 如果是新应用，可以找管理员添加
+            app_name = 'dep-platform'
+            
+            # 应用间授权（OAUTH2）凭证
+            # 在统一用户中心中申请（由管理员添加）
+            oauth2_req_args = {
+                'client_id': 'open-platform',  # type: str
+                'client_secret': 'open-platform-secret',
+                'grant_type': 'client_credentials',
+                'scope': 'cluster:all org:all app:all',
+            }
+            
+            # 应用所在的集群
+            # 默认不需要用户指定，会在运行时，由平台的环境变量自动赋值。
+            #cluster_name = '用户中心cluster'
+            
+            # 用户中心服务地址
+            # 默认不需要用户指定，会在运行时，由平台的环境变量自动赋值。
+            uc_uri = 'http://localhost:5102'
+            
+            ucenter = uc_call(client_credential=oauth2_req_args, app_name=app_name, uc_uri=uc_uri)
+            
+            login_name = 'super_admin'
+            password = '123456'
+            ucenter_user = ucenter.login_check(login_name=login_name, password=password)
+            print(ucenter_user)
+        
+            >>> 
+            {
+            "username": "super_admin",
+            "app": "{'status': 0, 'by_uid': u'用户中心', 'createAt': '2018-11-13 21:12:52', 'name': u'用户中心app', 'updateAt': '2018-11-13 21:12:52', 'removed': False, 'type': u'inner', 'id': '5bc87f1059179433b79d8aa1', 'desc': u'用户中心'}",
+            "phone": null,
+            "updateAt": "2018-11-13T21:12:53.200000",
+            "id": "5beacdd5bda7532ebbbd3592",
+            "auth_phone": false,
+            "userid": "super_admin",
+            "auth_email": false,
+            "ext": {
+                "title": null,
+                "createAt": null,
+                "attrs": null,
+                "department": null,
+                "updateAt": null,
+                "id": null
+            },
+            "createAt": "2018-11-13T21:12:53.201000",
+            "fullname": "super_admin",
+            "email": null
+            }
+        
+        Tests
+        =====
+        运行测试用例
+        
+Keywords: user,ucenter
+Platform: UNKNOWN
