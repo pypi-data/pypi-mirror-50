@@ -1,0 +1,6 @@
+[console_scripts]
+all_tests = tests:all_tests.main
+lsc = controller:lsc.main
+run = controller:run.main
+snapshot = controller:snapshot.main
+
