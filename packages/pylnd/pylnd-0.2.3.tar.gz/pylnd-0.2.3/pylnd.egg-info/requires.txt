@@ -1,0 +1,14 @@
+requests
+grpcio
+grpcio-tools
+googleapis-common-protos
+
+[dev]
+pytest-cov
+mypy
+pytest
+pylint
+codecov
+
+[docs]
+sphinx
