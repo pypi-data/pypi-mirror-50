@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: example-pkg-gatkin
+Version: 0.0.2rc3
+Summary: A small example package
+Home-page: https://github.com/gatkin/automated-pypi-deploy-example
+Author: Greg Atkin
+Author-email: greg.scott.atkin@gmail.com
+License: UNKNOWN
+Description: # automated-pypi-deploy-example
+        Example code for automating PyPI deployments
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
