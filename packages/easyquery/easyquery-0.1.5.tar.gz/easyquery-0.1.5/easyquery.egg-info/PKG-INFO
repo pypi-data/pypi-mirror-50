@@ -1,0 +1,19 @@
+Metadata-Version: 1.2
+Name: easyquery
+Version: 0.1.5
+Summary: Create easy-to-use Query objects that can apply on NumPy structured arrays, astropy Table, and Pandas DataFrame.
+Home-page: https://github.com/yymao/easyquery
+Author: Yao-Yuan Mao
+Author-email: yymao.astro@gmail.com
+Maintainer: Yao-Yuan Mao
+Maintainer-email: yymao.astro@gmail.com
+License: MIT
+Download-URL: https://github.com/yymao/easyquery/archive/v0.1.5.tar.gz
+Description: UNKNOWN
+Keywords: easyquery query numpy
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
