@@ -1,0 +1,11 @@
+include *.rst
+include *.cfg
+exclude .*.cfg
+
+recursive-include dataflake *
+
+global-exclude *.pyc
+global-exclude *.pyo
+
+include *.py
+include tox.ini
