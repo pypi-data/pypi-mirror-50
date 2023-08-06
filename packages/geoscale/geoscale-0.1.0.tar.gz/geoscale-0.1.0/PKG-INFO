@@ -1,0 +1,69 @@
+Metadata-Version: 1.1
+Name: geoscale
+Version: 0.1.0
+Summary: Python library for scale-based spatial analysis
+Home-page: https://github.com/giswqs/geoscale
+Author: Qiusheng Wu
+Author-email: giswqs@gmail.com
+License: MIT license
+Description: ========
+        geoscale
+        ========
+        
+        
+        .. image:: https://img.shields.io/pypi/v/geoscale.svg
+                :target: https://pypi.python.org/pypi/geoscale
+        
+        .. image:: https://img.shields.io/travis/giswqs/geoscale.svg
+                :target: https://travis-ci.org/giswqs/geoscale
+        
+        .. image:: https://readthedocs.org/projects/geoscale/badge/?version=latest
+                :target: https://geoscale.readthedocs.io/en/latest/?badge=latest
+                :alt: Documentation Status
+        
+        
+        
+        
+        Python library for scale-based spatial analysis
+        
+        
+        * Free software: MIT license
+        * Documentation: https://geoscale.readthedocs.io.
+        
+        
+        Features
+        --------
+        
+        * TODO
+        
+        Credits
+        -------
+        
+        This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+        
+        .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+        .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+        
+        
+        =======
+        History
+        =======
+        
+        0.1.0 (2019-08-07)
+        ------------------
+        
+        * First release on PyPI.
+        
+Keywords: geoscale
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
