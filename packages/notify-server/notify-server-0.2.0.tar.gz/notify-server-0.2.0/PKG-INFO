@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: notify-server
+Version: 0.2.0
+Summary: A tool to broadcast notifications across various interfaces
+Home-page: https://github.com/matthewscholefield/notify-server
+Author: Matthew Scholefield
+Author-email: matthew331199@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: notify server
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
