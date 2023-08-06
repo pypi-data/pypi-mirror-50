@@ -1,0 +1,13 @@
+duo_client/__init__.py,sha256=kjn0RNOPIeDTbnDuMvzxqmu6QsgtZ1MnwHLXuxFLf0Q,206
+duo_client/accounts.py,sha256=8-if8jKKnDvWqYaqJ_mjEk4oNrTi5bmE4tdgSZDoGtk,1287
+duo_client/admin.py,sha256=fyajXKnj9VE7PWSZ3oczO6HJJbdnV70qqRtK1-toM30,96627
+duo_client/auth.py,sha256=VbdkfhbjATEurlEM8kO4KjzK3ouNA1gTv-bJILuwPzY,6755
+duo_client/auth_v1.py,sha256=S3Kpn5gY020LkyNypTqP8o6cR4thZcOT5hbkyy4akxY,3789
+duo_client/ca_certs.pem,sha256=_5vpd3bsrY3zPSvg_l7KhBpKxxQSD3_nHWyNCdqdbhA,7129
+duo_client/client.py,sha256=NxBl8aQJgbN-tqi1ioDpijA4qX4emsXsz_fsaGKPDME,18491
+duo_client/https_wrapper.py,sha256=QQ4c-gzCyn4WYQ_wd6C_7eUqmYJHa237GG3zppWSNbc,6047
+duo_client-4.2.1.dist-info/LICENSE,sha256=Z5-4NJNhjpgcBBRU6hQQV8FJ4FZb-9deVge8HNcOGq4,1600
+duo_client-4.2.1.dist-info/METADATA,sha256=2xb2_vozLXhgoF2vgjkLyiMgV8O10u-G712TYFzS8cE,1321
+duo_client-4.2.1.dist-info/WHEEL,sha256=h_aVn5OB2IERUjMbi2pucmR_zzWJtk303YXvhh60NJ8,110
+duo_client-4.2.1.dist-info/top_level.txt,sha256=0QKawrjE8LILyu1EcZCGv4jIiByR6DEQZeYfUWKuohg,11
+duo_client-4.2.1.dist-info/RECORD,,
