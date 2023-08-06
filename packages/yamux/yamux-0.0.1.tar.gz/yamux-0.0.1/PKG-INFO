@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: yamux
+Version: 0.0.1
+Summary: yamux implementation written in python
+Home-page: https://github.com/mhchia/py-yamux
+Author: Kevin Mai-Hsuan Chia
+Author-email: kevin@mhchia.com
+License: MIT
+Description: # py-yamux
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+Provides-Extra: test
+Provides-Extra: lint
