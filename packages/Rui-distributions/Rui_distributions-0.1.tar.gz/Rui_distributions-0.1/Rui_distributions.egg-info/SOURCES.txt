@@ -1,0 +1,12 @@
+README.md
+setup.cfg
+setup.py
+Rui_distributions/Binomialdistribution.py
+Rui_distributions/Gaussiandistribution.py
+Rui_distributions/Generaldistribution.py
+Rui_distributions/__init__.py
+Rui_distributions.egg-info/PKG-INFO
+Rui_distributions.egg-info/SOURCES.txt
+Rui_distributions.egg-info/dependency_links.txt
+Rui_distributions.egg-info/not-zip-safe
+Rui_distributions.egg-info/top_level.txt
