@@ -1,0 +1,30 @@
+Metadata-Version: 1.0
+Name: blur-clip-board-image-cli
+Version: 0.0.2
+Summary: Blur clip board image command line tool for macOS
+Home-page: https://github.com/kenchan0130/blur-clip-board-image-for-macOS
+Author: Tadayuki Onishi
+Author-email: UNKNOWN
+License: MIT
+Description: # Blure clip board image for macOS
+        
+        Blur clip board image command line tool for macOS.
+        
+        ## Installation
+        
+        ```sh
+        pip install blur-clip-board-image-cli
+        ```
+        
+        ## Usage
+        
+        1. Copy image
+        2. Run this command `blur-clip-board-image`
+            - Default blur rate is `8.5`
+            - You can also select blur rate with argument like `blur-clip-board-image 10`
+        3. Paste image
+        
+        ## Licence
+        
+        MIT
+Platform: UNKNOWN
