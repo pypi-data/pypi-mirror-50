@@ -1,0 +1,10 @@
+README.md
+setup.py
+PyJSONViewer.egg-info/PKG-INFO
+PyJSONViewer.egg-info/SOURCES.txt
+PyJSONViewer.egg-info/dependency_links.txt
+PyJSONViewer.egg-info/top_level.txt
+pyjsonviewer/__init__.py
+pyjsonviewer/__main__.py
+pyjsonviewer/icon.py
+pyjsonviewer/pyjsonviewer.py
