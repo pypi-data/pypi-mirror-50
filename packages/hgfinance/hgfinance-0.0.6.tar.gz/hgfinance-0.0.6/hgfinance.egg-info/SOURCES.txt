@@ -1,0 +1,10 @@
+LICENSE.txt
+README.md
+setup.cfg
+setup.py
+hgfinance/__init__.py
+hgfinance/hgfinance.py
+hgfinance.egg-info/PKG-INFO
+hgfinance.egg-info/SOURCES.txt
+hgfinance.egg-info/dependency_links.txt
+hgfinance.egg-info/top_level.txt
