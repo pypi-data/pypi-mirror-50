@@ -1,0 +1,4 @@
+[console_scripts]
+SAMstats = SAMstats.__init__:main
+SAMstatsParallel = SAMstatsParallel.__init__:main
+
