@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: ssm-dotenv
+Version: 0.1.0
+Summary: manage project dotenv parameters in aws parameter store
+Home-page: https://github.com/harvard-dce/ssm-dotenv
+Author: Jay Luker
+Author-email: jay_luker@harvard.edu
+License: MIT
+Platform: UNKNOWN
+Requires-Python: >=3.4
+Description-Content-Type: text/markdown
+Requires-Dist: Click
+Requires-Dist: boto3
+Requires-Dist: toml
+Requires-Dist: ssm-cache
+Provides-Extra: testing
+Requires-Dist: pytest ; extra == 'testing'
+Requires-Dist: moto ; extra == 'testing'
+
+# ssm-dotenv
+Command-line tool for managing .env configuration via AWS Parameter Store
+
+
