@@ -1,0 +1,10 @@
+README.rst
+setup.cfg
+setup.py
+dkpkg/__init__.py
+dkpkg/directory.py
+dkpkg.egg-info/PKG-INFO
+dkpkg.egg-info/SOURCES.txt
+dkpkg.egg-info/dependency_links.txt
+dkpkg.egg-info/not-zip-safe
+dkpkg.egg-info/top_level.txt
