@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: brain-plasma
+Version: 0.2
+Summary: Share python between callbacks in Dash, using Apache Plasma
+Home-page: https://github.com/russellromney/brain-plasma
+Author: Russell Romney
+Author-email: russellromney@gmail.com
+License: MIT
+Download-URL: https://github.com/russellromney/brain-plasma/archive/v0.2.tar.gz
+Description: Adds variable naming and unique intra-instance namespaces to the Apache Plasma in-memory object store.
+Keywords: dash plasma callbacks plotly apache arrow pandas numpy redis namespace python
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
