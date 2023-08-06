@@ -1,0 +1,9 @@
+README.md
+setup.py
+pywc.egg-info/PKG-INFO
+pywc.egg-info/SOURCES.txt
+pywc.egg-info/dependency_links.txt
+pywc.egg-info/top_level.txt
+src/__init__.py
+src/sentences.py
+src/words.py
