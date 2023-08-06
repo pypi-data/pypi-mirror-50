@@ -1,0 +1,3 @@
+[console_scripts]
+nsb = nsb.__main__:main
+
