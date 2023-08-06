@@ -1,0 +1,67 @@
+Metadata-Version: 2.1
+Name: log-redactor
+Version: 0.1.1
+Summary: Remove a pattern from your logs
+Home-page: https://github.com/reedrichards-python/log_redactor
+Author: Robert Wendt
+Author-email: rwendt1337@gmail.com
+License: MIT license
+Keywords: log_redactor
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+
+============
+Log Redactor
+============
+
+
+.. image:: https://img.shields.io/pypi/v/log_redactor.svg
+        :target: https://pypi.python.org/pypi/log_redactor
+
+.. image:: https://img.shields.io/travis/reedrichards/log_redactor.svg
+        :target: https://travis-ci.org/reedrichards/log_redactor
+
+.. image:: https://readthedocs.org/projects/log-redactor/badge/?version=latest
+        :target: https://log-redactor.readthedocs.io/en/latest/?badge=latest
+        :alt: Documentation Status
+
+
+
+
+Remove a pattern from your logs
+
+
+* Free software: MIT license
+* Documentation: https://log-redactor.readthedocs.io.
+
+
+Features
+--------
+
+* TODO
+
+Credits
+-------
+
+This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+
+
+=======
+History
+=======
+
+0.1.0 (2019-08-15)
+------------------
+
+* First release on PyPI.
+
+
