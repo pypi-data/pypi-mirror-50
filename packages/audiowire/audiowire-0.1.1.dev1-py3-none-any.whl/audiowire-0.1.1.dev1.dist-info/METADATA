@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: audiowire
+Version: 0.1.1.dev1
+Summary: Listen PC sound from your phone
+Home-page: UNKNOWN
+Author: codeskyblue
+Author-email: codeskyblue@gmail.com
+License: GPL2.0
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Testing
+Requires-Python: >=3.6
+Requires-Dist: tornado
+Requires-Dist: logzero
+Requires-Dist: pyaudio (>=0.2.11)
+Requires-Dist: qrcode (>=6.0)
+Requires-Dist: Pillow (>=5.3.0)
+Requires-Dist: pyzmq (>=17.1)
+
+UNKNOWN
+
+
