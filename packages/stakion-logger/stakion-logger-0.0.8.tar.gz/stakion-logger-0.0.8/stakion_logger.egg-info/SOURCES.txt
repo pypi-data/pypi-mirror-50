@@ -1,0 +1,11 @@
+README.rst
+setup.py
+stakion/__init__.py
+stakion/logger.py
+stakion/publishers.py
+stakion/version.py
+stakion_logger.egg-info/PKG-INFO
+stakion_logger.egg-info/SOURCES.txt
+stakion_logger.egg-info/dependency_links.txt
+stakion_logger.egg-info/requires.txt
+stakion_logger.egg-info/top_level.txt
