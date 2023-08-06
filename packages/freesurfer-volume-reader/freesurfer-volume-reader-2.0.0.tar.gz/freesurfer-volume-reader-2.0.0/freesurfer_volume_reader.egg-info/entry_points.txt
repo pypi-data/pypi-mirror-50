@@ -1,0 +1,3 @@
+[console_scripts]
+freesurfer-volume-reader = freesurfer_volume_reader.__main__:main
+
