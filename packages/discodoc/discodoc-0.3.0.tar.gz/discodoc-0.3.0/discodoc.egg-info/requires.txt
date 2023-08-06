@@ -1,0 +1,4 @@
+docopt>=0.6.2
+munch>=2.3.2
+requests
+rfc3339

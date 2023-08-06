@@ -1,0 +1,3 @@
+[console_scripts]
+discodoc = discodoc.cli:run
+
