@@ -1,0 +1,10 @@
+setup.py
+sparkling/__init__.py
+sparkling/constants.py
+sparkling/model.py
+sparkling/tmagg.py
+sparkling/utils.py
+sparkling.egg-info/PKG-INFO
+sparkling.egg-info/SOURCES.txt
+sparkling.egg-info/dependency_links.txt
+sparkling.egg-info/top_level.txt
