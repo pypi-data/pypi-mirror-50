@@ -1,0 +1,34 @@
+Metadata-Version: 1.2
+Name: coala-json
+Version: 0.1.1
+Summary: A collection of coala json utilities
+Home-page: https://gitlab.com/coala/coala-json
+Author: The coala developers
+Author-email: coala-devel@googlegroups.com
+Maintainer: Lasse Schuirmann, Fabian Neuschmidt, Mischa Krüger
+Maintainer-email: lasse.schuirmann@gmail.com, fabian@neuschmidt.de, makman@alice.de
+License: MIT
+Description: coala-json
+        ==========
+        
+        coala-json holds a collection of useful utilities that are used
+        to read JSON output from coala and convert it to other formats.
+        
+Keywords: code-analysis,lint
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Environment :: MacOS X
+Classifier: Environment :: Win32 (MS Windows)
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Software Development :: Quality Assurance
+Classifier: Topic :: Text Processing :: Linguistic
