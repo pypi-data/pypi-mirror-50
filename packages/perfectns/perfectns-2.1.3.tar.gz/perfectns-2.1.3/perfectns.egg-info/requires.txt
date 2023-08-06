@@ -1,0 +1,12 @@
+numpy>=1.13
+scipy>=1.0.0
+pandas
+matplotlib>=2.1.0
+mpmath
+nestcheck>=0.1.2
+
+[docs]
+sphinx
+numpydoc
+sphinx-rtd-theme
+nbsphinx>=0.3.3
