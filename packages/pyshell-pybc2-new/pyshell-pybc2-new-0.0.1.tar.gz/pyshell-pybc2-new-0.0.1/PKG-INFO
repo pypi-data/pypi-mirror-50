@@ -1,0 +1,118 @@
+Metadata-Version: 1.1
+Name: pyshell-pybc2-new
+Version: 0.0.1
+Summary: This Package contains the commands of UNIX shell
+Home-page: UNKNOWN
+Author: PYBC_2
+Author-email: lakshmip@adobe.com
+License: UNKNOWN
+Description: # This project implements the Command Line Interface like UNIX-shell
+        
+        This project includes the following commands:
+        
+        
+        ## Directory commands:
+        
+        - **ls** (with support for -R)
+        
+          Lists the files and directories in the current directory
+          
+          -R lists the files and directories recursively
+        
+        - **pwd**
+        
+          Returns the present working directory
+          
+        - **mkdir**
+        
+          Creates a new directory
+        
+        - **rmdir**
+        
+          Removes the directory if it is empty
+          
+        - **cd**
+        
+          Changes the current directory to the directory mentioned in the argument
+          
+        
+        ## File Commands:
+        
+        - **grep**
+        
+          To find matching patterns
+          
+        - **find**
+        
+          Finds the given file in the given path
+          
+        - **cat**
+        
+          Used to display the contents of the given file. With '>' can be used to create and write into a new file
+          
+        - **cp**
+        
+          Copy contents from source to destination
+          
+        - **mv**
+        
+          Move contents from source to destionation
+          
+        - **rm** (with support for -r)
+        
+          Remove the file or directory with a confirmation to remove non empty items. 
+          
+          -r Removes recursively
+          
+        - **sizeof**
+        
+          Returns the size of the file in the arguments
+          
+        - **head**
+        
+          -n for the number of lines it has to print since the beginning of file
+          
+          Default is 10
+          
+        - **tail**
+          
+          -n for the last n number of lines to print from the file
+          
+          Default is 10
+          
+        
+        ## Miscellaneous commands:
+        
+        - **date**
+        
+          Returns the current date and time
+          
+        - **whoami**
+        
+          Returns current user name
+          
+        - **hostname**
+        
+          Returns current host name
+        
+        - **timeit**
+        
+          Returns the time taken to run the command given
+          
+        - **exit**
+        
+          Exit from the shell
+          
+        - **history**
+        
+          Shows the history of commands executed so far
+          
+          # Installing the package
+          
+          To install and use, run the following command from your command line
+          
+          > pip install pyshell-pybc2
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
