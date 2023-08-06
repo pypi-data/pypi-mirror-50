@@ -1,0 +1,9 @@
+README.md
+setup.py
+hellodoycode/__init__.py
+hellodoycode.egg-info/PKG-INFO
+hellodoycode.egg-info/SOURCES.txt
+hellodoycode.egg-info/dependency_links.txt
+hellodoycode.egg-info/top_level.txt
+hellodoycode/helloworld1/__init__.py
+hellodoycode/helloworld2/__init__.py
