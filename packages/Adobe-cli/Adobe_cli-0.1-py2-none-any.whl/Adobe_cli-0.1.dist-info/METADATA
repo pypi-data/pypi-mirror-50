@@ -1,0 +1,112 @@
+Metadata-Version: 2.1
+Name: Adobe-cli
+Version: 0.1
+Summary: A linux-like shell
+Home-page: https://git.corp.adobe.com/pragkuma/PY_3
+Author: Py-3
+Author-email: vaishsha@adobe.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+
+# PY_3
+Implementation of simple UNIX like shell using Python.
+
+Main module is commands.py and for running the shell using the command 
+```bash
+python commands.py
+```
+
+All commands are implemented as separated modules which are present in different files with the filename same as the name of the command.
+
+# SUPPORTED COMMANDS
+ - Directory related commands 
+    - `ls`: list directory contents
+    - `mkdir`: make directories
+    - `pwd`: return working directory name
+    - `rmdir`: remove directories
+    - `cd`: change current working directory
+
+ - FileDirectory related commands
+    - `cat`: concatenate and print files
+    - `cp`: copy files
+    - `rm`: remove directory links
+    - `mv`: move files
+    - `grep`: file pattern searcher
+    - `head`: display first lines of a file
+    - `tail`: display the last part of a file
+    - `sizeof`: size of file
+    - `find`: walk a file hierarchy
+
+ - Built-in commands
+    - `date`: display date or time
+    - `whoami`: display effective user id
+    - `hostname`: print hostname of current host system
+    - `timeit`: measures execution time
+    - `exit`: terminate the shell
+    - `history`: previous commands
+ - `Ctrl-C` signal handling 
+
+# Unittest
+
+Unittest module is used for testing for the entire shell. The unittest unit testing framework was originally inspired by JUnit and has a similar flavor as major unit testing frameworks in other languages. test_file.py has test for the modules in it.
+
+Example:
+```bash
+pragyas-mbp-2:PY_3 pragkuma$ python test_file.py
+----------------------------------------------------------------------
+Ran 22 tests in 0.112s
+OK
+```
+
+# Input/Output Format
+
+Input from the 'stdin' in an infinite loop till an “exit” is entered.
+The corresponding output should be printed to 'stdout'.
+
+Example:
+
+```bash
+pragyas-mbp-2:PY_3 pragkuma$ python commands.py 
+MyShell> find . -name grep
+./grep
+MyShell> date -u
+Mon Aug 5 09:14:11 UTC 2019
+MyShell> whoami
+pragkuma
+MyShell> sizeof hostname.py
+2278 bytes
+MyShell> exit
+exiting prompt
+```
+
+# Help/Usage of command
+
+Write the name of the command followed by --help in order to get the usage of the command.
+
+Example:
+
+```bash
+MyShell> find --help
+usage: 
+NAME
+     find -- walk a file hierarchy
+DESCRIPTION
+    The find utility recursively descends the directory tree for each path listed,
+    evaluating an expression (composed of the ``primaries'' and ``operands'' listed below)
+    in terms of each file in the tree.
+
+       [-h] [-name NAME] [args [args ...]]
+
+positional arguments:
+  args                  enter the filenames
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -name NAME, --name NAME
+                        expression determines what to find
+```
+
+
