@@ -1,0 +1,11 @@
+LICENCE
+MANIFEST.in
+README.md
+setup.py
+blur_clip_board_image/__init__.py
+blur_clip_board_image/app.py
+blur_clip_board_image_cli.egg-info/PKG-INFO
+blur_clip_board_image_cli.egg-info/SOURCES.txt
+blur_clip_board_image_cli.egg-info/dependency_links.txt
+blur_clip_board_image_cli.egg-info/entry_points.txt
+blur_clip_board_image_cli.egg-info/top_level.txt
