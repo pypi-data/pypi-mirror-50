@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: yahoo_finance_hdd
+Version: 0.2
+Summary: Download historical financial data from yahoo finance
+Home-page: https://github.com/sdiz/yahoo_finance_hdd.git
+Author: Serkan Dizbay
+Author-email: UNKNOWN
+License: MIT
+Download-URL: https://github.com/sdiz/yahoo_finance_hdd/archive/v_0.2.tar.gz
+Description: UNKNOWN
+Keywords: financial data,yahoo finance
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
