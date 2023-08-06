@@ -1,0 +1,15 @@
+pytest_notebook/__init__.py,sha256=rF3LhQmIr-_3vd2FkAXYC-lykrtoh5liNKLgEVuXFc0,94
+pytest_notebook/diffing.py,sha256=nbfok80oPccq4J4DmSsQaBmehBcHdlL7oi6J-FCXL8A,5963
+pytest_notebook/execution.py,sha256=18jtuhgN6m1fXBf1ajYutY3t1DwdfJfpX6FuLmkuXSM,1378
+pytest_notebook/ipy_magic.py,sha256=5Pb8euMuQbU1sbM5EMJD6AdcvqHHkRuwaut39ab0j9U,6388
+pytest_notebook/nb_regression.py,sha256=oW8a1N00XXYliKUWrKlZ4p8X975scYu3w6-afT6skEQ,11445
+pytest_notebook/plugin.py,sha256=dCR9EZmW0CD67oZmgO2NgR9YBcZOq7_1E7IEoreDLU4,6487
+pytest_notebook/post_processors.py,sha256=YNTWcOhhUnQxzhisBQ-f5rWRxQDAEo4ykDRnWCMUOCs,4698
+pytest_notebook/utils.py,sha256=ztTjRVsiTw4AEeLMSfn9l4TtYr3x1a_c4XJu0Z75-QM,5916
+pytest_notebook/example_nbs/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+pytest_notebook-0.3.0.dist-info/LICENSE,sha256=veJnDsQE2vAPCjuuXWdp7ZtWT5Ft8nPBJrIh1tgfy5o,1486
+pytest_notebook-0.3.0.dist-info/METADATA,sha256=Mi8wHkTlT6rD_YuSsXkovkGxSyx8T5eHVQcl2Mau6k4,6067
+pytest_notebook-0.3.0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+pytest_notebook-0.3.0.dist-info/entry_points.txt,sha256=DortW6m-XG-f6b3Znn_9ZIwVSzCMwSEDqDBuMrCyZRQ,198
+pytest_notebook-0.3.0.dist-info/top_level.txt,sha256=p7i2KoZ1wJ5xZwJeZ8fBuJfEGZLeb36RunTmVRidh-A,16
+pytest_notebook-0.3.0.dist-info/RECORD,,
