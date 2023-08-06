@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: cheminapc
+Version: 0.1.6
+Summary: X-ray Diffraction data analysis software, developed for the CheMin team of NASA's Mars Science Laboratory
+Home-page: https://github.com/gordiedowns/cheminapc
+Author: Gordon Downs
+Author-email: gdowns@email.arizona.edu
+License: gpl-3.0
+Description: UNKNOWN
+Keywords: XRD,CheMin
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
