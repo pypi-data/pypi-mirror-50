@@ -1,0 +1,23 @@
+Metadata-Version: 1.0
+Name: dscleaner
+Version: 0.1.9
+Summary: Added batch resample function to cli
+Home-page: UNKNOWN
+Author: Manuel Pereira
+Author-email: afonso.pereira4525@gmail.com
+License: The MIT License
+Project-URL: Documentation, https://dscleaner.rtfd.io/
+Project-URL: Source code, https://gitlab.com/ManelPereira/dscleaner
+Description: 
+        DS Cleaner
+        ===========
+        
+        DS Cleaner allows for easy cleanup of energy disagregation datasets and allows
+        for easy wave convertion.
+        
+        This library is based in librosa and PySoundFile library.
+        
+        Visit the Jupyter notebook for examples, available here: NOt available yet:
+        
+        View the documentation in ReadTheDocs!
+Platform: UNKNOWN
