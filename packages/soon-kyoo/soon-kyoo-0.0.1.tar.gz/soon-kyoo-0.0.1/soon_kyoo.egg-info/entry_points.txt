@@ -1,0 +1,3 @@
+
+    [console_scripts]
+    init_db=soon_kyoo.cli.init_db:init_db
