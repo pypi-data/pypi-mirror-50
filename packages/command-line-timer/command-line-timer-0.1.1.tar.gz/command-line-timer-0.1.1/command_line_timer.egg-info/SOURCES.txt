@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+setup.py
+command_line_timer.egg-info/PKG-INFO
+command_line_timer.egg-info/SOURCES.txt
+command_line_timer.egg-info/dependency_links.txt
+command_line_timer.egg-info/entry_points.txt
+command_line_timer.egg-info/requires.txt
+command_line_timer.egg-info/top_level.txt
+timer/__init__.py
+timer/cuca.wav
+timer/main.py
