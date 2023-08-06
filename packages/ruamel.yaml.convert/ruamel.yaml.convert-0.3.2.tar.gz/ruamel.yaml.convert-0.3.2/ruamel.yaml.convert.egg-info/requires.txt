@@ -1,0 +1,12 @@
+ruamel.yaml>=0.16.1
+python-dateutil
+
+[all]
+python-dateutil
+beautifulsoup4
+
+[csv]
+python-dateutil
+
+[html]
+beautifulsoup4
