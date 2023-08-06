@@ -1,0 +1,9 @@
+pandas==0.25.0
+scipy==1.2.2
+sklearn
+
+[dev]
+setuptools
+wheel
+twine
+Sphinx
