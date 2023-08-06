@@ -1,0 +1,68 @@
+This is a little library for creating Servers and Clients to send data.
+
+___Usage:___
+
+__ClientStream:__
+
+myclient = Clientstream(addr, port) #Generate
+
+myclient.connect() #Connect
+
+myclient.setListener("connect", connect) #Replace the second argument with a function. Overgiving args: 
+
+myclient.setListener("disconnect", disconnect) #Replace the second argument with a function. Overgiving args: 
+
+myclient.setListener("recv", recv) #Replace the second argument with a function. Overgiving args: None, data
+
+myclient.setListener("recvexception", recv) #Replace the second argument with a function. Overgiving args: exception
+
+myclient.send("something") #Send
+
+myclient.pause() #Pause
+
+myclient.unpause() #Unpause
+
+is_paused = myclient.getpaused() #Getpaused
+
+myclient.stop() #Stop
+
+__ServerStream:__
+
+myserver = Serverstream(addr, port, maxclients) #Generate
+
+myserver.connect() #Connect
+
+myserver.setListener("connect", connect) #Replace the second argument with a function. Overgiving args: sock_id
+
+myserver.setListener("disconnect", disconnect) #Replace the second argument with a function. Overgiving args: sock_id
+
+myserver.setListener("recv", recv) #Replace the second argument with a function. Overgiving args: sock, data
+
+myserver.setListener("recvexception", recv) #Replace the second argument with a function. Overgiving args: exception
+
+myserver.send(sock_id "something") #Send to sock_id
+
+myserver.pause() #Pause
+
+myserver.unpause() #Unpause
+
+is_paused = myserver.getpaused() #Getpaused
+
+myserver.stop() #Stop
+
+__Packet:__
+There are 3 default types of Packets. The JSON, pickle and repr Packet.
+In this case, we use a JSONPacket to show it:
+mypacket = JSONPACKET(data) #Create; data is by default {}
+mypacket.set_data({"1":1, "2":2}) #Set
+print(mypacket.get_data()) #Getall
+print(mypacket.get_data("1")) #Get
+myclient.send(mypacket.pack()) #Send
+mypacket = JSONPacket.unpack(raw_data)
+
+to create an own Packet, you must create this:
+class MyPacket(easystreaming.Packet):
+    def pack(self):
+        #return bytes of self.data
+    def unpack(rdata):
+        #return Packet with unpacked data
