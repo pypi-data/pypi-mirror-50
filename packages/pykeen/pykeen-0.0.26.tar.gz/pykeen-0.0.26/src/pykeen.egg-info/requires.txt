@@ -1,0 +1,23 @@
+numpy
+scikit-learn
+scipy
+click
+click_default_group
+torch
+torchvision
+prompt_toolkit
+tqdm
+pandas
+rdflib
+
+[:python_version < "3.7"]
+dataclasses
+
+[docs]
+sphinx
+sphinx-rtd-theme
+sphinx-click
+sphinx-autodoc-typehints
+
+[ndex]
+ndex2
