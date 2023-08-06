@@ -1,0 +1,17 @@
+scalenet/__init__.py,sha256=xJxdkdq-u-7fcI33MygwXQjwgTgg0DNHpLbqrvTNQrk,219
+scalenet/add.py,sha256=4LJdQsZZxzSN4sCFO-FyFGUxSb1OHplm13TW7PcyS7Y,162
+scalenet/identity.py,sha256=EcJWATfQf4hcmDGSgAxRFUxeLFfyHOzwPQjJwe4dAso,152
+scalenet/initialization.py,sha256=-OEueBSjm0S9WGQqzIVSCj_-8RlrFJ1sri0nyOYePJY,1832
+scalenet/model.py,sha256=jUbugIS-D_3XKHLWLH2xzZca7lyDX8enwGqtwe3FGOI,770
+scalenet/residuals.py,sha256=lwrtMKpX0yXFM05hcOEt2Lbda-gdU8nc0lWBoL_EbVw,2741
+scalenet/scalenet.py,sha256=q34MUziliOf65FqIEVDxZxZk9EfY-XXpzDbVwDOd8JM,5777
+scalenet/scalenet_base.py,sha256=26CYG08G3PzLYw0CCAzHtBNesf4A93_e3bcdJwABEIQ,6636
+scalenet/scalenet_new.py,sha256=pJnYTlxzglBr9h1yv8S4PLme4htQx5rRYi8QBXHm3Ls,8687
+scalenet/sequence.py,sha256=Fx_s33BcUQAcSG6YY55xfvDIEdSqEvPmWPG-pZ-1o3o,5265
+scalenet/tools.py,sha256=gi1LF1tHFawIhHnaR3jGAvslz3K7YgWVkUiouuTbkBQ,1841
+scalenet/upsample_residuals.py,sha256=NaemTSlrVuJ0HKdvGQ8nSkn6B55MzvZYqWS6IpOa_0w,728
+scalenet-0.0.2.dist-info/LICENSE,sha256=xx0jnfkXJvxRnG63LTGOxlggYnIysveWIZ6H3PNdCrQ,11357
+scalenet-0.0.2.dist-info/METADATA,sha256=m5TlG40xx2VQeZ4BWtnKB6Ml9SWeQQWzt4TlspMC5b8,487
+scalenet-0.0.2.dist-info/WHEEL,sha256=U88EhGIw8Sj2_phqajeu_EAi3RAo8-C6zV3REsWbWbs,92
+scalenet-0.0.2.dist-info/top_level.txt,sha256=UHA8GPRDxo5RiCt1E2oFmgRHgOnkiZg4qau4QXFCv00,9
+scalenet-0.0.2.dist-info/RECORD,,
