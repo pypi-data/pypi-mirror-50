@@ -1,0 +1,10 @@
+coloredlogs
+idtrackerai
+pyforms-terminal
+
+[gui]
+pyforms-gui
+python-video-annotator
+
+[only-gui]
+pyforms-gui
