@@ -1,0 +1,4 @@
+[console_scripts]
+SAMstats = SAMstats:main
+SAMstatsParallel = SAMstatsParallel:main
+
