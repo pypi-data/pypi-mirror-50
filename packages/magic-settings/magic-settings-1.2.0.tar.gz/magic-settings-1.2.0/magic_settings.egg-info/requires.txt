@@ -1,0 +1,4 @@
+python-dotenv~=0.10.2
+
+[yaml]
+PyYAML~=5.1

@@ -1,0 +1,13 @@
+README.md
+setup.cfg
+setup.py
+magic_settings/__init__.py
+magic_settings/dynamic_settings_base.py
+magic_settings/special_property.py
+magic_settings/utils.py
+magic_settings.egg-info/PKG-INFO
+magic_settings.egg-info/SOURCES.txt
+magic_settings.egg-info/dependency_links.txt
+magic_settings.egg-info/requires.txt
+magic_settings.egg-info/top_level.txt
+magic_settings.egg-info/zip-safe
