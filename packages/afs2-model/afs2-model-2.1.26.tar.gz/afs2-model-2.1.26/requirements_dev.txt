@@ -1,0 +1,24 @@
+# For develop
+python-dotenv
+pylint
+yapf
+gitpython
+
+# For docs
+sphinx
+sphinx-autobuild
+recommonmark
+sphinx_rtd_theme
+
+# For test
+pytest
+pytest-runner
+pytest-cov
+pytest-html
+pytest-pylint
+configparser
+pytest-mock
+
+# For release
+zest.releaser
+wheel

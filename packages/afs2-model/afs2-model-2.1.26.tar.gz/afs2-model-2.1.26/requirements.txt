@@ -1,0 +1,9 @@
+requests
+urllib3
+botocore
+
+# For client
+pyyaml
+
+# For CLI
+click
