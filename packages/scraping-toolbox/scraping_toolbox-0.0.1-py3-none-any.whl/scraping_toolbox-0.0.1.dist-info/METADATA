@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: scraping-toolbox
+Version: 0.0.1
+Summary: This is ment to be a helper repo for diferent scraping projects 
+Home-page: https://github.com/Liitle/scraping_toolbox
+Author: George Dragan
+Author-email: 
+Maintainer: George Dragan
+Maintainer-email: 
+License: MIT license
+Keywords: scraping_toolbox
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3.7
+
+scraping-toolbox
+################
+
+This is ment to be a helper repo for diferent scraping projects 
+
+
+Quickstart
+==========
+
+scraping-toolbox is available on PyPI and can be installed with `pip <https://pip.pypa.io>`_.
+
+.. code-block:: console
+
+    $ pip install scraping_toolbox
+
+After installing scraping-toolbox you can use it like any other Python module.
+
+Here is a simple example:
+
+.. code-block:: python
+
+    import scraping_toolbox
+    # Fill this section in with the common use-case.
+
+The `API Reference <http://scraping_toolbox.readthedocs.io>`_ provides API-level documentation.
+
+
+.. _change-log-label:
+
+Change Log
+==========
+
+Version History
+---------------
+
+0.0.1
+    * Project created.
+
+
