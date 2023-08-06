@@ -1,0 +1,10 @@
+MANIFEST.in
+README.md
+setup.py
+shinnosuke/__init__.py
+shinnosuke/models.py
+shinnosuke_gpu.egg-info/PKG-INFO
+shinnosuke_gpu.egg-info/SOURCES.txt
+shinnosuke_gpu.egg-info/dependency_links.txt
+shinnosuke_gpu.egg-info/requires.txt
+shinnosuke_gpu.egg-info/top_level.txt
