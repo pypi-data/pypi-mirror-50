@@ -1,0 +1,20 @@
+Metadata-Version: 1.0
+Name: secret-manager
+Version: 0.0.1
+Summary: Secret Manager AWS
+Home-page: https://github.com/BLACKBUCK-LABS/secret-manager-python
+Author: Praveen Kumar
+Author-email: praveen.k@blackbuck.com
+License: MIT
+Description: # secret-manager
+        Secret manager for Python
+        
+        Check Wiki for installation steps
+        [installation-steps](https://github.com/BLACKBUCK-LABS/secret-manager-python/wiki/Installation-and-distribution-steps)
+        
+        Know more about it in - 
+        [secret-manager](https://docs.google.com/document/d/14KTYSOxSezefZ5uJC6wBcSoy3JW6mO6jY_SRmEmR5eI)
+        
+        
+        
+Platform: UNKNOWN
