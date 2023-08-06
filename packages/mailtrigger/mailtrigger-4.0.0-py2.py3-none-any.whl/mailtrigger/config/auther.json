@@ -1,0 +1,20 @@
+{
+  "group": {
+    "default": [
+      "name@example.com"
+    ],
+    "ldap/name": "true"
+  },
+  "message": {
+    "subject": "[trigger]"
+  },
+  "provider": {
+    "ldap": {
+      "base": "base",
+      "host": "localhost",
+      "pass": "pass",
+      "port": 389,
+      "user": "user"
+    }
+  }
+}
