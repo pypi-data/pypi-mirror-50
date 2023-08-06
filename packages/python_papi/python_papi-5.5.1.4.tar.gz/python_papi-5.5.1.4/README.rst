@@ -1,0 +1,73 @@
+PyPAPI
+======
+
+|Build Status| |PYPI Version| |License|
+
+PyPAPI is a Python binding for the `PAPI (Performance Application
+Programming Interface) <http://icl.cs.utk.edu/papi/index.html>`__
+library. PyPAPI implements the whole PAPI High Level API and partially
+the Low Level API.
+
+Documentation:
+--------------
+
+-  https://flozz.github.io/pypapi/
+
+Installing PyPAPI
+-----------------
+
+See this page of the documentation:
+
+-  https://flozz.github.io/pypapi/install.html
+
+Hacking
+-------
+
+Building PyPAPI For Local Development
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To work on PyPAPI, you first have to clone this repositiory and
+initialize and update submodules:
+
+::
+
+    git clone https://github.com/flozz/pypapi.git
+    cd pypapi
+
+    git submodule init
+    git submodule update
+
+Then you have to build both PAPI and the C library inside the ``pypapi``
+module. This can be done with the following commands:
+
+::
+
+    python setup.py build
+    python pypapi/papi_build.py
+
+Generating Documentation
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+From a virtualenv:
+
+::
+
+    pip install -r requirements.txt
+    python setup.py build_sphinx
+
+Changelog
+---------
+
+-  **5.5.1.4:** Fixes compilation with GCC 8 and newer (#18)
+-  **5.5.1.3:** Removes .o, .lo and other generated objects from the
+   package
+-  **5.5.1.2:** Partial bindings for the low level API
+-  **5.5.1.1:** Adds missing files to build PAPI
+-  **5.5.1.0:** Initial release (binding for papy 5.5.1)
+
+.. |Build Status| image:: https://travis-ci.org/flozz/pypapi.svg?branch=master
+   :target: https://travis-ci.org/flozz/pypapi
+.. |PYPI Version| image:: https://img.shields.io/pypi/v/python_papi.svg
+   :target: https://pypi.python.org/pypi/python_papi
+.. |License| image:: https://img.shields.io/pypi/l/python_papi.svg
+   :target: https://flozz.github.io/pypapi/licenses.html
