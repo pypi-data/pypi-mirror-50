@@ -1,0 +1,13 @@
+README.md
+setup.py
+dot_to_osscript/__init__.py
+dot_to_osscript/__main__.py
+dot_to_osscript/_read.py
+dot_to_osscript/_write.py
+dot_to_osscript/generate.py
+dot_to_osscript.egg-info/PKG-INFO
+dot_to_osscript.egg-info/SOURCES.txt
+dot_to_osscript.egg-info/dependency_links.txt
+dot_to_osscript.egg-info/not-zip-safe
+dot_to_osscript.egg-info/requires.txt
+dot_to_osscript.egg-info/top_level.txt
