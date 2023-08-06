@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: gurux_serial
+Version: 1.0.3
+Summary: Gurux serial media is used to commmunication with serial port connections.
+Home-page: https://github.com/gurux/gurux.serial.python
+Author: Gurux Ltd
+Author-email: gurux@gurux.org
+License: UNKNOWN
+Description: Gurux serial media is used to commmunication with serial port connections.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
