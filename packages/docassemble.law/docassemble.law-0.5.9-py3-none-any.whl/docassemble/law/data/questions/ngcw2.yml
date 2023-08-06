@@ -1,0 +1,1768 @@
+# Prepared by Community.lawyer on 7/17/2019
+# Compatible with Docassemble version 0.3.11
+---
+modules:
+  - docassemble.base.util
+---
+mandatory: True
+code: |
+  from docassemble.base.functions import get_uid
+  if not defined("___answers_session_id"):
+    define("___answers_session_id", get_uid())
+---
+mandatory: True
+code: |
+  define("Today", today())
+---
+initial: True
+code: |
+  import datetime
+  import types
+
+  def empty_string():
+    return ""
+
+  def ternary(condition, true_value, false_value):
+    if is_undefined(condition):
+      return Undefined()
+    elif is_true(augment(condition)):
+      return primitive_value(true_value)
+    else:
+      return primitive_value(false_value)
+
+  def cl_array_access(array, _index):
+    index = _index - 1
+    return (array[index] if index < len(array) else None)
+
+  def primitive_value(something):
+    return augment(something).wrapped
+
+  def Undefined():
+    return augment(None)
+
+  def is_true(arg):
+    return primitive_value(arg) == True
+
+  def is_false(arg):
+    return primitive_value(arg) == False
+
+  def is_falsy(arg):
+    wrapped = primitive_value(arg)
+    return wrapped == False or wrapped == None
+
+  def is_truthy(arg):
+    wrapped = primitive_value(arg)
+    return not is_falsy(wrapped)
+
+  def is_augmented(something):
+    return something.__class__.__name__ == 'Augmented'
+
+  def augment(something=None):
+    if is_augmented(something):
+      return something
+    return Augmented(something)
+
+  def is_undefined(something):
+    return augment(something).wrapped == None
+
+  def is_not_undefined(something):
+    return not is_undefined(something)
+
+  class Augmented(object):
+    def __init__(self, something):
+      self.wrapped = something
+    def __str__(self):
+      return unicode(self.wrapped)
+    # array
+    def array_index(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(cl_array_access(self.wrapped, int(arg.wrapped)))
+    def array_size(self):
+      if is_undefined(self):
+        return self
+      return augment(len(self.wrapped))
+    def array_leading(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped[:int(arg.wrapped)])
+    def array_trailing(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped[int(-(arg.wrapped)):])
+    def array_excluding_leading(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped[int(arg.wrapped):])
+    def array_excluding_trailing(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped[:int(-(arg.wrapped))])
+    # boolean
+    def boolean_and(self, _arg):
+      arg = augment(_arg)
+      if is_false(self.wrapped) or is_false(arg.wrapped):
+        return augment(False)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped and arg.wrapped)
+    def boolean_or(self, _arg):
+      arg = augment(_arg)
+      if is_true(self.wrapped) or is_true(arg.wrapped):
+        return augment(True)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped or arg.wrapped)
+    def boolean_not(self):
+      if is_undefined(self):
+        return self
+      return augment(not self.wrapped)
+    def boolean_eq(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped == arg.wrapped)
+    def boolean_ne(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped != arg.wrapped)
+    # number
+    def number_add(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped + arg.wrapped)
+    def number_subtract(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped - arg.wrapped)
+    def number_multiply(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped * arg.wrapped)
+    def number_divide(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      if arg.wrapped == 0:
+        return Undefined()
+      return augment(self.wrapped / arg.wrapped)
+    def number_eq(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped == arg.wrapped)
+    def number_ne(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped != arg.wrapped)
+    def number_gt(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped > arg.wrapped)
+    def number_gte(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped >= arg.wrapped)
+    def number_lt(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped < arg.wrapped)
+    def number_lte(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped <= arg.wrapped)
+    # string
+    def string_join_with_space(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped + ' ' + arg.wrapped)
+    def string_join_without_space(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped + arg.wrapped)
+    def string_eq(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped == arg.wrapped)
+    def string_ne(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped != arg.wrapped)
+    def string_length(self):
+      if is_undefined(self):
+        return Undefined()
+      return augment(len(self.wrapped))
+    # time
+    def time_eq(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped == arg.wrapped)
+    def time_ne(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped != arg.wrapped)
+    def time_gt(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped > arg.wrapped)
+    def time_gte(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped >= arg.wrapped)
+    def time_lt(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped < arg.wrapped)
+    def time_lte(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped <= arg.wrapped)
+    # date
+    def date_eq(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped == arg.wrapped)
+    def date_ne(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped != arg.wrapped)
+    def date_gt(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped > arg.wrapped)
+    def date_gte(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped >= arg.wrapped)
+    def date_lt(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped < arg.wrapped)
+    def date_lte(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(self.wrapped <= arg.wrapped)
+    # dictionary
+    def dictionary_all_false(self):
+      if is_undefined(self):
+        return self
+      return augment(self.wrapped.all_false())
+    def dictionary_all_true(self):
+      if is_undefined(self):
+        return self
+      return augment(self.wrapped.all_true())
+    def dictionary_any_false(self):
+      if is_undefined(self):
+        return self
+      return augment(self.wrapped.any_false())
+    def dictionary_any_true(self):
+      if is_undefined(self):
+        return self
+      return augment(self.wrapped.any_true())
+    def dictionary_access(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return self
+      return augment(self.wrapped.get(arg.wrapped))
+    # date math
+    def days_after(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(arg.wrapped.plus(days=self.wrapped))
+    def months_after(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(arg.wrapped.plus(months=self.wrapped))
+    def years_after(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(arg.wrapped.plus(years=self.wrapped))
+    def days_before(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(arg.wrapped.minus(days=self.wrapped))
+    def months_before(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(arg.wrapped.minus(months=self.wrapped))
+    def years_before(self, _arg):
+      arg = augment(_arg)
+      if is_undefined(self) or is_undefined(arg):
+        return Undefined()
+      return augment(arg.wrapped.minus(years=self.wrapped))
+    # date formatting
+    def date_format_ddmmyyyy(self):
+      if is_undefined(self):
+        return self
+      return augment(format_date(self.wrapped, format='d/M/yyyy'))
+    def date_format_mmddyyyy(self):
+      if is_undefined(self):
+        return self
+      return augment(format_date(self.wrapped, format='M/d/yyyy'))
+    def date_format_yyyymmdd(self):
+      if is_undefined(self):
+        return self
+      return augment(format_date(self.wrapped, format='yyyy/M/d'))
+    def date_format_mdy_month_name(self):
+      if is_undefined(self):
+        return self
+      return augment(format_date(self.wrapped, format='long'))
+    def date_format_mdy_month_name_day_name(self):
+      if is_undefined(self):
+        return self
+      return augment(format_date(self.wrapped, format='full'))
+
+  # typecasting
+  def typecast_as_date(_arg):
+    arg = augment(_arg)
+    if is_undefined(arg):
+      return arg
+    return augment(as_datetime(arg.wrapped))
+  def typecast_as_number(_arg):
+    arg = augment(_arg)
+    if is_undefined(arg):
+      return arg
+    return augment(float(arg.wrapped))
+  def typecast_as_boolean(_arg):
+    arg = augment(_arg)
+    if is_undefined(arg):
+      return arg
+    wrapped = arg.wrapped
+    if wrapped == 'True':
+      return augment(True)
+    if wrapped == 'False':
+      return augment(False)
+    return Undefined()
+  def typecast_as_string(_arg):
+    arg = augment(_arg)
+    if is_undefined(arg):
+      return arg
+    return augment(str(arg.wrapped))
+  def as_url_param_value(_arg):
+    arg = augment(_arg)
+    if is_undefined(arg):
+      return ''
+    return augment(typecast_as_string(arg.wrapped))
+
+  # array reducers
+
+  def number_add_array_reducer(_arg):
+    arg = augment(_arg)
+    if is_undefined(arg):
+      return arg
+    return reduce(lambda x, y: augment(x).number_add(augment(y)), arg.wrapped)
+
+  def number_multiply_array_reducer(_arg):
+    arg = augment(_arg)
+    if is_undefined(arg):
+      return arg
+    return reduce(lambda x, y: augment(x).number_multiply(augment(y)), arg.wrapped)
+
+  def number_mean_array_reducer(_arg):
+    arg = augment(_arg)
+    if is_undefined(arg):
+      return arg
+    size = arg.array_size()
+    total = number_add_array_reducer(arg)
+    return total.number_divide(size)
+
+  def number_maximum_array_reducer(_arg):
+    arg = augment(_arg)
+    if is_undefined(arg):
+      return arg
+    return max(map(primitive_value, arg.wrapped))
+
+  def number_minimum_array_reducer(_arg):
+    arg = augment(_arg)
+    if is_undefined(arg):
+      return arg
+    return min(map(primitive_value, arg.wrapped))
+
+  def boolean_all_true_array_reducer(_arg):
+    arg = augment(_arg)
+    if is_undefined(arg):
+      return arg
+    return reduce(lambda x, y: augment(x).boolean_and(augment(y)), arg.wrapped)
+
+  def boolean_any_true_array_reducer(_arg):
+    arg = augment(_arg)
+    if is_undefined(arg):
+      return arg
+    return reduce(lambda x, y: augment(x).boolean_or(augment(y)), arg.wrapped)
+
+  def boolean_all_false_array_reducer(_arg):
+    arg = augment(_arg)
+    if is_undefined(arg):
+      return arg
+    return augment(boolean_any_true_array_reducer(arg)).boolean_not()
+
+  def boolean_any_false_array_reducer(_arg):
+    arg = augment(_arg)
+    if is_undefined(arg):
+      return arg
+    return augment(boolean_all_true_array_reducer(arg)).boolean_not()
+
+  def cl_array_map(myfunc, _myiterable):
+    myiterable = augment(_myiterable)
+    if is_undefined(myiterable):
+      return myiterable
+    return map(myfunc, myiterable.wrapped)
+
+  def is_list(arg):
+    return type(augment(arg).wrapped) == type([])
+
+  def is_dict(arg):
+    return type(augment(arg).wrapped) == type({})
+
+  def as_url_param_kv_pair(key, _value):
+    value = augment(_value)
+    if is_list(value):
+      if is_dict(cl_array_access(value.wrapped, 1)):
+        return list_of_dicts_as_url_param_kv_pairs(key, value)
+      else:
+        pass
+        # no primitive arrays yet
+    elif len(str(primitive_value(value))) == 0:
+      return ''
+    else:
+      return '&' + primitive_value(key) + "=" + primitive_value(as_url_param_value(value))
+
+  def list_of_dicts_as_url_param_kv_pairs(key, value):
+    pairs = []
+    for i, mydict in enumerate(primitive_value(value)):
+      for k in primitive_value(mydict).keys():
+        key_for_pair = key + '[' + str(i) + ']' + '[' + str(k) + ']'
+        value_for_pair = mydict[k]
+        pair = '&' + str(key_for_pair) + '=' + str(value_for_pair)
+        pairs.append(pair)
+    return ''.join(pairs)
+
+  def should_show_markdown_variable(var_name):
+    return (defined(var_name) and value(var_name) != "")
+
+  def string_as_bool(something):
+    return something == 'True'
+
+  def merge_two_dicts(x, y):
+    z = x.copy()
+    z.update(y)
+    return z
+---
+initial: True
+code: |
+  import re
+  from bs4 import BeautifulSoup
+  from markdown import markdown
+
+  def markdown_to_plaintext(markdown_string):
+    try:
+      html_list = list(map(lambda str: markdown(str), markdown_string.split("\n")))
+      html_list = list(map(lambda html: re.sub(r'<pre>(.*?)</pre>', ' ', html), html_list))
+      html_list = list(map(lambda html: re.sub(r'<code>(.*?)</code >', ' ', html), html_list))
+      soup_list = list(map(lambda html: BeautifulSoup(html, "html.parser"), html_list))
+      text_list = list(map(lambda soup: ''.join(soup.findAll(text=True)), soup_list))
+      text_list = list(map(lambda text: re.sub(r'\n', '\n\n', text), text_list))
+      return "\n".join(text_list)
+    except:
+      return markdown_string
+---
+mandatory: True
+code: |
+	import json
+
+	def ___pdf_template_1092_to_json():
+	  import json
+	  vars = all_variables()
+	  return {"template_data": {"url": "https://community.lawyer/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBczRVIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7806feb450c84bdf117775fde2d0cb15de634b0d/nc125.pdf?disposition=attachment", "height": 1188, "width": 918, "page_count": 1}, "stamps": [{"x": 90.66666666666666, "y": 674.0, "width": 302.66666666666663, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_email if defined("current_email") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 89.33333333333333, "y": 685.3333333333333, "width": 126.66666666666666, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_phone if defined("current_phone") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 326.66666666666663, "y": 696.6666666666666, "width": 66.66666666666666, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_zip if defined("current_zip") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 263.3333333333333, "y": 696.6666666666666, "width": 30.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_state if defined("current_state") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 54.0, "y": 696.6666666666666, "width": 186.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_city if defined("current_city") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 95.33333333333333, "y": 708.6666666666666, "width": 298.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_street if defined("current_street") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 57.33333333333333, "y": 731.3333333333333, "width": 336.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 96.66666666666666, "y": 636.0, "width": 296.66666666666663, "height": 45.33333333333333, "page": 1, "value": markdown_to_plaintext(unicode(court_info if defined("court_info") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 40.666666666666664, "y": 578.6666666666666, "width": 348.66666666666663, "height": 18.666666666666664, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 66.66666666666666, "y": 372.66666666666663, "width": 245.33333333333331, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_aka_3 if defined("current_aka_3") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 66.66666666666666, "y": 393.3333333333333, "width": 245.33333333333331, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_aka_2 if defined("current_aka_2") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 66.66666666666666, "y": 414.0, "width": 245.33333333333331, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_aka_1 if defined("current_aka_1") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 337.3333333333333, "y": 434.0, "width": 229.33333333333331, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(future_name if defined("future_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 66.66666666666666, "y": 434.0, "width": 245.33333333333331, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 126.66666666666666, "y": 479.3333333333333, "width": 268.66666666666663, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}], "should_watermark": False}
+
+
+	def ___pdf_template_1087_to_json():
+	  import json
+	  vars = all_variables()
+	  return {"template_data": {"url": "https://community.lawyer/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBc2tVIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--992865e90cfc559e2296c0a5759686079e5d0aac/cm010.pdf?disposition=attachment", "height": 1188, "width": 918, "page_count": 2}, "stamps": [{"x": 334.0, "y": 174.66666666666666, "width": 166.66666666666666, "height": 46.666666666666664, "page": 1, "value": "", "datatype": "signature", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 116.66666666666666, "y": 684.6666666666666, "width": 284.0, "height": 43.33333333333333, "page": 1, "value": markdown_to_plaintext(unicode(court_info if defined("court_info") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 144.0, "y": 191.33333333333331, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool("True"), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 299.3333333333333, "y": 216.0, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool("True"), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 144.0, "y": 295.3333333333333, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool("True"), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 381.3333333333333, "y": 329.3333333333333, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool("True"), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 39.33333333333333, "y": 604.6666666666666, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool("True"), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 32.666666666666664, "y": 151.33333333333331, "width": 255.33333333333331, "height": 13.333333333333332, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 61.33333333333333, "y": 162.66666666666666, "width": 143.33333333333331, "height": 13.333333333333332, "page": 1, "value": markdown_to_plaintext(unicode(Today if defined("Today") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 204.0, "y": 203.33333333333331, "width": 372.0, "height": 13.333333333333332, "page": 1, "value": "1", "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 42.0, "y": 630.0, "width": 359.3333333333333, "height": 13.333333333333332, "page": 1, "value": markdown_to_plaintext(unicode(current_case if defined("current_case") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}], "should_watermark": False}
+
+
+	def ___pdf_template_1089_to_json():
+	  import json
+	  vars = all_variables()
+	  return {"template_data": {"url": "https://community.lawyer/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBc3NVIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--00e35a12a395d5815714244e7919faecd508571d/nc110.pdf?disposition=attachment", "height": 1188, "width": 918, "page_count": 1}, "stamps": [{"x": 338.66666666666663, "y": 172.0, "width": 166.66666666666666, "height": 46.666666666666664, "page": 1, "value": "", "datatype": "signature", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 340.0, "y": 295.3333333333333, "width": 166.66666666666666, "height": 46.666666666666664, "page": 1, "value": "", "datatype": "signature", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 80.0, "y": 533.3333333333333, "width": 510.0, "height": 11.333333333333332, "page": 1, "value": markdown_to_plaintext(unicode(current_address if defined("current_address") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 547.3333333333333, "y": 698.6666666666666, "width": 20.0, "height": 11.333333333333332, "page": 1, "value": "1", "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 500.0, "y": 699.3333333333333, "width": 20.666666666666664, "height": 12.0, "page": 1, "value": "1", "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 89.33333333333333, "y": 474.0, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool("True"), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 285.3333333333333, "y": 580.0, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool("True"), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 72.0, "y": 628.6666666666666, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool("True"), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 330.66666666666663, "y": 558.0, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool(markdown_to_plaintext(unicode(___shortcut_27_choice if defined("___shortcut_27_choice") else ""))), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 267.3333333333333, "y": 558.0, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool(markdown_to_plaintext(unicode(___shortcut_26_choice if defined("___shortcut_26_choice") else ""))), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 148.66666666666666, "y": 302.0, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool("True"), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 426.0, "y": 326.0, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool("True"), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 44.0, "y": 142.66666666666666, "width": 225.33333333333331, "height": 14.0, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 60.666666666666664, "y": 156.66666666666666, "width": 108.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(Today if defined("Today") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 54.666666666666664, "y": 272.66666666666663, "width": 225.33333333333331, "height": 14.0, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 72.0, "y": 286.66666666666663, "width": 108.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(Today if defined("Today") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 181.33333333333331, "y": 567.3333333333333, "width": 342.66666666666663, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_pob if defined("current_pob") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 178.0, "y": 592.0, "width": 346.66666666666663, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_dob if defined("current_dob") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 191.33333333333331, "y": 604.6666666666666, "width": 321.3333333333333, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(future_name if defined("future_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 185.33333333333331, "y": 616.6666666666666, "width": 334.66666666666663, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 38.0, "y": 733.3333333333333, "width": 354.0, "height": 18.0, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 63.33333333333333, "y": 511.3333333333333, "width": 510.0, "height": 26.0, "page": 1, "value": "Better fit for my identity", "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}], "should_watermark": False}
+
+
+	def ___pdf_template_1147_to_json():
+	  import json
+	  vars = all_variables()
+	  return {"template_data": {"url": "https://community.lawyer/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdUFWIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--61c872a57cfc195211a03bb7a833bfd1ff29f5ff/nc100.pdf?disposition=attachment", "height": 1188, "width": 918, "page_count": 1}, "stamps": [{"x": 291.3333333333333, "y": 178.0, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool("True"), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 57.33333333333333, "y": 178.66666666666666, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool("True"), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 90.66666666666666, "y": 674.0, "width": 302.66666666666663, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_email if defined("current_email") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 89.33333333333333, "y": 685.3333333333333, "width": 126.66666666666666, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_phone if defined("current_phone") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 326.66666666666663, "y": 697.3333333333333, "width": 66.66666666666666, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_zip if defined("current_zip") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 263.3333333333333, "y": 697.3333333333333, "width": 30.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_state if defined("current_state") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 54.0, "y": 697.3333333333333, "width": 186.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_city if defined("current_city") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 95.33333333333333, "y": 708.6666666666666, "width": 298.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_street if defined("current_street") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 57.33333333333333, "y": 732.0, "width": 336.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 96.66666666666666, "y": 636.6666666666666, "width": 296.66666666666663, "height": 44.0, "page": 1, "value": markdown_to_plaintext(unicode(court_info if defined("court_info") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 41.33333333333333, "y": 579.3333333333333, "width": 348.66666666666663, "height": 18.666666666666664, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 65.33333333333333, "y": 363.3333333333333, "width": 230.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_aka_3 if defined("current_aka_3") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 65.33333333333333, "y": 384.66666666666663, "width": 230.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_aka_2 if defined("current_aka_2") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 65.33333333333333, "y": 406.66666666666663, "width": 230.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_aka_1 if defined("current_aka_1") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 342.0, "y": 428.0, "width": 233.33333333333331, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(future_name if defined("future_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 65.33333333333333, "y": 428.0, "width": 230.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 163.33333333333331, "y": 478.66666666666663, "width": 314.66666666666663, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}], "should_watermark": False}
+
+
+	def ___pdf_template_1093_to_json():
+	  import json
+	  vars = all_variables()
+	  return {"template_data": {"url": "https://community.lawyer/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBczhVIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--85b9f4f2365600062cc16abd56f2360258a1e2c6/nc130.pdf?disposition=attachment", "height": 1188, "width": 918, "page_count": 1}, "stamps": [{"x": 90.66666666666666, "y": 674.0, "width": 302.66666666666663, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_email if defined("current_email") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 89.33333333333333, "y": 685.3333333333333, "width": 126.66666666666666, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_phone if defined("current_phone") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 326.66666666666663, "y": 696.6666666666666, "width": 66.66666666666666, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_zip if defined("current_zip") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 263.3333333333333, "y": 696.6666666666666, "width": 30.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_state if defined("current_state") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 54.0, "y": 696.6666666666666, "width": 186.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_city if defined("current_city") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 95.33333333333333, "y": 708.6666666666666, "width": 298.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_street if defined("current_street") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 57.33333333333333, "y": 731.3333333333333, "width": 336.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 96.66666666666666, "y": 636.0, "width": 296.66666666666663, "height": 42.666666666666664, "page": 1, "value": markdown_to_plaintext(unicode(court_info if defined("court_info") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 40.666666666666664, "y": 578.0, "width": 348.66666666666663, "height": 18.666666666666664, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 65.33333333333333, "y": 160.66666666666666, "width": 225.33333333333331, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_aka_3 if defined("current_aka_3") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 65.33333333333333, "y": 178.66666666666666, "width": 225.33333333333331, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_aka_2 if defined("current_aka_2") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 65.33333333333333, "y": 196.66666666666666, "width": 226.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_aka_1 if defined("current_aka_1") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 352.66666666666663, "y": 214.66666666666666, "width": 222.66666666666666, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(future_name if defined("future_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 65.33333333333333, "y": 214.66666666666666, "width": 226.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}], "should_watermark": False}
+
+
+	def ___pdf_template_1095_to_json():
+	  import json
+	  vars = all_variables()
+	  return {"template_data": {"url": "https://community.lawyer/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdEVVIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--d4f96e01d1ee4fa5b2234739e0380d9108e82b1e/nc200.pdf?disposition=attachment", "height": 1188, "width": 918, "page_count": 2}, "stamps": [{"x": 346.66666666666663, "y": 137.33333333333331, "width": 166.66666666666666, "height": 46.666666666666664, "page": 1, "value": "", "datatype": "signature", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 294.66666666666663, "y": 161.33333333333331, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool(markdown_to_plaintext(unicode(___shortcut_36_choice if defined("___shortcut_36_choice") else ""))), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 350.0, "y": 161.33333333333331, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool(markdown_to_plaintext(unicode(___shortcut_37_choice if defined("___shortcut_37_choice") else ""))), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 234.0, "y": 161.33333333333331, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool(markdown_to_plaintext(unicode(___shortcut_35_choice if defined("___shortcut_35_choice") else ""))), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 74.66666666666666, "y": 362.66666666666663, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool(markdown_to_plaintext(unicode(___shortcut_37_choice if defined("___shortcut_37_choice") else ""))), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 74.66666666666666, "y": 376.66666666666663, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool(markdown_to_plaintext(unicode(___shortcut_36_choice if defined("___shortcut_36_choice") else ""))), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 74.66666666666666, "y": 390.66666666666663, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool(markdown_to_plaintext(unicode(___shortcut_35_choice if defined("___shortcut_35_choice") else ""))), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 126.66666666666666, "y": 431.3333333333333, "width": 338.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(future_name if defined("future_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 107.33333333333333, "y": 172.0, "width": 130.66666666666666, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 36.0, "y": 105.33333333333333, "width": 202.0, "height": 14.0, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 60.666666666666664, "y": 123.33333333333333, "width": 108.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(Today if defined("Today") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 90.66666666666666, "y": 674.0, "width": 302.66666666666663, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_email if defined("current_email") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 90.0, "y": 685.3333333333333, "width": 127.33333333333333, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_phone if defined("current_phone") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 326.66666666666663, "y": 697.3333333333333, "width": 66.66666666666666, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_zip if defined("current_zip") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 263.3333333333333, "y": 697.3333333333333, "width": 30.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_state if defined("current_state") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 54.0, "y": 697.3333333333333, "width": 186.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_city if defined("current_city") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 95.33333333333333, "y": 708.6666666666666, "width": 298.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_street if defined("current_street") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 57.33333333333333, "y": 732.0, "width": 336.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 96.66666666666666, "y": 636.6666666666666, "width": 296.66666666666663, "height": 44.0, "page": 1, "value": markdown_to_plaintext(unicode(court_info if defined("court_info") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 40.666666666666664, "y": 576.0, "width": 348.66666666666663, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 160.0, "y": 476.66666666666663, "width": 304.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}], "should_watermark": False}
+
+
+	def ___pdf_template_1097_to_json():
+	  import json
+	  vars = all_variables()
+	  return {"template_data": {"url": "https://community.lawyer/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdE1VIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0b385c7e7dd856f5a7fc5351d2a29502ae63495d/nc300.pdf?disposition=attachment", "height": 1188, "width": 918, "page_count": 2}, "stamps": [{"x": 348.0, "y": 193.33333333333331, "width": 166.66666666666666, "height": 46.666666666666664, "page": 1, "value": "", "datatype": "signature", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 60.666666666666664, "y": 389.3333333333333, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool("True"), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 178.66666666666666, "y": 304.66666666666663, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool(markdown_to_plaintext(unicode(___shortcut_37_choice if defined("___shortcut_37_choice") else ""))), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 123.33333333333333, "y": 304.66666666666663, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool(markdown_to_plaintext(unicode(___shortcut_36_choice if defined("___shortcut_36_choice") else ""))), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 63.33333333333333, "y": 305.3333333333333, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool(markdown_to_plaintext(unicode(___shortcut_35_choice if defined("___shortcut_35_choice") else ""))), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 154.0, "y": 356.0, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool("True"), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 74.66666666666666, "y": 418.0, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool(markdown_to_plaintext(unicode(___shortcut_37_choice if defined("___shortcut_37_choice") else ""))), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 74.0, "y": 432.0, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool(markdown_to_plaintext(unicode(___shortcut_36_choice if defined("___shortcut_36_choice") else ""))), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 74.0, "y": 447.3333333333333, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool(markdown_to_plaintext(unicode(___shortcut_35_choice if defined("___shortcut_35_choice") else ""))), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 36.0, "y": 161.33333333333331, "width": 186.66666666666666, "height": 14.0, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 60.666666666666664, "y": 192.66666666666666, "width": 108.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(Today if defined("Today") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 90.66666666666666, "y": 674.0, "width": 302.66666666666663, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_email if defined("current_email") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 89.33333333333333, "y": 685.3333333333333, "width": 126.66666666666666, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_phone if defined("current_phone") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 326.66666666666663, "y": 697.3333333333333, "width": 66.66666666666666, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_zip if defined("current_zip") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 263.3333333333333, "y": 697.3333333333333, "width": 30.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_state if defined("current_state") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 54.0, "y": 697.3333333333333, "width": 186.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_city if defined("current_city") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 95.33333333333333, "y": 708.6666666666666, "width": 298.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_street if defined("current_street") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 57.33333333333333, "y": 732.0, "width": 336.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 96.66666666666666, "y": 636.6666666666666, "width": 296.66666666666663, "height": 43.33333333333333, "page": 1, "value": markdown_to_plaintext(unicode(court_info if defined("court_info") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 40.666666666666664, "y": 574.6666666666666, "width": 298.66666666666663, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 157.33333333333331, "y": 476.66666666666663, "width": 223.33333333333331, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}], "should_watermark": False}
+
+
+	def ___pdf_template_1098_to_json():
+	  import json
+	  vars = all_variables()
+	  return {"template_data": {"url": "https://community.lawyer/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdFFVIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e9cd970e6661b14c1a4774216563af2064417faf/nc330.pdf?disposition=attachment", "height": 1188, "width": 918, "page_count": 1}, "stamps": [{"x": 55.33333333333333, "y": 224.66666666666666, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool("True"), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 71.33333333333333, "y": 272.0, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool(markdown_to_plaintext(unicode(___shortcut_37_choice if defined("___shortcut_37_choice") else ""))), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 71.33333333333333, "y": 285.3333333333333, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool(markdown_to_plaintext(unicode(___shortcut_36_choice if defined("___shortcut_36_choice") else ""))), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 71.33333333333333, "y": 300.0, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool(markdown_to_plaintext(unicode(___shortcut_35_choice if defined("___shortcut_35_choice") else ""))), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 90.66666666666666, "y": 671.3333333333333, "width": 302.66666666666663, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_email if defined("current_email") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 89.33333333333333, "y": 683.3333333333333, "width": 126.66666666666666, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_phone if defined("current_phone") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 326.66666666666663, "y": 694.6666666666666, "width": 66.66666666666666, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_zip if defined("current_zip") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 263.3333333333333, "y": 694.6666666666666, "width": 30.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_state if defined("current_state") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 54.0, "y": 694.6666666666666, "width": 186.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_city if defined("current_city") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 95.33333333333333, "y": 706.0, "width": 298.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_street if defined("current_street") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 57.33333333333333, "y": 729.3333333333333, "width": 336.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 96.66666666666666, "y": 634.0, "width": 296.66666666666663, "height": 45.33333333333333, "page": 1, "value": markdown_to_plaintext(unicode(court_info if defined("court_info") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 120.66666666666666, "y": 579.3333333333333, "width": 229.33333333333331, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}], "should_watermark": False}
+
+
+	def ___pdf_template_1099_to_json():
+	  import json
+	  vars = all_variables()
+	  return {"template_data": {"url": "https://community.lawyer/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdFVVIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a88a20eea69cffed2816577d2ccfbaeb53d2ede2/fw001.pdf?disposition=attachment", "height": 1188, "width": 918, "page_count": 2}, "stamps": [{"x": 346.0, "y": 127.33333333333333, "width": 166.66666666666666, "height": 46.666666666666664, "page": 1, "value": "", "datatype": "signature", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 77.33333333333333, "y": 357.3333333333333, "width": 10.666666666666666, "height": 10.666666666666666, "page": 1, "value": string_as_bool("True"), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 288.0, "y": 542.6666666666666, "width": 22.666666666666664, "height": 10.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_state if defined("current_state") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 98.66666666666666, "y": 742.0, "width": 290.0, "height": 12.666666666666666, "page": 2, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 66.66666666666666, "y": 110.0, "width": 180.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(Today if defined("Today") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 36.0, "y": 96.66666666666666, "width": 295.3333333333333, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 96.0, "y": 530.0, "width": 219.33333333333331, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_phone if defined("current_phone") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 87.33333333333333, "y": 544.0, "width": 166.66666666666666, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_city if defined("current_city") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 336.0, "y": 544.0, "width": 53.33333333333333, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_zip if defined("current_zip") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 178.66666666666666, "y": 556.6666666666666, "width": 210.66666666666666, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_street if defined("current_street") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 95.33333333333333, "y": 570.0, "width": 294.66666666666663, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 399.3333333333333, "y": 492.0, "width": 174.0, "height": 15.333333333333332, "page": 1, "value": markdown_to_plaintext(unicode(current_case if defined("current_case") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 399.3333333333333, "y": 622.0, "width": 174.0, "height": 65.33333333333333, "page": 1, "value": markdown_to_plaintext(unicode(court_info if defined("court_info") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}], "should_watermark": False}
+
+
+	def ___pdf_template_1096_to_json():
+	  import json
+	  vars = all_variables()
+	  return {"template_data": {"url": "https://community.lawyer/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdElVIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0f80cf01b40bd561486d1b5445bb83f02ddee79c/nc230.pdf?disposition=attachment", "height": 1188, "width": 918, "page_count": 1}, "stamps": [{"x": 71.33333333333333, "y": 183.33333333333331, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool(markdown_to_plaintext(unicode(___shortcut_37_choice if defined("___shortcut_37_choice") else ""))), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 70.66666666666666, "y": 195.33333333333331, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool(markdown_to_plaintext(unicode(___shortcut_36_choice if defined("___shortcut_36_choice") else ""))), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 70.66666666666666, "y": 210.0, "width": 11.333333333333332, "height": 11.333333333333332, "page": 1, "value": string_as_bool(markdown_to_plaintext(unicode(___shortcut_35_choice if defined("___shortcut_35_choice") else ""))), "datatype": "checkbox", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 160.0, "y": 237.33333333333331, "width": 412.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(future_name if defined("future_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 158.0, "y": 269.3333333333333, "width": 413.3333333333333, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(future_name if defined("future_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 168.0, "y": 283.3333333333333, "width": 404.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 90.66666666666666, "y": 672.0, "width": 302.66666666666663, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_email if defined("current_email") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 89.33333333333333, "y": 684.0, "width": 126.66666666666666, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_phone if defined("current_phone") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 326.66666666666663, "y": 695.3333333333333, "width": 66.66666666666666, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_zip if defined("current_zip") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 263.3333333333333, "y": 695.3333333333333, "width": 30.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_state if defined("current_state") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 54.0, "y": 695.3333333333333, "width": 186.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_city if defined("current_city") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 95.33333333333333, "y": 706.6666666666666, "width": 298.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_street if defined("current_street") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 57.33333333333333, "y": 730.0, "width": 336.0, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 96.66666666666666, "y": 634.6666666666666, "width": 296.66666666666663, "height": 43.33333333333333, "page": 1, "value": markdown_to_plaintext(unicode(court_info if defined("court_info") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 165.33333333333331, "y": 586.0, "width": 227.33333333333331, "height": 12.666666666666666, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}], "should_watermark": False}
+
+
+	def ___pdf_template_1100_to_json():
+	  import json
+	  vars = all_variables()
+	  return {"template_data": {"url": "https://community.lawyer/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdFlVIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0107c0fcb39fc6b17e70345445e195290d217ac4/mc005.pdf?disposition=attachment", "height": 1188, "width": 918, "page_count": 1}, "stamps": [{"x": 106.66666666666666, "y": 479.3333333333333, "width": 419.3333333333333, "height": 170.0, "page": 1, "value": markdown_to_plaintext(unicode(fax_info if defined("fax_info") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 156.66666666666666, "y": 581.3333333333333, "width": 245.33333333333331, "height": 13.333333333333332, "page": 1, "value": "N/A", "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 156.66666666666666, "y": 597.3333333333333, "width": 245.33333333333331, "height": 13.333333333333332, "page": 1, "value": markdown_to_plaintext(unicode(current_name if defined("current_name") else "")), "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 131.33333333333331, "y": 611.3333333333333, "width": 270.66666666666663, "height": 12.666666666666666, "page": 1, "value": "RENE C. DAVIDSON COURTHOUSE", "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 131.33333333333331, "y": 622.0, "width": 270.66666666666663, "height": 12.666666666666666, "page": 1, "value": "OAKLAND, CA 94612", "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 131.33333333333331, "y": 641.3333333333333, "width": 270.66666666666663, "height": 12.666666666666666, "page": 1, "value": "1225 FALLON ST", "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}, {"x": 230.0, "y": 652.6666666666666, "width": 172.66666666666666, "height": 13.333333333333332, "page": 1, "value": "ALAMEDA", "datatype": "text", "context_height": 792.0, "context_width": 612.0, "font_size": 12, "font_color": "000000"}], "should_watermark": False}
+
+
+	def ___define_until_idempotent():
+		original_dict = all_variables()
+		___define_all()
+		if all_variables() != original_dict:
+			re_run_logic()
+	def ___define_all():
+		vars = all_variables()
+		if ((not ("help_name" in vars))) and (is_not_undefined((((augment(___shortcut_15_choice) if ("___shortcut_15_choice" in vars) else Undefined()).boolean_or((augment(___shortcut_14_choice) if ("___shortcut_14_choice" in vars) else Undefined())))))):
+			define("help_name", (primitive_value((((augment(___shortcut_15_choice) if ("___shortcut_15_choice" in vars) else Undefined()).boolean_or((augment(___shortcut_14_choice) if ("___shortcut_14_choice" in vars) else Undefined())))))))
+		if ((not ("help_gender" in vars))) and (is_not_undefined((((augment(___shortcut_13_choice) if ("___shortcut_13_choice" in vars) else Undefined()).boolean_or((augment(___shortcut_15_choice) if ("___shortcut_15_choice" in vars) else Undefined())))))):
+			define("help_gender", (primitive_value((((augment(___shortcut_13_choice) if ("___shortcut_13_choice" in vars) else Undefined()).boolean_or((augment(___shortcut_15_choice) if ("___shortcut_15_choice" in vars) else Undefined())))))))
+		if (True) and (True):
+			define("current_state", (primitive_value("""CA""")))
+		if ((not ("current_case" in vars))) and (is_not_undefined(((augment("In re:").string_join_with_space((augment(current_name) if ("current_name" in vars) else Undefined())))))):
+			define("current_case", (primitive_value(((augment("In re:").string_join_with_space((augment(current_name) if ("current_name" in vars) else Undefined())))))))
+		if (True) and (True):
+			define("current_address", (primitive_value("""%s , %s , %s %s""" % ((augment(current_street) if defined("current_street") else empty_string()),(augment(current_city) if defined("current_city") else empty_string()),(augment(current_state) if defined("current_state") else empty_string()),(augment(current_zip) if defined("current_zip") else empty_string())))))
+		if (True) and (True):
+			define("court_alameda", (primitive_value("""Alameda
+
+		Rene C. Davidson Courthouse
+
+		1225 Fallon St
+
+		Oakland, CA 94612""")))
+		if (True) and (True):
+			define("court_contra_costa", (primitive_value("""Contra Costa
+
+		Wakefield Taylor Courthouse
+
+		725 Court St
+
+		Martinez, CA 94553""")))
+		if (True) and (True):
+			define("court_marin", (primitive_value("""Marin
+
+		Civic Center Hall of Justice
+
+		3501 Civic Center Drive
+
+		San Rafael, CA 94903""")))
+		if (True) and (True):
+			define("court_napa", (primitive_value("""Napa
+
+		Historic Courthouse
+
+		825 Brown St
+
+		Napa, CA 94559""")))
+		if (True) and (True):
+			define("court_san_francisco", (primitive_value("""San Francisco
+
+		Civic Center Courthouse
+
+		400 McAllister St
+
+		San Francisco, CA 94102""")))
+		if (True) and (True):
+			define("court_san_mateo", (primitive_value("""San Mateo
+
+		Hall of Justice
+
+		400 County Center
+
+		Redwood City, CA 94063""")))
+		if (True) and (True):
+			define("court_santa_clara", (primitive_value("""Santa Clara
+
+		Downtown Superior Courthouse
+
+		191 North First Street
+
+		San Jose, CA 95113""")))
+		if (True) and (True):
+			define("court_solano", (primitive_value("""Solano
+
+		Old Solano Courthouse
+
+		580 Texas Street
+
+		Fairfield, CA 94533""")))
+		if (True) and (True):
+			define("court_sonoma", (primitive_value("""Sonoma
+
+		Hall of Justice
+
+		600 Administration Drive
+
+		Santa Rosa, CA 95403""")))
+		if (True) and (is_not_undefined((ternary((augment(___shortcut_40_choice) if ("___shortcut_40_choice" in vars) else Undefined()), (augment(court_alameda) if ("court_alameda" in vars) else Undefined()), (ternary((augment(___shortcut_41_choice) if ("___shortcut_41_choice" in vars) else Undefined()), (augment(court_contra_costa) if ("court_contra_costa" in vars) else Undefined()), (ternary((augment(___shortcut_42_choice) if ("___shortcut_42_choice" in vars) else Undefined()), (augment(court_marin) if ("court_marin" in vars) else Undefined()), (ternary((augment(___shortcut_43_choice) if ("___shortcut_43_choice" in vars) else Undefined()), (augment(court_napa) if ("court_napa" in vars) else Undefined()), (ternary((augment(___shortcut_44_choice) if ("___shortcut_44_choice" in vars) else Undefined()), (augment(court_san_francisco) if ("court_san_francisco" in vars) else Undefined()), (ternary((augment(___shortcut_45_choice) if ("___shortcut_45_choice" in vars) else Undefined()), (augment(court_san_mateo) if ("court_san_mateo" in vars) else Undefined()), (ternary((augment(___shortcut_46_choice) if ("___shortcut_46_choice" in vars) else Undefined()), (augment(court_san_mateo) if ("court_san_mateo" in vars) else Undefined()), (ternary((augment(___shortcut_47_choice) if ("___shortcut_47_choice" in vars) else Undefined()), (augment(court_solano) if ("court_solano" in vars) else Undefined()), (ternary((augment(___shortcut_48_choice) if ("___shortcut_48_choice" in vars) else Undefined()), (augment(court_sonoma) if ("court_sonoma" in vars) else Undefined()), (augment(court_other) if ("court_other" in vars) else Undefined()))))))))))))))))))))):
+			define("court_info", (primitive_value((ternary((augment(___shortcut_40_choice) if ("___shortcut_40_choice" in vars) else Undefined()), (augment(court_alameda) if ("court_alameda" in vars) else Undefined()), (ternary((augment(___shortcut_41_choice) if ("___shortcut_41_choice" in vars) else Undefined()), (augment(court_contra_costa) if ("court_contra_costa" in vars) else Undefined()), (ternary((augment(___shortcut_42_choice) if ("___shortcut_42_choice" in vars) else Undefined()), (augment(court_marin) if ("court_marin" in vars) else Undefined()), (ternary((augment(___shortcut_43_choice) if ("___shortcut_43_choice" in vars) else Undefined()), (augment(court_napa) if ("court_napa" in vars) else Undefined()), (ternary((augment(___shortcut_44_choice) if ("___shortcut_44_choice" in vars) else Undefined()), (augment(court_san_francisco) if ("court_san_francisco" in vars) else Undefined()), (ternary((augment(___shortcut_45_choice) if ("___shortcut_45_choice" in vars) else Undefined()), (augment(court_san_mateo) if ("court_san_mateo" in vars) else Undefined()), (ternary((augment(___shortcut_46_choice) if ("___shortcut_46_choice" in vars) else Undefined()), (augment(court_san_mateo) if ("court_san_mateo" in vars) else Undefined()), (ternary((augment(___shortcut_47_choice) if ("___shortcut_47_choice" in vars) else Undefined()), (augment(court_solano) if ("court_solano" in vars) else Undefined()), (ternary((augment(___shortcut_48_choice) if ("___shortcut_48_choice" in vars) else Undefined()), (augment(court_sonoma) if ("court_sonoma" in vars) else Undefined()), (augment(court_other) if ("court_other" in vars) else Undefined()))))))))))))))))))))))
+		if (True) and (True):
+			define("fax_gender", (primitive_value("""CM-010 (1 page)
+
+		NC-300 (1 page)
+
+		NC-330 (1 page)
+
+		FW-001 (2 pages)""")))
+		if (True) and (True):
+			define("fax_name", (primitive_value("""CM-010 (1 page)
+
+		NC-100 (1 page)
+
+		NC-110 (1 page)
+
+		NC-125 (1 page)
+
+		NC-130 (1 page)
+
+		FW-001 (2 pages)""")))
+		if (True) and (True):
+			define("fax_name_and_gender", (primitive_value("""CM-010 (1 page)
+
+		NC-110 (1 page)
+
+		NC-125 (1 page)
+
+		NC-200 (1 page)
+
+		NC-230 (1 page)
+
+		FW-001 (2 pages)""")))
+		if (True) and (is_not_undefined((ternary((augment(___shortcut_13_choice) if ("___shortcut_13_choice" in vars) else Undefined()), (augment(fax_gender) if ("fax_gender" in vars) else Undefined()), (ternary((augment(___shortcut_14_choice) if ("___shortcut_14_choice" in vars) else Undefined()), (augment(fax_name) if ("fax_name" in vars) else Undefined()), (augment(fax_name_and_gender) if ("fax_name_and_gender" in vars) else Undefined()))))))):
+			define("fax_info", (primitive_value((ternary((augment(___shortcut_13_choice) if ("___shortcut_13_choice" in vars) else Undefined()), (augment(fax_gender) if ("fax_gender" in vars) else Undefined()), (ternary((augment(___shortcut_14_choice) if ("___shortcut_14_choice" in vars) else Undefined()), (augment(fax_name) if ("fax_name" in vars) else Undefined()), (augment(fax_name_and_gender) if ("fax_name_and_gender" in vars) else Undefined()))))))))
+		if ((not ("___shortcut_40_choice" in vars)) and (("court_county" in vars))):
+			define("___shortcut_40_choice", ((primitive_value(((augment(court_county) if ("court_county" in vars) else Undefined()).string_eq(augment("Alameda")))))))
+		if ((not ("___shortcut_41_choice" in vars)) and (("court_county" in vars))):
+			define("___shortcut_41_choice", ((primitive_value(((augment(court_county) if ("court_county" in vars) else Undefined()).string_eq(augment("Contra Costa")))))))
+		if ((not ("___shortcut_42_choice" in vars)) and (("court_county" in vars))):
+			define("___shortcut_42_choice", ((primitive_value(((augment(court_county) if ("court_county" in vars) else Undefined()).string_eq(augment("Marin")))))))
+		if ((not ("___shortcut_43_choice" in vars)) and (("court_county" in vars))):
+			define("___shortcut_43_choice", ((primitive_value(((augment(court_county) if ("court_county" in vars) else Undefined()).string_eq(augment("Napa")))))))
+		if ((not ("___shortcut_49_choice" in vars)) and (("court_county" in vars))):
+			define("___shortcut_49_choice", ((primitive_value(((augment(court_county) if ("court_county" in vars) else Undefined()).string_eq(augment("Other")))))))
+		if ((not ("___shortcut_44_choice" in vars)) and (("court_county" in vars))):
+			define("___shortcut_44_choice", ((primitive_value(((augment(court_county) if ("court_county" in vars) else Undefined()).string_eq(augment("San Francisco")))))))
+		if ((not ("___shortcut_45_choice" in vars)) and (("court_county" in vars))):
+			define("___shortcut_45_choice", ((primitive_value(((augment(court_county) if ("court_county" in vars) else Undefined()).string_eq(augment("San Mateo")))))))
+		if ((not ("___shortcut_46_choice" in vars)) and (("court_county" in vars))):
+			define("___shortcut_46_choice", ((primitive_value(((augment(court_county) if ("court_county" in vars) else Undefined()).string_eq(augment("Santa Clara")))))))
+		if ((not ("___shortcut_47_choice" in vars)) and (("court_county" in vars))):
+			define("___shortcut_47_choice", ((primitive_value(((augment(court_county) if ("court_county" in vars) else Undefined()).string_eq(augment("Solano")))))))
+		if ((not ("___shortcut_48_choice" in vars)) and (("court_county" in vars))):
+			define("___shortcut_48_choice", ((primitive_value(((augment(court_county) if ("court_county" in vars) else Undefined()).string_eq(augment("Sonoma")))))))
+		if ((not ("___shortcut_27_choice" in vars)) and (("current_gender" in vars))):
+			define("___shortcut_27_choice", ((primitive_value(((augment(current_gender) if ("current_gender" in vars) else Undefined()).string_eq(augment("Female")))))))
+		if ((not ("___shortcut_26_choice" in vars)) and (("current_gender" in vars))):
+			define("___shortcut_26_choice", ((primitive_value(((augment(current_gender) if ("current_gender" in vars) else Undefined()).string_eq(augment("Male")))))))
+		if ((not ("___shortcut_35_choice" in vars)) and (("future_gender" in vars))):
+			define("___shortcut_35_choice", ((primitive_value(((augment(future_gender) if ("future_gender" in vars) else Undefined()).string_eq(augment("Female")))))))
+		if ((not ("___shortcut_36_choice" in vars)) and (("future_gender" in vars))):
+			define("___shortcut_36_choice", ((primitive_value(((augment(future_gender) if ("future_gender" in vars) else Undefined()).string_eq(augment("Male")))))))
+		if ((not ("___shortcut_37_choice" in vars)) and (("future_gender" in vars))):
+			define("___shortcut_37_choice", ((primitive_value(((augment(future_gender) if ("future_gender" in vars) else Undefined()).string_eq(augment("Non-Binary")))))))
+		if ((not ("___shortcut_63_false" in vars)) and (("help_gender" in vars))):
+			define("___shortcut_63_false", ((primitive_value(((augment(help_gender) if ("help_gender" in vars) else Undefined()).boolean_eq(augment(False)))))))
+		if ((not ("___shortcut_62_false" in vars)) and (("help_name" in vars))):
+			define("___shortcut_62_false", ((primitive_value(((augment(help_name) if ("help_name" in vars) else Undefined()).boolean_eq(augment(False)))))))
+		if ((not ("___shortcut_13_choice" in vars)) and (("help_type" in vars))):
+			define("___shortcut_13_choice", ((primitive_value(((augment(help_type) if ("help_type" in vars) else Undefined()).string_eq(augment("Gender Change (18+ only)")))))))
+		if ((not ("___shortcut_15_choice" in vars)) and (("help_type" in vars))):
+			define("___shortcut_15_choice", ((primitive_value(((augment(help_type) if ("help_type" in vars) else Undefined()).string_eq(augment("Name & Gender Change (18+ only)")))))))
+		if ((not ("___shortcut_14_choice" in vars)) and (("help_type" in vars))):
+			define("___shortcut_14_choice", ((primitive_value(((augment(help_type) if ("help_type" in vars) else Undefined()).string_eq(augment("Name Change (trans-identified 18+ only)")))))))
+		if ((not ("___shortcut_2_false" in vars)) and (("start" in vars))):
+			define("___shortcut_2_false", ((primitive_value(((augment(start) if ("start" in vars) else Undefined()).boolean_eq(augment(False)))))))
+
+
+	def rich_text_variable_dictionary():
+		vars = all_variables()
+		return {
+			'current_state': { 'content': json.loads("""{"blocks":[{"key":"ct6is","data":{},"text":"CA","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}"""), 'markdown': 'false' },
+			'current_address': { 'content': json.loads("""{"blocks":[{"key":"4m8c7","data":{},"text":"current_street , current_city , current_state current_zip","type":"unstyled","depth":0,"entityRanges":[{"key":0,"length":14,"offset":0},{"key":1,"length":12,"offset":17},{"key":2,"length":13,"offset":32},{"key":3,"length":11,"offset":46}],"inlineStyleRanges":[]}],"entityMap":{"0":{"data":{},"type":"VARIABLE","mutability":"IMMUTABLE"},"1":{"data":{},"type":"VARIABLE","mutability":"IMMUTABLE"},"2":{"data":{},"type":"VARIABLE","mutability":"IMMUTABLE"},"3":{"data":{},"type":"VARIABLE","mutability":"IMMUTABLE"}}}"""), 'markdown': 'false' },
+			'court_alameda': { 'content': json.loads("""{"blocks":[{"key":"2o4t2","data":{},"text":"Alameda","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"f2j01","data":{},"text":"Rene C. Davidson Courthouse","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"35mt8","data":{},"text":"1225 Fallon St","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"curnm","data":{},"text":"Oakland, CA 94612","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}"""), 'markdown': 'false' },
+			'court_contra_costa': { 'content': json.loads("""{"blocks":[{"key":"88vjp","data":{},"text":"Contra Costa","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"ft9g9","data":{},"text":"Wakefield Taylor Courthouse","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"95v97","data":{},"text":"725 Court St","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"98pv2","data":{},"text":"Martinez, CA 94553","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}"""), 'markdown': 'false' },
+			'court_marin': { 'content': json.loads("""{"blocks":[{"key":"35b1r","data":{},"text":"Marin","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"b36af","data":{},"text":"Civic Center Hall of Justice","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"a8cip","data":{},"text":"3501 Civic Center Drive","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"1j27s","data":{},"text":"San Rafael, CA 94903","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}"""), 'markdown': 'false' },
+			'court_napa': { 'content': json.loads("""{"blocks":[{"key":"397cl","data":{},"text":"Napa","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"7f842","data":{},"text":"Historic Courthouse","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"akc66","data":{},"text":"825 Brown St","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"ekmq9","data":{},"text":"Napa, CA 94559","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}"""), 'markdown': 'false' },
+			'court_san_francisco': { 'content': json.loads("""{"blocks":[{"key":"2ksfp","data":{},"text":"San Francisco","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"fjh01","data":{},"text":"Civic Center Courthouse","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"2tsn1","data":{},"text":"400 McAllister St","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"a2ttr","data":{},"text":"San Francisco, CA 94102","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}"""), 'markdown': 'false' },
+			'court_san_mateo': { 'content': json.loads("""{"blocks":[{"key":"f7apc","data":{},"text":"San Mateo","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"6rtcn","data":{},"text":"Hall of Justice","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"105cj","data":{},"text":"400 County Center","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"ejcur","data":{},"text":"Redwood City, CA 94063","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}"""), 'markdown': 'false' },
+			'court_santa_clara': { 'content': json.loads("""{"blocks":[{"key":"6obv5","data":{},"text":"Santa Clara","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"crkbo","data":{},"text":"Downtown Superior Courthouse","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"3khr9","data":{},"text":"191 North First Street","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"d26j2","data":{},"text":"San Jose, CA 95113","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}"""), 'markdown': 'false' },
+			'court_solano': { 'content': json.loads("""{"blocks":[{"key":"eohko","data":{},"text":"Solano","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"5a6b9","data":{},"text":"Old Solano Courthouse","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"3g908","data":{},"text":"580 Texas Street","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"78tgl","data":{},"text":"Fairfield, CA 94533","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}"""), 'markdown': 'false' },
+			'court_sonoma': { 'content': json.loads("""{"blocks":[{"key":"dqv34","data":{},"text":"Sonoma","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"7g7fg","data":{},"text":"Hall of Justice","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"blgtf","data":{},"text":"600 Administration Drive","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"4jqgr","data":{},"text":"Santa Rosa, CA 95403","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}"""), 'markdown': 'false' },
+			'fax_gender': { 'content': json.loads("""{"blocks":[{"key":"8usun","data":{},"text":"CM-010 (1 page)","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"94qsf","data":{},"text":"NC-300 (1 page)","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"1993s","data":{},"text":"NC-330 (1 page)","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"binvp","data":{},"text":"FW-001 (2 pages)","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}"""), 'markdown': 'false' },
+			'fax_name': { 'content': json.loads("""{"blocks":[{"key":"de8bq","data":{},"text":"CM-010 (1 page)","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"b4ua","data":{},"text":"NC-100 (1 page)","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"7oajv","data":{},"text":"NC-110 (1 page)","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"3j3me","data":{},"text":"NC-125 (1 page)","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"2f977","data":{},"text":"NC-130 (1 page)","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"5j10n","data":{},"text":"FW-001 (2 pages)","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}"""), 'markdown': 'false' },
+			'fax_name_and_gender': { 'content': json.loads("""{"blocks":[{"key":"fct55","data":{},"text":"CM-010 (1 page)","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"47hmu","data":{},"text":"NC-110 (1 page)","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"5nq3v","data":{},"text":"NC-125 (1 page)","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"8iqrv","data":{},"text":"NC-200 (1 page)","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"c2ves","data":{},"text":"NC-230 (1 page)","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"2eqai","data":{},"text":"FW-001 (2 pages)","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}"""), 'markdown': 'false' },
+		}
+---
+initial: True
+code: |
+	___define_until_idempotent()
+---
+mandatory: True
+code: |
+	def passive_possible_variables():
+		return { 'Today': markdown_to_plaintext(Today) if defined("Today") else '', 'court_alameda': markdown_to_plaintext(court_alameda) if defined("court_alameda") else '', 'court_contra_costa': markdown_to_plaintext(court_contra_costa) if defined("court_contra_costa") else '', 'court_county': markdown_to_plaintext(court_county) if defined("court_county") else '', '___shortcut_40_choice': markdown_to_plaintext(___shortcut_40_choice) if defined("___shortcut_40_choice") else '', '___shortcut_41_choice': markdown_to_plaintext(___shortcut_41_choice) if defined("___shortcut_41_choice") else '', '___shortcut_42_choice': markdown_to_plaintext(___shortcut_42_choice) if defined("___shortcut_42_choice") else '', '___shortcut_43_choice': markdown_to_plaintext(___shortcut_43_choice) if defined("___shortcut_43_choice") else '', '___shortcut_49_choice': markdown_to_plaintext(___shortcut_49_choice) if defined("___shortcut_49_choice") else '', '___shortcut_44_choice': markdown_to_plaintext(___shortcut_44_choice) if defined("___shortcut_44_choice") else '', '___shortcut_45_choice': markdown_to_plaintext(___shortcut_45_choice) if defined("___shortcut_45_choice") else '', '___shortcut_46_choice': markdown_to_plaintext(___shortcut_46_choice) if defined("___shortcut_46_choice") else '', '___shortcut_47_choice': markdown_to_plaintext(___shortcut_47_choice) if defined("___shortcut_47_choice") else '', '___shortcut_48_choice': markdown_to_plaintext(___shortcut_48_choice) if defined("___shortcut_48_choice") else '', 'court_info': markdown_to_plaintext(court_info) if defined("court_info") else '', 'court_marin': markdown_to_plaintext(court_marin) if defined("court_marin") else '', 'court_napa': markdown_to_plaintext(court_napa) if defined("court_napa") else '', 'court_other': markdown_to_plaintext(court_other) if defined("court_other") else '', 'court_san_francisco': markdown_to_plaintext(court_san_francisco) if defined("court_san_francisco") else '', 'court_san_mateo': markdown_to_plaintext(court_san_mateo) if defined("court_san_mateo") else '', 'court_santa_clara': markdown_to_plaintext(court_santa_clara) if defined("court_santa_clara") else '', 'court_solano': markdown_to_plaintext(court_solano) if defined("court_solano") else '', 'court_sonoma': markdown_to_plaintext(court_sonoma) if defined("court_sonoma") else '', 'current_address': markdown_to_plaintext(current_address) if defined("current_address") else '', 'current_aka_1': markdown_to_plaintext(current_aka_1) if defined("current_aka_1") else '', 'current_aka_2': markdown_to_plaintext(current_aka_2) if defined("current_aka_2") else '', 'current_aka_3': markdown_to_plaintext(current_aka_3) if defined("current_aka_3") else '', 'current_case': markdown_to_plaintext(current_case) if defined("current_case") else '', 'current_city': markdown_to_plaintext(current_city) if defined("current_city") else '', 'current_dob': markdown_to_plaintext(current_dob) if defined("current_dob") else '', 'current_email': markdown_to_plaintext(current_email) if defined("current_email") else '', 'current_gender': markdown_to_plaintext(current_gender) if defined("current_gender") else '', '___shortcut_27_choice': markdown_to_plaintext(___shortcut_27_choice) if defined("___shortcut_27_choice") else '', '___shortcut_26_choice': markdown_to_plaintext(___shortcut_26_choice) if defined("___shortcut_26_choice") else '', 'current_name': markdown_to_plaintext(current_name) if defined("current_name") else '', 'current_phone': markdown_to_plaintext(current_phone) if defined("current_phone") else '', 'current_pob': markdown_to_plaintext(current_pob) if defined("current_pob") else '', 'current_state': markdown_to_plaintext(current_state) if defined("current_state") else '', 'current_street': markdown_to_plaintext(current_street) if defined("current_street") else '', 'current_zip': markdown_to_plaintext(current_zip) if defined("current_zip") else '', 'fax_gender': markdown_to_plaintext(fax_gender) if defined("fax_gender") else '', 'fax_info': markdown_to_plaintext(fax_info) if defined("fax_info") else '', 'fax_name': markdown_to_plaintext(fax_name) if defined("fax_name") else '', 'fax_name_and_gender': markdown_to_plaintext(fax_name_and_gender) if defined("fax_name_and_gender") else '', 'future_gender': markdown_to_plaintext(future_gender) if defined("future_gender") else '', '___shortcut_35_choice': markdown_to_plaintext(___shortcut_35_choice) if defined("___shortcut_35_choice") else '', '___shortcut_36_choice': markdown_to_plaintext(___shortcut_36_choice) if defined("___shortcut_36_choice") else '', '___shortcut_37_choice': markdown_to_plaintext(___shortcut_37_choice) if defined("___shortcut_37_choice") else '', 'future_name': markdown_to_plaintext(future_name) if defined("future_name") else '', '___shortcut_63_false': markdown_to_plaintext(___shortcut_63_false) if defined("___shortcut_63_false") else '', 'help_gender': markdown_to_plaintext(help_gender) if defined("help_gender") else '', '___shortcut_62_false': markdown_to_plaintext(___shortcut_62_false) if defined("___shortcut_62_false") else '', 'help_name': markdown_to_plaintext(help_name) if defined("help_name") else '', 'help_type': markdown_to_plaintext(help_type) if defined("help_type") else '', '___shortcut_13_choice': markdown_to_plaintext(___shortcut_13_choice) if defined("___shortcut_13_choice") else '', '___shortcut_15_choice': markdown_to_plaintext(___shortcut_15_choice) if defined("___shortcut_15_choice") else '', '___shortcut_14_choice': markdown_to_plaintext(___shortcut_14_choice) if defined("___shortcut_14_choice") else '', 'signature': markdown_to_plaintext(signature) if defined("signature") else '', '___shortcut_2_false': markdown_to_plaintext(___shortcut_2_false) if defined("___shortcut_2_false") else '', 'start': markdown_to_plaintext(start) if defined("start") else '' }
+---
+mandatory: True
+code: |
+  import requests
+  import json
+  define("___authorized", json.loads(requests.get("https://community.lawyer/docassemble_builder/docassemble_interviews/authorize?id=1123&key=" + unicode(url_args.get('key'))).content)['authorized'])
+---
+mandatory: |
+  not ___authorized
+question: Sorry, you are not authorized to access this page.
+subquestion: Try signing into your account or contacting the App author.
+---
+features:
+	debug: False
+	inverse navbar: False
+	javascript:
+		- https://community.lawyer/static/system_d-9.js
+	css:
+		- https://community.lawyer/static/styles/jcc-3.css
+---
+metadata:
+	title: |
+		Name & Gender Change Workshop
+	logo: |
+		<img class='app-logo' src='https://community.lawyer/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBckVTIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e9d646ab9874748ad6b9e4bc7c5c96097998079f/c0f9eb7ede1f3e0d7b96b0449e183986-rimg-w720-h373-gmir.jpg' alt='Name & Gender Change Workshop'/>
+---
+mandatory: True
+code: |
+  from docassemble.base.util import device
+  ___user_device = device().browser.family
+---
+mandatory: True
+code: |
+  if ___user_device == "IE":
+    log("This app may not run as expected on Internet Explorer - please consider using a more modern browser, such as those found <a href='http://outdatedbrowser.com/en'>here</a>.", "warning")
+---
+id: 28068
+mandatory: |
+	True
+question: |
+	<span id="session-id" data-session-id="${user_info().session}">
+	<span id="sends-answers" data-sends-answers="false">
+	<span id="cl-endpoint" data-cl-endpoint="https://community.lawyer">
+	<span id="interview-id" data-interview-id="1123">
+
+subquestion: |
+	# **_[THIS IS CODE, NOT LEGAL ADVICE](https://github.com/AriChivukula/docassemble.law/blob/master/docassemble/law/data/questions/icop.yml)_**
+field: start
+
+under: |
+	<hr>	<div style='display:flex;justify-content:space-between;'><div>Powered by [Community.lawyer](https://community.lawyer/)</div></div>
+css: |
+	<style>
+		:root {
+			--body-color: #fff;
+			--navbar-color: #2D3C4E;
+			--text-color: #212529;
+			--primary-btn-background-color: #f4ac3b;
+			--primary-btn-background-color-hover: #ef970d;
+			--primary-btn-text-color: #212529;
+			--secondary-btn-background-color: #ffc107;
+			--secondary-btn-background-color-hover: #d39e00;
+			--secondary-btn-text-color: #212529;
+			--text-link-color: #007bff;
+			--hide-navbar-background-color: #fff;
+		}
+
+	</style>
+---
+id: 29923
+mandatory: |
+	True
+question: |
+	<span id="session-id" data-session-id="${user_info().session}">
+	<span id="sends-answers" data-sends-answers="false">
+	<span id="cl-endpoint" data-cl-endpoint="https://community.lawyer">
+	<span id="interview-id" data-interview-id="1123">
+
+subquestion: |
+	# How can we help you today?
+fields:
+	- "<span class=\"producer \" data-variable-name=\"help_type\" data-field-id=\"59208\" ></span>": help_type
+		input type: radio
+		required: true
+		datatype: text
+		choices:
+			- "<span>Gender Change (18+ only)</span>": "Gender Change (18+ only)"
+			- "<span>Name Change (trans-identified 18+ only)</span>": "Name Change (trans-identified 18+ only)"
+			- "<span>Name & Gender Change (18+ only)</span>": "Name & Gender Change (18+ only)"
+
+under: |
+	<hr>	<div style='display:flex;justify-content:space-between;'><div>Powered by [Community.lawyer](https://community.lawyer/)</div></div>
+css: |
+	<style>
+		:root {
+			--body-color: #fff;
+			--navbar-color: #2D3C4E;
+			--text-color: #212529;
+			--primary-btn-background-color: #f4ac3b;
+			--primary-btn-background-color-hover: #ef970d;
+			--primary-btn-text-color: #212529;
+			--secondary-btn-background-color: #ffc107;
+			--secondary-btn-background-color-hover: #d39e00;
+			--secondary-btn-text-color: #212529;
+			--text-link-color: #007bff;
+			--hide-navbar-background-color: #fff;
+		}
+
+	</style>
+---
+id: 29924
+mandatory: |
+	True
+question: |
+	<span id="session-id" data-session-id="${user_info().session}">
+	<span id="sends-answers" data-sends-answers="false">
+	<span id="cl-endpoint" data-cl-endpoint="https://community.lawyer">
+	<span id="interview-id" data-interview-id="1123">
+
+subquestion: |
+	# Current Petitioner Information
+fields:
+	- "<span class=\"producer \" data-variable-name=\"current_name\" data-field-id=\"59210\" >Full Legal Name</span>": current_name
+		datatype: text
+		required: true
+
+	- "<span class=\"producer conditional-field \" data-variable-name=\"current_aka_1\" data-field-id=\"59219\" >Also Known As</span>": current_aka_1
+		datatype: text
+		required: false
+
+	- "<span class=\"producer conditional-field \" data-variable-name=\"current_aka_2\" data-field-id=\"59229\" >Also Also Known As</span>": current_aka_2
+		datatype: text
+		required: false
+
+	- "<span class=\"producer conditional-field \" data-variable-name=\"current_aka_3\" data-field-id=\"59230\" >Also Also Also Known As</span>": current_aka_3
+		datatype: text
+		required: false
+
+	- "<span class=\"producer \" data-variable-name=\"current_gender\" data-field-id=\"59218\" >Gender assigned by the state at birth</span>": current_gender
+		input type: radio
+		required: true
+		datatype: text
+		choices:
+			- "<span>Male</span>": "Male"
+			- "<span>Female</span>": "Female"
+
+	- "<span class=\"producer \" data-variable-name=\"current_phone\" data-field-id=\"59214\" >Phone</span>": current_phone
+		datatype: text
+		required: false
+
+	- "<span class=\"producer \" data-variable-name=\"current_email\" data-field-id=\"59216\" >Email</span>": current_email
+		datatype: email
+		required: false
+
+	- "<span class=\"producer \" data-variable-name=\"current_street\" data-field-id=\"59211\" >Street</span>": current_street
+		datatype: text
+		required: true
+
+	- "<span class=\"producer \" data-variable-name=\"current_city\" data-field-id=\"59212\" >City</span>": current_city
+		datatype: text
+		required: true
+
+	- "<span class=\"producer \" data-variable-name=\"current_zip\" data-field-id=\"59213\" >Zip</span>": current_zip
+		datatype: text
+		required: true
+		minlength: 5
+		maxlength: 5
+
+	- "<span class=\"producer \" data-variable-name=\"current_pob\" data-field-id=\"59221\" >Place of Birth</span>": current_pob
+		datatype: text
+		required: true
+
+	- "<span class=\"producer \" data-variable-name=\"current_dob\" data-field-id=\"59222\" >Date of Birth</span>": current_dob
+		datatype: date
+		required: true
+
+under: |
+	<hr>	<div style='display:flex;justify-content:space-between;'><div>Powered by [Community.lawyer](https://community.lawyer/)</div></div>
+script: |
+	<script>
+
+
+    $(function(){
+
+      window.CL.quicklyHideConditionalFields();
+
+      window.CL.updateFieldVisibility = function () {
+        if ((window.CL.isTruthy(((window.CL.augment(window.CL.variables.help_name))).wrapped))) { window.CL.showField("59219"); }
+    		if ((window.CL.isTruthy(((window.CL.augment(window.CL.variables.help_name))).wrapped))) { window.CL.showField("59229"); }
+    		if ((window.CL.isTruthy(((window.CL.augment(window.CL.variables.help_name))).wrapped))) { window.CL.showField("59230"); }
+        if ((window.CL.isFalsy(((window.CL.augment(window.CL.variables.help_name))).wrapped))) { window.CL.hideField("59219"); }
+    		if ((window.CL.isFalsy(((window.CL.augment(window.CL.variables.help_name))).wrapped))) { window.CL.hideField("59229"); }
+    		if ((window.CL.isFalsy(((window.CL.augment(window.CL.variables.help_name))).wrapped))) { window.CL.hideField("59230"); }
+      };
+
+      window.CL.recomputeDerivedVariables = function () {
+        var variablesBefore = $.extend(true, {}, window.CL.variables);
+
+        window.CL.variables.___shortcut_40_choice = (window.CL.variables.court_county === "Alameda")
+    		window.CL.variables.___shortcut_41_choice = (window.CL.variables.court_county === "Contra Costa")
+    		window.CL.variables.___shortcut_42_choice = (window.CL.variables.court_county === "Marin")
+    		window.CL.variables.___shortcut_43_choice = (window.CL.variables.court_county === "Napa")
+    		window.CL.variables.___shortcut_49_choice = (window.CL.variables.court_county === "Other")
+    		window.CL.variables.___shortcut_44_choice = (window.CL.variables.court_county === "San Francisco")
+    		window.CL.variables.___shortcut_45_choice = (window.CL.variables.court_county === "San Mateo")
+    		window.CL.variables.___shortcut_46_choice = (window.CL.variables.court_county === "Santa Clara")
+    		window.CL.variables.___shortcut_47_choice = (window.CL.variables.court_county === "Solano")
+    		window.CL.variables.___shortcut_48_choice = (window.CL.variables.court_county === "Sonoma")
+    		window.CL.variables.___shortcut_27_choice = (window.CL.variables.current_gender === "Female")
+    		window.CL.variables.___shortcut_26_choice = (window.CL.variables.current_gender === "Male")
+    		window.CL.variables.___shortcut_35_choice = (window.CL.variables.future_gender === "Female")
+    		window.CL.variables.___shortcut_36_choice = (window.CL.variables.future_gender === "Male")
+    		window.CL.variables.___shortcut_37_choice = (window.CL.variables.future_gender === "Non-Binary")
+    		window.CL.variables.___shortcut_63_false = (window.CL.negate(window.CL.variables.help_gender))
+    		window.CL.variables.___shortcut_62_false = (window.CL.negate(window.CL.variables.help_name))
+    		window.CL.variables.___shortcut_13_choice = (window.CL.variables.help_type === "Gender Change (18+ only)")
+    		window.CL.variables.___shortcut_15_choice = (window.CL.variables.help_type === "Name & Gender Change (18+ only)")
+    		window.CL.variables.___shortcut_14_choice = (window.CL.variables.help_type === "Name Change (trans-identified 18+ only)")
+    		window.CL.variables.___shortcut_2_false = (window.CL.negate(window.CL.variables.start))
+        window.CL.variables.help_name = ((window.CL.augment(window.CL.variables.___shortcut_15_choice)).booleanOr(window.CL.augment(window.CL.variables.___shortcut_14_choice)))
+    		window.CL.variables.help_gender = ((window.CL.augment(window.CL.variables.___shortcut_13_choice)).booleanOr(window.CL.augment(window.CL.variables.___shortcut_15_choice)))
+    		window.CL.variables.current_case = ((window.CL.augment("In re:")).stringJoinWithSpace(window.CL.augment(window.CL.variables.current_name)))
+        
+
+        if (!window.CL.objectsEqual(variablesBefore, window.CL.variables)) {
+          return window.CL.recomputeDerivedVariables();
+        }
+        window.CL.updateFieldVisibility();
+      };
+
+      window.CL.updateValue = function (variableName, variableValue) {
+        window.CL.variables[variableName] = variableValue;
+        window.CL.recomputeDerivedVariables();
+      };
+
+      window.CL.assignFieldChangeListeners = function () {
+        $('[data-variable-name]').each(function() {
+          var field = $(this);
+          var variableName = field.data('variable-name');
+          field.closest('.form-group').find('input, select, textarea').on('input change', function() {
+            if (this.type === 'checkbox') {
+              var $this = $(this);
+              var $id = $this.prop('id');
+              var $labelContainer = $('label[for="' + $id +'"]');
+              var $variableName = $labelContainer.find('.checkbox-producer').data('variable-name');
+              window.CL.updateValue($variableName, $this.is(':checked'));
+            } else {
+              window.CL.updateValue(variableName, this.value);
+            }
+          });
+        });
+      };
+
+      window.CL.assignEmbeddedFieldChangeListeners = function () {
+        $('.embedded-field').each(function() {
+          var wrapper = $(this);
+          var variableName = wrapper.data('variable-name');
+          wrapper.find('.input-embedded').on('input change', function() {
+            console.log("updating " + variableName + ' to ' + this.value);
+            window.CL.updateValue(variableName, this.value);
+          });
+          wrapper.find('.radio-embedded').on('change', function() {
+            console.log("updating " + variableName + ' to ' + this.value);
+            window.CL.updateValue(variableName, this.value);
+          });
+          wrapper.find('.checkbox-embedded').on('change', function() {
+            var $this = $(this);
+            var $id = $this.prop('id');
+            var $labelContainer = $('label[for="' + $id +'"]');
+            var $variableName = $labelContainer.find('.checkbox-producer').data('variable-name');
+            console.log("updating " + $variableName + ' to ' + $this.is(':checked'));
+            window.CL.updateValue($variableName, $this.is(':checked'));
+          });
+        });
+      };
+
+      window.CL.assignFieldChangeListeners();
+      window.CL.assignEmbeddedFieldChangeListeners();
+      window.CL.getExistingVariables(function(){
+        window.CL.recomputeDerivedVariables();
+      });
+    });
+
+
+
+	</script>
+
+css: |
+	<style>
+		:root {
+			--body-color: #fff;
+			--navbar-color: #2D3C4E;
+			--text-color: #212529;
+			--primary-btn-background-color: #f4ac3b;
+			--primary-btn-background-color-hover: #ef970d;
+			--primary-btn-text-color: #212529;
+			--secondary-btn-background-color: #ffc107;
+			--secondary-btn-background-color-hover: #d39e00;
+			--secondary-btn-text-color: #212529;
+			--text-link-color: #007bff;
+			--hide-navbar-background-color: #fff;
+		}
+
+	</style>
+---
+---
+id: 29926
+mandatory: |
+	is_truthy((((augment(help_name) if defined("help_name") else Undefined()))))
+question: |
+	<span id="session-id" data-session-id="${user_info().session}">
+	<span id="sends-answers" data-sends-answers="false">
+	<span id="cl-endpoint" data-cl-endpoint="https://community.lawyer">
+	<span id="interview-id" data-interview-id="1123">
+
+subquestion: |
+	# Future Petitioner Name
+fields:
+	- "<span class=\"producer \" data-variable-name=\"future_name\" data-field-id=\"59223\" >Full Future Name</span>": future_name
+		datatype: text
+		required: true
+
+under: |
+	<hr>	<div style='display:flex;justify-content:space-between;'><div>Powered by [Community.lawyer](https://community.lawyer/)</div></div>
+css: |
+	<style>
+		:root {
+			--body-color: #fff;
+			--navbar-color: #2D3C4E;
+			--text-color: #212529;
+			--primary-btn-background-color: #f4ac3b;
+			--primary-btn-background-color-hover: #ef970d;
+			--primary-btn-text-color: #212529;
+			--secondary-btn-background-color: #ffc107;
+			--secondary-btn-background-color-hover: #d39e00;
+			--secondary-btn-text-color: #212529;
+			--text-link-color: #007bff;
+			--hide-navbar-background-color: #fff;
+		}
+
+	</style>
+---
+id: 29927
+mandatory: |
+	is_truthy((((augment(help_gender) if defined("help_gender") else Undefined()))))
+question: |
+	<span id="session-id" data-session-id="${user_info().session}">
+	<span id="sends-answers" data-sends-answers="false">
+	<span id="cl-endpoint" data-cl-endpoint="https://community.lawyer">
+	<span id="interview-id" data-interview-id="1123">
+
+subquestion: |
+	# Future Petitioner Gender
+fields:
+	- "<span class=\"producer \" data-variable-name=\"future_gender\" data-field-id=\"59224\" >Future state assigned gender</span>": future_gender
+		input type: radio
+		required: true
+		datatype: text
+		choices:
+			- "<span>Female</span>": "Female"
+			- "<span>Male</span>": "Male"
+			- "<span>Non-Binary</span>": "Non-Binary"
+
+under: |
+	<hr>	<div style='display:flex;justify-content:space-between;'><div>Powered by [Community.lawyer](https://community.lawyer/)</div></div>
+css: |
+	<style>
+		:root {
+			--body-color: #fff;
+			--navbar-color: #2D3C4E;
+			--text-color: #212529;
+			--primary-btn-background-color: #f4ac3b;
+			--primary-btn-background-color-hover: #ef970d;
+			--primary-btn-text-color: #212529;
+			--secondary-btn-background-color: #ffc107;
+			--secondary-btn-background-color-hover: #d39e00;
+			--secondary-btn-text-color: #212529;
+			--text-link-color: #007bff;
+			--hide-navbar-background-color: #fff;
+		}
+
+	</style>
+---
+id: 29928
+mandatory: |
+	True
+question: |
+	<span id="session-id" data-session-id="${user_info().session}">
+	<span id="sends-answers" data-sends-answers="false">
+	<span id="cl-endpoint" data-cl-endpoint="https://community.lawyer">
+	<span id="interview-id" data-interview-id="1123">
+
+subquestion: |
+	# Court Information
+fields:
+	- "<span class=\"producer \" data-variable-name=\"court_county\" data-field-id=\"59225\" >Which county do you live in?</span>": court_county
+		input type: dropdown
+		required: true
+		datatype: text
+		choices:
+			- "<span>Alameda</span>": "Alameda"
+			- "<span>Contra Costa</span>": "Contra Costa"
+			- "<span>Marin</span>": "Marin"
+			- "<span>Napa</span>": "Napa"
+			- "<span>San Francisco</span>": "San Francisco"
+			- "<span>San Mateo</span>": "San Mateo"
+			- "<span>Santa Clara</span>": "Santa Clara"
+			- "<span>Solano</span>": "Solano"
+			- "<span>Sonoma</span>": "Sonoma"
+			- "<span>Other</span>": "Other"
+
+	- "<span class=\"producer conditional-field \" data-variable-name=\"court_other\" data-field-id=\"59226\" >Full Superior Court Name and Address</span>": court_other
+		datatype: area
+		required: false
+
+under: |
+	<hr>	<div style='display:flex;justify-content:space-between;'><div>Powered by [Community.lawyer](https://community.lawyer/)</div></div>
+script: |
+	<script>
+
+
+    $(function(){
+
+      window.CL.quicklyHideConditionalFields();
+
+      window.CL.updateFieldVisibility = function () {
+        if ((window.CL.isTruthy(((window.CL.augment(window.CL.variables.court_county)).stringEq(window.CL.augment("Other"))).wrapped))) { window.CL.showField("59226"); }
+        if ((window.CL.isFalsy(((window.CL.augment(window.CL.variables.court_county)).stringEq(window.CL.augment("Other"))).wrapped))) { window.CL.hideField("59226"); }
+      };
+
+      window.CL.recomputeDerivedVariables = function () {
+        var variablesBefore = $.extend(true, {}, window.CL.variables);
+
+        window.CL.variables.___shortcut_40_choice = (window.CL.variables.court_county === "Alameda")
+    		window.CL.variables.___shortcut_41_choice = (window.CL.variables.court_county === "Contra Costa")
+    		window.CL.variables.___shortcut_42_choice = (window.CL.variables.court_county === "Marin")
+    		window.CL.variables.___shortcut_43_choice = (window.CL.variables.court_county === "Napa")
+    		window.CL.variables.___shortcut_49_choice = (window.CL.variables.court_county === "Other")
+    		window.CL.variables.___shortcut_44_choice = (window.CL.variables.court_county === "San Francisco")
+    		window.CL.variables.___shortcut_45_choice = (window.CL.variables.court_county === "San Mateo")
+    		window.CL.variables.___shortcut_46_choice = (window.CL.variables.court_county === "Santa Clara")
+    		window.CL.variables.___shortcut_47_choice = (window.CL.variables.court_county === "Solano")
+    		window.CL.variables.___shortcut_48_choice = (window.CL.variables.court_county === "Sonoma")
+    		window.CL.variables.___shortcut_27_choice = (window.CL.variables.current_gender === "Female")
+    		window.CL.variables.___shortcut_26_choice = (window.CL.variables.current_gender === "Male")
+    		window.CL.variables.___shortcut_35_choice = (window.CL.variables.future_gender === "Female")
+    		window.CL.variables.___shortcut_36_choice = (window.CL.variables.future_gender === "Male")
+    		window.CL.variables.___shortcut_37_choice = (window.CL.variables.future_gender === "Non-Binary")
+    		window.CL.variables.___shortcut_63_false = (window.CL.negate(window.CL.variables.help_gender))
+    		window.CL.variables.___shortcut_62_false = (window.CL.negate(window.CL.variables.help_name))
+    		window.CL.variables.___shortcut_13_choice = (window.CL.variables.help_type === "Gender Change (18+ only)")
+    		window.CL.variables.___shortcut_15_choice = (window.CL.variables.help_type === "Name & Gender Change (18+ only)")
+    		window.CL.variables.___shortcut_14_choice = (window.CL.variables.help_type === "Name Change (trans-identified 18+ only)")
+    		window.CL.variables.___shortcut_2_false = (window.CL.negate(window.CL.variables.start))
+        window.CL.variables.help_name = ((window.CL.augment(window.CL.variables.___shortcut_15_choice)).booleanOr(window.CL.augment(window.CL.variables.___shortcut_14_choice)))
+    		window.CL.variables.help_gender = ((window.CL.augment(window.CL.variables.___shortcut_13_choice)).booleanOr(window.CL.augment(window.CL.variables.___shortcut_15_choice)))
+    		window.CL.variables.current_case = ((window.CL.augment("In re:")).stringJoinWithSpace(window.CL.augment(window.CL.variables.current_name)))
+        
+
+        if (!window.CL.objectsEqual(variablesBefore, window.CL.variables)) {
+          return window.CL.recomputeDerivedVariables();
+        }
+        window.CL.updateFieldVisibility();
+      };
+
+      window.CL.updateValue = function (variableName, variableValue) {
+        window.CL.variables[variableName] = variableValue;
+        window.CL.recomputeDerivedVariables();
+      };
+
+      window.CL.assignFieldChangeListeners = function () {
+        $('[data-variable-name]').each(function() {
+          var field = $(this);
+          var variableName = field.data('variable-name');
+          field.closest('.form-group').find('input, select, textarea').on('input change', function() {
+            if (this.type === 'checkbox') {
+              var $this = $(this);
+              var $id = $this.prop('id');
+              var $labelContainer = $('label[for="' + $id +'"]');
+              var $variableName = $labelContainer.find('.checkbox-producer').data('variable-name');
+              window.CL.updateValue($variableName, $this.is(':checked'));
+            } else {
+              window.CL.updateValue(variableName, this.value);
+            }
+          });
+        });
+      };
+
+      window.CL.assignEmbeddedFieldChangeListeners = function () {
+        $('.embedded-field').each(function() {
+          var wrapper = $(this);
+          var variableName = wrapper.data('variable-name');
+          wrapper.find('.input-embedded').on('input change', function() {
+            console.log("updating " + variableName + ' to ' + this.value);
+            window.CL.updateValue(variableName, this.value);
+          });
+          wrapper.find('.radio-embedded').on('change', function() {
+            console.log("updating " + variableName + ' to ' + this.value);
+            window.CL.updateValue(variableName, this.value);
+          });
+          wrapper.find('.checkbox-embedded').on('change', function() {
+            var $this = $(this);
+            var $id = $this.prop('id');
+            var $labelContainer = $('label[for="' + $id +'"]');
+            var $variableName = $labelContainer.find('.checkbox-producer').data('variable-name');
+            console.log("updating " + $variableName + ' to ' + $this.is(':checked'));
+            window.CL.updateValue($variableName, $this.is(':checked'));
+          });
+        });
+      };
+
+      window.CL.assignFieldChangeListeners();
+      window.CL.assignEmbeddedFieldChangeListeners();
+      window.CL.getExistingVariables(function(){
+        window.CL.recomputeDerivedVariables();
+      });
+    });
+
+
+
+	</script>
+
+css: |
+	<style>
+		:root {
+			--body-color: #fff;
+			--navbar-color: #2D3C4E;
+			--text-color: #212529;
+			--primary-btn-background-color: #f4ac3b;
+			--primary-btn-background-color-hover: #ef970d;
+			--primary-btn-text-color: #212529;
+			--secondary-btn-background-color: #ffc107;
+			--secondary-btn-background-color-hover: #d39e00;
+			--secondary-btn-text-color: #212529;
+			--text-link-color: #007bff;
+			--hide-navbar-background-color: #fff;
+		}
+
+	</style>
+---
+---
+---
+id: 29920
+mandatory: |
+	True
+question: |
+	<span id="session-id" data-session-id="${user_info().session}">
+	<span id="sends-answers" data-sends-answers="false">
+	<span id="cl-endpoint" data-cl-endpoint="https://community.lawyer">
+	<span id="interview-id" data-interview-id="1123">
+
+subquestion: |
+	Please sign as you would for any government document
+signature: signature
+
+under: |
+	<hr>	<div style='display:flex;justify-content:space-between;'><div>Powered by [Community.lawyer](https://community.lawyer/)</div></div>
+css: |
+	<style>
+		:root {
+			--body-color: #fff;
+			--navbar-color: #2D3C4E;
+			--text-color: #212529;
+			--primary-btn-background-color: #f4ac3b;
+			--primary-btn-background-color-hover: #ef970d;
+			--primary-btn-text-color: #212529;
+			--secondary-btn-background-color: #ffc107;
+			--secondary-btn-background-color-hover: #d39e00;
+			--secondary-btn-text-color: #212529;
+			--text-link-color: #007bff;
+			--hide-navbar-background-color: #fff;
+		}
+
+	</style>
+---
+---
+id: 28069
+mandatory: |
+	True
+question: |
+	<span id="session-id" data-session-id="${user_info().session}">
+	<span id="sends-answers" data-sends-answers="false">
+	<span id="cl-endpoint" data-cl-endpoint="https://community.lawyer">
+	<span id="interview-id" data-interview-id="1123">
+
+subquestion: |
+	# **Thanks for volunteering!**
+
+attachment code: |
+	filter(bool, [ternary((augment(help_name) if defined("help_name") else Undefined()), t____nc110_pdf_1089_attachment_1372, ""), ternary((augment(___shortcut_14_choice) if defined("___shortcut_14_choice") else Undefined()), t____nc130_pdf_1093_attachment_1374, ""), ternary((augment(___shortcut_15_choice) if defined("___shortcut_15_choice") else Undefined()), t____nc200_pdf_1095_attachment_1375, ""), ternary((augment(___shortcut_15_choice) if defined("___shortcut_15_choice") else Undefined()), t____nc230_pdf_1096_attachment_1376, ""), ternary((augment(___shortcut_14_choice) if defined("___shortcut_14_choice") else Undefined()), t____nc100_pdf_1147_attachment_1383, ""), t____mc005_pdf_1100_attachment_1371, t____cm010_pdf_1087_attachment_1378, t____fw001_pdf_1099_attachment_1381, ternary((augment(___shortcut_13_choice) if defined("___shortcut_13_choice") else Undefined()), t____nc300_pdf_1097_attachment_1377, ""), ternary((augment(help_name) if defined("help_name") else Undefined()), t____nc125_pdf_1092_attachment_1373, ""), ternary((augment(___shortcut_13_choice) if defined("___shortcut_13_choice") else Undefined()), t____nc330_pdf_1098_attachment_1379, "")])
+allow emailing: False
+under: |
+	<hr>	<div style='display:flex;justify-content:space-between;'><div>Powered by [Community.lawyer](https://community.lawyer/)</div><span class="is-final-block" /></div>
+css: |
+	<style>
+		button.btn-primary[type='submit'] {
+			display: none;
+		}
+		:root {
+			--body-color: #fff;
+			--navbar-color: #2D3C4E;
+			--text-color: #212529;
+			--primary-btn-background-color: #f4ac3b;
+			--primary-btn-background-color-hover: #ef970d;
+			--primary-btn-text-color: #212529;
+			--secondary-btn-background-color: #ffc107;
+			--secondary-btn-background-color-hover: #d39e00;
+			--secondary-btn-text-color: #212529;
+			--text-link-color: #007bff;
+			--hide-navbar-background-color: #fff;
+		}
+
+	</style>
+---
+code: |
+  if (augment(help_name) if defined("help_name") else Undefined()):
+    import requests
+    import json
+    import time
+    playa_base = "http://playa.community.lawyer"
+    playa_fill_endpoint = "http://playa.community.lawyer/task"
+    playa_status_endpoint = "http://playa.community.lawyer/tasks"
+    post_data = ___pdf_template_1092_to_json()
+    fill_response = requests.post(playa_fill_endpoint, json=post_data).json()
+    task_id = fill_response.get('id')
+    access_key = fill_response.get('key')
+    filled_attachment_url = ""
+    done = False
+    attempts_count = 0
+    while not done and attempts_count < 250:
+      status_url = playa_status_endpoint + '/' + str(task_id) + '?key=' + str(access_key)
+      task_response = requests.get(status_url).json()
+      done = task_response.get('status') == 'done'
+      filled_attachment_url = playa_base + '/' + task_response.get('document_url')
+      attempts_count += 1
+      time.sleep(.1)
+    t____nc125_pdf_1092_attachment_1373 = DAFileCollection()
+    t____nc125_pdf_1092_attachment_1373.pdf = DAFile()
+    t____nc125_pdf_1092_attachment_1373.pdf.initialize(extension="pdf")
+    if done:
+      t____nc125_pdf_1092_attachment_1373.pdf.from_url(filled_attachment_url)
+      t____nc125_pdf_1092_attachment_1373.info = {'name': 'nc125', 'filename': 'nc125', 'description': ''}
+    else:
+      t____nc125_pdf_1092_attachment_1373.pdf.from_url('https://community.lawyer/static/blank.pdf')
+      t____nc125_pdf_1092_attachment_1373.info = {'name': 'We encountered a problem', 'filename': 'nc125', 'description': 'There was a problem filling your PDF - please try again'}
+  else:
+    t____nc125_pdf_1092_attachment_1373 = ''
+---
+code: |
+  if True:
+    import requests
+    import json
+    import time
+    playa_base = "http://playa.community.lawyer"
+    playa_fill_endpoint = "http://playa.community.lawyer/task"
+    playa_status_endpoint = "http://playa.community.lawyer/tasks"
+    post_data = ___pdf_template_1087_to_json()
+    fill_response = requests.post(playa_fill_endpoint, json=post_data).json()
+    task_id = fill_response.get('id')
+    access_key = fill_response.get('key')
+    filled_attachment_url = ""
+    done = False
+    attempts_count = 0
+    while not done and attempts_count < 250:
+      status_url = playa_status_endpoint + '/' + str(task_id) + '?key=' + str(access_key)
+      task_response = requests.get(status_url).json()
+      done = task_response.get('status') == 'done'
+      filled_attachment_url = playa_base + '/' + task_response.get('document_url')
+      attempts_count += 1
+      time.sleep(.1)
+    t____cm010_pdf_1087_attachment_1378 = DAFileCollection()
+    t____cm010_pdf_1087_attachment_1378.pdf = DAFile()
+    t____cm010_pdf_1087_attachment_1378.pdf.initialize(extension="pdf")
+    if done:
+      t____cm010_pdf_1087_attachment_1378.pdf.from_url(filled_attachment_url)
+      t____cm010_pdf_1087_attachment_1378.info = {'name': 'cm010', 'filename': 'cm010', 'description': ''}
+    else:
+      t____cm010_pdf_1087_attachment_1378.pdf.from_url('https://community.lawyer/static/blank.pdf')
+      t____cm010_pdf_1087_attachment_1378.info = {'name': 'We encountered a problem', 'filename': 'cm010', 'description': 'There was a problem filling your PDF - please try again'}
+  else:
+    t____cm010_pdf_1087_attachment_1378 = ''
+---
+code: |
+  if (augment(help_name) if defined("help_name") else Undefined()):
+    import requests
+    import json
+    import time
+    playa_base = "http://playa.community.lawyer"
+    playa_fill_endpoint = "http://playa.community.lawyer/task"
+    playa_status_endpoint = "http://playa.community.lawyer/tasks"
+    post_data = ___pdf_template_1089_to_json()
+    fill_response = requests.post(playa_fill_endpoint, json=post_data).json()
+    task_id = fill_response.get('id')
+    access_key = fill_response.get('key')
+    filled_attachment_url = ""
+    done = False
+    attempts_count = 0
+    while not done and attempts_count < 250:
+      status_url = playa_status_endpoint + '/' + str(task_id) + '?key=' + str(access_key)
+      task_response = requests.get(status_url).json()
+      done = task_response.get('status') == 'done'
+      filled_attachment_url = playa_base + '/' + task_response.get('document_url')
+      attempts_count += 1
+      time.sleep(.1)
+    t____nc110_pdf_1089_attachment_1372 = DAFileCollection()
+    t____nc110_pdf_1089_attachment_1372.pdf = DAFile()
+    t____nc110_pdf_1089_attachment_1372.pdf.initialize(extension="pdf")
+    if done:
+      t____nc110_pdf_1089_attachment_1372.pdf.from_url(filled_attachment_url)
+      t____nc110_pdf_1089_attachment_1372.info = {'name': 'nc110', 'filename': 'nc110', 'description': ''}
+    else:
+      t____nc110_pdf_1089_attachment_1372.pdf.from_url('https://community.lawyer/static/blank.pdf')
+      t____nc110_pdf_1089_attachment_1372.info = {'name': 'We encountered a problem', 'filename': 'nc110', 'description': 'There was a problem filling your PDF - please try again'}
+  else:
+    t____nc110_pdf_1089_attachment_1372 = ''
+---
+code: |
+  if (augment(___shortcut_14_choice) if defined("___shortcut_14_choice") else Undefined()):
+    import requests
+    import json
+    import time
+    playa_base = "http://playa.community.lawyer"
+    playa_fill_endpoint = "http://playa.community.lawyer/task"
+    playa_status_endpoint = "http://playa.community.lawyer/tasks"
+    post_data = ___pdf_template_1147_to_json()
+    fill_response = requests.post(playa_fill_endpoint, json=post_data).json()
+    task_id = fill_response.get('id')
+    access_key = fill_response.get('key')
+    filled_attachment_url = ""
+    done = False
+    attempts_count = 0
+    while not done and attempts_count < 250:
+      status_url = playa_status_endpoint + '/' + str(task_id) + '?key=' + str(access_key)
+      task_response = requests.get(status_url).json()
+      done = task_response.get('status') == 'done'
+      filled_attachment_url = playa_base + '/' + task_response.get('document_url')
+      attempts_count += 1
+      time.sleep(.1)
+    t____nc100_pdf_1147_attachment_1383 = DAFileCollection()
+    t____nc100_pdf_1147_attachment_1383.pdf = DAFile()
+    t____nc100_pdf_1147_attachment_1383.pdf.initialize(extension="pdf")
+    if done:
+      t____nc100_pdf_1147_attachment_1383.pdf.from_url(filled_attachment_url)
+      t____nc100_pdf_1147_attachment_1383.info = {'name': 'nc100', 'filename': 'nc100', 'description': ''}
+    else:
+      t____nc100_pdf_1147_attachment_1383.pdf.from_url('https://community.lawyer/static/blank.pdf')
+      t____nc100_pdf_1147_attachment_1383.info = {'name': 'We encountered a problem', 'filename': 'nc100', 'description': 'There was a problem filling your PDF - please try again'}
+  else:
+    t____nc100_pdf_1147_attachment_1383 = ''
+---
+code: |
+  if (augment(___shortcut_14_choice) if defined("___shortcut_14_choice") else Undefined()):
+    import requests
+    import json
+    import time
+    playa_base = "http://playa.community.lawyer"
+    playa_fill_endpoint = "http://playa.community.lawyer/task"
+    playa_status_endpoint = "http://playa.community.lawyer/tasks"
+    post_data = ___pdf_template_1093_to_json()
+    fill_response = requests.post(playa_fill_endpoint, json=post_data).json()
+    task_id = fill_response.get('id')
+    access_key = fill_response.get('key')
+    filled_attachment_url = ""
+    done = False
+    attempts_count = 0
+    while not done and attempts_count < 250:
+      status_url = playa_status_endpoint + '/' + str(task_id) + '?key=' + str(access_key)
+      task_response = requests.get(status_url).json()
+      done = task_response.get('status') == 'done'
+      filled_attachment_url = playa_base + '/' + task_response.get('document_url')
+      attempts_count += 1
+      time.sleep(.1)
+    t____nc130_pdf_1093_attachment_1374 = DAFileCollection()
+    t____nc130_pdf_1093_attachment_1374.pdf = DAFile()
+    t____nc130_pdf_1093_attachment_1374.pdf.initialize(extension="pdf")
+    if done:
+      t____nc130_pdf_1093_attachment_1374.pdf.from_url(filled_attachment_url)
+      t____nc130_pdf_1093_attachment_1374.info = {'name': 'nc130', 'filename': 'nc130', 'description': ''}
+    else:
+      t____nc130_pdf_1093_attachment_1374.pdf.from_url('https://community.lawyer/static/blank.pdf')
+      t____nc130_pdf_1093_attachment_1374.info = {'name': 'We encountered a problem', 'filename': 'nc130', 'description': 'There was a problem filling your PDF - please try again'}
+  else:
+    t____nc130_pdf_1093_attachment_1374 = ''
+---
+code: |
+  if (augment(___shortcut_15_choice) if defined("___shortcut_15_choice") else Undefined()):
+    import requests
+    import json
+    import time
+    playa_base = "http://playa.community.lawyer"
+    playa_fill_endpoint = "http://playa.community.lawyer/task"
+    playa_status_endpoint = "http://playa.community.lawyer/tasks"
+    post_data = ___pdf_template_1095_to_json()
+    fill_response = requests.post(playa_fill_endpoint, json=post_data).json()
+    task_id = fill_response.get('id')
+    access_key = fill_response.get('key')
+    filled_attachment_url = ""
+    done = False
+    attempts_count = 0
+    while not done and attempts_count < 250:
+      status_url = playa_status_endpoint + '/' + str(task_id) + '?key=' + str(access_key)
+      task_response = requests.get(status_url).json()
+      done = task_response.get('status') == 'done'
+      filled_attachment_url = playa_base + '/' + task_response.get('document_url')
+      attempts_count += 1
+      time.sleep(.1)
+    t____nc200_pdf_1095_attachment_1375 = DAFileCollection()
+    t____nc200_pdf_1095_attachment_1375.pdf = DAFile()
+    t____nc200_pdf_1095_attachment_1375.pdf.initialize(extension="pdf")
+    if done:
+      t____nc200_pdf_1095_attachment_1375.pdf.from_url(filled_attachment_url)
+      t____nc200_pdf_1095_attachment_1375.info = {'name': 'nc200', 'filename': 'nc200', 'description': ''}
+    else:
+      t____nc200_pdf_1095_attachment_1375.pdf.from_url('https://community.lawyer/static/blank.pdf')
+      t____nc200_pdf_1095_attachment_1375.info = {'name': 'We encountered a problem', 'filename': 'nc200', 'description': 'There was a problem filling your PDF - please try again'}
+  else:
+    t____nc200_pdf_1095_attachment_1375 = ''
+---
+code: |
+  if (augment(___shortcut_13_choice) if defined("___shortcut_13_choice") else Undefined()):
+    import requests
+    import json
+    import time
+    playa_base = "http://playa.community.lawyer"
+    playa_fill_endpoint = "http://playa.community.lawyer/task"
+    playa_status_endpoint = "http://playa.community.lawyer/tasks"
+    post_data = ___pdf_template_1097_to_json()
+    fill_response = requests.post(playa_fill_endpoint, json=post_data).json()
+    task_id = fill_response.get('id')
+    access_key = fill_response.get('key')
+    filled_attachment_url = ""
+    done = False
+    attempts_count = 0
+    while not done and attempts_count < 250:
+      status_url = playa_status_endpoint + '/' + str(task_id) + '?key=' + str(access_key)
+      task_response = requests.get(status_url).json()
+      done = task_response.get('status') == 'done'
+      filled_attachment_url = playa_base + '/' + task_response.get('document_url')
+      attempts_count += 1
+      time.sleep(.1)
+    t____nc300_pdf_1097_attachment_1377 = DAFileCollection()
+    t____nc300_pdf_1097_attachment_1377.pdf = DAFile()
+    t____nc300_pdf_1097_attachment_1377.pdf.initialize(extension="pdf")
+    if done:
+      t____nc300_pdf_1097_attachment_1377.pdf.from_url(filled_attachment_url)
+      t____nc300_pdf_1097_attachment_1377.info = {'name': 'nc300', 'filename': 'nc300', 'description': ''}
+    else:
+      t____nc300_pdf_1097_attachment_1377.pdf.from_url('https://community.lawyer/static/blank.pdf')
+      t____nc300_pdf_1097_attachment_1377.info = {'name': 'We encountered a problem', 'filename': 'nc300', 'description': 'There was a problem filling your PDF - please try again'}
+  else:
+    t____nc300_pdf_1097_attachment_1377 = ''
+---
+code: |
+  if (augment(___shortcut_13_choice) if defined("___shortcut_13_choice") else Undefined()):
+    import requests
+    import json
+    import time
+    playa_base = "http://playa.community.lawyer"
+    playa_fill_endpoint = "http://playa.community.lawyer/task"
+    playa_status_endpoint = "http://playa.community.lawyer/tasks"
+    post_data = ___pdf_template_1098_to_json()
+    fill_response = requests.post(playa_fill_endpoint, json=post_data).json()
+    task_id = fill_response.get('id')
+    access_key = fill_response.get('key')
+    filled_attachment_url = ""
+    done = False
+    attempts_count = 0
+    while not done and attempts_count < 250:
+      status_url = playa_status_endpoint + '/' + str(task_id) + '?key=' + str(access_key)
+      task_response = requests.get(status_url).json()
+      done = task_response.get('status') == 'done'
+      filled_attachment_url = playa_base + '/' + task_response.get('document_url')
+      attempts_count += 1
+      time.sleep(.1)
+    t____nc330_pdf_1098_attachment_1379 = DAFileCollection()
+    t____nc330_pdf_1098_attachment_1379.pdf = DAFile()
+    t____nc330_pdf_1098_attachment_1379.pdf.initialize(extension="pdf")
+    if done:
+      t____nc330_pdf_1098_attachment_1379.pdf.from_url(filled_attachment_url)
+      t____nc330_pdf_1098_attachment_1379.info = {'name': 'nc330', 'filename': 'nc330', 'description': ''}
+    else:
+      t____nc330_pdf_1098_attachment_1379.pdf.from_url('https://community.lawyer/static/blank.pdf')
+      t____nc330_pdf_1098_attachment_1379.info = {'name': 'We encountered a problem', 'filename': 'nc330', 'description': 'There was a problem filling your PDF - please try again'}
+  else:
+    t____nc330_pdf_1098_attachment_1379 = ''
+---
+code: |
+  if True:
+    import requests
+    import json
+    import time
+    playa_base = "http://playa.community.lawyer"
+    playa_fill_endpoint = "http://playa.community.lawyer/task"
+    playa_status_endpoint = "http://playa.community.lawyer/tasks"
+    post_data = ___pdf_template_1099_to_json()
+    fill_response = requests.post(playa_fill_endpoint, json=post_data).json()
+    task_id = fill_response.get('id')
+    access_key = fill_response.get('key')
+    filled_attachment_url = ""
+    done = False
+    attempts_count = 0
+    while not done and attempts_count < 250:
+      status_url = playa_status_endpoint + '/' + str(task_id) + '?key=' + str(access_key)
+      task_response = requests.get(status_url).json()
+      done = task_response.get('status') == 'done'
+      filled_attachment_url = playa_base + '/' + task_response.get('document_url')
+      attempts_count += 1
+      time.sleep(.1)
+    t____fw001_pdf_1099_attachment_1381 = DAFileCollection()
+    t____fw001_pdf_1099_attachment_1381.pdf = DAFile()
+    t____fw001_pdf_1099_attachment_1381.pdf.initialize(extension="pdf")
+    if done:
+      t____fw001_pdf_1099_attachment_1381.pdf.from_url(filled_attachment_url)
+      t____fw001_pdf_1099_attachment_1381.info = {'name': 'fw001', 'filename': 'fw001', 'description': ''}
+    else:
+      t____fw001_pdf_1099_attachment_1381.pdf.from_url('https://community.lawyer/static/blank.pdf')
+      t____fw001_pdf_1099_attachment_1381.info = {'name': 'We encountered a problem', 'filename': 'fw001', 'description': 'There was a problem filling your PDF - please try again'}
+  else:
+    t____fw001_pdf_1099_attachment_1381 = ''
+---
+code: |
+  if (augment(___shortcut_15_choice) if defined("___shortcut_15_choice") else Undefined()):
+    import requests
+    import json
+    import time
+    playa_base = "http://playa.community.lawyer"
+    playa_fill_endpoint = "http://playa.community.lawyer/task"
+    playa_status_endpoint = "http://playa.community.lawyer/tasks"
+    post_data = ___pdf_template_1096_to_json()
+    fill_response = requests.post(playa_fill_endpoint, json=post_data).json()
+    task_id = fill_response.get('id')
+    access_key = fill_response.get('key')
+    filled_attachment_url = ""
+    done = False
+    attempts_count = 0
+    while not done and attempts_count < 250:
+      status_url = playa_status_endpoint + '/' + str(task_id) + '?key=' + str(access_key)
+      task_response = requests.get(status_url).json()
+      done = task_response.get('status') == 'done'
+      filled_attachment_url = playa_base + '/' + task_response.get('document_url')
+      attempts_count += 1
+      time.sleep(.1)
+    t____nc230_pdf_1096_attachment_1376 = DAFileCollection()
+    t____nc230_pdf_1096_attachment_1376.pdf = DAFile()
+    t____nc230_pdf_1096_attachment_1376.pdf.initialize(extension="pdf")
+    if done:
+      t____nc230_pdf_1096_attachment_1376.pdf.from_url(filled_attachment_url)
+      t____nc230_pdf_1096_attachment_1376.info = {'name': 'nc230', 'filename': 'nc230', 'description': ''}
+    else:
+      t____nc230_pdf_1096_attachment_1376.pdf.from_url('https://community.lawyer/static/blank.pdf')
+      t____nc230_pdf_1096_attachment_1376.info = {'name': 'We encountered a problem', 'filename': 'nc230', 'description': 'There was a problem filling your PDF - please try again'}
+  else:
+    t____nc230_pdf_1096_attachment_1376 = ''
+---
+code: |
+  if True:
+    import requests
+    import json
+    import time
+    playa_base = "http://playa.community.lawyer"
+    playa_fill_endpoint = "http://playa.community.lawyer/task"
+    playa_status_endpoint = "http://playa.community.lawyer/tasks"
+    post_data = ___pdf_template_1100_to_json()
+    fill_response = requests.post(playa_fill_endpoint, json=post_data).json()
+    task_id = fill_response.get('id')
+    access_key = fill_response.get('key')
+    filled_attachment_url = ""
+    done = False
+    attempts_count = 0
+    while not done and attempts_count < 250:
+      status_url = playa_status_endpoint + '/' + str(task_id) + '?key=' + str(access_key)
+      task_response = requests.get(status_url).json()
+      done = task_response.get('status') == 'done'
+      filled_attachment_url = playa_base + '/' + task_response.get('document_url')
+      attempts_count += 1
+      time.sleep(.1)
+    t____mc005_pdf_1100_attachment_1371 = DAFileCollection()
+    t____mc005_pdf_1100_attachment_1371.pdf = DAFile()
+    t____mc005_pdf_1100_attachment_1371.pdf.initialize(extension="pdf")
+    if done:
+      t____mc005_pdf_1100_attachment_1371.pdf.from_url(filled_attachment_url)
+      t____mc005_pdf_1100_attachment_1371.info = {'name': 'mc005', 'filename': 'mc005', 'description': ''}
+    else:
+      t____mc005_pdf_1100_attachment_1371.pdf.from_url('https://community.lawyer/static/blank.pdf')
+      t____mc005_pdf_1100_attachment_1371.info = {'name': 'We encountered a problem', 'filename': 'mc005', 'description': 'There was a problem filling your PDF - please try again'}
+  else:
+    t____mc005_pdf_1100_attachment_1371 = ''
+---
+mandatory: |
+	True
+question: |
+	<span id="session-id" data-session-id="${user_info().session}">
+	<span id="sends-answers" data-sends-answers="false">
+	<span id="cl-endpoint" data-cl-endpoint="https://community.lawyer">
+	<span id="interview-id" data-interview-id="1123">
+
+subquestion: |
+	Thank you for using this app. Your session is complete.
+---
