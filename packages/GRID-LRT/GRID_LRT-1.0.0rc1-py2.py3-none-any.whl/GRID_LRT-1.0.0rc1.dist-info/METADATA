@@ -1,0 +1,35 @@
+Metadata-Version: 2.0
+Name: GRID-LRT
+Version: 1.0.0rc1
+Summary: GRID LOFAR Reduction Tools
+Home-page: https://www.github.com/apmechev/GRID_LRT/
+Author: Alexandar Mechev
+Author-email: LOFAR@apmechev.com
+License: UNKNOWN
+Download-URL: https://github.com/apmechev/GRID_LRT/archive/v0.5.0.tar.gz
+Keywords: surfsara,distributed-computing,LOFAR
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Classifier: Topic :: System :: Distributed Computing
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: cloudant
+Requires-Dist: couchdb
+Requires-Dist: gitpython
+Requires-Dist: humanfriendly
+Requires-Dist: pyyaml
+Requires-Dist: retrying
+
+Software that encapsulates LOFAR processingand allows the use of High Throughput Distributed processing availableat SURFsara and other European Grid Initiative locations.
+
+
