@@ -1,0 +1,15 @@
+Click>=6.0
+Jinja2
+bs4
+cachecontrol
+defusedxml<0.6  # 0.6 drops Py3.4
+entrypoints
+lazy-object-proxy
+lxml
+python-telegram-bot
+pytimeparse
+pyyaml
+requests
+schedule
+selenium
+six
