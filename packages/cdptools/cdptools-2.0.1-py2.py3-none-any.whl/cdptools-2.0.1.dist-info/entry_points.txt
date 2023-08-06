@@ -1,0 +1,3 @@
+[console_scripts]
+run_cdp_pipeline = cdptools.bin.run_cdp_pipeline:main
+
