@@ -1,0 +1,13 @@
+spotify_videos/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+spotify_videos/player.py,sha256=WaZPKc3psB7pEEyuCb5fgsEH8X4Ig5KaopWNEZ-Yx-o,10880
+spotify_videos/spotify_videos.py,sha256=Qanw6qFOZ44oF4xsZx02Lunw0gNWVHNJ8Z_7F24I9_M,6124
+spotify_videos/spotipy/__init__.py,sha256=PXsV6jqd46EGZ6Z9RC-9DscBLQpgM5kGwANveVnQT3M,105
+spotify_videos/spotipy/client.py,sha256=nAtfdxJkadabM_8pICDQiH1X_2WUck8jV-MhoNb6dK8,40483
+spotify_videos/spotipy/oauth2.py,sha256=sVx0-jTt7To9rNYxescC4APjrxKyfqYIDvd6wAeOdNY,8849
+spotify_videos/spotipy/util.py,sha256=MHqPdhzAZYT5nBeiQicGvfPrTArwuZSXy3K0FFQtr08,3061
+spotify_videos-1.5.dist-info/LICENSE,sha256=UAHbeQFAETieqK7KbUlWrWxLkFCbTPnqWs_pi2ngVZM,1062
+spotify_videos-1.5.dist-info/METADATA,sha256=655zLiXVDe4WszucLkyQXff0QrMVfqDtuJ3yIgKWF6k,6204
+spotify_videos-1.5.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+spotify_videos-1.5.dist-info/entry_points.txt,sha256=wZv20NRGeD4DVz_QmoD1mgD2z2ASHbjf5AG8t9Kdh2Y,71
+spotify_videos-1.5.dist-info/top_level.txt,sha256=5Aju9owHBy6EagXXTxwIDHrzS7Ug94IcVVVDtXGBlSk,15
+spotify_videos-1.5.dist-info/RECORD,,
