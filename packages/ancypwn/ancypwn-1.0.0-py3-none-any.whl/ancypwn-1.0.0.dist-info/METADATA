@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: ancypwn
+Version: 1.0.0
+Summary: Ancypwn docker image manipulation script, to simplify docker pwn environment management
+Home-page: https://github.com/Escapingbug/ancypwn
+Author: Anciety
+Author-email: anciety@pku.edu.cn
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: click
+Requires-Dist: appdirs
+
+UNKNOWN
+
+
