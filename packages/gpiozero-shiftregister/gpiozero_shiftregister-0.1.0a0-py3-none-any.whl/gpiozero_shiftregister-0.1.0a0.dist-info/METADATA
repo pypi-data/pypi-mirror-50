@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: gpiozero-shiftregister
+Version: 0.1.0a0
+Summary: Control shift register on rasperypi using gpiozero library
+Home-page: https://yisraeldov.gitlab.io/gpiozero-shiftregister
+License: MIT
+Keywords: rasperypi,gpio,gpiozero
+Author: Yisrael Dov Lebow
+Author-email: lebow@lebowtech.com
+Requires-Python: >=3.6,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Hardware
+Classifier: Topic :: System :: Hardware :: Hardware Drivers
+Requires-Dist: RPi.GPIO (>=0.7.0,<0.8.0)
+Requires-Dist: gpiozero (>=1.5,<2.0)
+Project-URL: Repository, https://gitlab.com/yisraeldov/gpiozero-shiftregister
