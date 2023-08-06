@@ -1,0 +1,3 @@
+[console_scripts]
+pylexer = pylexer.__main__:main
+
