@@ -1,0 +1,10 @@
+README.md
+setup.py
+bits/__init__.py
+bits/mongo/__init__.py
+bits_mongo.egg-info/PKG-INFO
+bits_mongo.egg-info/SOURCES.txt
+bits_mongo.egg-info/dependency_links.txt
+bits_mongo.egg-info/not-zip-safe
+bits_mongo.egg-info/requires.txt
+bits_mongo.egg-info/top_level.txt
