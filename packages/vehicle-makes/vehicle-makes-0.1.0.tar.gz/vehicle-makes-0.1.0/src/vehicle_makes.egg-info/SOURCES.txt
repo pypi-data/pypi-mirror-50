@@ -1,0 +1,14 @@
+HISTORY.rst
+MANIFEST.in
+README.rst
+requirements.txt
+setup.cfg
+setup.py
+src/vehicle_makes/__init__.py
+src/vehicle_makes/vehicle_makes.py
+src/vehicle_makes.egg-info/PKG-INFO
+src/vehicle_makes.egg-info/SOURCES.txt
+src/vehicle_makes.egg-info/dependency_links.txt
+src/vehicle_makes.egg-info/not-zip-safe
+src/vehicle_makes.egg-info/requires.txt
+src/vehicle_makes.egg-info/top_level.txt
