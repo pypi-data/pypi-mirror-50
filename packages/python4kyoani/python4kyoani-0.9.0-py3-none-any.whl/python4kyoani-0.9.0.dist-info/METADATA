@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: python4kyoani
+Version: 0.9.0
+Summary: 僕たちはPythonで京アニに何ができるだろうか
+Home-page: UNKNOWN
+License: UNKNOWN
+Keywords: PrayForKyoani
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: Pillow (>=6.0)
+Provides-Extra: dev
+Requires-Dist: doc8 ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+
+PrayForKyoani
+=================
+
+| 2019/07/18 京都アニメーションに起きた悲劇。
+| 悲しみが重なる中、前を向くためにPythonで京都アニメーションにお返しするプロジェクト
+
+
