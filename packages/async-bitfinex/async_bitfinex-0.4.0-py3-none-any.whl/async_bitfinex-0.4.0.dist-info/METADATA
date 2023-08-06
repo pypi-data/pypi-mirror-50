@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: async-bitfinex
+Version: 0.4.0
+Summary: Python client for Bitfinex 
+Home-page: https://github.com/ohenrik/async_bitfinex
+Author: Ole Henrik Skogstrøm
+Author-email: henrik@amplify.no
+License: MIT
+Keywords: bitfinex,bitcoin,btc,asyncio,websockets
+Platform: UNKNOWN
+Requires-Dist: requests
+Requires-Dist: websockets
+
+UNKNOWN
+
+
