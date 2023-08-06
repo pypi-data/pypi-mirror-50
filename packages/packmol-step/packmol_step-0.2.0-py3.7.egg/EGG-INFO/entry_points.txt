@@ -1,0 +1,6 @@
+[org.molssi.seamm]
+PACKMOL = packmol_step:PACKMOLStep
+
+[org.molssi.seamm.tk]
+PACKMOL = packmol_step:PACKMOLStep
+
