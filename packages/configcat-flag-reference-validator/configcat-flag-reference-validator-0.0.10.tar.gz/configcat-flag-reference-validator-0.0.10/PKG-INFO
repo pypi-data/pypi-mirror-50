@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: configcat-flag-reference-validator
+Version: 0.0.10
+Summary: ConfigCat flag reference validator.
+Home-page: https://github.com/configcat/flag-reference-validator
+Author: ConfigCat
+Author-email: developer@configcat.com
+License: MIT
+Description: # flag-reference-validator
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development
+Description-Content-Type: text/markdown
