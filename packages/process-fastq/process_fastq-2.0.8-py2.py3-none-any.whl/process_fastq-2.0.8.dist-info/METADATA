@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: process-fastq
+Version: 2.0.8
+Summary: This package will help process, merge and link fastq in user specified directory from manifest file
+Home-page: https://github.com/rhshah/process_fastq
+Author: Ronak Hasmukh Shah
+Author-email: rons.shah@gmail.com
+License: Apache Software License 2.0
+Keywords: process_fastq
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: pandas (==0.25.0)
+Requires-Dist: click (==7.0)
+Requires-Dist: click-log (==0.3.2)
+Requires-Dist: cutadapt (==2.4)
+Requires-Dist: flake8 (==3.7.8)
+
+https://github.com/rhshah/process_fastq
+
+

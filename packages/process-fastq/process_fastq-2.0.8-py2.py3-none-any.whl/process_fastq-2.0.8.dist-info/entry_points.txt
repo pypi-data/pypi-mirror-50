@@ -1,0 +1,3 @@
+[console_scripts]
+process_fastq = process_fastq.cli:main
+
