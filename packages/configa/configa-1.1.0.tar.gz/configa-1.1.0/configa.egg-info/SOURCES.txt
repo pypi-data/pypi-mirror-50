@@ -1,0 +1,14 @@
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+configa/__init__.py
+configa/conftest.py
+configa/setter.py
+configa.egg-info/PKG-INFO
+configa.egg-info/SOURCES.txt
+configa.egg-info/dependency_links.txt
+configa.egg-info/top_level.txt
+configa/tests/__init__.py
+configa/tests/test_config.py
+configa/tests/test_setter.py

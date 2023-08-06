@@ -1,0 +1,69 @@
+Metadata-Version: 1.2
+Name: configa
+Version: 1.1.0
+Summary: Python config wrapper, with added goodness
+Home-page: https://github.com/loum/configa
+Author: Lou Markovski
+Author-email: lou.markovski@gmail.com
+Maintainer: Lou Markovski
+Maintainer-email: lou.markovski@gmail.com
+License: MIT
+Description: #######
+        Configa
+        #######
+        Convert configuration items into Python objects.
+        
+        *************
+        Prerequisites
+        *************
+        Targeting Python 3 here on a Linux platform.
+        
+        Note: ``python3`` must exist in order for the project ``Makefile`` to function correctly.
+        
+        ***************
+        Getting Started
+        ***************
+        Get the code::
+        
+            $ git clone https://github.com/loum/configa.git
+            
+        Build the virtual environment and download project dependencies::
+        
+            $ cd configa
+            $ make init APP_ENV=dev
+            
+        Run the tests to make sure all is OK::
+        
+            $ source 3env/bin/activate
+            (venv) $ make tests
+        
+        ***********************
+        Build the Documentation
+        ***********************
+        Project documentation is self contained under the ``doc/source`` directory.  To build the documentation locally::
+        
+            $ make docs
+        
+        The project comes with a simple web server that allows you to present the docs from within your own environment::
+        
+            $ cd docs/build
+            $ ./http_server.py
+            
+        Note: The web server will block your CLI and all activity will be logged to the console.  To end serving pages, just ``Ctrl-C``.
+            
+        To view pages, open up a web browser and navigate to ``http:<your_server_IP>:8888``
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Pytest
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Testing
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.6
