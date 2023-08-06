@@ -1,0 +1,5 @@
+requests
+click[cli]
+python-dotenv[cli]
+pyyaml
+pprint
