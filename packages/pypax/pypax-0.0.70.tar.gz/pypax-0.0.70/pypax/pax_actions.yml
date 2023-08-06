@@ -1,0 +1,84 @@
+# ======================================================================================================================
+# Deployment Steps.
+# ======================================================================================================================
+
+deploy:
+
+  default:
+
+    config:
+
+      DOCKER_IMAGE: genvis/pax-test
+      DOCKER_CONTEXT: "."
+      DOCKER_FILE: Dockerfile
+      ECR_REPO: 080541409137.dkr.ecr.ap-southeast-2.amazonaws.com
+
+      HELM_VALUES_FILE: ./fake_helm/values.fake.yaml
+      HELM_NAME: pax-test
+      HELM_DIR: ./helm/pax-project
+
+      K_NAMESPACE: default
+      K_CONTEXT: k.genvis.co
+
+    steps:
+      - version_bump
+      - update_commit_hash
+      # - docker_build
+      - helm_update
+      - update_node_on_server
+    
+  staging:
+
+    config:
+      DOCKER_IMAGE: genvis/pax-test
+      NEW_SETTING: 1234
+
+    steps:
+      - version_bump
+      - update_commit_hash
+      # - docker_build
+      # - docker_upload_to_ecr
+      - modify_helm_image
+
+# ======================================================================================================================
+# Actions.
+# ======================================================================================================================
+
+actions:
+
+  # In built: 
+  # - modify_helm_image
+  # - update_node_on_server
+
+  version_bump:
+    - FILE=".pax/version"
+    - '[ -f ${FILE} ] || echo "0.0.0" > ${FILE}'
+    - VERSION=$(cat ${FILE})
+    - NEW_VERSION=$(echo ${VERSION} | awk -F. -v OFS=. 'NF==1{print ++$NF}; NF>1{$NF=sprintf($NF+1); print}')
+    - echo ${NEW_VERSION} > ${FILE}
+    - echo "Version bumped from ${VERSION} to ${NEW_VERSION}." > .tmp_result.txt
+
+  update_commit_hash:
+    - COMMIT_HASH=$(git rev-parse HEAD)
+    - echo ${COMMIT_HASH} > .pax/commit_hash
+    - echo "Commit Hash Updated to ${COMMIT_HASH}" > .tmp_result.txt
+
+  docker_build:
+    - docker build -t ${DOCKER_IMAGE} -f ${DOCKER_FILE} ${DOCKER_CONTEXT}
+    - echo "Docker Image ${DOCKER_IMAGE} Built!" > .tmp_result.txt
+
+  docker_upload_to_ecr:
+    - eval $(aws ecr get-login --no-include-email --region ap-southeast-2)
+    - COMMIT_HASH=$(cat .pax/commit_hash)
+    - VERSION=$(cat .pax/version)
+    - ECR_DST=${ECR_REPO}/${DOCKER_IMAGE}:${COMMIT_HASH}
+    - docker tag ${DOCKER_IMAGE} ${ECR_DST}
+    - docker push ${ECR_DST}
+    - echo "Docker Uploaded to ${ECR_REPO}/${DOCKER_IMAGE}:${COMMIT_HASH}" > .tmp_result.txt
+
+  helm_update:
+    - HELM_INSTALL_EXIT=1
+    - HELM_ARGS="--kube-context ${K_CONTEXT} --namespace ${K_NAMESPACE} -f ${HELM_VALUES_FILE} ${HELM_DIR}"
+    - (helm install --name ${HELM_NAME} ${HELM_ARGS}) && HELM_INSTALL_EXIT=0
+    - if [ ${HELM_INSTALL_EXIT} -gt 0 ]; (helm upgrade ${HELM_NAME} ${HELM_ARGS}); fi
+    - echo "Helm Install Exit ${HELM_INSTALL_EXIT}" > .tmp_result.txt
