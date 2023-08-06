@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: parallelmediadownloader
+Version: 0.0.0
+Summary: This project helps you to download media file.
+Home-page: https://github.com/yukihiko-shinoda/parallel-media-downloader
+Author: Yukihiko Shinoda
+Author-email: yuk.hik.future@gmail.com
+License: UNKNOWN
+Keywords: parallel media download downloader image jpg jpeg png gif aiohttp
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: aiohttp
+
+# Parallel Media Downloader
+
+This project helps you to download media file.
+
+
