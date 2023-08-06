@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row row-controls">
+  <div class="col">
+    <h2>Administrator Controls</h2>
+  </div>
+</div>
+
+{% for role in roledata %}
+<article class="link-group clearfix">
+    <div class="link-info">
+        <a href="/roles/{{ role['id'] }}/" class="title">{{ role["title"] }}</a>
+    </div>
+</article>
+{% endfor %}
+
+{% assets "shrunk_js" %}
+<script src="{{ ASSET_URL }}"></script>
+{% endassets %}
+
+{% endblock %}

@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-red">
+
+  <!-- Rutgers logo -->
+  <a id="rutgers-logo" class="navbar-brand" href="{{ url_for('shrunk.render_index') }}">
+    <img alt="Rutgers"
+	 src="{{ url_for('static', filename='img/RU_LOGOTYPE_REVWHITE.png') }}"
+	 width="175px">
+  </a>
+
+  <!-- We only want to display navbar items when the user is logged in. -->
+  {% if netid %}
+  <!-- Search box -->
+  <form class="form-inline" action="{{ url_for('shrunk.render_index') }}" method="get">
+    <div class="input-group">
+      <input type="search" name="query" aria-label="Search"
+	     class="form-control input-large" placeholder="Search"
+	     value="{{ query if query else '' }}">
+      <div class="input-group-append">
+	<button type="submit" id="submit-search" class="btn btn-outline-secondary">
+	  <i class="fas fa-search"></i>
+	</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Main nav items -->
+  <div class="collapse navbar-collapse">
+    <a tabindex="0" role="button" class="btn btn-outline-secondary btn-no-border"
+       href="{{ url_for('shrunk.render_index') }}">
+      Dashboard
+    </a>
+
+    {% if ("facstaff" in roles or "power_user" in roles) and "admin" not in roles %}
+    <a tabindex="0" role="button" class="btn btn-outline-secondary btn-no-border"
+       href="/roles/whitelisted">
+      Whitelist
+    </a>
+    {% endif %}
+
+    {% if "admin" in roles %}
+    <a tabindex="0" role="button" class="btn btn-outline-secondary btn-no-border"
+       href="{{ url_for('shrunk.admin_panel') }}">
+      Admin
+    </a>
+    {% endif %}
+
+    <a tabindex="0" role="button" class="btn btn-outline-secondary btn-no-border"
+       href="{{ url_for('orgs.list') }}">
+      Organizations
+    </a>
+
+    <a tabindex="0" role="button" class="btn btn-outline-secondary btn-no-border"
+       href="{{ url_for('shrunk.faq') }}">
+      FAQ
+    </a>
+  </div>
+  
+  <!-- Username and logout -->
+  <div class="nav-item dropdown px-2">
+    <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+	    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      {{ netid }}
+    </button>
+    <div class="dropdown-menu dropdown-menu-right" area-labelledby="netidDropdown">
+      <a class="dropdown-item" href="{{ url_for('shrunk.logout') }}">Logout</a>
+    </div>
+  </div>
+  {% endif %}
+</nav>
+
