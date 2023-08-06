@@ -1,0 +1,9 @@
+README.md
+setup.py
+django_vb_admin.egg-info/PKG-INFO
+django_vb_admin.egg-info/SOURCES.txt
+django_vb_admin.egg-info/dependency_links.txt
+django_vb_admin.egg-info/entry_points.txt
+django_vb_admin.egg-info/top_level.txt
+vb_admin/__init__.py
+vb_admin/command.py
