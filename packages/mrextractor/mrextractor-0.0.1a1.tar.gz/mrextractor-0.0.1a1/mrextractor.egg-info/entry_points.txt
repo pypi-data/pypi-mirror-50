@@ -1,0 +1,3 @@
+[console_scripts]
+mrextract = mrextractor.__main__:main
+
