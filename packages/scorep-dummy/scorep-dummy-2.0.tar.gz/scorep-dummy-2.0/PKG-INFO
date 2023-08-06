@@ -1,0 +1,13 @@
+Metadata-Version: 1.0
+Name: scorep-dummy
+Version: 2.0
+Summary: This is a dummy package for the scorep pakcage
+Home-page: https://github.com/score-p/scorep_binding_python_dummy
+Author: Andreas Gocht
+Author-email: andreas.gocht@tu-dresden.de
+License: UNKNOWN
+Description: 
+        This package only provides the user interface of the Score-P Python tracing.
+        The goal is to allow the presence of userinstrumentation in packages even if no Score-P is present.
+        
+Platform: UNKNOWN
