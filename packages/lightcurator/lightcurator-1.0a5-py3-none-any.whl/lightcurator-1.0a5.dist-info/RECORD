@@ -1,0 +1,10 @@
+lightcurator/__init__.py,sha256=XbVoqdmZoULMAa9tIr7Hn4vJZRzXVLAEkF5IZJq3aD0,42
+lightcurator/calibration.py,sha256=9Lhg0zEAXK2N39U1kQUKule-dNmXIeDkWHgNqIi6K6Q,5012
+lightcurator/lcdb.py,sha256=YweZ9PJq8lhdXYYRbLI4YDu6giwS3w2m2bFJaqlYEow,219
+lightcurator/lightcurve.py,sha256=36H6hC9Y2RC7Cv42k1pw1lG6czcHVmxHRcQdonLqGxw,21510
+tests/__init__.py,sha256=Gz_25zcVUxTXUZ8ZKpVXnaTygAxgdFuc5LiQBxJgnuM,25
+tests/test_lightcurve.py,sha256=XmQXDoRdl0tkJL1qwd_9HH4TT5g4moHwYIWOv8iufnU,248
+lightcurator-1.0a5.dist-info/METADATA,sha256=n_FDkIKGSyzCGW785rDft_fLD1EEDAMKR4Cokc8kGQc,1873
+lightcurator-1.0a5.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+lightcurator-1.0a5.dist-info/top_level.txt,sha256=KX5tjYxhr8VwgeQ9ZGbz08968pKqjAutGwjUjZFjZwI,19
+lightcurator-1.0a5.dist-info/RECORD,,
