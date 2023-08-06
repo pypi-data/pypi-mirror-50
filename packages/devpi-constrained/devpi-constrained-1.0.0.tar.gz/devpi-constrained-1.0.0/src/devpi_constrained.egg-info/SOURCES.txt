@@ -1,0 +1,17 @@
+CHANGELOG.rst
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+tox.ini
+src/devpi_constrained/__init__.py
+src/devpi_constrained/main.py
+src/devpi_constrained.egg-info/PKG-INFO
+src/devpi_constrained.egg-info/SOURCES.txt
+src/devpi_constrained.egg-info/dependency_links.txt
+src/devpi_constrained.egg-info/entry_points.txt
+src/devpi_constrained.egg-info/requires.txt
+src/devpi_constrained.egg-info/top_level.txt
+src/devpi_constrained.egg-info/zip-safe
+src/devpi_constrained/tests/test_constrained.py
