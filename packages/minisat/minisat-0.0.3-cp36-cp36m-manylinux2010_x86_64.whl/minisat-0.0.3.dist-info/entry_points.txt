@@ -1,0 +1,3 @@
+[console_scripts]
+pyminisat = minisat:pyminisat
+
