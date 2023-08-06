@@ -1,0 +1,17 @@
+.pre-commit-config.yaml
+.travis.yml
+README.md
+requirements-dev.txt
+setup.cfg
+setup.py
+sstable-compressioninfo.py
+sstable-index.py
+sstable-statistics.py
+sstable-summary.py
+sstable_tools/__init__.py
+sstable_tools/sstablelib.py
+sstable_tools/statistics.py
+sstable_tools.egg-info/PKG-INFO
+sstable_tools.egg-info/SOURCES.txt
+sstable_tools.egg-info/dependency_links.txt
+sstable_tools.egg-info/top_level.txt
