@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: decimalcontext
+Version: 0.1.1
+Summary: A decorator to create a decimal context for a function
+Home-page: http://github.com/peachfinance/decimalcontext
+Author: Eran Sandler
+Author-email: opensource@peachfinance.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Utilities
+Provides-Extra: test
