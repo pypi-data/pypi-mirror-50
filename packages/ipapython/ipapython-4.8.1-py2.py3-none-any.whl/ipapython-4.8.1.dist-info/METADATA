@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: ipapython
+Version: 4.8.1
+Summary: FreeIPA python support library
+Home-page: https://www.freeipa.org/
+Author: FreeIPA Developers
+Author-email: freeipa-devel@lists.fedorahosted.org
+Maintainer: FreeIPA Developers
+Maintainer-email: freeipa-devel@redhat.com
+License: GPLv3
+Download-URL: https://www.freeipa.org/page/Downloads
+Platform: Linux
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: C
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Unix
+Classifier: Topic :: Internet :: Name Service (DNS)
+Classifier: Topic :: Security
+Classifier: Topic :: System :: Systems Administration :: Authentication/Directory :: LDAP
+Requires-Python: >=3.6.0
+Provides-Extra: netifaces
+Provides-Extra: ldap
+Provides-Extra: install
+Requires-Dist: cffi
+Requires-Dist: cryptography (>=1.6)
+Requires-Dist: dnspython (>=1.15)
+Requires-Dist: gssapi (>=1.2.0)
+Requires-Dist: ipaplatform (==4.8.1)
+Requires-Dist: netaddr
+Requires-Dist: six
+Provides-Extra: install
+Requires-Dist: dbus-python; extra == 'install'
+Provides-Extra: ldap
+Requires-Dist: python-ldap; extra == 'ldap'
+Provides-Extra: netifaces
+Requires-Dist: netifaces; extra == 'netifaces'
+
+FreeIPA python support library
+
+
