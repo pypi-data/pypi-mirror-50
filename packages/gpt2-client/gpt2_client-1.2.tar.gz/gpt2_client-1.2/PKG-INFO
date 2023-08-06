@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: gpt2_client
+Version: 1.2
+Summary: Easy-to-use Wrapper for GPT-2 117M and 345M Transformer Models
+Home-page: https://github.com/rish-16/gpt2client
+Author: Rishabh Anand
+Author-email: mail.rishabh.anand@gmail.com
+License: MIT
+Download-URL: https://github.com/rish-16/gpt2client/archive/1.1.tar.gz
+Description: UNKNOWN
+Keywords: gpt-2,wrapper,transformer,machine learning,openai,text generation
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
