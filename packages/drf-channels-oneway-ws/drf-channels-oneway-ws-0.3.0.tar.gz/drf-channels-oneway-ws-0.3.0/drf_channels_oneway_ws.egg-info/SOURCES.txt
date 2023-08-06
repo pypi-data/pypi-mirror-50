@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+channels_oneway/__init__.py
+channels_oneway/__version__.py
+channels_oneway/bindings.py
+channels_oneway/mixins.py
+channels_oneway/utils.py
+drf_channels_oneway_ws.egg-info/PKG-INFO
+drf_channels_oneway_ws.egg-info/SOURCES.txt
+drf_channels_oneway_ws.egg-info/dependency_links.txt
+drf_channels_oneway_ws.egg-info/requires.txt
+drf_channels_oneway_ws.egg-info/top_level.txt
