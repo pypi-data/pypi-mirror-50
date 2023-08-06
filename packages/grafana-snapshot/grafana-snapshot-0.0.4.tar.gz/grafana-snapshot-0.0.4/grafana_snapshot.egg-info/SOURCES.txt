@@ -1,0 +1,13 @@
+README.md
+setup.cfg
+setup.py
+GrafanaSnapshot/GenerateSnapshot.py
+GrafanaSnapshot/__init__.py
+GrafanaSnapshot/version.py
+grafana_snapshot.egg-info/PKG-INFO
+grafana_snapshot.egg-info/SOURCES.txt
+grafana_snapshot.egg-info/dependency_links.txt
+grafana_snapshot.egg-info/requires.txt
+grafana_snapshot.egg-info/top_level.txt
+tests/__init__.py
+tests/test_snapshot.py
