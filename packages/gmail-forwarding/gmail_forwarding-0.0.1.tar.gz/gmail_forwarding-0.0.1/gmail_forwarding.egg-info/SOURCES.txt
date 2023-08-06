@@ -1,0 +1,13 @@
+README.md
+setup.py
+gmail_forwarding/__init__.py
+gmail_forwarding/_version.py
+gmail_forwarding/constants.py
+gmail_forwarding/functions.py
+gmail_forwarding/gmail_message.py
+gmail_forwarding/runner.py
+gmail_forwarding.egg-info/PKG-INFO
+gmail_forwarding.egg-info/SOURCES.txt
+gmail_forwarding.egg-info/dependency_links.txt
+gmail_forwarding.egg-info/requires.txt
+gmail_forwarding.egg-info/top_level.txt
