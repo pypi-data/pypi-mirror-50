@@ -1,0 +1,9 @@
+.idea
+__pycache__
+*.egg-info
+*.pyc
+*.iml
+cortex/ext/vcftools*
+cortex/ext/stampy*
+cortex/ext/cortex*
+*~

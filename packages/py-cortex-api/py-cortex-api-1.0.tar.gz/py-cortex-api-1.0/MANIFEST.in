@@ -1,0 +1,5 @@
+recursive-include cortex/ext *
+include cortex/ext/cortex/bin/cortex_var_31_c1
+include cortex/ext/cortex/bin/cortex_var_31_c2
+recursive-include cortex/tests/data *
+exclude *~
