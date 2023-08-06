@@ -1,0 +1,12 @@
+README.md
+setup.cfg
+setup.py
+speedmonitor/__init__.py
+speedmonitor/__main__.py
+speedmonitor/speedlib.py
+speedmonitor/views.py
+speedmonitor.egg-info/PKG-INFO
+speedmonitor.egg-info/SOURCES.txt
+speedmonitor.egg-info/dependency_links.txt
+speedmonitor.egg-info/requires.txt
+speedmonitor.egg-info/top_level.txt
