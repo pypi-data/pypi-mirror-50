@@ -1,0 +1,66 @@
+Metadata-Version: 2.1
+Name: text2output
+Version: 1.0.5
+Summary: Convert your text to print function in any language
+Home-page: https://github.com/orishamir/
+Author: Ori Shamir
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Topic :: Artistic Software
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+### About
+This is a quick and easy tool to convert your big ascii words to print statements in any programming language.   
+
+Example:   
+Say you have the words:
+`Hello, World!`   
+
+And you converted it to big ascii characters, like this:   
+```
+ ___  ___  _______   ___       ___       ________                ___       __   ________  ________  ___       ________     
+|\  \|\  \|\  ___ \ |\  \     |\  \     |\   __  \              |\  \     |\  \|\   __  \|\   __  \|\  \     |\   ___ \    
+\ \  \\\  \ \   __/|\ \  \    \ \  \    \ \  \|\  \             \ \  \    \ \  \ \  \|\  \ \  \|\  \ \  \    \ \  \_|\ \   
+ \ \   __  \ \  \_|/_\ \  \    \ \  \    \ \  \\\  \  ___        \ \  \  __\ \  \ \  \\\  \ \   _  _\ \  \    \ \  \ \\ \  
+  \ \  \ \  \ \  \_|\ \ \  \____\ \  \____\ \  \\\  \|\  \        \ \  \|\__\_\  \ \  \\\  \ \  \\  \\ \  \____\ \  \_\\ \ 
+   \ \__\ \__\ \_______\ \_______\ \_______\ \_______\ \  \        \ \____________\ \_______\ \__\\ _\\ \_______\ \_______\
+    \|__|\|__|\|_______|\|_______|\|_______|\|_______|\/  /|        \|____________|\|_______|\|__|\|__|\|_______|\|_______|
+                                                    |\___/ /                                                               
+                                                    \|___|/                                                                
+
+```
+
+But you want to have it used in a print statement, like this:   
+```
+print(r' ___  ___  _______   ___       ___       ________                ___       __   ________  ________  ___       ________ ')
+print(r'|\  \|\  \|\  ___ \ |\  \     |\  \     |\   __  \              |\  \     |\  \|\   __  \|\   __  \|\  \     |\   ___ \ ')
+print(r'\ \  \\\  \ \   __/|\ \  \    \ \  \    \ \  \|\  \             \ \  \    \ \  \ \  \|\  \ \  \|\  \ \  \    \ \  \_|\ \ ')
+print(r' \ \   __  \ \  \_|/_\ \  \    \ \  \    \ \  \\\  \  ___        \ \  \  __\ \  \ \  \\\  \ \   _  _\ \  \    \ \  \ \\ \ ')
+print(r'  \ \  \ \  \ \  \_|\ \ \  \____\ \  \____\ \  \\\  \|\  \        \ \  \|\__\_\  \ \  \\\  \ \  \\  \\ \  \____\ \  \_\\ \ ')
+print(r'   \ \__\ \__\ \_______\ \_______\ \_______\ \_______\ \  \        \ \____________\ \_______\ \__\\ _\\ \_______\ \_______\ ')
+print(r'    \|__|\|__|\|_______|\|_______|\|_______|\|_______|\/  /|        \|____________|\|_______|\|__|\|__|\|_______|\|_______| ')
+print(r'                                                    |\___/ / ')
+print(r'                                                    \|___|/ ')
+```
+
+Well then in that case I got you convered!   
+All you need to do, is make a text file, and paste you huge ass words there.   
+You can get those huge ass words from this website:   
+[http://www.network-science.de/ascii/](http://www.network-science.de/ascii/)
+
+Then, import my tool:   
+```python
+from text2output import *
+```
+Then, run it:
+```python
+text2output.texttoprint("helloworld.txt", lang="python3", line_prefix="         ", file_prefix='# Output hello world')
+```
+
+You'll get a new file called `"helloworld_new.txt"` there would be your good stuff.    
+
