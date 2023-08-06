@@ -1,0 +1,12 @@
+Metadata-Version: 1.2
+Name: authicola
+Version: 0.0.1
+Summary: A convenience libary of OAuth2.0 providers
+Home-page: https://github.com/garyburgmann/authicola
+Author: Gary Burgmann
+Author-email: garyburgmann@gmail.com
+License: MIT
+Description: UNKNOWN
+Keywords: oauth,oauth2.0,authentication,python3,google
+Platform: UNKNOWN
+Requires-Python: >=3.4
