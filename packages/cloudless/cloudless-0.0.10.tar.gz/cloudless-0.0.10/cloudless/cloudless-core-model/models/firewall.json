@@ -1,0 +1,64 @@
+{
+  "$id": "https://example.com/person.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Firewall",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-((0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(\\.(0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*)){0,1}(\\+([0-9a-zA-Z-]+(\\.[0-9a-zA-Z-]+)*)){0,1}$",
+      "description": "The version number of this schema."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of this firewall."
+    },
+    "id": {
+      "type": "string",
+      "description": "The id of this firewall."
+    },
+    "target": {
+      "$ref": "#/definitions/selector",
+      "description": "Selector for which instances to apply this firewall to."
+    },
+    "source_instances": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/selector"
+      }
+    },
+    "source_cidr_blocks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^([0-9]{1,3}\\.){3}[0-9]{1,3}(\\/([0-9]|[1-2][0-9]|3[0-2]))?$"
+      }
+    },
+    "network": {
+      "$ref": "#/definitions/selector",
+      "description": "Selector for which network to apply this firewall to."
+    }
+  },
+  "definitions": {
+    "selector": {
+      "title": "Selector",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "A regular expresion to match the names of resources this should apply to."
+        },
+        "ids": {
+          "type": "array",
+          "description": "List of instance ids this applies to.",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [ "version", "name" ],
+  "dependencies": { },
+  "additionalProperties": false
+}
