@@ -1,0 +1,22 @@
+Metadata-Version: 1.1
+Name: wai.common
+Version: 0.0.1
+Summary: Python library with common functionality for other Waikato projects.
+Home-page: https://github.com/waikato-datamining/wai-common
+Author: Corey Sterling
+Author-email: coreytsterling@gmail.com
+License: MIT
+Description: Python library with common functionality for other Waikato projects.
+        Changelog
+        =========
+        
+        0.0.1 (2019-08-09)
+        -------------------
+        
+        - Initial release
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Programming Language :: Python :: 3
