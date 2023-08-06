@@ -1,0 +1,9 @@
+README.rst
+setup.cfg
+setup.py
+tensorlight/__init__.py
+tensorlight.egg-info/PKG-INFO
+tensorlight.egg-info/SOURCES.txt
+tensorlight.egg-info/dependency_links.txt
+tensorlight.egg-info/requires.txt
+tensorlight.egg-info/top_level.txt
