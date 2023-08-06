@@ -1,0 +1,20 @@
+Metadata-Version: 1.2
+Name: remrpc
+Version: 0.1.0
+Summary: Lightweight RPC on Redis using Msgpack.
+Home-page: https://github.com/shixiongfei/remrpc
+Author: Xiongfei Shi
+Author-email: jenson.shixf@gmail.com
+Maintainer: Xiongfei Shi
+Maintainer-email: jenson.shixf@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: Msgpack,Redis,RPC
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Object Brokering
+Classifier: Topic :: System :: Distributed Computing
