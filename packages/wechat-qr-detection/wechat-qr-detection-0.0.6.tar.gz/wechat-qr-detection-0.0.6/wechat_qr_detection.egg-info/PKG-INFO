@@ -1,0 +1,28 @@
+Metadata-Version: 1.1
+Name: wechat-qr-detection
+Version: 0.0.6
+Summary: wechat qrcode detection
+Home-page: https://github.com/BiLiangDevelop/wechat-qr-detection
+Author: BiLiangDevelop && frkhit
+Author-email: frkhit@gmail.com
+License: MIT
+Description: wechat qrcode detection.
+        
+        Links:
+        
+        * `Github <https://github.com/BiLiangDevelop/wechat-qr-detection>`_
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Other Audience
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Utilities

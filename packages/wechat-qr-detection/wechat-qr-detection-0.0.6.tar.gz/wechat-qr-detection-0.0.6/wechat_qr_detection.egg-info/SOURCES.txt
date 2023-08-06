@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+test/test_detection.py
+wechat_qr_detection/__init__.py
+wechat_qr_detection/utils.py
+wechat_qr_detection.egg-info/PKG-INFO
+wechat_qr_detection.egg-info/SOURCES.txt
+wechat_qr_detection.egg-info/dependency_links.txt
+wechat_qr_detection.egg-info/requires.txt
+wechat_qr_detection.egg-info/top_level.txt
