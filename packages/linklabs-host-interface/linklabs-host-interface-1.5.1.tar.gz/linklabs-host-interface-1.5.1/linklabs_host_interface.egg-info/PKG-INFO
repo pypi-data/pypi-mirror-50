@@ -1,0 +1,42 @@
+Metadata-Version: 1.1
+Name: linklabs-host-interface
+Version: 1.5.1
+Summary: Linklabs module interface
+Home-page: https://www.link-labs.com
+Author: Link Labs LLC
+Author-email: support@link-labs.com
+License: MIT
+Description: ll_ifc.py
+        ============
+        
+        This is a python implementation of the Link Labs host interface.
+        
+        To get started, simply instantiate a ``ModuleDriver``::
+        
+            import ll_ifc
+            mod = ll_ifc.ModuleDriver()
+        
+        Then, set up the module with your gateway's network token and the desired application token::
+        
+            app_token = '12345678901234567890'
+            net_token = '12345678'
+            mod.set_up(app_token, net_token)
+        
+        Once that's finished, you can send uplink messages::
+        
+            mod.send_message_checked(b'hello')
+        
+        And receive downlink messages::
+        
+            mod.set_downlink_mode('always')
+            mod.wait_for_received_message()
+        
+Keywords: link labs symphony conductor
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
