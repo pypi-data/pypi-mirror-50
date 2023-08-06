@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: depgrep
+Version: 0.1.2
+Summary: Dependency parse searching
+Home-page: https://github.com/interrogator/depgrep
+Author: Danny McDonald
+Author-email: mcddjx@gmail.com
+License: UNKNOWN
+Description: # depgrep
+        Dependency parse searching
+        
+        <!--- Don't edit the version line below manually. Let bump2version do it for you. -->
+        > Version 0.1.2
+Keywords: linguistics nlp dependencies conll
+Platform: UNKNOWN
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
