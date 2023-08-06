@@ -1,0 +1,4 @@
+[distutils.commands]
+runenv = hs_build_tools.runenv:RunEnv
+tidy = hs_build_tools.tidy:TidyCommand
+
