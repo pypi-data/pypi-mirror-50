@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: ionata-django-settings
+Version: 0.0.5
+Summary: Base Django settings for Ionata projects
+Home-page: https://github.com/ionata/ionata-django-settings
+Author: Ionata Digital
+Author-email: webmaster@ionata.com.au
+License: BSD 3-Clause License
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+Requires-Dist: django-configurations (>=2.0)
+
+# ionata-django-settings
+
+##  Base Django settings for Ionata projects
+A django-configurations based set of default settings
+
+Intended for use with https://github.com/ionata/ionata-django-skeleton
+
+
