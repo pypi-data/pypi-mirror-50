@@ -1,0 +1,7 @@
+requests>=2.22.0
+setuptools>=41.0.1
+
+[test]
+unittests
+coverage
+codecov
