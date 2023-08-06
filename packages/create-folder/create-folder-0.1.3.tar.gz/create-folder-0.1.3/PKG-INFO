@@ -1,0 +1,70 @@
+Metadata-Version: 1.1
+Name: create-folder
+Version: 0.1.3
+Summary: To create folder and Subfolder
+Home-page: UNKNOWN
+Author: Deepankar
+Author-email: deepankarx.borgohain@intel.com
+License: MIT
+Description: 
+        FTP
+        ======
+        
+        A simple python to create a folder and subfolders.
+        
+        The code is Python 2, but Python 3 compatible.
+        
+        Installation
+        ------------
+        
+        Fast install:
+        
+        ::
+        
+            pip install FTP
+        
+        For a manual install get this package:
+        
+        ::
+        
+            #wget https://github.com/nikhilkumarsingh/mygmap/archive/master.zip
+            #unzip master.zip
+            #rm master.zip
+            #cd mygmap-master
+        
+        Install the package:
+        
+        ::
+        
+            python setup.py install    
+        
+        Example
+        --------
+        
+        .. code:: python
+        
+            from geo import locator
+        
+            # get formatted address of any location
+            #print locator.get_address("rohini, delhi")
+        
+            # get co-ordinates of location
+            #print locator.get_coordinates("delhi")
+        
+        
+            
+            
+Keywords: Folders
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Internet
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
