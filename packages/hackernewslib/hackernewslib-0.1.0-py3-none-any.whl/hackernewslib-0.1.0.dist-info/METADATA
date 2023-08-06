@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: hackernewslib
+Version: 0.1.0
+Summary: Hackernews client library
+Home-page: https://github.com/pmatigakis/hackernewslib
+Author: Panagiotis Matigakis
+Author-email: pmatigakis@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: python-firebase (<2.0,>=1.2)
+Requires-Dist: marshmallow (<3.0.0,>=2.19.2)
+Requires-Dist: requests (<3.0.0,>=2.21.0)
+
+Hackernews API client
+
+Installation
+============
+Install the latest version using pip.
+
+```bash
+pip install git+https://github.com/pmatigakis/hackernewslib.git
+```
+
+Usage
+=====
+See the examples in the `examples` folder for instructions about how to use this
+library.
+
+
