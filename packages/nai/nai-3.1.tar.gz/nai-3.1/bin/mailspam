@@ -1,0 +1,30 @@
+#!/usr/bin/ python2
+from nai import *
+import os
+
+os.system("clear")
+print(W+BGUN)
+
+
+print("""
+{}AUTHOR :{} Nasir Ali
+{}FB : {}fb.com/nasir.xo
+{}#I Am Not Responsible for Your Actions
+\n""".format(W,G,W,G,R))
+print(Y+" [Mass Email Spammer] \n")
+
+try:
+ email = raw_input(G+"Target-Email : "+W)
+ ammount = raw_input(G+"Email's Ammount : "+W)
+ em_text = raw_input(G+"Email-Text : "+W)
+ m_ail = sendmail(email,ammount,em_text)
+ if int(m_ail) == 200:
+   print(SBG+W+" {} Emails Sent Sucessfully to {}".format(ammount,email))
+ elif int(m_ail) == 0:
+   dprint({
+   	'Error':'No Internet Connection'
+   })
+ else: 
+   print(SBR+W+" Emails Sending Failed :( ")
+except:
+  pass
