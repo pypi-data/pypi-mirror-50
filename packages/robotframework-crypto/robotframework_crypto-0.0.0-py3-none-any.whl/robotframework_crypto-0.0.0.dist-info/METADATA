@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: robotframework-crypto
+Version: 0.0.0
+Summary: A library for secure password handling.
+Home-page: https://github.com/Snooz82/robotframework-crypto
+Author: René Rohner(Snooz82)
+Author-email: snooz@posteo.de
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Testing
+Classifier: Topic :: Software Development :: Testing :: Acceptance
+Classifier: Framework :: Robot Framework
+Requires-Python: >3.6
+Requires-Dist: robotframework (>=3.1)
+
+===================================================
+robotframework-crypto
+===================================================
+
+This will be a library for secure password handling.
+
