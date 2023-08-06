@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: celery-pool-asyncio
+Version: 0.1.1
+Summary: Celery pool to run coroutine tasks
+Home-page: https://github.com/kai3341/celery-pool-asyncio
+License: Apache Software License 2.0
+Description: Celery Pool AsyncIO
+        ===============
+        
+        * Free software: Apache Software License 2.0
+        
+        Features
+        --------
+        
+        
+        ```
+        import asyncio
+        from celery import Celery
+        
+        app = Celery()
+        
+        
+        @app.task(
+            bind=True,
+            soft_time_limit=None,  # temporary unimplemented. You can help me
+            time_limit=300,  # raises futures.TimeoutError on timeout
+        )
+        async def my_task(self, *args, **kwargs):
+            await asyncio.sleep(5)
+        
+        
+        @app.task
+        async def my_simple_task(*args, **kwargs):
+            await asyncio.sleep(5)
+        ```
+        
+        Then run celery:
+        
+        ```
+        $ celery worker -A hello_async_celery.app -P celery_pool_asyncio:TaskPool
+        ```
+        
+        
+Keywords: celery_pool_asyncio
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
