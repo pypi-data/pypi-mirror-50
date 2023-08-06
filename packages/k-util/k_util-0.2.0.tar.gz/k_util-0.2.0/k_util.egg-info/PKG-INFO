@@ -1,0 +1,11 @@
+Metadata-Version: 1.1
+Name: k-util
+Version: 0.2.0
+Summary: General utility scripts in Python 3.6.
+Home-page: https://github.com/krinj/k-util
+Author: Jakrin Juangbhanich
+Author-email: juangbhanich.k@gmail.com
+License: UNKNOWN
+Description: This is a general purpose Python 3.6 library.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
