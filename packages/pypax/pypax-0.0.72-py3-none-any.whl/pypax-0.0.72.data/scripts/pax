@@ -1,0 +1,22 @@
+#!python
+
+import sys
+import pypax as px
+
+arg_name = sys.argv[1]
+
+print("Execute Script", sys.argv[0], arg_name)
+
+if arg_name == "configure":
+    px.configure()
+
+if arg_name == "initialize":
+    px.initialize()
+
+if arg_name == "deploy":
+    if len(sys.argv) > 2:
+        tag = sys.argv[2]
+    else:
+        tag = "default"
+
+    px.deploy(tag)
