@@ -1,0 +1,13 @@
+kineticspy/__init__.py,sha256=veOVSsATBr0jguLaRvpnBv7zujN6hsvyCAk0at-Phb8,17
+kineticspy/graphics.py,sha256=OAE7b4T676ErEv2QlgYEHfmzWVskUWdLMsQzRrcXn3E,2436
+kineticspy/kin.py,sha256=KRVU2n6xgKi0b293cxB7tlKVEXpzZFLTPNjzbYYqvY0,3085
+kineticspy/measure.py,sha256=jogOR4AUHH_sck4EEyaLZiRRGUY4zox5uEn2zcU5Tjk,895
+kineticspy/solidobj.py,sha256=3jTXQVzXn9gHn3570Z7DH2c3M54jW3LAmERlAfGw0gY,3905
+kineticspy/trajectory.py,sha256=Z_3JbXDlpwh53n0mq0q0c8y1bf25FaCYVjinCm9MR4s,3380
+kineticspy/robobj/__init__.py,sha256=0aaLWuUbjT9NH4JBlNDvcJyrmZIVIVTck8CbViGLtJk,36
+kineticspy/robobj/robot.py,sha256=k7ZB2EpQZsj3Q9cWWrKO9lRqLYo3ei3LRxCNACsH9oc,983
+kineticspy-0.0.1.dist-info/LICENSE,sha256=MGBOpcpOyhFjSRD2k49u5rWJtl4dFjcSdtoK2yZY9N8,1064
+kineticspy-0.0.1.dist-info/METADATA,sha256=-g6yN6Fg6ZouggZUZlZpli8f2uPuodI-69ZgVCt47NU,1853
+kineticspy-0.0.1.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+kineticspy-0.0.1.dist-info/top_level.txt,sha256=UDxzdR3GY3RtYO5BesZCWxmMNfaRMD9-qGyVCwQAXQw,11
+kineticspy-0.0.1.dist-info/RECORD,,
