@@ -1,0 +1,3 @@
+[console_scripts]
+episode-script=episodescript:episode_script_command
+
