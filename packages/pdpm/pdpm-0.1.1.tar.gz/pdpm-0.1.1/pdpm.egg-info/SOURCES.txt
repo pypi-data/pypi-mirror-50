@@ -1,0 +1,14 @@
+setup.py
+pdpm/__init__.py
+pdpm/_open.py
+pdpm/create.py
+pdpm/remove.py
+pdpm/set_path.py
+pdpm/show.py
+pdpm/start.py
+pdpm.egg-info/PKG-INFO
+pdpm.egg-info/SOURCES.txt
+pdpm.egg-info/dependency_links.txt
+pdpm.egg-info/entry_points.txt
+pdpm.egg-info/requires.txt
+pdpm.egg-info/top_level.txt
