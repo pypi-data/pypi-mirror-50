@@ -1,0 +1,16 @@
+puckfetcher/__init__.py,sha256=qkAe5U3VAD9WT8XwNfvhIcktzqEw9Ovz2RHlKEPqLko,35
+puckfetcher/__main__.py,sha256=zhBhGQ7qpIg5asQ65hB9wqyTVnsRoiRUTeZynJOaw1M,8805
+puckfetcher/config.py,sha256=pZxew6SNgiTHtB1zFb0gUbWIBRg_NIcfXcmCdhGLVU0,14763
+puckfetcher/constants.py,sha256=Y7z9Vsd6nGV_yLE4l2XMbsH4m4b_sGGPxe-7UJ5iTao,323
+puckfetcher/error.py,sha256=wupW-SQGGYxcuixAgGWlQidzDfShoxvpj4K8H0zp9GQ,1208
+puckfetcher/subscription.py,sha256=XS-nWgCjQ2mCMCUJZOnoAgHYaID3GTrDJh71l6Hvhmw,39014
+puckfetcher/test/__init__.py,sha256=ebx4AKMMm1tBnWW3CTdGaHrAlg3h7q159vaWf0_v3Ps,41
+puckfetcher/test/test_config.py,sha256=P9pjMrrHDXZDUtBCRVmN_WSBcLyiS2s-JK6N0jxMSBk,7791
+puckfetcher/test/test_main.py,sha256=gcb8LPUMYTPI8JpX7hTM1Dz8AUb95qtLgwMO3AjUCNM,1827
+puckfetcher/test/test_subscription.py,sha256=Ogw55xxAfN7Ppgz_NXISk0zQidbzGLFl5jD8Dq4p1wg,14762
+puckfetcher-1.3.3.dist-info/LICENSE,sha256=zU0hSyjKsCsuE4_jNnmtJDS9Mha9o1vO_BfxZyG7kvo,1464
+puckfetcher-1.3.3.dist-info/METADATA,sha256=p-RX1HeoxRMx7CHml7cpFSS_7y4CK1G8OzeZHtbXUTw,3946
+puckfetcher-1.3.3.dist-info/WHEEL,sha256=_NOXIqFgOaYmlm9RJLPQZ13BJuEIrp5jx5ptRD5uh3Y,92
+puckfetcher-1.3.3.dist-info/entry_points.txt,sha256=zTOqEyFeyWtmy32OIZj8h3MRmueKHB_37UvP4aYj_5s,59
+puckfetcher-1.3.3.dist-info/top_level.txt,sha256=aRfCCWJpL4gu0-OtCcYVBKB3BDyFtuwoSTmPEQ2Lqpo,12
+puckfetcher-1.3.3.dist-info/RECORD,,
