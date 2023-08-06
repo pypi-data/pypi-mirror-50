@@ -1,0 +1,12 @@
+README.md
+setup.py
+aursync/__init__.py
+aursync/config_proxy.py
+aursync/flattener.py
+aursync/mpmc.py
+aursync/sync.py
+aursync.egg-info/PKG-INFO
+aursync.egg-info/SOURCES.txt
+aursync.egg-info/dependency_links.txt
+aursync.egg-info/requires.txt
+aursync.egg-info/top_level.txt
