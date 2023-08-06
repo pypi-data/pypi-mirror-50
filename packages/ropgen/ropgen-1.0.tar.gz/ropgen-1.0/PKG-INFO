@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: ropgen
+Version: 1.0
+Summary: A python module to facilitate in the generation of ROP chain exploit strings.
+Home-page: https://github.com/extremecoders-re/ropgen
+Author: 0xec
+Author-email: extremecoders@hotmail.com
+License: MIT
+Download-URL: https://github.com/extremecoders-re/ropgen/archive/v1.0.tar.gz
+Description: UNKNOWN
+Keywords: rop,rop-gadgets,rop-exploitation
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Security
