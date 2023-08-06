@@ -1,0 +1,65 @@
+Metadata-Version: 2.1
+Name: bulker
+Version: 0.1.0
+Summary: A manager for containerized executables
+Home-page: https://bulker.databio.org
+Author: Nathan Sheffield
+Author-email: nathan@code.databio.org
+License: BSD2
+Description: # Bulker
+        
+        Bulker is a command-line manager of containerized executables. It produces drop-in replacements to command line tools so that they can be run in a container without any additional user effort. It also will manage collections of tools that can be activated or deactivated.
+        
+        ## Example
+        
+        ### 1 Install bulker
+        
+        ```
+        pip install --user bulker
+        ```
+        
+        ### 2 Load a crate
+        
+        ```
+        bulker load https://raw.githubusercontent.com/databio/bulker/master/demo/demo_manifest.yaml
+        ```
+        
+        ### 3 Activate your new crate:
+        
+        Activate a crate with `bulker activate`:
+        
+        ```
+        bulker activate demo
+        ```
+        
+        Now run any executables in the crate as if they were installed natively:
+        
+        ```
+        cowsay Hello World!
+         ______________ 
+        < Hello world! >
+         -------------- 
+            \
+             \
+              \     
+                            ##        .            
+                      ## ## ##       ==            
+                   ## ## ## ##      ===            
+               /""""""""""""""""___/ ===        
+          ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~   
+               \______ o          __/            
+                \    \        __/             
+                  \____\______/   
+        
+        ```
+        
+        For details, see the [bulker documentation](https://bulker.databio.org).
+Keywords: docker,containers,reproducibility,bioinformatics,workflow
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: System :: Distributed Computing
+Description-Content-Type: text/markdown
