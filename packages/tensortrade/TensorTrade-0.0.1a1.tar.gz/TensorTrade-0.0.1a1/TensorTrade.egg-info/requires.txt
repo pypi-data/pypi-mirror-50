@@ -1,0 +1,14 @@
+numpy
+pandas
+sklearn
+gym
+gin-config
+
+[exchanges]
+ccxt
+stochastic
+
+[tests]
+
+[tuning]
+hyperopt
