@@ -1,0 +1,4 @@
+[console_scripts]
+mssql-cli = mssqlcli.main:main
+mssql-cli.bat = mssqlcli.main:main
+
