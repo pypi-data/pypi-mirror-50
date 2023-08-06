@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: dlo
+Version: 0.0.1
+Summary: A lightweight (5 KB) Python client to retrieve NBA data from stats.nba.com
+Home-page: UNKNOWN
+Author: Akhil Kondepudi
+Author-email: akhil.compsci79@gmail.com
+License: UNKNOWN
+Keywords: statistics data nba
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+
+#sand
+
+
