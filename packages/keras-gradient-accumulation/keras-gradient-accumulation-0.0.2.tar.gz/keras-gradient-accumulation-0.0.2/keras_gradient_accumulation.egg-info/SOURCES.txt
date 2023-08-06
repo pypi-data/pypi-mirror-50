@@ -1,0 +1,15 @@
+CHANGELOG.md
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+keras_gradient_accumulation/__init__.py
+keras_gradient_accumulation/backend.py
+keras_gradient_accumulation/optimizers.py
+keras_gradient_accumulation.egg-info/PKG-INFO
+keras_gradient_accumulation.egg-info/SOURCES.txt
+keras_gradient_accumulation.egg-info/dependency_links.txt
+keras_gradient_accumulation.egg-info/requires.txt
+keras_gradient_accumulation.egg-info/top_level.txt
+tests/__init__.py
+tests/test_optimizers.py
