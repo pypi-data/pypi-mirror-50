@@ -1,0 +1,12 @@
+
+[dev]
+tox
+django
+pytest-mock
+
+[maintainer]
+zest.releaser[recommended]
+
+[test]
+pytest-mock
+pytest-cov
