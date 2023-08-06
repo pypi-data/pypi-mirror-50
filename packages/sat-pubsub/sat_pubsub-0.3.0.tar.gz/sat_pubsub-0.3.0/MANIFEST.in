@@ -1,0 +1,8 @@
+include MANIFEST.in sat_pubsub/VERSION
+global-include *.py
+global-include CHANGELOG COPYING* INSTALL README*
+global-include Makefile *.rst *.bat
+graft doc
+graft db
+graft twisted
+global-exclude *.un~

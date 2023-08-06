@@ -1,0 +1,4 @@
+wokkel>=0.7.1
+psycopg2
+sat_tmp
+uuid
