@@ -1,0 +1,3 @@
+[console_scripts]
+isoenum_webgui = isoenum_webgui.__main__:main
+
