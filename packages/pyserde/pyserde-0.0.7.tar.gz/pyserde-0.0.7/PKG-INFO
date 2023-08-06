@@ -1,0 +1,83 @@
+Metadata-Version: 2.1
+Name: pyserde
+Version: 0.0.7
+Summary: Serialization library on top of dataclasses.
+Home-page: https://github.com/yukinarit/pyserde
+Author: yukinarit
+Author-email: yukinarit84@gmail.com
+License: MIT
+Description: # pyserde
+        
+        [![image](https://img.shields.io/pypi/pyversions/pyserde.svg)](https://pypi.org/project/pyserde/)
+        [![Build Status](https://travis-ci.org/yukinarit/pyserde.svg?branch=master)](https://travis-ci.org/yukinarit/pyserde)
+        [![Build status](https://ci.appveyor.com/api/projects/status/w4i5x8x9d4sbxhn2?svg=true)](https://ci.appveyor.com/project/yukinarit/pyserde)
+        [![Coverage Status](https://coveralls.io/repos/github/yukinarit/pyserde/badge.svg?branch=master)](https://coveralls.io/github/yukinarit/pyserde?branch=master)
+        
+        Serialization library on top of [dataclasses](https://docs.python.org/3/library/dataclasses.html).
+        
+        ## Installation
+        
+        ```bash
+        $ pip install pyserde
+        ```
+        
+        ## QuickStart
+        
+        You can serialize/deserialize your class to/from various message formant (e.g. Json, MsgPack) quite easily!
+        
+        ```python
+        # main.py
+        # /usr/bin/env python
+        
+        from dataclasses import dataclass
+        from serde import deserialize, serialize
+        from serde.json import from_json, to_json
+        
+        # Mark the class serializable/deserializable.
+        @deserialize
+        @serialize
+        @dataclass
+        class Hoge:
+            i: int
+            s: str
+            f: float
+            b: bool
+        
+        h = Hoge(i=10, s='hoge', f=100.0, b=True)
+        
+        print(f"Into Json: {to_json(h)}")
+        
+        s = '{"i": 10, "s": "hoge", "f": 100.0, "b": true}'
+        
+        print(f"From Json: {from_json(Hoge, s)}")
+        ```
+        
+        ```bash
+        $ python main.py
+        Into Json: {"i": 10, "s": "hoge", "f": 100.0, "b": true}
+        From Json: Hoge(i=10, s='hoge', f=100.0, b=True)
+        ```
+        
+        ## Features
+        
+        * Data format
+        	* [Json](./examples/jsonfile.py)
+        	* [Toml](./examples/tomlfile.py)
+        	* [Yaml](./examples/yamlfile.py)
+        	* [MsgPack](./examples/msgpack.py)
+        * Class attributes
+        	* Case conversion e.g. camelCase, kebab-case
+        
+        ## Documentation
+        
+        https://yukinarit.github.io/pyserde/
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Provides-Extra: test
