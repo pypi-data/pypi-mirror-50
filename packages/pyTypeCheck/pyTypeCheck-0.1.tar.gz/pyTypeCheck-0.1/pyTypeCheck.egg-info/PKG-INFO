@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: pyTypeCheck
+Version: 0.1
+Summary: UNKNOWN
+Home-page: UNKNOWN
+Author: Giacomo Giusti
+License: MIT
+Description: # Controllo dei tipi tramite decoratore
+        
+Platform: UNKNOWN
+Requires-Python: >=3.0.*, <4
+Description-Content-Type: text/markdown
