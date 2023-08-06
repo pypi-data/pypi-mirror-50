@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: the-count-of-words
+Version: 0.0.5
+Summary: Words counter
+Home-page: https://github.com/RavidEliyahu/the-count-of-words
+Author: Ravid Eliyahu
+Author-email: ravid1233@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# the-count-of-words
+Give me a text, ill give you words and numbers.
+
+
