@@ -1,0 +1,3 @@
+[console_scripts]
+docstamp = docstamp.cli.cli:cli
+
