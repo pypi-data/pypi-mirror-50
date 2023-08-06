@@ -1,0 +1,14 @@
+django_delta_logger/__init__.py,sha256=ncYD6-Dner2JnETXi2Ql4inOXKdVJ4kerJ-1KKqm6ak,284
+django_delta_logger/apps.py,sha256=3AvvB6-Moxic4NkIJ7AS8-MJCK0xSsCsl3J3M-iEkmw,111
+django_delta_logger/delta_logger.py,sha256=6DIGW0zBjUKljPg4UFsGe4DJdoW-vpyD-vbY1Y9aDjo,4837
+django_delta_logger/fields.py,sha256=Kmc4XjOpe5jVmbeDefUzegvjcEjXsqs_xiwaAQwoc1I,2066
+django_delta_logger/models.py,sha256=_dWJNMORO-X3p6yBL7A-yZRbDsxwOBjDTEp2PH_RhUM,1818
+django_delta_logger/serializers.py,sha256=-s1UR0DEkBnXxW9X9gxeIHCB51ax6mHhY1D5Ws7O4Mc,366
+django_delta_logger/settings.py,sha256=PNeXuGbXHU8UKCD9Bs24qW-enCx1id48xKJ5YvdaTKU,61
+django_delta_logger/migrations/0001_initial.py,sha256=x7jKaRv3WRUwNsoVFlPjCm3raEzoFHntRtQTT_rsK8c,1127
+django_delta_logger/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_delta_logger-0.1.1.dist-info/LICENSE,sha256=0G0TH3OooDLZaOsnamAAhj9ap6m0bIRUbj1sT8sQ8x4,1057
+django_delta_logger-0.1.1.dist-info/METADATA,sha256=qIJ8U7az3ez4smqH0cDl77ZYg_a13SW6XfhXK6MoxOo,2417
+django_delta_logger-0.1.1.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+django_delta_logger-0.1.1.dist-info/top_level.txt,sha256=URdZZJevkLH56EtDtNDokyr4bTOrw08IVEjTEOu0aH4,20
+django_delta_logger-0.1.1.dist-info/RECORD,,
