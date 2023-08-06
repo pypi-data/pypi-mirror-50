@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row row-controls">
+  <div class="col">
+    <h2>Administrator Controls</h2>
+  </div>
+</div>
+
+{% for role in roledata %}
+<div class="row">
+  <div class="col">
+    <div class="card card-shrunk">
+      <div class="card-block">
+	<div class="row">
+	  <div class="col colshrunk-info">
+	    <h3>
+	      <a href="{{ url_for('roles.list', role=role['id']) }}" class="title">
+		{{ role["title"] }}
+	      </a>
+	    </h3>
+	  </div>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+{% assets "shrunk_js" %}
+<script src="{{ ASSET_URL }}"></script>
+{% endassets %}
+
+{% endblock %}

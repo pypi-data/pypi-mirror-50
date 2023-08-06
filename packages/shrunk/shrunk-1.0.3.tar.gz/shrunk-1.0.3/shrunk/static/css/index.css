@@ -1,0 +1,16 @@
+.col-csv-download {
+    border-left: 1px solid;
+    border-color: #b7aa9f;
+}
+
+#add-link-button, .edit-link-button {
+    width: 100%;
+}
+
+.edit-link-modal-header {
+    padding-bottom: 0;
+}
+
+.edit-link-modal-body {
+    padding-top: 0;
+}
