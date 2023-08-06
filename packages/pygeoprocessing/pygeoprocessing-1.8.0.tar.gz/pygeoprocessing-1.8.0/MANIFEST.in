@@ -1,0 +1,7 @@
+include HISTORY.rst
+include LICENSE.txt
+include README.rst
+global-include *.pyx
+global-include *.pxd
+global-include *.h
+include requirements.txt
