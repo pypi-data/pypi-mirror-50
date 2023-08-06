@@ -1,0 +1,28 @@
+Metadata-Version: 2.0
+Name: python-inquirer
+Version: 1.0.3
+Summary: A Python module for collection of common interactive command line user interfaces, based on Inquirer.js
+Home-page: https://github.com/CITGuru/python_inquirer/
+Author: Oyetoke Toby
+Author-email: oyetoketoby80@gmail.com
+License: MIT
+Download-URL: https://github.com/CITGuru/python_inquirer/archive/1.0.3.tar.gz
+Keywords: click,prompt-toolkit,cli,command-line,commandline,command-line-interface,python-inquiry,inquirer
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: User Interfaces
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Requires-Dist: prompt-tool-kit
+Requires-Dist: Pygments (>=2.2.0)
+Requires-Dist: regex (>=2016.11.21)
+
+UNKNOWN
+
+
