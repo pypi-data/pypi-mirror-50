@@ -1,0 +1,77 @@
+Metadata-Version: 2.1
+Name: django-prodperfect
+Version: 0.1.1
+Summary: Django template tags for ProdPerfect tracking snippet
+Home-page: https://github.com/ProdPerfect/django-prodperfect
+Author: Lemuel Boyce
+Author-email: lemuel@prodperfect.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown; charset=UTF-8
+Requires-Dist: django (>=1.11)
+
+# django-prodperfect
+Django template tags for the ProdPerfect tracking snippet.
+
+
+## Installation
+1. `pip install django-prodperfect`
+2. Add to `INSTALLED_APPS` in your `settings.py`
+
+    `prodperfect,`
+3. In your templates, load `prodperfect`
+
+## Example template
+```djangotemplate
+{% load prodperfect %}
+
+
+<body>
+    ...
+    {% tracking_snippet %}
+</body>
+```
+
+## Example settings.py
+You can copy these values from the ProdPerfect provided tracking snippet.
+```python
+PRODPERFECT = {
+    'HOST': 'prodperfect.datapipe.prodperfect.com/v1',
+    'WRITE_KEY': '12345',
+    'PROJECT_ID': '12345',
+    'TRACKING_LIBRARY_URL': 'https://prodperfect.trackinglibrary.prodperfect.com/keen-tracking.min.js'
+}
+```
+
+To override the default tracking behavior, you can change the value of the following properties.
+```python
+PRODPERFECT = {
+    # ...
+    'OPTIONS': {
+        'ignoreDisabledFormFields': False,
+        'recordClicks': True,
+        'recordFormSubmits': True,
+        'recordInputChanges': True,
+        'recordPageViews': True,
+        'recordPageUnloads': True,
+        'recordScrollState': True
+    }
+}
+
+```
+
+
+## Bugs and suggestions
+
+If you have found a bug or if you have a request for additional functionality, please use the issue tracker on GitHub.
+
+https://github.com/prodperfect/django-prodperfect/issues
+
+
+## Author
+Developed and maintained by [prodperfect](https://prodperfect.com/).
+
