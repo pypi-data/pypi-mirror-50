@@ -1,0 +1,7 @@
+absl-py
+enum34
+numpy
+six
+
+[:python_version < "3.3"]
+funcsigs
