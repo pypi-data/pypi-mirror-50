@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: tf-reader
+Version: 0.2
+Summary: functions to read tfrecord file as python values.
+Home-page: UNKNOWN
+Author: Ilya Kamenshchikov
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6
+
+UNKNOWN
+
+
