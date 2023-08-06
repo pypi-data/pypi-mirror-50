@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: kindel
+Version: 0.4.0
+Summary: Indel-aware consensus calling for DNA alignments in BAM format
+Home-page: https://github.com/bede/kindel
+Author: Bede Constantinides
+Author-email: bedeabc@gmail.com
+License: LICENSE
+Platform: UNKNOWN
+Requires-Dist: argh (>=0.26.2)
+Requires-Dist: tqdm (>=4.11.2)
+Requires-Dist: numpy (>=1.12.0)
+Requires-Dist: scipy (>=0.19.0)
+Requires-Dist: pandas (>=0.19.2)
+Requires-Dist: biopython (>=1.68)
+Requires-Dist: simplesam (>=0.0.4)
+Provides-Extra: plots
+Requires-Dist: plotly (>=2.0.0) ; extra == 'plots'
+
+UNKNOWN
+
+
