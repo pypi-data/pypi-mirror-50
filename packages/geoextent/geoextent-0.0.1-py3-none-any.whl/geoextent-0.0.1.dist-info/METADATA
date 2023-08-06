@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: geoextent
+Version: 0.0.1
+Summary: A package to extract geospatial extent from files and directories
+Home-page: https://github.com/o2r-project/geoextent
+Author: o2r-project
+Author-email: o2r.team@uni-muenster.de
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# geoextent
+
+Python library for extrating geospatial extent of files and directories with multiple data formats
+
+
