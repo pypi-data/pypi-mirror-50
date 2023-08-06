@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: suitcase-csv
+Version: 0.2.1
+Summary: UNKNOWN
+Home-page: UNKNOWN
+License: BSD (3-clause)
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+Requires-Dist: event-model (>=1.8.0)
+Requires-Dist: pandas
+Requires-Dist: suitcase-utils (>=0.5.0)
+
+# suitcase.csv
+
+This is a suitcase subpackage for reading a particular file format.
+
+## Installation
+
+```
+pip install suitcase-csv
+```
+
+
