@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: zarcrender
+Version: 1.0.1
+Summary: Python JSON serverside render for any JS datagrid library
+Home-page: https://github.com/fuadarradhi/zarcrender
+Author: Fuad Ar-Radhi
+Author-email: fuad.arradhi@gmail.com
+License: UNKNOWN
+Description: # zarcrender
+        Python JSON serverside render for any JS datagrid library
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
