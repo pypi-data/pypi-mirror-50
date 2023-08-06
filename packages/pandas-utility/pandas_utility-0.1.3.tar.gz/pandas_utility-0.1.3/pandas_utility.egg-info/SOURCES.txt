@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+pandas_utility/__init__.py
+pandas_utility/__version__.py
+pandas_utility/pandas_utility.py
+pandas_utility.egg-info/PKG-INFO
+pandas_utility.egg-info/SOURCES.txt
+pandas_utility.egg-info/dependency_links.txt
+pandas_utility.egg-info/not-zip-safe
+pandas_utility.egg-info/requires.txt
+pandas_utility.egg-info/top_level.txt
