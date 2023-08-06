@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: mechkit
+Version: 0.0.4
+Summary: Basic tools for continuum mechanics using numpy
+Home-page: https://github.com/JulianBauerKIT/mechkit
+Author: Julian Karl Bauer
+Author-email: JulianBauerKIT@gmail.com
+License: UNKNOWN
+Description: Basic tools for continuum mechanics using numpy
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
