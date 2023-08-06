@@ -1,0 +1,6 @@
+[console_scripts]
+qurro = qurro.scripts._plot:plot
+
+[qiime2.plugins]
+q2-qurro = qurro.q2.plugin_setup:plugin
+
