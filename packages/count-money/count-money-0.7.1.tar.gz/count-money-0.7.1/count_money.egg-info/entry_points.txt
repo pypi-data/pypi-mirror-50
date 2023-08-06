@@ -1,0 +1,3 @@
+[console_scripts]
+count-money = count_money.__main__:main
+
