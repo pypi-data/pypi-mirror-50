@@ -1,0 +1,31 @@
+{% load i18n admin_urls %}
+
+{% block object-tools-items %}
+    <ul class="nav object-tools">
+    {% if has_add_permission %}
+        <li class="nav-item">
+            {% url cl.opts|admin_urlname:'add' as add_url %}
+            <a class="nav-link" href="{% add_preserved_filters add_url is_popup to_field %}">
+                {% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}
+                <i class="mdi mdi-plus"></i>
+            </a>
+        </li>
+    {% endif %}
+    {% if has_export_permission %}
+        <li class="nav-item dropdown">
+            <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+               class="nav-link dropdown-toggle" data-offset="-125,0">
+                <i class="mdi mdi-arrow-down"></i>
+            </a>
+            <div class="dropdown-menu">
+                {% if has_export_permission %}
+                    {% url cl.opts|admin_urlname:'export' as export_url %}
+                    <a class="dropdown-item" href="{{ export_url }}">Export</a>
+                {% endif %}
+            </div>
+        </li>
+    {% endif %}
+{% endblock %}
+</ul>
+<div class="clearfix"></div>
+

@@ -1,0 +1,45 @@
+{% load i18n static admin_urls admin_list %}
+
+<ul class="list-unstyled components">
+    <li>
+        <a href="{% url 'admin:index' %}">
+            {{ "Dashboard" | upper }}
+            <i class="mdi mdi-collage"></i>
+        </a>
+    </li>
+    {% if custom_view_list %}
+        {% for path, name, urlname in custom_view_list %}
+          <li><a href="{% url urlname %}">{{ name }}</a></li>
+        {% endfor %}
+    {% endif %}
+    {% if user.is_active and user.is_staff %}
+        {% url 'django-admindocs-docroot' as docsroot %}
+        {% if docsroot %}
+            <li>
+                <a href="{{ docsroot }}">{% trans 'Documentation' as docstring %} {{ docstring | upper }}
+                    <i class="mdi mdi-file-document-box-outline"></i>
+                </a>
+            </li>
+        {% endif %}
+    {% endif %}
+    <li>
+        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" >
+            ACCOUNT
+            <i class="mdi mdi-account-circle"></i>
+        </a>
+        <ul class="collapse list-unstyled" id="pageSubmenu">
+            {% if user.has_usable_password %}
+                <li>
+                    <a href="{% url 'admin:password_change' %}"
+                    >{% trans 'Change password' %} <i class="mdi mdi-lock-reset"></i
+                    ></a>
+                </li>
+            {% endif %}
+            <li>
+                <a href="{% url 'admin:logout' %}"
+                >{% trans 'Log out' %}<i class="mdi mdi-logout-variant"></i>
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>

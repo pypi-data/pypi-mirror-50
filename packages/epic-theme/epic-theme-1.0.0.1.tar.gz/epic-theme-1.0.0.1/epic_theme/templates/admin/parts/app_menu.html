@@ -1,0 +1,35 @@
+{% load i18n static %}
+
+<!--list item begins
+TODO NEXT : App and Model need to have an icon
+-->
+<h3 class="sidebar-subtitle">{{ "Applications" | upper }}</h3>
+{% if custom_app_list %}
+<ul class="list-unstyled components">
+  {% for app in custom_app_list %}
+  <li class="active">
+    <a
+      href="#{{ app.app_label }}"
+      data-toggle="collapse"
+      aria-expanded="false"
+      class="dropdown-toggle"
+    >
+      {{ app.name }}
+    </a>
+    <ul class="collapse list-unstyled" id="{{ app.app_label }}">
+      <li><a href="{{ app.app_url }}">Index</a></li>
+      {% for model in app.models %} {% if model.admin_url %}
+      <li>
+        <a href="{{ model.admin_url }}">{{ model.name }}</a>
+      </li>
+      {% endif %} {% endfor %}
+    </ul>
+  </li>
+  {% endfor %}
+</ul>
+{% elif user.is_authenticated %}
+<a href="#"
+  ><i class="mdi mdi-eye-off"> </i>You don't have permission to edit
+  anything.</a
+>
+{% endif %}
