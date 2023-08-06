@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: v4docker
+Version: 0.1.0
+Summary: Simple TUI to manage docker images
+Home-page: https://github.com/lethe3000/v4docker
+Author: lethe3000
+Author-email: lethe30003000@gmail.com
+License: UNKNOWN
+Description: # v4docker
+        
+        Simple Terminal UI tool to manage docker images.
+        
+        ## install
+        
+        python 3 required, pyth
+        
+        ```bash
+        $ pip3 install --user v4docker
+        ```
+        
+        
+        ## usage
+        
+        key `up` and `down` to move cursor.
+        
+        key `d` to remove image.
+        
+        key `tab` switch to quit button, press `enter` to quit.
+        
+        
+        ## features TODO
+        
+        [] sort images by repository
+        [] show image detail/history
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
