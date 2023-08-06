@@ -1,0 +1,12 @@
+CHANGELOG.rst
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.py
+bin/eazyctrl
+src/eazyctrl.py
+src/eazyctrl.egg-info/PKG-INFO
+src/eazyctrl.egg-info/SOURCES.txt
+src/eazyctrl.egg-info/dependency_links.txt
+src/eazyctrl.egg-info/entry_points.txt
+src/eazyctrl.egg-info/top_level.txt
