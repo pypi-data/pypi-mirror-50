@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+requirements.txt
+setup.cfg
+setup.py
+humba/__init__.py
+humba/core.py
+humba/jits.py
+humba.egg-info/PKG-INFO
+humba.egg-info/SOURCES.txt
+humba.egg-info/dependency_links.txt
+humba.egg-info/requires.txt
+humba.egg-info/top_level.txt
+tests/test_hist.py
