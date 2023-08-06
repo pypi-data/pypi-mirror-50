@@ -1,0 +1,10 @@
+
+fact        = bold_text / italic_text
+bold_text   = ws? bold_open text+ bold_close ws?
+italic_text = ws? quotes text quotes ws?
+text        = v_text / __var__
+v_text      = ~"[a-z 0-9]+"
+bold_open   = "(("
+bold_close  = "))"
+quotes      = "''"
+ws          = ~"\s*"

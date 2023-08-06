@@ -1,0 +1,13 @@
+
+fact        = lpar pair+ rpar
+pair        = key assign value ws? comma? ws?
+
+key         = word
+value       = word / fact / __var__
+word        = ~r"[a-z][-\w]+"
+assign      = ws? ":" ws?
+lpar        = "("
+rpar        = ")"
+comma       = ","
+sc          = ";"
+ws          = ~"\s*"
