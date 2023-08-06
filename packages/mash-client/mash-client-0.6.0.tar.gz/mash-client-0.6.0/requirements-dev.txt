@@ -1,0 +1,11 @@
+-r requirements.txt
+
+bumpversion
+click-man
+coverage
+pytest
+pytest-cov
+flake8
+vcrpy
+Sphinx
+sphinx-click
