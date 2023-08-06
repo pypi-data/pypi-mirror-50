@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: dilawar
+Version: 0.2.2
+Summary: My personal utilities. See the README.md file.
+Home-page: http://github.com/dilawar/dilawar
+Author: Dilawar Singh
+Author-email: dilawars@ncbs.res.in
+License: GPLv3
+Description: [![Build Status](https://travis-ci.org/dilawar/dilawar.svg?branch=master)](https://travis-ci.org/dilawar/dilawar) [![PyPI version](https://badge.fury.io/py/dilawar.svg)](https://badge.fury.io/py/dilawar)
+        
+        # Dilawar
+        
+        Personal library 
+        Collections of helper functions.
+        
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
