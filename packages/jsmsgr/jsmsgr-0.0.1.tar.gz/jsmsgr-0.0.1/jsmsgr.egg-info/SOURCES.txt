@@ -1,0 +1,14 @@
+README.md
+setup.cfg
+setup.py
+jsmsgr/__init__.py
+jsmsgr/api.py
+jsmsgr/apps.py
+jsmsgr/sanity_check.py
+jsmsgr/settings.py
+jsmsgr.egg-info/PKG-INFO
+jsmsgr.egg-info/SOURCES.txt
+jsmsgr.egg-info/dependency_links.txt
+jsmsgr.egg-info/not-zip-safe
+jsmsgr.egg-info/requires.txt
+jsmsgr.egg-info/top_level.txt
