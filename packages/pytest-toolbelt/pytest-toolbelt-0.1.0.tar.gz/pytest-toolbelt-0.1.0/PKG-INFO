@@ -1,0 +1,40 @@
+Metadata-Version: 1.1
+Name: pytest-toolbelt
+Version: 0.1.0
+Summary: This is just a collection of utilities for pytest, but don't really belong in pytest proper.
+Home-page: https://github.com/adalekin/pytest-toolbelt
+Author: Aleksey Dalekin
+Author-email: ald@investex.com.com
+License: UNKNOWN
+Description-Content-Type: text/markdown
+Description: [![Build Status](https://travis-ci.org/adalekin/pytest-toolbelt.svg?branch=master)](https://travis-ci.org/adalekin/pytest-toolbelt) [![Coverage Status](https://coveralls.io/repos/github/adalekin/pytest-toolbelt/badge.svg?branch=master)](https://coveralls.io/github/adalekin/pytest-toolbelt?branch=master)
+        
+        PyTest Toolbelt
+        ===============
+        
+        This is just a collection of utilities for pytest, but don't really belong in pytest proper.
+        
+        Installation
+        ------------
+        
+        ```
+        pip install pytest-toolbelt
+        ```
+        
+        Tests
+        -----
+        
+        To run the test suite execute the following command in package root folder:
+        
+        ```
+        python setup.py test
+        ```
+        
+Keywords: rest client http pytest assert
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Testing :: Unit
