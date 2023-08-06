@@ -1,0 +1,11 @@
+README.md
+setup.cfg
+setup.py
+PratAgfirstpackage/__init__.py
+PratAgfirstpackage/first_module.py
+PratAgfirstpackage/second_module.py
+PratAgfirstpackage.egg-info/PKG-INFO
+PratAgfirstpackage.egg-info/SOURCES.txt
+PratAgfirstpackage.egg-info/dependency_links.txt
+PratAgfirstpackage.egg-info/top_level.txt
+PratAgfirstpackage.egg-info/zip-safe
