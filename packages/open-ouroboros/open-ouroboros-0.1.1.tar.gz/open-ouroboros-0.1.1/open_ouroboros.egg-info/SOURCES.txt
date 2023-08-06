@@ -1,0 +1,9 @@
+README.md
+setup.py
+open_ouroboros.egg-info/PKG-INFO
+open_ouroboros.egg-info/SOURCES.txt
+open_ouroboros.egg-info/dependency_links.txt
+open_ouroboros.egg-info/entry_points.txt
+open_ouroboros.egg-info/top_level.txt
+ouroboros/__init__.py
+ouroboros/__main__.py
