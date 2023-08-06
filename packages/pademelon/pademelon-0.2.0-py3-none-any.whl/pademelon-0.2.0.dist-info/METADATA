@@ -1,0 +1,112 @@
+Metadata-Version: 2.1
+Name: pademelon
+Version: 0.2.0
+Summary: Used to retrospectively add static type checking on legacy project by just running the checks on only files modified in a pull request.
+Home-page: https://github.com/pademelon-dev/pademelon
+Author: Tim Gates
+Author-email: tim.gates@iress.com
+Maintainer: Tim Gates
+Maintainer-email: tim.gates@iress.com
+License: GPLv3+
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Requires-Python: >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*
+Description-Content-Type: text/markdown
+Requires-Dist: click
+Requires-Dist: GitPython
+
+# pademelon
+
+[![Azure Status](https://dev.azure.com/timgates/timgates/_apis/build/status/pademelon-dev.pademelon?branchName=master)](https://dev.azure.com/timgates/timgates/_build/latest?definitionId=7&branchName=master)
+[![Travis Status](https://travis-ci.org/pademelon-dev/pademelon.svg?branch=master)](https://travis-ci.org/pademelon-dev/pademelon)
+[![Appveyor Status](https://ci.appveyor.com/api/projects/status/dw6hnqrrdk7ktaw6?svg=true)](https://ci.appveyor.com/project/timgates42/pademelon)
+[![PyPI version](https://img.shields.io/pypi/v/pademelon.svg)](https://pypi.org/project/pademelon)
+[![Python Versions](https://img.shields.io/pypi/pyversions/pademelon.svg)](https://pypi.org/project/pademelon)
+[![PyPI downloads per month](https://img.shields.io/pypi/dm/pademelon.svg)](https://pypi.org/project/pademelon)
+[![Documentation Status](https://readthedocs.org/projects/pademelon/badge/?version=latest)](https://pademelon.readthedocs.io/en/latest/?badge=latest)
+[![Coverage Status](https://coveralls.io/repos/github/pademelon-dev/pademelon/badge.svg)](https://coveralls.io/github/pademelon-dev/pademelon/)
+
+Used to retrospectively add static type checking on legacy project by just
+running the checks on only files modified in a pull request. Can be used as a
+soft touch approach to bringing a new checking tool into a large project
+without one big bang.
+
+Supported checks include:
+* `isort`
+* `bandit`
+* `flake8`
+* `pytest` minimum coverage percentage.
+* `pyspelling`
+
+More details can be found in the
+[Online Documentation.](https://pademelon.readthedocs.io/en/latest/)
+
+# Installation
+
+You can install pademelon for
+[Python](https://www.python.org/) via
+[pip](https://pypi.org/project/pip/)
+from [PyPI](https://pypi.org/).
+
+```
+$ pip install pademelon
+```
+
+
+
+
+## Prerequisites:
+- click
+- GitPython
+
+
+## Download from PyPI.org
+
+https://pypi.org/project/pademelon/
+
+
+
+# Contributing
+
+Contributions are very welcome, consider using the
+[file an issue](https://github.com/pademelon-dev/pademelon/issues)
+to discuss the work before beginning, but if you already have a Pull Request
+ready then this is no problem, please submit it and it will be very gratefully
+considered. The [Contribution Guidelines](https://github.com/pademelon-dev/pademelon/blob/master/CONTRIBUTING.md)
+outlines the pademelon commitment to ensuring all
+contributions receive appropriate recognition.
+
+# License
+
+
+Distributed under the terms of the [GPLv3](https://opensource.org/licenses/GPL-3.0)
+license, "pademelon" is free and open source software
+
+
+# Issues
+
+If you encounter any problems, please
+[file an issue](https://github.com/pademelon-dev/pademelon/issues)
+along with a detailed description.
+
+# Additional Documentation:
+
+* [Online Documentation](https://pademelon.readthedocs.io/en/latest/)
+* [News](https://github.com/pademelon-dev/pademelon/blob/master/NEWS.rst).
+* [Template Updates](https://github.com/pademelon-dev/pademelon/blob/master/COOKIECUTTER_UPDATES.md).
+* [Code of Conduct](https://github.com/pademelon-dev/pademelon/blob/master/CODE_OF_CONDUCT.md).
+* [Contribution Guidelines](https://github.com/pademelon-dev/pademelon/blob/master/CONTRIBUTING.md).
+
+
