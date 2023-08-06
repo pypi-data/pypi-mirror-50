@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: redshiftutils
+Version: 0.0.2
+Summary: Simple psycopg2 wrapper for querying / updating Redshift
+Home-page: https://github.com/redhotminute
+Author: Jos de Weger
+Author-email: info@josdeweger.nl
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: boto3
+Requires-Dist: psycopg2-binary
+
+# Redshift Utilities
+
+Simple psycopg2 wrapper for querying / updating Redshift
+
