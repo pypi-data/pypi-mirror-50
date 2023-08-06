@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: pansy
+Version: 1.0.29
+Summary: pansy
+Home-page: https://github.com/dantezhu/pansy
+Author: dantezhu
+Author-email: zny2008@gmail.com
+License: MIT
+Platform: any
+Requires-Python: >=3
+Requires-Dist: setproctitle
+Requires-Dist: netkit
+Requires-Dist: pyglet
+Requires-Dist: events
+
+UNKNOWN
+
+
