@@ -1,0 +1,3 @@
+[console_scripts]
+wsb = emp_wsb.cli:entry_points
+
