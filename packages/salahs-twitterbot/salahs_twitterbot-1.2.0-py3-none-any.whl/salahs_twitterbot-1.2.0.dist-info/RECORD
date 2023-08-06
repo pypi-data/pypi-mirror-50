@@ -1,0 +1,12 @@
+twitterbot/TwitterBot.py,sha256=by32XdSMj0H3NwNTSSEQuS4dasiP96Rww9Wk6Fq2QjI,3099
+twitterbot/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+twitterbot/scripts/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+twitterbot/scripts/delete_tweets.py,sha256=Re9aM6nIsrXiRBN64sJvpA60WFSnKeFz7JrNUt5e5bg,922
+twitterbot/scripts/get_trending.py,sha256=FgKJgwGAwBjoQbdMkQasLRLJWbDs0Nh1CwV9tGov_P4,779
+twitterbot/scripts/remove_favorites.py,sha256=canvRzH95MjdbPwKans3iN8oPpU_Qn7G6pzMdjBPtNc,935
+twitterbot/scripts/utils.py,sha256=Z9Ttl6fECvzAcycQG2byPM45OYVD1Bzn4eiffNbujkI,2333
+salahs_twitterbot-1.2.0.dist-info/METADATA,sha256=JdbEreHLZ-_2ZPNDT_W7W-4hh9LefSxLM_DuvkBzito,1598
+salahs_twitterbot-1.2.0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+salahs_twitterbot-1.2.0.dist-info/entry_points.txt,sha256=8ejfgVlhteQYszbqjh7LMgG4DS6C2HdQmtl3UQ8gZhU,196
+salahs_twitterbot-1.2.0.dist-info/top_level.txt,sha256=k-7-y06u7NOoBvonIpt62EzUgMGk1d06qEbkUJjrQyg,11
+salahs_twitterbot-1.2.0.dist-info/RECORD,,
