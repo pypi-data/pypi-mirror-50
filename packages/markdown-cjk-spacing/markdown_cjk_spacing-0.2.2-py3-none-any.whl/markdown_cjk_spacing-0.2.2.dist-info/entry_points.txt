@@ -1,0 +1,3 @@
+[markdown.extensions]
+cjk_spacing = markdown_cjk_spacing.cjk_spacing:CjkSpaceExtension
+
