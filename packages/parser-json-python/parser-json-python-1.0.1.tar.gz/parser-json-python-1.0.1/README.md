@@ -1,0 +1,50 @@
+# parser-string-python
+
+The parser which can get dict with strings and convert them to Python types like int, float, date, list etc. It can be useful for parsing request params via API.
+
+## Table of contents
+
+* [How to create fields](#how-to-create-field)
+* [How to create a parser](#how-to-create-a-parser)
+* [How to use a parser](#how-to-use-a-parser)
+
+### How to create fields
+
+There is 99% that you no need more than default fields. And that section is just for knowing how it works. Parser gets fields as required arguments. A field is a pair of key and value. This way any dict is many fields. Every filed inherits from base class `Field`. The `Field` has two important methods `_is_valid_value()` and `_resolve()`. Those methods should me override. The `_resolve()` converts a value to the necessary type. It's the main class method.
+
+Also, a field can have property `param_start_with`. It's necessary when you want to set validation via param key. For example, there are fields `list_ids` and `ids`. You set `param_start_with` as `list`. It means only `list_ids` will be valid.
+
+
+```
+from parser_json_python.fields import Field
+
+class FieldDate(Field):
+    param_start_with = 'date'
+    date_template = '%Y-%m-%d %H:%M'
+
+    def _is_valid_value(self, value):
+        try:
+            self._resolve(value)
+            return True
+        except ValueError:
+            return False
+
+    def _resolve(self, value):
+        return datetime.strptime(value, self.date_template)
+```
+
+### How to create a parser
+
+You can import `DefaultParser` with all default fields. If you want to create own parser you need to set fields as a list of `Field` object.
+
+```
+from parser_json_python.fields import *
+
+DefaultParser = Parser(
+    fields=(FieldInt(), FieldFloat(), FieldList(), FieldDate(), FieldBoolean())
+)
+```
+
+### How to use a parser
+
+A `Parser` has two methods. The first `parse_field()` is for convert one param and the second `parse()` for convert dict with params.
