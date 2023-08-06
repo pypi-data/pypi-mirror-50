@@ -1,0 +1,9 @@
+{
+  "domain": "ais_spotify_service",
+  "name": "AIS Serwis Spotify",
+  "config_flow": true,
+  "documentation": "https://ai-speaker.com",
+  "requirements": [],
+  "dependencies": [],
+  "codeowners": []
+}
