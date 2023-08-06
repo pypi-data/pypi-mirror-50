@@ -1,0 +1,15 @@
+CHANGELOG.rst
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+urlextract/__init__.py
+urlextract/cachefile.py
+urlextract/urlextract_core.py
+urlextract.egg-info/PKG-INFO
+urlextract.egg-info/SOURCES.txt
+urlextract.egg-info/dependency_links.txt
+urlextract.egg-info/entry_points.txt
+urlextract.egg-info/requires.txt
+urlextract.egg-info/top_level.txt
+urlextract/data/tlds-alpha-by-domain.txt
