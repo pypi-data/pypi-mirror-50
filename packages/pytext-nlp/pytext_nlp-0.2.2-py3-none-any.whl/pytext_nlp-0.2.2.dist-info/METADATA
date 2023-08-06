@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: pytext-nlp
+Version: 0.2.2
+Summary: pytorch modeling framework and model zoo for text models
+Home-page: https://github.com/facebookresearch/PyText
+Author: Facebook
+Author-email: UNKNOWN
+License: BSD
+Platform: UNKNOWN
+Requires-Dist: attrs (==19.1.0)
+Requires-Dist: boto3 (==1.9.207)
+Requires-Dist: botocore (==1.12.207)
+Requires-Dist: certifi (==2019.6.16)
+Requires-Dist: cffi (==1.12.3)
+Requires-Dist: chardet (==3.0.4)
+Requires-Dist: Click (==7.0)
+Requires-Dist: docutils (==0.14)
+Requires-Dist: fairseq (==0.8.0)
+Requires-Dist: fastBPE (==0.1.0)
+Requires-Dist: future (==0.17.1)
+Requires-Dist: hypothesis (==3.88.3)
+Requires-Dist: idna (==2.8)
+Requires-Dist: jmespath (==0.9.4)
+Requires-Dist: joblib (==0.13.2)
+Requires-Dist: numpy (==1.17.0)
+Requires-Dist: onnx (==1.5.0)
+Requires-Dist: pandas (==0.25.0)
+Requires-Dist: portalocker (==1.5.1)
+Requires-Dist: protobuf (==3.9.1)
+Requires-Dist: pycparser (==2.19)
+Requires-Dist: python-dateutil (==2.8.0)
+Requires-Dist: pytorch-pretrained-bert (==0.6.2)
+Requires-Dist: pytz (==2019.2)
+Requires-Dist: regex (==2019.6.8)
+Requires-Dist: requests (==2.22.0)
+Requires-Dist: s3transfer (==0.2.1)
+Requires-Dist: sacrebleu (==1.3.7)
+Requires-Dist: scipy (==1.3.1)
+Requires-Dist: six (==1.12.0)
+Requires-Dist: tensorboardX (==1.8)
+Requires-Dist: torch (==1.2.0)
+Requires-Dist: torchtext (==0.4.0)
+Requires-Dist: tqdm (==4.33.0)
+Requires-Dist: typing (==3.7.4)
+Requires-Dist: typing-extensions (==3.7.4)
+Requires-Dist: urllib3 (==1.25.3)
+
+UNKNOWN
+
+
