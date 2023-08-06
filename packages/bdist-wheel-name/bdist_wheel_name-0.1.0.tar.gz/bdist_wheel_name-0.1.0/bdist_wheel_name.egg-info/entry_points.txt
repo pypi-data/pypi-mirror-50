@@ -1,0 +1,3 @@
+[distutils.commands]
+bdist_wheel_name = bdist_wheel_name:bdist_wheel_name
+

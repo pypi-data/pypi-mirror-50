@@ -1,0 +1,9 @@
+README.rst
+bdist_wheel_name.py
+setup.py
+bdist_wheel_name.egg-info/PKG-INFO
+bdist_wheel_name.egg-info/SOURCES.txt
+bdist_wheel_name.egg-info/dependency_links.txt
+bdist_wheel_name.egg-info/entry_points.txt
+bdist_wheel_name.egg-info/requires.txt
+bdist_wheel_name.egg-info/top_level.txt

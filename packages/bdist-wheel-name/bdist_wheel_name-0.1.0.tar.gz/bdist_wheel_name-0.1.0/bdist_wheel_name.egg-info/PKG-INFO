@@ -1,0 +1,22 @@
+Metadata-Version: 1.0
+Name: bdist-wheel-name
+Version: 0.1.0
+Summary: Generate the name that bdist_wheel would use
+Home-page: https://github.com/davidszotten/bdist_wheel_name
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: MIT
+Description: `bdist_wheel` name
+        ==================
+        
+        Generate the filename a wheel built with `bdist_wheel` would get, e.g. to check if it's already in your package index
+        
+        Usage
+        -----
+        
+        ::
+        
+           pip install bdist_wheel_name
+           python setup.py -q bdist_wheel_name
+        
+Platform: UNKNOWN
