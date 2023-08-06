@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: LibSerialx
+Version: 0.1
+Summary: Biblioteca LibSerialx 
+Home-page: https://github.com/path/LibSerialx
+Author: Nome do Autor
+Author-email: Email@gmail.com
+License: MIT
+Download-URL: https://github.com/microgenios/LibModbus/archive/0.1.tar.gz
+Description: UNKNOWN
+Keywords: Serial,Senai,ComPort
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
