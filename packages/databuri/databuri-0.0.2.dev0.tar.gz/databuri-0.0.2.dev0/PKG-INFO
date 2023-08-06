@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: databuri
+Version: 0.0.2.dev0
+Summary: A small example package
+Home-page: https://github.com/codeforthailand/databuri
+Author: Pattarawat Chormai and friends
+Author-email: author@example.com
+License: UNKNOWN
+Description: # Data·Buri
+        [![](https://travis-ci.org/codeforthailand/databuri.svg?branch=master)][travis]
+        
+        Project Idea: https://github.com/codeforthailand/org/issues/2
+        
+        
+        [travis]: https://travis-ci.org/codeforthailand/databuri
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
