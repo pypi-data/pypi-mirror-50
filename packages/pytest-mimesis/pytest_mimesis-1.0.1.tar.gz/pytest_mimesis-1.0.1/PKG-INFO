@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: pytest-mimesis
+Version: 1.0.1
+Summary: Mimesis integration with the pytest test runner
+Home-page: https://github.com/pytest-dev/pytest-mimesis
+Author: Nikita Sobolev
+Author-email: mail@sobolevn.me
+Keywords: mimesis,pytest,testing,fixtures,fake data,faker,factory,tests
+Requires-Python: >=3.6,<4.0
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Framework :: Pytest
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: mimesis (>=3.1,<4.0)
+Requires-Dist: pytest (>=4.2)
+Project-URL: Repository, https://github.com/pytest-dev/pytest-mimesis
