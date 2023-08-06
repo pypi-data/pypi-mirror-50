@@ -1,0 +1,13 @@
+LICENCE.txt
+MANIFEST.in
+README.md
+setup.py
+vivludo/__init__.py
+vivludo/automata.py
+vivludo/render.py
+vivludo/utils.py
+vivludo.egg-info/PKG-INFO
+vivludo.egg-info/SOURCES.txt
+vivludo.egg-info/dependency_links.txt
+vivludo.egg-info/requires.txt
+vivludo.egg-info/top_level.txt
