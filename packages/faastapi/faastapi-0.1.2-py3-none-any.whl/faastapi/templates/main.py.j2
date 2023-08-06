@@ -1,0 +1,20 @@
+"""
+This template can be used to generate a Python file defining a FastAPI server
+"""
+from faastapi import QuickFastAPI, Context, get_context
+from function.handler import handle
+
+
+app = QuickFastAPI()
+
+app.configure()
+
+
+@app.get("/", dependencies=[app.get_user])
+async def get(
+    message: str = "Hello !",
+    context: Context = get_context
+):
+    _resp = handle(context, message)
+    return _resp
+
