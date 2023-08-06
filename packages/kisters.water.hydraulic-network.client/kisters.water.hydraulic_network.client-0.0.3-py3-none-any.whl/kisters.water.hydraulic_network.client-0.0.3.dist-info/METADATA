@@ -1,0 +1,62 @@
+Metadata-Version: 2.1
+Name: kisters.water.hydraulic-network.client
+Version: 0.0.3
+Summary: Client library for the Kisters Hydraulic Network Storage service
+Home-page: https://gitlab.com/kisters/water/hydraulic-network/client
+Author: Jesse VanderWees
+Author-email: jesse.vanderwees@kisters-bv.nl
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v2 or later (LGPLv2+)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: kisters.water.hydraulic-network.models
+Requires-Dist: requests
+
+# Hydraulic Network Client Library
+
+This library allows connections to remote hydraulic network REST servers. It
+supports authentication with OpenID Connect.
+
+## Installation
+
+Install with `pip`.
+
+```bash
+> python -m pip install kisters.water.hydraulic_network.client
+```
+
+
+## Example Usage
+
+### Simple Case
+
+```python
+from kisters.water.hydraulic_network.client import Network, RESTClient
+
+network = Network(
+    "my-network",
+    client=RESTClient(url="http://127.0.0.1:80/")
+)
+```
+
+### Auth Case
+
+```python
+from kisters.water.hydraulic_network.client import (
+    Network,
+    OpenIDConnect,
+    RESTClient,
+)
+
+authentication = OpenIDConnect(
+    issuer_url="https://keycloak.water.kisters.de/auth/realms/kisters",
+    client_id="jesse-test",
+    client_secret="c4b0f70d-d2e6-497f-b11c-d49fe806c29b",
+)
+client = RESTClient(url="http://127.0.0.1:80/", authentication=authentication)
+network = Network("my-network", client=client)
+```
+
+
