@@ -1,0 +1,15 @@
+README.md
+setup.py
+xcproxy/Error_info.py
+xcproxy/Filework.py
+xcproxy/HtmlDownload.py
+xcproxy/HtmlParse.py
+xcproxy/Htmlparse.py
+xcproxy/Proxy.py
+xcproxy/__init__.py
+xcproxy/proxy.py
+xcproxy.egg-info/PKG-INFO
+xcproxy.egg-info/SOURCES.txt
+xcproxy.egg-info/dependency_links.txt
+xcproxy.egg-info/requires.txt
+xcproxy.egg-info/top_level.txt
