@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: hacmec-demo
+Version: 0.0.4
+Summary: hACMEc demo application
+Home-page: https://github.com/joernheissler/hacmec-demo
+Author: Jörn Heissler
+Author-email: NOSPAM-hacmec@joern.heissler.de
+License: MIT
+Keywords: ACME,X.509
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >= 3.7
+Requires-Dist: PyYAML
+Requires-Dist: aiodns
+Requires-Dist: aiohttp
+Requires-Dist: asn1crypto
+Requires-Dist: cchardet
+Requires-Dist: cryptography
+Requires-Dist: cryptokey
+Requires-Dist: dnspython
+Requires-Dist: hacmec
+
+hACMEc-Demo
+===========
+
+Demo acme client.
+
+`hacmec-demo demo.yaml`
+
+

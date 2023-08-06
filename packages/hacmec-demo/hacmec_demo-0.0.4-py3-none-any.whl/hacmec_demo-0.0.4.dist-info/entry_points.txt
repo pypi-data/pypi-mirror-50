@@ -1,0 +1,3 @@
+[console_scripts]
+hacmec-demo = hacmec_demo.__main__:main
+
