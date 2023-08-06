@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: explodeinstaller
+Version: 0.1
+Summary: Python install ISO modification helper
+Home-page: https://github.com/bifferos/explodeinstaller
+Author: bifferos
+Author-email: bifferos@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/bifferos/explodeinstaller/archive/v_01.tar.gz
+Description: UNKNOWN
+Keywords: pycdlib iso install cd dvd slackware
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
