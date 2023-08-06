@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: spyder-coala
+Version: 0.0.1.dev0
+Summary: coala integration with Spyder
+Home-page: https://github.com/RohanVB/spyder-coala
+Author: RohanVB
+Author-email: UNKNOWN
+License: MIT
+Keywords: spyder coala linter
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: spyder (>=3.2.0)
+Requires-Dist: qtpy
+Requires-Dist: requests
+Requires-Dist: psutil
+Requires-Dist: nbformat
+
+This package allows coala to run inside Spyder as a plugin.
+
+
