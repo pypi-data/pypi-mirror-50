@@ -1,0 +1,6 @@
+#!python
+# -*- coding: utf-8 -*-
+from v4docker.app import App
+
+if __name__ == '__main__':
+    App().run()
