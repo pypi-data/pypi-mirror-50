@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: libru
+Version: 0.1.3
+Summary: 
+Home-page: None
+Author: Caio Pereira Oliveira
+Author-email: caiopoliveira@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: bs4 (>=0.0.1,<0.0.2)
+Requires-Dist: lxml (>=4.4,<5.0)
+Requires-Dist: pytz (>=2019.2,<2020.0)
+Requires-Dist: requests (>=2.22,<3.0)
