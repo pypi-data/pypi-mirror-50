@@ -1,0 +1,57 @@
+Metadata-Version: 2.1
+Name: password-checker
+Version: 1.0.2
+Summary: A Python package to check vulnerability and strength of a password.
+Home-page: https://github.com/srimani-programmer/password-checker
+Author: Sri Manikanta Palakollu
+Author-email: srimani.crypter@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+
+### Python Password Checker
+![](Package_Banner.png)
+
+A Python package to check vulnerability and strength pf a password.
+
+### Usage
+
+```python
+
+# importing the package 
+from password_checker import pc4
+
+checker = pc4.PasswordChecker('YOUR_PASSWORD')
+
+# The PasswordChecker will take String as a Argument
+
+# To check vulnerability of a password.
+
+checker.isvulnerable()  # Returns True if it is vulnerable.
+
+```
+
+```python
+
+# importing the package 
+from password_checker import pc4
+
+checker = pc4.PasswordChecker('YOUR_PASSWORD')
+
+# The PasswordChecker will take String as a Argument
+
+# To check Strength of a password.
+
+checker.isstrength()  # Returns True if it is following password policy.
+
+```
+
