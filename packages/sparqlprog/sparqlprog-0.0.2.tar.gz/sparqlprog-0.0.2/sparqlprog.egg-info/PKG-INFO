@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: sparqlprog
+Version: 0.0.2
+Summary: Execute logic program queries against a remote SPARQL endpoint
+Home-page: https://github.com/cmungall/sparqlprog-python
+Author: Chris Mungall
+Author-email: cmungall+github@gmail.com
+License: BSD3
+Description: UNKNOWN
+Keywords: prolog,swipl,swi-prolog,logic programming,pengines,sparql,semantic web,owl
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Utilities
