@@ -1,0 +1,5 @@
+include threejs_viz/*
+include threejs_viz/src/*
+include threejs_viz/src/build/*
+include threejs_viz/src/jsm/controls/*
+include threejs_viz/src/jsm/libs/*
