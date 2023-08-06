@@ -1,0 +1,3 @@
+[console_scripts]
+testaton = testaton.cli:main
+
