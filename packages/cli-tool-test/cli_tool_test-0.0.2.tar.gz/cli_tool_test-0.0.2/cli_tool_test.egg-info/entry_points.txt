@@ -1,0 +1,5 @@
+
+            [console_scripts]
+            prog=cli_tool_test.prog:greet
+            generate_ascii_art=cli_tool_test.prog:generate_ascii_art
+        
