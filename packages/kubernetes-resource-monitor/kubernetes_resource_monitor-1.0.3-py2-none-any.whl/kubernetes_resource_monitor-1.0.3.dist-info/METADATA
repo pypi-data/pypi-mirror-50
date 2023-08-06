@@ -1,0 +1,28 @@
+Metadata-Version: 2.0
+Name: kubernetes-resource-monitor
+Version: 1.0.3
+Summary: Package contains a client that can be used to interface with KRM Api service.
+Home-page: https://github.com/zhengwei143/kubernetes-resource-monitor
+Author: Tan Zheng Wei
+Author-email: tanzhengwei143@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Requires-Dist: kubernetes (==10.0.0)
+Requires-Dist: pandas
+
+# Kubernetes Resource Monitor
+
+An application used to cache existing resources on a Kubernetes cluster, with the goal of providing an alternative to making repeated requests directly to the Kubernetes API server.
+The caching mechanism aims to reduce the delays in obtaining resources from the API server as the cache is continuously updated via a stream.
+
+### Current resources:
+1. Pods
+2. Deployments
+3. Persistent Volume Claims
+4. Services
+5. Ingress
+6. Nodes
+
+
