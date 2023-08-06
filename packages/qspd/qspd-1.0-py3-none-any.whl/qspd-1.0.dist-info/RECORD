@@ -1,0 +1,16 @@
+qspd/__init__.py,sha256=bWxSHCAcH7okCmInt17eOYQdyMig3eOUTO8iivbGuRg,1566
+qspd/data_collection.py,sha256=po_01tg0AosaIo9CEwvQ6FMaYC8f8iiwYCIWdTAB8vs,8081
+qspd/json_encoding.py,sha256=-zV6gRggPBQ5tbmIuV2IQjaUYi0lSrc3G4cZMZzH1Jk,5000
+qspd/steps.py,sha256=9bbjlfAyydwwXiMgC3W3SsYrWTPxemYHes4qTwridV8,12400
+qspd/util.py,sha256=TRS--lDW6LFLhxIcOGN9rUjpNbmrpR9cR2zoQNGcyHI,7275
+qspd/tests/__init__.py,sha256=29K9GrCXkIZKEnJCp_deZCEzTsw5457VuJuILkH2fzc,4616
+qspd/tests/test_steps.py,sha256=ctv-QKXf1Z2WPC-63BwrmA-Ma7BMZ6h9Aht0XJ6rn2Y,9277
+qspd/visualization/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+qspd/visualization/plot_angles.py,sha256=BB7h5UTDtcU_drW577JUAKaYGfJUPaABBAV5R3lI2Nc,6238
+qspd/visualization/plot_angles_color.py,sha256=KGKTsRQZWyBJD6FEBdfDHVH9qE2VxiC65K-bidTWrmU,6495
+qspd/visualization/plot_time.py,sha256=LO4RLP0ytPGZNfkEMp0WYI_4xFKErAWFbIrE9CDeAQc,3473
+qspd-1.0.dist-info/LICENSE,sha256=9jTgsEsy4F2hkV4tWOicY-nzWNzWXMUhimFS7A49ZaE,10313
+qspd-1.0.dist-info/METADATA,sha256=qm5w25XaIQ9Jj7Iby-3mKctUNc4t4LMSd8hxanaQqZA,1225
+qspd-1.0.dist-info/WHEEL,sha256=QBOOAdG2icRHGBs2s94rfaUlHrdfNBp-TceubUYCwOE,97
+qspd-1.0.dist-info/top_level.txt,sha256=g03A6IAsQU6pZ-ni7xvyStoCwhqrKbX36UwamX_9uls,5
+qspd-1.0.dist-info/RECORD,,
