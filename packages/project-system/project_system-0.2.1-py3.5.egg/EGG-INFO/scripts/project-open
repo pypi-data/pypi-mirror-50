@@ -1,0 +1,57 @@
+#!/bin/bash
+# project-system 2016-2019 Ian Dennis Miller
+# http://github.com/iandennismiller/project-system
+
+PROJECT_NAME="$1"
+
+if [ ! -f ~/.project-system.conf  ]; then
+    project-conf-init
+fi
+
+if [ -f ~/.project-system.conf  ]; then
+    source ~/.project-system.conf
+fi
+
+function usage() {
+cat <<-EOF
+project-system - http://github.com/iandennismiller/project-system
+
+Usage: project-open [project-name]
+
+Options:
+
+    -h, --help          output help information
+
+Description:
+
+    project-open opens a project environment.
+
+EOF
+}
+
+function project-open() {
+    source "${VIRTUALENVWRAPPER_BIN}"
+
+    tmux new-window -c "${WORK_PATH}/${PROJECT_NAME}" -n "${PROJECT_NAME}"
+    tmux send-keys -t "${PROJECT_NAME}" "${EDIT_CMD}" C-m
+    tmux send-keys -t "${PROJECT_NAME}" "${WORK_CMD} ${PROJECT_NAME}" C-m
+    tmux send-keys -t "${PROJECT_NAME}" "git status" C-m
+    tmux split-window -t "${PROJECT_NAME}" -c "${WORK_PATH}/${PROJECT_NAME}"
+    tmux send-keys -t "${PROJECT_NAME}" "${WORK_CMD} ${PROJECT_NAME}" C-m
+    tmux split-window -t "${PROJECT_NAME}" -c "${WORK_PATH}/${PROJECT_NAME}"
+    tmux send-keys -t "${PROJECT_NAME}" "${WORK_CMD} ${PROJECT_NAME}" C-m
+    tmux select-layout -t "${PROJECT_NAME}" even-vertical
+}
+
+if test $# -lt 1; then
+    usage
+    exit
+fi
+
+while test $# -ne 0; do
+    arg=$1; shift
+    case $arg in
+        -h|--help) usage; exit ;;
+        *) project-open; exit ;;
+    esac
+done
