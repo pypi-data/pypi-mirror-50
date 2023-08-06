@@ -1,0 +1,7 @@
+plover>=4.0.0.dev0
+
+[:platform_system == "Linux"]
+pyudev
+
+[:platform_system == "Windows" or platform_system == "Darwin"]
+hidapi

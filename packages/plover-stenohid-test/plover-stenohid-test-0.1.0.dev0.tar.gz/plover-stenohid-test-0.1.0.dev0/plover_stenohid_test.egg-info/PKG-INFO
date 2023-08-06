@@ -1,0 +1,22 @@
+Metadata-Version: 1.2
+Name: plover-stenohid-test
+Version: 0.1.0.dev0
+Summary: testing a steno HID protocol for plover and qmk
+Home-page: https://github.com/antoniusf/plover-stenohid-experiment
+Author: Antonius Frie
+Author-email: antonius.frie@ruhr-uni-bochum.de
+License: GNU General Public License v2 or later (GPLv2+)
+Description: UNKNOWN
+Keywords: plover plover_plugin
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Plugins
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Requires-Python: >=3.4
