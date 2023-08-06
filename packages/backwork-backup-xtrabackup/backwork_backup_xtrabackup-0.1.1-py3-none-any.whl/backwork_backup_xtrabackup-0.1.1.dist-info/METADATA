@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: backwork-backup-xtrabackup
+Version: 0.1.1
+Summary: Backwork plug-in for Percona XtraBackup backups.
+Home-page: https://github.com/IBM/backwork-backup-xtrabackup
+Author: Luiz Aoqui
+Author-email: laoqui@ca.ibm.com
+License: Apache 2
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 2 :: Only
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Topic :: Database
+Classifier: Topic :: System :: Archiving :: Backup
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
+Requires-Dist: backwork
+
+# monsoon-backup-xtrabackup
+
+
