@@ -1,0 +1,5 @@
+click==7.0
+ledshim==0.0.1
+numpy<=1.16.4,>=1.12.1
+requests<=2.21.0,>=2.20.0
+mock
