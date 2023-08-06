@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: tag_counter_app
+Version: 0.0.1
+Summary: A small example package
+Home-page: https://github.com/edgarkov/tagCounter
+Author: Edhar Kovalenko
+Author-email: edhar_kovalenko@epam.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent

@@ -1,0 +1,8 @@
+setup.py
+tag_counter_app.egg-info/PKG-INFO
+tag_counter_app.egg-info/SOURCES.txt
+tag_counter_app.egg-info/dependency_links.txt
+tag_counter_app.egg-info/top_level.txt
+tagcounter_app/__init__.py
+tagcounter_app/tagcounter.py
+tagcounter_app/unit_test.py
