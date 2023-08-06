@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: mlts
+Version: 0.3.0
+Summary: Machine Learning Toolset
+Home-page: https://github.com/manifest/machine-learning-toolset
+Author: Andrei Nesterov
+Author-email: ae.nesterov@gmail.com
+License: UNKNOWN
+Description: # Machine Learning Toolset
+        
+        The toolset for machine learning development.
+        
+        
+        
+        ## License
+        
+        The source code is provided under the terms of [the MIT license][license].
+        
+        [license]:http://www.opensource.org/licenses/MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
