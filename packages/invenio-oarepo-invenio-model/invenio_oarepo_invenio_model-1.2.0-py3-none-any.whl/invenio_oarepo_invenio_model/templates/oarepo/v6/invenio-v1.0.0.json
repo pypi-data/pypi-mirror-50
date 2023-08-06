@@ -1,0 +1,17 @@
+{
+  "index_patterns": [
+    "__SEARCH_INDEX_PREFIX__*"
+  ],
+  "mappings": {
+    "_doc": {
+      "properties": {
+        "id": {
+          "type": "keyword"
+        },
+        "$schema": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}
