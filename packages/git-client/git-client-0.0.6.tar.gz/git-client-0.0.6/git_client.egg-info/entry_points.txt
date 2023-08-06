@@ -1,0 +1,3 @@
+[console_scripts]
+gc = gitclient.main:main
+
