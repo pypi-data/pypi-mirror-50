@@ -1,0 +1,44 @@
+import sys
+
+import requests
+
+url = sys.argv[1]
+
+
+def get_image(url):
+
+    print("starting get_image")
+
+    filename = url[url.rfind("/")+1:]
+
+    myfile = requests.get(url)
+    open('./' + filename, 'wb').write(myfile.content)
+
+    with open(filename, "rb") as image:
+        print(" \n opening image")
+        f = image.read()
+        b = bytearray(f)
+
+    return b
+
+
+get_image(url)
+
+
+def dl_im(url, save_path):
+
+    print("starting dl_im")
+
+    filename = url[url.rfind("/")+1:]
+
+    myfile = requests.get(url)
+    open('./' + filename, 'wb').write(myfile.content)
+
+    with open(filename, "rb") as image:
+        print(" \n opening image")
+        f = image.read()
+        b = bytearray(f)
+
+    return b
+
+dl_im(url, "./")
