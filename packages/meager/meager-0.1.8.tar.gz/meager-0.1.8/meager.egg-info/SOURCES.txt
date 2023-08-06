@@ -1,0 +1,10 @@
+README.md
+setup.py
+meager/__init__.py
+meager/http.py
+meager/logger.py
+meager/router.py
+meager.egg-info/PKG-INFO
+meager.egg-info/SOURCES.txt
+meager.egg-info/dependency_links.txt
+meager.egg-info/top_level.txt
