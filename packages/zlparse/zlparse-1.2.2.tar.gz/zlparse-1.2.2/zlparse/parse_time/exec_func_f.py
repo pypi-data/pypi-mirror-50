@@ -1,0 +1,31 @@
+from zlparse.parse_time.common import *
+
+exec_func = {
+    'extimefbsj': extimefbsj,
+    'extime_xxsj': extime_xxsj,
+    'strptime_transfrom_yunan': strptime_transfrom_yunan,
+    'strptime_transfrom_yue_r_n': strptime_transfrom_yue_r_n,
+    'extime': extime,
+    'extime_v2': extime_v2,
+    'extimefbsj_v2': extimefbsj_v2,
+    'extime_xxsj_v2': extime_xxsj_v2,
+    'strptime_transfromgg_guangdong_guangdongsheng': strptime_transfromgg_guangdong_guangdongsheng,
+    'extime_qg_1_zfcg': extime_qg_1_zfcg,
+    'extime_daili_www_xhtc_com_cn': extime_daili_www_xhtc_com_cn,
+    'extime_henan_henansheng_1_daili': extime_henan_henansheng_1_daili,
+    'extime_ningxia_ningxiasheng_zfcg_ningxia_yinchuan_zfcg': extime_ningxia_ningxiasheng_zfcg_ningxia_yinchuan_zfcg,
+    'extime_shandong_qingdao_zfcg': extime_shandong_qingdao_zfcg,
+    'extime_qycg_eps_hnagroup_com': extime_qycg_eps_hnagroup_com,
+    'extime_daili_www_cfet_com_cn': extime_daili_www_cfet_com_cn,
+    'extime_sichuan_luzhou_ggzy':extime_sichuan_luzhou_ggzy,
+    'extime_liaoning_huludao_ggzy':extime_liaoning_huludao_ggzy,
+    'extime_jiangxi_dexing_ggzy1':extime_jiangxi_dexing_ggzy1,
+    'extime_guangxi_baise_gcjs':extime_guangxi_baise_gcjs,
+    'extime_tail':extime_tail,
+    'extime_shanxi_hanzhong_gcjs':extime_shanxi_hanzhong_gcjs,
+    'extime_shandong_shandongsheng_gcjs':extime_shandong_shandongsheng_gcjs,
+    'extime_shandong_zoucheng_ggzy':extime_shandong_zoucheng_ggzy,
+    'extime_daili_www_kanti_cn':extime_daili_www_kanti_cn,
+    'extime_qycg_www_zmzb_com':extime_qycg_www_zmzb_com,
+    ##func_name##:##func_name##
+}
