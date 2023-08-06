@@ -1,0 +1,59 @@
+Metadata-Version: 1.1
+Name: iotapay
+Version: 1.0.3
+Summary: Pay using IOTA
+Home-page: https://github.com/acycliclabs/iotapay-py
+Author: Kumar Anirudha
+Author-email: anirudhastark@yahoo.com
+License: UNKNOWN
+Description: `IOTAPAY <https://iotapay.dev/>`_
+        =================================
+        
+        Python library to Pay using IOTA
+        
+        =====
+        Setup
+        =====
+        
+        Install the library: ``pip install iotapay``
+        
+        Import package: ``from iotapay.iotapay import Iotapay``
+        
+        Initialize: ``Iotapay('https://url:14265', 'TWQH9ETUWNDTRHSQVNLOSFMSTQLHRTZQGDTFUHEKRNPVDRQGHQEARNLSXXCXGICCVWBQHOHWPYZSHJYTC')``
+        
+        ===============
+        Basic functions
+        ===============
+        
+        ***********
+        Get Balance
+        ***********
+        
+        ``pay = Iotapay('https://url:14265', 'YOUR SEED')``
+        
+        Retrieve balance: `pay.get_balance({})`
+        
+        ***
+        Pay
+        ***
+        
+        ``data = {'json_data': {'version': '0.0.9',}, 'tag': 'ACYCLICIOTAPAYLIOTA99999999', 'to_address': 'ADDRESS', 'amount': 10}``
+        
+        Pay : ``pay.pay(data)``
+        
+        More Functions coming soon.
+        ---------------------------
+        
+        NOTE: Please, use proper **iota node url**, **ADDRESS** and your **SEED** to initialise.
+        
+Keywords: iotapay,payment,anistark,python,acyclic,tangle
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Utilities
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
