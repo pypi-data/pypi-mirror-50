@@ -1,0 +1,1 @@
+from haohaninfo_scholar.new_receiver.new_receiver import mq_start

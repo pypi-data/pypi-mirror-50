@@ -1,0 +1,1 @@
+from haohaninfo_scholar import new_receiver
