@@ -1,0 +1,3 @@
+[console_scripts]
+passwordmanpro_cli = passwordmanpro_cli:main
+

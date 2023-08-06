@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+versioneer.py
+passwordmanpro_cli/__init__.py
+passwordmanpro_cli/_version.py
+passwordmanpro_cli/appObj.py
+passwordmanpro_cli.egg-info/PKG-INFO
+passwordmanpro_cli.egg-info/SOURCES.txt
+passwordmanpro_cli.egg-info/dependency_links.txt
+passwordmanpro_cli.egg-info/entry_points.txt
+passwordmanpro_cli.egg-info/not-zip-safe
+passwordmanpro_cli.egg-info/top_level.txt
