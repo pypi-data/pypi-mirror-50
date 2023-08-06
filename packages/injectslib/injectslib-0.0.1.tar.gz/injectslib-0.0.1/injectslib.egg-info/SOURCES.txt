@@ -1,0 +1,10 @@
+README.md
+setup.py
+injectslib.egg-info/PKG-INFO
+injectslib.egg-info/SOURCES.txt
+injectslib.egg-info/dependency_links.txt
+injectslib.egg-info/requires.txt
+injectslib.egg-info/top_level.txt
+src/__init__.py
+src/api.py
+src/example.py
