@@ -1,0 +1,11 @@
+*.pyc
+/dist/
+/*.egg-info
+/.vscode
+tags
+/doc/_build/
+/doc/_autosummary/
+/.idea/
+/build/
+/.pytest_cache/
+/.eggs/
