@@ -1,0 +1,12 @@
+Metadata-Version: 1.0
+Name: generate_cmake
+Version: 1.8.1
+Summary: Python Super CMake
+Home-page: https://github.com/jpanikulam/experiments/tree/master/pymake
+Author: Jacob Panikulam
+Author-email: jpanikul@gmail.com
+License: MIT
+Description: cppmake auto-generates a big CMake file from C++ headers
+        
+Keywords: cmake make stupid
+Platform: any
