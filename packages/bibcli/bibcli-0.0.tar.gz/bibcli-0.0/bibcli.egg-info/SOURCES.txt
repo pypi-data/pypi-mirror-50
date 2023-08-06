@@ -1,0 +1,13 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.py
+bib/__init__.py
+bib/config_default.yaml
+bibcli.egg-info/PKG-INFO
+bibcli.egg-info/SOURCES.txt
+bibcli.egg-info/dependency_links.txt
+bibcli.egg-info/entry_points.txt
+bibcli.egg-info/requires.txt
+bibcli.egg-info/top_level.txt
+doc/bib.1

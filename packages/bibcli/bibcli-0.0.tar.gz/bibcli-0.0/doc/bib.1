@@ -1,0 +1,48 @@
+.\" Manpage for bib.
+.\" Contact juan.meleiro@me.com to correct errors or typos.
+.TH man 1 "2019-07-04" "1.0" "bib man page"
+.SH NAME
+bib \- Command-line bibliography management utility.
+.SH SYNOPSIS
+usage: bib.py [-h] [-b PATH] [-c PATH] [-d PATH] [-v] {add,import} ...
+.SH DESCRIPTION
+Bib is a command line bibliography management system, with commands that let you
+add, modify, query and export bibliography items.
+
+The bibliography is stored in a BibTeX file, along with files that might be
+associated with each item (such as notes, or PDFs).
+.SH OPTIONS
+optional arguments:
+  -h, --help            show this help message and exit
+  -b PATH, --bibpath PATH
+                        Path to bib file
+  -c PATH, --config PATH
+                        Path to config file
+  -d PATH, --directory PATH
+                        Base directory where to store files
+  -v, --verbose         Verbose mode
+.SH COMMANDS
+
+.SY add
+.OP -h
+.I path
+.YS
+
+Add bibliography items from a file at the path supplied in the command.
+
+.SY import
+.OP -h
+.I id path
+.YS
+
+Import file at provided path to be associated with an item who's id was supplied
+in the command.  The files are add to a directory who's name is a slug
+associated with the id, located at either the directory provided in the command
+or that was extracted from the config file.
+
+.SH SEE ALSO
+Other commands
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Juan Meleiro (juan.meleiro@me.com)
