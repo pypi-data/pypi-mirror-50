@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: DiscoSnake
+Version: 0.0.5
+Summary: retro snake game in terminal
+Home-page: https://github.com/sanjeethboddi/DiscoSnake
+Author: Sanjeeth Boddinagula
+Author-email: sanjeethboddi@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: colorama
+Requires-Dist: getch
+
+# DiscoSnake
+
+DiscoSnake is a the same old game which you have played in your old mobile phones.
+You can feel nostalgic by playing.
+
+
+Instructions:
+* Use W,A,S,D keys to move.
+* Feed the snake so that it grows. 
+* Avoid hitting wall in all Circumstances
+
+If you find any bugs. Please report it.
+
+Feel free to contribute to the project.
+
+
