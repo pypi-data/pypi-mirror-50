@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: deepdialog
+Version: 0.1.4
+Summary: NLP tool
+Home-page: https://github.com/deepdialog/deepdialog
+Author: deepdialog
+Author-email: thebotbot@sina.com
+License: Private
+Keywords: bot
+Platform: any
+Requires-Dist: joblib
+Requires-Dist: keras
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: pyyaml
+Requires-Dist: scikit-learn
+Requires-Dist: scipy
+Requires-Dist: tensorflow
+Requires-Dist: tqdm
+
+Dialog System
+
+
