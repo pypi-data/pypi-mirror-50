@@ -1,0 +1,29 @@
+<head>
+    {% resource 'papaya/papaya.css' %}
+    {% resource 'papaya/papaya.js' %}
+    <title>Papaya Viewer</title>
+    <script type="text/javascript">
+      var params = [];
+      params["noNewFiles"] = true;
+      params["showControlBar"] = true;
+      params["showImageButtons"] = false;
+      params["expandable"] = true;
+      params["showRuler"] = false;
+      params["showOrientation"] = false;
+      params["kioskMode"] = true;
+      // if we are viewing a ZIP file, add every file to the list of images
+      if ({{ resource.format|tojson }} == "ZIP") {
+        var encoded_list = {{ h.papaya_encode_files(resource, c.user)|tojson }};
+        params["encodedImages"] = [encoded_list];
+      }
+      // otherwise, we just need the URL of the resource
+      else {
+        params["images"] = [{{ resource.url|tojson }}];
+      }
+
+    </script>
+</head>
+
+<body>
+    <div class="papaya" data-params="params"></div>
+</body>

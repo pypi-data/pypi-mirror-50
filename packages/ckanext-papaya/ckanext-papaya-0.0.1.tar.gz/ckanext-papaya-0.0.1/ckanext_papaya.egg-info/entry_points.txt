@@ -1,0 +1,7 @@
+
+        [ckan.plugins]
+        papaya=ckanext.papaya.plugin:PapayaPlugin
+
+        [babel.extractors]
+        ckan = ckan.lib.extract:extract_ckan
+    
