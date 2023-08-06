@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: anna-cli
+Version: 1.0.1
+Summary: cli for anna
+Home-page: https://github.com/patrikpihlstrom/anna-cli
+Author: Patrik Pihlstrom
+Author-email: patrik.pihlstrom@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: click
+Requires-Dist: anna-client
+
+UNKNOWN
+
+
