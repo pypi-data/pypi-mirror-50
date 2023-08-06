@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: dnssec
+Version: 0.0.0
+Summary: A Python tool for checking a state of domains signed by dnssec
+Home-page: https://github.com/patrikskrivanek/dnssec
+Author: Patrik Skřivánek
+Author-email: kriegsmarine1995@gmail.com
+License: MIT
+Download-URL: https://github.com/patrikskrivanek/dnssec/releases
+Keywords: dnssec validation
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+
+# dnssec
+A Python tool for checking a state of domains signed by dnssec
+
+
