@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: rickpy
+Version: 0.1.4
+Summary: Useful utilties for python
+Home-page: http://github.com/rgerkin/rickpy
+Author: Rick Gerkin
+Author-email: rgerkin@asu.edu
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: ipython
+Requires-Dist: nbformat
+
+UNKNOWN
+
+
