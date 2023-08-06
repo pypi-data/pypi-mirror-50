@@ -1,0 +1,12 @@
+Metadata-Version: 1.2
+Name: ioc-cli
+Version: 0.8.2
+Summary: A Python library to manage jails with iocage
+Home-page: https://github.com/iocage/libiocage
+Author: ioc Contributors
+Author-email: ioc@bsd.ci
+License: BSD
+Description: UNKNOWN
+Keywords: FreeBSD jail iocage ioc
+Platform: UNKNOWN
+Requires-Python: >=3.6
