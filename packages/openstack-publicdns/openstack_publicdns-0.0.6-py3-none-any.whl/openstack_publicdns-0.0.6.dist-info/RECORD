@@ -1,0 +1,12 @@
+openstack_publicdns/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+openstack_publicdns/designate/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+openstack_publicdns/designate/storage.py,sha256=jVpm2t0wvpYYAiftu5ETQ-y20CIeO9Yae4QB7m7eSIQ,1847
+openstack_publicdns/neutron/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+openstack_publicdns/neutron/dhcp.py,sha256=XSkDwExubUGmygy9tocGgSScZNPtcZMJfLrfvn49hsc,1569
+openstack_publicdns/neutron/dns.py,sha256=ppjY_5lrO-ZpW4e2frw7Hxg0NY7mtXRekZOa03s94vk,2050
+openstack_publicdns-0.0.6.dist-info/COPYING,sha256=z8d0m5b2O9McPEK1xHG_dWgUBT6EfBDz6wA0F7xSPTA,11358
+openstack_publicdns-0.0.6.dist-info/METADATA,sha256=DLlvAe4_MXRWtSqSOEyiPZTbgrskIkz1SImq9U8_UQs,2476
+openstack_publicdns-0.0.6.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+openstack_publicdns-0.0.6.dist-info/entry_points.txt,sha256=QvMQbDZGQp0I7AhBtTi1GCWERFQJBVbh96Zuvm8LlX0,190
+openstack_publicdns-0.0.6.dist-info/top_level.txt,sha256=V0gnoh1YT_TqKjlM0a-xLZYRaiUwqbKHf95pEORhvhI,20
+openstack_publicdns-0.0.6.dist-info/RECORD,,
