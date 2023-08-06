@@ -1,0 +1,25 @@
+# Build Configuration for python docker deployment to artifactory
+image: python:3.7.3
+
+pipelines:
+  default:
+    - step:
+        script:
+          - python --version
+          - pip install -e .
+          - pip install pytest pytest-cov codecov safety
+          - pytest --cov
+          - codecov
+          - safety check
+  tags:
+    'v*':
+      - step:
+          script:
+            - pip install -e .
+            - pip install pytest
+            - pytest
+      - step:
+          script:
+            - python setup.py sdist
+            - pip install twine
+            - twine upload dist/*
