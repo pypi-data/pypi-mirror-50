@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: refresh-my-ip
+Version: 0.0.3
+Summary: Refresh your ''my IP' in AWS security groups
+Home-page: https://github.com/troylar/refresh-my-ip
+Author: Troy Larson
+Author-email: troylar+github@pm.me
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Dist: boto (==2.49.0)
+Requires-Dist: boto3 (==1.9.202)
+Requires-Dist: botocore (==1.12.202)
+Requires-Dist: Click (==7.0)
+Requires-Dist: docutils (==0.14)
+Requires-Dist: entrypoints (==0.3)
+Requires-Dist: flake8 (==3.7.8)
+Requires-Dist: jmespath (==0.9.4)
+Requires-Dist: mccabe (==0.6.1)
+Requires-Dist: prettyprint (==0.1.5)
+Requires-Dist: pycodestyle (==2.5.0)
+Requires-Dist: pyflakes (==2.1.1)
+Requires-Dist: python-dateutil (==2.8.0)
+Requires-Dist: s3transfer (==0.2.1)
+Requires-Dist: six (==1.12.0)
+Requires-Dist: urllib3 (==1.25.3)
+
+UNKNOWN
+
+

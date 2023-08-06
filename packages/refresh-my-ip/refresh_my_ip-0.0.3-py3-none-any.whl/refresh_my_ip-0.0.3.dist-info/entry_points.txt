@@ -1,0 +1,3 @@
+[console_scripts]
+refresh-my-ip = src.main:main
+
