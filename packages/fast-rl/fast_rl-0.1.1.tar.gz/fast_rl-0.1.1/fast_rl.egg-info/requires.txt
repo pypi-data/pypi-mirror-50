@@ -1,0 +1,10 @@
+numpy
+tqdm
+pillow
+pandas
+fastai
+gym[atari,box2d]
+jupyter
+namedlist
+pytest-asyncio
+pytest
