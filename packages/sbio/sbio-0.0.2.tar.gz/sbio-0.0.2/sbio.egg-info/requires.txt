@@ -1,0 +1,10 @@
+python>=3.6
+re
+pandas
+numpy
+concurrent
+collections
+gzip
+argparse
+textwrap
+humanize
