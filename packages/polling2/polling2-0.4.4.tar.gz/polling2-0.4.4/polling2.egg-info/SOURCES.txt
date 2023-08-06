@@ -1,0 +1,11 @@
+LICENSE.md
+MANIFEST.in
+README.md
+polling2.py
+setup.cfg
+setup.py
+test_requirements.txt
+polling2.egg-info/PKG-INFO
+polling2.egg-info/SOURCES.txt
+polling2.egg-info/dependency_links.txt
+polling2.egg-info/top_level.txt
