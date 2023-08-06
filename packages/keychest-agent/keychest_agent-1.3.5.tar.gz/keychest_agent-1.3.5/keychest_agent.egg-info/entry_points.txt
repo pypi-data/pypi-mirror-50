@@ -1,0 +1,3 @@
+[console_scripts]
+keychest_agent = keychest_agent.main:main
+
