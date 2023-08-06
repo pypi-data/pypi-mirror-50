@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: SIMDprofiler
+Version: 0.3.1
+Summary: This is a summarizer for Numba's vector report
+Home-page: https://github.com/neftaliw/SIMDprofiler
+Author: Neftali W.
+Author-email: neftaliw@hotmail.com
+License: MIT
+Download-URL: https://github.com/neftaliw/SIMDprofiler/archive/0.3.1.tar.gz
+Description: UNKNOWN
+Keywords: Numba,Vectorization,Profiler
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
