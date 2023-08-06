@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: pypoolcontroller
+Version: 1.0
+Summary: A python poolcontroller client
+Home-page: https://github.com/leftyfl1p/pypoolcontroller
+Author: leftyfl1p
+Author-email: leftyfl1p@me.com
+License: UNKNOWN
+Description: A python client for interfacing with [poolcontroller](https://github.com/tagyoureit/nodejs-poolController) designed specifically for [HomeAssistant](https://github.com/home-assistant/home-assistant).
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
