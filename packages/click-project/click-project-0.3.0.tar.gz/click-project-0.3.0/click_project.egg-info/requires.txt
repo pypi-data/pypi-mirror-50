@@ -1,0 +1,17 @@
+click>=6.4
+click-log
+click-didyoumean
+click-completion>=0.5.0
+six
+glob2
+colorama
+python-dateutil
+keyring
+tabulate
+networkx
+pydotplus
+pluginbase
+appdirs
+ipdb
+humanize
+Pygments
