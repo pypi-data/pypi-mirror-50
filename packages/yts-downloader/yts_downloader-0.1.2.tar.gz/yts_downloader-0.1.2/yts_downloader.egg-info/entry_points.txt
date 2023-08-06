@@ -1,0 +1,3 @@
+[console_scripts]
+yts-downloader = yts_downloader.yts_downloader:main
+
