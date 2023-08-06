@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: dot-to-osscript
+Version: 0.2
+Summary: Generate sh and ps1 scripts from .env files to apply for the process
+Home-page: https://github.com/an-da/dot_to_osscript
+Author: Andrei Gramakov
+Author-email: mail@agramakov.me
+License: MIT
+Platform: UNKNOWN
+Requires-Python: >=3
+Requires-Dist: click
+Requires-Dist: future
+
+UNKNOWN
+
+
