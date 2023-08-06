@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: damson
+Version: 0.1.0
+Summary: A simple python validation library.
+Home-page: https://github.com/xasync/damson
+Author: xasync
+Author-email: ixasync@outlook.com
+License: Apache 2.0
+Keywords: Validation,verification and checking fields framework in python.
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Description-Content-Type: text/markdown
+
+# Damson
+Damson is a concise python library which aims to simplify the field validation.
+
+
