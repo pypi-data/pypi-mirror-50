@@ -1,0 +1,17 @@
+README.md
+setup.py
+laspec/__init__.py
+laspec/convolution.py
+laspec/lamost.py
+laspec/line_indices.py
+laspec/read_spectrum.py
+laspec/spec.py
+laspec.egg-info/PKG-INFO
+laspec.egg-info/SOURCES.txt
+laspec.egg-info/dependency_links.txt
+laspec.egg-info/top_level.txt
+laspec/old/__init__.py
+laspec/old/echelle.py
+laspec/old/pollux.py
+laspec/old/radial_velocity.py
+laspec/old/spec_quick_view.py
