@@ -1,0 +1,3 @@
+[console_scripts]
+dtt = dtt.main:main
+
