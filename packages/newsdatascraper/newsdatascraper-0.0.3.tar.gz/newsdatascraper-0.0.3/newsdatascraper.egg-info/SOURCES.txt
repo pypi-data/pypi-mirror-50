@@ -1,0 +1,12 @@
+README.md
+setup.cfg
+setup.py
+newsdatascraper/__init__.py
+newsdatascraper/models.py
+newsdatascraper/scraper.py
+newsdatascraper.egg-info/PKG-INFO
+newsdatascraper.egg-info/SOURCES.txt
+newsdatascraper.egg-info/dependency_links.txt
+newsdatascraper.egg-info/not-zip-safe
+newsdatascraper.egg-info/requires.txt
+newsdatascraper.egg-info/top_level.txt
