@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: Interpretability
+Version: 0.0.3
+Summary: A selection of interpretable methods with logging and printouts
+Home-page: https://github.com/egivental/interpretablePackage
+Author: Emile Givental
+Author-email: emilegivental@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Requires-Dist: Prettytable (>=0.7.2)
+Requires-Dist: pandas (>=0.24.2)
+Requires-Dist: numpy (>=1.16.4)
+Requires-Dist: sklearn (>=0.0)
+
+This is a library with 3 interepretable machine learning methods, wrapped with logging and side by side comparison. They can be used as normal scikit learn models, with fit, predict, and find_accuracy methods. Or, a script can be run on a data set, which will run all three and return logs and accuracies. 
+
+
+
+
