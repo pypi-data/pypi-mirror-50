@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: torchtrainer
+Version: 0.2
+Summary: Focus on building and optimizing pytorch models not on training loops
+Home-page: https://github.com/VictorKuenstler/torchtrainer
+License: MIT
+Author: Victor Künstler
+Author-email: victor.kuenstler@outlook.com
+Requires-Python: >=3.6,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: codecov (>=2.0,<3.0)
+Requires-Dist: pycodestyle (>=2.5,<3.0)
+Requires-Dist: pytest-cov (>=2.7,<3.0)
+Requires-Dist: torch (>=1.2,<2.0)
+Requires-Dist: torchvision (>=0.4.0,<0.5.0)
+Requires-Dist: tqdm (>=4.33,<5.0)
+Requires-Dist: visdom (>=0.1.8,<0.2.0)
+Description-Content-Type: text/markdown
+
+# torchtrainer
+[![Build Status](https://travis-ci.com/VictorKuenstler/torchtrainer.svg?branch=master)](https://travis-ci.com/VictorKuenstler/torchtrainer)
+[![codecov](https://codecov.io/gh/VictorKuenstler/torchtrainer/branch/master/graph/badge.svg)](https://codecov.io/gh/VictorKuenstler/torchtrainer)
+
+
+## TODO
+
+### Callbacks
+- [] LRDecreaseOnPlateau
+- [] LRScheduler
+- [] plotting after training?
