@@ -1,0 +1,28 @@
+{
+  "$id": "https://example.com/person.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Image",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-((0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(\\.(0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*)){0,1}(\\+([0-9a-zA-Z-]+(\\.[0-9a-zA-Z-]+)*)){0,1}$",
+      "description": "The version number of this schema."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of this image."
+    },
+    "id": {
+      "type": "string",
+      "description": "The id of this image."
+    },
+    "creation_date": {
+      "type": "string",
+      "description": "The creation date of this image."
+    }
+  },
+  "required": [ "version", "name" ],
+  "dependencies": { },
+  "additionalProperties": false
+}
