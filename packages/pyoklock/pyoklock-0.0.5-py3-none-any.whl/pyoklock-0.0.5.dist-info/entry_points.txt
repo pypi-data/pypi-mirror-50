@@ -1,0 +1,3 @@
+[console_scripts]
+pyoklock = pyoklock.main:main
+
