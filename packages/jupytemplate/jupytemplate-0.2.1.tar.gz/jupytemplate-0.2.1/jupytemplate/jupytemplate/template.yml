@@ -1,0 +1,22 @@
+Type: Jupyter Notebook Extension
+Compatibility: 5.x, 6.x
+Name: Template
+Main: main.js
+Icon: template.png
+Link: README.md
+Description: |
+  Sets up the Jupyter Notebook with a conventional and general-purpose
+  template to shape Data Science analysis. Moreover, adds a cell with
+  user-defined imports, and prompts for a notebook name. Quite annoyingly.
+tags:
+  - productivity
+  - template
+Parameters:
+  - name: template.insert_template_on_creation
+    description: Create new notebook with the default template
+    input_type: checkbox
+    default: true
+  - name: template.ask_title_change_if_untitled
+    description: Force user to create a notebook title different from the default Untitled
+    input_type: checkbox
+    default: true
