@@ -1,0 +1,11 @@
+README.md
+setup.py
+git_client.egg-info/PKG-INFO
+git_client.egg-info/SOURCES.txt
+git_client.egg-info/dependency_links.txt
+git_client.egg-info/entry_points.txt
+git_client.egg-info/requires.txt
+git_client.egg-info/top_level.txt
+gitclient/__init__.py
+gitclient/ignore.py
+gitclient/main.py
