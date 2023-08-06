@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: sqlalchemyp
+Version: 0.0.2
+Summary: SQLAlchemy Print Query
+Home-page: UNKNOWN
+Author: Evangilo
+Author-email: evangilo@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Requires-Dist: sqlalchemy
+Requires-Dist: sqlparse
+
+# SQLAlchemy Print Query
+
+# Install
+`pip install git+https://github.com/evangilo/sqlalchemyp#egg=sqlalchemyp`
+
+# Usage
+
+```
+>>> from sqlalchemyp import print_sql
+>>> print_sql(DBSession.query(Hero).filter_by(name='Spider-Man'), 'postgresql')
+SELECT hero.id,
+       hero.name
+FROM hero
+WHERE hero.name = 'Spider-Man';
+>>>
+```
+
+
