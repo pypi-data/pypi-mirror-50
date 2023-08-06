@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: dtt
+Version: 0.9.0
+Summary: the text-mode interface for docker command
+Home-page: https://github.com/ymizushi/dtt
+Author: ymizushi
+Author-email: mizushi@gmail.com
+License: UNKNOWN
+Keywords: docker,k8s
+Platform: POSIX
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Utilities
+Classifier: Topic :: Software Development
+Requires-Dist: docker
+Requires-Dist: docopt
+Requires-Dist: toml
+
+dtt is the text-mode interface for docker command.
+
+the ui of dtt is inspired by vim, ranger and tig.
+
+A main usecase for dtt is to login container.
+
