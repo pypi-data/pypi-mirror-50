@@ -1,0 +1,16 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.cfg
+setup.py
+test-requirements.txt
+aiosonic/__init__.py
+aiosonic/connectors.py
+aiosonic/exceptions.py
+aiosonic/structures.py
+aiosonic/version.py
+aiosonic.egg-info/PKG-INFO
+aiosonic.egg-info/SOURCES.txt
+aiosonic.egg-info/dependency_links.txt
+aiosonic.egg-info/requires.txt
+aiosonic.egg-info/top_level.txt
