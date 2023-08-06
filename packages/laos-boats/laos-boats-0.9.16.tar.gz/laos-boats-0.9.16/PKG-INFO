@@ -1,0 +1,15 @@
+Metadata-Version: 1.2
+Name: laos-boats
+Version: 0.9.16
+Summary: Bayesian Optimization Structure Search
+Home-page: UNKNOWN
+License: BSD 3-clause
+Description: [![Build Status](https://travis-ci.com/tolvana/boss-test.svg?branch=features)](https://travis-ci.com/tolvana/boss-test)[![Coverage](https://codecov.io/gh/tolvana/boss-test/branch/features/graphs/badge.svg?branch=features)](http://codecov.io/gh/tolvana/boss-test?branch=features)
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Customer Service
+Classifier: Topic :: Office/Business
+Classifier: Programming Language :: Python :: 3.5
+Classifier: License :: OSI Approved :: BSD License
+Requires-Python: ~=3.5

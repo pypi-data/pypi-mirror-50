@@ -1,0 +1,232 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>BOSS &mdash; BOSS 0.9.16 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> BOSS
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9.16
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing BOSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">BOSS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>BOSS</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="boss">
+<h1>BOSS<a class="headerlink" href="#boss" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p>Bayesian Optimization Structure Search (BOSS) is a
+computational tool for global structure search based
+on chemical ’building blocks’. It employs Bayesian
+optimization based on Gaussian Process regression to
+generate surrogate models of the target property given
+data points from atomistic simulations. The surrogate
+models are refined by iteratively acquiring more data
+points through a smart sampling strategy. The goal of
+BOSS simulations is to a) infer the minimum (or
+maximum) of a target property and b) infer the entire
+target landscape with as few data points as possible.
+In the prior case we can compute optimal structures or
+properties. In the latter case, BOSS can be employed
+to simulate and visualise N-dimensional structure-property
+landscapes and analyse relationships between variables.</p>
+<p>The BOSS scheme consists of three components, as
+illustrated in Fig. 1:</p>
+<ul class="simple">
+<li><p><strong>Bayesian Optimization.</strong> Bayesian optimization with GPs comprise the core of the code and direct the simulation. Their function is to i) fit surrogate models for target property landscapes, and ii) direct the acquisition of new data points needed to refine them. At each stage of this iterative process, information on the current surrogate model and its important points is available.</p></li>
+<li><p><strong>Simulation code.</strong> Scalar data points are required to generate and refine the surrogate models. In structure search, data points typically correspond to single-point simulations of a different atomistic configuration. Any total energy method can be employed. In the case of electronic structure methods, target property can be total energy, another energy or any other property associated with the atomistic configuration computed. BOSS can also be employed on continuum, parametric and other models, wherever a scalar target property can be related to a low-dimensional feature vector (some reaction coordinates). It can also be employed on experimental data.</p></li>
+<li><p><strong>Building blocks.</strong> A common feature of structure search incomplex heterogenous materials is the presence of rigid organic and inorganic structures, (aromatic rings, functional groups), where structure change is confined to small bond adjustments, without bond re-arrangements. To expedite structure search over large numbers of atoms, we follow other schemes and fix these internal components of the material to rigid ’building block’ components. Such an approach is suitable to describe molecular physisorption and some chemisorption via anchoring groups, both common at hybrid interfaces. The choice of building blocks is motivated by chemical rules, and expedites the search by confining it to configurational phase space, instead of full chemical phase space.</p></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Milica Todorovic, Arttu Tolvanen, Ville Parkkinen, Henri Paulamäki
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

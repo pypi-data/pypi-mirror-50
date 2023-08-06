@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.com/tolvana/boss-test.svg?branch=features)](https://travis-ci.com/tolvana/boss-test)[![Coverage](https://codecov.io/gh/tolvana/boss-test/branch/features/graphs/badge.svg?branch=features)](http://codecov.io/gh/tolvana/boss-test?branch=features)
