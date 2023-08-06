@@ -1,0 +1,16 @@
+{% load i18n %}
+
+<h4>
+{% if addon.project_scope %}
+<span class="badge pull-right flip text-tooltip" title="{% trans "This addon is used for the whole project, it is enough to install it for one component." %}">{% trans "project wide" %}</span>
+{% endif %}
+{% if addon.repo_scope %}
+<span class="badge pull-right flip text-tooltip" title="{% trans "This addon is used for all components sharing this repository." %}">{% trans "repository wide" %}</span>
+{% endif %}
+<i class="fa fa-{{ addon.icon }}"></i> 
+{{ addon.verbose }}
+</h4>
+{% if addon.instance and addon.has_summary %}
+<p><code>{{ addon.get_summary }}</code></p>
+{% endif %}
+<p>{{ addon.description }}</p>

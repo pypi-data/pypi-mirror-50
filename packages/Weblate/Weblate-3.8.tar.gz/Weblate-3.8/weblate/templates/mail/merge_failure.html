@@ -1,0 +1,25 @@
+{% extends "mail/base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+<p>
+{% blocktrans %}There has been a merge failure on {{ component }} at {{ site_title }}.{% endblocktrans %}
+<p>
+
+
+<h2>{% trans "Error message" %}</h2>
+
+<pre>
+{{ details.error }}
+</pre>
+
+<h2>{% trans "Repository status" %}</h2>
+
+<pre>
+{{ details.status }}
+</pre>
+
+{% include "trans/merge_instructions.html" %}
+
+{% endblock %}

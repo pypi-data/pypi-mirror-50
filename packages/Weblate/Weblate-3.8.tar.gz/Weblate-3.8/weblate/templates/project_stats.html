@@ -1,0 +1,26 @@
+{% load i18n %}
+
+<tr>
+<th>{% trans "Number of strings" %}</th>
+<td colspan="2">{{ object.stats.all }}</td>
+</tr>
+
+<tr>
+<th>{% trans "Number of words" %}</th>
+<td colspan="2">{{ object.stats.all_words }}</td>
+</tr>
+
+<tr>
+<th>{% trans "Number of languages" %}</th>
+<td colspan="2">{{ object.stats.languages }}</td>
+</tr>
+
+<tr>
+<th>{% trans "Number of source strings" %}</th>
+<td colspan="2">{{ object.stats.source_strings }}</td>
+</tr>
+
+<tr>
+<th>{% trans "Number of source words" %}</th>
+<td colspan="2">{{ object.stats.source_words }}</td>
+</tr>

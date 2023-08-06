@@ -1,0 +1,27 @@
+{% load i18n %}
+{% if user.is_authenticated %}
+  {% if project in watched_projects %}
+  <li class="dropdown pull-right flip">
+      <a class="dropdown-toggle" type="button" id="watch_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" href="#">
+        <i class="fa fa-eye" aria-hidden="true"></i> {% trans "Watching" %}
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-right flip" aria-labelledby="watch_menu">
+        <li><a class="link-post" href="{% url 'unwatch' project=project.slug %}">{% blocktrans %}Unwatch project {{ project }}{% endblocktrans %}</a></li>
+        {% if component %}
+        <li><a href="{% url 'profile' %}?notify_component={{ component.pk }}#notifications">{% blocktrans with object=component %}Customize notifications for {{ object }}{% endblocktrans %}</a></li>
+        <li><a href="{% url 'mute' project=component.project.slug component=component.slug %}" class="link-post">{% blocktrans with object=component %}Mute notifications for {{ object }}{% endblocktrans %}</a></li>
+        {% else %}
+        <li><a href="{% url 'profile' %}?notify_project={{ project.pk }}#notifications">{% blocktrans with object=project %}Customize notifications for {{ object }}{% endblocktrans %}</a></li>
+        <li><a href="{% url 'mute' project=project.slug %}" class="link-post">{% blocktrans with object=project %}Mute notifications for {{ object }}{% endblocktrans %}</a></li>
+        {% endif %}
+      </ul>
+  </li>
+  {% else %}
+  <li class="pull-right flip">
+    <a class="link-post text-tooltip" href="{% url 'watch' project=project.slug %}" data-toggle="tooltip" data-placement="bottom" data-title="{% trans "You can receive notifications for watched projects and they are shown on the dashboard by default." %}">
+      <i class="fa fa-eye" aria-hidden="true"></i> {% trans "Watch" %}
+    </a>
+  </li>
+  {% endif %}
+{% endif %}

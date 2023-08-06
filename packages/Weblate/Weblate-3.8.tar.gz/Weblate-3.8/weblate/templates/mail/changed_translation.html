@@ -1,0 +1,26 @@
+{% extends "mail/base.html" %}
+
+{% load i18n %}{% load translations %}
+
+{% block content %}
+<p>
+{% blocktrans with user=user.username %}There has been a change in translation on {{ translation }} at {{ site_title }} by {{ user }}.{% endblocktrans %}
+</p>
+
+{% include "mail/snippets/source-string.html" %}
+
+<h2>{% trans "Translation" %}</h2>
+
+{% format_translation unit.target unit.translation.language unit.translation.plural %}
+
+{% if old %}
+<h2>{% trans "Translation change" %}</h2>
+
+{% format_translation unit.target unit.translation.language unit.translation.plural old %}
+{% endif %}
+
+<div class="line buttons">
+    <a class="button" href="{{ current_site_url }}{{ unit.get_absolute_url }}">{% trans "Edit this string" %}</a>
+</div>
+
+{% endblock %}

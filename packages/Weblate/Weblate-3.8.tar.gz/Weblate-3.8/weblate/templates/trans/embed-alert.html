@@ -1,0 +1,25 @@
+{% load i18n %}
+
+{% if component.locked %}
+<i class="fa fa-lock text-warning" aria-hidden="true" title="{% trans "This translation is locked." %}"></i>
+{% endif %}
+
+{% if component.in_progress %}
+<a href="{% url "component_progress" project=component.project.slug component=component.slug %}">
+<i class="fa fa-cog fa-spin text-info" aria-hidden="true" title="{% trans "Updating translation component…" %}"></i></a>
+{% endif %}
+
+{% if alerts %}
+{% if component %}
+<a href="{{ component.get_absolute_url }}#alerts">
+<i class="fa fa-exclamation-triangle text-warning" aria-hidden="true" title="{% trans "Fix this component to clear its alerts." %}"></i></a>
+{% else %}
+<i class="fa fa-exclamation-triangle text-warning" aria-hidden="true" title="{% trans "Some of the components within this project have alerts." %}"></i>
+{% endif %}
+{% endif %}
+
+{% if component.fsf_approved_license %}
+<i class="fa fa-thumbs-o-up text-success" aria-hidden="true" title="{% trans "Libre license according to the FSF" %}"></i>
+{% elif component.osi_approved_license %}
+<i class="fa fa-thumbs-o-up text-success" aria-hidden="true" title="{% trans "OSI approved license" %}"></i>
+{% endif %}

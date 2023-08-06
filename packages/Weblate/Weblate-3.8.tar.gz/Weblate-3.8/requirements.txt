@@ -1,0 +1,35 @@
+Django>=1.11,<2.0; python_version < '3.0'
+Django>=1.11; python_version >= '3.0'
+siphashc>=0.8
+Whoosh>=2.7.0
+translate-toolkit==2.4.0
+lxml>=3.5,!=4.3.1
+backports.csv; python_version < '3.0'
+Pillow
+bleach>=3.1.0
+six>=1.7.0
+python-dateutil
+social-auth-core>=3.1.0
+social-auth-app-django>=3.1.0
+django-crispy-forms>=1.6.1
+oauthlib>=3.0.0
+django_compressor>=2.1.1
+djangorestframework>=3.8
+defusedxml>=0.4
+django-appconf>=1.0
+user-agents>=1.1.0
+filelock>=3.0.1
+setuptools
+jellyfish>=0.6.1
+openpyxl>=2.6.0
+celery>=4.0
+celery-batches>=0.2
+translation-finder>=1.4
+pathlib2; python_version < '3.4'
+html2text>=2018.1.9
+pycairo>=1.10.0
+pygobject>=3.14.0
+diff-match-patch==20181111
+requests
+django-redis
+hiredis

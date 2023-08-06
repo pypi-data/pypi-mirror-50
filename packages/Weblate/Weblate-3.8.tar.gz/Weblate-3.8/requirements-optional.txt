@@ -1,0 +1,11 @@
+-r requirements.txt
+phply>=1.2.3
+chardet
+Mercurial>=2.8; python_version < '3.0'
+git-review
+ruamel.yaml
+tesserocr>=1.2; platform_system != 'Windows'
+akismet>=1.0
+boto3
+zeep
+aeidon>=1.2.1; python_version > '3.0'
