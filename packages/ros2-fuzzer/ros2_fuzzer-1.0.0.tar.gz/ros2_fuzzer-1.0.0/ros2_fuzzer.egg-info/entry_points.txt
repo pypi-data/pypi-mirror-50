@@ -1,0 +1,3 @@
+[console_scripts]
+ros2_fuzzer = ros2_fuzzer.ros_fuzzer:main
+

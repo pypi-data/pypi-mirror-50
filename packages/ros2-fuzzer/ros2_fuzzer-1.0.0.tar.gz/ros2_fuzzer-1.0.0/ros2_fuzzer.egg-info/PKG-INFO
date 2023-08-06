@@ -1,0 +1,12 @@
+Metadata-Version: 1.2
+Name: ros2-fuzzer
+Version: 1.0.0
+Summary: A ROS2 fuzzing tool for ROS2 systems
+Home-page: https://www.aliasrobotics.com
+Author: Alias Robotics
+Author-email: contact@aliasrobotics.com
+License: GPLv3
+Description: UNKNOWN
+Keywords: network,fuzzing,ros,ros2
+Platform: UNKNOWN
+Requires-Python: >=3
