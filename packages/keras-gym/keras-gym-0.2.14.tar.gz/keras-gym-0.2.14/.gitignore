@@ -1,0 +1,34 @@
+#python
+build/
+dist/
+__pycache__*
+*.pyc
+*.pyo
+*.egg-info
+
+# jupyter / ipython
+.ipynb_checkpoints
+Untitled*.ipynb
+data/
+
+# tests
+.coverage
+
+# doc
+doc/build/
+
+# sublime
+*.sublime-workspace
+sftp*-config.json
+
+# line profiler
+*.lprof
+
+# visual studio
+.vs
+*.pyproj
+*.pyperf
+*.sln
+
+# pycharm
+.idea
