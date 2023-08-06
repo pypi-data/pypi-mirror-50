@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<registry>
+  <record name="eea.geotags.controlpanel.interfaces.IGeoVocabularies.geotags">
+    <value purge="False">
+      <element key="eea39">
+        <element key="title">EEA39</element>
+        <element key="geo-783754">Albania</element>
+        <element key="geo-2782113">Austria</element>
+        <element key="geo-2802361">Belgium</element>
+        <element key="geo-3277605">Bosnia and Herzegovina</element>
+        <element key="geo-732800">Bulgaria</element>
+        <element key="geo-3202326">Croatia</element>
+        <element key="geo-146669">Cyprus</element>
+        <element key="geo-3077311">Czechia</element>
+        <element key="geo-2623032">Denmark</element>
+        <element key="geo-453733">Estonia</element>
+        <element key="geo-660013">Finland</element>
+        <element key="geo-718075">The former Yugoslav Republic of Macedonia</element>
+        <element key="geo-3017382">France</element>
+        <element key="geo-2921044">Germany</element>
+        <element key="geo-390903">Greece</element>
+        <element key="geo-719819">Hungary</element>
+        <element key="geo-2629691">Iceland</element>
+        <element key="geo-2963597">Ireland</element>
+        <element key="geo-3175395">Italy</element>
+        <element key="geo-831053">Kosovo</element>
+        <element key="geo-458258">Latvia</element>
+        <element key="geo-3042058">Liechtenstein</element>
+        <element key="geo-597427">Lithuania</element>
+        <element key="geo-2960313">Luxembourg</element>
+        <element key="geo-2562770">Malta</element>
+        <element key="geo-3194884">Montenegro</element>
+        <element key="geo-2750405">Netherlands</element>
+        <element key="geo-3144096">Norway</element>
+        <element key="geo-798544">Poland</element>
+        <element key="geo-2264397">Portugal</element>
+        <element key="geo-798549">Romania</element>
+        <element key="geo-6290252">Serbia</element>
+        <element key="geo-3057568">Slovakia</element>
+        <element key="geo-3190538">Slovenia</element>
+        <element key="geo-2510769">Spain</element>
+        <element key="geo-2661886">Sweden</element>
+        <element key="geo-2658434">Switzerland</element>
+        <element key="geo-298795">Turkey</element>
+        <element key="geo-2635167">United Kingdom</element>
+      </element>
+    </value>
+  </record>
+</registry>
