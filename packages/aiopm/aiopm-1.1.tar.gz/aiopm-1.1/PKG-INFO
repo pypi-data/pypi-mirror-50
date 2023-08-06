@@ -1,0 +1,23 @@
+Metadata-Version: 1.2
+Name: aiopm
+Version: 1.1
+Summary: Async Postmark client (asyncio)
+Home-page: https://github.com/vit1251/aiopm
+Author: Vitold Sedyshev
+Author-email: vit1251@gmail.com
+Maintainer: Vitold Sedyshev <vit1251@gmail.com>
+Maintainer-email: aiopm@googlegroups.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.5.3
