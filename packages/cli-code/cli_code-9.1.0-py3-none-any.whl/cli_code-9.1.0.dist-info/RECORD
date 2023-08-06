@@ -1,0 +1,14 @@
+cli_code/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+cli_code/allmodule.py,sha256=CezXTDr_WGxt4zr0unOZWEqK7kaSpTYO6ATtD4oYntY,2827
+cli_code/cli_convert_ipny.py,sha256=8HTOXin3ibd7Veqqq-s-pIAtvKNQgHM_2TizpmdMW3s,5138
+cli_code/cli_module_analysis.py,sha256=ne0VbW2dpkQixplvTjfEgMX6VOiqvo1HU3GlL1LbWlc,42489
+cli_code/cli_module_autoinstall.py,sha256=61sDDjdB6tjl_-DB4qtFPEza4KDTG774lifMs8DjdTI,6961
+cli_code/cli_module_parser.py,sha256=nlj_RlKN7D1FTnfzV8vbXekxNN9wAfI_gcxJpmtweQQ,8186
+cli_code/util_log.py,sha256=kxi0y0dNENq2hltDeNXg2TeYFt4sEz_RvwedzynVqdQ,12433
+cli_code-9.1.0.data/scripts/cli_convert_ipny.py,sha256=8HTOXin3ibd7Veqqq-s-pIAtvKNQgHM_2TizpmdMW3s,5138
+cli_code-9.1.0.data/scripts/cli_module_analysis.py,sha256=ne0VbW2dpkQixplvTjfEgMX6VOiqvo1HU3GlL1LbWlc,42489
+cli_code-9.1.0.data/scripts/cli_module_autoinstall.py,sha256=61sDDjdB6tjl_-DB4qtFPEza4KDTG774lifMs8DjdTI,6961
+cli_code-9.1.0.dist-info/METADATA,sha256=qO74SHA4nhmFIkuDad06yKVVawbQ1L_U0_Snq4SHxqE,305
+cli_code-9.1.0.dist-info/RECORD,,
+cli_code-9.1.0.dist-info/WHEEL,sha256=cScVKDQXc_cp1jHmxFDq9fIOIg17a2BsmfS6J39H6Eo,97
+cli_code-9.1.0.dist-info/top_level.txt,sha256=1y7iJxLXtgB6CVbeIKD0gcdpjTsU-x-85y1m0LXJBlU,9
