@@ -1,0 +1,9 @@
+requests
+plotly
+numpy
+pandas<0.24.2
+bs4
+scipy
+sklearn
+lxml
+auquan_toolbox
