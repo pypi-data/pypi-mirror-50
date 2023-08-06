@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: Atria
+Version: 0.0.8
+Summary: A simple messaging bot for python
+Home-page: https://github.com/RedDogCode/Atria
+Author: RedDog
+Author-email: bremo.lincolin101@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+
+# Atria: Message Bot
+
+Atria is a simple message bot that can be used by other developers.
+
+
