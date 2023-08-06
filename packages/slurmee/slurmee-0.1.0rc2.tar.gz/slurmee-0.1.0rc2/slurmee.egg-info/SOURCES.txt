@@ -1,0 +1,13 @@
+MANIFEST.in
+README.md
+setup.py
+slurmee/__init__.py
+slurmee/__version__.py
+slurmee/slurmee.py
+slurmee.egg-info/PKG-INFO
+slurmee.egg-info/SOURCES.txt
+slurmee.egg-info/dependency_links.txt
+slurmee.egg-info/requires.txt
+slurmee.egg-info/top_level.txt
+tests/__init__.py
+tests/test_slurmee.py

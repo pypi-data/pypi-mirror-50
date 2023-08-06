@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: slurmee
+Version: 0.1.0rc2
+Summary: Simple Python 3 package to get information when running Python programs in slurm
+Home-page: https://github.com/jcklie/slurmee
+Author: Jan-Christoph Klie
+Author-email: git@mrklie.com
+License: MIT License
+Project-URL: Bug Tracker, https://github.com/jcklie/slurmee/issues
+Project-URL: Documentation, https://github.com/jcklie/slurmee
+Project-URL: Source Code, https://github.com/jcklie/slurmee
+Description: 
+        # slurmee
+        
+        [![Build Status](https://travis-ci.org/jcklie/slurmee.svg?branch=master)](https://travis-ci.org/jcklie/slurmee)
+        
+        Simple Python 3 package to get information when running Python programs in [slurm](https://slurm.schedmd.com/documentation.html). 
+        
+        ## Usage
+        
+        ```python
+        import slurmee
+        
+        print(f"Slurm job id: {slurmee.get_job_id()}")
+        print(f"Slurm job name: {slurmee.get_job_name()}")
+        print(f"Slurm submit dir: {slurmee.get_submit_dir()}")
+        print(f"Slurm job nodelist: {slurmee.get_job_nodelist()}")
+        print(f"Slurm submit host: {slurmee.get_submit_host()}")
+        print(f"Slurm job num_nodes: {slurmee.get_job_num_nodes()}")
+        print(f"Slurm cpus on node: {slurmee.get_cpus_on_node()}")
+        print(f"Slurm ntasks: {slurmee.get_ntasks()}")
+        print(f"Slurm nodeid: {slurmee.get_nodeid()}")
+        ```
+        
+        Methods return `None` if not running inside of slurm. It can be used to check this condition e.g. 
+        
+        ```python
+        if slurmee.get_job_id():
+            print("Running inside of slurm!")
+        ```
+        
+        ## Development
+        
+        This package has no external runtime dependencies. The tests can be run via 
+        
+            make test
+        
+        To install the dependencies for generating the docs and releasing the package, in a virtual environment, run
+        
+            pip install -e ".[test,dev,doc]"
+Keywords: slurm
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: System :: Distributed Computing
+Requires-Python: >=3.5.0
+Description-Content-Type: text/markdown; charset=UTF-8
+Provides-Extra: doc
+Provides-Extra: test
+Provides-Extra: dev

@@ -1,0 +1,12 @@
+
+[dev]
+black
+
+[doc]
+sphinx
+sphinx-autodoc-typehints
+sphinx-rtd-theme
+
+[test]
+tox
+codecov
