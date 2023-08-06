@@ -1,0 +1,11 @@
+setup.py
+isp_vmmanager_sdk/__init__.py
+isp_vmmanager_sdk/errors.py
+isp_vmmanager_sdk/isp.py
+isp_vmmanager_sdk/utils.py
+isp_vmmanager_sdk/vmmanager.py
+isp_vmmanager_sdk.egg-info/PKG-INFO
+isp_vmmanager_sdk.egg-info/SOURCES.txt
+isp_vmmanager_sdk.egg-info/dependency_links.txt
+isp_vmmanager_sdk.egg-info/requires.txt
+isp_vmmanager_sdk.egg-info/top_level.txt
