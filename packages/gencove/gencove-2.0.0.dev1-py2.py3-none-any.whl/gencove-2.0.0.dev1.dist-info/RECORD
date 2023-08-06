@@ -1,0 +1,16 @@
+gencove/__init__.py,sha256=f-SFrSB0SlvHxabwPWJdq1vm-L5OgNL8UoGvJVlTGo4,56
+gencove/cli.py,sha256=a8PJHnbncnWxLnWQD20OWlKZQ2L1WQqcGxxAlB3XtdE,3773
+gencove/client.py,sha256=l9DQ2oWDcuOzCGIVsOxGKvzAd3r0sixdWFjVAyB1sNo,6571
+gencove/constants.py,sha256=nF3_pgGQz0u8KR9W9ycsHoaA6toIMlgF3wCmhvEsKUU,921
+gencove/logger.py,sha256=NHvwEQsksxJitvZ9m7zR9i9B_V4Y_XVkA01rm_9PV2U,681
+gencove/utils.py,sha256=i5kKkmOD_IQsPmWsPGahJa8Y7iWaCy-XplVoyHAR7qE,2666
+gencove/version.py,sha256=FCZiUcs79iEmlE4L4tKEULynXkBLu9DjsAi5_vNpDI8,426
+gencove/version/A-major,sha256=U8I05ehHK2rFHBrhyrP-BvrQU7646_2Jd7AQZVv908M,2
+gencove/version/B-minor,sha256=micfKpFrC27mzsskJvCzIG7wdFeL5V2byU9vP-Orhqo,2
+gencove/version/C-patch,sha256=h0B_ReDxGJO72PcqWKHpbbVdtbqhOhOIzSp3rGOhtIs,8
+gencove-2.0.0.dev1.dist-info/LICENSE,sha256=tIyIeC5Xv9yyt4DYqcz0i-lFlq7shJqkDTI09cP06rE,11337
+gencove-2.0.0.dev1.dist-info/METADATA,sha256=2J_BMGBlbVafvnh63fQFISYuZ2VLVZwKGWyeeSu6wDk,336
+gencove-2.0.0.dev1.dist-info/WHEEL,sha256=_wJFdOYk7i3xxT8ElOkUJvOdOvfNGbR9g-bf6UQT6sU,110
+gencove-2.0.0.dev1.dist-info/entry_points.txt,sha256=COMbeKUYRHff0CbB8rEOiw_G41SE2sRb5rmhGvQwpzI,63
+gencove-2.0.0.dev1.dist-info/top_level.txt,sha256=8djnAe9VHcLPTYch43Nc3lJliAoCJRhn-nlqZLhQorw,8
+gencove-2.0.0.dev1.dist-info/RECORD,,
