@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: iredis
+Version: 0.1.0
+Summary: A Terminal Client for Redis with AutoCompletion and Syntax Highlighting. 
+Home-page: https://github.com/laixintao/iredis
+Author: laixintao
+Author-email: laixintaoo@gmail.com
+Maintainer: laixintao
+Maintainer-email: laixintaoo@gmail.com
+License: MIT
+Description: # iRedis
+        
+        A Terminal Client for Redis with AutoCompletion and Syntax Highlighting.
+        
+        ## Install
+        
+        ```
+        pip install iredis
+        ```
+        ```
+        
+        ## Usage
+        
+        ```
+        $ iredis -h
+        ```
+        
+        ## Features
+        
+        - <kbd>Ctrl</kbd> + <kbd>C</kbd> to clear cureent line, won't exit redis-cli. Use <kbd>Ctrl</kbd> + <kbd>D</kbd>  
+        - Say "Goodbye!" to you when you exit!
+        
+Keywords: Redis,key-value store,Commandline tools
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
