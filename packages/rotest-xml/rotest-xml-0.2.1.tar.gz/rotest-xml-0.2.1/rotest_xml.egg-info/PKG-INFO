@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: rotest-xml
+Version: 0.2.1
+Summary: Xml output handler for rotest
+Home-page: UNKNOWN
+License: MIT
+Description: rotest-xml
+        ----------
+        
+        .. image:: https://img.shields.io/pypi/v/rotest-xml.svg
+            :alt: PyPI
+            :target: https://pypi.org/project/rotest-xml/
+        
+        .. image:: https://img.shields.io/pypi/pyversions/rotest-xml.svg
+            :alt: PyPI - Python Version
+            :target: https://pypi.org/project/rotest-xml/
+        
+        .. image:: https://travis-ci.com/UnDarkle/rotest-xml.svg?branch=master
+            :target: https://travis-ci.com/UnDarkle/rotest-xml
+        
+        XML output handler for rotest.
+        
+        Install
+        =======
+        
+        .. code-block:: console
+        
+            $ pip install rotest-xml
+        
+        Use
+        ===
+        
+        .. code-block:: console
+        
+            $ rotest <test-directory> -o xml
+        
+Keywords: rotest testing system django unittest
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Software Development :: Testing
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
+Requires-Python: >=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*
+Provides-Extra: dev
