@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: vignette
+Version: 4.5.2
+Summary: Library to create FreeDesktop-compatible thumbnails
+Home-page: https://github.com/hydrargyrum/vignette
+Author: Hg
+Author-email: dev@indigo.re
+License: WTFPLv2
+Keywords: freedesktop,xdg,image,thumbnail,thumbnails,cache
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: Public Domain
+Classifier: Topic :: Desktop Environment
+Classifier: Topic :: Multimedia :: Graphics
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Provides-Extra: magic
+Requires-Dist: python-magic ; extra == 'magic'
+Provides-Extra: pillow
+Requires-Dist: Pillow ; extra == 'pillow'
+Provides-Extra: pythonmagick
+Requires-Dist: PythonMagick ; extra == 'pythonmagick'
+
+Vignette is a library to create and manage thumbnails following the FreeDesktop standard.
+
+Thumbnails are stored in a shared directory so other apps following the standard can reuse
+them without having to generate their own thumbnails.
+
+Vignette can typically be used in file managers, image browsers, etc.
+
+Thumbnails are not limited to image files on disk but can be generated for other file types,
+for example videos or documents but also for any URL, for example a web browser could store
+thumbnails for recently visited pages or bookmarks.
+
+Vignette by itself can only generate thumbnails for local files but can retrieve
+thumbnail for any file or URL, if another app generated a thumbnail for it. An app can also
+generate a thumbnail by its own means and use vignette to push that thumbnail to the store.
+
+Vignette has optional support for extra backends like ffmpegthumbnailer, poppler-utils,
+ooo-thumbnailer, and more, if these tools are installed.
+
+The range of files for which vignette can generate thumbnails depends on plugins
+as it supports third-party libraries and tools. For example, if the
+evince-thumbnailer command is installed, it will be able to generate thumbnails
+for PDF files.
+
+
