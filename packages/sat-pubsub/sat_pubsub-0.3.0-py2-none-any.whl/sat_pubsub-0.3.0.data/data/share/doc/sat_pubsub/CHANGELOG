@@ -1,0 +1,46 @@
+v 0.3.0 (16/08/2019)
+    - PEP: presence and +notify initial support
+    - PEP: notifications for auto subscribers
+    - added "presence" access model
+    - implemented affiliations
+    - items are now ordered by default using last update date. This is actually the order corresponding to the XEP
+    - item creation and modification are now saved in 2 separate fields
+    - "roster" access model has been renamed to "publisher-roster"
+    - re-implemented feature which allows an entity to retract an item from somebody else node (i.e. a node from which he is neither owner or publisher) if he is the publisher of the item.
+    - implemented "Order-By" protoXEP
+    - node schema experimental features (use a data form as a schema for a node)
+    - serial ids experimental feature (ids in series like 1, 2, 3, etc.)
+    - pubsub admin experimental feature (publish item and specify the publisher, only for admin users)
+    - consistent_publisher experimental feature (preserve publisher when owner or admin update an item)
+    - SàT Pubsub can now be configured using the same config file as SàT itself, i.e. "sat.conf"
+    - new "admins_jids_list" setting, to specify a comma separated list of admin bare jids.
+    - admins can delete node, change schema, change config, delete or overwrite items even if they are not owner of a node
+    - MAM: filtering by categories
+    - MAM and RSM various improvements
+    - replaced sat.tmp by new independent sat_tmp module, so now SàT Pubsub can be used independently of SàT
+    - item id is returned on publish if it is not provided already
+    - (bug fix) fixed security check which was rejecting all delegations from external servers
+    - (bug fix) fixed publisher check on item publishing
+    - removed some old code inherited from Idavoll
+    - various other fixes/improvements, checks the mercurial logs for details
+    - documentation in /doc (using ReStructuredText and Sphinx)
+
+v 0.2.0 (02/12/2015):
+    - schema updated (unversioned => version 1)
+    - sync with Idavoll
+    - use of sat.tmp.wokkel as a workaround for change not merged upstream
+    - RSM (XEP-0059) implementation
+    - MAM (XEP-0313) implementation
+    - Namespace Delegation (XEP-0355) implementation
+    - Privileged Entity (XEP-0356) implementation
+    - removed remote-roster hack
+    - SàT PubSub can be used as a PEP service (PEP implementation not complete yet)
+    - item publisher is enforced
+    - categories handling (not complete)
+    - pgsql: schema version is checked, and a message asking to upgrade is displayed if needed
+
+v 0.1.1 (09/09/2014):
+    bugfix release
+
+v 0.1.0 (24/02/2014):
+    ** FIRST PUBLIC RELEASE **

@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: sat-pubsub
+Version: 0.3.0
+Summary: XMPP Publish-Subscribe Service Component, build for the need of the « Salut à Toi » project
+Home-page: https://salut-a-toi.org
+Author: Association « Salut à Toi »
+Author-email: goffi@goffi.org
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Framework :: Twisted
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Topic :: Communications :: Chat
+Requires-Python: ~=2.7
+Requires-Dist: wokkel (>=0.7.1)
+Requires-Dist: psycopg2
+Requires-Dist: sat-tmp
+Requires-Dist: uuid
+
+UNKNOWN
+
+

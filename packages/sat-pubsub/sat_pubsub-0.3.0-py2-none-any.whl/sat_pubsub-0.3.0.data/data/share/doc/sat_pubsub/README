@@ -1,0 +1,75 @@
+SàT PubSub
+
+Copyright (c) 2012-2019 Jérôme Poisson
+Copyright (c) 2014-2016 Adrien Cossa
+Copyright (c) 2003-2011 Ralph Meijer
+
+SàT PubSub is a PubSub/PEP component for XMPP
+
+
+** LICENSE **
+
+Sàt PubSub is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Sàt PubSub is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with Sàt PubSub.  If not, see <http://www.gnu.org/licenses/>.
+
+
+** ABOUT **
+
+SàT PubSub is a XMPP PubSub/PEP component (XEP-0060) It's based on Ralph
+Meijer's Idavoll, and provides special features necessary for the « Salut à
+Toi » project (https://salut-a-toi.org), but it can also be used for any other
+XMPP project.  The use of a standard external component allow to use this
+features with most XMPP servers.  One of the main addition is fine access
+tuning for PubSub, which allow the publication of items for only some groups,
+even if the entire node is open. The protocol is explained on
+https://www.goffi.org/post/2012/06/24/Fine-access-tuning-for-PubSub for the
+moment, and a protoxep should be proposed to the XSF in the future...
+
+
+** INSTALLATION **
+
+Please check doc/ directory
+
+
+** CREDITS **
+
+The base project (Idavoll) was made by Ralph Meijer and can be found on
+http://idavoll.ik.nu/.
+The main authors of SàT Pubsub (beside original work) are Jérôme Poisson and
+Adrien Cossa.
+
+Idavoll has also received a contribution which have been inherited in SàT
+Pubsub from Christopher Zorn.
+
+SàT Pubsub has received contributions from:
+
+- Arnaud Joset
+- W. Martin Borgert
+
+
+** CONTRIBUTIONS **
+
+Here are the URIs you can use to publish/retrieve tickets or merge requests:
+
+tickets: xmpp:pubsub.goffi.org?;node=org.salut-a-toi.tickets%3A0 (please use "SàT Pubsub" label)
+merge requests: xmpp:pubsub.goffi.org?;node=org.salut-a-toi.merge_requests%3A0 (please use "SàT Pubsub" label)
+
+Tickets and merge requests are handled by SàT itself using XMPP.
+
+
+** CONTACT **
+
+Goffi (Jérôme Poisson): goffi@goffi.org (e-mail) or goffi@jabber.fr (jid)
+Souliane (Adrien Cossa): souliane@mailoo.org (e-mail) or souliane@libervia.org (jid)
+
+XMPP MUC: sat@chat.jabberfr.org
