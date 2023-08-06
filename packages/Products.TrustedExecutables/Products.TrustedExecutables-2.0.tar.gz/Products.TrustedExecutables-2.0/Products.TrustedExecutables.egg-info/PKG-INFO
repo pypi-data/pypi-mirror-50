@@ -1,0 +1,56 @@
+Metadata-Version: 1.1
+Name: Products.TrustedExecutables
+Version: 2.0
+Summary: Trusted Zope 2 executables (scripts, templates) -- unrestricted by Zope 2 security. For Zope 2.13 and above
+Home-page: http://www.dieter.handshake.de/pyprojects/zope
+Author: Dieter Maurer
+Author-email: dieter@handshake.de
+License: BSD (see "Products/TrustedExecutables/LICENSE.txt", for details)
+Description: TrustedExecutables is a set of executable objects unrestricted
+        by Zope[2]'s security.
+        Currently, it contains 'TrustedPageTemplateFile',
+        'TrustedFSPageTemplate' and 'TrustedFSPythonScript'.
+        'TrustedFSPageTemplate' and 'TrustedFSPythonScript' are registered
+        with the filename extensions 'xpt' and 'xpy', respectively.
+        
+        As Zope's security checks are expensive, avoiding them can
+        drastically speed things up.
+        
+        On the other hand, these objects must make their own security
+        checks at places where access control is required.
+        
+        Use with extreme care!
+        
+        
+        ATTENTION: It is not unlikely that this product breaks between
+        Zope releases, as it uses undocumented implementation artefacts.
+        It is probably not very difficult to fix things again but
+        you will need programming skills to do so.
+        
+        
+        History
+        
+          2.0
+        
+            Python 3/Zope 4 compatibility
+        
+            Note: newer TALES expression types (``defer``, ``lazy``,
+            ``provider``) might still perform authorization checks
+            (and thus do not yet trust).
+        
+          1.0
+        
+            for Zope 2.11+
+Keywords: Zope 2,trusted,executables,unrestricted,security
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Framework :: Zope2
+Classifier: Framework :: Zope
+Classifier: Framework :: Zope :: 4
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Utilities
