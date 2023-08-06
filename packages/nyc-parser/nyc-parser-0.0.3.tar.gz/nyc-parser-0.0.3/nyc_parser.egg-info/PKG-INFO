@@ -1,0 +1,67 @@
+Metadata-Version: 2.1
+Name: nyc-parser
+Version: 0.0.3
+Summary: Parse single line NYC addresses and BBLs.
+Home-page: https://github.com/ishiland/nyc-parser
+Author: Ian Shiland
+Author-email: ishiland@gmail.com
+License: MIT
+Description: # NYC Parser
+        A utility to parse NYC addresses and BBLs from a single line input. 
+        
+        ## Install
+        ```sh
+        $ pip install nyc-parser
+        ```
+        or clone this repo, `cd` into it and
+        ```sh
+        $ pip install .
+        ```
+        ## Usage
+        
+        ```python
+        >> from nycparser import Parser
+        
+        >> p = Parser()
+        
+        # parse an address
+        >> p.address('74-12 35th ave, Queens NY 11372')
+        
+        {'PHN': '74-12',
+        'STREET': '35TH AVE',
+        'BOROUGH_CODE': 4,
+        'BOROUGH_NAME': 'QUEENS',
+        'ZIP': '11372'}
+        
+        
+        # parse a BBL
+        >> p.bbl('1004380006')
+        
+        {'BLOCK': 438,
+        'LOT': 6,
+        'BOROUGH_CODE': 1,
+        'BOROUGH_NAME': 'MANHATTAN'}
+        
+        
+        # can contain special characters, just needs 10 digits
+        >> p.bbl('1-00438-0006')
+        
+        {'BLOCK': 438,
+        'LOT': 6,
+        'BOROUGH_CODE': 1,
+        'BOROUGH_NAME': 'MANHATTAN'}
+        
+        ```
+        
+        ### License
+        MIT
+Keywords: NYC,address,BBL,parser
+Platform: UNKNOWN
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
