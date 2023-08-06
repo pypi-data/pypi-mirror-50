@@ -1,0 +1,3 @@
+[monsoon.backups]
+mysql = mysql:MySQLBackup
+
