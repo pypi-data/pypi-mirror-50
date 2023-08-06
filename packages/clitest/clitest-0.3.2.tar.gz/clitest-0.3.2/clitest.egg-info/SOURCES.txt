@@ -1,0 +1,8 @@
+setup.py
+clipkg/__init__.py
+clipkg/__main__.py
+clitest.egg-info/PKG-INFO
+clitest.egg-info/SOURCES.txt
+clitest.egg-info/dependency_links.txt
+clitest.egg-info/requires.txt
+clitest.egg-info/top_level.txt
