@@ -1,0 +1,3 @@
+[sentry.plugins]
+sentry_wechatwork = sentry_wechatwork.plugin:WechatWorkNotificationsPlugin
+
