@@ -1,0 +1,6 @@
+[backwork.backups]
+mysql = mysql:MySQLBackup
+
+[backwork.restores]
+mysql = mysql:MySQLRestore
+
