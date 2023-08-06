@@ -1,0 +1,13 @@
+README.md
+setup.py
+openapi_specgen/__init__.py
+openapi_specgen/marshmallow_schema.py
+openapi_specgen/openapi.py
+openapi_specgen/param.py
+openapi_specgen/path.py
+openapi_specgen/response.py
+openapi_specgen/schema.py
+openapi_specgen.egg-info/PKG-INFO
+openapi_specgen.egg-info/SOURCES.txt
+openapi_specgen.egg-info/dependency_links.txt
+openapi_specgen.egg-info/top_level.txt
