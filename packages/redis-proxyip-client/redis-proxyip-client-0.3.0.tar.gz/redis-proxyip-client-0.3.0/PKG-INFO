@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: redis-proxyip-client
+Version: 0.3.0
+Summary: Python Proxyip Client backed with Redis Storage.
+Home-page: https://github.com/Gatsby-Lee/redis-proxyip-pyclient
+Author: Gatsby Lee
+License: GPL-3.0
+Description: .. image:: https://img.shields.io/badge/License-GPL%20v3-blue.svg
+           :target: https://www.gnu.org/licenses/gpl-3.0
+        
+        .. image:: https://badge.fury.io/py/redis-proxyip-client.svg
+            :target: https://pypi.org/project/redis-proxyip-client/
+        
+        .. image:: https://img.shields.io/travis/Gatsby-Lee/redis-proxyip-pyclient.svg
+           :target: https://travis-ci.org/Gatsby-Lee/redis-proxyip-pyclient
+        
+        Redis Proxyip Python Client
+        ===========================
+        
+Keywords: redis retry failure
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+Provides-Extra: test
+Provides-Extra: dev
