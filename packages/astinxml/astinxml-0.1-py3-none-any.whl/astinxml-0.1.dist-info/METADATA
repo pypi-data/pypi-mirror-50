@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: astinxml
+Version: 0.1
+Summary: Winterboot is not SpringBoot
+Home-page: https://github.com/kode-konveyor/astinxml
+Author: Arpad Magosanyi
+Author-email: mag@kodekonveyor.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# ast in xml
+
+Dumps the ast tree of a package in xml to standard output.
+
+usage:
+
+	python3 -m astinxml $directory 
+
+
+
