@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: django-feed-reader
+Version: 0.1.0
+Summary: An RSS feed reading library for Django.
+Home-page: https://github.com/xurble/django-feed-reader
+Author: Gareth Simpson
+Author-email: g@xurble.org
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Requires-Dist: feedparser
+Requires-Dist: beautifulsoup4
+Requires-Dist: pyrfc3339
+Requires-Dist: Django (>=2.2)
+
+
+Since I have multiple RSS / Reader apps with basically the same copy/pasted code, I'm going to do the decent thing and make a library for them to share.
+
+Come back later.  I might even have done it.
+
