@@ -1,0 +1,9 @@
+README.rst
+setup.cfg
+setup.py
+src/sioscgi.py
+src/sioscgi.egg-info/PKG-INFO
+src/sioscgi.egg-info/SOURCES.txt
+src/sioscgi.egg-info/dependency_links.txt
+src/sioscgi.egg-info/top_level.txt
+src/sioscgi.egg-info/zip-safe
