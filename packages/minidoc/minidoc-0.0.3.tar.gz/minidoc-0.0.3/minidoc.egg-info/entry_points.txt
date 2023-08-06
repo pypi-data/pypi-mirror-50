@@ -1,0 +1,3 @@
+[console_scripts]
+minidoc = minidoc.bin:main
+
