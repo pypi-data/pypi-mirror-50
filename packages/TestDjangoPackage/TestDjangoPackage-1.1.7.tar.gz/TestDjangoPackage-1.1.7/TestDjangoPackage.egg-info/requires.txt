@@ -1,0 +1,10 @@
+peppercorn
+django
+twine
+sentry-sdk==0.10.1
+
+[dev]
+check-manifest
+
+[test]
+coverage
