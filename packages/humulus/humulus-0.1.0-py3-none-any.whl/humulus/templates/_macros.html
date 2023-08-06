@@ -1,0 +1,106 @@
+{#-
+  Copyright 2019 Mike Shoup
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-#}
+
+{#
+  Macro for rendering WTF fields.
+  field is a FormField, and class is an additional class that gets added onto the field.
+#}
+{% macro render_field_with_errors(field, class='', base_class='form-control') %}
+<div class="form-group">
+    {{ field.label }} {{ field(class_=base_class + ' ' + class, **kwargs)|safe }}
+    {% if field.errors %}
+      {% for error in field.errors %}
+        <div class="container">
+          <div class="alert alert-warning" role="alert">{{ error }}</div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+{% endmacro %}
+
+{#
+  Macro to render a delete button that triggers a modal.
+  content goes inside the button. class is an additional class to add on the button.
+  id is the ID of the deleteModal.
+#}
+{% macro render_delete_button(content, id, class='') %}
+<button type="button" class="btn {{ class }}" data-toggle="modal" data-target="#{{ id }}">
+  {{ content }}
+</button>
+{% endmacro %}
+
+{#
+  Macro to render a delete modal. Starts as hidden.
+  path is the path to send the delete POST request to. id is the id of the modal.
+  name is used in the delete confirmation.
+#}
+{% macro render_delete_modal(path, id, name) %}
+<div class="modal fade" id="{{ id }}" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete {{ name }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete "{{ name }}"?
+      </div>
+      <div class="modal-footer">
+        <form action="{{ path }}" method="post">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <button title="Delete" type="submit" name="delete{{ id }}" class="btn btn-danger">Yes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endmacro %}
+
+{#
+  Write javascript to use momentjs to display a timestamp.
+#}
+{% macro moment(timestamp, format="llll") %}
+<script>document.write(moment.utc("{{ timestamp }}").local().format("llll"));</script>
+{% endmacro %}
+
+{#
+  Render a bootstrap progressbar
+#}
+{% macro render_progressbar(value, min, max, unit='', class='') %}
+  {#
+    Determine percentage. Coerce to between 0 and 100.
+    Set an appropriate background.
+  #}
+  {% set pct = (100*(value-min))/(max-min) %}
+  {% if pct > 85 %}
+    {% set color = 'bg-danger' %}
+    {% if pct > 100 %}
+      {% set pct = 100 %}
+    {% endif %}
+  {% elif pct > 15 %}
+    {% set color = 'bg-success' %}
+  {% else %}
+    {% set color = 'bg-warning' %}
+    {% if pct <= 0 %}
+      {% set pct = 5 %} {# we want a little bit of the bar showing. #}
+    {% endif %}
+  {% endif %}
+  <div class="progress {{ class }}">
+    <div class="progress-bar {{ color }}" role="progressbar" style="width: {{ pct|int }}%;" aria-valuenow="{{ value }}" aria-valuemin="{{ min }}" aria-valuemax="{{ max }}">{{ value }}{{ unit }}</div>
+  </div>
+{% endmacro %}

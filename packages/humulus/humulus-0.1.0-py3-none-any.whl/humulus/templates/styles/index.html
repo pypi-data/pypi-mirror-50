@@ -1,0 +1,84 @@
+{#-
+  Copyright 2019 Mike Shoup
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-#}
+
+{% extends '_base.html' %}
+{% block title %}Styles{% endblock %}
+
+{% block body %}
+<div class="row"><h1>Styles</h1></div>
+<div class="row">
+  <table class="table table-hover table-sm">
+    <thead>
+      <tr>
+        <th>
+          {% if sort_by == 'category' and descending %}
+          <a class="text-dark" href="{{ url_for('styles.index', descending='false', sort_by='category', limit=limit) }}">Category &darr;</a>
+          {% elif sort_by == 'category' %}
+          <a class="text-dark" href="{{ url_for('styles.index', descending='true', sort_by='category', limit=limit) }}">Category &uarr;</a>
+          {% else %}
+          <a class="text-dark" href="{{ url_for('styles.index', descending='false', sort_by='category', limit=limit) }}">Category</a>
+          {% endif %}
+        </th>
+        <th>
+          {% if sort_by == 'name' and descending %}
+          <a class="text-dark" href="{{ url_for('styles.index', descending='false', sort_by='name', limit=limit) }}">Name &darr;</a>
+          {% elif sort_by == 'name' %}
+          <a class="text-dark" href="{{ url_for('styles.index', descending='true', sort_by='name', limit=limit) }}">Name &uarr;</a>
+          {% else %}
+          <a class="text-dark" href="{{ url_for('styles.index', descending='false', sort_by='name', limit=limit) }}">Name</a>
+          {% endif %}
+        </th>
+      </tr>
+    </thead>
+    {% for row in rows %}
+    <tr>
+      <td>{{ row.doc._id }}</td>
+      <td><a href="{{ url_for('styles.info', id=row.doc._id) }}">{{ row.doc.name }}</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+<div class="row">
+  <nav>
+    <ul class="pagination flex-wrap">
+      <li class="page-item{% if page == 1 %} disabled {% endif %}">
+        <a class="page-link" href="{{ url_for('styles.index', descending=descending, sort_by=sort_by, page=page-1, limit=limit) }}">Previous</a>
+      </li>
+      {% for num in range(1, num_pages+1) %}
+      <li class="page-item{% if num == page %} active{% endif %}">
+        <a class="page-link" href="{{ url_for('styles.index', descending=descending, sort_by=sort_by, page=num, limit=limit) }}">{{ num }}</a>
+      </li>
+      {% endfor %}
+      <li class="page-item{% if page == num_pages %} disabled {% endif %}">
+          <a class="page-link" href="{{ url_for('styles.index', descending=descending, sort_by=sort_by, page=page+1, limit=limit) }}">Next</a>
+        </li>
+    </ul>
+  </nav>
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle ml-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Limit
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item{% if limit == 5 %} active {% endif %}" href="{{ url_for('styles.index', descending=descending, sort_by=sort_by, page=page, limit=5) }}">5</a>
+      <a class="dropdown-item{% if limit == 10 %} active {% endif %}" href="{{ url_for('styles.index', descending=descending, sort_by=sort_by, page=page, limit=10) }}">10</a>
+      <a class="dropdown-item{% if limit == 20 %} active {% endif %}" href="{{ url_for('styles.index', descending=descending, sort_by=sort_by, page=page, limit=20) }}">20</a>
+      <a class="dropdown-item{% if limit == 50 %} active {% endif %}" href="{{ url_for('styles.index', descending=descending, sort_by=sort_by, page=page, limit=50) }}">50</a>
+      <a class="dropdown-item{% if limit == 100 %} active {% endif %}" href="{{ url_for('styles.index', descending=descending, sort_by=sort_by, page=page, limit=100) }}">100</a>
+      <a class="dropdown-item{% if limit == 200 %} active {% endif %}" href="{{ url_for('styles.index', descending=descending, sort_by=sort_by, page=page, limit=200) }}">200</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

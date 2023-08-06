@@ -1,0 +1,212 @@
+{#-
+  Copyright 2019 Mike Shoup
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-#}
+{% from "_macros.html" import render_field_with_errors %}
+
+{#
+  Renders a javascript function to return a style's URL.
+#}
+{% macro get_specs_url() %}
+{% set id = 'ID' %}
+{% set specs = 'y' %}
+<script type="text/javascript">
+function getSpecsURL() {
+  return '{{ url_for("styles.info_json", id=id, specs=specs) }}'.replace('ID', $('#style').val());
+}
+</script>
+{% endmacro %}
+
+{#
+  Used to render a form for creating/updating a recipe
+#}
+{% macro render_recipe_form(form, action_url, button_content) %}
+<form method="POST" action="{{ action_url }}">
+  {{ form.hidden_tag() }}
+  {#-
+    Recipe Details
+  -#}
+  <div class="row">
+    <div class="col-sm-6">{{ render_field_with_errors(form.name) }}</div>
+    <div class="col-sm-3">{{ render_field_with_errors(form.efficiency, 'ingredient-field') }}</div>
+    <div class="col-sm-3">{{ render_field_with_errors(form.volume, 'ingredient-field') }}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm">{{ render_field_with_errors(form.style, 'ingredient-field', base_class='custom-select') }}</div>
+    <div class="col-sm">{{ render_field_with_errors(form.type, base_class='custom-select') }}</div>
+  </div>
+  {#-
+    Fermentable Ingredients
+  -#}
+  <div class="row"><div class="col"><h3>Fermentables</h3></div></div>
+  <div id="ferms" data-length="{{ form.fermentables|length }}">
+    {% for fermentable in form.fermentables|sort(attribute='amount.data', reverse=True) %}
+    <div class="border pl-2 pr-2 pt-1 pb-1 ferm-form" data-index="{{ loop.index0 }}">
+      <div class="row">
+        <div class="col">
+          {{ render_field_with_errors(fermentable.form.name, 'form-control-sm') }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">{{ render_field_with_errors(fermentable.form.type, 'ingredient-field custom-select-sm', base_class='custom-select') }}</div>
+        <div class="col-sm">{{ render_field_with_errors(fermentable.form.amount, 'form-control-sm ingredient-field') }}</div>
+        <div class="col-sm">{{ render_field_with_errors(fermentable.form.ppg, 'form-control-sm ingredient-field') }}</div>
+        <div class="col-sm">{{ render_field_with_errors(fermentable.form.color, 'form-control-sm ingredient-field') }}</div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button type="button" class="float-right btn btn-sm btn-outline-danger rem-ferm">Remove fermentable</button>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="row pt-1 pb-1">
+    <div class="col">
+      <button type="button" id="add-ferm" class="btn btn-secondary btn-sm">Add a fermentable</button>
+    </div>
+  </div>
+  {#-
+    Hop ingredients
+  -#}
+  <div class="row"><div class="col"><h3>Hops</h3></div></div>
+  <div id="hops" data-length="{{ form.hops|length }}">
+    {% for hop in form.hops|sort_hops(form=True) %}
+    <div class="border pl-2 pr-2 pt-1 pb-1 hop-form" data-index="{{ loop.index0 }}">
+      <div class="row">
+        <div class="col">
+          {{ render_field_with_errors(hop.form.name, 'form-control-sm') }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">{{ render_field_with_errors(hop.form.use, 'ingredient-field custom-select-sm', base_class='custom-select') }}</div>
+        <div class="col-sm">{{ render_field_with_errors(hop.form.alpha, 'form-control-sm ingredient-field') }}</div>
+        <div class="col-sm">{{ render_field_with_errors(hop.form.duration, 'form-control-sm ingredient-field') }}</div>
+        <div class="col-sm">{{ render_field_with_errors(hop.form.amount, 'form-control-sm ingredient-field') }}</div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button type="button" class="float-right btn btn-sm btn-outline-danger rem-hop">Remove Hop</button>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="row pt-1 pb-1">
+    <div class="col">
+      <button type="button" id="add-hop" class="btn btn-secondary btn-sm">Add a hop</button>
+    </div>
+  </div>
+  {#-
+    Recipe Yeast
+  -#}
+  <div class="row"><div class="col"><h3>Yeast</h3></div></div>
+  <div id="yeast">
+    <div class="border pl-2 pr-2 pt-1 pb-1 yeast-form">
+      <div class="row">
+        <div class="col-sm-6">{{ render_field_with_errors(form.yeast.form.name, 'form-control-sm') }}</div>
+        <div class="col-sm-2">{{ render_field_with_errors(form.yeast.form.type, 'custom-select-sm', base_class='custom-select') }}</div>
+        <div class="col-sm-2">{{ render_field_with_errors(form.yeast.form.lab, 'form-control-sm') }}</div>
+        <div class="col-sm-2">{{ render_field_with_errors(form.yeast.form.code, 'form-control-sm') }}</div>
+      </div>
+      <div class="row">
+        <div class="col-sm">{{ render_field_with_errors(form.yeast.form.low_attenuation, 'form-control-sm ingredient-field') }}</div>
+        <div class="col-sm">{{ render_field_with_errors(form.yeast.form.high_attenuation, 'form-control-sm ingredient-field') }}</div>
+        <div class="col-sm">{{ render_field_with_errors(form.yeast.form.flocculation, 'custom-select-sm', base_class='custom-select') }}</div>
+        <div class="col-sm">{{ render_field_with_errors(form.yeast.form.min_temperature, 'form-control-sm') }}</div>
+        <div class="col-sm">{{ render_field_with_errors(form.yeast.form.max_temperature, 'form-control-sm') }}</div>
+        <div class="col-sm">{{ render_field_with_errors(form.yeast.form.abv_tolerance, 'form-control-sm') }}</div>
+      </div>
+    </div>
+  </div>
+  {#-
+    Mash & Steps
+  -#}
+  <div class="row"><div class="col"><h3>Mash</h3></div></div>
+  <div id="mash" data-length="{{ form.mash.form.steps|length }}">
+    {{ render_field_with_errors(form.mash.form.name, 'form-control-sm') }}
+    {% for step in form.mash.form.steps %}
+    <div class="border pl-2 pr-2 pt-1 pb-1 mash-form" data-index="{{ loop.index0 }}"">
+      <div class="row">
+        <div class="col-sm-8">{{ render_field_with_errors(step.form.name, 'form-control-sm') }}</div>
+        <div class="col-sm-4">{{ render_field_with_errors(step.form.type, 'custom-select-sm', base_class='custom-select') }}</div>
+      </div>
+      <div class="row">
+        <div class="col-sm">{{ render_field_with_errors(step.form.temp, 'form-control-sm') }}</div>
+        <div class="col-sm">{{ render_field_with_errors(step.form.time, 'form-control-sm') }}</div>
+        <div class="col-sm">{{ render_field_with_errors(step.form.amount, 'form-control-sm') }}</div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button type="button" class="float-right btn btn-sm btn-outline-danger rem-step">Remove Step</button>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="row pt-1 pb-1">
+    <div class="col">
+      <button type="button" id="add-step" class="btn btn-secondary btn-sm">Add mash step</button>
+    </div>
+  </div>
+  {#-
+    Recipe Notes
+  -#}
+  <div class="row">
+    <div class="col">{{ render_field_with_errors(form.notes) }}</div>
+  </div>
+  {#-
+    Submit recipe
+  -#}
+  <div class="row">
+    <div class="col"><button type="submit" class="btn btn-primary">{{ button_content }}</button></div>
+  </div>
+</form>
+{{ get_specs_url() }}
+<script src="{{ url_for('static', filename='recipes.js') }}"></script>
+{% endmacro %}
+
+{% macro render_footer() %}
+<div class="bg-info text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col text-right">
+        <a class="text-white" href="#" data-toggle="collapse" data-target="#statsRow">[ Show/Hide ]</a>
+      </div>
+    </div>
+    <div class="row collapse show" id="statsRow">
+      <div class="col">
+        <dl>
+          <dt>Original Gravity</dt>
+          <dd id="estimated-og"></dd>
+          <dt>Final Gravity</dt>
+          <dd id="estimated-fg"></dd>
+          <dt>Alcohol</dt>
+          <dd id="estimated-abv"></dd>
+        </dl>
+      </div>
+      <div class="col">
+        <dl>
+          <dt>Bitterness</dt>
+          <dd id="estimated-ibu"></dd>
+          <dt>Bitterness Ratio</dt>
+          <dd id="estimated-iburatio"></dd>
+          <dt>Color</dt>
+          <dd id="estimated-srm"></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+{% endmacro %}
