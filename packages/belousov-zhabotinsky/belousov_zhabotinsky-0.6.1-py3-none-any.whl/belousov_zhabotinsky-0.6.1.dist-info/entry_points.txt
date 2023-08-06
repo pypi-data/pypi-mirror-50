@@ -1,0 +1,3 @@
+[console_scripts]
+belousov-zhabotinsky = belousov_zhabotinsky.main:main
+
