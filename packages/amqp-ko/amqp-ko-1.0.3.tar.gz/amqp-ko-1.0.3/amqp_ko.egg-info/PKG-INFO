@@ -1,0 +1,82 @@
+Metadata-Version: 2.1
+Name: amqp-ko
+Version: 1.0.3
+Summary: Object oriented AMQP layer for microservices communication.
+Home-page: https://github.com/budziam/amqp-ko-python
+Author: Michał Budziak
+Author-email: michal.mariusz.b@gmail.com
+License: MIT
+Download-URL: https://github.com/budziam/amqp-ko-python/archive/1.0.3.tar.gz
+Description: # AMQP Kø 
+        Object oriented AMQP layer for microservices communication.
+        
+        ## Usage
+        The recommended way to use AMQP Kø is to create your own queue object. The simplest way to do this is using `createQueue` function.
+        
+        ### Create queue
+        ```python
+        from amqp_ko import create_queue, AsyncConnection, Message, MessageGate
+        from dataclasses import dataclass
+        
+        
+        @dataclass(frozen=True)
+        class TopicFollow(Message):
+            user_id: int
+            topic_name: str
+        
+        
+        def unmarshal_topic_follow(data: dict) -> TopicFollow:
+            return TopicFollow(
+                user_id=data["user_id"],
+                topic_name=data["topic_name"],
+            )
+        
+        message_gates = [
+            MessageGate("topic_follow", TopicFollow, unmarshal_topic_follow),
+        ]
+        
+        async with AsyncConnection("localhost", 5672, "rabbitmq", "rabbitmq") as connection:
+            queue = await create_queue(connection, "exchange-name", message_gates)
+        ```
+        
+        ### Consume messages
+        ```python
+        from amqp_ko import Consumer, Job
+        
+        
+        class ConnectUserWithTopic(Consumer):
+            async def consume(self, job: Job):
+                # Put here some code to connect user with a topic
+                # using "job.message.userId" and "job.message.topicName"
+                await job.ack()
+                
+        await queue.consume(
+            "queue-name",
+            {TopicFollow: ConnectUserWithTopic()},
+        )
+        ```
+        
+        ### Produce message
+        ```python
+        message = TopicFollow(120, "entertainment")
+        await queue.produce(message)
+        ```
+        
+        ## Installation
+        ```bash
+        pip install amqp-ko
+        ```
+        
+        #### Author: [Michał Budziak]
+        
+        [Michał Budziak]: http://github.com/budziam
+        
+Keywords: amqp-ko,amqp,microservice,rabbitmq,queue,tools
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
