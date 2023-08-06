@@ -1,0 +1,14 @@
+dyPolyChord/__init__.py,sha256=r7XjUVS0kkglnQ9f5wMxKlUZx_CteZf_vgTdYa7j43g,214
+dyPolyChord/_version.py,sha256=ls1camlIoMxEZz9gSkZ1OJo-MXqHWwKPtdPbZJmwp7E,22
+dyPolyChord/nlive_allocation.py,sha256=3Gjdq8vdn2mwJLoWazcJ_d0xLTdCEdjLkNTkZQDP0uE,7889
+dyPolyChord/output_processing.py,sha256=4Z-PXfDfwIa0fqhAvO5iKg4jX9MfYqFFwSl1_f6pmoQ,8280
+dyPolyChord/polychord_utils.py,sha256=v4AfbhapBxZIlIKZFSwDe1Bw1RZS3Qg8kkdPyRhCSpk,9252
+dyPolyChord/pypolychord_utils.py,sha256=ndcHOqXeNuXFmZzSZGiTBBv0C2c8r0H1USpCgW4rCww,2313
+dyPolyChord/python_likelihoods.py,sha256=KC4TnXtmQJNV54x9ScdPmy1D8Kzek13wb3grEiadxP0,11351
+dyPolyChord/python_priors.py,sha256=Xjs9acUp7_qAm46PTTN935P2DDS6SV5TdoCzILxOmzw,10735
+dyPolyChord/run_dynamic_ns.py,sha256=Bu2HOLuCD7OmedzTFX0EILmnd_th4AOOdqq07aj-Ptw,25433
+dyPolyChord-0.1.1.dist-info/LICENSE,sha256=tKXtuW7SbT8eP5c1R1i2ahJKVqoNjeGfMY8qXXWYzFk,1095
+dyPolyChord-0.1.1.dist-info/METADATA,sha256=r5k0tDhbeTm2ZpUYkkoLDYaU3Vd479Wl_yWEHj-nnME,2848
+dyPolyChord-0.1.1.dist-info/WHEEL,sha256=h_aVn5OB2IERUjMbi2pucmR_zzWJtk303YXvhh60NJ8,110
+dyPolyChord-0.1.1.dist-info/top_level.txt,sha256=iVoQLggDd52t-DHrIPZF2yFtDhhL0zWp09LhLE-IXtM,12
+dyPolyChord-0.1.1.dist-info/RECORD,,
