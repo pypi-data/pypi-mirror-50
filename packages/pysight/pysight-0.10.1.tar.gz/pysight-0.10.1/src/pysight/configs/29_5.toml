@@ -1,0 +1,59 @@
+cfg_title = "29_5"
+
+[inputs]
+stop1 = "PMT1"
+stop2 = "TAG Lens"
+stop3 = "Empty"
+stop4 = "Empty"
+stop5 = "Empty"
+start = "Lines"
+
+[image]
+num_of_frames = 1
+x_pixels = 128
+y_pixels = 512
+z_pixels = 132
+imaging_software = "ScanImage"
+
+[outputs]
+data_filename = "/data/Lior/lst/2019/2019_05_29/LPT_alpaca_hair_1x_128l512c_189k62p_sqFOV_lower_power_524288binwidth_with_sweepcounter_011.lst"
+summed = true
+memory = false
+stack = true
+
+[advanced]
+debug = false
+phase = -0.3
+reprate = 80000000.0
+gating = false
+binwidth = 1e-10
+tag_freq = 189000.0
+tag_pulses = 1
+tag_offset = 0
+fill_frac = 72.0
+bidir = true
+keep_unidir = false
+flim = false
+censor = false
+line_freq = 7930.0
+sweeps_as_lines = false
+frame_delay = 0.001
+interleaved = false
+
+[tagbits]
+tag_bits = false
+
+[tagbits.group1]
+label1 = "None"
+start1 = 1
+end1 = 3
+
+[tagbits.group2]
+label2 = "None"
+start2 = 4
+end2 = 5
+
+[tagbits.group3]
+label3 = "None"
+start3 = 6
+end3 = 16
