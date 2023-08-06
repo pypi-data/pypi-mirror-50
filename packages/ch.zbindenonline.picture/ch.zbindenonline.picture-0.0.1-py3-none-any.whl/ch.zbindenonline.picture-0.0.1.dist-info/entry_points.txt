@@ -1,0 +1,3 @@
+[console_scripts]
+crop = ch.zbindenonline.picture.crop:crop
+
