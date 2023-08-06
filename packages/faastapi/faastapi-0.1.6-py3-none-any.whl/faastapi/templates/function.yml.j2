@@ -1,0 +1,17 @@
+provider:
+  name: faas
+
+functions:
+  {{ meta["name"] }}:
+    lang: dockerfile
+    handler: function
+    image: {{ meta["image"] + ':' + meta["version"] }}
+    environment:
+      app_enable_cors: {{ 1 if ('cors' in build["plugins"]) else 0 }}
+      app_enable_basic_auth: {{ 1 if ('basic_auth' in build["plugins"]) else 0 }}
+      app_enable_password_oauth2: {{ 1 if ('oauth2' in build["plugins"]) else 0 }}
+      app_enable_instrumentation: {{ 1 if ('instrumentation' in build["plugins"]) else 0 }}
+      app_enable_async_sql: {{ 1 if ('async-sql' in build["plugins"]) else 0 }}
+      app_enable_sql: {{ 1 if ('sql' in build["plugins"]) else 0 }}
+      app_enable_openfaas: 1
+      app_openfaas_function: {{ meta["name"] }}
