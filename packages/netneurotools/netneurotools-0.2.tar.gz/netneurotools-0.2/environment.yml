@@ -1,0 +1,14 @@
+name: netneurotools
+channels:
+    - conda-forge
+dependencies:
+    - python=3.6
+    - matplotlib
+    - nibabel
+    - nilearn
+    - "numpy>=1.16"
+    - pip
+    - scikit-learn
+    - scipy
+    - pip:
+        - git+https://github.com/aestrivex/bctpy.git#egg=bctpy
