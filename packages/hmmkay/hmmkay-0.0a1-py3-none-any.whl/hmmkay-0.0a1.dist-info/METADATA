@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: hmmkay
+Version: 0.0a1
+Summary: Discrete Hidden Markov Models with Numba
+Home-page: https://github.com/NicolasHug/hmmkay/
+Author: Nicolas Hug
+Author-email: contact@nicolas-hug.com
+License: MIT
+Platform: any
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: numba
+
+# Hmmkay
+
+Discrete Hidden Markov Models with Numba
+
+## Installation
+
+    pip install hmmkay
+
+Requires Python 3.6 or higher.
+
+## Documentation
+
+TODO
+
+## Status
+
+Highly experimental, API subjet to change without deprecation.
+
+## Development
+
+The following packages are required for testing:
+
+    pip install pytest hmmlearn scipy
+
+For benchmarks:
+
+    pip install matplotlib hmmlearn
+
+For docs:
+
+    pip install sphinx sphinx_rtd_theme
+
+
+For development, use [pre-commit
+hooks](https://ljvmiranda921.github.io/notebook/2018/06/21/precommits-using-black-and-flake8/)
+for black and flake8.
+
+
