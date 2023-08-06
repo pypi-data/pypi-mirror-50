@@ -1,0 +1,35 @@
+=======
+History
+=======
+
+0.0.1 (2019-07-29)
+------------------
+
+* First release on PyPI.
+* Create workplace
+* Rename files
+* Added a config file
+* Updated tox config files
+* Updated travis config files
+* Empty unit tests
+
+0.0.2 (2019-08-01)
+------------------
+
+* Upgrade from argparse to click
+* Added unit test
+* Added config file location command
+
+0.0.3 (2019-08-04)
+------------------
+
+* Added a shorthand notation to call the program from the command line
+
+0.0.4 (2019-08-04)
+------------------
+
+* A workspace can only be created within the declared workspace directory specified within the config file
+* Files can only be renamed within the baseflow directory
+* Only changed files names are listed in the output 
+* Only missing project flows are getting added when renaming files
+* Added command to check the script version
