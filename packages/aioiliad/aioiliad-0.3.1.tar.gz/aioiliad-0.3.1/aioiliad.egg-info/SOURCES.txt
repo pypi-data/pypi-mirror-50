@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.cfg
+setup.py
+aioiliad/__init__.py
+aioiliad/xpaths.py
+aioiliad.egg-info/PKG-INFO
+aioiliad.egg-info/SOURCES.txt
+aioiliad.egg-info/dependency_links.txt
+aioiliad.egg-info/requires.txt
+aioiliad.egg-info/top_level.txt
