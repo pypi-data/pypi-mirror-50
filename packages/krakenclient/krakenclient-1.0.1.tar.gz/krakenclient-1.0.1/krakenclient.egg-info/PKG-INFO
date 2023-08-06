@@ -1,0 +1,11 @@
+Metadata-Version: 1.2
+Name: krakenclient
+Version: 1.0.1
+Summary: A simple Kraken client API
+Home-page: https://github.com/ApacheDatastreams/krakenclient
+Author: Apache Datastreams
+Author-email: admin@apachedatastreams.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3
