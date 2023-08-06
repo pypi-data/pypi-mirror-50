@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: ntfb
+Version: 0.0.1.dev2
+Summary: A notification bot for running python functions or code blocks, requiring a telegram bot token and chatID.
+Home-page: https://github.com/Tigeraus/ntfb
+Author: Huzi Cheng
+Author-email: hzcheng15@icloud.com
+License: MIT
+Description: UNKNOWN
+Keywords: notification telegram bot
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.7
