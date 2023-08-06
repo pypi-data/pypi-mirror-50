@@ -1,0 +1,24 @@
+Metadata-Version: 1.2
+Name: across
+Version: 0.1.0
+Summary: Run Python code across different machines
+Home-page: UNKNOWN
+Author: Krzysztof Rusek
+Author-email: savix5@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: any
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Software Development :: Object Brokering
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.4
