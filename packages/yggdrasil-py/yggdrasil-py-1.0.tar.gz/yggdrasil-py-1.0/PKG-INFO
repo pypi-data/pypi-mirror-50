@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: yggdrasil-py
+Version: 1.0
+Summary: Python wrapper for Mojang's Yggdrasil authentication service.
+Home-page: https://github.com/samcarsonx/yggdrasil-py
+Author: Sam Carson
+Author-email: me@samcarson.xyz
+License: MIT
+Download-URL: https://github.com/samcarsonx/yggdrasil-py/archive/1.0.tar.gz
+Description: UNKNOWN
+Keywords: mojang,yggdrasil,minecraft,scrolls,authentication
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
