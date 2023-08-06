@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: digitizer
+Version: 0.0.9
+Summary: Paser for the caen DT5742
+Home-page: https://github.com/Tsangares/
+Author: William Wyatt
+Author-email: wwyatt@ucsc.edu
+License: UNKNOWN
+Description: Paser for the caen DT5742
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
