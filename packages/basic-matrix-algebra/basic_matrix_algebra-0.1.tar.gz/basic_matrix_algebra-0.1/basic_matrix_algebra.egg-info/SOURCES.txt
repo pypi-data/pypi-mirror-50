@@ -1,0 +1,9 @@
+setup.py
+basic_matrix_algebra/__init__.py
+basic_matrix_algebra/matrix_algebra.py
+basic_matrix_algebra/test.py
+basic_matrix_algebra.egg-info/PKG-INFO
+basic_matrix_algebra.egg-info/SOURCES.txt
+basic_matrix_algebra.egg-info/dependency_links.txt
+basic_matrix_algebra.egg-info/not-zip-safe
+basic_matrix_algebra.egg-info/top_level.txt
