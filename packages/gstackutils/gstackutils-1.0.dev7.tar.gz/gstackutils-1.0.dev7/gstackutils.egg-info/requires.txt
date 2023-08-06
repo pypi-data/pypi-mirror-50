@@ -1,0 +1,16 @@
+click>=7.0
+pyopenssl>=19.0.0
+
+[default]
+psycopg2-binary>=2.8
+
+[dev]
+coverage>=4.5.2
+django-improved-user>=1.0.0
+django-sendgrid-v5>=0.8.0
+django>=2.2
+sphinx>=1.8.4
+sphinx_rtd_theme>=0.4.2
+twine>=1.12.1
+uwsgi>=2.0.18
+wheel>=0.32.3
