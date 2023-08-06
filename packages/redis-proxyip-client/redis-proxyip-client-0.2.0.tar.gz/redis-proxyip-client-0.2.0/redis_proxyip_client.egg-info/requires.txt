@@ -1,0 +1,16 @@
+be-proxy-ip
+retry-redis
+
+[dev]
+pytest
+pytest-mock
+wheel
+bpython
+pytest
+flake8
+autopep8
+pylint
+
+[test]
+pytest
+pytest-mock
