@@ -1,0 +1,3 @@
+[console_scripts]
+helper = seetaas_helper.config:write_parameter
+
