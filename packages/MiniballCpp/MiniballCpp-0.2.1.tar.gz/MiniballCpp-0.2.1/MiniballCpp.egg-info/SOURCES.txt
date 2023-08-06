@@ -1,0 +1,10 @@
+MANIFEST.in
+README.rst
+setup.py
+MiniballCpp.egg-info/PKG-INFO
+MiniballCpp.egg-info/SOURCES.txt
+MiniballCpp.egg-info/dependency_links.txt
+MiniballCpp.egg-info/top_level.txt
+miniball/__init__.py
+src/Miniball.hpp
+src/miniballmodule.cpp
