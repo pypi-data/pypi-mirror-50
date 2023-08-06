@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: pyEX.zipline
+Version: 0.0.7
+Summary: Rest API to IEX
+Home-page: https://github.com/timkpaine/pyEX-zipline
+Author: Tim Paine
+Author-email: timothy.k.paine@gmail.com
+License: Apache 2.0
+Download-URL: https://github.com/timkpaine/pyEX-zipline/archive/v0.0.7.tar.gz
+Keywords: finance data
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Requires-Dist: ipython (>=5.8.0)
+Requires-Dist: pandas (>=0.24.0)
+Requires-Dist: Pillow (>=5.2.0)
+Requires-Dist: pyEX (>=0.1.0)
+Requires-Dist: socketIO-client-nexus (>=0.7.6)
+Provides-Extra: dev
+Requires-Dist: ipython (>=5.8.0) ; extra == 'dev'
+Requires-Dist: pandas (>=0.24.0) ; extra == 'dev'
+Requires-Dist: Pillow (>=5.2.0) ; extra == 'dev'
+Requires-Dist: pyEX (>=0.1.0) ; extra == 'dev'
+Requires-Dist: socketIO-client-nexus (>=0.7.6) ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Requires-Dist: pylint ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+
+# pyEX-zipline
+[pyEX](https://github.com/timkpaine/pyEX) + [Zipline](https://github.com/quantopian/zipline)
+
+[![Build Status](https://travis-ci.org/timkpaine/pyEX-zipline.svg?branch=master)](https://travis-ci.org/timkpaine/pyEX-zipline)
+[![Coverage](https://codecov.io/gh/timkpaine/pyEX-zipline/branch/master/graph/badge.svg)](https://codecov.io/gh/timkpaine/pyEX-zipline)
+[![BCH compliance](https://bettercodehub.com/edge/badge/timkpaine/pyEX-zipline?branch=master)](https://bettercodehub.com/)
+[![License](https://img.shields.io/github/license/timkpaine/pyEX-zipline.svg)](https://pypi.python.org/pypi/pyEX-zipline)
+[![PyPI](https://img.shields.io/pypi/v/pyEX-zipline.svg)](https://pypi.python.org/pypi/pyEX-zipline)
+[![Docs](https://img.shields.io/readthedocs/pyEX-zipline.svg)](https://pyEX-zipline.readthedocs.io)
+
+# Example
+![](https://raw.githubusercontent.com/timkpaine/pyEX-zipline/master/docs/example.png)
+
+
+
