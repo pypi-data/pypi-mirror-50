@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: soon-kyoo
+Version: 0.0.2
+Summary: Simple queueing.
+Home-page: https://github.com/n8jhj/soon-kyoo
+Author: Nathaniel Jones
+Author-email: nathaniel.j.jones@wsu.edu
+License: BSD
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
+Requires-Dist: Click
+
+
+# soon-kyoo
+Simple queueing.
+
+## Introduction
+Implements a simple FIFO queue using SQLite. It is developed on Windows,
+primarily for Windows.
+
+## Etymology
+This project is named after my friend, Soon-Kyoo. People call him Q, for short.
+
+
