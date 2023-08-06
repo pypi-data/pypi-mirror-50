@@ -1,0 +1,5 @@
+Sphinx>=0.6
+docutils
+natsort
+matplotlib
+python-decouple
