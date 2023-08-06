@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: django-serfilter
+Version: 0.1.1
+Summary: Easy to use, highly customizable filter backend for Django Rest Framework
+Home-page: https://github.com/Raekkeri/django-serfilter
+Author: Teemu Husso
+Author-email: teemu.husso@gmail.com
+License: UNKNOWN
+Description: # django-serfilter
+        
+        django-serfilter is an easy to use, highly customizable filter backend for Django Rest Framework's API views.
+        
+Keywords: django,filter,backend,serializer
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
