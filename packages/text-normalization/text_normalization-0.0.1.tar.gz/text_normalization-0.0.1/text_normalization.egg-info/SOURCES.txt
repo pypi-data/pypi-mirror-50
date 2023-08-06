@@ -1,0 +1,10 @@
+README.md
+setup.py
+text_normalization/__init__.py
+text_normalization/normalization_tools.py
+text_normalization.egg-info/PKG-INFO
+text_normalization.egg-info/SOURCES.txt
+text_normalization.egg-info/dependency_links.txt
+text_normalization.egg-info/top_level.txt
+text_normalization/language_variables/__init__.py
+text_normalization/language_variables/language_variables.py
