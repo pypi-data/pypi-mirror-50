@@ -1,0 +1,25 @@
+Metadata-Version: 1.2
+Name: vcard
+Version: 0.11.1
+Summary: vCard validator, class and utility functions
+Home-page: https://gitlab.com/victor-engmark/vcard
+Author: Victor Engmark
+Author-email: victor.engmark@gmail.com
+Maintainer: Victor Engmark
+Maintainer-email: victor.engmark@gmail.com
+License: AGPLv3+
+Download-URL: http://pypi.python.org/pypi/vcard/
+Description: vcard package
+Keywords: vCard vCards RFC 2426 RFC2426 validator
+Platform: POSIX
+Platform: Windows
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Text Processing
+Classifier: Topic :: Utilities
+Obsoletes: vcard_module
