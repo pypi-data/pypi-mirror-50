@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: labeledclusters
+Version: 0.0.1
+Summary: Python code for handling clusters of labeled, high-dimensional data
+Home-page: https://github.com/einbandi/labeledclusters
+Author: Andreas Hinterreiter
+Author-email: andreas.hinterreiter@jku.at
+License: UNKNOWN
+Description: labeledclusters
+        ==============================
+        
+        Python code for projecting, exporting and analyzing clusters of labeled, high-dimensional data
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
