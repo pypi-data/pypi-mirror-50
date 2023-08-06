@@ -1,0 +1,11 @@
+README.md
+setup.cfg
+setup.py
+clearshare/__init__.py
+clearshare/clearshare_app.py
+clearshare/ipfs.py
+clearshare.egg-info/PKG-INFO
+clearshare.egg-info/SOURCES.txt
+clearshare.egg-info/dependency_links.txt
+clearshare.egg-info/requires.txt
+clearshare.egg-info/top_level.txt
