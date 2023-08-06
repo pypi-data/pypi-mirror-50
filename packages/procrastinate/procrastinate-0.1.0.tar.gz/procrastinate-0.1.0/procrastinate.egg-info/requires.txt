@@ -1,0 +1,29 @@
+attrs
+pendulum
+importlib-metadata
+
+[:platform_system != "Darwin"]
+psycopg2
+
+[:platform_system == "Darwin"]
+psycopg2-binary
+
+[dev]
+black
+isort
+
+[docs]
+doc8
+sphinx
+sphinx_autodoc_typehints
+
+[lint]
+black
+flake8
+isort
+mypy
+
+[test]
+pytest
+pytest-mock
+pytest-cov
