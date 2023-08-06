@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: espapp-pkg
+Version: 0.4.1
+Summary: ESP applicaion
+Home-page: https://github.com/emb-karan/espapp
+Author: Karan
+Author-email: karan.rathore@viriminfotech.com
+License: Virim
+Platform: UNKNOWN
+Requires-Dist: uuid
+Requires-Dist: python-crontab
+Requires-Dist: requests
+
+UNKNOWN
+
+
