@@ -1,0 +1,4 @@
+mpmath
+numpy
+pybind11>=2.2
+pyfma
