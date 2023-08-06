@@ -1,0 +1,11 @@
+README.md
+setup.py
+jupyter_vis/__init__.py
+jupyter_vis/class_builder.py
+jupyter_vis/static/index.js
+mlvispy.egg-info/PKG-INFO
+mlvispy.egg-info/SOURCES.txt
+mlvispy.egg-info/dependency_links.txt
+mlvispy.egg-info/not-zip-safe
+mlvispy.egg-info/requires.txt
+mlvispy.egg-info/top_level.txt
