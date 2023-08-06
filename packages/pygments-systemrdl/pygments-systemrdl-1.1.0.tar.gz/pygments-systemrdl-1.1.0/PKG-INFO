@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: pygments-systemrdl
+Version: 1.1.0
+Summary: SystemRDL 2.0 lexer extension for Pygments
+Home-page: UNKNOWN
+Author: Alex Mykyta
+Author-email: amykyta3@github.com
+License: UNKNOWN
+Project-URL: Source, https://github.com/SystemRDL/systemrdl-pygments
+Description: [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pygments-systemrdl.svg)](https://pypi.org/project/pygments-systemrdl)
+        
+        # pygments-systemrdl
+        
+        This module implements a [SystemRDL 2.0](http://accellera.org/downloads/standards/systemrdl)
+        language lexer for [Pygments](https://pytments.org).
+        The lexer is published as an entry point and, once installed, Pygments will
+        pick it up automatically.
+        
+        The language is registered under the alias: `systemrdl`
+        
+        ## Installation
+        
+        Install from [PyPi](https://pypi.org/project/pygments-systemrdl) using pip:
+        
+            python3 -m pip install pygments-systemrdl
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
