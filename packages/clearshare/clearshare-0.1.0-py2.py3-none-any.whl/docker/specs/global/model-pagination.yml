@@ -1,0 +1,14 @@
+name: Pagination
+properties:
+  page:
+    type: Integer
+    description: 'Index of this page.'
+  pages:
+    type: Integer
+    description: 'Total number of pages.'
+  per_page:
+    type: Integer
+    description: 'Number of items per page.'
+  total:
+    type: Integer
+    description: 'Total number of entries.'

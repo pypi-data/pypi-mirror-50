@@ -1,0 +1,35 @@
+# Specify base directories on the node's local file system that should be
+# exposed to the API for adding to IPFS, and browsing. The name chosen
+# (e.g. `home` or `usb`) becomes the first part of the path in the API
+# `/ipfs/data/browse/home/<rest of path>` or
+# `/ipfs/data/browse/usb/<rest of path>`
+basedirs:
+  home: /app/home
+# `cluster` and `agent` Section Parameters
+# ----------------------------------------
+#
+# addr : Union[bytes, str, multiaddr.Multiaddr]
+# 		The `MultiAddr <dweb:/ipns/multiformats.io/multiaddr/>`_ describing the
+# 		API daemon location, as used in the *API* key of `go-ipfs Addresses
+# 		section
+# 		<https://github.com/ipfs/go-ipfs/blob/master/docs/config.md#addresses>`_
+#
+# 		Supported addressing patterns are currently:
+#
+# 		 * ``/{dns,dns4,dns6,ip4,ip6}/<host>/tcp/<port>`` (HTTP)
+# 		 * ``/{dns,dns4,dns6,ip4,ip6}/<host>/tcp/<port>/http`` (HTTP)
+# 		 * ``/{dns,dns4,dns6,ip4,ip6}/<host>/tcp/<port>/https`` (HTTPS)
+#
+# 		Additional forms (proxying) may be supported in the future.
+#
+# 	base : str
+# 		The HTTP URL path prefix (or “base”) at which the API is exposed on the
+# 		API daemon
+# 	chunk_size : int
+# 		The size of the chunks to break uploaded files and text content into
+cluster:
+  addr: /dns4/ipfs-cluster/tcp/9094/http
+  base: ''
+  chunk_size: 4096
+agent:
+  addr: /dns4/ipfs/tcp/5001/http
