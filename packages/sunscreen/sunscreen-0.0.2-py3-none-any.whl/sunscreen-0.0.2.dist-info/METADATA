@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: sunscreen
+Version: 0.0.2
+Summary: What's the UV forecast?
+Home-page: https://github.com/jmillxyz/sunscreen
+Author: Jon Miller
+Author-email: jondelmil@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+Requires-Dist: appdirs
+Requires-Dist: arrow
+Requires-Dist: colored
+Requires-Dist: click
+Requires-Dist: requests
+
+# Sunscreen
+
+Get today's ultraviolet (UV) index forecast for your zipcode
+
+## Install
+Using pipsi is recommended, since this is a standalone application.
+
+```
+# if necessary
+$ pip install pipsi
+$ pipsi install sunscreen
+```
+
+
