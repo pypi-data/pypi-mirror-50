@@ -1,0 +1,27 @@
+FROM tiangolo/uvicorn-gunicorn:python3.7
+
+RUN apt-get -y update \
+    && apt-get install -y --no-install-recommends curl apt-transport-https ca-certificates \
+    && curl -sSLf https://github.com/openfaas-incubator/of-watchdog/releases/download/0.5.0/of-watchdog > /usr/bin/fwatchdog \
+    && chmod +x /usr/bin/fwatchdog \
+    && rm -rf /var/lib/apt/lists/* \
+    && mkdir -p /app/
+
+
+WORKDIR /app/
+
+RUN pip install --no-cache-dir faastapi
+
+COPY main.py .
+
+COPY  function /app/function
+
+ENV fprocess="/start.sh" \
+    cgi_headers="true" \
+    mode="http" \
+    upstream_url="http://127.0.0.1:5000"
+
+HEALTHCHECK --interval=5s CMD [ -e /tmp/.lock ] || exit 1
+
+CMD ["fwatchdog"]
+
