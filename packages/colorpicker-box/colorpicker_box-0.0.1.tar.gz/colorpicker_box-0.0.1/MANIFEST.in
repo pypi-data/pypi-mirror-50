@@ -1,0 +1,5 @@
+include colorpicker_box/colorpicker_box.min.js
+include colorpicker_box/colorpicker_box.dev.js
+include colorpicker_box/metadata.json
+include colorpicker_box/package.json
+include README.md

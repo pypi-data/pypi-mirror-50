@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+setup.py
+colorpicker_box/ColorPickerBox.py
+colorpicker_box/__init__.py
+colorpicker_box/_imports_.py
+colorpicker_box/colorpicker_box.dev.js
+colorpicker_box/colorpicker_box.min.js
+colorpicker_box/metadata.json
+colorpicker_box/package.json
+colorpicker_box.egg-info/PKG-INFO
+colorpicker_box.egg-info/SOURCES.txt
+colorpicker_box.egg-info/dependency_links.txt
+colorpicker_box.egg-info/top_level.txt

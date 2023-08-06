@@ -1,0 +1,115 @@
+{
+  "src/lib/components/ColorPickerBox.react.js": {
+    "description": "A box for color picker.", 
+    "displayName": "ColorPickerBox", 
+    "methods": [
+      {
+        "name": "handleClick", 
+        "docblock": null, 
+        "modifiers": [], 
+        "params": [], 
+        "returns": null
+      }, 
+      {
+        "name": "handleClose", 
+        "docblock": null, 
+        "modifiers": [], 
+        "params": [], 
+        "returns": null
+      }, 
+      {
+        "name": "setValue", 
+        "docblock": null, 
+        "modifiers": [], 
+        "params": [
+          {
+            "name": "value", 
+            "type": null
+          }
+        ], 
+        "returns": null
+      }
+    ], 
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        }, 
+        "required": false, 
+        "description": "The ID used to identify the color picker in Dash callbacks"
+      }, 
+      "value": {
+        "type": {
+          "name": "shape", 
+          "value": {
+            "hex": {
+              "name": "string", 
+              "description": "Hex string", 
+              "required": false
+            }, 
+            "rbg": {
+              "name": "shape", 
+              "value": {
+                "r": {
+                  "name": "number", 
+                  "required": false
+                }, 
+                "g": {
+                  "name": "number", 
+                  "required": false
+                }, 
+                "b": {
+                  "name": "number", 
+                  "required": false
+                }, 
+                "a": {
+                  "name": "number", 
+                  "required": false
+                }
+              }, 
+              "description": "RGB/RGBA object", 
+              "required": false
+            }
+          }
+        }, 
+        "required": false, 
+        "description": "Color value of the picker"
+      }, 
+      "disabled": {
+        "type": {
+          "name": "bool"
+        }, 
+        "required": false, 
+        "description": "If true, disable color picking"
+      }, 
+      "className": {
+        "type": {
+          "name": "string"
+        }, 
+        "required": false, 
+        "description": "Class to apply to the root component element"
+      }, 
+      "setProps": {
+        "type": {
+          "name": "func"
+        }, 
+        "required": false, 
+        "description": "Dash-assigned callback that gets fired when\nthe color picker box's value changes"
+      }, 
+      "style": {
+        "type": {
+          "name": "object"
+        }, 
+        "required": false, 
+        "description": "Style to apply to the root component element"
+      }, 
+      "label": {
+        "type": {
+          "name": "string"
+        }, 
+        "required": false, 
+        "description": "Label on top of the component"
+      }
+    }
+  }
+}
