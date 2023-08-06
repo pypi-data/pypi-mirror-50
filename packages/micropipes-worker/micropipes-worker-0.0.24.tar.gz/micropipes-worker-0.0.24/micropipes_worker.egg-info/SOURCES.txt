@@ -1,0 +1,16 @@
+README.md
+setup.py
+micropipes_worker.egg-info/PKG-INFO
+micropipes_worker.egg-info/SOURCES.txt
+micropipes_worker.egg-info/dependency_links.txt
+micropipes_worker.egg-info/not-zip-safe
+micropipes_worker.egg-info/requires.txt
+micropipes_worker.egg-info/top_level.txt
+shared/__init__.py
+shared/constants.py
+shared/job.py
+shared/namegen.py
+shared/shared_files.py
+shared/utils.py
+worker/__init__.py
+worker/worker.py
