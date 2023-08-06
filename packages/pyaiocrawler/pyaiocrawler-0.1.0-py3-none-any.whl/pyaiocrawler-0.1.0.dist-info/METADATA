@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: pyaiocrawler
+Version: 0.1.0
+Summary: Asynchronous web crawler built on asyncio
+Home-page: https://github.com/pypa/aiocrawler
+Author: Tapan Pandita
+Author-email: tapan.pandita@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Framework :: AsyncIO
+Description-Content-Type: text/markdown
+Requires-Dist: aiohttp
+Requires-Dist: beautifulsoup4
+Requires-Dist: cchardet
+Requires-Dist: aiodns
+
+AIOCrawler
+==========
+
+Asynchronous web crawler built on [asyncio](https://docs.python.org/3/library/asyncio.html)
+
+
