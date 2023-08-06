@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: sentry-wechatwork
+Version: 0.0.1
+Summary: Plugin for Sentry which allows sending notification via WechatWork messenger.
+Home-page: https://github.com/kuainiu/sentry-wechatwork
+Author: Allen
+Author-email: hi@summic.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Software Development :: Bug Tracking
+Classifier: Topic :: Software Development :: Quality Assurance
+Classifier: Topic :: System :: Monitoring
+Description-Content-Type: text/x-rst
+
+Sentry WeChat Work 
+=========================================
+
+Plugin for Sentry which allows sending notification via `WeChat Work <https://work.weixin.qq.com/>`_ messenger.
+
+Installation
+------------
+
+1. Install this package
+
+.. code-block:: bash
+
+    pip install sentry-wechatwork
+
+2. Restart your Sentry instance.
+3. Go to your Sentry web interface. Open ``Settings`` page of one of your projects.
+4. On ``Integrations`` (or ``Legacy Integrations``) page, find ``WechatWork Notifications`` plugin and enable it.
+5. Configure plugin on ``Configure plugin`` page.
+
+   See `Documentation <https://work.weixin.qq.com/api/doc#90000/90136/91770>`_ to know how to create ``Group chat Bot``.
+
+6. Done!
+
+
