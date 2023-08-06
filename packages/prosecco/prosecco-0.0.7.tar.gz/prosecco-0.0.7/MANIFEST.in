@@ -1,0 +1,17 @@
+include prosecco/example/advanced.py
+include prosecco/example/basic.py
+include prosecco/example/custom_condition_class.py
+include prosecco/example/qa.py
+include prosecco/example/superhero.txt
+
+include prosecco/data/en/suffix.txt
+
+include prosecco/data/pl/bye.txt
+include prosecco/data/pl/hi.txt
+include prosecco/data/pl/prefix.txt
+include prosecco/data/pl/preposition.txt
+include prosecco/data/pl/pronoun.txt
+include prosecco/data/pl/stopwords.txt
+include prosecco/data/pl/suffix.txt
+include prosecco/data/pl/swear.txt
+include prosecco/data/pl/thx.txt
