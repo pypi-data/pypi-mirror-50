@@ -1,0 +1,13 @@
+README.rst
+setup.cfg
+setup.py
+yamldirs/__init__.py
+yamldirs/filemaker.py
+yamldirs/yamldirs_cmd.py
+yamldirs.egg-info/PKG-INFO
+yamldirs.egg-info/SOURCES.txt
+yamldirs.egg-info/dependency_links.txt
+yamldirs.egg-info/entry_points.txt
+yamldirs.egg-info/not-zip-safe
+yamldirs.egg-info/requires.txt
+yamldirs.egg-info/top_level.txt
