@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: cosmicfish
+Version: 0.2.0
+Summary: A Fisher forecasting package for light relic cosmology.
+Home-page: https://github.com/ndeporzio/cosmicfish
+Author: Nicholas DePorzio, Julian Munoz, Cora Dvorkin, Linda Xu
+Author-email: nicholasdeporzio@g.harvard.edu
+License: UNKNOWN
+Keywords: fisher forecast cosmology neutrino dark matter
+Platform: UNKNOWN
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+Requires-Dist: pandas
+Requires-Dist: seaborn
+Requires-Dist: scipy
+
+UNKNOWN
+
+
