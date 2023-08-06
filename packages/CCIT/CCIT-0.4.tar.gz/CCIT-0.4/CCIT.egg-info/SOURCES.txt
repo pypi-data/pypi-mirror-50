@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+setup.py
+CCIT/CCIT.py
+CCIT/DataGen.py
+CCIT/__init__.py
+CCIT.egg-info/PKG-INFO
+CCIT.egg-info/SOURCES.txt
+CCIT.egg-info/dependency_links.txt
+CCIT.egg-info/not-zip-safe
+CCIT.egg-info/requires.txt
+CCIT.egg-info/top_level.txt
