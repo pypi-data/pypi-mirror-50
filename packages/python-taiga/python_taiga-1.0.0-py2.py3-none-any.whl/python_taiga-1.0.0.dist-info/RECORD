@@ -1,0 +1,13 @@
+taiga/__init__.py,sha256=I7RYceVcjBImq-lsHLTLsMClNtf-mz_MDaqweSrCoG4,219
+taiga/client.py,sha256=m_GR40F8qxJyIylYEqI-zEacIYAiHYMAFCdXyl7X7HM,7499
+taiga/exceptions.py,sha256=nEFAP-Wnj-iQrMg97uJeJ5gXhTAwv7NOUqAdm4sr0jQ,623
+taiga/requestmaker.py,sha256=CD-UJz15R5XJ5PCQLAT4rfQoK3_n-zDZW2c2UKSBcGs,7505
+taiga/utils.py,sha256=OU4JWXg_vlyzwAK2kmQTaVQTqRkwjeqTKPcqM77wcFA,77
+taiga/models/__init__.py,sha256=Dd8efzjNSARIHa7tQ74BCAM9i2QeVbUQP_j1FqU6G1k,1441
+taiga/models/base.py,sha256=P9rA4EQp90T_B6JmuQ64dUy3O4TXdcAKF4q0B7AgQIk,8146
+taiga/models/models.py,sha256=D-X75LirwLvEhrEridcxGNPOeHKxf4y6YvCclv02mww,60409
+python_taiga-1.0.0.dist-info/LICENSE,sha256=s6QLmb3AGQfoKdfw8FW2ZrQZklaRullTx8V0ZPx9Y9E,1068
+python_taiga-1.0.0.dist-info/METADATA,sha256=3Jva7kK8msjvYoGER0o9kZ4Sik-GHqlA-PE4tqc4fBk,6792
+python_taiga-1.0.0.dist-info/WHEEL,sha256=HX-v9-noUkyUoxyZ1PMSuS7auUxDAR4VBdoYLqD0xws,110
+python_taiga-1.0.0.dist-info/top_level.txt,sha256=cGkecC41yiT52IAg8l3uSSwpF01gPcvKYK7VF-Db_Hw,6
+python_taiga-1.0.0.dist-info/RECORD,,
