@@ -1,0 +1,4 @@
+[console_scripts]
+jiri-gitlab = jiri_gitlab.cli:create_manifest
+jiri-list = jiri_gitlab.cli:list_projects
+
