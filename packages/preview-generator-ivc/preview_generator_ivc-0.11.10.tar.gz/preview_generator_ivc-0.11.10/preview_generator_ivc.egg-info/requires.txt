@@ -1,0 +1,11 @@
+
+[dev]
+pytest
+flake8
+isort
+mypy
+pre-commit
+black
+
+[testing]
+pytest
