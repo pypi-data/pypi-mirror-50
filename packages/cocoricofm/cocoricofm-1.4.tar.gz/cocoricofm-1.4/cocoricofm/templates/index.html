@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Radios</h1>
+Current radio: {{ current_station }}
+<form action="/tune/" method="get">
+  <input type="text" id="station" name="station" list="stations">
+  <datalist id="stations">
+  {% for station in stations %}
+      <option>{{ station }}
+  {% endfor %}
+  </datalist>
+  <input type="submit"/>
+</form>
+
+<h1>Currently playing:</h1>
+{% if cover_data %}
+<img src="data:image/jpeg;base64,{{ cover_data }}">
+{% endif %}
+
+<p>{{ song.artist }} / {{ song.title }}</p>
+
+{% endblock %}

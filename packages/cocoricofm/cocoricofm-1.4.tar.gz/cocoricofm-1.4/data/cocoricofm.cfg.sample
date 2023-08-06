@@ -1,0 +1,22 @@
+[scrobbler-lastfm]
+user = foo
+password_hash = <md5sum here>
+
+[scrobbler-librefm]
+user = boo
+password_hash = <md5sum here>
+
+[lirc]
+keymap = /path/to/some/lircrc/like/streamzap.lirc
+
+# Any section with growl prefix will be used
+[growl1]
+hostname = foo
+password = bar
+
+[growl2]
+hostname = boo
+password = bah
+
+[denon]
+address = 192.168.1.100

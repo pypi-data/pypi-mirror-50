@@ -1,0 +1,14 @@
+[Unit]
+Description=CocoRicoFM
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 -u -m cocoricofm -x /home/pi/.config/cocoricofm.cfg
+WorkingDirectory=/home/pi/dev/CocoRicoFM/
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target

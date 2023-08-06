@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block head %}
+<script src="/static/viz.js"></script>
+<script src="http://ariutta.github.io/svg-pan-zoom/dist/svg-pan-zoom.min.js"></script>
+<script>
+ window.onload = function () {
+     container = document.getElementById("container");
+     container.innerHTML = Viz(`{{ dot_data }}`, {format: "svg", engine: "dot"});
+     svgElement = container.children[0];
+     svgElement.id = "pipeline";
+     svgElement.style = "display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; ";
+     window.zoomPipeline = svgPanZoom('#pipeline', {
+         zoomEnabled: true,
+         controlIconsEnabled: true,
+     });
+ };
+
+ // Refresh the page every 30 seconds.
+ setTimeout(function() {
+     location.reload();
+ }, 30 * 1000);
+</script>
+{% endblock %}
+
+{% block content %}
+<div id="container" style="width: 1800px; height: 700px; border:1px solid black;">
+</div>
+{% endblock %}
