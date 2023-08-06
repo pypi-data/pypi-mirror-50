@@ -1,0 +1,3 @@
+[console_scripts]
+faastapi=faastapi.cli:entry_point
+
