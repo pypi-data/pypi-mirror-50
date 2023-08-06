@@ -1,0 +1,57 @@
+name: AddOptions
+properties:
+  recursive:
+    type: Boolean
+    default: false
+  layout:
+    type: String
+    default: ""
+  chunker:
+    type: String
+    default: "size-262144"
+    description: Chunker algorithm to use.
+  raw_leaves:
+    type: Boolean
+    default: false
+  hidden:
+    type: Boolean
+    default: false
+  wrap:
+    type: Boolean
+    default: false
+  shard:
+    type: Boolean
+    default: false
+  progress:
+    type: Boolean
+    default: false
+  cid_version:
+    type: Integer
+    default: 0
+  hashfun:
+    type: String
+    default: "sha2-256"
+    description: Hashing function to use.
+  stream_channels:
+    type: Boolean
+    default: true
+  nocopy:
+    type: Boolean
+    default: false
+  replication_factor_min:
+    type: Integer
+    description: Minimum replication factor in the cluster.
+    default: 0
+  replication_factor_max:
+    type: Integer
+    description: Maximum replicatior factor across the cluster.
+    default: 0
+  shard_size:
+    type: Integer
+    description: Not well documented in reference IPFS cluster implementation...
+    default: 104857600
+  name:
+    type: String
+    description: >
+      Name of the file that was added, or `bytes` if the file name is unknown.
+    default: ""
