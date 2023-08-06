@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: scangen
+Version: 0.1a0
+Summary: Template-based scanner generator
+Home-page: https://github.com/lggruspe/scangen
+Author: Levi Gruspe
+Author-email: mail.levig@gmail.com
+License: UNKNOWN
+Description: scangen
+        =======
+        
+        scangen is a scanner generator that uses Jinja2 templates.
+        
+        Prerequisites
+        -------------
+        
+        scangen requires [libcrnd](https://github.com/lggruspe/rnd).
+        
+        Usage
+        -----
+        
+        See `examples`. 
+        
+        License
+        -------
+        
+        MIT.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Description-Content-Type: text/markdown
