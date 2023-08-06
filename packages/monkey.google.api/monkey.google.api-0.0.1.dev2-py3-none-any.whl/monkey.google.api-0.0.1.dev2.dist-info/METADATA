@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: monkey.google.api
+Version: 0.0.1.dev2
+Summary: Helper classes for Google API..
+Home-page: https://bitbucket.org/monkeytechnologies/monkey-google-api/
+Author: Xavier ROY
+Author-email: xavier@regbuddy.eu
+License: Apache License, Version 2.0
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Development Status :: 1 - Planning
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Intended Audience :: Developers
+
+Monkey Google API
+=================
+
+Helper classes for `Google API`_.
+
+Installation guide
+------------------
+
+::
+
+    pip install monkey-google-api
+
+User guide
+----------
+
+
+.. _Google API: https://developers.google.com/gsuite/products.
+
