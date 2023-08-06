@@ -1,0 +1,77 @@
+import requests
+import csv
+__all__ = ["File"]
+
+class File(object):
+    def __init__(
+        self,
+        workspaceId,
+        request,
+        replaceLocalhostString
+    ):
+        self.workspaceId = workspaceId
+        self.request = request
+        self.replaceLocalhostString = replaceLocalhostString
+    def getPayload(self):
+        return {
+            'operationName': 'files',
+            'query': """
+                query files($where: FileWhereInput!, $recursive: Boolean) {
+                    files(where: $where, recursive: $recursive) {
+                        name
+                        absolutePath
+                        size
+                        isFolder
+                        lastModified
+                        wiki
+                    }
+                }
+            """,
+            'variables': {
+                'where': {
+                    'workspaceId': self.workspaceId
+                },
+                'recursive': False
+            }
+        }
+    def fetch(self):
+        return self.request.post(self.getPayload()).get('files')
+    def list_absolute_path(self):
+        data = self.fetch()
+        return list(map(lambda x: x['absolutePath'], data))
+    def _replace_localhost(self, url):
+        if (self.replaceLocalhostString != None):
+            return url.replace('localhost', self.replaceLocalhostString)
+        else:
+            return url;
+    def _get_download_signed_url(self, absolutePath):
+        data = self.request.get(f'api/getSignedUrl?workspaceId={self.workspaceId}&objectName={absolutePath}')
+        return data
+    def _get(self, absolutePath):
+        data = self._get_download_signed_url(absolutePath)
+        # quick fix: in notebook we can't get minio data from localhost
+        url = self._replace_localhost(data['signedUrl'])
+        http_response = {}
+        try:
+            http_response = requests.get(url)
+            http_response.raise_for_status()
+        except Exception as err:
+            content = http_response.get('content')
+            print(f'Error occured: {err}, {content}')
+        else:
+            return http_response
+    def get_content(self, absolutePath):
+        r = self._get(absolutePath)
+        return r.content
+    def get_text(self, absolutePath):
+        r = self._get(absolutePath)
+        r.encoding = 'utf-8'
+        return r.text
+    def get_csv(self, absolutePath):
+        r = self._get(absolutePath)
+        decoded_content = r.content.decode('utf-8')
+        cr = csv.reader(decoded_content.splitlines(), delimiter=',')
+        return list(cr)
+    def get_json(self, absolutePath):
+        r = self._get(absolutePath)
+        return r.json()
