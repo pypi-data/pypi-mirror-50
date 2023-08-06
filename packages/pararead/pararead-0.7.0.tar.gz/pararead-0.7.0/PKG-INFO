@@ -1,0 +1,27 @@
+Metadata-Version: 1.1
+Name: pararead
+Version: 0.7.0
+Summary: Parallel processing of sequencing reads
+Home-page: https://github.com/databio/pararead
+Author: Nathan Sheffield, Vince Reuter
+Author-email: UNKNOWN
+License: BSD2
+Description: Pararead: parallel processing of sequencing reads
+        =================================================
+        
+        |Build Status|
+        
+        A python package that simplifies parallel processing of DNA sequencing
+        reads (BAM or SAM files), by parallelizing across chromosomes. The best
+        place to learn more is at the
+        `documentation <https://pararead.databio.org>`__.
+        
+        .. |Build Status| image:: https://travis-ci.org/databio/pypiper.svg?branch=master
+           :target: https://travis-ci.org/databio/pararead
+        
+Keywords: bioinformatics,ngs,sequencing
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
