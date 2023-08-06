@@ -1,0 +1,3 @@
+[console_scripts]
+autoscale = autoscale_aws.batch_daemon_autoscale_cli:autoscale_main
+
