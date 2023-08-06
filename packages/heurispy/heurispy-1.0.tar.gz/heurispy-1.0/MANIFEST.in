@@ -1,0 +1,6 @@
+MANIFEST.in
+
+include LEAME.md
+include README.md
+include LICENSE.txt
+graft heurispy

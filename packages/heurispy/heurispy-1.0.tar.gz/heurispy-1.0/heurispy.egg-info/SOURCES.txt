@@ -1,0 +1,56 @@
+LEAME.md
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.py
+heurispy/__init__.py
+heurispy/ayudantes.py
+heurispy/framework.py
+heurispy/problema.py
+heurispy/recolector_resultados.py
+heurispy/script_prueba_automatizada.py
+heurispy.egg-info/PKG-INFO
+heurispy.egg-info/SOURCES.txt
+heurispy.egg-info/dependency_links.txt
+heurispy.egg-info/not-zip-safe
+heurispy.egg-info/requires.txt
+heurispy.egg-info/top_level.txt
+heurispy/__pycache__/__init__.cpython-37.pyc
+heurispy/__pycache__/ayudantes.cpython-37.pyc
+heurispy/__pycache__/framework.cpython-37.pyc
+heurispy/__pycache__/problema.cpython-37.pyc
+heurispy/__pycache__/recolector_resultados.cpython-37.pyc
+heurispy/ejemplos/problema de coloracion de grafos/__init__.py
+heurispy/ejemplos/problema de coloracion de grafos/coloracion_grafo.py
+heurispy/ejemplos/problema de coloracion de grafos/coloracion_grafo_bus_arm.py
+heurispy/ejemplos/problema de coloracion de grafos/coloracion_grafo_rec_sim.py
+heurispy/ejemplos/problema de kilometros vacios/ImplementacionFramework.xlsx
+heurispy/ejemplos/problema de kilometros vacios/__init__.py
+heurispy/ejemplos/problema de kilometros vacios/experimentos_restantes.py
+heurispy/ejemplos/problema de kilometros vacios/kilometros_vacios.py
+heurispy/ejemplos/problema de kilometros vacios/prueba_kilometros_vacios_recsim.py
+heurispy/ejemplos/problema de kilometros vacios/pruebas_kilometros_vacios_busqueda_armonica.py
+heurispy/ejemplos/problema de kilometros vacios/pruebas_problema_kilometros_vacios_local_guiada.py
+heurispy/ejemplos/problema de kilometros vacios/pruebas_problema_kilometros_vacios_taboo.py
+heurispy/ejemplos/problema de kilometros vacios/__pycache__/kilometros_vacios.cpython-37.pyc
+heurispy/ejemplos/problema de kilometros vacios/con csv/ImplementacionFramework.xlsx
+heurispy/ejemplos/problema de kilometros vacios/con csv/__init__.py
+heurispy/ejemplos/problema de kilometros vacios/con csv/problema_kilometros_vacios_con_csv.py
+heurispy/ejemplos/problema de kilometros vacios/con csv/pruebas_kilometros_vacios_con_csv.py
+heurispy/ejemplos/problema del viajero/__init__.py
+heurispy/ejemplos/problema del viajero/problema_del_viajero.py
+heurispy/ejemplos/problema del viajero/viajero_recsim.py
+heurispy/ejemplos/problema del viajero/viajero_tabubus.py
+heurispy/ejemplos/problema del viajero/__pycache__/problema_del_viajero.cpython-37.pyc
+heurispy/heuristicas/__init__.py
+heurispy/heuristicas/busqueda_armonica.py
+heurispy/heuristicas/busqueda_local_iterada.py
+heurispy/heuristicas/busqueda_tabu.py
+heurispy/heuristicas/heuristica.py
+heurispy/heuristicas/recocido_simulado.py
+heurispy/heuristicas/__pycache__/__init__.cpython-37.pyc
+heurispy/heuristicas/__pycache__/busqueda_armonica.cpython-37.pyc
+heurispy/heuristicas/__pycache__/busqueda_local_iterada.cpython-37.pyc
+heurispy/heuristicas/__pycache__/busqueda_tabu.cpython-37.pyc
+heurispy/heuristicas/__pycache__/heuristica.cpython-37.pyc
+heurispy/heuristicas/__pycache__/recocido_simulado.cpython-37.pyc
