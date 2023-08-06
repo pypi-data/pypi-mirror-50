@@ -1,0 +1,14 @@
+vips_hash/__init__.py,sha256=_6djhOdEuHtwLkldZDQsMclWpXsHTdyq5HKYM06beYE,42
+vips_hash/auto.py,sha256=woP9rHra6174vCERDmB2RhqJ6q7KbE1QFQeyXPg0xDA,138
+vips_hash/main.py,sha256=ZN3qKDcYknEWtEtX6oTgb_DAShI9ohIkvPXoPRLKFXM,1590
+vips_hash/preimage.py,sha256=bgDj1lLZXdTD2nQVE27i4cwDxFxrlsKdZq2xy95xW8M,432
+vips_hash/utils.py,sha256=D4FSdlw_m307kBC1R33_TtWMWGSUnyDnAQJwNRKxx_E,1507
+vips_hash/backends/__init__.py,sha256=aw5syRypJeEXCGObHwNco2U6gmS8SvqyEWKnxYeiLK8,375
+vips_hash/backends/auto.py,sha256=b_Uq2Ppy3Q5UV1KzKTcIFkigG3dWBudcF0hNdNztyWA,548
+vips_hash/backends/pycryptodomex.py,sha256=Ho_CBScLymnoB9NXoKIIpN8xiOLCeIfRJemqXJQbN28,868
+vips_hash/backends/pysha3.py,sha256=ZlSL9_w2nrQ9iAwZgPe4k7l1o5XZHB3PRyWFkQSihpk,591
+vips_hash-0.2.0.dist-info/LICENSE,sha256=6FjC5vZ8Igy608hi0LHTKzQpsLxcqyNi5b-Q0qSNPus,1079
+vips_hash-0.2.0.dist-info/METADATA,sha256=0z-7NdUWdA-Ak3QcQIItiJw6MLAXxZSF5iQj-5otN7Y,5447
+vips_hash-0.2.0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+vips_hash-0.2.0.dist-info/top_level.txt,sha256=nJ-niM86EZTmN0gaMXvNWQpatMBouhDOobLrtjZDsag,10
+vips_hash-0.2.0.dist-info/RECORD,,
