@@ -1,0 +1,3 @@
+      [console_scripts]
+      create_tradeterminal = magictrader.command:create_tradeterminal
+      
