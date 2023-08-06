@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: scrape_fast
+Version: 0.101
+Summary: Common web scraping functions
+Home-page: https://github.com/Druidmaciek/scrape_fast
+Author: Maciej Janowski
+Author-email: maciekjanowski@icloud.com
+License: UNKNOWN
+Project-URL: Bug Reports, https://github.com/Druidmaciek/scrape_fast/issues
+Project-URL: Funding, https://paypal.me/druidmaciek
+Project-URL: Source, https://github.com/Druidmaciek/scrape_fast
+Description: # Scrape Fast
+        Package with common web scraping funcitons.
+        Built on requests, bs4 and selenium.
+        ## Instalation
+        ```
+        pip install scrape-fast
+        ```
+        ## Usage
+        #### Making a simple request
+        
+        #### Parsing HTML
+        
+        #### Selenium wrappers
+        
+Keywords: development web scraping crawling data
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
