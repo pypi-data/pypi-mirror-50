@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: seeq
+Version: 0.0.26
+Summary: The Seeq SDK for Python
+Home-page: https://www.seeq.com
+Author: Seeq Corporation
+Author-email: support@seeq.com
+License: UNKNOWN
+Description: The **seeq** Python library is used to interface with Seeq Server ([http://www.seeq.com](http://www.seeq.com)).
+        
+        
+        ----------
+        
+        In case you are looking for the Gencove package, it is available here: https://pypi.org/project/gencove/ 
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: Other/Proprietary License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown

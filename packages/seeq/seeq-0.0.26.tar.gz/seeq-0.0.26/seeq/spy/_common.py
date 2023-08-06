@@ -1,0 +1,168 @@
+import datetime
+import re
+import six
+
+from IPython.core.display import display, HTML, clear_output
+
+import pandas as pd
+import numpy as np
+
+DEFAULT_DATASOURCE_NAME = 'Seeq Data Lab'
+DEFAULT_DATASOURCE_CLASS = 'Seeq Data Lab'
+DEFAULT_DATASOURCE_ID = 'Seeq Data Lab'
+DEFAULT_WORKBOOK_PATH = 'Data Lab >> Data Lab Analysis'
+DEFAULT_SEARCH_PAGE_SIZE = 100
+DEFAULT_PULL_PAGE_SIZE = 1000000
+DEFAULT_PUT_SAMPLES_AND_CAPSULES_BATCH_SIZE = 100000
+
+
+def present(row, column):
+    return (column in row) and \
+           (row[column] is not None) and \
+           (not isinstance(row[column], float) or not pd.isna(row[column]))
+
+
+def get(row, column, default=None):
+    return row[column] if present(row, column) else default
+
+
+def get_timings(http_headers):
+    output = dict()
+    for header, cast in [('Server-Meters', int), ('Server-Timing', float)]:
+        server_meters_string = http_headers[header]
+        server_meters = server_meters_string.split(',')
+        for server_meter_string in server_meters:
+            server_meter = server_meter_string.split(';')
+            if len(server_meter) < 3:
+                continue
+
+            dur_string = cast(server_meter[1].split('=')[1])
+            desc_string = server_meter[2].split('=')[1].replace('"', '')
+
+            output[desc_string] = dur_string
+
+    return output
+
+
+def none_to_nan(v):
+    return np.nan if v is None else v
+
+
+def ensure_unicode(o):
+    if isinstance(o, six.binary_type):
+        return six.text_type(o, 'utf-8', errors='replace')
+    else:
+        return o
+
+
+def timer_start():
+    return datetime.datetime.now()
+
+
+def timer_elapsed(timer):
+    return datetime.datetime.now() - timer
+
+
+def convert_to_timestamp(dt, tz):
+    return convert_timestamp_timezone(none_to_nan(pd.to_datetime(dt)), tz)
+
+
+def convert_timestamp_timezone(timestamp, tz):
+    if pd.isna(timestamp):
+        return timestamp
+
+    timestamp = timestamp.tz_localize('UTC')
+    return timestamp.tz_convert(tz) if tz else timestamp
+
+
+def constuct_metrics_dataframe(d):
+    return pd.DataFrame(d).transpose()
+
+
+STATUS_RUNNING = 0
+STATUS_SUCCESS = 1
+STATUS_FAILURE = 2
+STATUS_CANCELED = 3
+
+
+def display_supports_html():
+    # noinspection PyBroadException
+    try:
+        # noinspection PyUnresolvedReferences
+        ipy_str = str(type(get_ipython()))
+        if 'zmqshell' in ipy_str:
+            return True
+        if 'terminal' in ipy_str:
+            return False
+
+    except:
+        return False
+
+
+_last_display_status_message = None
+
+
+def display_status(message, status, quiet, metrics=None):
+    if quiet:
+        return
+
+    if not display_supports_html():
+        global _last_display_status_message
+        if message != _last_display_status_message:
+            text = re.sub(r'</?[^>]+>', '', message)
+            display(text)
+            _last_display_status_message = message
+        return
+
+    ipython_clear_output(wait=True)
+
+    if status == STATUS_RUNNING:
+        color = '#EEEEFF'
+    elif status == STATUS_SUCCESS:
+        color = '#EEFFEE'
+    else:
+        color = '#FFEEEE'
+
+    style = 'background-color: %s;' % color
+    html = '<div style="%s">%s</div>' % (
+        style + 'text-align: left;', message.replace('\n', '<br>'))
+
+    if metrics is not None:
+        if isinstance(metrics, pd.DataFrame):
+            df = metrics
+        else:
+            df = constuct_metrics_dataframe(metrics)
+
+        html += '<table>'
+        html += '<tr><td style="%s"></td>' % style
+
+        for col in df.columns:
+            html += '<td style="%s">%s</td>' % (style, col)
+
+        html += '</tr>'
+
+        for index, row in df.iterrows():
+            html += '<tr style="%s">' % style
+            html += '<td>%s</td>' % index
+            for cell in row:
+                if isinstance(cell, datetime.timedelta):
+                    hours, remainder = divmod(cell.seconds, 3600)
+                    minutes, seconds = divmod(remainder, 60)
+                    html += '<td>{:02}:{:02}:{:02}.{:02}</td>'.format(int(hours), int(minutes), int(seconds),
+                                                                      int((cell.microseconds + 5000) / 10000))
+                else:
+                    html += '<td>%s</td>' % cell
+            html += '</tr>'
+
+        html += '</table>'
+
+    display(HTML(html))
+
+
+def ipython_clear_output(wait=False):
+    clear_output(wait)
+
+
+def ipython_display(*objs, include=None, exclude=None, metadata=None, transient=None, display_id=None, **kwargs):
+    display(*objs, include=include, exclude=exclude, metadata=metadata, transient=transient,
+            display_id=display_id, **kwargs)
