@@ -1,0 +1,104 @@
+Metadata-Version: 2.1
+Name: raiden-py
+Version: 0.1.1
+Summary: Raiden Python Client Library
+Home-page: https://github.com/viraja1/raiden_py/
+Author: viraj
+Author-email: 
+License: MIT
+Description: ## raiden_py
+        
+        Raiden Python Client Library
+        
+        ### Installation
+        python 3.7+
+        ```
+        pip install raiden-py
+        ```
+        
+        ### Documentation
+        https://viraja1.github.io/raiden_py/docs/raiden_py/raiden.html
+        
+        ### Sample Usage
+        
+        ```
+        from raiden_py import Raiden
+        raiden = Raiden("http://localhost:5001", "v1")
+        
+        # Querying Information About Your Raiden Node
+        raiden.get_address()
+        
+        # Register a token
+        raiden.register_token(token_address='0x9B740B496dea54d747680e941921aD28BDA5789C')
+        
+        # Get a list of all unsettled channels
+        raiden.get_channels()
+        
+        # Get a list of all unsettled channels for the given token address.
+        raiden.get_channels_token(token_address='0x9B740B496dea54d747680e941921aD28BDA5789C')
+        
+        #  Query information about one of your channels
+        raiden.get_channel_info(token_address='0x9B740B496dea54d747680e941921aD28BDA5789C', 
+                                partner_address='0x2645bcF95d1c3fE89dB435be8AaEFb887832803b')
+        
+        # Get a list of addresses of all registered tokens.
+        raiden.get_token_addresses()
+        
+        # Get the address of the corresponding token network for the given token, if the token is registered.
+        raiden.get_token_network_address(token_address='0x9B740B496dea54d747680e941921aD28BDA5789C')
+        
+        # Get a list of all partners with whom you have non-settled channels for a certain token.
+        raiden.get_partners(token_address='0x9B740B496dea54d747680e941921aD28BDA5789C')
+        
+        # Get a list of all transfers that have not been completed yet
+        raiden.get_pending_transfers()
+        
+        # Get a list of all transfers that have not been completed yet for specified token
+        raiden.get_pending_transfers_token(token_address='0x9B740B496dea54d747680e941921aD28BDA5789C')
+        
+        # Returns a list of all transfers that have not been completed yet for specified channel
+        raiden.get_pending_transfers_channel(token_address='0x9B740B496dea54d747680e941921aD28BDA5789C', 
+                                             partner_address='0x2645bcF95d1c3fE89dB435be8AaEFb887832803b')
+        
+        # Create a channel
+        raiden.create_channel(token_address='0x9B740B496dea54d747680e941921aD28BDA5789C', 
+                              partner_address='0x2645bcF95d1c3fE89dB435be8AaEFb887832803b', 
+                              total_deposit=1, settle_timeout=500)
+                              
+        # Close a channel
+        raiden.close_channel(token_address='0x9B740B496dea54d747680e941921aD28BDA5789C', 
+                             partner_address='0x2645bcF95d1c3fE89dB435be8AaEFb887832803b')
+                             
+        # Increase the deposit in the channel
+        raiden.increase_deposit_channel(token_address='0x9B740B496dea54d747680e941921aD28BDA5789C', 
+                                        partner_address='0x2645bcF95d1c3fE89dB435be8AaEFb887832803b',
+                                        total_deposit=1)                     
+                              
+        # Get a dict containing all joined token networks.
+        raiden.get_joined_token_networks()
+        
+        # Automatically join a token network
+        raiden.join_token_network(token_address='0x46E75a569Be6BdDe5d5E8351c5c035e8DfEa5C62', funds=1)
+        
+        # Leave a token network
+        raiden.leave_token_network(token_address='0x46E75a569Be6BdDe5d5E8351c5c035e8DfEa5C62')
+        
+        # Initiate a payment
+        raiden.initiate_payment(token_address='0x9B740B496dea54d747680e941921aD28BDA5789C', 
+                                target_address='0x2645bcF95d1c3fE89dB435be8AaEFb887832803b', 
+                                amount=1)
+                                
+        # Query the payment history
+        raiden.get_payment_history(token_address='0x9B740B496dea54d747680e941921aD28BDA5789C', 
+                                   target_address='0x2645bcF95d1c3fE89dB435be8AaEFb887832803b')
+        ```
+Keywords: raiden
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
