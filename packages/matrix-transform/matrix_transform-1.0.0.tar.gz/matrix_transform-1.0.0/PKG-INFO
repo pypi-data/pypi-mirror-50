@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: matrix-transform
+Version: 1.0.0
+Summary: scikit-image geometric transform module, no extra shit
+Home-page: https://github.com/SandLabs/matrix_transform
+License: MIT
+Author: m.shlyamov
+Author-email: m.shlyamov@yandex.com
+Requires-Python: >=3.5
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering
+Requires-Dist: numpy (>=1.13)
+Requires-Dist: scipy (>=0.17)
+Description-Content-Type: text/markdown
+
+# matrix_transform
+
+scikit-image geometric transform module, no extra shit
+
