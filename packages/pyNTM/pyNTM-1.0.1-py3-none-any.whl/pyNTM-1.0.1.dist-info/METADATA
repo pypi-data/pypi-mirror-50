@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: pyNTM
+Version: 1.0.1
+Summary: Network traffic modeler API written in Python 3
+Home-page: https://github.com/tim-fiola/network_traffic_modeler_py3
+Author: Tim Fiola
+Author-email: timothy.fiola@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/tim-fiola/network_traffic_modeler_py3/tarball/1.0.1
+Keywords: networking,layer3,failover,modeling,model
+Platform: UNKNOWN
+Requires-Dist: networkx
+
+UNKNOWN
+
+
