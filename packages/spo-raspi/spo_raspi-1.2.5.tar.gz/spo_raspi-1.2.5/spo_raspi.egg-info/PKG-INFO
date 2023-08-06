@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: spo-raspi
+Version: 1.2.5
+Summary: SPO
+Home-page: https://github.com/weidacn/SPO_raspi
+Author: AW
+Author-email: weidacn@qq.com
+License: MIT
+Description: A tool to control Servo Borad,RFID,Baidu speech API,and Emotibot API in raspberry Pi
+Keywords: raspi
+Platform: any
