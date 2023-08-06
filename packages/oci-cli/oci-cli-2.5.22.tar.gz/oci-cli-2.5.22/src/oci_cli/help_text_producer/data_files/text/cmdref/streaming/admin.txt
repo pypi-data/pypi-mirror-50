@@ -1,0 +1,26 @@
+admin
+*****
+
+
+Description
+===========
+
+Admin operations for streaming service
+
+
+Available Commands
+==================
+
+* stream
+
+  * change-compartment
+
+  * create
+
+  * delete
+
+  * get
+
+  * list
+
+  * update
