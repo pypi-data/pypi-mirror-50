@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: pipelinewise-tap-s3-csv
+Version: 1.0.4
+Summary: Singer.io tap for extracting CSV files from S3 - PipelineWise compatible
+Home-page: https://github.com/transferwise/pipelinewise-tap-s3-csv
+Author: TransferWise
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Programming Language :: Python :: 3 :: Only
+Provides-Extra: dev
