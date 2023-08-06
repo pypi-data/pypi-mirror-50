@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: apap
+Version: 0.0.0b0
+Summary: Declarative and handy RESTful client factory
+License: WTFPL
+Author: mtwtkman
+Author-email: yo@mtwtkman.dev
+Requires-Python: >=3.7,<4.0
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: mypy_extensions (==0.4.1)
+Requires-Dist: requests (==2.22.0)
