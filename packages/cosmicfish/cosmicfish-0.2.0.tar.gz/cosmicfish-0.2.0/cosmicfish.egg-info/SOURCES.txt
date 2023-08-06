@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+setup.py
+bin/install_class.sh
+bin/test-script
+cosmicfish.egg-info/PKG-INFO
+cosmicfish.egg-info/SOURCES.txt
+cosmicfish.egg-info/dependency_links.txt
+cosmicfish.egg-info/not-zip-safe
+cosmicfish.egg-info/requires.txt
+cosmicfish.egg-info/top_level.txt
