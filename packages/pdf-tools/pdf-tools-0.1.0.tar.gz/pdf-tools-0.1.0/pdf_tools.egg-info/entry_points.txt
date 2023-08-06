@@ -1,0 +1,7 @@
+[console_scripts]
+images2pdf = pdf_tools:images2pdf
+pdf2html = pdf_tools:pdf2html
+pdf2images = pdf_tools:pdf2images
+pdf2text = pdf_tools:pdf2text
+pdfmeta = pdf_tools:pdfmeta
+

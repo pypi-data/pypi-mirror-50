@@ -1,0 +1,75 @@
+Metadata-Version: 2.1
+Name: pdf-tools
+Version: 0.1.0
+Summary: PDF tools, e.g. pdf2images, images2pdf, pdf2text, pdf2html, pdfmeta...
+Home-page: UNKNOWN
+Author: zencore-cn
+Author-email: info@zencore.cn
+License: MIT
+Description: # pdf-tools
+        
+        PDF tools, e.g. pdf2images, images2pdf, pdf2text, pdf2html, pdfmeta...
+        
+        ## Install
+        
+            pip install pdf-tools
+        
+        ## Installed Commands
+        
+        - pdfmeta
+        - pdf2text
+        - pdf2html
+        - pdf2images
+        - images2pdf
+        
+        ## Command Helps
+        
+            E:\pylabs\pdf-tools>pdfmeta --help
+            Usage: pdfmeta [OPTIONS] FILENAME
+        
+            Options:
+            -p, --password TEXT
+            --help               Show this message and exit.
+        
+            E:\pylabs\pdf-tools>pdf2text --help
+            Usage: pdf2text [OPTIONS] FILENAME
+        
+            Options:
+            -p, --password TEXT
+            --help               Show this message and exit.
+        
+            E:\pylabs\pdf-tools>pdf2html --help
+            Usage: pdf2html [OPTIONS] FILENAME
+        
+            Options:
+            -p, --password TEXT
+            --help               Show this message and exit.
+        
+            E:\pylabs\pdf-tools>pdf2images --help
+            Usage: pdf2images [OPTIONS] FILENAME
+        
+            Options:
+            -p, --password TEXT
+            -o, --output TEXT
+            -t, --type [png|jpg]
+            --help                Show this message and exit.
+        
+            E:\pylabs\pdf-tools>images2pdf --help
+            Usage: images2pdf [OPTIONS] FOLDER
+        
+            Options:
+            -o, --output TEXT  PDF filename.  [required]
+            --help             Show this message and exit.
+        
+        
+Keywords: pdf-tools,images2pdf,pdf2images,pdf2html,pdf2text,pdfmeta
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires: click
+Requires: PyMuPDF
+Description-Content-Type: text/markdown
