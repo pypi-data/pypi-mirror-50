@@ -1,0 +1,3 @@
+[console_scripts]
+announce=announcer.__init__:main
+
