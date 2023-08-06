@@ -1,0 +1,4 @@
+[console_scripts]
+introduce = cert_mailer.introduce:main
+sendcert = cert_mailer.sendcert:main
+
