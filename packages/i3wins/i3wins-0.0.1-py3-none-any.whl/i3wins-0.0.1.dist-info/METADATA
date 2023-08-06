@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: i3wins
+Version: 0.0.1
+Summary: Yet another i3 window switcher
+Home-page: https://github.com/ylmrx/i3wins
+Author: Yoann Lamouroux
+Author-email: ylamouroux@ubuntu.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: i3ipc
+Requires-Dist: dynmen
+Requires-Dist: traitlets
+
+# soon
+
+
