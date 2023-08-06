@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.rst
+read-uiuc-fin-statement
+reading-uiuc-financial-statements.md
+setup.py
+example/demo.py
+example/schools.pdf
+pdf2data/__init__.py
+pdf2data/data.py
+pdf2data/pdf.py
+pdf2data.egg-info/PKG-INFO
+pdf2data.egg-info/SOURCES.txt
+pdf2data.egg-info/dependency_links.txt
+pdf2data.egg-info/requires.txt
+pdf2data.egg-info/top_level.txt
