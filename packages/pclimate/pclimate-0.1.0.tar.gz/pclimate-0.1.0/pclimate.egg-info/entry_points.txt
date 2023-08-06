@@ -1,0 +1,3 @@
+[console_scripts]
+pclimate = pclimate.__main__:main
+
