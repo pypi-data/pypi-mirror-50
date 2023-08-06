@@ -1,0 +1,9 @@
+README.rst
+pip_check.py
+setup.py
+pip_check.egg-info/PKG-INFO
+pip_check.egg-info/SOURCES.txt
+pip_check.egg-info/dependency_links.txt
+pip_check.egg-info/entry_points.txt
+pip_check.egg-info/requires.txt
+pip_check.egg-info/top_level.txt
