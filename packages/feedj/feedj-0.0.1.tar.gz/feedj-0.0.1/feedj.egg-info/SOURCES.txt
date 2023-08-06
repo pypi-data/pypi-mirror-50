@@ -1,0 +1,14 @@
+CHANGELOG.rst
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+feedj/__init__.py
+feedj/_version.py
+feedj/main.py
+feedj.egg-info/PKG-INFO
+feedj.egg-info/SOURCES.txt
+feedj.egg-info/dependency_links.txt
+feedj.egg-info/entry_points.txt
+feedj.egg-info/not-zip-safe
+feedj.egg-info/top_level.txt
