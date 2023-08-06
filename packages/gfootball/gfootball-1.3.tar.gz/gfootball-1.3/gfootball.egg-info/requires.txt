@@ -1,0 +1,10 @@
+pygame==1.9.6
+opencv-python
+scipy
+gym
+
+[tf_cpu]
+tensorflow<2.0
+
+[tf_gpu]
+tensorflow-gpu<2.0
