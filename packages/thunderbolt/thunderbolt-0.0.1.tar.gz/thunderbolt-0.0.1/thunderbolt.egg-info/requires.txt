@@ -1,0 +1,4 @@
+boto3
+pandas
+gokart>=0.2.4
+tqdm
