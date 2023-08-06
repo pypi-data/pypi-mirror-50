@@ -1,0 +1,10 @@
+README.md
+setup.py
+s3_tree.egg-info/PKG-INFO
+s3_tree.egg-info/SOURCES.txt
+s3_tree.egg-info/dependency_links.txt
+s3_tree.egg-info/entry_points.txt
+s3_tree.egg-info/requires.txt
+s3_tree.egg-info/top_level.txt
+s3tree/__init__.py
+s3tree/main.py
