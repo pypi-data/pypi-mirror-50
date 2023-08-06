@@ -1,0 +1,12 @@
+README.md
+setup.py
+proyo/__init__.py
+proyo/__main__.py
+proyo/macros.py
+proyo/misc.py
+proyo/proyo.py
+proyo.egg-info/PKG-INFO
+proyo.egg-info/SOURCES.txt
+proyo.egg-info/dependency_links.txt
+proyo.egg-info/entry_points.txt
+proyo.egg-info/top_level.txt
