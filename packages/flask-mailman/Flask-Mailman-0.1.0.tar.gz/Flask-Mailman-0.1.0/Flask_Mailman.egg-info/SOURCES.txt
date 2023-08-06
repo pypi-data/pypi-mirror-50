@@ -1,0 +1,11 @@
+README.md
+setup.cfg
+setup.py
+Flask_Mailman.egg-info/PKG-INFO
+Flask_Mailman.egg-info/SOURCES.txt
+Flask_Mailman.egg-info/dependency_links.txt
+Flask_Mailman.egg-info/requires.txt
+Flask_Mailman.egg-info/top_level.txt
+flask_mailman/__init__.py
+flask_mailman/message.py
+flask_mailman/utils.py
