@@ -1,0 +1,15 @@
+requests
+packaging
+cachecontrol
+lockfile
+appdirs
+
+[tests]
+requests
+packaging
+cachecontrol
+lockfile
+appdirs
+pytest>=4.4.0
+flake8
+pytest-xdist
