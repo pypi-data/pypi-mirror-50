@@ -1,0 +1,6 @@
+gunicorn
+django-prometheus
+sentry-sdk
+
+[test]
+coverage
