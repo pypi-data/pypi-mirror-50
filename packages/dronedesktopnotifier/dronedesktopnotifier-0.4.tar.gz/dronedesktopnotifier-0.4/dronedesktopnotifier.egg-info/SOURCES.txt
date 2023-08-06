@@ -1,0 +1,11 @@
+README.md
+setup.cfg
+setup.py
+dronedesktopnotifier/__init__.py
+dronedesktopnotifier/__main__.py
+dronedesktopnotifier/requests_retry.py
+dronedesktopnotifier.egg-info/PKG-INFO
+dronedesktopnotifier.egg-info/SOURCES.txt
+dronedesktopnotifier.egg-info/dependency_links.txt
+dronedesktopnotifier.egg-info/requires.txt
+dronedesktopnotifier.egg-info/top_level.txt
