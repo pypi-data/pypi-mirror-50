@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: gcn
+Version: 0.0.1
+Summary: A Python library for Graph Convolutional Neural Networks
+Home-page: https://github.com/Sujit-O/gcn.git
+Author: Sujit Rokka Chhetri
+Author-email: sujitchhetri@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: tensorflow
+
+# gcn
+
+
