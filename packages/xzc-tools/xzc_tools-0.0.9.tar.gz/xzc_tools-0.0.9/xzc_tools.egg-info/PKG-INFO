@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: xzc-tools
+Version: 0.0.9
+Summary: A small example package
+Home-page: https://github.com/xzccfzy/tools_xzc.git
+Author: xzccfzy
+Author-email: 15510726991@163.com
+License: UNKNOWN
+Description: # tools-xzc
+        
+        ### 该工具是平时写代码过程中我经常用懂得一些功能，尤其是其中的函数装饰器以及错误处理，重命名文件等，函数的说明在代码中都有说明。代码还存在可以优化以及隐藏问题的地方，有问题可以随时联系我。(15510726991@163.com)
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
