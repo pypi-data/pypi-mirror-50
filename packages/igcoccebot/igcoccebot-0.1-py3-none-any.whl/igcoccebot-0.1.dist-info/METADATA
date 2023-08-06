@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: igcoccebot
+Version: 0.1
+Summary: The definitive package to interact on Instagram
+Home-page: https://github.com/lollococce/igcoccebot
+Author: Lorenzo Coacci
+Author-email: lorenzo@coacci.com
+License: MIT
+Keywords: igcoccebot bot instagram selenium AI
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Description-Content-Type: text/markdown
+Requires-Dist: selenium
+Requires-Dist: pandas
+Requires-Dist: datetime
+Requires-Dist: termcolor
+Requires-Dist: pillow
+
+Welcome!
+
+This is a package to navigate and grab data from Instagram easily.
+It is built on Selenium and it uses Chrome driver.
+
+Instructions:
+
+Type on the terminal
+
+pip3 install igcoccebot
+
+Requirements: (Automatically installed)
+
+Now you are ready to use igcoccebot importing it in your python script
+
+"import igcoccebot as ig"
+
+Look some examples in the test folder
+
+Lorenzo Coacci
+
