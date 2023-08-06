@@ -1,0 +1,15 @@
+six
+future
+swiglpk
+ruamel.yaml>=0.16
+numpy>=1.13
+pandas>=0.17.0
+optlang>=1.4.2
+depinfo
+python-libsbml-experimental==5.18.0
+
+[all]
+scipy
+
+[array]
+scipy
