@@ -1,0 +1,14 @@
+MANIFEST.in
+Readme.md
+setup.py
+bin/pygameoflife_dadeerh
+bin/pygameoflife_dadeerh.bat
+pygameoflife_dadeerh/__init__.py
+pygameoflife_dadeerh/__main__.py
+pygameoflife_dadeerh/pygameoflife_dadeerh.py
+pygameoflife_dadeerh.egg-info/PKG-INFO
+pygameoflife_dadeerh.egg-info/SOURCES.txt
+pygameoflife_dadeerh.egg-info/dependency_links.txt
+pygameoflife_dadeerh.egg-info/not-zip-safe
+pygameoflife_dadeerh.egg-info/requires.txt
+pygameoflife_dadeerh.egg-info/top_level.txt
