@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: newsdatascraper
+Version: 0.0.2
+Summary: Easily query articles
+Home-page: https://github.com/erikqu/NewsDataScraper
+Author: Erick Torres and Erik Quintanilla
+Author-email: ericktorresdeveloper@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Natural Language :: English
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Developers
+Description-Content-Type: text/markdown
+Requires-Dist: requests (==2.20.0)
+Requires-Dist: httmock (==1.3.0)
+Requires-Dist: newspaper3k (==0.2.8)
+Requires-Dist: tests (==0.007)
+
+# NewsDataScrapper
+Python package that helps you easily get news data
+
+## Requirements
+- Python 3.5+
+- [Newspaper3k](https://newspaper.readthedocs.io/en/latest/)
+- Api Key from [NewsApi](https://newsapi.org)
+
+## Usage
+```python
+from newsdatascraper import Scraper
+#To first get the articles
+new_scraper = Scraper('mock-api-key')
+articles = new_scraper.fetch_all_articles(query='two-sigma')
+#To access individual articles and their properties
+first_article = articles.articles[0]
+print(first_article.content)
+#We also provide helper functions to serialize the data
+articles.toCsv('test.csv')
+articles.toPickle('test.pickle')
+articles.toJson()
+```
+
+### Working on the Project
+Run format
+```bash
+black .
+```
+Run Linter
+```bash
+pylama -o setup.cfg .
+```
+Run tests
+```bash
+pytest
+```
+Run tests + code coverage
+```bash
+sh ./scripts/generate_coverage.sh
+```
+
