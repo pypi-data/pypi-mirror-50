@@ -1,0 +1,20 @@
+0.3.1 (2019-08-10)
+------------------
+
+- Fix npm install bug.
+
+0.3 (2019-08-09)
+----------------
+
+- Replace node-sass with libsass-python.
+- Replace node-cssmin with python rcssmin.
+
+0.2 (2019-08-06)
+----------------
+
+- Add ignore option to uncss stage.
+
+0.1 (2019-08-06)
+----------------
+
+- Initial release on PyPI.
