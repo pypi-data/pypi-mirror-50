@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: sphinxcontrib.asciinema
+Version: 0.1.4
+Summary: embedding asciinema videos in Sphinx docs
+Home-page: https://github.com/divi255/sphinxcontrib.asciinema
+Author: Sergei S.
+License: MIT
+Description: sphinxcontrib-asciinema
+        ***********************
+        
+        Easily embed [asciinema](https://asciinema.org/) videos into Sphinx rst docs.
+        
+        Installation
+        ============
+        
+        ```shell
+        pip3 install sphinxcontrib.asciinema
+        ```
+        
+        Usage
+        =====
+        
+        Append extension to sphinx *conf.py*:
+        
+        ```python
+        extensions = ['sphinxcontrib.asciinema']
+        ```
+        
+        Insert videos into *rst* docs:
+        
+        ```rst
+        .. asciinema:: 261648
+        ```
+        
+        or
+        
+        ```rst
+        .. asciinema:: https://asciinema.org/a/26148
+        ```
+        
+        (replace "261648" with your video id)
+        
+        Enjoy!
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Documentation
+Description-Content-Type: text/markdown
