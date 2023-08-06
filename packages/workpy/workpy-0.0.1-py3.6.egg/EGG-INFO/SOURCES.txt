@@ -1,0 +1,10 @@
+setup.py
+workpy/__init__.py
+workpy/base.py
+workpy/file.py
+workpy/html.py
+workpy/post.py
+workpy.egg-info/PKG-INFO
+workpy.egg-info/SOURCES.txt
+workpy.egg-info/dependency_links.txt
+workpy.egg-info/top_level.txt
