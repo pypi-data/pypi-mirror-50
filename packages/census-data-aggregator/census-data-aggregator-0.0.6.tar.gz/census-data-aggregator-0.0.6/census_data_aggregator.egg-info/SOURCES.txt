@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+census_data_aggregator/__init__.py
+census_data_aggregator/exceptions.py
+census_data_aggregator.egg-info/PKG-INFO
+census_data_aggregator.egg-info/SOURCES.txt
+census_data_aggregator.egg-info/dependency_links.txt
+census_data_aggregator.egg-info/requires.txt
+census_data_aggregator.egg-info/top_level.txt
