@@ -1,0 +1,4 @@
+[console_scripts]
+gorillaml-canvas = gorillaml:cli
+gorillaml-forever = gorillaml:start_server
+
