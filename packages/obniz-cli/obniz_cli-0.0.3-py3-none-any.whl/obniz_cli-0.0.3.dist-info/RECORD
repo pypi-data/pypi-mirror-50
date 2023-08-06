@@ -1,0 +1,10 @@
+obniz_cli.py,sha256=GrulRkUz9_9GzpRRDg1fuVpvfwEkzu5gUZPNKbZRUqs,926
+commands/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+commands/eraseos.py,sha256=cbLgU46HRKJPlj7VCML_GvUy91ptOxEkDQ6Jx-wWmLw,587
+commands/flashos.py,sha256=5G_6m09duxq_8eZVjv-TYamQssyFLRE07uMulI4vAes,862
+commands/util.py,sha256=YbiLzchXpDuTm6o_RK8I7XgdQpbMh1LGi-r2RNKeZhU,855
+obniz_cli-0.0.3.dist-info/METADATA,sha256=Q0EHCeUEnlI1mO35gmWMTwX1gvB1wxe_yZ8i1Mm-z68,1072
+obniz_cli-0.0.3.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+obniz_cli-0.0.3.dist-info/entry_points.txt,sha256=p6YiE-j0ub2wFGQvbLl84DEwKNDL-VIgWiu_NQ4xzkI,46
+obniz_cli-0.0.3.dist-info/top_level.txt,sha256=aOihgZXnEFIpWS1rSRbKU6rC1t5kB3V0jB5V8y0Gkfg,19
+obniz_cli-0.0.3.dist-info/RECORD,,
