@@ -1,0 +1,150 @@
+Metadata-Version: 2.1
+Name: gmsaas
+Version: 1.1.0
+Summary: Command line interface for Genymotion Cloud SaaS
+Home-page: https://cloud.geny.io
+Author: Genymobile
+Author-email: contact@genymobile.com
+License: Proprietary
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: Other/Proprietary License
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+Requires-Dist: click
+Requires-Dist: requests
+Requires-Dist: requests-toolbelt
+Requires-Dist: tabulate
+Requires-Dist: python-engineio
+Requires-Dist: python-socketio
+Requires-Dist: websocket-client
+Requires-Dist: psutil
+
+# gmsaas
+
+## Description
+
+`gmsaas` is a command line interface for Genymotion Cloud SaaS.
+
+## Requirements
+
+- Python 3.5 or above
+- pip3
+- Android SDK
+
+## Installation
+
+```bash
+pip3 install gmsaas
+```
+
+## Configuration
+
+Two steps are required to use `gmsaas` properly:
+
+- Configure the path to your Android SDK with:
+
+  ```bash
+  gmsaas config set android-sdk-path <sdk_path>
+  ```
+
+- Authenticate with:
+
+  ```bash
+  gmsaas auth login <email>
+  ```
+
+## Features
+
+### List recipes
+
+`gmsaas recipes list`
+
+Lists recipes that can be started with `gmsaas instances start`.
+
+> A recipe is a template with a given Android version, display size, density and specifications (CPU, memory, storage) which generally match those of a real device. Recipe UUID is the identifier used when starting an instance.
+
+### Start an instance
+
+`gmsaas instances start <recipe_uuid> <name> [--no-wait]`
+
+Creates and starts an instance `<name>` based on the specified `<recipe_uuid>` recipe. The command returns once the instance is started, unless the `--no-wait` option has been set. In both cases the instance UUID is printed on standard output.
+
+### Connect an instance to ADB
+
+`gmsaas instances adbconnect <instance_uuid> [--adb-serial-port PORT]`
+
+Connects the instance `<instance_uuid>` to ADB. The command returns once ADB is connected. If the `--adb-serial-port <PORT>` option is set, the instance will be connected to ADB on `localhost:<PORT>`.
+
+### List running instances
+
+`gmsaas instances list`
+
+Lists running instances. This also provides the ADB serial used if the instance is connected to ADB.
+
+### Stop an instance
+
+`gmsaas instances stop <instance_uuid> [--no-wait]`
+
+Stops the specified instance. The command returns once the instance is fully stopped, unless the `--no-wait` option has been set.
+
+## Bash/Zsh auto-completion
+
+`gmsaas` supports Bash and Zsh auto-completion. To activate it, you need to inform your shell that completion is available.
+
+For Bash, add this to your `.bashrc`:
+
+```bash
+eval "$(_GMSAAS_COMPLETE=source gmsaas)"
+```
+
+For Zsh, add this to your `.zshrc`:
+
+```bash
+eval "$(_GMSAAS_COMPLETE=source_zsh gmsaas)"
+```
+
+Note: you must type at least one dash to complete command-line options.
+
+## Issues
+
+Whatever your problem is, the Support Team will need logs to speed up the investigations.
+To generate them:
+
+1. Reproduce your issue
+2. Run `gmsaas logzip`: an archive named `gmsaas-logs-YYYYMMDD-HHMMSS.zip` will be created in the current directory
+3. Contact us [here](https://www.genymotion.com/contact/), don't forget to attach the logs archive
+
+
+# Change Log
+
+All notable changes of `gmsaas` are documented in this file.
+
+## 1.1.0
+
+### Added
+
+- `gmsaas logzip` command to fetch all logs in one ZIP archive
+
+### Changed
+
+- Improve `gmsaas auth login` output in case of failure
+
+## 1.0.0 (initial release)
+
+### Added
+
+- List device recipes available
+- List running devices
+- Start a device based on one recipe
+- Stop a running device
+- Connect a running device to ADB
+- Disconnect a running device from ADB
+
+
