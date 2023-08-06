@@ -1,0 +1,18 @@
+Metadata-Version: 2.0
+Name: paramctl
+Version: 0.55
+Summary: Define nested parameters accepted via json file
+Home-page: https://github.com/angelalonso/pctl
+Author: Angel Alonso
+Author-email: alonsofonseca.angel@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Requires-Python: >=3
+Description-Content-Type: text/markdown
+
+# paramctl
+A Python library to match positional parameters based on a json file
+
+
