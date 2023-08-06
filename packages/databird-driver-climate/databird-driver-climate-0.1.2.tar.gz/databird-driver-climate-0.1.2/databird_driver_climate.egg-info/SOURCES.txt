@@ -1,0 +1,11 @@
+README.md
+setup.py
+databird_driver_climate.egg-info/PKG-INFO
+databird_driver_climate.egg-info/SOURCES.txt
+databird_driver_climate.egg-info/dependency_links.txt
+databird_driver_climate.egg-info/requires.txt
+databird_driver_climate.egg-info/top_level.txt
+databird_drivers/climate/__init__.py
+databird_drivers/climate/c3s.py
+databird_drivers/climate/earthdata.py
+databird_drivers/climate/ecmwf.py
