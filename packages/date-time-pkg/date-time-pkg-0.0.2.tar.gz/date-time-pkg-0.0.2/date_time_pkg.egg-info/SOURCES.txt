@@ -1,0 +1,10 @@
+MANIFEST.in
+README.md
+setup.py
+date_time/__init__.py
+date_time/config.ini
+date_time/listdir.py
+date_time_pkg.egg-info/PKG-INFO
+date_time_pkg.egg-info/SOURCES.txt
+date_time_pkg.egg-info/dependency_links.txt
+date_time_pkg.egg-info/top_level.txt
