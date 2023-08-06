@@ -1,0 +1,3 @@
+[console_scripts]
+render = conftl.command_line:main
+
