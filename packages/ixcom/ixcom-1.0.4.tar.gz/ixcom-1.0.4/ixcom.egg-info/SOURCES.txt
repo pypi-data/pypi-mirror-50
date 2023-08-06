@@ -1,0 +1,12 @@
+README.md
+setup.py
+ixcom/__init__.py
+ixcom/crc16.py
+ixcom/data.py
+ixcom/grep.py
+ixcom/parser.py
+ixcom.egg-info/PKG-INFO
+ixcom.egg-info/SOURCES.txt
+ixcom.egg-info/dependency_links.txt
+ixcom.egg-info/requires.txt
+ixcom.egg-info/top_level.txt
