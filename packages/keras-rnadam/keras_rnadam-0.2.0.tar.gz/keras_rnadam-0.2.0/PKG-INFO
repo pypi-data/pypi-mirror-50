@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: keras_rnadam
+Version: 0.2.0
+Summary: Rectified Nadam implemented in Keras
+Home-page: https://github.com/niley1nov/keras_rnadam/archive/0.2.0.tar.gz
+Author: niley1nov
+Author-email: nilaysharma1nov@gmail.com
+License: MIT
+Description: # Keras RNAdam
+        
+        use of nesterov accelerated geadient instead of momentum in rectified-adam
+        
+        ## Install
+        
+        ```bash
+        pip install keras_rnadam
+        ```
+        
+        ## Usage
+        
+        ```python
+        import keras
+        import numpy as np
+        from keras_rnadam import RNAdam
+        
+        # Build toy model with RNAdam optimizer
+        model = keras.models.Sequential()
+        model.add(keras.layers.Dense(input_shape=(17,), units=3))
+        model.compile(RNAdam(), loss='mse')
+        
+        # Generate toy data
+        x = np.random.standard_normal((4096 * 30, 17))
+        w = np.random.standard_normal((17, 3))
+        y = np.dot(x, w)
+        
+        # Fit
+        model.fit(x, y, epochs=5)
+        ```
+        
+        ### Use Warmup
+        
+        ```python
+        from keras_nradam import RNAdam
+        RNAdam(total_step=10000, warmup_proportion=0.1, min_lr=1e-5)
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
