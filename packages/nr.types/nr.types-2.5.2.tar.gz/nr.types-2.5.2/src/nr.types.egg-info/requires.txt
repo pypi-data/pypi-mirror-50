@@ -1,0 +1,7 @@
+six
+typing
+
+[test]
+pytest
+pytest-cov
+BeautifulSoup4
