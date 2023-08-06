@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: keras-rl2
+Version: 1.0.2
+Summary: Deep Reinforcement Learning for Tensorflow 2 Keras
+Home-page: https://github.com/wau/keras-rl2
+Author: Taylor McNally
+Author-email: taylor.mcnally@emory.edu
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Provides-Extra: gym
