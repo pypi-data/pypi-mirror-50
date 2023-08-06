@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: laspec
+Version: 2019.815.0
+Summary: Modules for LAMOST spectra.
+Home-page: http://github.com/hypergravity/laspec
+Author: Bo Zhang
+Author-email: bozhang@nao.cas.cn
+License: MIT
+Description: # laspec
+        Modules for LAMOST spectra.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Requires: numpy
+Requires: scipy
+Description-Content-Type: text/markdown
