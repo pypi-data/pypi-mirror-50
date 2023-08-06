@@ -1,0 +1,8 @@
+global-include *.py
+
+include doc/*.png
+include README.md
+include LICENSE
+
+prune .venv
+prune src
