@@ -1,0 +1,17 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+versioneer.py
+sysid/__init__.py
+sysid/_version.py
+sysid/ss.py
+sysid/subspace.py
+sysid/subspace_stochastic.py
+sysid/test_ss.py
+sysid/test_subspace.py
+sysid.egg-info/PKG-INFO
+sysid.egg-info/SOURCES.txt
+sysid.egg-info/dependency_links.txt
+sysid.egg-info/requires.txt
+sysid.egg-info/top_level.txt
