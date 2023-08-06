@@ -1,0 +1,15 @@
+MANIFEST.in
+README.md
+setup.py
+geo_tools/__init__.py
+geo_tools/command_line.py
+geo_tools/errors.py
+geo_tools/manager.py
+geo_tools/point.py
+geo_tools/scripts.py
+spatial_point_manager.egg-info/PKG-INFO
+spatial_point_manager.egg-info/SOURCES.txt
+spatial_point_manager.egg-info/dependency_links.txt
+spatial_point_manager.egg-info/entry_points.txt
+spatial_point_manager.egg-info/requires.txt
+spatial_point_manager.egg-info/top_level.txt
