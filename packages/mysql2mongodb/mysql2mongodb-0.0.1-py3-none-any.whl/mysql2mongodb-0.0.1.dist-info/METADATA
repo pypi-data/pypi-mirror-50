@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: mysql2mongodb
+Version: 0.0.1
+Summary: MySQL to MongoDB Exporter
+Home-page: http://packages.python.org/mysql2mongo
+Author: Aaron Parfitt
+Author-email: aaronparfitt123@gmail.com
+License: MIT
+Keywords: mongodb
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Programming Language :: Python :: 3.7
+
+![mysql2mongo](https://raw.githubusercontent.com/hyperioxx/mysql2mongo/master/logo/image.png "mysql2mongo")
+
+
+# What is It ?
+
+This tool is used to migrate your mysql database to a shiny new mongoDB database! 
+
