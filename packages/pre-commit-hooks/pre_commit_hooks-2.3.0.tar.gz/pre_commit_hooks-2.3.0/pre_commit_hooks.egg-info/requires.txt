@@ -1,0 +1,7 @@
+flake8
+ruamel.yaml>=0.15
+toml
+six
+
+[:python_version < "3.5"]
+typing
