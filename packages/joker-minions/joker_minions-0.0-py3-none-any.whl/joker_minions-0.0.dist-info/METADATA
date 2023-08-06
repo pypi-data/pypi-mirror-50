@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: joker-minions
+Version: 0.0
+Summary: simple socket server using gevent
+Home-page: https://github.com/frozflame/joker-minions
+Author: frozflame
+Author-email: frozflame@outlook.com
+License: GNU General Public License (GPL)
+Keywords: socket server cache bloom-filter
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+Requires-Dist: gevent
+Requires-Dist: joker
+Requires-Dist: mmh3
+Requires-Dist: bitarray
+Requires-Dist: pyyaml
+
+joker-minions
+=============
+
+simple socket server using gevent
+
+
