@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: mld
+Version: 0.0.1
+Summary: Package to support MLD
+Home-page: https://curematch.com
+Author: romanjoffee
+Author-email: rjugai@curematch.com
+License: UNKNOWN
+Description: 
+        MLD
+        ===========
+        
+        | MLD is a package created by CureMatch Machine Learning team
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/x-rst; charset=UTF-8
