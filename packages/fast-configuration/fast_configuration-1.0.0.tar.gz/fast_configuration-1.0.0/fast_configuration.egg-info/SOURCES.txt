@@ -1,0 +1,9 @@
+MANIFEST.in
+README.md
+setup.py
+fast_configuration/__init__.py
+fast_configuration/conf_parser.py
+fast_configuration.egg-info/PKG-INFO
+fast_configuration.egg-info/SOURCES.txt
+fast_configuration.egg-info/dependency_links.txt
+fast_configuration.egg-info/top_level.txt
