@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: hksync
+Version: 0.2.0
+Summary: CLI to Sync MailingList archives in local Maildir from Hyperkitty.
+Home-page: https://gitlab.com/mailman/hksync
+Author: Abhilash Raj
+Author-email: maxking@asynchronous.in
+License: GPLv3+
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=2.7,!=3.0,!=3.1,!=3.2,!=3.3
+Requires-Dist: click
+Requires-Dist: aiohttp
+Requires-Dist: aiodns
+Requires-Dist: cchardet
+
+UNKNOWN
+
+
