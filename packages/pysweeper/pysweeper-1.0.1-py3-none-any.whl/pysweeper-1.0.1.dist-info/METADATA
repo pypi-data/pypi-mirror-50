@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: pysweeper
+Version: 1.0.1
+Summary: Your favorite mine sweeping game, console style.
+Home-page: UNKNOWN
+Author: Phillip Cloud
+Author-email: cpcloud@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Python: >=3.7
+Requires-Dist: click
+Requires-Dist: urwid
+
+UNKNOWN
+
+
