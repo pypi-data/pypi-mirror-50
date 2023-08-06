@@ -1,0 +1,13 @@
+README.md
+setup.py
+cox/__init__.py
+cox/readers.py
+cox/store.py
+cox/tensorboard_view.py
+cox/utils.py
+cox.egg-info/PKG-INFO
+cox.egg-info/SOURCES.txt
+cox.egg-info/dependency_links.txt
+cox.egg-info/entry_points.txt
+cox.egg-info/requires.txt
+cox.egg-info/top_level.txt
