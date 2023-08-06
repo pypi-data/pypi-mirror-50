@@ -1,0 +1,10 @@
+
+[docs]
+sphinx
+sphinx_autodoc_typehints
+
+[testing]
+aiosmtpd
+hypothesis
+pytest
+pytest-asyncio
