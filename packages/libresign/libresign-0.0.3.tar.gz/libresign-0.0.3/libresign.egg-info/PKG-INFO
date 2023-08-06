@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: libresign
+Version: 0.0.3
+Summary: Digital signage solution for LibreOffice.
+Home-page: https://rptr.github.io/gsoc/
+Author: Rasmus P J
+Author-email: wasmus@zom.bi
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
+Classifier: Operating System :: POSIX :: Linux
