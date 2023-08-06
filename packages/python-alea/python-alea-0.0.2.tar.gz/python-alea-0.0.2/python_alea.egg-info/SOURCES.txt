@@ -1,0 +1,11 @@
+README.md
+setup.py
+./python-alea/CEtAPI.dll
+./python-alea/CEtAPIx64.dll
+./python-alea/EtApi.dll
+python-alea/__init__.py
+python-alea/alea.py
+python_alea.egg-info/PKG-INFO
+python_alea.egg-info/SOURCES.txt
+python_alea.egg-info/dependency_links.txt
+python_alea.egg-info/top_level.txt
