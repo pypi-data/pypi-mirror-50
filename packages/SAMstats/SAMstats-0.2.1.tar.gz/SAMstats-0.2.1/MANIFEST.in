@@ -1,0 +1,7 @@
+recursive-include SAMstats *.py
+recursive-include SAMstatsParallel *.py
+recursive-include *py
+recursive-exclude examples *
+recursive-exclude original *
+exclude flagstat.sh
+exclude SAMstats.sort.stat.filter.sh

@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+setup.py
+SAMstats/__init__.py
+SAMstats.egg-info/PKG-INFO
+SAMstats.egg-info/SOURCES.txt
+SAMstats.egg-info/dependency_links.txt
+SAMstats.egg-info/entry_points.txt
+SAMstats.egg-info/requires.txt
+SAMstats.egg-info/top_level.txt
+SAMstatsParallel/__init__.py
