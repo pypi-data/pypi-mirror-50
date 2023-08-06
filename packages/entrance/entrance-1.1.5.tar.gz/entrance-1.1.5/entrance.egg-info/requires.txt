@@ -1,0 +1,4 @@
+asyncio
+pyyaml
+sanic
+websockets<7.0,>=6.0
