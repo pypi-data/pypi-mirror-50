@@ -1,0 +1,3 @@
+[console_scripts]
+dead_hosts_infrastructure_launcher = dead_hosts.launcher:command_line
+
