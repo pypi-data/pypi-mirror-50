@@ -1,0 +1,11 @@
+README.md
+setup.py
+pymiddy/__init__.py
+pymiddy/middy.py
+pymiddy.egg-info/PKG-INFO
+pymiddy.egg-info/SOURCES.txt
+pymiddy.egg-info/dependency_links.txt
+pymiddy.egg-info/not-zip-safe
+pymiddy.egg-info/top_level.txt
+pymiddy/middlewares/__init__.py
+pymiddy/middlewares/cors.py
