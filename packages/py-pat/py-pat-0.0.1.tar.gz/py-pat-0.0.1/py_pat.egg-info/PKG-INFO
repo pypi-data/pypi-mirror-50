@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: py-pat
+Version: 0.0.1
+Summary: A Python package to analyze OpenPose data
+Home-page: https://github.com/jcheong0428/pat
+Author: Mind2019-SocialPose
+Author-email: jcheong.gr@dartmouth.edu
+License: LICENSE.txt
+Description: Python Pose Analysis Toolbox (PPAT) provides tools and functions for loading, preprocessing, analyzing, and visualizing OpenPose data.
+Keywords: openpose,socialpose,pose
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Provides-Extra: interactive_plots
