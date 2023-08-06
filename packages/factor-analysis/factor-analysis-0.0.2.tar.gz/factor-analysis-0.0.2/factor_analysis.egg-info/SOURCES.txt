@@ -1,0 +1,10 @@
+README.md
+setup.py
+factor_analysis/__init__.py
+factor_analysis/factors.py
+factor_analysis/noise.py
+factor_analysis/posterior.py
+factor_analysis.egg-info/PKG-INFO
+factor_analysis.egg-info/SOURCES.txt
+factor_analysis.egg-info/dependency_links.txt
+factor_analysis.egg-info/top_level.txt
