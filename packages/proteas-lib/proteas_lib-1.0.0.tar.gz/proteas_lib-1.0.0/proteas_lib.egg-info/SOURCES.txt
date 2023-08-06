@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+setup.py
+proteas_lib/__init__.py
+proteas_lib/control.py
+proteas_lib/vision.py
+proteas_lib.egg-info/PKG-INFO
+proteas_lib.egg-info/SOURCES.txt
+proteas_lib.egg-info/dependency_links.txt
+proteas_lib.egg-info/requires.txt
+proteas_lib.egg-info/top_level.txt
