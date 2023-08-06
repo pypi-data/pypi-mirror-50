@@ -1,0 +1,11 @@
+COLUMNS = [
+    'TIPO_REGISTRO',
+    'NRO_PV_ORIGINAL',
+    'NRO_RV_ORIGINAL',
+    'VL_RV_ORIGINAL',
+    'NRO_CARTAO',
+    'DT_TRANSACAO',
+    'NSU',
+    'TID',
+    'NRO_PEDIDO'
+]
