@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: semmatch
+Version: 0.0.11
+Summary: template matching tool for SerialEM
+Home-page: UNKNOWN
+Author: Albert Xu
+Author-email: albert.t.xu@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Dist: altgraph (==0.16.1)
+Requires-Dist: future (==0.16.0)
+Requires-Dist: imageio (==2.5.0)
+Requires-Dist: macholib (==1.10)
+Requires-Dist: numpy (==1.15.0)
+Requires-Dist: opencv-python (==4.1.0.25)
+Requires-Dist: pefile (==2017.11.5)
+Requires-Dist: Pillow (==5.2.0)
+Requires-Dist: PyQt5 (==5.11.2)
+Requires-Dist: PyQt5-sip (==4.19.12)
+Requires-Dist: scikit-learn (==0.21.2)
+Requires-Dist: scipy (==1.1.0)
+
+UNKNOWN
+
+
