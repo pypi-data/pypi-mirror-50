@@ -1,0 +1,15 @@
+
+[Export PNG]
+cairosvg
+
+[Load image]
+pillow
+
+[Text to shapes]
+fonttools
+
+[Vectorization]
+pillow
+pypotrace>=0.2
+numpy
+scipy
