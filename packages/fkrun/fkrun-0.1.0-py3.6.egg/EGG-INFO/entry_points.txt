@@ -1,0 +1,3 @@
+[console_scripts]
+fkrun = fkrun.__main__:main
+
