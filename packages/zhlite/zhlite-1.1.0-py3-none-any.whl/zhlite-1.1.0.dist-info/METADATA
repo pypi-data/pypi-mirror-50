@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: zhlite
+Version: 1.1.0
+Summary: zhihu lite client
+Home-page: https://github.com/deplives/zhlite
+Author: zhangbo
+Author-email: deplives@deplives.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Dist: requests (==2.21.0)
+Requires-Dist: beautifulsoup4 (==4.7.1)
+Requires-Dist: lxml (==4.3.4)
+Requires-Dist: PyExecJS (==1.5.1)
+Requires-Dist: Pillow (==6.0.0)
+
+UNKNOWN
+
+
