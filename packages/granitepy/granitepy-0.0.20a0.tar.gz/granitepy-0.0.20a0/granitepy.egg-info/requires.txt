@@ -1,0 +1,3 @@
+aiohttp
+discord.py
+websockets<7.0,>=6.0
