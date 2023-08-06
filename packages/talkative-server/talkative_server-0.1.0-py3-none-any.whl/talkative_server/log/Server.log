@@ -1,0 +1,713 @@
+2019-08-10 00:43:44,976 INFO server: start with 127.0.0.1:7777
+2019-08-10 00:43:46,454 DEBUG PyQt5.uic.uiparser: uiname is MainWindow
+2019-08-10 00:43:46,469 DEBUG PyQt5.uic.uiparser: toplevel widget is ServerMainWindow
+2019-08-10 00:43:46,470 DEBUG PyQt5.uic.properties: setting property geometry
+2019-08-10 00:43:46,478 DEBUG PyQt5.uic.properties: setting property windowTitle
+2019-08-10 00:43:46,483 DEBUG PyQt5.uic.properties: setting property windowIcon
+2019-08-10 00:43:46,605 DEBUG PyQt5.uic.properties: setting property styleSheet
+2019-08-10 00:43:46,605 DEBUG PyQt5.uic.properties: setting property iconSize
+2019-08-10 00:43:46,616 DEBUG PyQt5.uic.uiparser: push ServerMainWindow MainWindow
+2019-08-10 00:43:46,622 DEBUG PyQt5.uic.uiparser: push QWidget centralwidget
+2019-08-10 00:43:46,623 DEBUG PyQt5.uic.properties: setting property pyuicMargins
+2019-08-10 00:43:46,624 DEBUG PyQt5.uic.uiparser: push QGridLayout gridLayout
+2019-08-10 00:43:46,638 DEBUG PyQt5.uic.properties: setting property sizePolicy
+2019-08-10 00:43:46,639 DEBUG PyQt5.uic.properties: setting property frameShape
+2019-08-10 00:43:46,639 DEBUG PyQt5.uic.properties: setting property frameShadow
+2019-08-10 00:43:46,639 DEBUG PyQt5.uic.properties: setting property lineWidth
+2019-08-10 00:43:46,639 DEBUG PyQt5.uic.properties: setting property orientation
+2019-08-10 00:43:46,642 DEBUG PyQt5.uic.properties: setting property handleWidth
+2019-08-10 00:43:46,642 DEBUG PyQt5.uic.properties: setting property childrenCollapsible
+2019-08-10 00:43:46,643 DEBUG PyQt5.uic.uiparser: push QSplitter splitter
+2019-08-10 00:43:46,651 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:43:46,674 DEBUG PyQt5.uic.uiparser: push QLabel lblUser
+2019-08-10 00:43:46,674 DEBUG PyQt5.uic.uiparser: pop widget QLabel lblUser
+2019-08-10 00:43:46,674 DEBUG PyQt5.uic.uiparser: new topwidget <PyQt5.QtWidgets.QSplitter object at 0x7f2b84662730>
+2019-08-10 00:43:46,760 DEBUG PyQt5.uic.uiparser: push QTableView active_users
+2019-08-10 00:43:46,761 DEBUG PyQt5.uic.uiparser: pop widget QTableView active_users
+2019-08-10 00:43:46,761 DEBUG PyQt5.uic.uiparser: new topwidget <PyQt5.QtWidgets.QSplitter object at 0x7f2b84662730>
+2019-08-10 00:43:46,761 DEBUG PyQt5.uic.uiparser: pop widget QSplitter splitter
+2019-08-10 00:43:46,761 DEBUG PyQt5.uic.uiparser: new topwidget <PyQt5.QtWidgets.QWidget object at 0x7f2b846624b0>
+2019-08-10 00:43:46,767 DEBUG PyQt5.uic.uiparser: pop layout QGridLayout gridLayout
+2019-08-10 00:43:46,767 DEBUG PyQt5.uic.uiparser: pop widget QWidget centralwidget
+2019-08-10 00:43:46,767 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ServerMainWindow object at 0x7f2b84662370>
+2019-08-10 00:43:46,805 DEBUG PyQt5.uic.properties: setting property geometry
+2019-08-10 00:43:46,806 DEBUG PyQt5.uic.uiparser: push QMenuBar menubar
+2019-08-10 00:43:46,806 DEBUG PyQt5.uic.uiparser: pop widget QMenuBar menubar
+2019-08-10 00:43:46,806 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ServerMainWindow object at 0x7f2b84662370>
+2019-08-10 00:43:46,806 DEBUG PyQt5.uic.uiparser: push QStatusBar statusbar
+2019-08-10 00:43:46,807 DEBUG PyQt5.uic.uiparser: pop widget QStatusBar statusbar
+2019-08-10 00:43:46,807 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ServerMainWindow object at 0x7f2b84662370>
+2019-08-10 00:43:46,808 DEBUG PyQt5.uic.properties: setting property sizePolicy
+2019-08-10 00:43:46,808 DEBUG PyQt5.uic.properties: setting property windowTitle
+2019-08-10 00:43:46,816 DEBUG PyQt5.uic.properties: setting property movable
+2019-08-10 00:43:46,823 DEBUG PyQt5.uic.uiparser: push QToolBar toolBar
+2019-08-10 00:43:46,823 DEBUG PyQt5.uic.uiparser: pop widget QToolBar toolBar
+2019-08-10 00:43:46,824 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ServerMainWindow object at 0x7f2b84662370>
+2019-08-10 00:43:46,824 DEBUG PyQt5.uic.properties: setting property icon
+2019-08-10 00:43:46,825 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:43:46,825 DEBUG PyQt5.uic.properties: setting property shortcut
+2019-08-10 00:43:46,825 DEBUG PyQt5.uic.properties: setting property icon
+2019-08-10 00:43:46,826 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:43:46,826 DEBUG PyQt5.uic.properties: setting property toolTip
+2019-08-10 00:43:46,826 DEBUG PyQt5.uic.properties: setting property shortcut
+2019-08-10 00:43:46,827 DEBUG PyQt5.uic.properties: setting property icon
+2019-08-10 00:43:46,827 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:43:46,828 DEBUG PyQt5.uic.properties: setting property toolTip
+2019-08-10 00:43:46,828 DEBUG PyQt5.uic.properties: setting property shortcut
+2019-08-10 00:43:46,828 DEBUG PyQt5.uic.properties: setting property icon
+2019-08-10 00:43:46,829 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:43:46,829 DEBUG PyQt5.uic.properties: setting property toolTip
+2019-08-10 00:43:46,829 DEBUG PyQt5.uic.properties: setting property shortcut
+2019-08-10 00:43:46,829 DEBUG PyQt5.uic.uiparser: pop widget ServerMainWindow MainWindow
+2019-08-10 00:43:46,829 DEBUG PyQt5.uic.uiparser: new topwidget None
+2019-08-10 00:43:46,829 DEBUG PyQt5.uic.uiparser: add action action_refresh to toolBar
+2019-08-10 00:43:46,830 DEBUG PyQt5.uic.uiparser: add action action_history to toolBar
+2019-08-10 00:43:46,830 DEBUG PyQt5.uic.uiparser: add action action_config to toolBar
+2019-08-10 00:43:46,830 DEBUG PyQt5.uic.uiparser: add action action_add_user to toolBar
+2019-08-10 00:43:46,832 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f2b84662370> подписался на событие presence
+2019-08-10 00:43:46,832 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f2b84662370> подписался на событие exit
+2019-08-10 00:43:46,832 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f2b84662370> подписался на событие action_refresh
+2019-08-10 00:43:46,832 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f2b84662370> подписался на событие action_history
+2019-08-10 00:43:46,833 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f2b84662370> подписался на событие action_config
+2019-08-10 00:43:46,833 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f2b84662370> подписался на событие action_add_user
+2019-08-10 00:44:14,019 DEBUG PyQt5.uic.uiparser: uiname is Dialog
+2019-08-10 00:44:14,020 DEBUG PyQt5.uic.uiparser: toplevel widget is AddUserWindow
+2019-08-10 00:44:14,020 DEBUG PyQt5.uic.properties: setting property geometry
+2019-08-10 00:44:14,020 DEBUG PyQt5.uic.properties: setting property minimumSize
+2019-08-10 00:44:14,020 DEBUG PyQt5.uic.properties: setting property maximumSize
+2019-08-10 00:44:14,020 DEBUG PyQt5.uic.properties: setting property windowTitle
+2019-08-10 00:44:14,021 DEBUG PyQt5.uic.uiparser: push AddUserWindow Dialog
+2019-08-10 00:44:14,021 DEBUG PyQt5.uic.uiparser: push QGridLayout gridLayout
+2019-08-10 00:44:14,021 DEBUG PyQt5.uic.uiparser: push QHBoxLayout horizontalLayout
+2019-08-10 00:44:14,022 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:44:14,022 DEBUG PyQt5.uic.uiparser: push QLabel label
+2019-08-10 00:44:14,022 DEBUG PyQt5.uic.uiparser: pop widget QLabel label
+2019-08-10 00:44:14,022 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.AddUserWindow object at 0x7f2b84662cd0>
+2019-08-10 00:44:14,023 DEBUG PyQt5.uic.uiparser: push QLineEdit editUser
+2019-08-10 00:44:14,023 DEBUG PyQt5.uic.uiparser: pop widget QLineEdit editUser
+2019-08-10 00:44:14,023 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.AddUserWindow object at 0x7f2b84662cd0>
+2019-08-10 00:44:14,023 DEBUG PyQt5.uic.uiparser: pop layout QHBoxLayout horizontalLayout
+2019-08-10 00:44:14,024 DEBUG PyQt5.uic.uiparser: push QHBoxLayout horizontalLayout_2
+2019-08-10 00:44:14,024 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:44:14,024 DEBUG PyQt5.uic.uiparser: push QLabel label_2
+2019-08-10 00:44:14,024 DEBUG PyQt5.uic.uiparser: pop widget QLabel label_2
+2019-08-10 00:44:14,025 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.AddUserWindow object at 0x7f2b84662cd0>
+2019-08-10 00:44:14,025 DEBUG PyQt5.uic.properties: setting property echoMode
+2019-08-10 00:44:14,025 DEBUG PyQt5.uic.uiparser: push QLineEdit editPass1
+2019-08-10 00:44:14,025 DEBUG PyQt5.uic.uiparser: pop widget QLineEdit editPass1
+2019-08-10 00:44:14,026 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.AddUserWindow object at 0x7f2b84662cd0>
+2019-08-10 00:44:14,026 DEBUG PyQt5.uic.uiparser: pop layout QHBoxLayout horizontalLayout_2
+2019-08-10 00:44:14,026 DEBUG PyQt5.uic.uiparser: push QHBoxLayout horizontalLayout_3
+2019-08-10 00:44:14,026 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:44:14,027 DEBUG PyQt5.uic.uiparser: push QLabel label_3
+2019-08-10 00:44:14,027 DEBUG PyQt5.uic.uiparser: pop widget QLabel label_3
+2019-08-10 00:44:14,027 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.AddUserWindow object at 0x7f2b84662cd0>
+2019-08-10 00:44:14,027 DEBUG PyQt5.uic.properties: setting property echoMode
+2019-08-10 00:44:14,028 DEBUG PyQt5.uic.uiparser: push QLineEdit editPass2
+2019-08-10 00:44:14,028 DEBUG PyQt5.uic.uiparser: pop widget QLineEdit editPass2
+2019-08-10 00:44:14,028 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.AddUserWindow object at 0x7f2b84662cd0>
+2019-08-10 00:44:14,028 DEBUG PyQt5.uic.uiparser: pop layout QHBoxLayout horizontalLayout_3
+2019-08-10 00:44:14,029 DEBUG PyQt5.uic.properties: setting property orientation
+2019-08-10 00:44:14,042 DEBUG PyQt5.uic.properties: setting property standardButtons
+2019-08-10 00:44:14,071 DEBUG PyQt5.uic.properties: setting property centerButtons
+2019-08-10 00:44:14,071 DEBUG PyQt5.uic.uiparser: push QDialogButtonBox buttonBox
+2019-08-10 00:44:14,071 DEBUG PyQt5.uic.uiparser: pop widget QDialogButtonBox buttonBox
+2019-08-10 00:44:14,072 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.AddUserWindow object at 0x7f2b84662cd0>
+2019-08-10 00:44:14,072 DEBUG PyQt5.uic.uiparser: pop layout QGridLayout gridLayout
+2019-08-10 00:44:14,072 DEBUG PyQt5.uic.uiparser: pop widget AddUserWindow Dialog
+2019-08-10 00:44:14,072 DEBUG PyQt5.uic.uiparser: new topwidget None
+2019-08-10 00:44:26,979 DEBUG passlib.registry: registered 'pbkdf2_sha512' handler: <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2019-08-10 00:44:32,238 DEBUG PyQt5.uic.uiparser: uiname is History
+2019-08-10 00:44:32,238 DEBUG PyQt5.uic.uiparser: toplevel widget is HistoryWindow
+2019-08-10 00:44:32,239 DEBUG PyQt5.uic.properties: setting property geometry
+2019-08-10 00:44:32,239 DEBUG PyQt5.uic.properties: setting property windowTitle
+2019-08-10 00:44:32,239 DEBUG PyQt5.uic.properties: setting property windowIcon
+2019-08-10 00:44:32,240 DEBUG PyQt5.uic.uiparser: push HistoryWindow History
+2019-08-10 00:44:32,240 DEBUG PyQt5.uic.uiparser: push QGridLayout gridLayout
+2019-08-10 00:44:32,240 DEBUG PyQt5.uic.properties: setting property orientation
+2019-08-10 00:44:32,240 DEBUG PyQt5.uic.uiparser: push QSplitter splitter
+2019-08-10 00:44:32,241 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:44:32,241 DEBUG PyQt5.uic.uiparser: push QLabel lblHistory
+2019-08-10 00:44:32,241 DEBUG PyQt5.uic.uiparser: pop widget QLabel lblHistory
+2019-08-10 00:44:32,241 DEBUG PyQt5.uic.uiparser: new topwidget <PyQt5.QtWidgets.QSplitter object at 0x7f2b78026d70>
+2019-08-10 00:44:32,242 DEBUG PyQt5.uic.uiparser: push QTableView tbMessages
+2019-08-10 00:44:32,242 DEBUG PyQt5.uic.uiparser: pop widget QTableView tbMessages
+2019-08-10 00:44:32,242 DEBUG PyQt5.uic.uiparser: new topwidget <PyQt5.QtWidgets.QSplitter object at 0x7f2b78026d70>
+2019-08-10 00:44:32,242 DEBUG PyQt5.uic.uiparser: pop widget QSplitter splitter
+2019-08-10 00:44:32,242 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.HistoryWindow object at 0x7f2b84662690>
+2019-08-10 00:44:32,242 DEBUG PyQt5.uic.uiparser: push QHBoxLayout horizontalLayout
+2019-08-10 00:44:32,242 DEBUG PyQt5.uic.uiparser: push QWidget widget
+2019-08-10 00:44:32,242 DEBUG PyQt5.uic.uiparser: pop widget QWidget widget
+2019-08-10 00:44:32,242 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.HistoryWindow object at 0x7f2b84662690>
+2019-08-10 00:44:32,242 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:44:32,242 DEBUG PyQt5.uic.uiparser: push QPushButton btnClose
+2019-08-10 00:44:32,243 DEBUG PyQt5.uic.uiparser: pop widget QPushButton btnClose
+2019-08-10 00:44:32,243 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.HistoryWindow object at 0x7f2b84662690>
+2019-08-10 00:44:32,243 DEBUG PyQt5.uic.uiparser: push QWidget widget_2
+2019-08-10 00:44:32,243 DEBUG PyQt5.uic.uiparser: pop widget QWidget widget_2
+2019-08-10 00:44:32,243 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.HistoryWindow object at 0x7f2b84662690>
+2019-08-10 00:44:32,243 DEBUG PyQt5.uic.uiparser: pop layout QHBoxLayout horizontalLayout
+2019-08-10 00:44:32,243 DEBUG PyQt5.uic.uiparser: pop layout QGridLayout gridLayout
+2019-08-10 00:44:32,243 DEBUG PyQt5.uic.uiparser: pop widget HistoryWindow History
+2019-08-10 00:44:32,243 DEBUG PyQt5.uic.uiparser: new topwidget None
+2019-08-10 00:46:17,511 INFO server: start with 127.0.0.1:7777
+2019-08-10 00:46:18,954 DEBUG PyQt5.uic.uiparser: uiname is MainWindow
+2019-08-10 00:46:18,968 DEBUG PyQt5.uic.uiparser: toplevel widget is ServerMainWindow
+2019-08-10 00:46:18,969 DEBUG PyQt5.uic.properties: setting property geometry
+2019-08-10 00:46:18,980 DEBUG PyQt5.uic.properties: setting property windowTitle
+2019-08-10 00:46:18,983 DEBUG PyQt5.uic.properties: setting property windowIcon
+2019-08-10 00:46:19,068 DEBUG PyQt5.uic.properties: setting property styleSheet
+2019-08-10 00:46:19,069 DEBUG PyQt5.uic.properties: setting property iconSize
+2019-08-10 00:46:19,076 DEBUG PyQt5.uic.uiparser: push ServerMainWindow MainWindow
+2019-08-10 00:46:19,082 DEBUG PyQt5.uic.uiparser: push QWidget centralwidget
+2019-08-10 00:46:19,083 DEBUG PyQt5.uic.properties: setting property pyuicMargins
+2019-08-10 00:46:19,084 DEBUG PyQt5.uic.uiparser: push QGridLayout gridLayout
+2019-08-10 00:46:19,100 DEBUG PyQt5.uic.properties: setting property sizePolicy
+2019-08-10 00:46:19,101 DEBUG PyQt5.uic.properties: setting property frameShape
+2019-08-10 00:46:19,101 DEBUG PyQt5.uic.properties: setting property frameShadow
+2019-08-10 00:46:19,101 DEBUG PyQt5.uic.properties: setting property lineWidth
+2019-08-10 00:46:19,101 DEBUG PyQt5.uic.properties: setting property orientation
+2019-08-10 00:46:19,107 DEBUG PyQt5.uic.properties: setting property handleWidth
+2019-08-10 00:46:19,107 DEBUG PyQt5.uic.properties: setting property childrenCollapsible
+2019-08-10 00:46:19,107 DEBUG PyQt5.uic.uiparser: push QSplitter splitter
+2019-08-10 00:46:19,114 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:46:19,138 DEBUG PyQt5.uic.uiparser: push QLabel lblUser
+2019-08-10 00:46:19,138 DEBUG PyQt5.uic.uiparser: pop widget QLabel lblUser
+2019-08-10 00:46:19,138 DEBUG PyQt5.uic.uiparser: new topwidget <PyQt5.QtWidgets.QSplitter object at 0x7f896661faf0>
+2019-08-10 00:46:19,215 DEBUG PyQt5.uic.uiparser: push QTableView active_users
+2019-08-10 00:46:19,215 DEBUG PyQt5.uic.uiparser: pop widget QTableView active_users
+2019-08-10 00:46:19,215 DEBUG PyQt5.uic.uiparser: new topwidget <PyQt5.QtWidgets.QSplitter object at 0x7f896661faf0>
+2019-08-10 00:46:19,215 DEBUG PyQt5.uic.uiparser: pop widget QSplitter splitter
+2019-08-10 00:46:19,216 DEBUG PyQt5.uic.uiparser: new topwidget <PyQt5.QtWidgets.QWidget object at 0x7f896661f910>
+2019-08-10 00:46:19,226 DEBUG PyQt5.uic.uiparser: pop layout QGridLayout gridLayout
+2019-08-10 00:46:19,227 DEBUG PyQt5.uic.uiparser: pop widget QWidget centralwidget
+2019-08-10 00:46:19,227 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ServerMainWindow object at 0x7f896661f7d0>
+2019-08-10 00:46:19,240 DEBUG PyQt5.uic.properties: setting property geometry
+2019-08-10 00:46:19,240 DEBUG PyQt5.uic.uiparser: push QMenuBar menubar
+2019-08-10 00:46:19,240 DEBUG PyQt5.uic.uiparser: pop widget QMenuBar menubar
+2019-08-10 00:46:19,240 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ServerMainWindow object at 0x7f896661f7d0>
+2019-08-10 00:46:19,241 DEBUG PyQt5.uic.uiparser: push QStatusBar statusbar
+2019-08-10 00:46:19,241 DEBUG PyQt5.uic.uiparser: pop widget QStatusBar statusbar
+2019-08-10 00:46:19,241 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ServerMainWindow object at 0x7f896661f7d0>
+2019-08-10 00:46:19,242 DEBUG PyQt5.uic.properties: setting property sizePolicy
+2019-08-10 00:46:19,242 DEBUG PyQt5.uic.properties: setting property windowTitle
+2019-08-10 00:46:19,251 DEBUG PyQt5.uic.properties: setting property movable
+2019-08-10 00:46:19,252 DEBUG PyQt5.uic.uiparser: push QToolBar toolBar
+2019-08-10 00:46:19,252 DEBUG PyQt5.uic.uiparser: pop widget QToolBar toolBar
+2019-08-10 00:46:19,253 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ServerMainWindow object at 0x7f896661f7d0>
+2019-08-10 00:46:19,253 DEBUG PyQt5.uic.properties: setting property icon
+2019-08-10 00:46:19,254 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:46:19,254 DEBUG PyQt5.uic.properties: setting property shortcut
+2019-08-10 00:46:19,255 DEBUG PyQt5.uic.properties: setting property icon
+2019-08-10 00:46:19,255 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:46:19,256 DEBUG PyQt5.uic.properties: setting property toolTip
+2019-08-10 00:46:19,256 DEBUG PyQt5.uic.properties: setting property shortcut
+2019-08-10 00:46:19,256 DEBUG PyQt5.uic.properties: setting property icon
+2019-08-10 00:46:19,257 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:46:19,257 DEBUG PyQt5.uic.properties: setting property toolTip
+2019-08-10 00:46:19,257 DEBUG PyQt5.uic.properties: setting property shortcut
+2019-08-10 00:46:19,257 DEBUG PyQt5.uic.properties: setting property icon
+2019-08-10 00:46:19,258 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:46:19,258 DEBUG PyQt5.uic.properties: setting property toolTip
+2019-08-10 00:46:19,258 DEBUG PyQt5.uic.properties: setting property shortcut
+2019-08-10 00:46:19,259 DEBUG PyQt5.uic.uiparser: pop widget ServerMainWindow MainWindow
+2019-08-10 00:46:19,259 DEBUG PyQt5.uic.uiparser: new topwidget None
+2019-08-10 00:46:19,259 DEBUG PyQt5.uic.uiparser: add action action_refresh to toolBar
+2019-08-10 00:46:19,259 DEBUG PyQt5.uic.uiparser: add action action_history to toolBar
+2019-08-10 00:46:19,260 DEBUG PyQt5.uic.uiparser: add action action_config to toolBar
+2019-08-10 00:46:19,260 DEBUG PyQt5.uic.uiparser: add action action_add_user to toolBar
+2019-08-10 00:46:19,262 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f896661f7d0> подписался на событие presence
+2019-08-10 00:46:19,262 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f896661f7d0> подписался на событие exit
+2019-08-10 00:46:19,262 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f896661f7d0> подписался на событие action_refresh
+2019-08-10 00:46:19,262 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f896661f7d0> подписался на событие action_history
+2019-08-10 00:46:19,262 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f896661f7d0> подписался на событие action_config
+2019-08-10 00:46:19,262 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f896661f7d0> подписался на событие action_add_user
+2019-08-10 00:46:21,391 DEBUG PyQt5.uic.uiparser: uiname is History
+2019-08-10 00:46:21,392 DEBUG PyQt5.uic.uiparser: toplevel widget is HistoryWindow
+2019-08-10 00:46:21,392 DEBUG PyQt5.uic.properties: setting property geometry
+2019-08-10 00:46:21,392 DEBUG PyQt5.uic.properties: setting property windowTitle
+2019-08-10 00:46:21,392 DEBUG PyQt5.uic.properties: setting property windowIcon
+2019-08-10 00:46:21,393 DEBUG PyQt5.uic.uiparser: push HistoryWindow History
+2019-08-10 00:46:21,393 DEBUG PyQt5.uic.uiparser: push QGridLayout gridLayout
+2019-08-10 00:46:21,393 DEBUG PyQt5.uic.properties: setting property orientation
+2019-08-10 00:46:21,394 DEBUG PyQt5.uic.uiparser: push QSplitter splitter
+2019-08-10 00:46:21,394 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:46:21,394 DEBUG PyQt5.uic.uiparser: push QLabel lblHistory
+2019-08-10 00:46:21,394 DEBUG PyQt5.uic.uiparser: pop widget QLabel lblHistory
+2019-08-10 00:46:21,395 DEBUG PyQt5.uic.uiparser: new topwidget <PyQt5.QtWidgets.QSplitter object at 0x7f89697ee050>
+2019-08-10 00:46:21,396 DEBUG PyQt5.uic.uiparser: push QTableView tbMessages
+2019-08-10 00:46:21,396 DEBUG PyQt5.uic.uiparser: pop widget QTableView tbMessages
+2019-08-10 00:46:21,396 DEBUG PyQt5.uic.uiparser: new topwidget <PyQt5.QtWidgets.QSplitter object at 0x7f89697ee050>
+2019-08-10 00:46:21,397 DEBUG PyQt5.uic.uiparser: pop widget QSplitter splitter
+2019-08-10 00:46:21,397 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.HistoryWindow object at 0x7f89697ee0f0>
+2019-08-10 00:46:21,397 DEBUG PyQt5.uic.uiparser: push QHBoxLayout horizontalLayout
+2019-08-10 00:46:21,397 DEBUG PyQt5.uic.uiparser: push QWidget widget
+2019-08-10 00:46:21,398 DEBUG PyQt5.uic.uiparser: pop widget QWidget widget
+2019-08-10 00:46:21,398 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.HistoryWindow object at 0x7f89697ee0f0>
+2019-08-10 00:46:21,398 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:46:21,398 DEBUG PyQt5.uic.uiparser: push QPushButton btnClose
+2019-08-10 00:46:21,399 DEBUG PyQt5.uic.uiparser: pop widget QPushButton btnClose
+2019-08-10 00:46:21,399 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.HistoryWindow object at 0x7f89697ee0f0>
+2019-08-10 00:46:21,399 DEBUG PyQt5.uic.uiparser: push QWidget widget_2
+2019-08-10 00:46:21,399 DEBUG PyQt5.uic.uiparser: pop widget QWidget widget_2
+2019-08-10 00:46:21,399 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.HistoryWindow object at 0x7f89697ee0f0>
+2019-08-10 00:46:21,400 DEBUG PyQt5.uic.uiparser: pop layout QHBoxLayout horizontalLayout
+2019-08-10 00:46:21,400 DEBUG PyQt5.uic.uiparser: pop layout QGridLayout gridLayout
+2019-08-10 00:46:21,400 DEBUG PyQt5.uic.uiparser: pop widget HistoryWindow History
+2019-08-10 00:46:21,400 DEBUG PyQt5.uic.uiparser: new topwidget None
+2019-08-10 00:46:21,432 DEBUG passlib.registry: registered 'pbkdf2_sha512' handler: <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2019-08-10 00:47:40,847 INFO server: start with 127.0.0.1:7777
+2019-08-10 00:47:41,899 DEBUG PyQt5.uic.uiparser: uiname is MainWindow
+2019-08-10 00:47:41,899 DEBUG PyQt5.uic.uiparser: toplevel widget is ServerMainWindow
+2019-08-10 00:47:41,900 DEBUG PyQt5.uic.properties: setting property geometry
+2019-08-10 00:47:41,900 DEBUG PyQt5.uic.properties: setting property windowTitle
+2019-08-10 00:47:41,900 DEBUG PyQt5.uic.properties: setting property windowIcon
+2019-08-10 00:47:41,902 DEBUG PyQt5.uic.properties: setting property styleSheet
+2019-08-10 00:47:41,902 DEBUG PyQt5.uic.properties: setting property iconSize
+2019-08-10 00:47:41,902 DEBUG PyQt5.uic.uiparser: push ServerMainWindow MainWindow
+2019-08-10 00:47:41,902 DEBUG PyQt5.uic.uiparser: push QWidget centralwidget
+2019-08-10 00:47:41,902 DEBUG PyQt5.uic.properties: setting property pyuicMargins
+2019-08-10 00:47:41,902 DEBUG PyQt5.uic.uiparser: push QGridLayout gridLayout
+2019-08-10 00:47:41,902 DEBUG PyQt5.uic.properties: setting property sizePolicy
+2019-08-10 00:47:41,903 DEBUG PyQt5.uic.properties: setting property frameShape
+2019-08-10 00:47:41,903 DEBUG PyQt5.uic.properties: setting property frameShadow
+2019-08-10 00:47:41,903 DEBUG PyQt5.uic.properties: setting property lineWidth
+2019-08-10 00:47:41,903 DEBUG PyQt5.uic.properties: setting property orientation
+2019-08-10 00:47:41,904 DEBUG PyQt5.uic.properties: setting property handleWidth
+2019-08-10 00:47:41,904 DEBUG PyQt5.uic.properties: setting property childrenCollapsible
+2019-08-10 00:47:41,904 DEBUG PyQt5.uic.uiparser: push QSplitter splitter
+2019-08-10 00:47:41,904 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:47:41,908 DEBUG PyQt5.uic.uiparser: push QLabel lblUser
+2019-08-10 00:47:41,908 DEBUG PyQt5.uic.uiparser: pop widget QLabel lblUser
+2019-08-10 00:47:41,908 DEBUG PyQt5.uic.uiparser: new topwidget <PyQt5.QtWidgets.QSplitter object at 0x7f4e32d74af0>
+2019-08-10 00:47:41,930 DEBUG PyQt5.uic.uiparser: push QTableView active_users
+2019-08-10 00:47:41,930 DEBUG PyQt5.uic.uiparser: pop widget QTableView active_users
+2019-08-10 00:47:41,930 DEBUG PyQt5.uic.uiparser: new topwidget <PyQt5.QtWidgets.QSplitter object at 0x7f4e32d74af0>
+2019-08-10 00:47:41,930 DEBUG PyQt5.uic.uiparser: pop widget QSplitter splitter
+2019-08-10 00:47:41,930 DEBUG PyQt5.uic.uiparser: new topwidget <PyQt5.QtWidgets.QWidget object at 0x7f4e32d74910>
+2019-08-10 00:47:41,930 DEBUG PyQt5.uic.uiparser: pop layout QGridLayout gridLayout
+2019-08-10 00:47:41,930 DEBUG PyQt5.uic.uiparser: pop widget QWidget centralwidget
+2019-08-10 00:47:41,930 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ServerMainWindow object at 0x7f4e32d747d0>
+2019-08-10 00:47:41,932 DEBUG PyQt5.uic.properties: setting property geometry
+2019-08-10 00:47:41,932 DEBUG PyQt5.uic.uiparser: push QMenuBar menubar
+2019-08-10 00:47:41,932 DEBUG PyQt5.uic.uiparser: pop widget QMenuBar menubar
+2019-08-10 00:47:41,932 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ServerMainWindow object at 0x7f4e32d747d0>
+2019-08-10 00:47:41,932 DEBUG PyQt5.uic.uiparser: push QStatusBar statusbar
+2019-08-10 00:47:41,932 DEBUG PyQt5.uic.uiparser: pop widget QStatusBar statusbar
+2019-08-10 00:47:41,933 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ServerMainWindow object at 0x7f4e32d747d0>
+2019-08-10 00:47:41,933 DEBUG PyQt5.uic.properties: setting property sizePolicy
+2019-08-10 00:47:41,933 DEBUG PyQt5.uic.properties: setting property windowTitle
+2019-08-10 00:47:41,933 DEBUG PyQt5.uic.properties: setting property movable
+2019-08-10 00:47:41,933 DEBUG PyQt5.uic.uiparser: push QToolBar toolBar
+2019-08-10 00:47:41,933 DEBUG PyQt5.uic.uiparser: pop widget QToolBar toolBar
+2019-08-10 00:47:41,933 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ServerMainWindow object at 0x7f4e32d747d0>
+2019-08-10 00:47:41,933 DEBUG PyQt5.uic.properties: setting property icon
+2019-08-10 00:47:41,934 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:47:41,934 DEBUG PyQt5.uic.properties: setting property shortcut
+2019-08-10 00:47:41,934 DEBUG PyQt5.uic.properties: setting property icon
+2019-08-10 00:47:41,934 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:47:41,934 DEBUG PyQt5.uic.properties: setting property toolTip
+2019-08-10 00:47:41,934 DEBUG PyQt5.uic.properties: setting property shortcut
+2019-08-10 00:47:41,934 DEBUG PyQt5.uic.properties: setting property icon
+2019-08-10 00:47:41,934 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:47:41,934 DEBUG PyQt5.uic.properties: setting property toolTip
+2019-08-10 00:47:41,934 DEBUG PyQt5.uic.properties: setting property shortcut
+2019-08-10 00:47:41,934 DEBUG PyQt5.uic.properties: setting property icon
+2019-08-10 00:47:41,935 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:47:41,935 DEBUG PyQt5.uic.properties: setting property toolTip
+2019-08-10 00:47:41,935 DEBUG PyQt5.uic.properties: setting property shortcut
+2019-08-10 00:47:41,935 DEBUG PyQt5.uic.uiparser: pop widget ServerMainWindow MainWindow
+2019-08-10 00:47:41,935 DEBUG PyQt5.uic.uiparser: new topwidget None
+2019-08-10 00:47:41,935 DEBUG PyQt5.uic.uiparser: add action action_refresh to toolBar
+2019-08-10 00:47:41,935 DEBUG PyQt5.uic.uiparser: add action action_history to toolBar
+2019-08-10 00:47:41,935 DEBUG PyQt5.uic.uiparser: add action action_config to toolBar
+2019-08-10 00:47:41,935 DEBUG PyQt5.uic.uiparser: add action action_add_user to toolBar
+2019-08-10 00:47:41,936 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f4e32d747d0> подписался на событие presence
+2019-08-10 00:47:41,936 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f4e32d747d0> подписался на событие exit
+2019-08-10 00:47:41,936 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f4e32d747d0> подписался на событие action_refresh
+2019-08-10 00:47:41,936 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f4e32d747d0> подписался на событие action_history
+2019-08-10 00:47:41,936 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f4e32d747d0> подписался на событие action_config
+2019-08-10 00:47:41,936 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f4e32d747d0> подписался на событие action_add_user
+2019-08-10 00:47:43,744 DEBUG PyQt5.uic.uiparser: uiname is History
+2019-08-10 00:47:43,745 DEBUG PyQt5.uic.uiparser: toplevel widget is HistoryWindow
+2019-08-10 00:47:43,745 DEBUG PyQt5.uic.properties: setting property geometry
+2019-08-10 00:47:43,745 DEBUG PyQt5.uic.properties: setting property windowTitle
+2019-08-10 00:47:43,745 DEBUG PyQt5.uic.properties: setting property windowIcon
+2019-08-10 00:47:43,746 DEBUG PyQt5.uic.uiparser: push HistoryWindow History
+2019-08-10 00:47:43,746 DEBUG PyQt5.uic.uiparser: push QGridLayout gridLayout
+2019-08-10 00:47:43,746 DEBUG PyQt5.uic.properties: setting property orientation
+2019-08-10 00:47:43,746 DEBUG PyQt5.uic.uiparser: push QSplitter splitter
+2019-08-10 00:47:43,746 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:47:43,747 DEBUG PyQt5.uic.uiparser: push QLabel lblHistory
+2019-08-10 00:47:43,747 DEBUG PyQt5.uic.uiparser: pop widget QLabel lblHistory
+2019-08-10 00:47:43,747 DEBUG PyQt5.uic.uiparser: new topwidget <PyQt5.QtWidgets.QSplitter object at 0x7f4e35f43050>
+2019-08-10 00:47:43,747 DEBUG PyQt5.uic.uiparser: push QTableView tbMessages
+2019-08-10 00:47:43,748 DEBUG PyQt5.uic.uiparser: pop widget QTableView tbMessages
+2019-08-10 00:47:43,748 DEBUG PyQt5.uic.uiparser: new topwidget <PyQt5.QtWidgets.QSplitter object at 0x7f4e35f43050>
+2019-08-10 00:47:43,748 DEBUG PyQt5.uic.uiparser: pop widget QSplitter splitter
+2019-08-10 00:47:43,748 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.HistoryWindow object at 0x7f4e35f430f0>
+2019-08-10 00:47:43,748 DEBUG PyQt5.uic.uiparser: push QHBoxLayout horizontalLayout
+2019-08-10 00:47:43,748 DEBUG PyQt5.uic.uiparser: push QWidget widget
+2019-08-10 00:47:43,749 DEBUG PyQt5.uic.uiparser: pop widget QWidget widget
+2019-08-10 00:47:43,749 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.HistoryWindow object at 0x7f4e35f430f0>
+2019-08-10 00:47:43,749 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:47:43,749 DEBUG PyQt5.uic.uiparser: push QPushButton btnClose
+2019-08-10 00:47:43,749 DEBUG PyQt5.uic.uiparser: pop widget QPushButton btnClose
+2019-08-10 00:47:43,749 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.HistoryWindow object at 0x7f4e35f430f0>
+2019-08-10 00:47:43,749 DEBUG PyQt5.uic.uiparser: push QWidget widget_2
+2019-08-10 00:47:43,750 DEBUG PyQt5.uic.uiparser: pop widget QWidget widget_2
+2019-08-10 00:47:43,750 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.HistoryWindow object at 0x7f4e35f430f0>
+2019-08-10 00:47:43,750 DEBUG PyQt5.uic.uiparser: pop layout QHBoxLayout horizontalLayout
+2019-08-10 00:47:43,750 DEBUG PyQt5.uic.uiparser: pop layout QGridLayout gridLayout
+2019-08-10 00:47:43,750 DEBUG PyQt5.uic.uiparser: pop widget HistoryWindow History
+2019-08-10 00:47:43,750 DEBUG PyQt5.uic.uiparser: new topwidget None
+2019-08-10 00:47:43,757 DEBUG passlib.registry: registered 'pbkdf2_sha512' handler: <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2019-08-10 00:47:47,754 DEBUG PyQt5.uic.uiparser: uiname is Dialog
+2019-08-10 00:47:47,754 DEBUG PyQt5.uic.uiparser: toplevel widget is ConfigWindow
+2019-08-10 00:47:47,755 DEBUG PyQt5.uic.properties: setting property geometry
+2019-08-10 00:47:47,755 DEBUG PyQt5.uic.properties: setting property sizePolicy
+2019-08-10 00:47:47,755 DEBUG PyQt5.uic.properties: setting property windowTitle
+2019-08-10 00:47:47,755 DEBUG PyQt5.uic.properties: setting property windowIcon
+2019-08-10 00:47:47,783 DEBUG PyQt5.uic.properties: setting property sizeGripEnabled
+2019-08-10 00:47:47,783 DEBUG PyQt5.uic.uiparser: push ConfigWindow Dialog
+2019-08-10 00:47:47,783 DEBUG PyQt5.uic.uiparser: push QGridLayout gridLayout
+2019-08-10 00:47:47,784 DEBUG PyQt5.uic.properties: setting property spacing
+2019-08-10 00:47:47,784 DEBUG PyQt5.uic.properties: setting property pyuicSpacing
+2019-08-10 00:47:47,784 DEBUG PyQt5.uic.uiparser: push QVBoxLayout verticalLayout
+2019-08-10 00:47:47,784 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:47:47,784 DEBUG PyQt5.uic.uiparser: push QLabel lblPath
+2019-08-10 00:47:47,784 DEBUG PyQt5.uic.uiparser: pop widget QLabel lblPath
+2019-08-10 00:47:47,784 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e32d74a50>
+2019-08-10 00:47:47,785 DEBUG PyQt5.uic.uiparser: push QHBoxLayout horizontalLayout
+2019-08-10 00:47:47,785 DEBUG PyQt5.uic.properties: setting property placeholderText
+2019-08-10 00:47:47,785 DEBUG PyQt5.uic.uiparser: push QLineEdit ledPath
+2019-08-10 00:47:47,785 DEBUG PyQt5.uic.uiparser: pop widget QLineEdit ledPath
+2019-08-10 00:47:47,785 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e32d74a50>
+2019-08-10 00:47:47,785 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:47:47,786 DEBUG PyQt5.uic.uiparser: push QPushButton btnPath
+2019-08-10 00:47:47,786 DEBUG PyQt5.uic.uiparser: pop widget QPushButton btnPath
+2019-08-10 00:47:47,786 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e32d74a50>
+2019-08-10 00:47:47,786 DEBUG PyQt5.uic.uiparser: pop layout QHBoxLayout horizontalLayout
+2019-08-10 00:47:47,786 DEBUG PyQt5.uic.uiparser: pop layout QVBoxLayout verticalLayout
+2019-08-10 00:47:47,786 DEBUG PyQt5.uic.uiparser: push QHBoxLayout horizontalLayout_2
+2019-08-10 00:47:47,786 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:47:47,786 DEBUG PyQt5.uic.uiparser: push QLabel lblNameDB
+2019-08-10 00:47:47,786 DEBUG PyQt5.uic.uiparser: pop widget QLabel lblNameDB
+2019-08-10 00:47:47,787 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e32d74a50>
+2019-08-10 00:47:47,787 DEBUG PyQt5.uic.properties: setting property placeholderText
+2019-08-10 00:47:47,787 DEBUG PyQt5.uic.uiparser: push QLineEdit ledNameDB
+2019-08-10 00:47:47,787 DEBUG PyQt5.uic.uiparser: pop widget QLineEdit ledNameDB
+2019-08-10 00:47:47,787 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e32d74a50>
+2019-08-10 00:47:47,787 DEBUG PyQt5.uic.uiparser: pop layout QHBoxLayout horizontalLayout_2
+2019-08-10 00:47:47,787 DEBUG PyQt5.uic.uiparser: push QHBoxLayout horizontalLayout_4
+2019-08-10 00:47:47,787 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:47:47,788 DEBUG PyQt5.uic.uiparser: push QLabel lblPort
+2019-08-10 00:47:47,788 DEBUG PyQt5.uic.uiparser: pop widget QLabel lblPort
+2019-08-10 00:47:47,788 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e32d74a50>
+2019-08-10 00:47:47,788 DEBUG PyQt5.uic.properties: setting property placeholderText
+2019-08-10 00:47:47,788 DEBUG PyQt5.uic.uiparser: push QLineEdit ledPort
+2019-08-10 00:47:47,788 DEBUG PyQt5.uic.uiparser: pop widget QLineEdit ledPort
+2019-08-10 00:47:47,788 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e32d74a50>
+2019-08-10 00:47:47,788 DEBUG PyQt5.uic.uiparser: pop layout QHBoxLayout horizontalLayout_4
+2019-08-10 00:47:47,788 DEBUG PyQt5.uic.properties: setting property spacing
+2019-08-10 00:47:47,788 DEBUG PyQt5.uic.properties: setting property pyuicSpacing
+2019-08-10 00:47:47,789 DEBUG PyQt5.uic.uiparser: push QVBoxLayout verticalLayout_2
+2019-08-10 00:47:47,789 DEBUG PyQt5.uic.properties: setting property spacing
+2019-08-10 00:47:47,789 DEBUG PyQt5.uic.properties: setting property pyuicSpacing
+2019-08-10 00:47:47,789 DEBUG PyQt5.uic.uiparser: push QHBoxLayout horizontalLayout_3
+2019-08-10 00:47:47,789 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:47:47,789 DEBUG PyQt5.uic.uiparser: push QLabel lblIp
+2019-08-10 00:47:47,789 DEBUG PyQt5.uic.uiparser: pop widget QLabel lblIp
+2019-08-10 00:47:47,789 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e32d74a50>
+2019-08-10 00:47:47,789 DEBUG PyQt5.uic.properties: setting property inputMask
+2019-08-10 00:47:47,790 DEBUG PyQt5.uic.uiparser: push QLineEdit ledIp
+2019-08-10 00:47:47,790 DEBUG PyQt5.uic.uiparser: pop widget QLineEdit ledIp
+2019-08-10 00:47:47,790 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e32d74a50>
+2019-08-10 00:47:47,790 DEBUG PyQt5.uic.uiparser: pop layout QHBoxLayout horizontalLayout_3
+2019-08-10 00:47:47,790 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:47:47,790 DEBUG PyQt5.uic.uiparser: push QLabel lblInfo
+2019-08-10 00:47:47,790 DEBUG PyQt5.uic.uiparser: pop widget QLabel lblInfo
+2019-08-10 00:47:47,790 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e32d74a50>
+2019-08-10 00:47:47,790 DEBUG PyQt5.uic.uiparser: pop layout QVBoxLayout verticalLayout_2
+2019-08-10 00:47:47,791 DEBUG PyQt5.uic.uiparser: push QWidget bottomSpacer
+2019-08-10 00:47:47,791 DEBUG PyQt5.uic.uiparser: pop widget QWidget bottomSpacer
+2019-08-10 00:47:47,791 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e32d74a50>
+2019-08-10 00:47:47,791 DEBUG PyQt5.uic.properties: setting property orientation
+2019-08-10 00:47:47,805 DEBUG PyQt5.uic.properties: setting property standardButtons
+2019-08-10 00:47:47,806 DEBUG PyQt5.uic.properties: setting property centerButtons
+2019-08-10 00:47:47,806 DEBUG PyQt5.uic.uiparser: push QDialogButtonBox btnBox
+2019-08-10 00:47:47,806 DEBUG PyQt5.uic.uiparser: pop widget QDialogButtonBox btnBox
+2019-08-10 00:47:47,806 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e32d74a50>
+2019-08-10 00:47:47,806 DEBUG PyQt5.uic.uiparser: pop layout QGridLayout gridLayout
+2019-08-10 00:47:47,806 DEBUG PyQt5.uic.uiparser: pop widget ConfigWindow Dialog
+2019-08-10 00:47:47,806 DEBUG PyQt5.uic.uiparser: new topwidget None
+2019-08-10 00:47:54,755 DEBUG PyQt5.uic.uiparser: uiname is Dialog
+2019-08-10 00:47:54,755 DEBUG PyQt5.uic.uiparser: toplevel widget is AddUserWindow
+2019-08-10 00:47:54,755 DEBUG PyQt5.uic.properties: setting property geometry
+2019-08-10 00:47:54,755 DEBUG PyQt5.uic.properties: setting property minimumSize
+2019-08-10 00:47:54,756 DEBUG PyQt5.uic.properties: setting property maximumSize
+2019-08-10 00:47:54,756 DEBUG PyQt5.uic.properties: setting property windowTitle
+2019-08-10 00:47:54,756 DEBUG PyQt5.uic.uiparser: push AddUserWindow Dialog
+2019-08-10 00:47:54,756 DEBUG PyQt5.uic.uiparser: push QGridLayout gridLayout
+2019-08-10 00:47:54,757 DEBUG PyQt5.uic.uiparser: push QHBoxLayout horizontalLayout
+2019-08-10 00:47:54,757 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:47:54,757 DEBUG PyQt5.uic.uiparser: push QLabel label
+2019-08-10 00:47:54,758 DEBUG PyQt5.uic.uiparser: pop widget QLabel label
+2019-08-10 00:47:54,758 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.AddUserWindow object at 0x7f4e1c065cd0>
+2019-08-10 00:47:54,758 DEBUG PyQt5.uic.uiparser: push QLineEdit editUser
+2019-08-10 00:47:54,758 DEBUG PyQt5.uic.uiparser: pop widget QLineEdit editUser
+2019-08-10 00:47:54,759 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.AddUserWindow object at 0x7f4e1c065cd0>
+2019-08-10 00:47:54,759 DEBUG PyQt5.uic.uiparser: pop layout QHBoxLayout horizontalLayout
+2019-08-10 00:47:54,759 DEBUG PyQt5.uic.uiparser: push QHBoxLayout horizontalLayout_2
+2019-08-10 00:47:54,759 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:47:54,760 DEBUG PyQt5.uic.uiparser: push QLabel label_2
+2019-08-10 00:47:54,760 DEBUG PyQt5.uic.uiparser: pop widget QLabel label_2
+2019-08-10 00:47:54,760 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.AddUserWindow object at 0x7f4e1c065cd0>
+2019-08-10 00:47:54,760 DEBUG PyQt5.uic.properties: setting property echoMode
+2019-08-10 00:47:54,761 DEBUG PyQt5.uic.uiparser: push QLineEdit editPass1
+2019-08-10 00:47:54,761 DEBUG PyQt5.uic.uiparser: pop widget QLineEdit editPass1
+2019-08-10 00:47:54,761 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.AddUserWindow object at 0x7f4e1c065cd0>
+2019-08-10 00:47:54,761 DEBUG PyQt5.uic.uiparser: pop layout QHBoxLayout horizontalLayout_2
+2019-08-10 00:47:54,761 DEBUG PyQt5.uic.uiparser: push QHBoxLayout horizontalLayout_3
+2019-08-10 00:47:54,762 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:47:54,762 DEBUG PyQt5.uic.uiparser: push QLabel label_3
+2019-08-10 00:47:54,762 DEBUG PyQt5.uic.uiparser: pop widget QLabel label_3
+2019-08-10 00:47:54,762 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.AddUserWindow object at 0x7f4e1c065cd0>
+2019-08-10 00:47:54,763 DEBUG PyQt5.uic.properties: setting property echoMode
+2019-08-10 00:47:54,763 DEBUG PyQt5.uic.uiparser: push QLineEdit editPass2
+2019-08-10 00:47:54,763 DEBUG PyQt5.uic.uiparser: pop widget QLineEdit editPass2
+2019-08-10 00:47:54,763 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.AddUserWindow object at 0x7f4e1c065cd0>
+2019-08-10 00:47:54,763 DEBUG PyQt5.uic.uiparser: pop layout QHBoxLayout horizontalLayout_3
+2019-08-10 00:47:54,764 DEBUG PyQt5.uic.properties: setting property orientation
+2019-08-10 00:47:54,764 DEBUG PyQt5.uic.properties: setting property standardButtons
+2019-08-10 00:47:54,766 DEBUG PyQt5.uic.properties: setting property centerButtons
+2019-08-10 00:47:54,767 DEBUG PyQt5.uic.uiparser: push QDialogButtonBox buttonBox
+2019-08-10 00:47:54,767 DEBUG PyQt5.uic.uiparser: pop widget QDialogButtonBox buttonBox
+2019-08-10 00:47:54,767 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.AddUserWindow object at 0x7f4e1c065cd0>
+2019-08-10 00:47:54,767 DEBUG PyQt5.uic.uiparser: pop layout QGridLayout gridLayout
+2019-08-10 00:47:54,768 DEBUG PyQt5.uic.uiparser: pop widget AddUserWindow Dialog
+2019-08-10 00:47:54,768 DEBUG PyQt5.uic.uiparser: new topwidget None
+2019-08-10 00:49:05,545 DEBUG PyQt5.uic.uiparser: uiname is Dialog
+2019-08-10 00:49:05,546 DEBUG PyQt5.uic.uiparser: toplevel widget is ConfigWindow
+2019-08-10 00:49:05,546 DEBUG PyQt5.uic.properties: setting property geometry
+2019-08-10 00:49:05,546 DEBUG PyQt5.uic.properties: setting property sizePolicy
+2019-08-10 00:49:05,546 DEBUG PyQt5.uic.properties: setting property windowTitle
+2019-08-10 00:49:05,547 DEBUG PyQt5.uic.properties: setting property windowIcon
+2019-08-10 00:49:05,547 DEBUG PyQt5.uic.properties: setting property sizeGripEnabled
+2019-08-10 00:49:05,547 DEBUG PyQt5.uic.uiparser: push ConfigWindow Dialog
+2019-08-10 00:49:05,548 DEBUG PyQt5.uic.uiparser: push QGridLayout gridLayout
+2019-08-10 00:49:05,548 DEBUG PyQt5.uic.properties: setting property spacing
+2019-08-10 00:49:05,548 DEBUG PyQt5.uic.properties: setting property pyuicSpacing
+2019-08-10 00:49:05,548 DEBUG PyQt5.uic.uiparser: push QVBoxLayout verticalLayout
+2019-08-10 00:49:05,548 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:49:05,548 DEBUG PyQt5.uic.uiparser: push QLabel lblPath
+2019-08-10 00:49:05,548 DEBUG PyQt5.uic.uiparser: pop widget QLabel lblPath
+2019-08-10 00:49:05,548 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e1c06b5f0>
+2019-08-10 00:49:05,548 DEBUG PyQt5.uic.uiparser: push QHBoxLayout horizontalLayout
+2019-08-10 00:49:05,548 DEBUG PyQt5.uic.properties: setting property placeholderText
+2019-08-10 00:49:05,548 DEBUG PyQt5.uic.uiparser: push QLineEdit ledPath
+2019-08-10 00:49:05,548 DEBUG PyQt5.uic.uiparser: pop widget QLineEdit ledPath
+2019-08-10 00:49:05,548 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e1c06b5f0>
+2019-08-10 00:49:05,548 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:49:05,549 DEBUG PyQt5.uic.uiparser: push QPushButton btnPath
+2019-08-10 00:49:05,549 DEBUG PyQt5.uic.uiparser: pop widget QPushButton btnPath
+2019-08-10 00:49:05,549 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e1c06b5f0>
+2019-08-10 00:49:05,549 DEBUG PyQt5.uic.uiparser: pop layout QHBoxLayout horizontalLayout
+2019-08-10 00:49:05,549 DEBUG PyQt5.uic.uiparser: pop layout QVBoxLayout verticalLayout
+2019-08-10 00:49:05,549 DEBUG PyQt5.uic.uiparser: push QHBoxLayout horizontalLayout_2
+2019-08-10 00:49:05,549 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:49:05,549 DEBUG PyQt5.uic.uiparser: push QLabel lblNameDB
+2019-08-10 00:49:05,549 DEBUG PyQt5.uic.uiparser: pop widget QLabel lblNameDB
+2019-08-10 00:49:05,549 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e1c06b5f0>
+2019-08-10 00:49:05,549 DEBUG PyQt5.uic.properties: setting property placeholderText
+2019-08-10 00:49:05,549 DEBUG PyQt5.uic.uiparser: push QLineEdit ledNameDB
+2019-08-10 00:49:05,549 DEBUG PyQt5.uic.uiparser: pop widget QLineEdit ledNameDB
+2019-08-10 00:49:05,549 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e1c06b5f0>
+2019-08-10 00:49:05,549 DEBUG PyQt5.uic.uiparser: pop layout QHBoxLayout horizontalLayout_2
+2019-08-10 00:49:05,549 DEBUG PyQt5.uic.uiparser: push QHBoxLayout horizontalLayout_4
+2019-08-10 00:49:05,550 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:49:05,550 DEBUG PyQt5.uic.uiparser: push QLabel lblPort
+2019-08-10 00:49:05,550 DEBUG PyQt5.uic.uiparser: pop widget QLabel lblPort
+2019-08-10 00:49:05,550 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e1c06b5f0>
+2019-08-10 00:49:05,550 DEBUG PyQt5.uic.properties: setting property placeholderText
+2019-08-10 00:49:05,550 DEBUG PyQt5.uic.uiparser: push QLineEdit ledPort
+2019-08-10 00:49:05,550 DEBUG PyQt5.uic.uiparser: pop widget QLineEdit ledPort
+2019-08-10 00:49:05,550 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e1c06b5f0>
+2019-08-10 00:49:05,550 DEBUG PyQt5.uic.uiparser: pop layout QHBoxLayout horizontalLayout_4
+2019-08-10 00:49:05,550 DEBUG PyQt5.uic.properties: setting property spacing
+2019-08-10 00:49:05,550 DEBUG PyQt5.uic.properties: setting property pyuicSpacing
+2019-08-10 00:49:05,550 DEBUG PyQt5.uic.uiparser: push QVBoxLayout verticalLayout_2
+2019-08-10 00:49:05,550 DEBUG PyQt5.uic.properties: setting property spacing
+2019-08-10 00:49:05,550 DEBUG PyQt5.uic.properties: setting property pyuicSpacing
+2019-08-10 00:49:05,550 DEBUG PyQt5.uic.uiparser: push QHBoxLayout horizontalLayout_3
+2019-08-10 00:49:05,551 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:49:05,551 DEBUG PyQt5.uic.uiparser: push QLabel lblIp
+2019-08-10 00:49:05,551 DEBUG PyQt5.uic.uiparser: pop widget QLabel lblIp
+2019-08-10 00:49:05,551 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e1c06b5f0>
+2019-08-10 00:49:05,551 DEBUG PyQt5.uic.properties: setting property inputMask
+2019-08-10 00:49:05,551 DEBUG PyQt5.uic.uiparser: push QLineEdit ledIp
+2019-08-10 00:49:05,551 DEBUG PyQt5.uic.uiparser: pop widget QLineEdit ledIp
+2019-08-10 00:49:05,551 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e1c06b5f0>
+2019-08-10 00:49:05,551 DEBUG PyQt5.uic.uiparser: pop layout QHBoxLayout horizontalLayout_3
+2019-08-10 00:49:05,551 DEBUG PyQt5.uic.properties: setting property text
+2019-08-10 00:49:05,551 DEBUG PyQt5.uic.uiparser: push QLabel lblInfo
+2019-08-10 00:49:05,551 DEBUG PyQt5.uic.uiparser: pop widget QLabel lblInfo
+2019-08-10 00:49:05,552 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e1c06b5f0>
+2019-08-10 00:49:05,552 DEBUG PyQt5.uic.uiparser: pop layout QVBoxLayout verticalLayout_2
+2019-08-10 00:49:05,552 DEBUG PyQt5.uic.uiparser: push QWidget bottomSpacer
+2019-08-10 00:49:05,552 DEBUG PyQt5.uic.uiparser: pop widget QWidget bottomSpacer
+2019-08-10 00:49:05,552 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e1c06b5f0>
+2019-08-10 00:49:05,552 DEBUG PyQt5.uic.properties: setting property orientation
+2019-08-10 00:49:05,552 DEBUG PyQt5.uic.properties: setting property standardButtons
+2019-08-10 00:49:05,552 DEBUG PyQt5.uic.properties: setting property centerButtons
+2019-08-10 00:49:05,552 DEBUG PyQt5.uic.uiparser: push QDialogButtonBox btnBox
+2019-08-10 00:49:05,552 DEBUG PyQt5.uic.uiparser: pop widget QDialogButtonBox btnBox
+2019-08-10 00:49:05,552 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ConfigWindow object at 0x7f4e1c06b5f0>
+2019-08-10 00:49:05,552 DEBUG PyQt5.uic.uiparser: pop layout QGridLayout gridLayout
+2019-08-10 00:49:05,552 DEBUG PyQt5.uic.uiparser: pop widget ConfigWindow Dialog
+2019-08-10 00:49:05,552 DEBUG PyQt5.uic.uiparser: new topwidget None
+2019-08-10 00:55:19,776 INFO server: Установлено соединение с ПК ('127.0.0.1', 45650)
+2019-08-11 12:11:27,524 INFO server: start with 127.0.0.1:7777
+2019-08-11 12:11:29,034 DEBUG PyQt5.uic.uiparser: uiname is MainWindow
+2019-08-11 12:11:29,059 DEBUG PyQt5.uic.uiparser: toplevel widget is ServerMainWindow
+2019-08-11 12:11:29,059 DEBUG PyQt5.uic.properties: setting property geometry
+2019-08-11 12:11:29,068 DEBUG PyQt5.uic.properties: setting property windowTitle
+2019-08-11 12:11:29,078 DEBUG PyQt5.uic.properties: setting property windowIcon
+2019-08-11 12:11:29,186 DEBUG PyQt5.uic.properties: setting property styleSheet
+2019-08-11 12:11:29,187 DEBUG PyQt5.uic.properties: setting property iconSize
+2019-08-11 12:11:29,198 DEBUG PyQt5.uic.uiparser: push ServerMainWindow MainWindow
+2019-08-11 12:11:29,204 DEBUG PyQt5.uic.uiparser: push QWidget centralwidget
+2019-08-11 12:11:29,204 DEBUG PyQt5.uic.properties: setting property pyuicMargins
+2019-08-11 12:11:29,205 DEBUG PyQt5.uic.uiparser: push QGridLayout gridLayout
+2019-08-11 12:11:29,228 DEBUG PyQt5.uic.properties: setting property sizePolicy
+2019-08-11 12:11:29,229 DEBUG PyQt5.uic.properties: setting property frameShape
+2019-08-11 12:11:29,229 DEBUG PyQt5.uic.properties: setting property frameShadow
+2019-08-11 12:11:29,229 DEBUG PyQt5.uic.properties: setting property lineWidth
+2019-08-11 12:11:29,229 DEBUG PyQt5.uic.properties: setting property orientation
+2019-08-11 12:11:29,242 DEBUG PyQt5.uic.properties: setting property handleWidth
+2019-08-11 12:11:29,242 DEBUG PyQt5.uic.properties: setting property childrenCollapsible
+2019-08-11 12:11:29,243 DEBUG PyQt5.uic.uiparser: push QSplitter splitter
+2019-08-11 12:11:29,250 DEBUG PyQt5.uic.properties: setting property text
+2019-08-11 12:11:29,323 DEBUG PyQt5.uic.uiparser: push QLabel lblUser
+2019-08-11 12:11:29,323 DEBUG PyQt5.uic.uiparser: pop widget QLabel lblUser
+2019-08-11 12:11:29,323 DEBUG PyQt5.uic.uiparser: new topwidget <PyQt5.QtWidgets.QSplitter object at 0x7f9b76c31910>
+2019-08-11 12:11:29,450 DEBUG PyQt5.uic.uiparser: push QTableView active_users
+2019-08-11 12:11:29,450 DEBUG PyQt5.uic.uiparser: pop widget QTableView active_users
+2019-08-11 12:11:29,450 DEBUG PyQt5.uic.uiparser: new topwidget <PyQt5.QtWidgets.QSplitter object at 0x7f9b76c31910>
+2019-08-11 12:11:29,450 DEBUG PyQt5.uic.uiparser: pop widget QSplitter splitter
+2019-08-11 12:11:29,451 DEBUG PyQt5.uic.uiparser: new topwidget <PyQt5.QtWidgets.QWidget object at 0x7f9b76c31690>
+2019-08-11 12:11:29,457 DEBUG PyQt5.uic.uiparser: pop layout QGridLayout gridLayout
+2019-08-11 12:11:29,458 DEBUG PyQt5.uic.uiparser: pop widget QWidget centralwidget
+2019-08-11 12:11:29,458 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ServerMainWindow object at 0x7f9b76c31550>
+2019-08-11 12:11:29,496 DEBUG PyQt5.uic.properties: setting property geometry
+2019-08-11 12:11:29,497 DEBUG PyQt5.uic.uiparser: push QMenuBar menubar
+2019-08-11 12:11:29,497 DEBUG PyQt5.uic.uiparser: pop widget QMenuBar menubar
+2019-08-11 12:11:29,497 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ServerMainWindow object at 0x7f9b76c31550>
+2019-08-11 12:11:29,497 DEBUG PyQt5.uic.uiparser: push QStatusBar statusbar
+2019-08-11 12:11:29,498 DEBUG PyQt5.uic.uiparser: pop widget QStatusBar statusbar
+2019-08-11 12:11:29,498 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ServerMainWindow object at 0x7f9b76c31550>
+2019-08-11 12:11:29,499 DEBUG PyQt5.uic.properties: setting property sizePolicy
+2019-08-11 12:11:29,499 DEBUG PyQt5.uic.properties: setting property windowTitle
+2019-08-11 12:11:29,508 DEBUG PyQt5.uic.properties: setting property movable
+2019-08-11 12:11:29,514 DEBUG PyQt5.uic.uiparser: push QToolBar toolBar
+2019-08-11 12:11:29,514 DEBUG PyQt5.uic.uiparser: pop widget QToolBar toolBar
+2019-08-11 12:11:29,514 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ServerMainWindow object at 0x7f9b76c31550>
+2019-08-11 12:11:29,515 DEBUG PyQt5.uic.properties: setting property icon
+2019-08-11 12:11:29,527 DEBUG PyQt5.uic.properties: setting property text
+2019-08-11 12:11:29,527 DEBUG PyQt5.uic.properties: setting property shortcut
+2019-08-11 12:11:29,528 DEBUG PyQt5.uic.properties: setting property icon
+2019-08-11 12:11:29,529 DEBUG PyQt5.uic.properties: setting property text
+2019-08-11 12:11:29,529 DEBUG PyQt5.uic.properties: setting property toolTip
+2019-08-11 12:11:29,529 DEBUG PyQt5.uic.properties: setting property shortcut
+2019-08-11 12:11:29,530 DEBUG PyQt5.uic.properties: setting property icon
+2019-08-11 12:11:29,530 DEBUG PyQt5.uic.properties: setting property text
+2019-08-11 12:11:29,531 DEBUG PyQt5.uic.properties: setting property toolTip
+2019-08-11 12:11:29,531 DEBUG PyQt5.uic.properties: setting property shortcut
+2019-08-11 12:11:29,531 DEBUG PyQt5.uic.properties: setting property icon
+2019-08-11 12:11:29,532 DEBUG PyQt5.uic.properties: setting property text
+2019-08-11 12:11:29,532 DEBUG PyQt5.uic.properties: setting property toolTip
+2019-08-11 12:11:29,533 DEBUG PyQt5.uic.properties: setting property shortcut
+2019-08-11 12:11:29,533 DEBUG PyQt5.uic.uiparser: pop widget ServerMainWindow MainWindow
+2019-08-11 12:11:29,533 DEBUG PyQt5.uic.uiparser: new topwidget None
+2019-08-11 12:11:29,533 DEBUG PyQt5.uic.uiparser: add action action_refresh to toolBar
+2019-08-11 12:11:29,533 DEBUG PyQt5.uic.uiparser: add action action_history to toolBar
+2019-08-11 12:11:29,534 DEBUG PyQt5.uic.uiparser: add action action_config to toolBar
+2019-08-11 12:11:29,534 DEBUG PyQt5.uic.uiparser: add action action_add_user to toolBar
+2019-08-11 12:11:29,536 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f9b76c31550> подписался на событие presence
+2019-08-11 12:11:29,536 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f9b76c31550> подписался на событие exit
+2019-08-11 12:11:29,536 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f9b76c31550> подписался на событие action_refresh
+2019-08-11 12:11:29,536 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f9b76c31550> подписался на событие action_history
+2019-08-11 12:11:29,536 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f9b76c31550> подписался на событие action_config
+2019-08-11 12:11:29,537 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f9b76c31550> подписался на событие action_add_user
+2019-08-11 12:12:10,620 INFO server: start with 127.0.0.1:7777
+2019-08-11 12:12:11,673 DEBUG PyQt5.uic.uiparser: uiname is MainWindow
+2019-08-11 12:12:11,673 DEBUG PyQt5.uic.uiparser: toplevel widget is ServerMainWindow
+2019-08-11 12:12:11,673 DEBUG PyQt5.uic.properties: setting property geometry
+2019-08-11 12:12:11,673 DEBUG PyQt5.uic.properties: setting property windowTitle
+2019-08-11 12:12:11,673 DEBUG PyQt5.uic.properties: setting property windowIcon
+2019-08-11 12:12:11,675 DEBUG PyQt5.uic.properties: setting property styleSheet
+2019-08-11 12:12:11,675 DEBUG PyQt5.uic.properties: setting property iconSize
+2019-08-11 12:12:11,675 DEBUG PyQt5.uic.uiparser: push ServerMainWindow MainWindow
+2019-08-11 12:12:11,676 DEBUG PyQt5.uic.uiparser: push QWidget centralwidget
+2019-08-11 12:12:11,676 DEBUG PyQt5.uic.properties: setting property pyuicMargins
+2019-08-11 12:12:11,676 DEBUG PyQt5.uic.uiparser: push QGridLayout gridLayout
+2019-08-11 12:12:11,676 DEBUG PyQt5.uic.properties: setting property sizePolicy
+2019-08-11 12:12:11,676 DEBUG PyQt5.uic.properties: setting property frameShape
+2019-08-11 12:12:11,676 DEBUG PyQt5.uic.properties: setting property frameShadow
+2019-08-11 12:12:11,676 DEBUG PyQt5.uic.properties: setting property lineWidth
+2019-08-11 12:12:11,676 DEBUG PyQt5.uic.properties: setting property orientation
+2019-08-11 12:12:11,677 DEBUG PyQt5.uic.properties: setting property handleWidth
+2019-08-11 12:12:11,677 DEBUG PyQt5.uic.properties: setting property childrenCollapsible
+2019-08-11 12:12:11,677 DEBUG PyQt5.uic.uiparser: push QSplitter splitter
+2019-08-11 12:12:11,677 DEBUG PyQt5.uic.properties: setting property text
+2019-08-11 12:12:11,680 DEBUG PyQt5.uic.uiparser: push QLabel lblUser
+2019-08-11 12:12:11,680 DEBUG PyQt5.uic.uiparser: pop widget QLabel lblUser
+2019-08-11 12:12:11,680 DEBUG PyQt5.uic.uiparser: new topwidget <PyQt5.QtWidgets.QSplitter object at 0x7f96a8295910>
+2019-08-11 12:12:11,698 DEBUG PyQt5.uic.uiparser: push QTableView active_users
+2019-08-11 12:12:11,698 DEBUG PyQt5.uic.uiparser: pop widget QTableView active_users
+2019-08-11 12:12:11,698 DEBUG PyQt5.uic.uiparser: new topwidget <PyQt5.QtWidgets.QSplitter object at 0x7f96a8295910>
+2019-08-11 12:12:11,699 DEBUG PyQt5.uic.uiparser: pop widget QSplitter splitter
+2019-08-11 12:12:11,699 DEBUG PyQt5.uic.uiparser: new topwidget <PyQt5.QtWidgets.QWidget object at 0x7f96a8295690>
+2019-08-11 12:12:11,699 DEBUG PyQt5.uic.uiparser: pop layout QGridLayout gridLayout
+2019-08-11 12:12:11,699 DEBUG PyQt5.uic.uiparser: pop widget QWidget centralwidget
+2019-08-11 12:12:11,699 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ServerMainWindow object at 0x7f96a8295550>
+2019-08-11 12:12:11,700 DEBUG PyQt5.uic.properties: setting property geometry
+2019-08-11 12:12:11,700 DEBUG PyQt5.uic.uiparser: push QMenuBar menubar
+2019-08-11 12:12:11,700 DEBUG PyQt5.uic.uiparser: pop widget QMenuBar menubar
+2019-08-11 12:12:11,700 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ServerMainWindow object at 0x7f96a8295550>
+2019-08-11 12:12:11,700 DEBUG PyQt5.uic.uiparser: push QStatusBar statusbar
+2019-08-11 12:12:11,700 DEBUG PyQt5.uic.uiparser: pop widget QStatusBar statusbar
+2019-08-11 12:12:11,700 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ServerMainWindow object at 0x7f96a8295550>
+2019-08-11 12:12:11,700 DEBUG PyQt5.uic.properties: setting property sizePolicy
+2019-08-11 12:12:11,700 DEBUG PyQt5.uic.properties: setting property windowTitle
+2019-08-11 12:12:11,700 DEBUG PyQt5.uic.properties: setting property movable
+2019-08-11 12:12:11,700 DEBUG PyQt5.uic.uiparser: push QToolBar toolBar
+2019-08-11 12:12:11,701 DEBUG PyQt5.uic.uiparser: pop widget QToolBar toolBar
+2019-08-11 12:12:11,701 DEBUG PyQt5.uic.uiparser: new topwidget <talkative_server.gui.ServerMainWindow object at 0x7f96a8295550>
+2019-08-11 12:12:11,701 DEBUG PyQt5.uic.properties: setting property icon
+2019-08-11 12:12:11,701 DEBUG PyQt5.uic.properties: setting property text
+2019-08-11 12:12:11,701 DEBUG PyQt5.uic.properties: setting property shortcut
+2019-08-11 12:12:11,701 DEBUG PyQt5.uic.properties: setting property icon
+2019-08-11 12:12:11,701 DEBUG PyQt5.uic.properties: setting property text
+2019-08-11 12:12:11,701 DEBUG PyQt5.uic.properties: setting property toolTip
+2019-08-11 12:12:11,701 DEBUG PyQt5.uic.properties: setting property shortcut
+2019-08-11 12:12:11,701 DEBUG PyQt5.uic.properties: setting property icon
+2019-08-11 12:12:11,702 DEBUG PyQt5.uic.properties: setting property text
+2019-08-11 12:12:11,702 DEBUG PyQt5.uic.properties: setting property toolTip
+2019-08-11 12:12:11,702 DEBUG PyQt5.uic.properties: setting property shortcut
+2019-08-11 12:12:11,702 DEBUG PyQt5.uic.properties: setting property icon
+2019-08-11 12:12:11,702 DEBUG PyQt5.uic.properties: setting property text
+2019-08-11 12:12:11,702 DEBUG PyQt5.uic.properties: setting property toolTip
+2019-08-11 12:12:11,702 DEBUG PyQt5.uic.properties: setting property shortcut
+2019-08-11 12:12:11,702 DEBUG PyQt5.uic.uiparser: pop widget ServerMainWindow MainWindow
+2019-08-11 12:12:11,702 DEBUG PyQt5.uic.uiparser: new topwidget None
+2019-08-11 12:12:11,702 DEBUG PyQt5.uic.uiparser: add action action_refresh to toolBar
+2019-08-11 12:12:11,702 DEBUG PyQt5.uic.uiparser: add action action_history to toolBar
+2019-08-11 12:12:11,702 DEBUG PyQt5.uic.uiparser: add action action_config to toolBar
+2019-08-11 12:12:11,703 DEBUG PyQt5.uic.uiparser: add action action_add_user to toolBar
+2019-08-11 12:12:11,703 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f96a8295550> подписался на событие presence
+2019-08-11 12:12:11,703 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f96a8295550> подписался на событие exit
+2019-08-11 12:12:11,703 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f96a8295550> подписался на событие action_refresh
+2019-08-11 12:12:11,703 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f96a8295550> подписался на событие action_history
+2019-08-11 12:12:11,703 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f96a8295550> подписался на событие action_config
+2019-08-11 12:12:11,703 INFO server: <talkative_server.gui.ServerMainWindow object at 0x7f96a8295550> подписался на событие action_add_user
