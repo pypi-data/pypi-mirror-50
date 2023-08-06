@@ -1,0 +1,6 @@
+[console_scripts]
+mkbjoerninstance = dataflake.wsgi.bjoern.configurator:mkzope
+
+[paste.server_runner]
+main = dataflake.wsgi.bjoern:serve_paste
+

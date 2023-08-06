@@ -1,0 +1,84 @@
+Metadata-Version: 2.1
+Name: dataflake.wsgi.bjoern
+Version: 1.1
+Summary: PasteDeploy entry point for the bjoern WSGI server
+Home-page: https://github.com/dataflake/dataflake.wsgi.bjoern
+Author: Jens Vagelpohl and Contributors
+Author-email: jens@netz.ooo
+License: ZPL 2.1
+Project-URL: Documentation, https://dataflakewsgibjoern.readthedocs.io
+Project-URL: Issue Tracker, https://github.com/dataflake/dataflake.wsgi.bjoern/issues
+Project-URL: Sources, https://github.com/dataflake/dataflake.wsgi.bjoern
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Zope
+Classifier: Framework :: Zope :: 4
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Zope Public License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI
+Requires-Python: >=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*
+Requires-Dist: setuptools
+Requires-Dist: bjoern
+Requires-Dist: paste
+Requires-Dist: Zope
+Provides-Extra: docs
+Requires-Dist: sphinx-rtd-theme ; extra == 'docs'
+Requires-Dist: Sphinx (<2) ; (python_version < "3") and extra == 'docs'
+Requires-Dist: Sphinx ; (python_version >= "3") and extra == 'docs'
+
+.. image:: https://travis-ci.com/dataflake/dataflake.wsgi.bjoern.svg?branch=master
+   :target: https://travis-ci.com/dataflake/dataflake.wsgi.bjoern
+
+.. image:: https://coveralls.io/repos/github/dataflake/dataflake.wsgi.bjoern/badge.svg?branch=master
+   :target: https://coveralls.io/github/dataflake/dataflake.wsgi.bjoern?branch=master
+
+.. image:: https://readthedocs.org/projects/dataflakewsgibjoern/badge/?version=latest
+   :target: https://dataflakewsgibjoern.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
+
+.. image:: https://img.shields.io/pypi/v/dataflake.wsgi.bjoern.svg
+   :target: https://pypi.org/project/dataflake.wsgi.bjoern/
+   :alt: Current version on PyPI
+
+.. image:: https://img.shields.io/pypi/pyversions/dataflake.wsgi.bjoern.svg
+   :target: https://pypi.org/project/dataflake.wsgi.bjoern/
+   :alt: Supported Python versions
+
+
+dataflake.wsgi.bjoern
+=====================
+
+This package provides a PasteDeploy-compatible entry point to easily integrate
+the `bjoern WSGI server <https://github.com/jonashaag/bjoern>`_ into an
+environment that uses PasteDeploy-style ``.ini`` files to compose a WSGI
+application.
+
+It also includes a script to create a basic WSGI configuration file for Zope,
+similar to Zope's own ``mkwsgiinstance``, but specifying ``bjoern`` instead of
+``waitress`` as WSGI server.
+
+
+Changelog
+=========
+
+1.1 (2019-08-14)
+----------------
+- Added the ``listen`` parameter to pass a port or a host and port.
+  This is more in line with what ``plone.recipe.zope2instance`` expects.
+
+
+1.0 (2019-04-20)
+----------------
+- Initial release
+
+
