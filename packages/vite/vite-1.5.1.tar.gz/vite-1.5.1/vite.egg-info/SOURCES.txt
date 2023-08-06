@@ -1,0 +1,11 @@
+README.md
+setup.py
+vite/__init__.py
+vite/cli.py
+vite/vite.py
+vite.egg-info/PKG-INFO
+vite.egg-info/SOURCES.txt
+vite.egg-info/dependency_links.txt
+vite.egg-info/entry_points.txt
+vite.egg-info/requires.txt
+vite.egg-info/top_level.txt
