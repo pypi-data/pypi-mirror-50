@@ -1,0 +1,8 @@
+#!/usr/bin/env python
+
+def main():
+    print("Testing git phoenix on PyPi...")
+
+
+if __name__ == "__main__":
+    main()
