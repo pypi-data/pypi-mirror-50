@@ -1,0 +1,5 @@
+boto3>=1.7.13
+crc32c
+puremagic==1.4
+requests<3,>=2.18.4
+termcolor<2,>=1.1.0
