@@ -1,0 +1,14 @@
+tamnun/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tamnun/bert/__init__.py,sha256=Vi82wmf_6t5C3O0WlXB2VxC2MR3lORjNYDbZ_lrKbG0,109
+tamnun/bert/bert_classifier.py,sha256=Ymv0PsaSic4fToF6o14OQ0AU_M5I-1LlSkjEQD-T-WU,1561
+tamnun/bert/bert_for_classification.py,sha256=34WYW3JXrWmje2I8Dl7rOn3Je5pN8P0qFzryOvMJShI,873
+tamnun/bert/bert_vectorizer.py,sha256=ZL1Dh0kbDER23kEUdXmtXcuoDIQNMorYNeZ5-Cheif0,3157
+tamnun/bert/constants.py,sha256=XU4BKIdcepGIrhS5HQMcW8G9r-2btzRM-jt78ekn2QU,113
+tamnun/core/__init__.py,sha256=a7BZeB81hugXQoP0DS-y0e6jPXUskiT3aWyvcwneYOg,54
+tamnun/core/torch_estimator.py,sha256=3TGqrUd0-fq3vmNehx7p0jnOs9KppoKoUuh3cxY48GY,5971
+tamnun/transfer/__init__.py,sha256=NZahYXhqJaXiGGR373UqDMLwOllIEVCqoDfFNSHBo00,47
+tamnun/transfer/distiller.py,sha256=sqj5w6eca_A_RxJ1vBMzC7hde-bbncMw-dS8tDDH_9A,1696
+tamnun-0.1.0.dist-info/METADATA,sha256=MRND_ELZeq61NrzxWJ32xDWnSQDjZBAw5H8Jdc5DDvc,4322
+tamnun-0.1.0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+tamnun-0.1.0.dist-info/top_level.txt,sha256=X5emDbOBTuGjHlIx4_m5D8nv-QEPx8u9UouXc-B6k8M,7
+tamnun-0.1.0.dist-info/RECORD,,
