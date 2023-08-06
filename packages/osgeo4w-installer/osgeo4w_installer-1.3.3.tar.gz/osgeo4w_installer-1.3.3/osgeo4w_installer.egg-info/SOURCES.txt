@@ -1,0 +1,11 @@
+LICENSE
+README.md
+setup.py
+osgeo4w_installer/__data__.py
+osgeo4w_installer/__init__.py
+osgeo4w_installer/osgeo4w_installer.py
+osgeo4w_installer/pycharm_env_batch_maker.py
+osgeo4w_installer.egg-info/PKG-INFO
+osgeo4w_installer.egg-info/SOURCES.txt
+osgeo4w_installer.egg-info/dependency_links.txt
+osgeo4w_installer.egg-info/top_level.txt
