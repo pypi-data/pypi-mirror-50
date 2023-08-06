@@ -1,0 +1,15 @@
+solar_utils/NREL_DISCLAIMERS-COPYRIGHTS-LICENSES.txt,sha256=rcnn4G5mGQiwmH7STxDT2VI1-fh2pWRIIevQ5uVyyWk,3809
+solar_utils/__init__.py,sha256=iRkYUTOmEQrXPRuSQv0jlbAV86p0wZGQ8WAByzdSQfk,432
+solar_utils/core.py,sha256=tc2gL7doVlu2DLq-TY_aMqSW7eIV8Gb0FTNsqIj2bIU,11203
+solar_utils/dummy.cp36-win_amd64.pyd,sha256=Pr76XopZHke7hYsrjngAacQeO6KQHAaSrNPuq9VXjek,10240
+solar_utils/exceptions.py,sha256=6aAjW34n2N6PVkqrmJyPxUfhz0bnai8VMvcZhUSnxJk,5031
+solar_utils/solposAM.dll,sha256=vU_DUF2Dn0AVW9F3c-koUCjVhIxNqrGFOV88oFYjkog,20480
+solar_utils/spectrl2.dll,sha256=PVCWDPL-ZzveKWBN8_6lG_necqmQObs2ACVRSuoNN88,27648
+solar_utils/tests/__init__.py,sha256=SSwJKbEbMT0Ec5kzyKA3M9EotWz2cZfNP5e3NEReXqg,108
+solar_utils/tests/test_cdlls.py,sha256=dgIqQDgDlizYep2OtQGg3U0btXLnnJPRQZUmpcjc0_M,8864
+solar_utils/tests/test_spectrl2_data.json,sha256=BL74L0iSmTKP-JDhhY1-g0fHfWv2J6Izrv5LUexsIQE,10637
+SolarUtils-0.3.dist-info/LICENSE,sha256=mqUBCSqj_D_3WEGJTHd1AoZT106lXSI_u5bYF4eeNk0,1513
+SolarUtils-0.3.dist-info/METADATA,sha256=3j8K4GYmo-09Jqdc2v8ttiT6zbnCvhCbUsob2Hs9Eic,3070
+SolarUtils-0.3.dist-info/WHEEL,sha256=S_mX8sP6H8AMjLVRL5jkNlK73uf4g6NGqiKQ98w1PV0,106
+SolarUtils-0.3.dist-info/top_level.txt,sha256=z2p3nYQUAh05vyKeJYRmCvw25A1l7kJw57DP7QBoDZw,12
+SolarUtils-0.3.dist-info/RECORD,,
