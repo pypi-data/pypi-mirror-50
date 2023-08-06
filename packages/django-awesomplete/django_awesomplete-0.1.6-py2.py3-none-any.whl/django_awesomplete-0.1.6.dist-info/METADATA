@@ -1,0 +1,143 @@
+Metadata-Version: 2.1
+Name: django-awesomplete
+Version: 0.1.6
+Summary: A django app that provides suggestions while you type into the field.
+Home-page: https://github.com/dldevinc/django-awesomplete
+Author: Mihail Mishakin
+Author-email: x896321475@gmail.com
+License: BSD
+Keywords: django,suggestions,awesomplete
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Framework :: Django :: 1.11
+Classifier: Framework :: Django :: 2.0
+Classifier: Framework :: Django :: 2.1
+Classifier: Framework :: Django :: 2.2
+Classifier: Framework :: Django
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Description-Content-Type: text/markdown
+Requires-Dist: django (<3.0,>1.11)
+
+
+# Django Awesomplete
+A django app that provides suggestions while you type into the field.
+
+## Requirements
++ Python 3.4+
++ Django 1.11+
+
+## Quickstart
+
+Lets assume we are making a cities app in django and our `models.py` is:
+```python
+from django.db import models
+
+
+class City(models.Model):
+    name = models.CharField(max_length=255)
+    country = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+```
+
+To use suggestions we need to override widget in `admin.py`:
+```python
+from django import forms
+from django.contrib import admin
+from awesomplete.widgets import AwesompleteWidget
+from .models import City
+
+
+def get_country_suggestions():
+    """
+    Get a suggestions list from existing records.
+    """
+    return City.objects.values_list(
+        'country', flat=True
+    ).order_by('country').distinct()
+
+
+class CityAdminForm(forms.ModelForm):
+    class Meta:
+        model = City
+        fields = forms.ALL_FIELDS
+        widgets = {
+            'country': AwesompleteWidget(
+                suggestions=get_country_suggestions
+            )
+        }
+
+
+@admin.register(City)
+class CityAdmin(admin.ModelAdmin):
+    form = CityAdminForm
+```
+
+Result:
+
+![](http://i.imgur.com/NRCdgNu.png)
+
+## Installation
+Install the desired version with pip:
+
+```pip install django-awesomplete```
+
+Then add awesomplete to INSTALLED_APPS in your settings file:
+
+```python
+INSTALLED_APPS = (
+    # ...
+    'awesomplete',
+    # ...
+)
+```
+
+## Suggestions
+You can pass either an iterable of strings, 2-tuples, dicts or a callable that returns such an iterable.
+
+```python
+# iterable of strings
+AwesompleteWidget(
+    suggestions=['one', 'two', 'three']
+)
+
+# iterable of 2-tuples (label, value)
+AwesompleteWidget(
+    suggestions=(
+        ('English', 'en'),
+        ('Spanish', 'es')
+    )
+)
+
+# iterable of dicts
+AwesompleteWidget(
+    suggestions=(
+        {
+            'label': 'English',
+            'value': 'en'        
+        },
+        {
+            'label': 'Spanish',
+            'value': 'es'        
+        }
+    )
+)
+```
+
+## Links
++ [awesomplete](http://leaverou.github.io/awesomplete/) created by Lea Verou.
+
+## License
+Copyright (c) 2018 Mihail Mishakin Released under the BSD license (see LICENSE)
+
+
