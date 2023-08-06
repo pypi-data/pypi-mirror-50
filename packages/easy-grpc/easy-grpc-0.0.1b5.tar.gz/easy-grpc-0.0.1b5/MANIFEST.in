@@ -1,0 +1,2 @@
+include LICENSE.md requirements.txt
+global-exclude *.pyc *__pycache__* *.pyo
