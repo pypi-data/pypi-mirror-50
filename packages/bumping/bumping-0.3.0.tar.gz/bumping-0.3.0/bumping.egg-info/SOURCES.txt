@@ -1,0 +1,12 @@
+README.md
+setup.cfg
+setup.py
+bumping/__init__.py
+bumping/bumping.py
+bumping/test.py
+bumping.egg-info/PKG-INFO
+bumping.egg-info/SOURCES.txt
+bumping.egg-info/dependency_links.txt
+bumping.egg-info/entry_points.txt
+bumping.egg-info/requires.txt
+bumping.egg-info/top_level.txt
