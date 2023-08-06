@@ -1,0 +1,11 @@
+csi/__init__.py,sha256=6h3ASqN8ZEmLPiq4IyMh7InpVTK_Joce4yNhYFwJX4s,212
+csi/api_errors.py,sha256=z5Val-0Zelfy92-ZR7aglrNmY3yNLxzA7Sis1kFpD0s,36
+csi/csi_connector.py,sha256=05Gjs5-g3W-RDKXMzF1YtUSrstDyo7syuVD4OdQtIZU,5535
+csi/csv_writer.py,sha256=-x9ISmPcg_3nxdaFlkI_KB8b3578BClt4b-O0GtfEqI,1348
+test/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+test/test_operations.py,sha256=ekcerIUemWYsOuvRJtPrlwQmdQVYLlQHvsfx2Kxrjxw,3681
+csi_tai-0.0.14.dist-info/LICENSE,sha256=6aJtsCAUxEOq--BJobLeLhe74EFy0x7oZUgeEmsui-g,1091
+csi_tai-0.0.14.dist-info/METADATA,sha256=tbFTWvNyMgcyH-2hIz-sO84jqYuSlkqesC-uuDnWjog,1814
+csi_tai-0.0.14.dist-info/WHEEL,sha256=QBOOAdG2icRHGBs2s94rfaUlHrdfNBp-TceubUYCwOE,97
+csi_tai-0.0.14.dist-info/top_level.txt,sha256=d1eadrIyKhSdjtPU-PEfTr6QW6hnn87Oy4nYMtJxVII,9
+csi_tai-0.0.14.dist-info/RECORD,,
