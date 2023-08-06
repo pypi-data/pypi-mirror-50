@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: BertLibrary
+Version: 0.0.2
+Summary: BaaL is a Tensorflow library for quick and easy training and finetuning of models based on Bert
+Home-page: https://github.com/kpi6research/Bert-as-a-Library
+Author: KPI6 Research
+Author-email: info@kpi6.com
+License: MIT
+Download-URL: https://github.com/kpi6research/Bert-as-a-Library/archive/0.0.2.tar.gz
+Description: UNKNOWN
+Keywords: Bert,fientuning,nlp
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
