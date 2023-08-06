@@ -1,0 +1,10 @@
+itk/_BoneMorphometryPython.so,sha256=Pw7TVsGfwpnYsrcOQktwKrRagoxRRgmkLHJFEfpl-34,14165216
+itk/BoneMorphometryPython.py,sha256=qSH6c3d_mtQ7P5omsUI6yhmyGEH9_i96W-mHeRvhOFM,3369
+itk/itkReplaceFeatureMapNanInfImageFilterPython.py,sha256=AFKtsWGsJKbVApLRHUJGONDa6zcodmlYpxyACgkUUi4,109595
+itk/itkBoneMorphometryFeaturesImageFilterPython.py,sha256=4jv8-302SRGi_uTY_K9QQ7_B-FaLp4k-Ll1wI6RDnGY,177925
+itk/itkBoneMorphometryFeaturesFilterPython.py,sha256=vqYIIUWcRSgblKHzn2GU2wTUmDYsWvNXaQGhyLqJFdE,44725
+itk/Configuration/BoneMorphometryConfig.py,sha256=HVPH7BWLl5_Xur1Dg1gD8oaI4uH2T4JkPmc3_9iZMxI,5707
+itk_bonemorphometry-1.1.1.dist-info/top_level.txt,sha256=K3Bo2NX2FvAd7ExrYg0rKrdBucaB6n6elW5QBc_g8FA,4
+itk_bonemorphometry-1.1.1.dist-info/RECORD,,
+itk_bonemorphometry-1.1.1.dist-info/WHEEL,sha256=Iih2rMDmluTbX-Lhyg4bn2rbB1WWHkPeoA2YdBqhroY,102
+itk_bonemorphometry-1.1.1.dist-info/METADATA,sha256=_yCjtkvIY0V_Q_J-ZnAOiz4R1GdwjrLskM_6zRWvrQI,1640
