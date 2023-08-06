@@ -1,0 +1,13 @@
+MANIFEST.in
+README.md
+setup.py
+tabout/__init__.py
+tabout/slackit.py
+tabout/soundit.py
+tabout/tabout.py
+tabout.egg-info/PKG-INFO
+tabout.egg-info/SOURCES.txt
+tabout.egg-info/dependency_links.txt
+tabout.egg-info/requires.txt
+tabout.egg-info/top_level.txt
+tabout/sounds/alert1.tabout.mp3
