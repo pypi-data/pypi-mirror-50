@@ -1,0 +1,12 @@
+pycryptodome==3.7.3
+requests
+flask
+flask_cors
+flask_restful
+bs4
+openpyxl
+pandas
+xlrd
+flask_sqlalchemy
+pyDes
+pymysql
