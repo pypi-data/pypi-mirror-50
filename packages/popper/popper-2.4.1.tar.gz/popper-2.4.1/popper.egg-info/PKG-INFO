@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: popper
+Version: 2.4.1
+Summary: Popper CLI tool to generate reproducible papers.
+Home-page: http://falsifiable.us
+Author: The Popper Development Team
+Author-email: ivo@cs.ucsc.edu
+License: MIT
+Project-URL: Documentation, https://popper.readthedocs.io
+Project-URL: Say Thanks!, http://gitter.im/falsifiable-us/popper
+Project-URL: Source, https://github.com/systemslab/popper/
+Project-URL: Tracker, https://github.com/systemslab/popper/
+Description: UNKNOWN
+Keywords: popper reproducibility automation continuous-integration
+Platform: UNKNOWN
+Provides-Extra: dev
