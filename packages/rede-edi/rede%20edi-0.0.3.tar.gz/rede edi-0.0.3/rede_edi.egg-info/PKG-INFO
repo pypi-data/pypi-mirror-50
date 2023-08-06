@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: rede-edi
+Version: 0.0.3
+Summary: A package to handle rede EDI
+Home-page: https://github.com/darleisantossoares/rede_edi
+Author: Darlei Soares
+Author-email: darleisantossoares@gmail.com
+License: UNKNOWN
+Description: # REDE EDI
+        
+        A simple project to handle rede EDI.
+        
+        
+        Rede documentation.: https://www.userede.com.br/novo/documentos
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
