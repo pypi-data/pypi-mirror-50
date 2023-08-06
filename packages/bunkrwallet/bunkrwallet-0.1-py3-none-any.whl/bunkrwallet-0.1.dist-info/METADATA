@@ -1,0 +1,106 @@
+Metadata-Version: 2.1
+Name: bunkrwallet
+Version: 0.1
+Summary: Lite bitcoin bunkrwallet working on top of Bunkr secrets
+Home-page: UNKNOWN
+Author: off-the-grid-inc
+Author-email: accounts@off-the-grid.io
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# Bunkr Wallet
+
+Bunkr Wallet is a simple bitcoin wallet built on top of Bunkr. In utilizing Bunkr our wallet shifts the paradigm of cryptocurrency wallet security: private keys are distributedly stored in Bunkr and transaction signatures are securely generated without ever recomposing the private key on any device. The wallet is a bare bones proof of concept application which can be controlled easily through a python interactive terminal. 
+
+Disclaimer: test with reasonable caution, this wallet is in beta and the live Bunkr Network is in its infancy and under rapid development. Demo the wallet with testnet coins first, and never publish transactions without decoding and looking them over first!
+
+Notes: 
+- For the wallet to work, the Bunkr RPC must also be installed and be running.
+- Bunkr Wallet is not an HD (heirarchical deterministic) wallet as wallet addresses are in no way correlated or derived from a master seed. One can add more addresses to the wallet keyring at anytime. Already used addresses with an unspent balance of 0 are automatically removed by the wallet.
+- A wallet stores all public wallet information in a simple pickled `.p` file. It stores addresses, public keys, and reference to Bunkr secrets. Private keys are encrypted and stored across a distributed set of machines as Bunkr secrets and never touch your local machine. While your private keys will still be safe and secure, losing the wallet file can make it difficult to recover your wallet.
+
+## Installation
+
+Before installing the bunkr wallet you must have the Bunkr cli installed and running.
+
+Then install the Bunkr Wallet (and all underlying requirements) with:
+
+`pip3 install bunkrwallet`
+
+## Usage
+
+A BunkrWallet is nothing more than a python object stored in a pickled `.p` file.
+
+#### Create a BunkrWallet:
+
+```>>> w = BunkrWallet("your-wallet-name")```
+
+This creates the wallet and the file `your-wallet-name.p`. Your local Bunkr will have stored new secrets which can be viewed from the Bunkr RPC. If a wallet already exists with that filename it will not create a new wallet but open the existing one (see Opening a BunkrWallet below).
+
+Optional parameters:
+
+- `testnet` is a boolean flag for either bitcoin testnet or mainnet (defaults to False, i.e. mainnet)
+- `punkr_address` is a tuple which denotes where the BunkrRPC is running (defaults to `('127.0.0.1', 6870)` i.e. Bunkr's default address)
+
+#### Opening a BunkrWallet:
+
+```>>> w = BunkrWallet("your-wallet-name")```
+
+This opens the wallet file `your-wallet-name.p` and reinstantiates the wallet as a python object in the interactive session. If the wallet file doesn't exist it will create a new wallet (see Creating a BunkrWallet above)
+
+#### show_wallet_balance
+
+```>>> w.show_balance()```
+
+prints the total balance of the BunkrWallet.
+
+#### show_fresh_address
+
+```>>> w.show_fresh_address()```
+
+This shows an unused address on the wallet keyring. Use this method to get an address for receiving bitcoin. If there are no fresh addresses left in the wallet it will raise an error (to overcome this error see add_accounts)
+
+#### send
+
+```>>> w.send([{"address": <address 1>, "value": <satoshi amount to address 1}, {"address": <address 2>, "value": <satoshi amount to address 2>}, ...], <fee amount>)```
+
+This returns the signed transaction hex of a new bitcoin transaction. It is left to the user to publish the transaction.
+
+#### add_accounts
+
+```>>> w.add_accounts(<number of accounts>)```
+
+When the Bunkr Wallet runs out of fresh addresses the user can add arbitrarily add any amount of addresses to the keyring.
+
+## Testnet Demo
+
+from this directory open a python3 interactive terminal:
+```
+$ python3
+>>> from wallet import *
+>>> w = Wallet("testnetWallet", testnet=True)
+'creating new wallet...'
+>>> w.show_fresh_address()
+<shows an unused address in your wallet, for receiving>
+```
+
+1. Create a new wallet with a wallet name of your choice. Set the testnet flag to True.
+2. Get a fresh address for receiving bitcoin with show_fresh_address()
+3. Send testnet bitcoins to your address. Testnet bitcoins can be found at a testnet faucet such as: https://coinfaucet.eu/en/btc-testnet/
+4. Once you have some test bitcoin you can send from your wallet as in this example transaction:
+
+```
+>>> from wallet import *
+>>> w = Wallet("testnetWallet")
+>>> w.show_balance()
+<shows total wallet balance>
+>>> outputs = [{"address":<some address>, "value":btc2sat(0.1)}, ...]
+>>> fee = btc2sat(0.0001)
+>>> w.send(outputs, fee)
+<prints transaction hex which can be pushed to the blockchain>
+```
+
+
