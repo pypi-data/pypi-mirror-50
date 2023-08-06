@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: gatenlphiltlab
+Version: 4.0.3
+Summary: Interface for parsing and manipulating GATE annotation documents
+Home-page: http://github.com/nickwbarber/gatenlphiltlab
+Author: Nick Barber
+Author-email: nickwbarber@gmail.com
+License: Apache License, Version 2.0
+Platform: UNKNOWN
+Requires-Python: >=3
+Requires-Dist: lxml (>=4.1.1)
+Requires-Dist: intervaltree (>=2.1.0)
+Requires-Dist: python-Levenshtein (>=0.12.0)
+
+UNKNOWN
+
+
