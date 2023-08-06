@@ -1,0 +1,71 @@
+<div *ngIf="context != null">
+    <table class="table">
+        <tbody>
+        <tr class="tr"
+            *ngFor="let prop of context.props(); odd as odd; even as even"
+            [class.bg-odd]="odd"
+            [class.bg-even]="even">
+            <th class="th"
+                [class.bg-odd]="odd"
+                [class.bg-even]="even">{{prop.name}}
+            </th>
+            <td *ngIf="showInput(prop)"
+                class="td"
+                [class.bg-odd]="odd"
+                [class.bg-even]="even">
+                <input type="text"
+                       (focusout)="propLostFocus()"
+                       (ngModelChange)="writeVal(prop, $event, false)"
+                       [ngModel]="readVal(prop)">
+            </td>
+            <td *ngIf="showInteger(prop)"
+                class="td"
+                [class.bg-odd]="odd"
+                [class.bg-even]="even">
+                <input type="number"
+                       min="0"
+                       (focusout)="propLostFocus()"
+                       (ngModelChange)="writeVal(prop, $event, false)"
+                       [ngModel]="readVal(prop)">
+            </td>
+            <td *ngIf="showTextArea(prop)"
+                class="td"
+                [class.bg-odd]="odd"
+                [class.bg-even]="even">
+                <textarea
+                        (focusout)="propLostFocus()"
+                        (ngModelChange)="writeVal(prop, $event, false)"
+                        [ngModel]="readVal(prop)"></textarea>
+            </td>
+            <td *ngIf="showBoolean(prop)"
+                class="td"
+                [class.bg-odd]="odd"
+                [class.bg-even]="even">
+                <input type="checkbox"
+                       (ngModelChange)="writeVal(prop, $event)"
+                       [ngModel]="readVal(prop)">
+            </td>
+            <td *ngIf="showSelectOption(prop)"
+                class="td"
+                [class.bg-odd]="odd"
+                [class.bg-even]="even">
+                <select (ngModelChange)="writeOptionVal(prop, $event)"
+                        [ngModel]="readOptionVal(prop)">
+                    <option *ngIf="prop.allowNullOption"
+                            [value]="null"></option>
+                    <option *ngFor="let option of prop.options"
+                            [value]="option.value">{{option.name}}
+                    </option>
+                </select>
+                <div *ngIf="showLevelNotVisible(prop)" class="bg-warning">
+                    This level is not currently visible at this zoom level.
+                </div>
+                <div *ngIf="showLayerNotVisible(prop)" class="bg-warning">
+                    This layer is not currently visible, it's disabled in layer settings.
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
