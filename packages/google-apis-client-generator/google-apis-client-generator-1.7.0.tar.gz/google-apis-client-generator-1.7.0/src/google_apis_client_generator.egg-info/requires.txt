@@ -1,0 +1,5 @@
+django<2.0.0dev,>=1.11.0
+httplib2<2.0.0dev,>=0.9.2
+google-apputils<2.0.0dev,>=0.4.2
+python-gflags<4.0.0dev,>=2.0
+google-api-python-client<2.0.0dev,>=1.0.0
