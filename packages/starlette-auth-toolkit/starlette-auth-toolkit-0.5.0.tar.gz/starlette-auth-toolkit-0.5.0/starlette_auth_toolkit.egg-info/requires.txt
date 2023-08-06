@@ -1,0 +1,17 @@
+starlette>=0.11
+
+[dev]
+pytest
+pytest-asyncio
+requests
+uvicorn
+argon2-cffi
+bcrypt
+orm
+databases[sqlite]
+black
+pylint
+bumpversion
+
+[passwords]
+passlib<2,>=1.7
