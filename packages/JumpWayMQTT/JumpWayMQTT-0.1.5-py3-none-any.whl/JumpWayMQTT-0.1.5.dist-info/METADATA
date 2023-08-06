@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: JumpWayMQTT
+Version: 0.1.5
+Summary: Python MQTT clients for the iotJumpWay
+Home-page: https://github.com/AdamMiltonBarker/JumpWayMQTT
+Author: Adam Milton-Barker
+Author-email: adammiltonbarker@gmail.com
+License: Eclipse Public License 2.0
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: paho-mqtt (>=1.2)
+
+UNKNOWN
+
+
