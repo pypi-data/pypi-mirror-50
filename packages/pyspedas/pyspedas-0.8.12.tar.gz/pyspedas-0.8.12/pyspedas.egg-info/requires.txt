@@ -1,0 +1,12 @@
+pyqtwebengine
+requests
+scipy
+pytplot>=1.4
+cdflib
+msgpack
+bokeh
+nodejs
+pyqtgraph
+numpy
+pydivide
+pandas>=0.24
