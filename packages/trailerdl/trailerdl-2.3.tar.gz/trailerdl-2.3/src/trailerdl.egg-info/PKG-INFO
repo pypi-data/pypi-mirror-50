@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: trailerdl
+Version: 2.3
+Summary: Simple python package for downloading extras for movies and series.
+Home-page: https://github.com/airship-david/Trailer-Downloader
+Author: David Engel
+License: GNU General Public License v3.0
+Description: Download trailers, teasers, scenes, featurettes, behind the scenes, and bloopers for your movies and series.
+Platform: Python 3.6
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
