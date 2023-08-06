@@ -1,0 +1,3 @@
+[console_scripts]
+mst = mysql_tracer.__main__:main
+
