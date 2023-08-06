@@ -1,0 +1,10 @@
+novadax/__init__.py,sha256=qTrz8E3U05KjKvQmqJ2x5s8s_BkIG5D5d_6OUToG1Lg,66
+novadax/request_client.py,sha256=qgof1CHn7RIJSCZ46yLfOoj2DQnxgPOJjX6HlfMkUkg,1956
+novadax/impl/__init__.py,sha256=D4OjN3k1s2hpjhr7sBia73yKVPfQx1jzEBU93MFiFVs,48
+novadax/impl/http_auth.py,sha256=n7F4hGa2IoOP1HpQSFwtMRYARhRfbth4ity1j1tN-fE,1726
+novadax/impl/http_client.py,sha256=YdmSb9J3Lo8D7M29m0VU6vD_EkuEznVQUfJVVLyW07c,1570
+novadax/impl/utils.py,sha256=DD3MHLAvehaHAuVhQLeuNVrCS84efvTj5o7ETNKFBK8,273
+novadax-1.0.0.dev8.dist-info/METADATA,sha256=yieA9_oRKM26DAbMv3x8dxk7bLUFcAkNYk01G-vXDUk,237
+novadax-1.0.0.dev8.dist-info/WHEEL,sha256=U88EhGIw8Sj2_phqajeu_EAi3RAo8-C6zV3REsWbWbs,92
+novadax-1.0.0.dev8.dist-info/top_level.txt,sha256=JSGU6mK4VBusMcG-DAkea6BNKLEufIiHw73OWom9Aw4,8
+novadax-1.0.0.dev8.dist-info/RECORD,,
