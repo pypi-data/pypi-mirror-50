@@ -1,0 +1,13 @@
+README.md
+setup.py
+spravka/__init__.py
+spravka/coverage.py
+spravka/html.py
+spravka/main.py
+spravka/make.py
+spravka.egg-info/PKG-INFO
+spravka.egg-info/SOURCES.txt
+spravka.egg-info/dependency_links.txt
+spravka.egg-info/entry_points.txt
+spravka.egg-info/requires.txt
+spravka.egg-info/top_level.txt
