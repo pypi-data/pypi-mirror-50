@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: MysqlDiff
+Version: 1.10
+Summary: mysql表结构比较工具
+Home-page: https://github.com/icecooly/MysqlDiff
+Author: skydu
+Author-email: icecooly.du@qq.com
+License: MIT
+Description: 自动检测新旧库表的差异以及字段差异,方便升级项目时更新旧表,支持Ssh隧道
+Keywords: mysql diff
+Platform: UNKNOWN
