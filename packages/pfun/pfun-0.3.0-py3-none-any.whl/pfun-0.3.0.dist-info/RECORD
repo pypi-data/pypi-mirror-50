@@ -1,0 +1,17 @@
+pfun/__init__.py,sha256=6EzvuW4ZSrKhAWhnwBHkqFErgU7GmfbBnNXPJTd1IYc,486
+pfun/cont.py,sha256=EUpNXOXSYKm2H-srLq968XWGg05qKz-5xTdnE8DLlR8,1957
+pfun/curry.py,sha256=ulqzQRn4OjFioRnKv3LXyozMj9hcn69I888rnJt76Bg,8374
+pfun/dict.py,sha256=md4Jd4EIVH_7j7hU5jAbF7xZsfwWUaWVXQi7LGa9j_w,2479
+pfun/immutable.py,sha256=DZhQoggtoi8HPnt-3kDvHg2zH9DZ2RYN2G-a3tcwzcg,2247
+pfun/list.py,sha256=sbSh6ar_H6by9LSMGb-OikvzwbWpmQQOahvjTptpXD4,3897
+pfun/maybe.py,sha256=35VctkjdvxihC3AglBKtG8vwCQOQYeP9eUXUlfKmwLs,5218
+pfun/monoid.py,sha256=vPNiVBvVhfsTkxgjo1EDoxOUFOcLividy89ZfHsU2KU,1765
+pfun/pipe.py,sha256=ZzRhY8KQqGVerks7esu8JnuLzsNV_y7ixnU7QfUUbpQ,1067
+pfun/reader.py,sha256=gntSXc9z9OSwChkeaksMxR475OsVoD2uhoDG67J6j7g,3363
+pfun/result.py,sha256=76gitKeKZ0C9C60lrEo3pgLl77YdBJjmXDVFYDC66fs,5342
+pfun/state.py,sha256=V1rLdAIacDslhrZILqZYVxByC-gfHubFmAAVtClZnvc,2863
+pfun/util.py,sha256=d_8jVD_AeL9pIURDn18_RO0efXBslRYG6258yxSHmqo,629
+pfun/writer.py,sha256=ZVe3A_Xcm2WdDfBwBk4htRblFcfNiLWec3DzbmvuNrY,3340
+pfun-0.3.0.dist-info/WHEEL,sha256=C90Mwr_Jk4_IPKbEQeJHH_TSkLAVFEZOMPO9_4HdXQI,85
+pfun-0.3.0.dist-info/METADATA,sha256=DmSPZWZdiib2awWz_mhCYUI1t_dPqUtIhbrMfdDLH4g,277
+pfun-0.3.0.dist-info/RECORD,,
