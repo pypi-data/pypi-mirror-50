@@ -1,0 +1,16 @@
+mopidy_local/__init__.py,sha256=9imM-XiW2feQ8zPnA_LIZpLK8qzR5JcxXVXP9PD3Gs8,6951
+mopidy_local/actor.py,sha256=4prrXi-0KEDCfEV1sABPApu2GWozFQ3r6h3g1LM74qo,1100
+mopidy_local/commands.py,sha256=v-XdLSCRtLqud18GI2gbezNw-bWjh6zvfT4uz8VoeMI,6983
+mopidy_local/ext.conf,sha256=6r6mJhQfX2MqQosGt0DjuDBACFC47jDRiemPLlMcB6c,246
+mopidy_local/json.py,sha256=y8Z2bUsnSFo_uzsAXfAFn3C9qzGo2sWQd9xjhdNuT48,6199
+mopidy_local/library.py,sha256=KzJK8TKPC6SiszSHIXaHQSalxEPUpcInPPVYtP3NjUw,1726
+mopidy_local/playback.py,sha256=XX0WwP4jFQa7rvJUb4ER4P49fbSouWkhkt2jkqivty0,323
+mopidy_local/search.py,sha256=C18k3nbavdDMON8_L6hDb_kvOn9BX5vciML5zBzVOB8,8598
+mopidy_local/storage.py,sha256=iFWfB3YfcNy-jI-yMEBepucQTcptQjLmg_83uq_G-84,394
+mopidy_local/translator.py,sha256=EB0v5sa-TC_PgfjQQMMBqzo5SScgRS3IweLRrIvVD28,1615
+Mopidy_Local-3.0.0a1.dist-info/LICENSE,sha256=z8d0m5b2O9McPEK1xHG_dWgUBT6EfBDz6wA0F7xSPTA,11358
+Mopidy_Local-3.0.0a1.dist-info/METADATA,sha256=4Hj0PxM1HJ4FWWfOSScG5MweYoAQOCGeGrGLFNf_7HU,6023
+Mopidy_Local-3.0.0a1.dist-info/WHEEL,sha256=h_aVn5OB2IERUjMbi2pucmR_zzWJtk303YXvhh60NJ8,110
+Mopidy_Local-3.0.0a1.dist-info/entry_points.txt,sha256=Zpiz5YR7T9Y383L7PMFM37dgFPW6BW5H570uIKLmTjQ,45
+Mopidy_Local-3.0.0a1.dist-info/top_level.txt,sha256=2A5725m4nR_Y5PzG8RowF4F0VrSMP7O3qm_vyXsJZaI,13
+Mopidy_Local-3.0.0a1.dist-info/RECORD,,
