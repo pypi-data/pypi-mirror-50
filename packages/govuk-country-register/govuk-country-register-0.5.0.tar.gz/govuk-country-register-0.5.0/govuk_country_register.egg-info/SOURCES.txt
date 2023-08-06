@@ -1,0 +1,10 @@
+README.md
+setup.py
+govuk_country_register/__init__.py
+govuk_country_register/country.csv
+govuk_country_register/country.py
+govuk_country_register/register.py
+govuk_country_register.egg-info/PKG-INFO
+govuk_country_register.egg-info/SOURCES.txt
+govuk_country_register.egg-info/dependency_links.txt
+govuk_country_register.egg-info/top_level.txt
