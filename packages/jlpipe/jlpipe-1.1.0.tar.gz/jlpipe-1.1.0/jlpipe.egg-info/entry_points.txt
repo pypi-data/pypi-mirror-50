@@ -1,0 +1,15 @@
+[console_scripts]
+arrayunpack = jlpipe:array_unpack
+dynamojson = jlpipe:convert_dynamojson_cmd
+json2csv = jlpipe:json2csv
+json2pgtext = jlpipe:json2pgtext
+json2sqlite = jlpipe:json_to_sqlite
+jsonallkeys = jlpipe:json_keys_total_cmd
+jsondecompress = jlpipe:decompress_binary_fields
+jsonkey = jlpipe:json_keys_cmd
+jsonselect = jlpipe:json_select_cmd
+linedecompress = jlpipe:decompress_full_line
+parallel_split = jlpipe:parallel_split
+parquet2json = jlpipe:parquet2json
+pgcopy = jlpipe:pgcopy
+
