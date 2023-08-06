@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: humba
+Version: 0.1a5
+Summary: Histogramming using numba
+Home-page: https://github.com/douglasdavis/humba
+Author: Doug Davis
+Author-email: ddavis@ddavis.io
+Maintainer: Doug Davis
+Maintainer-email: ddavis@ddavis.io
+License: BSD 3-clause
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: numpy (>=1.12)
+Requires-Dist: numba (>=0.42)
+
+# humba
+
+[![Build Status](https://dev.azure.com/ddavis0485/humba/_apis/build/status/douglasdavis.humba?branchName=master)](https://dev.azure.com/ddavis0485/humba/_build/latest?definitionId=2&branchName=master)
+[![Documentation Status](https://readthedocs.org/projects/humba/badge/?version=latest)](https://humba.readthedocs.io/)
+[![PyPI](https://img.shields.io/pypi/v/humba)](https://pypi.org/project/humba/)
+[![PyVersions](https://img.shields.io/pypi/pyversions/humba)](https://pypi.org/project/humba/)
+[![black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+Histogramming accelerated with [numba](http://numba.pydata.org/).
+
+
