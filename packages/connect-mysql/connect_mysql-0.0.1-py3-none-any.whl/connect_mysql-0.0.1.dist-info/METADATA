@@ -1,0 +1,14 @@
+Metadata-Version: 2.0
+Name: connect-mysql
+Version: 0.0.1
+Summary: UNKNOWN
+Home-page: https://github.com/mynkit/connect_mysql
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.5
+Requires-Dist: mysql-connector-python
+Requires-Dist: pandas (==0.24.1)
+
+UNKNOWN
+
+
