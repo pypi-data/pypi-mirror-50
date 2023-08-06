@@ -1,0 +1,15 @@
+README.md
+setup.cfg
+setup.py
+src/__init__.py
+src/evgflip/__init__.py
+src/evgflip/cli.py
+src/evgflip/find_flips.py
+src/evgflip/worker.py
+src/evgflip.egg-info/PKG-INFO
+src/evgflip.egg-info/SOURCES.txt
+src/evgflip.egg-info/dependency_links.txt
+src/evgflip.egg-info/entry_points.txt
+src/evgflip.egg-info/not-zip-safe
+src/evgflip.egg-info/requires.txt
+src/evgflip.egg-info/top_level.txt
