@@ -1,0 +1,93 @@
+Metadata-Version: 2.1
+Name: frhyme
+Version: 0.3
+Summary: Guess the last phonemes of a French word
+Home-page: https://gitlab.com/a3nm/frhyme
+Author: Antoine Amarilli
+Author-email: a3nm@a3nm.net
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+
+frhyme -- a toolkit to guess the last phonemes of a French word
+Repository URL: https://gitlab.com/a3nm/frhyme
+Python package name: frhyme
+
+== 0. Author and license ==
+
+frhyme is copyright (C) 2011-2019 by Antoine Amarilli
+
+frhyme is free software, distributed under an MIT license: see the
+file LICENSE for details of the licensing terms that apply to frhyme.
+
+Many thanks to Julien Romero who maintains the PyPI package for
+frhyme.
+
+The file "frhyme.json" in the directory "frhyme" is a derivative work of
+the French lexical database Lexique <http://www.lexique.org/>, version
+3.83, by Boris New <http://psycho-usmb.fr/boris.new/> and Christophe
+Pallier <http://www.pallier.org/>. Hence, this file is under the same
+license as Lexique, namely, the license CC BY SA 4.0 (according to the
+file README-Lexique.txt in the downloadable archive of Lexique). The
+license in LICENSE does *not* apply to this file "frhyme/frhyme.json".
+
+== 1. Features ==
+
+frhyme is a tool to guess what the last phonemes of a French word are.
+It is trained on a list of words with associated pronunciation, and will
+infer a few likely possibilities for unseen words using known words with
+the longest common prefix, using a trie for internal representation.
+
+== 2. Installation ==
+
+You need a working Python3 environment to run frhyme.
+
+You can install frhyme directly with pip by doing:
+
+  pip3 install frhyme
+
+You can also manually clone the project repository and use frhyme
+directly from there.
+
+== 3. Usage ==
+
+You can either run
+
+  frhyme.py [NBEST]
+
+giving one word per line in stdin and getting the NBEST top
+pronunciations on stdout (default is 5), or you can import frhyme in a
+Python program and call frhyme.lookup(word, NBEST) which returns the
+NBEST top pronunciations (default is 5).
+
+The pronunciations returned are annotated with a confidence score (the
+number of occurrences in the training data). They should be sensible up
+to the longest prefix of the input word that occurs in the training
+data, but they may be prefixed by garbage.
+
+The pronunciations are given in a variant of X-SAMPA which ensures that
+each phoneme is mapped to exactly one ASCII character: the substitutions
+are "A~" => "#", "O~" => "$", "E~" => ")", "9~" => "(".
+
+== 4. Training ==
+
+This section explains how the file "frhyme.json" can be prepared. You do
+not need to do this to use frhyme, but it can be useful if you want to
+create a pronunciation database from a different source.
+
+The provided "fryhme.json" file was trained on a custom variant of the
+database Lexique <http://www.lexique.org/>, with some additions. You can
+regenerate it as follows:
+
+  git clone 'https://a3nm.net/git/lexique'
+  cd scripts
+  ./make.sh 4 <(cut -f 1,2 ../lexique/lexique_my_format | uniq) additions > ../frhyme/frhyme.json
+
+The value "4" indicates the number of trailing phonemes to keep, and can
+be changed. Beware, this process can take up several hundred megabytes
+of RAM. The resulting file should be accurate on the French words of
+Lexique.
+
+
+
