@@ -1,0 +1,24 @@
+Metadata-Version: 1.1
+Name: riccipy
+Version: 0.1a1
+Summary: A tensor algebra calculator for General Relativity
+Home-page: https://github.com/cjayross/riccipy
+Author: Calvin Jay Ross
+Author-email: calvinjayross@gmail.com
+License: MIT
+Download-URL: https://github.com/cjayross/riccipy/archive/v0.1a.tar.gz
+Description: RicciPy is a Python tensor algebra calculator for
+        symbolically manipulating exact solutions to the Einstein Field Equations.
+Keywords: general relativity physics math cas
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
