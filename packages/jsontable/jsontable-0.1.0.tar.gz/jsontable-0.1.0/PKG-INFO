@@ -1,0 +1,158 @@
+Metadata-Version: 2.1
+Name: jsontable
+Version: 0.1.0
+Summary: Convert a JSON to a table
+Home-page: https://github.com/ernestomonroy/jsontable
+Author: Ernesto Monroy
+License: UNKNOWN
+Project-URL: Bug Reports, https://github.com/ernestomonroy/jsontable/issues
+Project-URL: Source, https://github.com/ernestomonroy/jsontable/json_mapper
+Description: # JSON Table
+        
+        A little package to convert a JSON to a table! This project was born out of a need to transform many JSONs mined from APIs to something that Pandas or a relational database could understand. The difference between this package and json path packages is that its designed to create __tables__, not just extract single values.
+        
+        
+        <a href="https://pypi.org/project/jsontable/">
+        <img src="https://img.shields.io/pypi/v/jsontable.svg" alt="latest release" />
+        </a>
+        
+        
+        ## Warning
+        
+        Above all, I want to mention that whilst I inted to expand the functionality of this package, at the moment it can only take a simple sequence of keys to navigate a path. This is, the full functionality proposed by Stefan Gossner in his [jsonpath](https://goessner.net/articles/JsonPath/) is not yet implemented.... but we will get there.
+        
+        If you are looking for a package that simply extracts a single value from a JSON by using more complex paths (and its functions), I recommend you look at [jsonpath-rw](https://github.com/kennknowles/python-jsonpath-rw) by Kenn Knowles [jsonpath-ng](https://pypi.org/project/jsonpath-ng/) by Tomas Aparicio or [jsonpath2](https://pypi.org/project/jsonpath2/) by Mark Borkum. 
+        
+        However, if you are looking for a simple configurable extractor that can help you abstract the interpretation of JSONs then you are at the right place.
+        
+        ## How to install
+        
+        The package is available through pypi. So simply go to your command line and:
+        
+        ```bash
+        pip install jsontable
+        ```
+        You're also welcome to download the code from github and modify to suit your needs. And if you have time let me know what cool functionality you added and we can improve the project!
+        
+        ## How it works
+        
+        It works in a similar manner to JSON parsers
+        1. Create a converter object
+        2. Add your list of paths mapped to your columns
+        3. Give the converter a __decoded__ JSON object you want to read, and it returns a table
+        
+        ## Usage
+        
+        Here is a quick example to get you going
+        
+        ```python
+        import jsontable
+        
+        paths = [{"$.id":"id"},	{"$.name":"name"}, {"$.address.city":"city"}]
+        sample = {"id":"1","name":"Ernesto","address":{"city":"London"}}
+        
+        converter = jsontable.converter()
+        converter.set_paths(paths)
+        converter.convert_json(sample)
+        ```
+        
+        In this case, you will get a table with two columns and two rows like these:
+        
+        ```python
+        [['id', 'name', 'city'], ['1', 'Ernesto', 'London']]
+        ```
+        
+        ## How it works
+        
+        Each path you specify is a column in your final table. For each path, the converter starts at the root of the JSON and navigates each node in the path, then it outputs the element of the JSON that remains. Two cases are of particular importance, lists and concatenations.
+        
+        #### Lists
+        When the converter encounters a list, it will expand it into rows __with the exception of the final node__, if you want to expand the final node use the * operator. The other columns (paths) will then be joined to the expanded path in a similar way the SQL JOIN works. Its worth noting that the matching of rows is made by the hierarchy of the JSON.
+        
+        In the example below, the first path results in a single row with value "Ernesto" and the second path results in two rows with values "01234567" and "76543210". Therefore, the converter will join the two columns and will result in a 2 by 2 set like below.
+        
+        ```python
+        paths = [{"$.name":"Name"},{"$.telephones.type":"Telephone Type"},{"$.telephones.number":"Telephone Number"}]
+        sample = {
+        			"id":"1",
+        			"name":"Ernesto",
+        			"telephones":[
+        				{"type":"mobile", "number":"01234567"},
+        				{"type":"home", "number":"76543210"}
+        			]
+        		}
+        converter = jsontable.converter()
+        converter.set_paths(paths)
+        converter.convert_json(sample)
+        ```
+        Will result in
+        
+        ```
+        [['Name', 'Telephone Number', 'Telephone Type'], ['Ernesto', '01234567', 'mobile'], ['Ernesto', '76543210', 'home']]
+        ```
+        
+        #### Concatenation
+        Since sometimes you want to stop the path before you get to the last element of your JSON (like the case above where I could want to have the street concatenated in a single row), I have added the following condition:
+         - If the last element of your path results in a leaf (i.e. a value), it will save it to the table cell as a string
+         - If the last element of your path is not a leaf (i.e. there is more JSON)
+        
+        So for example, the following code:
+        ```python
+        paths = [{"$.address":"address_column"}]
+        sample = {
+        			"id":"1",
+        			"name":"Ernesto",
+        			"address":{
+        				"city":"London",
+        				"street":[
+        					"Appartment 123",
+        					"Sample Street"
+        				]
+        			}
+        		}
+        converter = jsontable.converter()
+        converter.set_paths(paths)
+        converter.convert_json(sample)
+        ```
+        Results in:
+        ```
+        [['address_column'], ["{'city': 'London', 'street': ['Appartment 123', 'Sample Street']}"]]
+        ```
+        ## Operators
+        
+        Currently there are two operators supported: * and ~
+        
+        The * operator instructs the converter to return __all values__ of the current element. If its an array (list in Python), it will simply return all the elements of the list, if its an object (dictionary in Python) it will return only the values, and if its a value (string, number, boolean, null), it just returns the same value.
+        
+        The ~ operator instructs the converter to return __all indices__ of the current element. For array, it returns an ascending numbered sequence starting with 0 (e.g. [1,2] would return [[0],[1]]) . If its an object, it will return the keys (e.g. {"a":1,"b":2} would return [['a'],['b']]). If its a value it simply returns 0.
+        
+        More operators will be implemented in later releases.
+        
+        ## New in this version
+        
+         - A bug that was preventing list expansions at different depths (e.g. $.a as well as $.b.c) has been fixed.
+         - Implementation of the * and ~ operators
+        
+        Both these changes were made possible by changing the search method from depth first to breadth first, as well as recursing through a tree rather than iterating through one column at a time. 
+        
+        ## Coming up
+        
+        In the wishlist we have:
+         - Filtering
+         - More functions (basic arithmetics, string concatenation and expansion)
+         - Square bracket notation ($[a][b] for $.a.b)
+        
+        ## Final disclaimer
+        
+        I will continue to look for improvements in the package and hopefully add some useful functionality. If you have issues let me know and I will try my best to help.
+        
+        You can use this package as you wish, but unfortunatelly, I cannot take responsibility of how this code is used, or the results it provides. It is up to you to test this does what you want it to!
+Keywords: json mining etl extract transform etltools data parsing parse mapper relational table
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
