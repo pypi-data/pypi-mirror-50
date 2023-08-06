@@ -1,0 +1,5 @@
+[console_scripts]
+confctl = conftool.cli.tool:main
+conftool-sync = conftool.cli.syncer:main
+dbctl = conftool.extensions.dbconfig:main [with_dbctl]
+

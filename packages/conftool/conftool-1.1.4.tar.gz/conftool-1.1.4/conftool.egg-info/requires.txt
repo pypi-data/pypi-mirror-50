@@ -1,0 +1,5 @@
+python-etcd>=0.4.3
+pyyaml
+jsonschema
+
+[with_dbctl]
