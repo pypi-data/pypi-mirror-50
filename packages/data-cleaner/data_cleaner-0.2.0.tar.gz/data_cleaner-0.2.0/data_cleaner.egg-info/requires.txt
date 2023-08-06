@@ -1,0 +1,9 @@
+cchardet==2.1.4
+geopandas==0.5.1
+parsley==1.3
+arrow==0.14.4
+Unidecode==1.1.1
+unicodecsv==0.14.1
+xlrd==1.2.0
+PyCRS==1.0.1
+requests==2.22.0

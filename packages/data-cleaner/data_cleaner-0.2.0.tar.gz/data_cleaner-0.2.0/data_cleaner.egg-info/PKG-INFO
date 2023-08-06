@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: data-cleaner
+Version: 0.2.0
+Summary: Paquete para limpieza de datos, segun estandares del equipo de Datos Argentina
+Home-page: https://github.com/datosgobar/data-cleaner
+Author: Datos Argentina
+Author-email: datos@modernizacion.gob.ar
+License: ISCL
+Description: UNKNOWN
+Keywords: data-cleaner
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: ISC License (ISCL)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
