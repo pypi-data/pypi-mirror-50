@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: bloxroute-pyelliptic
+Version: 1.5.10
+Summary: Python OpenSSL wrapper for modern cryptography with ECC, AES, HMAC, Blowfish, ...
+Home-page: https://github.com/bloXroute-Labs/pyelliptic
+Author: Yann GUIBET, Marek Franciszkiewicz
+Author-email: yannguibet@gmail.com, marek@golem.network
+License: BSD
+Description: This repository is forked for testing PIP installation and will removed in the future.
+Platform: UNKNOWN
+Classifier: Operating System :: Unix
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Environment :: MacOS X
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Security :: Cryptography
