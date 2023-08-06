@@ -1,0 +1,3 @@
+[console_scripts]
+blur-clip-board-image = blur_clip_board_image.app:main
+
