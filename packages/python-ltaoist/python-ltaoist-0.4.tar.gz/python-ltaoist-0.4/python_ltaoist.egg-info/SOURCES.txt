@@ -1,0 +1,14 @@
+setup.py
+ltaoist/__init__.py
+ltaoist/beta_machine/BetaMachine.py
+ltaoist/beta_machine/__init__.py
+ltaoist/ltaoist/__init__.py
+ltaoist/ltaoist/ltaoist.py
+ltaoist/plane_calculation/PlaneSet.py
+ltaoist/plane_calculation/__init__.py
+ltaoist/plane_calculation/test.py
+python_ltaoist.egg-info/PKG-INFO
+python_ltaoist.egg-info/SOURCES.txt
+python_ltaoist.egg-info/dependency_links.txt
+python_ltaoist.egg-info/not-zip-safe
+python_ltaoist.egg-info/top_level.txt
