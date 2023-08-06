@@ -1,0 +1,245 @@
+Metadata-Version: 2.1
+Name: MiTfAT
+Version: 0.1.1
+Summary: A python-based fMRI Analysis Tool. 
+Home-page: https://gitlab.tuebingen.mpg.de/vbokharaie/mitfat/
+Author: Vahid Samadi Bokharaie
+Author-email: vahid.bokharaie@tuebingen.mpg.de
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: seaborn (==0.9.0)
+Requires-Dist: pandas (==0.25.0)
+Requires-Dist: numpy (==1.16.4)
+Requires-Dist: scipy (==1.3.0)
+Requires-Dist: matplotlib (==3.1.1)
+Requires-Dist: nibabel (==2.5.0)
+Requires-Dist: nilearn (==0.5.2)
+Requires-Dist: scikit-learn (==0.21.3)
+Requires-Dist: openpyxl
+
+MiTfAT
+======
+
+.. image:: https://img.shields.io/pypi/v/MiTfAT.svg
+    :target: https://pypi.python.org/pypi/MiTfAT
+    :alt: Latest PyPI version
+
+.. image:: https://travis-ci.org/borntyping/cookiecutter-pypackage-minimal.png
+   :target: https://travis-ci.org/borntyping/cookiecutter-pypackage-minimal
+   :alt: Latest Travis CI build status
+
+A python-based fMRI Analysis Tool.
+
+Usage
+-----
+When you install MiTfAT, it comes with a sample dataset. You can run an example using this dataset to familiarize yourself with the package:   
+
+ .. code-block:: python
+
+    import mitfat 
+    from mitfat.file_io import read_data
+    import pkg_resources
+    info_file = pkg_resources.resource_filename('mitfat', 'sample_info_file.txt')
+    DATA_PATH = pkg_resources.resource_filename('mitfat', 'datasets/')
+    dataset1 = read_data(info_file)
+
+In doing so, you have loaded all the available data in the sample dataset into an object called ``dataset1`` which hold all the relevant info of an fMRI recording. The sample dataset includes a nifty data file of 852 voxels, each recorded in 59 time-steps. The data files also include a text file of time-steps (in minutes) which will be used in x-axis of all relevant plots. There have been two 'events' during the recording which are added to the dataset. These two events split our time steps into three time-segments, which are also reflected in the plots.
+
+There are already some basic operation done on the data. For example, linear regression of the data in each time segment. Now you can plot raw, normalised and linearly regressed time-series for each voxelall voxels as follows. Plots will be saved under ``output`` folder which is created in the folder from which you are running the python. 
+
+ .. code-block:: python
+
+    # Basic plots of normalized time-series
+    dataset1.plot_basics()
+
+    # plots of linearly regressed time-series. Linear regression is performed on each segment separately. 
+    dataset1.plot_basics('lin_reg')
+
+    # plots of raw time-series
+    dataset1.plot_basics('raw')
+
+
+You can also cluster the time-series, using Kmenas clustering from scikit-learn library:
+
+ .. code-block:: python
+
+    X_train = dataset1.data
+    X_train_label = 'RAW_Normalised'  # used in plot titles only
+    num_clusters = 5
+    cluster_labels, cluster_centroid = dataset1.cluster(X_train, num_clusters)
+    dataset1.save_clusters(X_train, X_train_label, cluster_labels, cluster_centroid)
+    dataset1.plot_clusters(X_train, X_train_label, cluster_labels, cluster_centroid)
+
+or cluster voxels based on their mean value:
+
+ .. code-block:: python
+
+    X_train = dataset1.data_mean
+    X_train_label = 'Mean_Normalised'
+    num_clusters = 4
+    cluster_labels, cluster_centroid = dataset1.cluster(X_train, num_clusters)
+    dataset1.save_clusters(X_train, X_train_label, cluster_labels, cluster_centroid)
+    dataset1.plot_clusters(X_train, X_train_label, cluster_labels, cluster_centroid)
+
+or you can cluster your voxels based on the slope of your three segments. 
+
+ .. code-block:: python
+
+    X_train = dataset1.line_reg_slopes
+    X_train_label = 'Lin_regression_slopes_per_segments'
+    num_clusters = 4
+    cluster_labels, cluster_centroid = dataset1.cluster(X_train, num_clusters)
+    dataset1.save_clusters(X_train, X_train_label, cluster_labels, cluster_centroid)
+    dataset1.plot_clusters(X_train, X_train_label, cluster_labels, cluster_centroid, if_slopes=True)
+
+or you can do a hierarchical clustering. This techinuqe is quite useful when you are not sure about the size of your original mask. You might have included some voxels in the mask which are too noisy. HIeararchical clustering works in two steps. In the first step, a Kmeans clustering with 2 clusters is perfomred. This will seperate voxels based on their signal-to-noise ratio. The algorithm selects voxels corresponding with the centroid which has a higher absolute mean value. Then another Kmeans with two clusters is performed over these voxels, and the result is saved and plotted. You can do all that by simply typing:
+
+.. code-block:: python
+
+    signal = 'raw'  # can be 'raw', 'mean', 'slope', 'slope'Segments', 'mean_segments'
+    dataset1.cluster_hierarchial(signal, if_save_plot=True)
+
+If you want to change a property (attribute in Pythons-speak), you can do so easily. For example, the example dataset is set to save the output plots and excel files into a subfolder called 'output' under the current python working directory. If you want to change it, you can simply do the following:
+
+ .. code-block:: python
+
+    dataset1.dir_save = 'COPY_FOLDER_PATH_HERE'
+
+You can change various other properties of the dataset. There are some of these attributes which are read directly from the input data-files:
+
+ .. code-block:: python
+
+    data_raw  #raw data
+    data  # normalized data.
+    data_mean  # mean value of time-series for each voxel
+    mask  # the fMRI mask. Number of 1s in it should match data.shape[1]
+    num_voxels  # generated from data
+    num_time_steps  # generated from data
+    time_steps  # (OPTIONAL) a float array of time-steps. Their length should match sdata.shape[0]. 
+                # If there is no such data available, time-steps would be consecutive integers to match data shape.
+    indices_cutoff  # (OPTIONAL) indices of 'events'. 
+                    # If dataset has for example 59 time-steps, it should be a list of integere in [0,58] range.
+                    # something like [11, 42].
+    dir_source  # (OPTIONAL) from which folder the data was loaded? 
+                # default is 'dataset' subfolder in the folder containing the config file (config file explained below)
+    dir_save  # (OPTIONAL) from which folder the data was loaded?
+                # default is 'output' subfolder in the currect folder in python
+
+When the ``dataset1`` object is created, linear regression is automatically performed on the normalised data. If ``indices_cutoff`` is not empty, linear regression is perfomre on each segment separately. results fo linrea regression are stored in the followin attributes:
+
+ .. code-block:: python
+
+    line_reg  # the same shape as data, but linearised version of the data
+    line_reg_slopes  # slopes. If there are for example 2 cutoff indices defined, it will of [3, N_voxels] shape. Otherwise [1, N_voxels]
+    line_reg_biases  # offsets for each linear regression. Same dimensions as linear_reg_slopes. 
+
+And then there are some which merely hold miscellaneous information and can be change at will:
+
+ .. code-block:: python
+
+    signal_name  # a string, can be 'T1w', 'T2*', 'FISP' or any other signal you have recorded
+    experiment_name  # a string
+    dataset_no  # an integer. 
+    mol_name  # Molecule name. Useful for molecular fMRI studies. 
+    description  # a short description
+
+
+
+
+How to load the data
+--------------------    
+In order to tell MiTfAT where are your input files, or to enter optional information about your expriment, signal, etc., you need to enter them into a config file. The config file is simply a text file and the lines starting with certain keywords are assumed to have the required file names, folder names, etc. 
+To see a sample config file, you can use:
+
+ .. code-block:: python
+
+    from mitfat.file_io import print_info
+    print_info()
+
+or if you want to save it as a text file, you can use:
+
+ .. code-block:: python
+
+    from mitfat.file_io import print_info
+    print_info('sample_config_file.txt')
+
+After editing this file based on your data file and folder names, similar to what we saw above, we can use
+
+ .. code-block:: python
+
+    from mitfat.file_io import read_data
+    dataset2 = read_data('my_config_file_for_dataset2.txt')
+
+There is also test script accompanying the code tha you can access using teh follwing:
+
+ .. code-block:: python
+
+    from mitfat.file_io import test_script
+    test_script()
+
+It will save a file called ``MiTfAT_test_script.py`` into the current python working directory. If you want to change the output file name, you can give the file name as an argument to ``test_script()`` function. 
+
+
+Installation
+------------
+in your command prompt or bash, simply type:
+
+ .. code-block:: bash
+
+    pip install mitfat
+
+If you are using Anaconda on Windows, better to open an Anaconda command prompt and then type the above. 
+
+Or if you want to work with the latest beta-release, you can find it in:
+
+https://gitlab.tuebingen.mpg.de/vbokharaie/mitfat
+
+
+Requirements
+^^^^^^^^^^^^
+
+ .. code-block:: python
+
+    seaborn==0.9.0
+    pandas==0.25.0
+    numpy==1.16.4
+    scipy==1.3.0
+    matplotlib==3.1.1
+    nibabel==2.5.0
+    nilearn==0.5.2
+    scikit_learn==0.21.3
+    openpyxl  # this is a pandas dependency
+
+
+Compatibility
+-------------
+
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 2',
+    'Programming Language :: Python :: 2.7',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.4',
+    'Programming Language :: Python :: 3.5',
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
+
+Licence
+-------
+MIT license
+
+Authors
+-------
+
+`MiTfAT` was written by `Vahid Samadi Bokharaie <vahid.bokharaie@tuebingen.mpg.de>`_.
+
+
