@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: pandas-utility
+Version: 0.1.2
+Summary: Some useful Pandas utility functions
+Home-page: https://github.com/mmphego/pandas_utility
+Author: pandas_utility
+Author-email: mpho112@gmail.com
+License: MIT license
+Project-URL: Bug Reports, https://github.com/mmphego/pandas_utility/issues
+Project-URL: Source, https://github.com/mmphego/pandas_utility
+Project-URL: Say Thanks!, https://saythanks.io/to/mmphego
+Description: Some useful Pandas utility functions
+Keywords: pandas_utility
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
