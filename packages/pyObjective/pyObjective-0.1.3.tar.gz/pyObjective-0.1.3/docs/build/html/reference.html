@@ -1,0 +1,310 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Module Reference &mdash; pyObjective 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Examples" href="examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pyObjective
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Module Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyObjective</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Module Reference</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/reference.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-reference">
+<h1>Module Reference<a class="headerlink" href="#module-reference" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pyObjective.Variable">
+<em class="property">class </em><code class="sig-prename descclassname">pyObjective.</code><code class="sig-name descname">Variable</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">value</em>, <em class="sig-param">bounds</em>, <em class="sig-param">description=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyObjective.Variable" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="pyObjective.Variable.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">value</em>, <em class="sig-param">bounds</em>, <em class="sig-param">description=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyObjective.Variable.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a variable</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – name for the variable</p></li>
+<li><p><strong>value</strong> (<em>float</em>) – numerical value of the variable. May be used as initial guess or to check model compilation.</p></li>
+<li><p><strong>bounds</strong> (<em>(</em><em>lower float</em><em>, </em><em>upper float</em><em>)</em>) – range of possible values</p></li>
+<li><p><strong>description</strong> (<em>str</em><em>, </em><em>optional</em>) – longer description of variable, for easy referencing in results.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>object</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pyObjective.Variable" title="pyObjective.Variable">Variable</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyObjective.Variable.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">vec=[]</em>, <em class="sig-param">mode=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyObjective.Variable.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an appropriate form of the variable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vec</strong> (<em>1D array</em><em> or </em><em>list</em>) – vector to substitute into variables</p></li>
+<li><p><strong>mode</strong> – type of return on calling the variable.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If mode is ‘float’ or ‘value’, the variables value is returned (float).
+If mode is ‘index’, the index of this variable within the vector is returned (int).
+If mode is ‘obj’, the returned style is such that it can be used by scipy’s optimize features (vec[int])</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyObjective.Model">
+<em class="property">class </em><code class="sig-prename descclassname">pyObjective.</code><code class="sig-name descname">Model</code><a class="headerlink" href="#pyObjective.Model" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="pyObjective.Model.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyObjective.Model.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes the model.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyObjective.Model.add_var">
+<code class="sig-name descname">add_var</code><span class="sig-paren">(</span><em class="sig-param">var</em><span class="sig-paren">)</span><a class="headerlink" href="#pyObjective.Model.add_var" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a variable to the model. Also updates indices and variable lists.
+:param var: Variable to be added
+:type var: Variable</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyObjective.Model.solve">
+<code class="sig-name descname">solve</code><span class="sig-paren">(</span><em class="sig-param">solveOptions={}</em><span class="sig-paren">)</span><a class="headerlink" href="#pyObjective.Model.solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solves the model. Uses scipy’s dual_annealing method to efficiently find global optimal.
+In the future, I will try to make it generic enough to use a solver of your choice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>solveOptions</strong> (<em>dict</em>) – dictionary of all additional parameters that can be provided to scipy.optimize.dual_annealing()</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>result dictionary as returned by Scipy
+Also stores the solution within the model object (accessible by model.solution and model.solution_vector)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>OptimizeResult</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyObjective.Model.evaluate">
+<code class="sig-name descname">evaluate</code><span class="sig-paren">(</span><em class="sig-param">vec</em><span class="sig-paren">)</span><a class="headerlink" href="#pyObjective.Model.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluates the cost for the model for a given vector.
+:param vec: vector of variable values
+:type vec: ndarray, list of floats</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>cost evaluated for this vector</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyObjective.Model.display_results">
+<code class="sig-name descname">display_results</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyObjective.Model.display_results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple method to display the cost and the variables neatly.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="examples.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Devansh Agrawal
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
