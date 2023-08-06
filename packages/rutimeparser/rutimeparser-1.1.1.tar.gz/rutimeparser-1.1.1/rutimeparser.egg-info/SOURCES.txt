@@ -1,0 +1,12 @@
+README.md
+README.rst
+setup.py
+rutimeparser/get_words.py
+rutimeparser/core.py
+rutimeparser/__init__.py
+rutimeparser/reducers.py
+rutimeparser/utils.py
+rutimeparser/numbers.py
+rutimeparser/get_cat.py
+rutimeparser/rules.py
+rutimeparser/shortcuts.py
