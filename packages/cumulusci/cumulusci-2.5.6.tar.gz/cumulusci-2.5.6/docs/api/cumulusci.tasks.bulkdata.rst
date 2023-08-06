@@ -1,0 +1,54 @@
+cumulusci.tasks.bulkdata package
+================================
+
+Submodules
+----------
+
+cumulusci.tasks.bulkdata.delete module
+--------------------------------------
+
+.. automodule:: cumulusci.tasks.bulkdata.delete
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+cumulusci.tasks.bulkdata.extract module
+---------------------------------------
+
+.. automodule:: cumulusci.tasks.bulkdata.extract
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+cumulusci.tasks.bulkdata.generate module
+----------------------------------------
+
+.. automodule:: cumulusci.tasks.bulkdata.generate
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+cumulusci.tasks.bulkdata.load module
+------------------------------------
+
+.. automodule:: cumulusci.tasks.bulkdata.load
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+cumulusci.tasks.bulkdata.utils module
+-------------------------------------
+
+.. automodule:: cumulusci.tasks.bulkdata.utils
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: cumulusci.tasks.bulkdata
+    :members:
+    :undoc-members:
+    :show-inheritance:
