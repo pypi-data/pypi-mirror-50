@@ -1,0 +1,15 @@
+django_typeform/__init__.py,sha256=FVHPBGkfhbQDi_z3v0PiKJrXXqXOx0vGW_1VaqNJi7U,22
+django_typeform/apps.py,sha256=v9mbxjybaekcfL6UMrwOb2wtRORoIeecMkuKc6Nnf9Q,124
+django_typeform/forms.py,sha256=Jz20R69BfkEhoc0BexYU8UItFrMmPJd17jqDM4CbIbg,2057
+django_typeform/responses.py,sha256=_XKmxClMg0QZJhyt1mzywCz1uP5R3Z47MzLzNnVbKNk,4907
+django_typeform/views.py,sha256=m2gpq7Rxp6tync3X3l6BCOH9GXdP8eW09R4M3_9BCRQ,1258
+django_typeform/templates/django_typeform/typeform.html,sha256=ZM0efWXI37KcKau2EydYFTNp1wjhb8FkmqA9IjGlrJk,1157
+django_typeform/templates/django_typeform/typeform_embed.html,sha256=wBGxW20ZQgm3GPBAOwqb7AL79D8Ce28tPhX-KqrAOdQ,546
+django_typeform/templatetags/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_typeform/templatetags/django_typeform.py,sha256=6D-qziFCUBNvdl7rh3v0Hd_3E9w424T0B-7nwGcU124,912
+django_typeform-0.2.0.dist-info/DESCRIPTION.rst,sha256=vkmQgTNCyxENiYCkLlIhWYVC5Uc4gGMafUqRJtOlxr0,1578
+django_typeform-0.2.0.dist-info/METADATA,sha256=-KPy4i4gMqbd9Ozpg-_1aYpfIPBquP3Z3PaN_Ohs47Y,2429
+django_typeform-0.2.0.dist-info/RECORD,,
+django_typeform-0.2.0.dist-info/WHEEL,sha256=kdsN-5OJAZIiHN-iO4Rhl82KyS0bDWf4uBwMbkNafr8,110
+django_typeform-0.2.0.dist-info/metadata.json,sha256=uMrqK1NAm2EAlNJwN30vToybu7hH-Lg0pljXkxcENYE,944
+django_typeform-0.2.0.dist-info/top_level.txt,sha256=MDLxZH3O-bktJNPrMLiKLYTEF8SKtSiX_uBxLDABW2o,16
