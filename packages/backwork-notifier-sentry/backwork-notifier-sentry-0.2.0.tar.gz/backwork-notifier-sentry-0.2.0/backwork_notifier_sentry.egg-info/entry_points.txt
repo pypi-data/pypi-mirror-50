@@ -1,0 +1,3 @@
+[backwork.notifiers]
+sentry = sentry:SentryNotifier
+
