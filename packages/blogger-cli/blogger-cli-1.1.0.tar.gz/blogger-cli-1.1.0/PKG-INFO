@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: blogger-cli
+Version: 1.1.0
+Summary: Blogger cli is a CLI tool to convert ipynb, md, html file to responsive html files.
+Home-page: https://github.com/hemanta212/blogger-cli
+Author: hemanta212
+Author-email: sharmahemanta.212@gmail.com
+Keywords: jupyter notebook,github pages,blogger
+Requires-Python: >=3.5,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: bs4 (>=0.0.1,<0.0.2)
+Requires-Dist: click (>=7.0,<8.0)
+Requires-Dist: markdown (>=3.1,<4.0)
+Requires-Dist: nbconvert (>=5.5,<6.0)
+Project-URL: Documentation, https://hemanta212.github.io/blogger-cli
+Project-URL: Repository, https://github.com/hemanta212/blogger-cli
