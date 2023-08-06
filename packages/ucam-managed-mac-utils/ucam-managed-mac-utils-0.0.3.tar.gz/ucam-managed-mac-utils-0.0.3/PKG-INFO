@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: ucam-managed-mac-utils
+Version: 0.0.3
+Summary: A collection of useful functions for managing Macs at University of Cambridge
+Home-page: https://gitlab.developers.cam.ac.uk/uis/desktopsystems/ucam_managed_mac_utils.git
+Author: James Nairn
+Author-email: jwrn3@cam.ac.uk
+License: UNKNOWN
+Description: # Managed Mac Utils for University of Cambridge
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
