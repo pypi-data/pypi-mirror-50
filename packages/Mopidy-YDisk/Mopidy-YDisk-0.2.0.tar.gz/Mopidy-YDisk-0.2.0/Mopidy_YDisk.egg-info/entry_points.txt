@@ -1,0 +1,3 @@
+[mopidy.ext]
+ydisk = mopidy_ydisk:Extension
+

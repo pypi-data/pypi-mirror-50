@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+Mopidy_YDisk.egg-info/PKG-INFO
+Mopidy_YDisk.egg-info/SOURCES.txt
+Mopidy_YDisk.egg-info/dependency_links.txt
+Mopidy_YDisk.egg-info/entry_points.txt
+Mopidy_YDisk.egg-info/not-zip-safe
+Mopidy_YDisk.egg-info/requires.txt
+Mopidy_YDisk.egg-info/top_level.txt
+mopidy_ydisk/__init__.py
+mopidy_ydisk/backend.py
+mopidy_ydisk/commands.py
+mopidy_ydisk/ext.conf
+mopidy_ydisk/tagger.py
+mopidy_ydisk/ydisk.py
