@@ -1,0 +1,9 @@
+Metadata-Version: 1.2
+Name: pyonepassword
+Version: 0.1.0b1
+Summary: A python API to query a 1Password account using the 'op' command-line tool
+Home-page: https://github.com/zcutlip/pyonepassword
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.7
