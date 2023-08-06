@@ -1,0 +1,9 @@
+README
+setup.cfg
+setup.py
+slack_signature_verifier/__init__.py
+slack_signature_verifier/slack_signature_verifier.py
+slack_signature_verifier.egg-info/PKG-INFO
+slack_signature_verifier.egg-info/SOURCES.txt
+slack_signature_verifier.egg-info/dependency_links.txt
+slack_signature_verifier.egg-info/top_level.txt
