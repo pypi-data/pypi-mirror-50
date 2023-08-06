@@ -1,0 +1,234 @@
+#!/bin/bash
+## START_OF_BASH_PLUS
+#start_region
+red="\033[38;5;196m"
+neutral='\033[0m'
+cyan='\033[00;34m'
+white='\033[97m'
+green="\033[38;5;46m"
+ok=${green}"✔"${neutral}
+# fail=${red}"✖"${neutral}
+
+epoch () {
+  echo `python -c "import time; print  ('{:0.0f}'.format(time.time()))"`
+}
+
+stopwatch () {
+  BEGIN=$1
+  NOW=`epoch`
+  let DIFF=$(( $NOW - $BEGIN ))
+  echo $DIFF
+}
+
+info () {
+  >&2 printf " [ ${cyan}INFO${neutral} ] $1 $2\n"
+}
+
+user () {
+  # shellcheck disable=SC2059
+ >&2 printf "\r  [ \033[0;33m?\033[0m ] $1 "
+}
+
+success () {
+  >&2 printf "   [ ${green}OK${neutral} ] $1 $2\n"
+}
+
+logv() {
+  [[ "$debug" != "" ]] && log "$1"
+}
+
+
+fatal () {
+  error $1 $2
+  exit 1
+}
+
+error(){
+ >&2  printf "[ ${red}ERROR${neutral} ] $1 $2\n"
+}
+
+# log a message with a seconds since program start prefix
+log() {
+  if [[ "$START" == "" ]]; then
+      START=$(epoch)
+  fi
+  >&2 printf "[ $(printf %05d $(stopwatch $START)) ] $1\n"
+}
+
+
+die(){
+    printf ${red}"$1${neutral} "$2"\n"
+    exit 1
+}
+
+hr(){
+  >&2   echo "================================================================================"
+}
+
+hr2(){
+  >&2   echo "=================================================="
+}
+
+hr3(){
+  >&2   echo "========================================"
+}
+
+strict_mode() {
+
+  set -o errexit
+  set -o nounset
+  set -o pipefail
+}
+
+strict_mode_off() {
+  unset -o errexit
+  unset -o nounset
+  unset -o pipefail
+}
+
+is_linux(){
+    if [ "$(uname -s)" = "Linux" ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+is_mac(){
+    if [ "$(uname -s)" = "Darwin" ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+is_jenkins(){
+    if [ -n "${JENKINS_URL:-}" ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+is_travis(){
+    if [ -n "${TRAVIS:-}" ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+is_ci(){
+    if [ -n "${CI:-}" -o -n "${CI_NAME:-}" ] || is_jenkins || is_travis; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+get_git_version() {
+  echo "$(git describe --tags): $(git log -n1 --oneline)"
+}
+
+#===================================================================
+# FUNCTION trap_add ()
+#
+# Purpose:  appends a command to a trap
+#
+# - 1st arg:  code to add
+# - remaining args:  names of traps to modify
+#
+# Example:  trap_add 'echo "in trap DEBUG"' DEBUG
+#
+# See: http://stackoverflow.com/questions/3338030/multiple-bash-traps-for-the-same-signal
+#===================================================================
+trap_add() {
+    trap_add_cmd=$1; shift || fatal "${FUNCNAME} usage error"
+    new_cmd=
+    for trap_add_name in "$@"; do
+        # Grab the currently defined trap commands for this trap
+        existing_cmd=`trap -p "${trap_add_name}" |  awk -F"'" '{print $2}'`
+
+        # Define default command
+        [ -z "${existing_cmd}" ] && existing_cmd="echo"
+
+        # Generate the new command
+        new_cmd="${existing_cmd};${trap_add_cmd}"
+
+        # Assign the test
+         trap   "${new_cmd}" "${trap_add_name}" || \
+                fatal "unable to add to trap ${trap_add_name}"
+    done
+}
+
+delete_on_exit() {
+  [[ "$1" == "" || "$1" == "/" ]] && fatal "Attempting to delete root directory"
+  logv "Deleting $1 on exit"
+  _delete_on_exit+=($1)
+  trap_add "_do_delete_on_exit" EXIT
+}
+
+_do_delete_on_exit() {
+  for i in "${_delete_on_exit[@]}"; do
+    rm -rf "$i"
+  done
+  _delete_on_exit=()
+}
+_delete_on_exit=()
+
+temp_cp() {
+  cp "$1" "$2"
+  delete_on_exit "$2"
+}
+
+timestamp=$(date +%s)
+#end_region
+## END_OF_BASH_PLUS
+script=$1
+BASH_PLUS=$0
+sed=sed
+if is_mac ; then
+  sed=gsed
+fi
+
+cp $script $script.bak
+function finish() {
+  mv $script.bak $script
+}
+trap finish EXIT
+
+function remove_existing_bash_libs() {
+  LINE_NO="$(cat $script | awk '/END_OF_BASH_PLUS/{ print NR; exit }')"
+  LENGTH=$(wc -l $script | awk '{print $1}')
+  if [[ "$LINE_NO" != "" ]]; then
+    tail -n $(expr $LENGTH - $LINE_NO ) $script | sponge $script
+  fi
+}
+# python-scripts are copied to a bin directory without a link back to the python dist folder
+# we therefore embed the lib script and extract it at runtime
+function extract_bash_libs() {
+  # get the line that bash plus library ends in the current script
+  LINE_NO="$(cat $BASH_PLUS | awk '/END_OF_BASH_PLUS/{ print NR; exit }')"
+  cat $BASH_PLUS | head -n $LINE_NO
+}
+
+function remove_argbash_codegen() {
+  START="$(cat $script | awk '/### START OF CODE GENERATED/{ print NR; exit }')"
+  END="$(cat $script | awk '/### END OF CODE GENERATED/{ print NR; exit }')"
+  cat $script | sed "$(expr $START + 1),$(expr $END - 1)d"
+}
+
+if [[ "$2" == "clean" ]]; then
+  remove_existing_bash_libs
+  remove_argbash_codegen
+  exit 0
+fi
+
+
+remove_existing_bash_libs
+extract_bash_libs
+
+docker run -it --rm -e PROGRAM=argbash -v "$(pwd):$(pwd)" -w $(pwd) matejak/argbash $script -o .$script
+# remove _arg_ prefix from all argument variables
+cat .$script | $sed 's|_arg_\(.*\)=|\1=|' | $sed "s|_SCRIPT_VERSION_|$(get_git_version)|"
+rm -f .$script || true
