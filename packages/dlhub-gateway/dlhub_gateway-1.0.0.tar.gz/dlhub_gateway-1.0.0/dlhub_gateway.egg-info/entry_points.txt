@@ -1,0 +1,3 @@
+[console_scripts]
+dlhub-gateway = kernel_gateway:launch_instance
+
