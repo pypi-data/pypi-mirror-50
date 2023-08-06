@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: incentive-v1
+Version: 0.1
+Summary: A line of description
+Home-page: https://github.com/yourname/django-myapp/
+Author: rajesh
+Author-email: rajesh@peerbits.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: Django (<2.2,>=1.6)
+
+UNKNOWN
+
+
