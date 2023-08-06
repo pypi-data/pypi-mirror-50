@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: tcellmatch
+Version: 0.1.0
+Summary: Predicting T-cell to epitope specificity.
+Home-page: UNKNOWN
+Author: David S. Fischer, Yihan Wu
+Author-email: david.fischer@helmholtz-muenchen.de
+License: UNKNOWN
+Description: # TcellMatch: Predicting T-cell to epitope specificity.
+        
+        Code to come soon.
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Provides-Extra: tensorflow_gpu
+Provides-Extra: docs
