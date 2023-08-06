@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# was a positional arg provided?
+pos_arg=False
+for var in "$@"; do
+    if [[ $var != -* ]]; then
+        re='^[0-9]+$'
+        if ! [[ $var =~ $re ]] ; then
+            pos_arg=True
+        fi
+    fi
+done
+
+# if not, make it current directory
+if [[ $pos_arg == "False" ]]; then
+    args=". ""$@"
+else
+    args="$@"
+fi
+
+# if you have treepy but not treepy_python, try rerunning setup.py
+treepy_python $args
+
+# was -q in args? then call temp bash script
+for var in $args; do
+    if [[ $var == -* ]]; then
+        if [[ $var == *"q"* ]]; then
+            source ~/.treepy_temp.sh
+            rm ~/.treepy_temp.sh
+        fi
+    fi
+done
