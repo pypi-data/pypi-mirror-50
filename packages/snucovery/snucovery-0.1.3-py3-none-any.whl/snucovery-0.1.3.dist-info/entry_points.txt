@@ -1,0 +1,4 @@
+[console_scripts]
+pytest=scripts.pyt:py_test
+snucovery=snucovery.__init__:main
+
