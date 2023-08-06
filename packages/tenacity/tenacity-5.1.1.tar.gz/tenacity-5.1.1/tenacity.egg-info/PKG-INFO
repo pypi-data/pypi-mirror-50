@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: tenacity
+Version: 5.1.1
+Summary: Retry code until it succeeeds
+Home-page: https://github.com/jd/tenacity
+Author: Julien Danjou
+Author-email: julien@danjou.info
+License: Apache 2.0
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Utilities
+Description-Content-Type: text/x-rst
+Provides-Extra: doc
