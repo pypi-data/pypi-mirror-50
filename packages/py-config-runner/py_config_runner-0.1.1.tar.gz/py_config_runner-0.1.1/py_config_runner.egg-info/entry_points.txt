@@ -1,0 +1,4 @@
+
+        [console_scripts]
+            py_config_runner=py_config_runner.__main__:command
+        
