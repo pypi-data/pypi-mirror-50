@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: feupy
+Version: 0.0.2
+Summary: The sigarra scraping library no one asked for
+Home-page: https://github.com/up201806185/Sigarra-scraping-experiment
+Author: Daniel Monteiro
+Author-email: up201806185@fe.up.pt
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: lxml (==4.4.1)
+Requires-Dist: requests (==2.22.0)
+Requires-Dist: requests-futures (==1.0.0)
+Requires-Dist: Pillow (==6.1.0)
+Requires-Dist: beautifulsoup4 (==4.8.0)
+
+Hi
+
+
