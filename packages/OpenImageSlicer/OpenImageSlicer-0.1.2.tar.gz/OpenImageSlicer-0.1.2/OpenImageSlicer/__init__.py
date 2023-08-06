@@ -1,0 +1,1 @@
+from OpenImageSlicer.slicer import Split, split_image
