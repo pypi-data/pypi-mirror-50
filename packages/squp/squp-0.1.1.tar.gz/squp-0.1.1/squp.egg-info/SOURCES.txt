@@ -1,0 +1,16 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+chromedriver.exe
+companyemail.txt
+example_items.json
+setup.py
+squp/__init__.py
+squp/command_line.py
+squp.egg-info/PKG-INFO
+squp.egg-info/SOURCES.txt
+squp.egg-info/dependency_links.txt
+squp.egg-info/entry_points.txt
+squp.egg-info/not-zip-safe
+squp.egg-info/requires.txt
+squp.egg-info/top_level.txt
