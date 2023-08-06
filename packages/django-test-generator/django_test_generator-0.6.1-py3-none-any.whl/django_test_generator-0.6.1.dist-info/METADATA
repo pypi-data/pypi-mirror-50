@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: django-test-generator
+Version: 0.6.1
+Summary: A set of mixins to automatically generate test for generic Django views and DRF Viewsets.
+Home-page: https://github.com/aipescience/django-test-generator
+Author: Jochen Klar
+Author-email: jklar@aip.de
+Maintainer: Jochen Klar
+Maintainer-email: jklar@aip.de
+License: Apache-2.0
+Keywords: testing,django
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django :: 2.2
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: Django (>=1.11)
+
+django-test-generator
+=====================
+
+A set of mixins to automatically generate tests for generic Django views and DRF Viewsets.
+
+
