@@ -1,0 +1,8 @@
+python-sql>=0.4
+trytond<4.7,>=4.6
+
+[:python_version != "3.4"]
+lxml
+
+[:python_version == "3.4"]
+lxml<4.4
