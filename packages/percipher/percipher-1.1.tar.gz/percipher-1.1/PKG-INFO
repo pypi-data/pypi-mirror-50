@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: percipher
+Version: 1.1
+Summary: Simple cipher with permutation
+Home-page: https://github.com/NotStatilko/Permutation.Cipher
+Author: NonSense
+Author-email: valerastatilko@gmail.com
+License: Apache 2.0
+Download-URL: https://github.com/NotStatilko/Permutation.Cipher/archive/1.1.tar.gz
+Description: UNKNOWN
+Keywords: Python,Cipher
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Security :: Cryptography
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
