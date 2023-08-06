@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: ixcom
+Version: 1.0.9
+Summary: Library for communicating with xcom devices over network
+Home-page: http://www.imar-navigation.de
+Author: iMAR Navigation GmbH
+Author-email: support@imar-navigation.de
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: XCOM
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
