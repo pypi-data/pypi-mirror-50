@@ -1,0 +1,24 @@
+Metadata-Version: 1.1
+Name: gym-contra
+Version: 0.0.1
+Summary: Contra. for OpenAI Gym
+Home-page: https://github.com/OuYanghaoyue/gym_contra
+Author: OuYanghaoyue
+Author-email: tony1480087241@gmail.com
+License: Proprietary
+Description: UNKNOWN
+Keywords: OpenAI-Gym NES Contra Reinforcement-Learning-Environment
+Platform: UNKNOWN
+Classifier: License :: Free For Educational Use
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Games/Entertainment :: Side-Scrolling/Arcade Games
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
