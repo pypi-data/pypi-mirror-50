@@ -1,0 +1,11 @@
+README.md
+setup.py
+bin/yspec
+yspec/__init__.py
+yspec/checker.py
+yspec/cli.py
+yspec.egg-info/PKG-INFO
+yspec.egg-info/SOURCES.txt
+yspec.egg-info/dependency_links.txt
+yspec.egg-info/requires.txt
+yspec.egg-info/top_level.txt
