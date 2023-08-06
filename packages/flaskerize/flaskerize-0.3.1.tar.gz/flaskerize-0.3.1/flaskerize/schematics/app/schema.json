@@ -1,0 +1,5 @@
+{
+  "templateFilePatterns": ["**/*.template"],
+  "ignoreFilePatterns": ["schema.json", "run.py", "functions.py"],
+  "options": []
+}
