@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: banu_test_name
+Version: 0.2
+Summary: A small example package
+Home-page: https://github.com/banu17/banu_test
+Author: Banu Prasanth
+Author-email: banuprasanth.android@gmail.com
+License: UNKNOWN
+Description: # banu_test
+        This is test repository for testing PyPI
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
