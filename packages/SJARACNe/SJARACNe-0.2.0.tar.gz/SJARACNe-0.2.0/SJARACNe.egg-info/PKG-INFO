@@ -1,0 +1,11 @@
+Metadata-Version: 1.2
+Name: SJARACNe
+Version: 0.2.0
+Summary: Gene network reverse engineering from big data
+Home-page: https://github.com/jyyulab/SJARACNe
+Author: Liang Ding, Chenxi Qian, Jiyang Yu
+Author-email: liang.ding@stjude.org, chenxi.qian@stjude.org, jiyang.yu@stjude.org
+License: See LICENSE.md
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: ==3.6.1
