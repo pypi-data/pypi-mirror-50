@@ -1,0 +1,8 @@
+#!python
+import sys
+
+from docshund import Docshund
+
+D = Docshund()
+
+print(D.parse_document(open(sys.argv[-1], 'r').read()))
