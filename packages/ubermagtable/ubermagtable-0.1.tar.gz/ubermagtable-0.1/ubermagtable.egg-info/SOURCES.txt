@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+ubermagtable/__init__.py
+ubermagtable/ubermagtable.py
+ubermagtable.egg-info/PKG-INFO
+ubermagtable.egg-info/SOURCES.txt
+ubermagtable.egg-info/dependency_links.txt
+ubermagtable.egg-info/requires.txt
+ubermagtable.egg-info/top_level.txt
+ubermagtable/tests/__init__.py
+ubermagtable/tests/test_init.py
+ubermagtable/tests/test_ubermagtable.py
