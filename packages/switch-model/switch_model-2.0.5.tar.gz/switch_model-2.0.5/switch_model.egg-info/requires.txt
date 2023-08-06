@@ -1,0 +1,24 @@
+Pyomo>=4.4.1
+pint
+testfixtures
+pandas
+
+[advanced]
+numpy
+scipy
+sympy
+
+[advanced:python_version < "3.0"]
+rpy2<2.9.0
+
+[advanced:python_version >= "3.0"]
+rpy2
+
+[database_access]
+psycopg2-binary
+
+[dev]
+ipdb
+
+[plotting]
+ggplot
