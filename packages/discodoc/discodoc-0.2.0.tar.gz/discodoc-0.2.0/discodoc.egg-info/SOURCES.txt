@@ -1,0 +1,16 @@
+CHANGES.rst
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+discodoc/__init__.py
+discodoc/cli.py
+discodoc/core.py
+discodoc/util.py
+discodoc.egg-info/PKG-INFO
+discodoc.egg-info/SOURCES.txt
+discodoc.egg-info/dependency_links.txt
+discodoc.egg-info/entry_points.txt
+discodoc.egg-info/not-zip-safe
+discodoc.egg-info/requires.txt
+discodoc.egg-info/top_level.txt
