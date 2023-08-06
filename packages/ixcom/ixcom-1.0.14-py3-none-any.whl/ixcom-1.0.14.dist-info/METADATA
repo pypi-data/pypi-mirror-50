@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: ixcom
+Version: 1.0.14
+Summary: Library for communicating with xcom devices over network
+Home-page: http://www.imar-navigation.de
+Author: iMAR Navigation GmbH
+Author-email: support@imar-navigation.de
+License: UNKNOWN
+Keywords: XCOM
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: numpy (>=1.16.2)
+
+This library can be used to communicate with iMAR devices speaking the iXCOM protocol.
+
+Example usage:
+```python
+import ixcom
+
+client = ixcom.client('192.168.1.30')
+client.open_last_free_channel()
+client.realign()
+```
+
