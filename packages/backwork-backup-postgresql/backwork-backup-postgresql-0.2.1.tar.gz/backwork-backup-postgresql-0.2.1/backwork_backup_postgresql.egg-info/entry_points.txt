@@ -1,0 +1,3 @@
+[backwork.backups]
+postgresql = postgresql:PostgreSQLBackup
+
