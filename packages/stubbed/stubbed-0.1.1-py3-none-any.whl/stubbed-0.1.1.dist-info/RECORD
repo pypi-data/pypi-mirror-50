@@ -1,0 +1,12 @@
+stubbed-0.1.1.dist-info/RECORD,,
+stubbed-0.1.1.dist-info/metadata.json,sha256=8E8VJnzCOgSPFxBUJmv4ZtwZyPexnCr1INXqlOwEWxc,415
+stubbed-0.1.1.dist-info/WHEEL,sha256=-aSo8rHuuPDEFzkcqqQ55pDyCjy25bYMLxSiHWKAOTc,92
+stubbed-0.1.1.dist-info/DESCRIPTION.rst,sha256=OCTuuN6LcWulhHS3d5rfjdsQtW22n7HENFRh6jC6ego,10
+stubbed-0.1.1.dist-info/top_level.txt,sha256=65FVXa4UuhxYXwaxc_ap4uJXoexOOc9W2VRpO0u--ZU,8
+stubbed-0.1.1.dist-info/METADATA,sha256=ro5PraF9SpoxPhp6HtlmxerepBv8RzVu4I6DKVQFEuk,284
+stubbed/numpy_stubs.py,sha256=4SaPK68JzGp7iebgf9rTC1EYujpdKtcyIGhfDQy9zy4,18330
+stubbed/__init__.py,sha256=vDrwQDY1W8-0-ZUaEGK-d0BHhfIiSMe2eO7As_pLrig,16
+stubbed/core.py,sha256=Iwwo4P-wpcA1YwzNKoYuzWYlfPVGTc8cDVn74Gbe3ew,754
+stubbed/networkx_stubs.py,sha256=pViKIjwVSN6oNEz0GDzPzl5bEX1YxinpWdumqMHTUZA,11044
+stubbed/scipy_sparse_stubs.py,sha256=2Id1WQTxdmB5UtcJ4vZSy8jxWZFMXyzWohqqq-bBaEA,8021
+stubbed/import_support.py,sha256=x5-onh0RL6NG_CpOsioMmkFAgiH3IHd-xa3zFMJ6jiU,818

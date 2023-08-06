@@ -1,0 +1,16 @@
+Metadata-Version: 2.0
+Name: stubbed
+Version: 0.1.1
+Summary: A library for obtaining runtime traces
+Home-page: UNKNOWN
+Author: Stanford Plasticine Project
+Author-email: UNKNOWN
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: networkx
+
+UNKNOWN
+
+
