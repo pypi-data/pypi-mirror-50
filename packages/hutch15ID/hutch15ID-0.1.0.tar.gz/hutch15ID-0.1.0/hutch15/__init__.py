@@ -1,0 +1,1 @@
+name = "My first PyPI project!"
