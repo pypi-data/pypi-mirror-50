@@ -1,0 +1,10 @@
+include CONTRIBUTING.rst
+include MANIFEST.in
+include LICENSE
+include README.rst
+include setup.cfg
+include setup.py
+recursive-include docs *.py *.rst
+recursive-include ontocode *.py
+recursive-include tests *.py
+graft test-resources

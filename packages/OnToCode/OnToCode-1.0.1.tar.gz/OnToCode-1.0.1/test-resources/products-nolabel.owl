@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+Copyright, 2019, Deutsches Zentrum für Luft- und Raumfahrt e.V.
+Licensed under LGPLv3+, see LICENSE for details.
+-->
+<rdf:RDF xmlns="http://example.com/products-nolabel#"
+     xml:base="http://example.com/products-nolabel"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+
+    <owl:Ontology rdf:about=""/>
+
+    <owl:Class rdf:about="#Product"/>
+
+    <owl:Class rdf:about="#Magnetometer">
+        <rdfs:subClassOf rdf:resource="#Product"/>
+    </owl:Class>
+    <owl:Class rdf:about="#Magnetorquer">
+        <rdfs:subClassOf rdf:resource="#Product"/>
+    </owl:Class>
+    <owl:Class rdf:about="#Startracker">
+        <rdfs:subClassOf rdf:resource="#Product"/>
+    </owl:Class>
+
+</rdf:RDF>

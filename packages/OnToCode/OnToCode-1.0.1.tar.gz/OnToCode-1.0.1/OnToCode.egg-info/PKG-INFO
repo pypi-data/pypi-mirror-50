@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: OnToCode
+Version: 1.0.1
+Summary: UNKNOWN
+Home-page: https://gitlab.com/dlr-dw/ontocode
+Author: Philipp Matthias Schäfer
+Author-email: p.schaefer@dlr.de
+License: LGPLv3+
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)
+Requires-Python: >=3.6
+Provides-Extra: jinja2

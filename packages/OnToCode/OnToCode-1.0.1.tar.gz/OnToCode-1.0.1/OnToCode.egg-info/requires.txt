@@ -1,0 +1,5 @@
+Owlready2>=0.12
+rdflib>=4.2
+
+[jinja2]
+Jinja2>=2.10
