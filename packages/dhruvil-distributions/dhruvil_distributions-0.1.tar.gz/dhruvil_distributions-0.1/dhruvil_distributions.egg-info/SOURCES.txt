@@ -1,0 +1,10 @@
+setup.py
+dhruvil_distributions/Binomialdistribution.py
+dhruvil_distributions/Gaussiandistribution.py
+dhruvil_distributions/Generaldistribution.py
+dhruvil_distributions/__init__.py
+dhruvil_distributions.egg-info/PKG-INFO
+dhruvil_distributions.egg-info/SOURCES.txt
+dhruvil_distributions.egg-info/dependency_links.txt
+dhruvil_distributions.egg-info/not-zip-safe
+dhruvil_distributions.egg-info/top_level.txt
