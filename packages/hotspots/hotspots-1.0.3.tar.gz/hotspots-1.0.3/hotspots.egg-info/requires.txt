@@ -1,0 +1,11 @@
+numpy
+csd-python-api>=2.0.0
+matplotlib==2.2.3
+scipy
+sklearn
+scikit-image
+hdbscan
+pandas
+futures
+tqdm==4.31.1
+xmltodict==0.12.0
