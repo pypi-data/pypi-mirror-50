@@ -1,0 +1,72 @@
+Metadata-Version: 2.0
+Name: sphinx-heigvd-theme
+Version: 0.4.0
+Summary: A Sphinx-doc theme based on sphinx press theme
+Home-page: https://github.com/heig-vd-tin/sphinx-heigvd-theme
+Author: Yves Chevallier <yves.chevallier@heig-vd.ch>
+Author-email: UNKNOWN
+License: MIT
+Project-URL: Source, https://github.com/heig-vd-tin/sphinx-heigvd-theme
+Project-URL: Tracker, https://github.com/heig-vd-tin/sphinx-heigvd-theme/issues
+Keywords: sphinx doc theme heig-vd vue.js
+Platform: UNKNOWN
+Classifier: Framework :: Sphinx
+Classifier: Framework :: Sphinx :: Theme
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Environment :: Console
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Documentation
+Classifier: Topic :: Software Development :: Documentation
+Requires-Dist: sphinx (>=2.0.0)
+
+# Sphinx HEIG-VD Theme
+
+[![Build Status](https://travis-ci.org/heig-vd-tin/sphinx-heigvd-theme.svg?branch=master)](https://travis-ci.org/heig-vd-tin/sphinx-heigvd-theme)
+
+This theme is a fork of the [sphinx-press-theme](https://schettino72.github.io/sphinx_press_site/)
+based on [VuePress](https://vuepress.vuejs.org/). It uses [Vue.js](https://vuejs.org/) & [Stylus](http://stylus-lang.com/)
+managed by [webpack](https://webpack.js.org/) (through [vue-cli](https://cli.vuejs.org/)).
+
+## Installation
+
+First install the theme:
+
+```
+$ pip install git+https://github.com/heig-vd-tin/sphinx-heigvd-theme
+```
+
+On Sphinx project's ``conf.py``: set the theme name to ``heigvd``.
+
+```
+html_theme = "heigvd"
+```
+
+See details on [Sphinx theming docs](http://www.sphinx-doc.org/en/master/theming.html#using-a-theme).
+
+## Development
+
+To contribute to this theme you should first build the web assets:
+
+```
+cd ui
+npm run build
+```
+
+Sphinx theme has a soft link to built assets. Once done, install the theme locally
+with `pip install -e .`.
+
+`docs` folder contains theme's own documentantion.
+
+```
+cd docs
+make clean; make html
+```
+
+
