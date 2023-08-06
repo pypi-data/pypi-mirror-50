@@ -1,0 +1,3 @@
+[console_scripts]
+tnp = tnp.program:program.run
+
