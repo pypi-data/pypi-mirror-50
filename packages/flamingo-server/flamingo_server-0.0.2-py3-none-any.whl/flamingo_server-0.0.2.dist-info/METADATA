@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: flamingo-server
+Version: 0.0.2
+Summary: A lightweight customizable socket server.
+Home-page: UNKNOWN
+Author: Uncertainty.
+Author-email: tk@uncertainty.cc
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# Flamingo
+
+
+
+## Installing
+
+```bash
+pip install flamingo
+```
+
+
+
+## Example
+
+simple http server
+
+```python
+import json
+from flamingo import Flamingo, Response
+
+app = Flamingo()
+
+def homepage():
+    return "Hello world"
+
+app.register("/", homepage)
+app.register("/text", "this is just a line of text")
+
+data = json.dumps({"code":200, "msg":"hello world"})
+app.register("/json", Response(200, data, content_type="application/json"))
+
+app.run()
+```
+
