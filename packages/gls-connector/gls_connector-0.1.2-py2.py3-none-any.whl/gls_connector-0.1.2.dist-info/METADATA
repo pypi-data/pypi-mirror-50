@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: gls-connector
+Version: 0.1.2
+Summary: Python library for using GLS Online API for printing labels
+Home-page: https://github.com/Pipoline/python-gls-connector
+Author: Viliam Tokarcik
+Author-email: viliam@tokarcik.eu
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# python-gls-connector
+Python GLS connector
+
+
