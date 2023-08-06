@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: poise-cli
+Version: 1.0
+Summary: Poise, a CLI for retrieving quotes on Goodreads
+Home-page: https://github.com/harbi/poise
+Author: Abdullah Alharbi
+Author-email: user.afh@gmail.com
+License: UNKNOWN
+Description: # Poise
+        
+        Poise, a CLI for retrieving quotes on Goodreads.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
