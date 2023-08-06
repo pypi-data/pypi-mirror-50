@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: pydrake
+Version: 0.1.1
+Summary: UNKNOWN
+Home-page: https://github.com/JPadley18/pydrake
+Author: Jacob Padley
+Author-email: jacob5180@hotmail.co.uk
+License: UNKNOWN
+Download-URL: https://github.com/JPadley18/pydrake/archive/v0.1.1.tar.gz
+Keywords: riot league legends wrapper api pydrake drake
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.5
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+Requires-Dist: certifi
+Requires-Dist: chardet
+Requires-Dist: idna
+Requires-Dist: requests
+Requires-Dist: urllib3
+
+# PyDrake
+Experimental Python wrapper for the Riot Games API.
+
