@@ -1,0 +1,163 @@
+Metadata-Version: 2.1
+Name: dxql
+Version: 0.0.5
+Summary: Data eXploration Query Language (DXQL)
+Home-page: https://github.com/Frechetta/DXQL
+Author: Eric Frechette
+Author-email: frechetta93@gmail.com
+License: UNKNOWN
+Description: [![Build Status](https://travis-ci.org/Frechetta/DXQL.svg?branch=master)](https://travis-ci.org/Frechetta/DXQL) [![codecov](https://codecov.io/gh/Frechetta/DXQL/branch/master/graph/badge.svg)](https://codecov.io/gh/Frechetta/DXQL)
+        
+        # Data Exploration Query Language (DXQL)
+        
+        Requires Python 3.7
+        
+        ## Usage
+        
+        1. Import dxql.search.Pipeline into your project
+        2. Instantiate a Pipeline using Pipeline.create_pipeline(*query-string*)
+        3. Use the new pipeline to search over an iterable of dicts using pipeline.execute(*events*)
+        
+        Example:
+        
+        ```
+        from dxql.search import Pipeline
+        pipeline = Pipeline.create_pipeline('search ip=192.168.1.10')
+        results = pipeline.execute(events)
+        ```
+        
+        *events* can be any iterable. To search a file, just pass the opened file to `pipeline.execute()`. Each line of the file will be considered an event.
+        
+        Example:
+        
+        ```
+        # myfile.json is a file where each line is a JSON dictionary
+        with open('myfile.json') as file:
+            results = pipeline.execute(file)
+        ```
+        
+        ## Searching
+        
+        Searching is inspired by Splunk's query language.
+        
+        Throughout the rest of this document, I will use the terms "search" and "query" interchangebly.
+        
+        A query can consist of multiple commands separated by a pipe (`|`). Imagine a multiple-command search as a "pipeline" where each command is applied to the data in turn, with the data being fed from one command to the next until the end of the pipeline.
+        
+        There are four commands available:
+        
+        ### 1. search
+        
+        The `search` command allows you to filter the data using key-value pairs and modifiers like `OR` and `NOT`. It must be the first command in the query.
+        
+        #### Usage:
+        
+        search \<expression>...
+        
+        **\<expression>**
+        
+        \<comparison-expression> | NOT \<expression> | \<expression> OR \<expression>
+        
+        **\<comparison-expression>**
+        
+        \<field>\<operator>\<value>
+        
+        **\<operator>**
+        
+        = | != | < | <= | > | >=
+        
+        #### Examples
+        
+        ##### Retrieving data from an index
+        
+        This search will return all data from the `geoip` index.
+        
+        `search index=geoip`
+        
+        ##### Retrieving GeoIP data for specific IPs
+        
+        Use the `OR` modifier to specify multiple values for a field.
+        
+        `search index=geoip ip=192.168.1.10 OR ip=192.168.1.11`
+        
+        ##### Retrieving GeoIP data for all IPs except one
+        
+        `search index=geoip ip!=192.168.1.15`
+        
+        or
+        
+        `search index=geoip NOT ip=192.268.1.15`
+        
+        #### Retrieving data for a specific IP from multiple indices
+        
+        It is not required to search by index.
+        
+        `search ip=192.168.1.15`
+        
+        The above search will return data with `ip=192.168.1.15` from all indices (in this case, data from indices `geoip` and `ip_rdap` will be returned; events in `rdap` do not contain an `ip` field).
+        
+        ### 2. fields
+        
+        The `fields` command allows you to display only the fields you want to see.
+        
+        #### Usage
+        
+        fields \<field>...
+        
+        #### Example
+        
+        Remove all fields from the results except for `ip` and `continent_name`:
+        
+        `search index=geoip | fields ip continent_name`
+        
+        ### 3. join
+        
+        The `join` command allows you to join data together by a field (the "by-field"). Each event that shares the same value for the by-field is joined together under one event. This allows you to join data from two disparate data sources.
+        
+        #### Usage
+        
+        join BY \<by-field>
+        
+        #### Example
+        
+        Join an IP with its associated RDAP data using the `ip_rdap` and `rdap` indices:
+        
+        `search index=ip_rdap OR index=rdap | join BY handle`
+        
+        `handle` is the 'by-field', the field that is shared by the different kinds of data.
+        
+        ### 4. prettyprint
+        
+        The `prettyprint` command may only be used as the last command in the search. It allows you to print the result set in a prettier fashion than plain JSON blobs.
+        
+        #### Usage
+        
+        prettyprint format=\<format>
+        
+        **\<format>**
+        
+        json | table
+        
+        #### Examples
+        
+        ##### Print results as pretty JSON
+        
+        Using `format=json` still prints each result as JSON but with newlines and indentation.
+        
+        `search index=rdap | prettyprint format=json`
+        
+        ##### Print results as a table
+        
+        Using `format=table` prints the results as a formatted table.
+        
+        `search index=rdap | prettyprint format=table`
+        
+        If there are a lot of fields in the result set, the results will overflow onto the next line(s); therefore, it is recommended to pare down unwanted fields using `fields` before using `prettyprint format=table`. This happens expecially when joining `ip_rdap` and `rdap` data together. Many IPs share the same `rdap` data, so the IP values will become very long. I recommend specifying the IP(s) you are interested in before doing the `join`.
+        
+Keywords: data search query language
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Intended Audience :: Developers
+Requires-Python: >= 3.7
+Description-Content-Type: text/markdown
+Provides-Extra: test
