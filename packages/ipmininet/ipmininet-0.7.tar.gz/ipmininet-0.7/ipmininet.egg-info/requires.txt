@@ -1,0 +1,5 @@
+setuptools
+mako<1.1,>=1.0
+ipaddress>=1.0.22
+future>=0.17.1
+mininet@ git+https://github.com/mininet/mininet@2.3.0d6
