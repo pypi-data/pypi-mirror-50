@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: twipper
+Version: 0.0.9
+Summary: twipper - is a Python package that works as a Twitter API Wrapper
+Home-page: https://github.com/alvarob96/twipper
+Author: Alvaro Bartolome
+Author-email: alvarob96@usal.es
+License: GNU General Public License v3 (GPLv3)
+Download-URL: https://github.com/alvarob96/twipper/archive/0.0.9.tar.gz
+Description: # twipper
+        Twipper is a Python package based on a Twitter API Wrapper
+        
+Keywords: twitter,wrapper,api
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Software Development :: Libraries
+Description-Content-Type: text/markdown
