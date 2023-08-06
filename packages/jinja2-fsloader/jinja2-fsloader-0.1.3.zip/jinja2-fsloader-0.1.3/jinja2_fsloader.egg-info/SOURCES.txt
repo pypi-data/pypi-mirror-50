@@ -1,0 +1,16 @@
+COPYING
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+jinja2_fsloader/__init__.py
+jinja2_fsloader/_version.txt
+jinja2_fsloader.egg-info/PKG-INFO
+jinja2_fsloader.egg-info/SOURCES.txt
+jinja2_fsloader.egg-info/dependency_links.txt
+jinja2_fsloader.egg-info/requires.txt
+jinja2_fsloader.egg-info/top_level.txt
+jinja2_fsloader.egg-info/zip-safe
+tests/__init__.py
+tests/test_fsloader.py
+tests/utils.py
