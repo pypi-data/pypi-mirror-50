@@ -1,0 +1,110 @@
+Metadata-Version: 2.1
+Name: dockerma
+Version: 0.5.2
+Summary: DockerMA facilitates building multi-arch containers with minimal fuss
+Home-page: https://bitbucket.org/mortenlj/dockerma
+Author: Morten Lied Johansen
+Author-email: mortenjo@ifi.uio.no
+License: The MIT License
+Project-URL: Source, https://bitbucket.org/mortenlj/dockerma/src
+Project-URL: Tracker, https://bitbucket.org/mortenlj/dockerma/issues
+Description: DockerMA - Docker Multi Architecture
+        ====================================
+        
+        DockerMA facilitates building multi-arch containers with minimal fuss.
+        
+        What does it do?
+        ----------------
+        
+        ``dockerma`` aims to be a drop-in replacement for ``docker build`` and ``docker push`` to handle building what is often
+        referred to as "multi-arch" images. A "multi-arch" image is actually a manifest, listing which actual image to use for
+        a given architecture. The way to create these are still somewhat cumbersome, and considered experimental, especially if
+        you are using a base image that is already "multi-arch".
+        
+        ``dockerma build`` works by reading your ``Dockerfile`` and looking for a specially formatted comment that selects which
+        architectures you want to build. It will then create a manipulated version of your ``Dockerfile``, to inject some tools
+        for cross-building, and then build architecture specific images. If you have selected ``amd64`` and ``arm``, and build
+        ``myapp:v1.0``, the build will produce ``myapp:v1.0-amd64`` and ``myapp:v1.0-arm``.
+        
+        ``dockerma push`` will take the architecture specific images that was built previously, and push them to the remote
+        registry. It will then create a manifest, listing each of the images for the wanted architectures, and push the manifest
+        under the requested tag. This will create a "multi-arch" image.
+        
+        Supported architectures is based on what is available in the tooling used. The cross-building tools are from
+        https://github.com/monsonnl/qemu-wrap-build-files, and at this writing only supports ``amd64``, ``arm`` and ``arm64``.
+        If you want ``dockerma`` to support other architectures, you need to persuade ``qemu-wrap-build-files`` to support it
+        first.
+        
+        How do I use it?
+        ----------------
+        
+        Since ``dockerma`` aims to be a drop-in replacement, using it should be fairly simple.
+        
+        The first step is to add the ``dockerma`` comment to your ``Dockerfile``::
+        
+            # dockerma archs:arm,amd64,arm64:
+        
+        
+        When you previously used ``docker build -t myapp:latest -t myapp:v1.0 .`` to build ``latest`` and ``v1.0`` tags for your
+        current architecture, you will now simply replace ``docker`` with ``dockerma``::
+        
+            dockerma build -t myapp:latest -t myapp:v1.0 .
+        
+        
+        Similary, where you used ``docker push -t myapp:latest``, you now use ``dockerma``::
+        
+            dockerma push myapp:latest
+        
+        What are the requirements?
+        --------------------------
+        
+        * You need to enable experimental features in ``docker``. This can be done by setting ``DOCKER_CLI_EXPERIMENTAL`` to
+          ``enabled``, or changing your docker configuration. Consult the docker documentation for details.
+        * Your build host must support running ``qemu-<arch>-static``.
+        * Your base images needs to already support multi-arch (and in particular, the architectures you want to support).
+          Many official images already do.
+        
+        Are there any downsides to this approach?
+        -----------------------------------------
+        
+        * All images will have some additional files from the cross-build tooling, located in ``/cross-build``.
+        
+        Releasing a new version
+        -----------------------
+        
+        1. Tag the new version: ``hg tag v1.2.3``
+        2. Push the tag to Bitbucket
+        3. Watch the pipeline publish the new version to PyPI
+        
+        New changes in v0.5.2
+        ---------------------
+        
+        * `3ec7f836a1c1`_: Minor fixes
+        * `ddf8faba9a65`_: Fix deployment step
+        * `f2c2d66cb4e9`_: Configure pipeline to support push e2e test
+        * `7b7c6d7b7c05`_: Add e2e test for push
+        
+        .. _3ec7f836a1c1: https://bitbucket.org/mortenlj/dockerma/commits/3ec7f836a1c1
+        .. _ddf8faba9a65: https://bitbucket.org/mortenlj/dockerma/commits/ddf8faba9a65
+        .. _f2c2d66cb4e9: https://bitbucket.org/mortenlj/dockerma/commits/f2c2d66cb4e9
+        .. _7b7c6d7b7c05: https://bitbucket.org/mortenlj/dockerma/commits/7b7c6d7b7c05
+Keywords: docker
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: System :: Software Distribution
+Classifier: Topic :: Utilities
+Provides-Extra: dev
+Provides-Extra: ci
