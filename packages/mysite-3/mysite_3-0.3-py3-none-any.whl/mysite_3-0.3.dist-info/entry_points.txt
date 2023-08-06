@@ -1,0 +1,3 @@
+[console_scripts]
+mysite_3_manage = manage:main
+
