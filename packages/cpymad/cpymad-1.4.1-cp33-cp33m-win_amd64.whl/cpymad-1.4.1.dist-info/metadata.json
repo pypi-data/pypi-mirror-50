@@ -1,0 +1,1 @@
+{"extensions": {"python.details": {"document_names": {"description": "DESCRIPTION.rst", "license": "LICENSE.txt"}}}, "extras": [], "generator": "bdist_wheel (0.29.0)", "metadata_version": "2.0", "name": "cpymad", "run_requires": [{"requires": ["importlib-resources", "minrpc (>=0.0.8)", "numpy"]}], "summary": "Cython binding to MAD-X", "version": "1.4.1"}
