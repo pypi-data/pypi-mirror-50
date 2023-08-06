@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: pygenec
+Version: 1.0.0
+Summary: Algoritmo Genetico em Python e Numpy
+Home-page: https://github.com/duducosmos/pygenec
+Author: Eduardo S. Pereira
+Author-email: pereira.somoza@gmail.com
+License: Apache License 2.0
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+
+# PyGENEC
+
+Genetic algorithm in Python an Numpy.
+
+
