@@ -1,0 +1,9 @@
+README.md
+setup.py
+pyjamaparty/__init__.py
+pyjamaparty.egg-info/PKG-INFO
+pyjamaparty.egg-info/SOURCES.txt
+pyjamaparty.egg-info/dependency_links.txt
+pyjamaparty.egg-info/top_level.txt
+pyjamaparty/strutils/__init__.py
+pyjamaparty/strutils/string_builder.py
