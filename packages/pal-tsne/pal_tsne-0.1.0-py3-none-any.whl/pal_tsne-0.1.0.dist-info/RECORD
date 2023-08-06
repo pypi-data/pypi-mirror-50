@@ -1,0 +1,10 @@
+pal_tsne-0.1.0.dist-info/METADATA,sha256=Hi4xkmH9Yzp0B1qmqo8l1PT_v_6afgtJV0vbbGDCb-c,532
+pal_tsne-0.1.0.dist-info/RECORD,,
+pal_tsne-0.1.0.dist-info/WHEEL,sha256=FRuHuBX28RTgsOL603qIpbSc2WeDgbsFBWKj9XFOCpg,92
+pal_tsne-0.1.0.dist-info/entry_points.txt,sha256=Rsr1BxgWLdJODQKUIlQkeT3nLQe_Qnet7iGIG5EylZs,48
+pal_tsne-0.1.0.dist-info/top_level.txt,sha256=4DNsI4-J0NeqkA2H44XSZAulSVJ5SupFbCeSxivcmbI,5
+tsne/__init__.py,sha256=9NVGcoD1ntOrKtXXfqli7UfhSWQnzj8sptlpMMAqEh4,25
+tsne/cli.py,sha256=C8Oq98fnqEjAtjI08yqTSCrn_44fw1jL-qCddf1Huoc,473
+tsne/common.py,sha256=CZzyIXZnZHAgRcXdn9par3z9zejpRq2PLhVLHBMaLTA,724
+tsne/main.py,sha256=8n5ofm7-P40OLLnjOQFmvqhQGjzwb7ocxGRv5hhwhGY,96
+tsne/tsne.py,sha256=lGN4JxqBNIkXQJk1v-k0k26131eQeauOVUfxu5m7ohw,4511

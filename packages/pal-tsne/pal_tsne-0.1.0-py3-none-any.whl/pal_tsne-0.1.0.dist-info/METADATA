@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: pal-tsne
+Version: 0.1.0
+Summary: parallel tsne
+Home-page: https://github.com/MingChaoXu/paralell-tsne
+Author: xenos
+Author-email: mingchao.xu.casia@gmail.com
+License: MIT Licence
+Keywords: pip,tsne,parallel,xenos
+Platform: any
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Requires-Dist: click
+
+# Parallel TSNE
+
+This is a parallel version of tsne. we can use this to draw feature maps in low dimensions
+
+# Install Dependencies
+pip install -r requirements.txt
+
+
