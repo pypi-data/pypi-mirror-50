@@ -1,0 +1,5 @@
+include lemmagen/*.pyx
+include lemmagen/*.c
+include lemmagen/lib/data/*.bin
+include lemmagen/lib/include/*.h
+include lemmagen/lib/src/*
