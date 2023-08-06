@@ -1,0 +1,31 @@
+Metadata-Version: 1.1
+Name: simular
+Version: 0.0.0
+Summary: Dynamics and Vehicle Simulation
+Home-page: https://github.com/thumperrr/simular
+Author: Steve Hall
+Author-email: hallsb808@gmail.com
+License: MIT
+Project-URL: Changelog, https://github.com/thumperrr/simular/blob/master/CHANGELOG.rst
+Project-URL: Issue Tracker, https://github.com/thumperrr/simular/issues
+Description: 
+        Placeholder for future development
+        
+Platform: any
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Unix
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Documentation :: Sphinx
+Classifier: Topic :: Scientific/Engineering
