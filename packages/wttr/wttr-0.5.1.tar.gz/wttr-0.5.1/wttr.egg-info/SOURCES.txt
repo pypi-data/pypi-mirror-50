@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+wttr
+wttr.py
+wttr.egg-info/PKG-INFO
+wttr.egg-info/SOURCES.txt
+wttr.egg-info/dependency_links.txt
+wttr.egg-info/requires.txt
+wttr.egg-info/top_level.txt
