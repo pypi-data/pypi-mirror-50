@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: count-money
+Version: 0.7
+Summary: A tkinter based GUI application that helps you count money.
+Home-page: https://no-title.victordomingos.com/projects/contar-dinheiro/
+License: MIT
+Project-URL: Documentation, https://github.com/victordomingos/ContarDinheiro.py/blob/master/README.md
+Project-URL: Source, https://github.com/victordomingos/ContarDinheiro.py
+Project-URL: Bug Reports, https://github.com/victordomingos/ContarDinheiro.py/issues
+Keywords: money count sum coins bills gui accounting commerce
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable 
+Classifier: Environment :: MacOS X
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX :: Linux 
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Utilities
+Classifier: Topic :: Desktop Environment :: File Managers
+Classifier: Topic :: System :: Filesystems
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+**[English](https://github.com/victordomingos/count-money/blob/master/README.md)** | [Portugu&ecirc;s](https://github.com/victordomingos/count-money/blob/master/README_PT.md)
+
+# Count Money [![Github commits (since latest release)](https://img.shields.io/github/commits-since/victordomingos/count-money/latest.svg)](https://github.com/victordomingos/count-money) ![PyPI](https://img.shields.io/pypi/v/count-money) ![PyPI - Downloads](https://img.shields.io/pypi/dm/count-money)
+
+![img](https://cloud.githubusercontent.com/assets/18650184/24195187/b04ff8ce-0ef0-11e7-8cec-9334a8cdd824.png)  
+A little utility app to help you count coins and bills, which calculates in real-time the total amount of money.
+Additionally, it can save a report in a text file containing both the totals and the individual amounts.
+
+## Installation and dependencies:
+
+To install and run this application, you just need to have a working
+Python 3.6+ installation, with support for tkinter/ttk. The easiest way to install it in a single step is
+by using this command:
+
+```
+pip3 install count-money
+```
+
+## How to use:
+
+The current version of this aplication can be run from the command line shell using the following command:
+
+```
+count-money
+```
+
+
+
