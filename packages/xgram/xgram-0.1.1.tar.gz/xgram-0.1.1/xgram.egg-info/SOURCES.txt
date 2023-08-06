@@ -1,0 +1,10 @@
+setup.py
+xgram/__init__.py
+xgram/log.py
+xgram/telegram.py
+xgram/updater.py
+xgram.egg-info/PKG-INFO
+xgram.egg-info/SOURCES.txt
+xgram.egg-info/dependency_links.txt
+xgram.egg-info/requires.txt
+xgram.egg-info/top_level.txt

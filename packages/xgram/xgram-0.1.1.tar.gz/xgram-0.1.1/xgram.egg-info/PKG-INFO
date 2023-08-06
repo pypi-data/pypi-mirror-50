@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: xgram
+Version: 0.1.1
+Summary: The telegram api
+Home-page: https://github.com/xtery/xgram
+Author: xtery
+Author-email: 0x.xtery@gmail.com
+License: MIT
+Description: The telegram python api
+Keywords: telegram tg tlg subject
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Text Processing :: Linguistic
