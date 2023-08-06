@@ -1,0 +1,12 @@
+image_slicer/__init__.py,sha256=-GKUDW-WMSmgOeQzr-sz4Nk5RQRIxWR27tCxAgGw1dM,416
+image_slicer/helpers.py,sha256=J5WkCHrm88t595zPj_YRRORoyPzdXA6gmXS1p2JLF2k,831
+image_slicer/main.py,sha256=RFsZehuo_30wrzOS7jp1o9rCy9oPJIarZlKP39d5ckA,7623
+image_slicer/test/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+image_slicer/test/test_image_slicer.py,sha256=Zz7mvarpezx5xq2KN02m0pr3ZTg-1J8ZTvAXeJpqHck,5139
+image_slicer-0.3.0.data/scripts/join-tiles,sha256=LW3Ix6B-2pxOF-3Ncp3lFCt_T5gKQVJysPV2QEWSGCA,650
+image_slicer-0.3.0.data/scripts/slice-image,sha256=7KrsgmHLXAGiylBYRm7bfMJSaenE8VzwuQfJGbzzGNQ,1497
+image_slicer-0.3.0.dist-info/LICENSE,sha256=wlud0i9i9BE1fZ3P7MNvAnGMwT8lm2Ef047HDxn-qC8,1055
+image_slicer-0.3.0.dist-info/METADATA,sha256=UNX16WijjG1aoRhVWVknY1oymoIk56xs2fABY207htU,3300
+image_slicer-0.3.0.dist-info/WHEEL,sha256=QBOOAdG2icRHGBs2s94rfaUlHrdfNBp-TceubUYCwOE,97
+image_slicer-0.3.0.dist-info/top_level.txt,sha256=VbtqrDZ70j0XcXLx_WSYB4S9G8c0SJyEwCMW1Mc3sDc,13
+image_slicer-0.3.0.dist-info/RECORD,,

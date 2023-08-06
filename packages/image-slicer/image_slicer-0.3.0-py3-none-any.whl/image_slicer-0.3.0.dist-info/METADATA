@@ -1,0 +1,124 @@
+Metadata-Version: 2.1
+Name: image-slicer
+Version: 0.3.0
+Summary: Cut images into tiles and reassemble them..
+Home-page: http://samdobson.github.io/image_slicer
+Author: Sam Dobson
+Author-email: sjd333@gmail.com
+License: MIT License
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Natural Language :: English
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Requires-Dist: Pillow (>=4.0.0)
+
+[![image]]
+
+[![image][1]]
+
+[![image][2]]
+
+[documentation] | [website]
+
+Image Slicer
+============
+
+What does it do?
+----------------
+
+Splits an image into `n` equally-sized tiles. Also capable of joining
+the pieces back together.
+
+Whether you are planning a collaborative art project, creating a jigsaw
+puzzle, or simply get a kick out of dividing images into identical
+quadrilaterals... this package is for you!
+
+Installation
+------------
+
+    $ pip install image_slicer
+
+*Python versions supported:*
+
+-   2.7+
+-   3.4+
+
+Usage
+-----
+
+Slice an image with Python:
+
+    >>> import image_slicer
+    >>> image_slicer.slice('cake.jpg', 4)
+    (<Tile #1 - cake_01_01.png>, <Tile #2 - cake_01_02.png>, <Tile #3 - cake_02_01.png>, <Tile #4 - cake_02_02.png>)
+
+... or from the command line:
+
+    $ slice-image cake.jpg 36
+
+[Further examples] can be found in the [documentation].
+
+About
+-----
+
+This module was developed for *collabart*, a web application for
+launching collaborative art projects.
+
+  [image]: https://badge.fury.io/py/image_slicer.png
+  [![image]]: http://badge.fury.io/py/image_slicer
+  [1]: https://travis-ci.org/samdobson/image_slicer.svg?branch=master
+  [![image][1]]: http://travis-ci.org/samdobson/image_slicer?branch=master
+  [2]: https://coveralls.io/repos/github/samdobson/image_slicer/badge.svg?branch=master
+  [![image][2]]: https://coveralls.io/github/samdobson/image_slicer?branch=master
+  [documentation]: https://image-slicer.readthedocs.org/en/latest/
+  [website]: http://samdobson.github.io/image_slicer
+  [Further examples]: https://image-slicer.readthedocs.org/en/latest/examples/
+
+0.3.0 (17/08/2019)
+==================
+
+-   Fix join functionality (author: @chughts)
+
+0.2.0 (22/10/2018)
+==================
+
+-   Fix save is executed twice
+-   Fix file extensions of output files should be lower case
+-   Fix CLI script help text for JPEG usage
+
+0.1.1 (15/08/2013)
+==================
+
+-   Fix `slice-image` script.
+-   Rename `join_tiles()` to `join()`.
+
+0.1.0 (12/08/2013)
+==================
+
+-   New `Tile` class.
+-   `split_image()` now saves tiles by default.
+-   `get_basename()` can now handle paths.
+-   More comprehensive validation in `validate_image()`.
+-   Fix incorrect filenames returned by `save_tiles()`.
+-   Expand documentation.
+-   Improve test coverage.
+
+0.0.2 (07/23/2013)
+==================
+
+-   Fix dependencies in setup.py
+
+0.0.1 (07/19/2013)
+==================
+
+-   Initial release.
+
