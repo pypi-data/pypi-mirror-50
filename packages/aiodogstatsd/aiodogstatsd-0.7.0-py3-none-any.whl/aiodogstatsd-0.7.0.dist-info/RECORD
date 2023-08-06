@@ -1,0 +1,13 @@
+aiodogstatsd/__init__.py,sha256=p6XyJe88XlH5W6AIE8Iqda7CzLNS3C0cGPZ2SFOjZvc,50
+aiodogstatsd/client.py,sha256=KJr-Zdl99mCW_z-NmCUrnDwBCQI2xNtEWea4VHtp5iw,7339
+aiodogstatsd/compat.py,sha256=0CwQc7Z6pdJMpfmipqEVglfR9CDI3_HHC0mU5aTX3f8,281
+aiodogstatsd/contrib/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+aiodogstatsd/contrib/aiohttp.py,sha256=0IkUe-XY5OJgQ_RkwImpox58ggCHH15RL1GylG4WQaU,3282
+aiodogstatsd/contrib/sanic.py,sha256=yoBPOro87Gu7lNBrLLw7B7h8T2WYDfyamrao4FK-szs,3374
+aiodogstatsd/protocol.py,sha256=lEg2PLMK-yNXxX9cHU0PnLAaLvzEdpXWyJUznX9qSAg,760
+aiodogstatsd/py.typed,sha256=sow9soTwP9T_gEAQSVh7Gb8855h04Nwmhs2We-JRgZM,7
+aiodogstatsd/typedefs.py,sha256=bCYB-I16WBgyUCWyfvhoz6qxgAnHg_bf2P6GK6IiDE4,487
+aiodogstatsd-0.7.0.dist-info/LICENSE,sha256=XEhKEyaisfR-kZ5dLvYNqilKeZHwdJwBxmSTvRyT7g4,1071
+aiodogstatsd-0.7.0.dist-info/WHEEL,sha256=f_L0I4hqSDuunYLcjib7afhVEQa4uCwremk0_wPx54s,85
+aiodogstatsd-0.7.0.dist-info/METADATA,sha256=jpN7Zfsb4aOwRawvPkNlrU_2C1seHZxFdf3N49x76Ok,3379
+aiodogstatsd-0.7.0.dist-info/RECORD,,
