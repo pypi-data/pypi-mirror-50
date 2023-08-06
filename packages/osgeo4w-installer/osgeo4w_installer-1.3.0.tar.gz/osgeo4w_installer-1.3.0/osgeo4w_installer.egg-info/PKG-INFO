@@ -1,0 +1,10 @@
+Metadata-Version: 1.2
+Name: osgeo4w-installer
+Version: 1.3.0
+Summary: a tool to download osgeo4w distribution and install packages on its python interpreter
+Home-page: https://github.com/talos-gis/osgeo4w_setup_script
+Author: Idan Miara, Yael Abitbol
+License: gpl-2.0
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.6.0
