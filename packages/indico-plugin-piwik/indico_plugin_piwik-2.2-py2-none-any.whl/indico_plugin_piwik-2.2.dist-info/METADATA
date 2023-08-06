@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: indico-plugin-piwik
+Version: 2.2
+Summary: Piwik integration for global and event-specific statistics in Indico
+Home-page: https://github.com/indico/indico-plugins
+Author: Indico Team
+Author-email: indico-team@cern.ch
+License: MIT
+Platform: UNKNOWN
+Classifier: Environment :: Plugins
+Classifier: Environment :: Web Environment
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Requires-Dist: indico (>=2.2.dev0)
+
+UNKNOWN
+
+
