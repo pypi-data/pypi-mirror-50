@@ -1,0 +1,118 @@
+Metadata-Version: 2.1
+Name: hksync
+Version: 0.2.1
+Summary: CLI to Sync MailingList archives in local Maildir from Hyperkitty.
+Home-page: https://gitlab.com/mailman/hksync
+Author: Abhilash Raj
+Author-email: maxking@asynchronous.in
+License: GPLv3+
+Description: HKsync
+        =======
+        
+        HKsync, short for Hyperkitty-Sync is a simple client to download archives for
+        public mailing lists from [Hyperkitty][1] to a local [Maildir][2] to read with
+        your favorite email client.
+        
+        **You don't have to be subscribed to the MailingList to download the
+        archives**. Since we just download public MailingLists, there is no need for
+        any sort of authentication. We use Hyperkitty's export API to download emails
+        as mbox and then populate a local Maildir.
+        
+        **WARNING: This is currently in alpha stage, although it has been tested by the
+        author to work for simple situations**.
+        
+        Install
+        --------
+        
+        Right now, HKsync is in a alpha stage. To download and use, you need to
+        download it from git repo. Here are the instructions:
+        
+        
+        ```bash
+        # Clone the git repo.
+        $ git clone https://gitlab.com/mailman/hksync
+        
+        # Create a virtualenv and install dependencies.
+        $ python3 -m venv hksync
+        
+        # Download the dependencies.
+        $ source hksync/bin/activate
+        $ python setup.py install
+        ```
+        
+        
+        Usage
+        ------
+        
+        HKsync let's you add various MailingLists and then sync from each of them using
+        a single command, which can be used as a periodic cron job. It does not provide
+        any mechanism to run periodically since there are several other tools already
+        available to run commands periodically like Cron or Systemd.
+        
+        **To add a new MailingList**:
+        ```bash
+        $ hksync add --server https://myserver.com/hyperkitty --mlist mylist@myserver.com
+        ```
+        
+        **You can list all the currently added MailingLists's using**:
+        ```bash
+        $ hksync list
+        ```
+        
+        **You can remove a MailingList using**:
+        ```bash
+        $ hksync remove mylist@myserver.com
+        ```
+        
+        **Finally, you can sync your emails using**:
+        ```bash
+        $ hksync sync
+        ```
+        
+        This will sync emails for past 1 day only. Optionally, you can provide a
+        `--days n` parameter to sync past `n` days of emails for each list.
+        
+        You can also pass `--mlist mylist@myserver.com` to sync emails for only one
+        server instead of all.
+        
+        
+        Reading Emails
+        ----------------
+        
+        You can use your favorite Email client to read these emails since we use a
+        standard [Maildir][2] format which most clients support.
+        
+        
+        ### mutt
+        
+        This is a sample configuration to read emails in `mutt`, which is a popular
+        command line email client:
+        
+        
+        ```
+        # ~/.muttrc
+        set mbox_type=Maildir
+        set folder="~/hksync"
+        set mbox="~/hksync"
+        set spoolfile="~/hksync"
+        ```
+        
+        After this, you can just run `mutt` in your terminal to read the Emails from
+        MailingLists that you downloaded.
+        
+        If you don't want to alter the configuration, you can just run:
+        
+        ```
+        $ mutt -f ~/hksync
+        ```
+        
+        [1]: https://pypi.org/project/HyperKitty/
+        [2]: https://en.wikipedia.org/wiki/Maildir
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=2.7,!=3.0,!=3.1,!=3.2,!=3.3
+Description-Content-Type: text/markdown
