@@ -1,0 +1,17 @@
+apppath/__init__.py,sha256=0oAqSgWiXVJxk9kZCf-DX5vBMiYZw5D34RPz6IWh0go,2775
+apppath/app_path.py,sha256=VHQWNmi6b2I4HQ6LagCCHLTRWoPEGdXH8hqtY-Oqr2c,19598
+apppath/app_path_utilities.py,sha256=hOsoBzsVvNpdkIoQZuzPMuULevlx5BT3gkFNmK3Ps7Y,4031
+benchmarks/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+benchmarks/benchmark_func.py,sha256=tMA9ZjljH2px0XH1ulcCVas73xHJF-i9VOmDm10r6ec,273
+benchmarks/pqp_benchmark.py,sha256=UzydUcAFeL5t4DJIHmU9IYMjm4KXHfKMAC2Jwc16H4g,1553
+benchmarks/returns_benchmark.py,sha256=hpjlihz3USm2yKenZ90n-n0IeIEmlAuXTxwehVY03Pk,1087
+tests/__init__.py,sha256=1zDue9NrcKI7Kt0InvzJG57CBUGf7MwNHubLfTCpAps,72
+tests/test_nod.py,sha256=y_CJdOaMO0wxBnZQcwS5RC-lPQZXsrSS_2Z_W1e4X0U,3115
+tests/test_pqp.py,sha256=ge6_zP-iP0rpv14jZDUdojyMLjwiFuWk617-6-_oqzw,1640
+tests/test_sanity.py,sha256=OxfdK2M8ZWyzt0NVDpEZb7TstWMQ3eSo0C3wObyAdXY,451
+AppPathy-0.0.1.dist-info/LICENSE.md,sha256=zLfTHYOYMXxQvg1BpYrGDpKUycNSpDagSnJj52zuK_I,11356
+AppPathy-0.0.1.dist-info/METADATA,sha256=VGPegYkmPyiWz8fdkPCDBAokJ3DgancojXagb_6zmFU,1740
+AppPathy-0.0.1.dist-info/WHEEL,sha256=PwTtGSGD30Pr87wigYj7_JpcgwB8snJe9779LqVv8AA,93
+AppPathy-0.0.1.dist-info/entry_points.txt,sha256=eqGnTHtEVMYwfXVk1Z9MhC8O2N8wuqAbr0lisLmrkxs,20
+AppPathy-0.0.1.dist-info/top_level.txt,sha256=0AZ8AZyJqBtjPh_VzYSPdAvF-tYBPeHB7LJXvb_zsH4,25
+AppPathy-0.0.1.dist-info/RECORD,,
