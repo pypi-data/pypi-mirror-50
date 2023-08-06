@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: pymp
+Version: 0.0.1
+Summary: A small toy package that adds coordinate mappers for the axes of an N-Dimensional numpy array
+Home-page: https://github.com/tallhamer/pymp
+Author: Michael J Tallhamer MSc DABR
+Author-email: mike.tallhamer@gmail.com
+License: UNKNOWN
+Description: # pymp
+        
+        This is a simple package that provides python tools for medical physics. 
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
