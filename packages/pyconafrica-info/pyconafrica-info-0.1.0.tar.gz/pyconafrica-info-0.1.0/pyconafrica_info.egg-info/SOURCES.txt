@@ -1,0 +1,14 @@
+README.rst
+setup.py
+pyconafrica/__init__.py
+pyconafrica/ghana19/__init__.py
+pyconafrica/ghana19/conduct.py
+pyconafrica/ghana19/gfx.py
+pyconafrica/ghana19/schedule.py
+pyconafrica/ghana19/sponsors.py
+pyconafrica/ghana19/team.py
+pyconafrica_info.egg-info/PKG-INFO
+pyconafrica_info.egg-info/SOURCES.txt
+pyconafrica_info.egg-info/dependency_links.txt
+pyconafrica_info.egg-info/requires.txt
+pyconafrica_info.egg-info/top_level.txt
