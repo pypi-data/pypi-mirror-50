@@ -1,0 +1,15 @@
+README.rst
+setup.cfg
+setup.py
+cli_code/__init__.py
+cli_code/allmodule.py
+cli_code/cli_convert_ipny.py
+cli_code/cli_module_analysis.py
+cli_code/cli_module_autoinstall.py
+cli_code/cli_module_parser.py
+cli_code/util_log.py
+cli_code.egg-info/PKG-INFO
+cli_code.egg-info/SOURCES.txt
+cli_code.egg-info/dependency_links.txt
+cli_code.egg-info/requires.txt
+cli_code.egg-info/top_level.txt
