@@ -1,0 +1,229 @@
+Metadata-Version: 1.2
+Name: devpi-server
+Version: 5.1.0
+Summary: devpi-server: reliable private and pypi.org caching server
+Home-page: http://doc.devpi.net
+Maintainer: Holger Krekel, Florian Schulze
+Maintainer-email: holger@merlinux.eu
+License: MIT
+Description: =============================================================================
+        devpi-server: server for private package indexes and PyPI caching
+        =============================================================================
+        
+        
+        PyPI cache
+        ==========
+        
+        You can point ``pip or easy_install`` to the ``root/pypi/+simple/``
+        index, serving as a transparent cache for pypi-hosted packages.
+        
+        
+        User specific indexes
+        =====================
+        
+        Each user (which can represent a person, project or team) can have
+        multiple indexes and upload packages and docs via standard ``twine`` or
+        ``setup.py`` invocations.  Users and indexes can be manipulated through
+        `devpi-client`_ and a RESTful HTTP API.
+        
+        
+        Index inheritance
+        =================
+        
+        Each index can be configured to merge in other indexes so that it serves
+        both its uploads and all releases from other index(es).  For example, an
+        index using ``root/pypi`` as a parent is a good place to test out a
+        release candidate before you push it to PyPI.
+        
+        
+        Good defaults and easy deployment
+        =================================
+        
+        Get started easily and create a permanent devpi-server deployment
+        including pre-configured templates for ``nginx`` and process managers.
+        
+        
+        Separate tool for Packaging/Testing activities
+        ==============================================
+        
+        The complementary `devpi-client`_ tool
+        helps to manage users, indexes, logins and typical setup.py-based upload and
+        installation workflows.
+        
+        See https://doc.devpi.net on how to get started and further documentation.
+        
+        
+        .. _devpi-client: https://pypi.org/project/devpi-client/
+        
+        
+        Support
+        =======
+        
+        If you find a bug, use the `issue tracker at Github`_.
+        
+        For general questions use the #devpi IRC channel on `freenode.net`_ or the `devpi-dev@python.org mailing list`_.
+        
+        For support contracts and paid help contact `merlinux.eu`_.
+        
+        .. _issue tracker at Github: https://github.com/devpi/devpi/issues/
+        .. _freenode.net: https://freenode.net/
+        .. _devpi-dev@python.org mailing list: https://mail.python.org/mailman3/lists/devpi-dev.python.org/
+        .. _merlinux.eu: https://merlinux.eu
+        
+        
+        =========
+        Changelog
+        =========
+        
+        
+        
+        .. towncrier release notes start
+        
+        5.1.0 (2019-08-05)
+        ==================
+        
+        Features
+        --------
+        
+        - Allow stage customizer plugins to filter projects and versions.
+        
+        - Replicas will use the multiple changelog endpoint added in devpi-server 4.9.0 to reduce the number of requests necessary to synchronize state.
+        
+        
+        5.0.0 (2019-06-28)
+        ==================
+        
+        Deprecations and Removals
+        -------------------------
+        
+        - fix #518: There are no URLs on PyPI anymore that need to be scraped or crawled, so the code for that was removed.
+        
+        - removed support for long deprecated ``acl_upload`` and ``bases`` mirror index option. They were only kept for compatibility with devpi-client <= 2.4.1.
+        
+        - the ``--start``, ``--stop``, ``--status`` and ``--log`` options are deprecated. Use ``--gen-config`` to create example configuration files for various process managers.
+        
+        - removed long deprecated ``pypi_whitelist`` index option. It was only kept for compatibility with devpi-client <= 2.4.1.
+        
+        - deprecated Python 2.7 support. This is the last major version supporting Python 2.7. For upgrading to Python 3.x you have to export your data using your current setup with Python 2.7 and import it in a new installation with Python 3.x.
+        
+        
+        Features
+        --------
+        
+        - fix #249: unknown keys for index configuration now result in an error instead of being silently ignored.
+        
+        - fix #625: project registration is now optional. A file upload with twine or setuptools will automatically register the project.
+        
+        - fix #636: support ignore_bases argument for project listings.
+        
+        - support ``:AUTHENTICATED:`` for permissions. This resolves to any user which is logged in, regardless of username or groups.
+        
+        - added experimental support for stage customizers to let plugins add index types with customized behaviour. See ``BaseStageCustomizer`` in ``model.py`` for the API and ``devpiserver_get_stage_customizer_classes`` for the registration.
+        
+        - support no_projects argument for index json requests. The list of projects will not be added to the result.
+        
+        - when credentials for the user are rejected, the error message now says so instead of claiming the user could not be found.
+        
+        
+        Other Changes
+        -------------
+        
+        - boolean values can now only be set via the following values: 'false', 'no', 'true', 'yes' and actual booleans in the REST API. Before any string not matching 'false' and 'no' was converted into boolean true.
+        
+        - the default logging configuration now outputs to stdout instead of stderr.
+        
+        - major releases don't require an export/import cycle anymore except when explicitly announced. You should always make a backup though! When upgrading to devpi-server 5.0.0 you can keep the state as is and even downgrade to the last 4.9.x release if necessary. Don't forget to backup before upgrades!
+        
+        - the server secret isn't automatically persisted for new installations. A server restart invalidates login tokens. An existing installation will still use it's stored secret, but log a warning. Use ``--secretfile`` to explicitly specify a persistent secret file.
+        
+        - the ``--storage`` option is now required when a storage plugin like devpi-postgresql is in use. It's recommended to use a configuration file for devpi-server to have everything in one place (see ``--configfile``).
+        
+        - for the ``--logger-cfg`` yaml loading we now use ``safe_load`` of ``ruamel.yaml`` instead of ``load`` from ``pyyaml``.
+        
+        
+        4.9.0 (2019-04-26)
+        ==================
+        
+        Features
+        --------
+        
+        - implement #93: When creating a user, the password hash can be set directly with ``pwhash``. Upon database initialization allow setting root user password with ``--root-passwd`` and the password hash with ``--root-passwd-hash`` options. Thanks to Andreas Palsson.
+        
+        - decouple devpi server version from database version to enable major releases that do not require export import of data
+        
+        - support ``--hard-links`` option during import for releases and doc zips.
+        
+        - added new endpoint to download multiple changelog entries at once. This will be used for faster replication in the future.
+        
+        - add option ``--replica-file-search-path`` to point to existing files. If a match is found it will be copied locally instead of fetched from the master. These files could be from a previous replication attempt or separately copied/restored.
+        
+        - add ``--hard-links`` support for replicas together with the ``--replica-file-search-path`` option. When a matching file is found it's hard linked instead of writing a copy.
+        
+        
+        Bug Fixes
+        ---------
+        
+        - fix multiple triggering of mirror project names initialization.
+        
+        - fix updating time stamp of mirror project name cache when no project names have changed. This makes subsequent fetches actually use the cache instead of always fetching the data again from the mirror.
+        
+        - use timeout when waiting for data from master in replica on mirror simple pages.
+        
+        
+        Other Changes
+        -------------
+        
+        - slightly improved replica performance by removing unnecessary DB read and using fewer transactions.
+        
+        
+        4.8.1 (2019-03-14)
+        ==================
+        
+        Bug Fixes
+        ---------
+        
+        - fix #520: uploads work with and without a trailing slash for the index url.
+        
+        - fix #597: handle ConnectionError in httpget
+        
+        - fix #615: setting of mirror index options with server side patching didn't work
+        
+        
+        4.8.0 (2018-11-16)
+        ==================
+        
+        Features
+        --------
+        
+        - feature #193: ensuring that the `description_content_type` and `provides_extras` fields are handled.
+        
+          This is used to add support for using alternative content types in the package descriptions such as `text/markdown`.
+        
+        - The PATCH method of indexes supports a list of arguments with operations in the form of ``key=value`` for setting values and for lists in the form of ``key+=value`` and ``key-=value`` to add and remove items. This prevents undoing changes sent in concurrent PATCH requests.
+        
+        
+        Bug Fixes
+        ---------
+        
+        - fix #598: streaming download now uses BytesIO to avoid performance issues for downloads with more than a few MB.
+        
+          Thanks to Dom Hudson from http://www.thoughtriver.com for the report and initial benchmark code.
+        
+        - handle mirrors that don't return a correct X-PYPI-LAST-SERIAL header.
+        
+        
+Keywords: pypi realtime cache server
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Application
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
