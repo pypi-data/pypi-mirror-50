@@ -1,0 +1,57 @@
+Metadata-Version: 2.1
+Name: toml-sort
+Version: 0.1.0
+Summary: Toml sorting library
+Home-page: https://github.com/pappasam/toml-sort
+License: MIT
+Keywords: toml,sort,cli,unix,utility
+Author: Sam Roeca
+Author-email: samuel.roeca@gmail.com
+Requires-Python: >=3.6,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Command Line :: Tools
+Classifier: Topic :: Formatters :: Toml :: Sorting
+Requires-Dist: click (>=7.0,<8.0)
+Requires-Dist: tomlkit (>=0.5.5)
+Project-URL: Repository, https://github.com/pappasam/toml-sort
+Description-Content-Type: text/markdown
+
+# toml-sort
+
+A command line utility to sort your toml files. Requires Python 3.6 or greater.
+
+## Installation
+
+```bash
+pip install toml-sort
+```
+
+## Usage
+
+Currently, this project only reads from a toml file on disk and writes to stdout. I plan to flesh out the interface in the coming days.
+
+```bash
+# Prints sorted results to stdout
+toml-sort FILENAME
+```
+
+## Local Development
+
+### Dependencies
+
+* [Poetry](https://github.com/sdispater/poetry#installation)
+* [GNU Make](https://www.gnu.org/software/make/)
+
+### Run Tests
+
+```bash
+make test
+```
+
+## Written by
+
+Samuel Roeca *samuel.roeca@gmail.com*
+
