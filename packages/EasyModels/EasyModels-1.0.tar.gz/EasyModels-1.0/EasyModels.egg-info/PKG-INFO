@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: EasyModels
+Version: 1.0
+Summary: Command Line User Interface for finding pre-trained AI models
+Home-page: https://github.com/M4cs/EasyModels
+Author: Max Bridgland
+Author-email: mabridgland@protonmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: AI tensorflow models training pre-train pre-trained artifical intelligence keras YOLO opencv pytorch chainer
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Multimedia :: Graphics
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
