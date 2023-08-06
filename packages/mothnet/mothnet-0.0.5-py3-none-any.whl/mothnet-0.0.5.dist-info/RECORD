@@ -1,0 +1,13 @@
+pymoth/__init__.py,sha256=hKhgGgIc6bhEoiCAMigBkScpQlkXtve9CSIZWaO2rVU,210
+pymoth/main.py,sha256=Zj4PjwxjYRm3q1UBSXxigur25tAr3Jm01spAFsaW3-U,21572
+pymoth/MNIST_all/MNIST_make_all.py,sha256=kG7HLCCCUXIOrkNfEUcqJGm8yQK4gB9tCsCbPXIWx0M,2094
+pymoth/MNIST_all/__init__.py,sha256=I2MyGSvQQNNdRGRymK7-OVsfoyxmj1CiADUE3nOGfJY,168
+pymoth/modules/classify.py,sha256=Ed0fdOgBEJMgTlhQlmMYbDVQgHmCU81qpK-hbp-rN1U,14076
+pymoth/modules/generate.py,sha256=feIfiP5koNY92dJkNuyW8b58cPwq97Tavzj5KaDSErM,14553
+pymoth/modules/params.py,sha256=ojBi5aGOxtlQKOZmnCQVal3cTmu-j5hN216UcOvcPes,34849
+pymoth/modules/sde.py,sha256=Mr5Xq70zAToDEjWR3YlYcoi76ChW2gDDEUQIz2Akv2k,39433
+pymoth/modules/show_figs.py,sha256=FOqZp3KG1pBRgEb-sYm-YJAyzbyN-DXihQD1nUnJsmE,19489
+mothnet-0.0.5.dist-info/METADATA,sha256=a6PmobvcBb_cukU7OhX7mSGDnRI2j0D7tFYh0ASX08Q,6289
+mothnet-0.0.5.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+mothnet-0.0.5.dist-info/top_level.txt,sha256=lfSKTTbC6jthCN5MPHsvJdn1OnsZ0k372AgVANjExNQ,7
+mothnet-0.0.5.dist-info/RECORD,,
