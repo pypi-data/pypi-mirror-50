@@ -1,0 +1,9 @@
+README.md
+setup.py
+bin/git-phoenix
+git_phoenix/__init__.py
+git_phoenix/git.py
+git_phoenix.egg-info/PKG-INFO
+git_phoenix.egg-info/SOURCES.txt
+git_phoenix.egg-info/dependency_links.txt
+git_phoenix.egg-info/top_level.txt
