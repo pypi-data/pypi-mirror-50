@@ -1,0 +1,9 @@
+SpiNNUtilities<1!6.0.0,>=1!5.0.0
+SpiNNMachine<1!6.0.0,>=1!5.0.0
+six
+enum34
+future
+numpy
+lxml
+jsonschema
+sortedcollections
