@@ -1,0 +1,31 @@
+Metadata-Version: 1.2
+Name: kin-base
+Version: 1.4.0
+Summary: Code for managing Stellar.org blockchain transactions and accounts using stellar-base in python. Allows full functionality interfacing with the Horizon front end. Visit https://stellar.org for more information.
+Home-page: https://github.com/kinecosystem/py-kin-base/
+Author: Eno, overcat
+Author-email: appweb.cn@gmail.com, 4catcode@gmail.com
+Maintainer: Ron Serruya
+Maintainer-email: ron.serruya@kik.com
+License: Apache
+Description: # py-kin-base
+        
+        Low level library to interact with the kin blockchain.
+        
+        **Please note that this library is an internal library to kin-sdk. You should use the higer level [kin-sdk](https://github.com/kinecosystem/kin-core-python/tree/v2-master) when developing for kin**
+        
+        ## Installation
+        ```bash
+        pip install kin-base
+        ```
+        
+Keywords: stellar.org,lumens,xlm,blockchain,distributed exchange,cryptocurrency,dex,stellar-core,horizon,sdex,trading
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.6
