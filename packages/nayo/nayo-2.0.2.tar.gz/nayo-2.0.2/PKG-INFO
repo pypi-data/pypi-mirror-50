@@ -1,0 +1,13 @@
+Metadata-Version: 1.2
+Name: nayo
+Version: 2.0.2
+Summary: the simple operation interface for mongoDB
+Home-page: https://github.com/nayo-project/nayo
+Author: Terence.Sun
+Author-email: terence@segofun.com
+License: MIT Licence
+Project-URL: Nayo Github, https://github.com/nayo-project/nayo
+Description: For this package detail,Please Refer `Nayo <https://github.com/nayo-project/nayo>`_
+Keywords: nayo,mongo,operation,DAO
+Platform: UNKNOWN
+Requires-Python: >=3.6
