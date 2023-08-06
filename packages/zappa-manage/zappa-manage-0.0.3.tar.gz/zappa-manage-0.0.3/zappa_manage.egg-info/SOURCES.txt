@@ -1,0 +1,12 @@
+README.md
+setup.py
+scripts/__init__.py
+scripts/zappa_manage.py
+zappa_manage/__init__.py
+zappa_manage/manage.py
+zappa_manage.egg-info/PKG-INFO
+zappa_manage.egg-info/SOURCES.txt
+zappa_manage.egg-info/dependency_links.txt
+zappa_manage.egg-info/entry_points.txt
+zappa_manage.egg-info/top_level.txt
+zappa_manage.egg-info/zip-safe

@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        zappa_manage=scripts.zappa_manage:cli
+    
