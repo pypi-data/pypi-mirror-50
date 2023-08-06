@@ -1,0 +1,9 @@
+README.rst
+setup.py
+custom_html_validator/__init__.py
+custom_html_validator/custom_html_validator.py
+custom_html_validator.egg-info/PKG-INFO
+custom_html_validator.egg-info/SOURCES.txt
+custom_html_validator.egg-info/dependency_links.txt
+custom_html_validator.egg-info/requires.txt
+custom_html_validator.egg-info/top_level.txt
