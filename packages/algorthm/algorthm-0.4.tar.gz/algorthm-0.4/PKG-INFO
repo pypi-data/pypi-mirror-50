@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: algorthm
+Version: 0.4
+Summary: A package for studying various Algorithms and visualizing the operations 
+Home-page: https://github.com/dinaklal/algorthm
+Author: Dinak Lal
+Author-email: dinaklal@gmail.com
+License: UNKNOWN
+Description: 
+        # algorthm
+        A python package for visualizing and learning algorithms. 
+        
+        How to install ?
+        
+        pip install algorthm
+        =======
+         
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
