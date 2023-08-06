@@ -1,0 +1,5 @@
+[console_scripts]
+barrier-config=barrier.configure:main
+barrier-dev=barrier.app:app.run
+barrier-wsgi=barrier.wsgi:main
+
