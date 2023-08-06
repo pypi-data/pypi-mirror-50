@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: hewwwo
+Version: 1.0.6
+Summary: hewwo wowwd uwu
+Home-page: https://github.com/SafyreLyons/hewwwo
+Author: Safyre Lyons
+Author-email: lyons.safyre@gmail.com
+License: MIT
+Description: # Hewwwo
+        `pip install hewwwo`
+        
+        ## Usage
+        ```python
+        from hewwwo import hewwwo
+        
+        print(hewwwo("hello world"))
+        ```
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
