@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: reddit-wall
+Version: 0.0.1
+Summary: Download wallpapers from subreddits and multireddits of your choosing.
+Home-page: https://github.com/LeftySolara/reddit-wall
+Author: Jalen Adams
+Author-email: jalen@jalenkadams.me
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 1 - Planning
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Environment :: Console
+Classifier: Natural Language :: English
+Description-Content-Type: text/markdown
+
+A program that downloads wallpapers from reddit.
+
+This project is currently in the planning phase.
+
