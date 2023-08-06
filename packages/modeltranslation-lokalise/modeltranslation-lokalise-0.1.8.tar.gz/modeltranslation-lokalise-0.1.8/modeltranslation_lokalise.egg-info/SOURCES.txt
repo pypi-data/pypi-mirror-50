@@ -1,0 +1,17 @@
+README.md
+setup.cfg
+setup.py
+modeltranslation_lokalise/__init__.py
+modeltranslation_lokalise/apps.py
+modeltranslation_lokalise/lokalise_client.py
+modeltranslation_lokalise/models.py
+modeltranslation_lokalise/permissions.py
+modeltranslation_lokalise/serializers.py
+modeltranslation_lokalise/signals.py
+modeltranslation_lokalise/views.py
+modeltranslation_lokalise.egg-info/PKG-INFO
+modeltranslation_lokalise.egg-info/SOURCES.txt
+modeltranslation_lokalise.egg-info/dependency_links.txt
+modeltranslation_lokalise.egg-info/requires.txt
+modeltranslation_lokalise.egg-info/top_level.txt
+modeltranslation_lokalise/migrations/__init__.py
