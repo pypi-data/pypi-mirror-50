@@ -1,0 +1,12 @@
+README.rst
+setup.cfg
+setup.py
+test/test_local_hooks.py
+tox_local_hooks/__init__.py
+tox_local_hooks/plugin.py
+tox_local_hooks.egg-info/PKG-INFO
+tox_local_hooks.egg-info/SOURCES.txt
+tox_local_hooks.egg-info/dependency_links.txt
+tox_local_hooks.egg-info/entry_points.txt
+tox_local_hooks.egg-info/requires.txt
+tox_local_hooks.egg-info/top_level.txt

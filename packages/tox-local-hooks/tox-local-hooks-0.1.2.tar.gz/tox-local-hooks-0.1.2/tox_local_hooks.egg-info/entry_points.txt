@@ -1,0 +1,3 @@
+[tox]
+local_hooks = tox_local_hooks.plugin
+
