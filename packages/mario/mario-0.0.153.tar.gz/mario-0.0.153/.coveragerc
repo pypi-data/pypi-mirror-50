@@ -1,0 +1,20 @@
+[paths]
+source =
+   src
+   */site-packages
+
+[run]
+branch = true
+source =
+    mario
+    tests
+parallel = true
+omit =
+     src/mario/sphinx_click.py
+     src/mario/sphinx_marshmallow.py
+     src/mario/sphinx_jsonschema.py
+
+[report]
+show_missing = true
+precision = 2
+omit = *migrations*

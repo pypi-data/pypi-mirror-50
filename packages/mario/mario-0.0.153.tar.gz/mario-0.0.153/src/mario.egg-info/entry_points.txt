@@ -1,0 +1,6 @@
+[console_scripts]
+mario = mario.cli:cli
+
+[mario_plugins]
+basic = mario.plugins
+
