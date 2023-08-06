@@ -1,0 +1,16 @@
+#!python
+# -*- coding: UTF-8 -*-
+#
+# First release: 25/08/2012
+# 
+#########################################################
+# Name: launcher
+# Porpose: run pysplitcue module
+# Platform: Mac OsX, Gnu/Linux
+# Writer: jeanslack <jeanlucperni@gmail.com>
+# license: GPL3
+# Rev: January 26 2015, Nov 21 2017, Nov 24 2017, Aug 8 2018
+#########################################################
+
+from pysplc import splc
+splc.main()
