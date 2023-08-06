@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+abac/__init__.py
+abac/abac_manager.py
+abac/abac_pip.py
+abac/pdp.py
+research_access_abac.egg-info/PKG-INFO
+research_access_abac.egg-info/SOURCES.txt
+research_access_abac.egg-info/dependency_links.txt
+research_access_abac.egg-info/top_level.txt
