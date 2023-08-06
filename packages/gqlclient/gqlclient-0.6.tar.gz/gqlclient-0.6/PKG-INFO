@@ -1,0 +1,108 @@
+Metadata-Version: 2.1
+Name: gqlclient
+Version: 0.6
+Summary: Client library for making graphql calls
+Home-page: https://bitbucket.org/dkistdc/graphql_client/src/master/
+Author: NSO / AURA
+Author-email: "swiant@nso.edu"
+License: MIT
+Description: gqlclient
+        =========
+        
+        |codecov|
+        
+        A pythonic interface for making requests to a GraphQL server using
+        pydantic models to spare you from string manipulation.
+        
+        Features
+        --------
+        
+        -  Use `pydantic <https://pypi.org/project/pydantic/>`__ BaseModel to
+           specify graphql parameters and responses
+        
+        -  Create and execute GraphQL Queries based upon typed models
+        
+        -  Create and execute GraphQL Mutations based upon typed models
+        
+        -  Async support
+        
+        Installation
+        ------------
+        
+        .. code:: bash
+        
+           pip install gqlclient
+        
+        with ``asyncio`` support
+        
+        .. code:: bash
+        
+           pip install gqlclient[async]
+        
+        Examples
+        --------
+        
+        **Query**
+        
+        .. code:: python
+        
+           from pydantic import BaseModel
+        
+           from gqlclient import GraphQLClient
+        
+        
+           class Parameters(BaseModel):
+               attr_one: str
+               attr_two: int
+        
+        
+           class Response(BaseModel):
+               attr_three: int
+               attr_four: str
+               
+           client = GraphQLClient(gql_uri="http://localhost:5000/graphql")
+           parameters = Parameters(attr_one="foo", attr_two=3)
+           query = client.get_query(query_base="baseType", query_response_cls=Response, query_parameters=parameters)
+           print(query)
+           #{'query': '{baseType(attr_one: "foo", attr_two: 3){attr_three, attr_four} }'}
+           response = client.execute_gql_query(query_base="baseType", query_response_cls=Response, query_parameters=parameters)
+           print(response)
+           #{"data": "baseType"{"attr_three":5, "attr_four":"bar"}}
+        
+        **Mutation**
+        
+        .. code:: python
+        
+           from pydantic import BaseModel
+        
+           from gqlclient import GraphQLClient
+        
+        
+           class Parameters(BaseModel):
+               attr_one: str
+               attr_two: int
+        
+        
+           class Response(BaseModel):
+               attr_three: int
+               attr_four: str
+               
+           client = GraphQLClient(gql_uri="http://localhost:5000/graphql")
+           parameters = Parameters(attr_one="foo", attr_two=3)
+           query = client.get_mutation(mutation_base="baseMutation", mutation_response_cls=Response, mutation_parameters=parameters)
+           print(query)
+           #{'query': 'mutation baseType {baseType(attr_one: "foo", attr_two: 3){ok, attr_three, attr_four} }', 'operationName': 'baseType'}
+        
+           response = client.execute_gql_mutation(mutation_base="baseMutation", mutation_response_cls=Response, mutation_parameters=parameters)
+           print(response)
+           #{"data": {"baseMutation": {"ok": true, "Response": {"attr_three":5, "attr_four":"bar"} }}
+        
+        .. |codecov| image:: https://codecov.io/bb/dkistdc/graphql_client/branch/master/graph/badge.svg
+           :target: https://codecov.io/bb/dkistdc/graphql_client
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.6
+Provides-Extra: async
