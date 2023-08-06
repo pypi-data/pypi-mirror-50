@@ -1,0 +1,12 @@
+setup.py
+awtest.egg-info/PKG-INFO
+awtest.egg-info/SOURCES.txt
+awtest.egg-info/dependency_links.txt
+awtest.egg-info/not-zip-safe
+awtest.egg-info/requires.txt
+awtest.egg-info/top_level.txt
+gaplearn/__init__.py
+gaplearn/setup.py
+gaplearn/cv/__init__.py
+gaplearn/cv/search.py
+gaplearn/cv/sfs.py
