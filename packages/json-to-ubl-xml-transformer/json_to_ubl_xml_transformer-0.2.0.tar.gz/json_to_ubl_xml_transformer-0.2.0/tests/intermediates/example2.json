@@ -1,0 +1,120 @@
+{
+    "Invoice": {
+        "@xmlns": {
+            "cac": "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2",
+            "cbc": "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2",
+            "": "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
+        },
+        "cbc:CustomizationID": "urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0",
+        "cbc:ProfileID": "urn:fdc:peppol.eu:2017:poacc:billing:01:1.0",
+        "cbc:ID": "2018-112",
+        "cbc:IssueDate": "2018-07-31",
+        "cbc:InvoiceTypeCode": "380",
+        "cbc:DocumentCurrencyCode": "SEK",
+        "cbc:BuyerReference": "ACE22",
+        "cac:AccountingSupplierParty": {
+            "cac:Party": {
+                "cbc:EndpointID": {
+                    "@schemeID": "0007",
+                    "#text": "1234567890"
+                },
+                "cac:PostalAddress": {
+                    "cac:Country": {
+                        "cbc:IdentificationCode": "SE"
+                    }
+                },
+                "cac:PartyLegalEntity": {
+                    "cbc:RegistrationName": "Säljbolaget AB",
+                    "cbc:CompanyID": "1234567890"
+                }
+            }
+        },
+        "cac:AccountingCustomerParty": {
+            "cac:Party": {
+                "cbc:EndpointID": {
+                    "@schemeID": "0007",
+                    "#text": "9876543210"
+                },
+                "cac:PostalAddress": {
+                    "cac:Country": {
+                        "cbc:IdentificationCode": "SE"
+                    }
+                },
+                "cac:PartyLegalEntity": {
+                    "cbc:RegistrationName": "Centrala Inköps Handelsbolag"
+                }
+            }
+        },
+        "cac:TaxTotal": {
+            "cbc:TaxAmount": {
+                "@currencyID": "SEK",
+                "#text": "0"
+            },
+            "cac:TaxSubtotal": {
+                "cbc:TaxableAmount": {
+                    "@currencyID": "SEK",
+                    "#text": "400"
+                },
+                "cbc:TaxAmount": {
+                    "@currencyID": "SEK",
+                    "#text": "0"
+                },
+                "cac:TaxCategory": {
+                    "cbc:ID": "O",
+                    "cbc:TaxExemptionReason": "Not subject to VAT",
+                    "cac:TaxScheme": {
+                        "cbc:ID": "VAT"
+                    }
+                }
+            }
+        },
+        "cac:LegalMonetaryTotal": {
+            "cbc:LineExtensionAmount": {
+                "@currencyID": "SEK",
+                "#text": "400"
+            },
+            "cbc:TaxExclusiveAmount": {
+                "@currencyID": "SEK",
+                "#text": "400"
+            },
+            "cbc:TaxInclusiveAmount": {
+                "@currencyID": "SEK",
+                "#text": "400"
+            },
+            "cbc:PrepaidAmount": {
+                "@currencyID": "SEK",
+                "#text": "400"
+            },
+            "cbc:PayableAmount": {
+                "@currencyID": "SEK",
+                "#text": "0"
+            }
+        },
+        "cac:InvoiceLine": {
+            "cbc:ID": "1",
+            "cbc:InvoicedQuantity": {
+                "@unitCode": "MON",
+                "#text": "1"
+            },
+            "cbc:LineExtensionAmount": {
+                "@currencyID": "SEK",
+                "#text": "400"
+            },
+            "cac:Item": {
+                "cbc:Name": "Guarantee fee",
+                "cac:ClassifiedTaxCategory": {
+                    "cbc:ID": "O",
+                    "cac:TaxScheme": {
+                        "cbc:ID": "VAT"
+                    }
+                }
+            },
+            "cac:Price": {
+                "cbc:PriceAmount": {
+                    "@currencyID": "SEK",
+                    "#text": "400"
+                }
+            }
+        }
+    }
+}
