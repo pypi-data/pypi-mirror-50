@@ -1,0 +1,84 @@
+{% load bootstrap4 static %}
+<html>
+<head>
+{% bootstrap_css %}
+<link href="{% static "meeting_guide/print.css" %}" rel="stylesheet">
+</head>
+<body>
+<section>
+    <header>SEPIA</header>
+    <section>
+        <subheader>Five County Meeting Directory</subheader>
+    </section>
+</section>
+<div class="text-center">
+    <h2>SEPTEMBER 2018</h2>
+    <br>
+    <h2>SOUTHEASTERN PENNSYLVANIA INTERGROUP ASSOCIATION</h2>
+    444 North 3rd Street, 3rd Floor<br>
+    Philadelphia, PA 19123
+    <br><br>
+    Phone: 215-923-7900 Fax: 215-923-7133<br>
+    Website: www.aasepia.org Email: info@aasepia.org
+    <br><br>
+    <h3>Meeting Type Codes</h3>
+</div>
+
+<table>
+    <tbody>
+        {% for type in meeting_types %}
+            <tr>
+                <td style="width: 50%; text-align: right;">
+                    <strong>{{ type.intergroup_code }}: </strong>
+                </td>
+                <td style="width: 50%;">{{ type.type_name }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br><br>
+NOTE: Please refer to our website for the most up-to-date information about all meetings.
+
+<div class="container-fluid">
+{% for region, region_value in meetings.items %}
+<section>
+    <header>{{ region }}</header>
+    {% for day, day_value in region_value.items %}
+    <section>
+        <subheader>{{ day }}</subheader>
+            {% for sub_region, meetings in day_value.items %}
+                <h3>{{ sub_region }}</h3>
+                <table>
+                    <tbody>
+                        {% for m in meetings %}
+                            <tr>
+                                <td style="width: 10%;">
+                                    {{ m.time_formatted }}
+                                </td>
+                                <td style="width: 30%;">
+                                    <strong>{{ m.name }}</strong>
+                                    {% if m.district %}
+                                        <br>(D{{ m.district }}{% if m.gso_number %}
+                                            / GSO #{{ m.gso_number }}{% endif %})
+                                    {% endif %}
+                                </td>
+                                <td style="width: 10%;">
+                                    {{ m.types|join:";" }}
+                                </td>
+                                <td style="width: 50%;">
+                                    {{ m.location.title }}<br>
+                                    {{ m.formatted_address }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endfor %}
+        <div class="page-break"></div>
+    </section>
+    {% endfor %}
+</section>
+{% endfor %}
+</div>
+</body>
+</html>
