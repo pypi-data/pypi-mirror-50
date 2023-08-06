@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: PVPolyfit
+Version: 0.4
+Summary: A high-resolution multiple linear regression algorithm used to analyze PV output with a few inputs
+Home-page: https://github.com/MichaelHopwood/PVPolyfit
+Author: Michael Hopwood
+Author-email: mwhopwood@gmail.com
+License: MIT
+Download-URL: https://github.com/MichaelHopwood/PVPolyfit/archive/v_04.tar.gz
+Description: UNKNOWN
+Keywords: Multiple linear regression,Multiple linear,PV,Photovoltaic,solar
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
