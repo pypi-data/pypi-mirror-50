@@ -1,0 +1,10 @@
+tf_seal-0.1.0rc1.data/purelib/tf_seal/__init__.py,sha256=E9QVP7CrkXbG_dOaLRUKSWArxSb3pDXBQre907Vrm5A,181
+tf_seal-0.1.0rc1.data/purelib/tf_seal/python/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tf_seal-0.1.0rc1.data/purelib/tf_seal/python/tensor.py,sha256=C5xh4_PQaLN2TXXLnT2wuPKEmcDBEhdN9qU4RF4W-yQ,6068
+tf_seal-0.1.0rc1.data/purelib/tf_seal/python/ops/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tf_seal-0.1.0rc1.data/purelib/tf_seal/python/ops/_seal_ops.so,sha256=aqF-_MxY7BBlsngT07Qqf57mxJycECPyVDqnMEm3Ey4,821344
+tf_seal-0.1.0rc1.data/purelib/tf_seal/python/ops/seal_ops.py,sha256=JSmbiWHliTVd82GS9m58-jSyPkhxvsHgug8sLaqcBkw,608
+tf_seal-0.1.0rc1.dist-info/METADATA,sha256=KVFXpzdUG9T1pw5jVmj2HrB2VHwSUNiz7yJRWFev_zk,5058
+tf_seal-0.1.0rc1.dist-info/WHEEL,sha256=Sb1OPmS0iVqLSbEWlNG8a8RLaqH6z1HfI0RtyTdLK0U,104
+tf_seal-0.1.0rc1.dist-info/top_level.txt,sha256=XC9ZLOmMHmrqSLW0zB7KfuzAxJSsuiIUwuiZiw2VzWE,8
+tf_seal-0.1.0rc1.dist-info/RECORD,,
