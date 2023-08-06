@@ -1,0 +1,11 @@
+django_photobooth_widget/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_photobooth_widget/widgets.py,sha256=AZyKNVLMrYbx6Xwp3Isp0IRswSkC0yqfPUP8ZkZa9Dk,3966
+django_photobooth_widget/static/photobooth_widget/css/photobooth_widget.css,sha256=gB10tzE30VO8YViXGjZzXT9Ih3QyrFgIykART_sb5vY,31
+django_photobooth_widget/static/photobooth_widget/js/photobooth.js,sha256=AmVo59LdX3PJFKOQ2pSIPhMxQcnMctTTixg09GQLizQ,25371
+django_photobooth_widget/static/photobooth_widget/js/photobooth_activate.js,sha256=r9nTueEze-1nmsre2qLGX6gS6RAU2TLtezMRUekkzoQ,946
+django_photobooth_widget/static/photobooth_widget/js/photobooth_min.js,sha256=4hJeEpSumPXG7UyoJ5FXjDECUDcy8q2MnBFDJx9XZNU,16036
+django_photobooth_widget/templates/photobooth_widget/photobooth_widget.html,sha256=RfeEoH7vi01gjTplU6_LGobAAIcjhQkkbT38xBxPhfs,292
+django_photobooth_widget-0.1.1.dist-info/METADATA,sha256=6rPOAp34z9837aaOyJETwLysui07F9XlncVaqGwK4OA,785
+django_photobooth_widget-0.1.1.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+django_photobooth_widget-0.1.1.dist-info/top_level.txt,sha256=WkBTEqnlBMHUKZvQZMuU7OeFPOgftaTJsBKWNhHIS-A,25
+django_photobooth_widget-0.1.1.dist-info/RECORD,,
