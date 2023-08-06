@@ -1,0 +1,20 @@
+Metadata-Version: 1.2
+Name: Jetforce
+Version: 0.0.1
+Summary: An Experimental Gemini Server
+Home-page: https://github.com/michael-lazar/jetforce
+Author: Michael Lazar
+Author-email: lazar.michael22@gmail.com
+License: GPL-3.0
+Description: UNKNOWN
+Keywords: gemini server tcp gopher asyncio
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.6
