@@ -1,0 +1,30 @@
+Metadata-Version: 1.1
+Name: htmlie
+Version: 1.0.0
+Summary: HTMLie is a command line HTML Parser.
+Home-page: https://github.com/gaojiuli/htmlie
+Author: Jiuli Gao
+Author-email: gaojiuli@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.1
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Software Development
+Classifier: Topic :: System :: Networking
+Classifier: Topic :: Terminals
+Classifier: Topic :: Text Processing
+Classifier: Topic :: Utilities
