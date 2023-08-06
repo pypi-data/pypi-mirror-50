@@ -1,0 +1,3 @@
+[console_scripts]
+ssh-wait = ssh_wait.__main__:main
+
