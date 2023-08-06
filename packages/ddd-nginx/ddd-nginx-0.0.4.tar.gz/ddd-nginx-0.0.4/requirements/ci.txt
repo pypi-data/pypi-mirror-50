@@ -1,0 +1,7 @@
+# requirements for the CI test runner
+tox-travis>=0.10
+codecov>=2.0.9
+python-coveralls
+
+-r test.txt
+-r tox.txt
