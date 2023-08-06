@@ -1,0 +1,46 @@
+[
+  {
+    "title": "Task title",
+    "description": "This is a bulk task created from the script",
+    "assigned": "wrahman",
+    "subscribers": "wrahman",
+    "tag_ids": "51001",
+    "parent": "T3610447",
+    "sub_tasks": [
+
+    ]
+  },
+  {
+    "title": "Task title 2",
+    "description": "This is a bulk task created from the script 2",
+    "assigned": "wrahman",
+    "subscribers": "wrahman",
+    "tag_ids": "51001",
+    "parent": "T3610447",
+    "sub_tasks": [
+
+    ]
+  },
+  {
+    "title": "Task title 3",
+    "description": "This is a bulk task created from the script",
+    "assigned": "wrahman",
+    "subscribers": "wrahman",
+    "tag_ids": "51001",
+    "parent": "T3610447",
+    "sub_tasks": [
+
+    ]
+  },
+  {
+    "title": "Task title 4",
+    "description": "This is a bulk task created from the script 2",
+    "assigned": "wrahman",
+    "subscribers": "wrahman",
+    "tag_ids": "51001",
+    "parent": "T3610447",
+    "sub_tasks": [
+
+    ]
+  }
+]
