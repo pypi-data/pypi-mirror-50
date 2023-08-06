@@ -1,0 +1,3 @@
+#!/bin/sh
+#startup script for preppy-3.0.0
+exec "/home/rptlab/devel/athlib/bin/python" -m "preppy" $*
