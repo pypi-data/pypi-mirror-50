@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+hole/__init__.py
+hole/exceptions.py
+hole.egg-info/PKG-INFO
+hole.egg-info/SOURCES.txt
+hole.egg-info/dependency_links.txt
+hole.egg-info/requires.txt
+hole.egg-info/top_level.txt
+hole.egg-info/zip-safe
