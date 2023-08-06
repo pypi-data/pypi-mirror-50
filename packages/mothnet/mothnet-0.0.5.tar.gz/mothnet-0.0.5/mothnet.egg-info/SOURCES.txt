@@ -1,0 +1,15 @@
+README.md
+setup.py
+mothnet.egg-info/PKG-INFO
+mothnet.egg-info/SOURCES.txt
+mothnet.egg-info/dependency_links.txt
+mothnet.egg-info/requires.txt
+mothnet.egg-info/top_level.txt
+pymoth/__init__.py
+pymoth/main.py
+pymoth/MNIST_all/MNIST_make_all.py
+pymoth/modules/classify.py
+pymoth/modules/generate.py
+pymoth/modules/params.py
+pymoth/modules/sde.py
+pymoth/modules/show_figs.py
