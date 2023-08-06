@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: powderbooking
+Version: 0.4.0
+Summary: Application to show the best hotels with the weather
+Home-page: http://github.com/mrasap/powderbooking-database
+Author: mrasap
+Author-email: michael.kemna@gmail.com
+License: Apache
+Description: UNKNOWN
+Keywords: powderbooking powder snow booking hotel powderbooking model
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Database :: Database Engines/Servers
