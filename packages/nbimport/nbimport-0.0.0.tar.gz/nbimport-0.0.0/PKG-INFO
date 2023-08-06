@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: nbimport
+Version: 0.0.0
+Summary: An IPython magic command to import and run external notebooks using public URLs.
+Home-page: https://github.com/marella/nbimport
+Author: Ravindra Marella
+License: MIT
+Project-URL: Source Code, https://github.com/marella/nbimport
+Project-URL: Bug Tracker, https://github.com/marella/nbimport/issues
+Description: An IPython magic command to import and run external notebooks using public URLs.
+        
+        ## Installation
+        
+        ```
+        !pip install nbimport
+        %load_ext nbimport
+        ```
+        
+        ## Usage
+        
+        ```
+        %import https://www.example.com/mynotebook.ipynb
+        ```
+        
+        ## License
+        
+        [MIT][license]
+        
+        [license]: /LICENSE
+        
+Keywords: nbimport ipython
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Framework :: IPython
+Description-Content-Type: text/markdown
