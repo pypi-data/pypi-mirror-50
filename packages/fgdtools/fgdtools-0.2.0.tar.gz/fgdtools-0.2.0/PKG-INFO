@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: fgdtools
+Version: 0.2.0
+Summary: A library to parse .fgd files used in the source engine.
+Home-page: https://maxdup.github.io/fgd-tools/
+Author: Maxime Dupuis
+Author-email: mdupuis@hotmail.ca
+License: gpl-3.0
+Download-URL: https://github.com/maxdup/fgd-tools/archive/v0.2.0.tar.gz
+Description: UNKNOWN
+Keywords: fgd,source,hammer
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
