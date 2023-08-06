@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: pyfujitsu
+Version: 0.9.0
+Summary: Python library to control Fujitsu General Airconditioners on AylaNetworks IoT platform
+Home-page: https://github.com/Mmodarre/pyfujitsu
+Author: Mehdi Modarressi
+Author-email: Luckposht@gmail.com
+Maintainer: @Mmodarre
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
