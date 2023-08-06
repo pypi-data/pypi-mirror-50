@@ -1,0 +1,1 @@
+from .SumSineSeries import sin
