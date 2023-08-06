@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: number-to-words
+Version: 0.1.1
+Summary: Python converter of numbers in figures to words
+Home-page: https://github.com/wndessy/number_to_words
+Author: Winnie Ndessy
+Author-email: wndessy@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# Given any number up to a vigintillion, this class will return the same number in words
+
+## requirements
+- python3 
+
+## running the tests
+```python tests.py```
+
+## using custom tests
+```
+Import NumbersToWords;
+NumbersToWords("45781", add_and=False).words # for when the conjuntion "and" is unnecessary
+NumbersToWords("45781", add_and=True).words # for when the conjuntion "and" is necessary
+
+# replace 45781 with custom numbers as desired within the bounds
+```
+
+## Assumptions
+The class only works with strings. We are not handling
+- negative integers
+- direct integers. 
+
+You have to pass the number intended as a string
+Of course a serializer can be used to validate this in production
+if it was user input.
+
+
