@@ -1,0 +1,10 @@
+README.md
+setup.py
+jiri_gitlab/__init__.py
+jiri_gitlab/cli.py
+jiri_gitlab.egg-info/PKG-INFO
+jiri_gitlab.egg-info/SOURCES.txt
+jiri_gitlab.egg-info/dependency_links.txt
+jiri_gitlab.egg-info/entry_points.txt
+jiri_gitlab.egg-info/requires.txt
+jiri_gitlab.egg-info/top_level.txt
