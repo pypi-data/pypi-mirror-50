@@ -1,0 +1,103 @@
+Metadata-Version: 2.1
+Name: procrastinate
+Version: 0.1.0
+Summary: Postgres-based distributed task processing library
+Home-page: https://github.com/peopledoc/procrastinate
+Author: PeopleDoc
+Author-email: joachim.jablon@people-doc.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+Requires-Dist: attrs
+Requires-Dist: pendulum
+Requires-Dist: importlib-metadata
+Requires-Dist: psycopg2 ; platform_system != "Darwin"
+Requires-Dist: psycopg2-binary ; platform_system == "Darwin"
+Provides-Extra: dev
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: isort ; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: doc8 ; extra == 'docs'
+Requires-Dist: sphinx ; extra == 'docs'
+Requires-Dist: sphinx-autodoc-typehints ; extra == 'docs'
+Provides-Extra: lint
+Requires-Dist: black ; extra == 'lint'
+Requires-Dist: flake8 ; extra == 'lint'
+Requires-Dist: isort ; extra == 'lint'
+Requires-Dist: mypy ; extra == 'lint'
+Provides-Extra: test
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-mock ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+
+# procrastinate
+
+Kind of like Celery but based on elephants (Postgres) instead of rabbits (RabbitMQ)
+
+Currently very alpha stage.
+
+## Database creation
+
+Launch a postgres DB the way you want, e.g. using docker:
+
+```console
+$ docker-compose up -d
+$ export PGDATABASE=procrastinate PGHOST=localhost PGUSER=postgres
+$ createdb && psql -v ON_ERROR_STOP=ON -f init.sql
+```
+
+## Installation for development
+
+procrastinate officially is compatible with *``Python 3.6``* and above, using Postgres 10.
+
+```console
+$ pip install -r requirements.txt
+```
+
+You may need to install some required packages for psycopg:
+
+```console
+$ apt install libpq-dev python-dev
+```
+
+## Testing
+
+With a running database, in the dev virtualenv:
+
+```console
+$ pytest
+```
+
+## Code cleaning
+
+In the dev virtualenv, before commiting:
+
+```console
+$ black .
+$ pylint .
+$ isort
+```
+
+## Demo usage
+
+With a running database, in the dev virtualenv:
+
+### Launch a worker
+
+```console
+$ python -m procrastinate_demo worker sums
+$ python -m procrastinate_demo worker products
+```
+
+### Schedule some tasks
+
+```console
+$ python -m procrastinate_demo client
+```
+
+
