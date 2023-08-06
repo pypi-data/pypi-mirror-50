@@ -1,0 +1,16 @@
+2019-08-11 12:13:54,590 DEBUG client: Connect to server 127.0.0.1:7777 with name "maxst"
+2019-08-11 12:15:03,246 DEBUG client: Connect to server 127.0.0.1:7777 with name "maxst"
+2019-08-11 12:16:16,880 DEBUG client: Connect to server 127.0.0.1:7777 with name "maxst"
+2019-08-11 12:16:16,886 INFO client: Попытка подключения №1
+2019-08-11 12:16:17,887 INFO client: Попытка подключения №2
+2019-08-11 12:16:18,889 INFO client: Попытка подключения №3
+2019-08-11 12:16:19,890 INFO client: Попытка подключения №4
+2019-08-11 12:16:20,892 INFO client: Попытка подключения №5
+2019-08-11 12:16:21,894 CRITICAL client: Не удалось установить соединение с сервером
+2019-08-11 12:30:44,858 DEBUG client: Connect to server 127.0.0.1:7777 with name "maxst"
+2019-08-11 12:30:44,861 INFO client: Попытка подключения №1
+2019-08-11 12:30:44,861 DEBUG client: Start with 127.0.0.1:7777
+2019-08-11 12:30:44,896 DEBUG passlib.registry: registered 'pbkdf2_sha512' handler: <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2019-08-11 12:32:46,360 DEBUG parso.cache: pickle loaded: /home/maxst/.cache/pypoetry/virtualenvs/talkative-py3.7/lib/python3.7/site-packages/jedi/third_party/typeshed/stdlib/2and3/builtins.pyi
+2019-08-11 12:32:46,397 DEBUG parso.cache: pickle loaded: /home/maxst/.cache/pypoetry/virtualenvs/talkative-py3.7/lib/python3.7/site-packages/jedi/third_party/typeshed/stdlib/3/sys.pyi
+2019-08-11 12:32:46,451 DEBUG parso.cache: pickle loaded: /home/maxst/.cache/pypoetry/virtualenvs/talkative-py3.7/lib/python3.7/site-packages/dynaconf/base.py
