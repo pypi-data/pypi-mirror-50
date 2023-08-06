@@ -1,0 +1,10 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+ttlru.c
+test/test_lru.py
+ttlru_dict.egg-info/PKG-INFO
+ttlru_dict.egg-info/SOURCES.txt
+ttlru_dict.egg-info/dependency_links.txt
+ttlru_dict.egg-info/top_level.txt
