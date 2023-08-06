@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: pydp
+Version: 0.1.12
+Summary: Data Processing Lib
+Home-page: http://www.yanjingang.com/docs/pydp/dp.html
+Author-email: yanjingang@mail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: opencv-python
+Requires-Dist: pillow
+Requires-Dist: pyquery
+Requires-Dist: xpinyin
+Requires-Dist: pyyaml
+Requires-Dist: jieba
+Requires-Dist: pydub
+Requires-Dist: PyMySQL
+Requires-Dist: pymongo
+Requires-Dist: face-recognition
+Requires-Dist: baidu-aip
+Requires-Dist: tornado
+Requires-Dist: python-chess (==0.27.0)
+Requires-Dist: paddlepaddle
+Requires-Dist: keras
+Requires-Dist: tensorflow (==1.12)
+
+# pydp
+python常用基础库
+
+# 安装
+    pip install pydp
+
+# 使用
+[说明文档](http://www.yanjingang.com/docs/pydp/dp.html)
+
+
