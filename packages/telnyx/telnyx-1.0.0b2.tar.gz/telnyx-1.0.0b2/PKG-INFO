@@ -1,0 +1,57 @@
+Metadata-Version: 2.1
+Name: telnyx
+Version: 1.0.0b2
+Summary: Python bindings for the Telnyx API
+Home-page: https://github.com/team-telnyx/telnyx-python
+Author: Telnyx
+Author-email: support@telnyx.com
+License: MIT
+Project-URL: Documentation, https://developers.telnyx.com/docs/api/v2/overview
+Project-URL: Source Code, https://github.com/team-telnyx/telnyx-python
+Project-URL: Bug Tracker, https://github.com/team-telnyx/telnyx-python/issues
+Description: Official Telnyx Bindings for Python
+        ===================================
+        
+        A Python library for Telnyx's API.
+        
+        
+        Setup
+        -----
+        
+        Install this package by using `pip`:
+        
+            $ pip install telnyx
+        
+        
+        Setting up a Telnyx Account
+        ---------------------------
+        
+        Sign up for Telnyx at https://portal.telnyx.com
+        
+        
+        Using the Telnyx API
+        --------------------
+        
+        Documentation for the python bindings can be found alongside Telnyx's other bindings here:
+        
+        - https://developers.telnyx.com/docs/api/v2/overview
+        - https://developers.telnyx.com/docs/v2/messaging
+        
+Keywords: telnyx telephony sip networking callcontrol messaging sms mms
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Communications :: Telephony
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*
+Description-Content-Type: text/x-rst
