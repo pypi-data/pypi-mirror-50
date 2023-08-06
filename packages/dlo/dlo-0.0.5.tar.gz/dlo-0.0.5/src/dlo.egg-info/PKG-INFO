@@ -1,0 +1,56 @@
+Metadata-Version: 2.1
+Name: dlo
+Version: 0.0.5
+Summary: A lightweight (5 KB) Python client to retrieve NBA data from stats.nba.com
+Home-page: UNKNOWN
+Author: Akhil Kondepudi
+Author-email: akhil.compsci79@gmail.com
+License: UNKNOWN
+Description: # dlo
+        
+        A lightweight (5 KB) Python client to retrieve NBA data from stats.nba.com.
+        
+        ## Installation
+        
+        ```bash
+        pip install dlo                                     # definite stable version
+        ```
+        
+        ```bash
+        git clone https://github.com/avkondepudi/dlo.git    # latest version
+        pip install .
+        ```
+        
+        ## Dependencies
+        
+        * requests (required)
+        * pandas (recommended)
+        
+        ## Usage
+        
+        The API isn't publicly well-documented. You can find a list of endpoints [here](https://github.com/seemethere/nba_py/wiki/Completed-Work-Log) and [here](https://any-api.com/nba_com/nba_com/docs/API_Description).
+        
+        ```python
+        from dlo import Data                                # import module
+        
+        LOCAL = {                                           # set local parameters
+            "PlayerID": 1626156,
+            "Season": "2018-19",
+            "SeasonType": "Regular Season"
+        }
+        
+        d = Data(**LOCAL)                                   # create instance of Data class with local parameters
+        d.endpoint = "playergamelog"                        # set endpoint
+        
+        data = d.getData()                                  # get data (game log of D'Angelo Russell for 2018-19 Regular Season)
+        ```
+        
+Keywords: statistics data nba
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=2.6
+Description-Content-Type: text/markdown
