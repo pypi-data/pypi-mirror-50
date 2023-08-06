@@ -1,0 +1,11 @@
+future
+pandas
+wrapt
+pythonnet
+
+[dev]
+check-manifest
+
+[test]
+coverage
+nose
