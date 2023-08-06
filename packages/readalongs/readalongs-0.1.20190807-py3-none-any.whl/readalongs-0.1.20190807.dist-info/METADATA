@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: readalongs
+Version: 0.1.20190807
+Summary: UNKNOWN
+Home-page: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.7
+Requires-Dist: coloredlogs (==10.0)
+Requires-Dist: Flask (==1.0.2)
+Requires-Dist: flask-socketio (==4.0.0)
+Requires-Dist: g2p (>=0.1)
+Requires-Dist: iso-639 (==0.4.5)
+Requires-Dist: lxml (==4.3.0)
+Requires-Dist: panphon (==0.14)
+Requires-Dist: pocketsphinx (==0.1.15)
+Requires-Dist: pydub (==0.23.1)
+Requires-Dist: pympi-ling (==1.69)
+Requires-Dist: python-slugify (==1.2.6)
+Requires-Dist: pystache (==0.5.4)
+Requires-Dist: six (==1.12.0)
+Requires-Dist: text-unidecode (==1.2)
+Requires-Dist: tqdm (==4.31.1)
+Requires-Dist: webvtt-py (==0.4.2)
+
+ReadAlong Studio
+
+
