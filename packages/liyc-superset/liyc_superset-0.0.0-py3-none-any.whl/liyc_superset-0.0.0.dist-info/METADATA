@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: liyc-superset
+Version: 0.0.0
+Summary: A modern, enterprise-ready business intelligence web application
+Home-page: UNKNOWN
+Author: 
+Author-email: 
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Requires-Dist: bleach (<4.0.0,>=3.0.2)
+Requires-Dist: celery (<5.0.0,>=4.3.0)
+Requires-Dist: click (<7.0.0,>=6.0)
+Requires-Dist: colorama
+Requires-Dist: contextlib2
+Requires-Dist: croniter (>=0.3.28)
+Requires-Dist: cryptography (>=2.4.2)
+Requires-Dist: flask (<2.0.0,>=1.0.0)
+Requires-Dist: flask-appbuilder (<2.3.0,>=2.1.6)
+Requires-Dist: flask-caching
+Requires-Dist: flask-compress
+Requires-Dist: flask-talisman
+Requires-Dist: flask-migrate
+Requires-Dist: flask-wtf
+Requires-Dist: geopy
+Requires-Dist: gunicorn
+Requires-Dist: humanize
+Requires-Dist: idna
+Requires-Dist: isodate
+Requires-Dist: markdown (>=3.0)
+Requires-Dist: pandas (<0.25.0,>=0.24.2)
+Requires-Dist: parsedatetime
+Requires-Dist: pathlib2
+Requires-Dist: polyline
+Requires-Dist: pydruid (>=0.5.2)
+Requires-Dist: python-dateutil
+Requires-Dist: python-dotenv
+Requires-Dist: python-geohash
+Requires-Dist: pyyaml (>=5.1)
+Requires-Dist: requests (>=2.22.0)
+Requires-Dist: retry (>=0.9.2)
+Requires-Dist: selenium (>=3.141.0)
+Requires-Dist: simplejson (>=3.15.0)
+Requires-Dist: sqlalchemy (<2.0,>=1.3.5)
+Requires-Dist: sqlalchemy-utils (>=0.33.2)
+Requires-Dist: sqlparse
+Requires-Dist: wtforms-json
+Provides-Extra: bigquery
+Requires-Dist: pybigquery (>=0.4.10) ; extra == 'bigquery'
+Requires-Dist: pandas-gbq (>=0.10.0) ; extra == 'bigquery'
+Provides-Extra: cors
+Requires-Dist: flask-cors (>=2.0.0) ; extra == 'cors'
+Provides-Extra: gsheets
+Requires-Dist: gsheetsdb (>=0.1.9) ; extra == 'gsheets'
+Provides-Extra: hive
+Requires-Dist: pyhive[hive] (>=0.6.1) ; extra == 'hive'
+Requires-Dist: tableschema ; extra == 'hive'
+Requires-Dist: thrift (<1.0.0,>=0.11.0) ; extra == 'hive'
+Provides-Extra: mysql
+Requires-Dist: mysqlclient (==1.4.2.post1) ; extra == 'mysql'
+Provides-Extra: postgres
+Requires-Dist: psycopg2-binary (==2.7.5) ; extra == 'postgres'
+Provides-Extra: presto
+Requires-Dist: pyhive[presto] (>=0.4.0) ; extra == 'presto'
+
+UNKNOWN
+
+
