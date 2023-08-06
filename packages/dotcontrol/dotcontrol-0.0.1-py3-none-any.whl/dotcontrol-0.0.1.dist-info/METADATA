@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: dotcontrol
+Version: 0.0.1
+Summary: a dot file manager
+Home-page: https://github.com/mwoyuan/dotcontrol.git
+Author: Mwo Yuan
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.5
+Requires-Dist: toml
+Requires-Dist: click
+
+UNKNOWN
+
+
