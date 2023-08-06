@@ -1,0 +1,9 @@
+numpy
+
+[tests]
+pytest>=3.9
+pytest-cov
+coveralls
+flake8
+mypy
+astropy
