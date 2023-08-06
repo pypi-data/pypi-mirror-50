@@ -1,0 +1,11 @@
+Metadata-Version: 1.1
+Name: movekit
+Version: 0.1.2
+Summary: Simple and effective tools for the analysis of movement data
+Home-page: https://github.com/dbvis-ukon/movekit
+Author: Arjun Majumdar, Eren Cakmak, Jolle Jolles
+Author-email: arjun.majumdar@uni-konstanz.de, eren.cakmak@uni-konstanz.de, jjolles@orn.mpg.de
+License: UNKNOWN
+Description: Movekit is a open-source software for the analysis of movement data. The package includes modules for preoprocessing, features extraction, and statistical analysis.
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
