@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: rlbot-lua
+Version: 0.1.1
+Summary: Lua wrapper for RLBot
+Home-page: https://github.com/martmists/RLBot_Lua
+Author: Martmists
+Author-email: mail@martmists.com
+License: MIT
+Keywords: rlbot,lua,cpp,extension
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Games/Entertainment
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: rlbot
+
+# RLBot_Lua
+
+This extension creates a native bridge between Python and Lua, implementing its own class system to simplify usage.
+
+
