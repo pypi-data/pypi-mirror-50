@@ -1,0 +1,3 @@
+[console_scripts]
+sqlact = sqlact.main:run
+
