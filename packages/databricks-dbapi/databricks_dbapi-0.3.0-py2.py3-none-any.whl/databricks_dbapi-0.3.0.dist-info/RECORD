@@ -1,0 +1,11 @@
+CONTRIBUTORS.rst,sha256=LLAc-IsLJMJ77fBBotIeTiT055lYhWihz2Fwl5Yu_LI,128
+HISTORY.rst,sha256=e3tE3cXVypj0B9nRJsfQmBTS9HR9UI_dHYBvJ2tnz88,491
+databricks_dbapi/__init__.py,sha256=UlonFMT-bxMBjlWsYG5h9-f1FvBBTaV8q6O5IV1RD6c,300
+databricks_dbapi/__version__.py,sha256=t5Z-zJ-9gxnsO_PrKqKOOfAbymHnw7KiuBPn8LmISxY,321
+databricks_dbapi/databricks.py,sha256=yTb7XzQWsrpLS3nOAhPVS5XB0XL-c3CWsrf0wRmFS5c,2484
+databricks_dbapi/sqlalchemy_databricks.py,sha256=mamQsfAuXj_NPkaI08n06Ci_LW675rDza3umGm-KVSU,934
+databricks_dbapi-0.3.0.dist-info/entry_points.txt,sha256=SBzKsaJlXBfjRD7tkZIhm29x93A9VYLSwyIkgcBfHt0,98
+databricks_dbapi-0.3.0.dist-info/LICENSE.txt,sha256=LZyF50NWLRMi-bItRsoYu6nZu5LImMFYKnvEmblpwC8,1078
+databricks_dbapi-0.3.0.dist-info/WHEEL,sha256=QMHkjGvxv3VzbxS3PLXUS4g079erQ43qD1oit7eHsL0,89
+databricks_dbapi-0.3.0.dist-info/METADATA,sha256=iyi_d9pDyRUIySHajPXYG40LdKAUGnPzL2dwb-zRoN0,6918
+databricks_dbapi-0.3.0.dist-info/RECORD,,

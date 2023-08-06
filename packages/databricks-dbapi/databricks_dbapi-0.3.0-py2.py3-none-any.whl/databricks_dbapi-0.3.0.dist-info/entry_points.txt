@@ -1,0 +1,3 @@
+[sqlalchemy.dialects]
+databricks.pyhive=databricks_dbapi.sqlalchemy_databricks:DatabricksDialect
+
