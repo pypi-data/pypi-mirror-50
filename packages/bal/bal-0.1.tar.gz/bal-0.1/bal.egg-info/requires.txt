@@ -1,0 +1,15 @@
+six
+
+[:python_version < "3.4"]
+enum34
+
+[:python_version < "3.5"]
+typing
+
+[docs]
+sphinx
+sphinx-rtd-theme
+m2r
+
+[examples]
+wget
