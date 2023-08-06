@@ -1,0 +1,5 @@
+django-crum
+django-model-utils
+Django<2.0,>=1.11
+djangorestframework
+django-celery
