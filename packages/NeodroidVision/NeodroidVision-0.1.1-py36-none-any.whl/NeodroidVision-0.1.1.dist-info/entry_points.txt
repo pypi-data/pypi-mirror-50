@@ -1,0 +1,9 @@
+[console_scripts]
+neodroid-cls = classification.run:main
+neodroid-data = data.run:main
+neodroid-det = detection.run:main
+neodroid-face = samples.kivy_demo_app.opencv_face_tracking:main
+neodroid-rec = reconstruction.run:main
+neodroid-seg = segmentation.run:main
+neodroid-vae-smp = samples.kivy_demo_app.mnist_sampling:main
+
