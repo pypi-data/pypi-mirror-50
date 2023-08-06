@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: physics-tenpy
+Version: 0.4.1
+Summary: Simulation of quantum many-body systems with tensor networks in Python
+Home-page: https://github.com/tenpy/tenpy
+Author: TeNPy Developer Team
+Maintainer: Johannes Hauschild
+Maintainer-email: tenpy@johannes-hauschild.de
+License: GPLv3
+Project-URL: Bug Tracker, https://github.com/tenpy/tenpy/issues
+Project-URL: User Forum, https://tenpy.johannes-hauschild.de
+Project-URL: Source Code, https://github.com/tenpy/tenpy
+Project-URL: Documentation, https://tenpy.github.io/
+Description: README.rst
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: C
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Physics
+Description-Content-Type: text/x-rst
+Provides-Extra: plot
+Provides-Extra: doc
+Provides-Extra: test
+Provides-Extra: all
