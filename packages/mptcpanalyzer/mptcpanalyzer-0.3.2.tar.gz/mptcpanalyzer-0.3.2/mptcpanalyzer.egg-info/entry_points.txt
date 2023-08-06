@@ -1,0 +1,16 @@
+[console_scripts]
+mptcpanalyzer = mptcpanalyzer.cli:main
+
+[mptcpanalyzer.cmds]
+stats = mptcpanalyzer.command_example:CommandExample
+
+[mptcpanalyzer.plots]
+dss = mptcpanalyzer.plots.dss:DSSOverTime
+mptcp_attr = mptcpanalyzer.plots.stream:PlotSubflowAttribute
+mptcp_gput = mptcpanalyzer.plots.goodput:MptcpGoodput
+mptcp_tput = mptcpanalyzer.plots.throughput:MptcpThroughput
+owd = mptcpanalyzer.plots.owd:TcpOneWayDelay
+reinject = mptcpanalyzer.plots.reinjections:PlotMpTcpReinjections
+tcp_attr = mptcpanalyzer.plots.stream:PlotTcpAttribute
+tcp_tput = mptcpanalyzer.plots.throughput:TcpThroughput
+

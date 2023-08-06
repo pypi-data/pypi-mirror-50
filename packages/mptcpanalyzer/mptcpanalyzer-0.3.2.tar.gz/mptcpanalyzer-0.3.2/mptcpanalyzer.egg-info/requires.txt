@@ -1,0 +1,4 @@
+stevedore
+matplotlib>=3.0.3
+pandas>=0.25
+cmd2>=0.9.15
