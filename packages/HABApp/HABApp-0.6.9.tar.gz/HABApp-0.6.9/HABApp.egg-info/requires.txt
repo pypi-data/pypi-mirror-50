@@ -1,0 +1,10 @@
+aiohttp
+aiohttp-sse-client
+ruamel.yaml
+paho-mqtt
+ujson
+voluptuous
+watchdog
+
+[:python_version < "3.7"]
+dataclasses
