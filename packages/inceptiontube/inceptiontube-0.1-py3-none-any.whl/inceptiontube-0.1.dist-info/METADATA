@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: inceptiontube
+Version: 0.1
+Summary: Using InceptionV3 to scrape and classify youtube videos
+Home-page: http://github.com/gabriele6/InceptionTube
+Author: Gabriele Tenucci
+Author-email: tenucci.gabriele@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: youtube-dl
+Requires-Dist: keras
+Requires-Dist: tensorflow
+Requires-Dist: numpy
+Requires-Dist: opencv-python
+Requires-Dist: Pillow
+
+UNKNOWN
+
+
