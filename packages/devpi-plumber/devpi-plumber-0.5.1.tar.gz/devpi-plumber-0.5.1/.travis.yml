@@ -1,0 +1,23 @@
+language: python
+python:
+- '2.7'
+- '3.5'
+- '3.6'
+env:
+- DEVPI_PLUMBER_SERVER_HOST=127.0.0.1
+sudo: false
+install:
+- pip install -r requirements.txt
+- pip install coveralls
+- pip freeze
+script: pytest
+after_success: coveralls
+deploy:
+  provider: pypi
+  user: BYPyPi
+  password:
+    secure: NjiyBYuCko9EUnNirA9iEk/QfG0xf3n2ylcvDidQYrHzaVVhvdcvvERlkeu9W0Z1Ed7It4pW9VeRFR1Qh+rnR29obbTh61fUgDbbBbCExnZcdK/mrVs7LpGPCS98lFesQhGC2d3SndMnd+sUzAKWsnarOPAC8UsMRaNgmsZ/gKk=
+  distributions: sdist bdist_wheel
+  on:
+    tags: true
+    all_branches: true

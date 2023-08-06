@@ -1,0 +1,6 @@
+devpi-client
+twitter.common.contextutil
+six
+
+[test]
+devpi-server>=4.2.1
