@@ -1,0 +1,5 @@
+[console_scripts]
+QARC_Random = QARealtimeCollector.__init__:random
+QARC_Resample = QARealtimeCollector.__init__:resample
+QARC_Start = QARealtimeCollector.__init__:start
+
