@@ -1,0 +1,17 @@
+HISTORY.rst
+MANIFEST.in
+README.md
+requirements.txt
+setup.cfg
+setup.py
+src/lock/__init__.py
+src/lock/cli.py
+src/lock/lock.py
+src/lock/parser.py
+src/lock_requirements.egg-info/PKG-INFO
+src/lock_requirements.egg-info/SOURCES.txt
+src/lock_requirements.egg-info/dependency_links.txt
+src/lock_requirements.egg-info/entry_points.txt
+src/lock_requirements.egg-info/not-zip-safe
+src/lock_requirements.egg-info/requires.txt
+src/lock_requirements.egg-info/top_level.txt
