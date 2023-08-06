@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: pywc
+Version: 0.0.1
+Summary: A word counter with support for multiple languages
+Home-page: https://gitlab.com/ayys/pywc
+Author: Ayush Jha
+Author-email: ayushjha@pm.me
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)   
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# pywc
+
+Word counter in python
+
