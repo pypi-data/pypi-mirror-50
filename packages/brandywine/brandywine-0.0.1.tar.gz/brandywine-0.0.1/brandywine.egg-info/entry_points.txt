@@ -1,0 +1,3 @@
+[console_scripts]
+brandywine = brandywine.command_line:main
+

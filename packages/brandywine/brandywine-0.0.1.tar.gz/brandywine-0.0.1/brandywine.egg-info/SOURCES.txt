@@ -1,0 +1,10 @@
+README.md
+setup.py
+brandywine/__init__.py
+brandywine/brandywine.py
+brandywine/command_line.py
+brandywine.egg-info/PKG-INFO
+brandywine.egg-info/SOURCES.txt
+brandywine.egg-info/dependency_links.txt
+brandywine.egg-info/entry_points.txt
+brandywine.egg-info/top_level.txt
