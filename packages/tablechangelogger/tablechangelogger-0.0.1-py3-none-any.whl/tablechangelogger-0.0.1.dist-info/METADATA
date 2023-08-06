@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: tablechangelogger
+Version: 0.0.1
+Summary: A python package which logs each change made to a django
+                model instance
+Home-page: https://github.com/voltlines/django-table-change-logger
+Author: Volt Lines
+Author-email: tech@voltlines.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Dist: Django (>=1.11)
+Requires-Dist: factory-boy (==2.11.1)
+Requires-Dist: pytest
+Requires-Dist: mock
+
+UNKNOWN
+
+
