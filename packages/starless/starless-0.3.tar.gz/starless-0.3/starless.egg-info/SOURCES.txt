@@ -1,0 +1,15 @@
+README.md
+setup.py
+starless/__init__.py
+starless/__main__.py
+starless/cli.py
+starless/foo.py
+starless/rewriter.py
+starless/test_cli.py
+starless/test_starless.py
+starless.egg-info/PKG-INFO
+starless.egg-info/SOURCES.txt
+starless.egg-info/dependency_links.txt
+starless.egg-info/entry_points.txt
+starless.egg-info/requires.txt
+starless.egg-info/top_level.txt
