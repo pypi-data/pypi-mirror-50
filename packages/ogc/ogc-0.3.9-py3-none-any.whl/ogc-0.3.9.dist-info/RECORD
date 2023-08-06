@@ -1,0 +1,17 @@
+ogc/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+ogc/app.py,sha256=2gDeVo5PnVWCSWW3dhs7-swC4TAir88Egs58MkDobz8,87
+ogc/dep.py,sha256=glPCCgIrqiJH0zFJJBr9D6tnoiaJkBvxpMdJG-kofmg,3125
+ogc/enums.py,sha256=l0xSsl0MLzv2idZ77CYJOukEA0y6hviCA9FIWsmFi4s,1506
+ogc/log.py,sha256=dO3_H3pBjwnY2vfvqiM_JntIBSQ188agWebvTgRu5vM,523
+ogc/snap.py,sha256=2Idv2p4ctz9uLjUqmrufkbWA1nP-vQXPjjgWGlMgIA8,1103
+ogc/spec.py,sha256=t_ZthgYm8HLGvGa4gtThDDbY9oxH5O0yO1J4MhGYsdo,12565
+ogc/state.py,sha256=yOHTQ2IWXZqC1mgcV_ReuOPeY1T4us-pOafdvuZKz8s,536
+ogc/commands/__init__.py,sha256=u1b1w9KxG2yatxvjDXx_P-JTpa08b3TSUPeeRKvvzpw,62
+ogc/commands/base.py,sha256=Oc6jCcLUbmK1ynDxSyg2K34MEaSWsE9Kb_j_QB2jlgQ,2587
+ogc/commands/dep.py,sha256=DZBlerqaaldVCxgyJ_V26SJy_xHk0QM-J4jRUKOHRz0,2541
+ogc/commands/execute.py,sha256=S-5s8mGCHTVdthWLEf4Xu-ucwXG11TO2wFsZpuyrWzk,2435
+ogc-0.3.9.dist-info/METADATA,sha256=SWHOmNMXAig_b9QtmDF9LrjUKLOGmFL42NumRdJnwLM,3017
+ogc-0.3.9.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+ogc-0.3.9.dist-info/entry_points.txt,sha256=e-y4T4X2PTfFiKUZjExu4sDgpoUJWDnx8g3x8ibRuTk,39
+ogc-0.3.9.dist-info/top_level.txt,sha256=Kvy3KhzcIhNPT4_nZuJCmS946ptRr_MDyU4IIhZJhCY,4
+ogc-0.3.9.dist-info/RECORD,,
