@@ -1,0 +1,3 @@
+[console_scripts]
+shortcm = shortcm_client.__main__:main
+
