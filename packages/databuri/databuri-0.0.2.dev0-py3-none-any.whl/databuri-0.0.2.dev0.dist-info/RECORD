@@ -1,0 +1,9 @@
+databuri/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+databuri/configuration.py,sha256=R6sgxgV_tBIjxr4Ew_zXfnvQHpc3V9j6WNlyBaEvNOA,497
+databuri/logger.py,sha256=kz6v0GUb1tGFWZOYQWUmYEAQL1U35ZHZxMzvBUH2moM,432
+databuri/datasources/__init__.py,sha256=KhFG0XtY1iTshw3KKJml8TFyqV27Tiya_JQ1lIcFabA,84
+databuri/datasources/govspending.py,sha256=HC7qg8cvWjxeMgn2iV8sOYrEDHnIRw2shH9EMZaXVik,1977
+databuri-0.0.2.dev0.dist-info/METADATA,sha256=aNyN3-2ze6-rEnNJMf4ebJIoYzwlvyFCG2HEb_g7uTk,1290
+databuri-0.0.2.dev0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+databuri-0.0.2.dev0.dist-info/top_level.txt,sha256=pGwC7ClOt5egkwYEeawHX9a2gpyTgKWmZZMcWOLzDOE,9
+databuri-0.0.2.dev0.dist-info/RECORD,,
