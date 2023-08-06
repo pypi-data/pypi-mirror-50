@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="pyiforest"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="iforestlib">
+				<Option output="/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug/libiforestlib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/tad/influxexample/pyad/pyad/pyad/src/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 iforestlib"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="iforestlib/fast">
+				<Option output="/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug/libiforestlib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/tad/influxexample/pyad/pyad/pyad/src/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 iforestlib/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tad/influxexample/pyad/pyad/pyad/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/bagged_forest.cpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/bagged_forest.hpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/command_parser.cpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/command_parser.hpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/facade_forest.cpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/facade_forest.hpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/feature_contribution.hpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/forest.cpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/forest.hpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/globals.hpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/isolation_forest.cpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/isolation_forest.hpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/log_writer.cpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/log_writer.hpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/main.cpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/main.hpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/metric.cpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/metric.hpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/stat/io_parser.cpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/stat/io_parser.hpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/tree.cpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/tree.hpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/utility.cpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/utility.hpp">
+			<Option target="iforestlib"/>
+		</Unit>
+		<Unit filename="/home/tad/influxexample/pyad/pyad/pyad/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

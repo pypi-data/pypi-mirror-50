@@ -1,0 +1,26 @@
+Metadata-Version: 1.1
+Name: pyada
+Version: 1.0.1.2
+Summary: Python Anomaly Detection Algorithms
+Home-page: http://eecs.oregonstate.edu/~zemichet
+Author: Tadesse Zemicheal
+Author-email: zemichet@oregonstate.edu
+License: MIT
+Download-URL: https://github.com/tadeze/pyad
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Programming Language :: Cython
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Scientific/Engineering

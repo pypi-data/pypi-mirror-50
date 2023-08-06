@@ -1,0 +1,7 @@
+recursive-include pyada/ *
+
+include *.md pyada/*.py LICENSE
+include pyada/*.pxd
+include pyada/*.pyx
+prune build
+prune dist 

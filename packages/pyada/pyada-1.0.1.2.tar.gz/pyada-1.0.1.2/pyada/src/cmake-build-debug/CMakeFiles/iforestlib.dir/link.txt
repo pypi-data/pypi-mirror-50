@@ -1,0 +1,2 @@
+/usr/bin/ar qc libiforestlib.a  CMakeFiles/iforestlib.dir/tree.o CMakeFiles/iforestlib.dir/forest.o CMakeFiles/iforestlib.dir/isolation_forest.o CMakeFiles/iforestlib.dir/utility.o CMakeFiles/iforestlib.dir/facade_forest.o CMakeFiles/iforestlib.dir/metric.o CMakeFiles/iforestlib.dir/main.o CMakeFiles/iforestlib.dir/stat/io_parser.o CMakeFiles/iforestlib.dir/log_writer.o CMakeFiles/iforestlib.dir/command_parser.o CMakeFiles/iforestlib.dir/bagged_forest.o
+/usr/bin/ranlib libiforestlib.a
