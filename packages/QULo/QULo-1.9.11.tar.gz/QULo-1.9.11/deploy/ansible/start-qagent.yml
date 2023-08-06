@@ -1,0 +1,8 @@
+- name: Start qagent on nodes
+  hosts: fuchs-compute-nodes
+  #hosts: only-two
+
+  tasks:
+  - name: Start qagent
+    command: "/cm/shared/admintools/QULo/bin/qagent start"
+    #shell: hostname; /cm/shared/admintools/QULo/bin/qagent start

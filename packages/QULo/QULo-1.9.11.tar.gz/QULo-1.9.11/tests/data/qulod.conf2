@@ -1,0 +1,26 @@
+[master]
+host = ... (I think this is useless: master is defined by who starts)
+master-slave comm port = (necessary?)
+
+[basic-op]
+tasks = EchoServer,CPULoad,MemoryLevel
+EchoServer.time_interval_seconds = 3600
+CPULoad.time_interval_seconds = 3
+MemoryLevel.time_interval_seconds = 3
+
+[GPU node]
+tasks = EchoServer,GPULoad,CPULoad,MemoryLevel
+EchoServer.time_interval_seconds = 3600
+GPULoad.time_interval_seconds = 10
+CPULoad.time_interval_seconds = 3
+MemoryLevel.time_interval_seconds = 3
+
+[nodes]
+node001 = basic-op
+node002 = basic-op
+...
+gpu001 = GPU node
+...
+
+
+

@@ -1,0 +1,19 @@
+# MANIFEST.in
+include *.text
+recursive-exclude bin *
+recursive-exclude qulo/qulolist *
+recursive-include doc *
+recursive-exclude doc *~
+recursive-exclude QULo.egg-info *
+recursive-exclude prototest *
+recursive-exclude devel *
+exclude .hgignore
+exclude .hgtags
+recursive-exclude examples *
+recursive-include examples/etc *
+
+include README.rst
+include CHANGES.rst
+exclude MANIFEST.in.qulolist
+exclude setup_qulolist.py
+

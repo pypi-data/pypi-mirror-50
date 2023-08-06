@@ -1,0 +1,25 @@
+(Warning! This document is work in progress)
+
+
+Requirements for QULo: version 2.0.0
+=====================================
+
+1. Input
+    a. command line
+2. Output
+    a. list of n items...
+3. External hardware interfaces
+    a. ?
+4. External software interfaces
+    a. slurm
+5. External communication interfaces
+6. Tasks that the user wants to perform
+    a. start daemon
+    b. stop daemon
+    c. get automatic email with Bottom-10 list of users in the last week
+    d. manually request list of worse users
+7. Data used in each task
+    a. configuration file
+    b. -
+    c. configuration file
+    d. number of users, number of days
