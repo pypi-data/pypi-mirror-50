@@ -1,0 +1,12 @@
+dataclass_builder/__init__.py,sha256=c8P54pYgx-uK6kkZ101MbJD45VNyuvxWZVrQboWhKp4,628
+dataclass_builder/_common.py,sha256=yLMC4-CCG9QCwxquEEJ2Xf8VITWqti2DkfbbiXOCud8,4623
+dataclass_builder/exceptions.py,sha256=UAbc5IaUQh7i2vVVnomzxdBy5tfSAf8ni9XIbhFDZfU,1892
+dataclass_builder/factory.py,sha256=5fgc26U4KBiSs36IPbFSApUZnRRNN8Ht1flROv8U648,13756
+dataclass_builder/py.typed,sha256=bWew9mHgMy8LqMu7RuqQXFXLBxh2CRx0dUbSx-3wE48,27
+dataclass_builder/utility.py,sha256=KSf4KQu3CNqTzgiAGET0T07xB8VDqM4anfR_EvgGSl4,2070
+dataclass_builder/wrapper.py,sha256=QAsDQ9pKkUlaPRlA5LUuh8O0X48IsIxto8-HBV43hVw,9690
+dataclass_builder-1.1.3.dist-info/LICENSE,sha256=wwQyDKbvL5Lu1HSudMe9Qi88lJeux6J9d55oYtXjQcA,1107
+dataclass_builder-1.1.3.dist-info/METADATA,sha256=7kb69Gh2bfp56L1foRGgacmAJ2YWjcj9R1oTs5zRLyI,8966
+dataclass_builder-1.1.3.dist-info/WHEEL,sha256=U88EhGIw8Sj2_phqajeu_EAi3RAo8-C6zV3REsWbWbs,92
+dataclass_builder-1.1.3.dist-info/top_level.txt,sha256=GZsEwksWk8HetzF10PSjrzBlgRWgRCj0Zom3bJTiAjs,18
+dataclass_builder-1.1.3.dist-info/RECORD,,
