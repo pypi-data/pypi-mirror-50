@@ -1,0 +1,13 @@
+MANIFEST.in
+README.md
+setup.py
+politenessr/__init__.py
+politenessr/convert_examples_to_features.py
+politenessr/download_features.py
+politenessr/politenessr.py
+politenessr/predict.py
+politenessr/regression_processor.py
+politenessr.egg-info/PKG-INFO
+politenessr.egg-info/SOURCES.txt
+politenessr.egg-info/dependency_links.txt
+politenessr.egg-info/top_level.txt
