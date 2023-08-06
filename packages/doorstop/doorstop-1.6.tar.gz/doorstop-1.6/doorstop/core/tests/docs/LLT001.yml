@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: ''
+level: 1.1
+links:
+- REQ003: 1f33605bbc5d1a39c9a6441b91389e88
+normative: true
+ref: Verify an item can be added to a document.
+reviewed: c87f21066512a269d35f83944607893c
+text: |
+  Test adding items:
