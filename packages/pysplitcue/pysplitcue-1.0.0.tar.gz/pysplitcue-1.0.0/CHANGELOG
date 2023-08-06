@@ -1,0 +1,58 @@
++--------------------------------+
+August 8 2019  Version 1.0.0
++--------------------------------+
+
+- Support guaranteed only on Python3
+- Add checking dependencies
+- Add argparser integrity
+- Checking the input file for determine supported audio 
+  formats and cue sheet presence.
+  
++--------------------------------+
+Novembar 24 2017  Version 0.6.3
++--------------------------------+
+
+- Improved error management, now it's a little better commented
+
+- I have separated the splitting process and the tagging process
+  for improve errors management
+
+
++--------------------------------+
+Novembar 21 2017  Version 0.6.2
++--------------------------------+
+
+- Add a error management interface for shell output
+
+- Improved python code somewhere
+
+- Resolved the cuetag binaries name on slackware 14.2
+
+
++--------------------------------+
+January 26 2015  Version 0.6.1
++--------------------------------+
+
+- This is first stable release
+
+- Translation done completely in English 
+
+- Make a setup.py and MANIFEST.in for building a package for your Linux 
+  distribution (Debian and derived, Slackware)
+  
+- It was clean the main executable code
+
++--------------------------------+
+August 25 2012  Version 0.6
++--------------------------------+
+- Modified the program manual (I hope it is more understandable)
+
+- Adjusted positional parameters in this order: 
+  program_name > option > path-name (optional) 
+
+
++--------------------------+
+Nov. 09  2010  Version 0.5
++--------------------------+
+
+Initial not public release 

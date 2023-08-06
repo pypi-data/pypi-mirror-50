@@ -1,0 +1,17 @@
+AUTHORS
+BUGS
+CHANGELOG
+COPYING
+MANIFEST.in
+README.md
+TODO
+pysplitcue
+setup.py
+man/pysplitcue.1.gz
+pysplc/__init__.py
+pysplc/splc.py
+pysplc/str_utils.py
+pysplitcue.egg-info/PKG-INFO
+pysplitcue.egg-info/SOURCES.txt
+pysplitcue.egg-info/dependency_links.txt
+pysplitcue.egg-info/top_level.txt
