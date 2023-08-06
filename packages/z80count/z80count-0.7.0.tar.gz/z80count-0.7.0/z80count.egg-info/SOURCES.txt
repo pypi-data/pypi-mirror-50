@@ -1,0 +1,17 @@
+MANIFEST.in
+README.md
+setup.py
+etc/demo-vim.gif
+tests/test_format_line.py
+tests/test_parser.py
+tests/test_update_counters.py
+z80count/__init__.py
+z80count/z80count.py
+z80count/z80table.json
+z80count.egg-info/PKG-INFO
+z80count.egg-info/SOURCES.txt
+z80count.egg-info/dependency_links.txt
+z80count.egg-info/entry_points.txt
+z80count.egg-info/not-zip-safe
+z80count.egg-info/requires.txt
+z80count.egg-info/top_level.txt
