@@ -1,0 +1,67 @@
+Metadata-Version: 1.1
+Name: ipug
+Version: 0.1.4
+Summary: iPug, the UDK Guide dog
+Home-page: https://github.com/timotheuslin/ipug
+Author: Timothy Lin
+Author-email: timothy.gh.lin@gmail.com
+License: BSD license
+Description: ====
+        iPug
+        ====
+        
+        
+        .. image:: https://img.shields.io/pypi/v/ipug.svg
+                :target: https://pypi.python.org/pypi/ipug
+        
+        .. image:: https://img.shields.io/travis/timotheuslin/ipug.svg
+                :target: https://travis-ci.org/timotheuslin/ipug
+        
+        .. image:: https://readthedocs.org/projects/ipug/badge/?version=latest
+                :target: https://ipug.readthedocs.io/en/latest/?badge=latest
+                :alt: Documentation Status
+        
+        
+        
+        
+        iPug, the UDK Guide dog
+        
+        
+        * Free software: BSD license
+        * Documentation: https://ipug.readthedocs.io.
+        
+        
+        Features
+        --------
+        
+        * TODO
+        
+        Credits
+        -------
+        
+        This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+        
+        .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+        .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+        
+        
+        =======
+        History
+        =======
+        
+        0.1.0 (2019-08-09)
+        ------------------
+        
+        * First release on PyPI.
+        
+Keywords: ipug
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
