@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: notify-cli
+Version: 0.1.2
+Summary: A python client for notify-server
+Home-page: https://github.com/matthewscholefield/notify-server
+Author: Matthew Scholefield
+Author-email: matthew331199@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: notify cli
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6

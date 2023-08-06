@@ -1,0 +1,3 @@
+[console_scripts]
+notify-cli = notify_cli.__main__:main
+

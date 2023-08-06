@@ -1,0 +1,10 @@
+setup.py
+notify_cli/__init__.py
+notify_cli/__main__.py
+notify_cli/binary_protocol.py
+notify_cli/notify_client.py
+notify_cli.egg-info/PKG-INFO
+notify_cli.egg-info/SOURCES.txt
+notify_cli.egg-info/dependency_links.txt
+notify_cli.egg-info/entry_points.txt
+notify_cli.egg-info/top_level.txt
