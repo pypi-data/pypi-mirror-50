@@ -1,0 +1,6 @@
+jupyter_core>=4.4.0
+jupyter_client>=5.2.0
+notebook<7.0,>=5.7.6
+traitlets>=4.2.0
+tornado>=4.2.0
+requests<3.0,>=2.7
