@@ -1,0 +1,9 @@
+MANIFEST.in
+README.md
+setup.py
+lib/python/cs.py.stack.egg-info/PKG-INFO
+lib/python/cs.py.stack.egg-info/SOURCES.txt
+lib/python/cs.py.stack.egg-info/dependency_links.txt
+lib/python/cs.py.stack.egg-info/top_level.txt
+lib/python/cs/py/__init__.py
+lib/python/cs/py/stack.py
