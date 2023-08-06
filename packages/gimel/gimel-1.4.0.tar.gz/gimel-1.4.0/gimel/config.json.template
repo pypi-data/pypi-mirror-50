@@ -1,0 +1,31 @@
+{
+    "redis": {
+        "host": "ENTER YOUR REDIS HOST",
+        "port": 6379,
+        "password": "..."
+    },
+    "extra_wiring": [
+        {
+            "lambda": {
+                "FunctionName": "gimel-track",
+                "Handler": "gimel.track",
+                "MemorySize": 128,
+                "Timeout": 3
+            },
+            "api_gateway": {
+                "pathPart": "kcart",
+                "method": {
+                    "httpMethod": "GET",
+                    "apiKeyRequired": false,
+                    "requestParameters": {
+                        "method.request.querystring.namespace": false,
+                        "method.request.querystring.experiment": false,
+                        "method.request.querystring.variant": false,
+                        "method.request.querystring.event": false,
+                        "method.request.querystring.uuid": false
+                    }
+                }
+            }
+        }
+    ]
+}
