@@ -1,0 +1,15 @@
+CHANGELOG.rst
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+fortran_format_converter/__init__.py
+fortran_format_converter/_converter.py
+fortran_format_converter/py.typed
+fortran_format_converter.egg-info/PKG-INFO
+fortran_format_converter.egg-info/SOURCES.txt
+fortran_format_converter.egg-info/dependency_links.txt
+fortran_format_converter.egg-info/not-zip-safe
+fortran_format_converter.egg-info/requires.txt
+fortran_format_converter.egg-info/top_level.txt
