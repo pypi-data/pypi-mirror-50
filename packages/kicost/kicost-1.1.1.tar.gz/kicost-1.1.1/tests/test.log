@@ -1,0 +1,235 @@
+This macro test all the xml files BOM in this folder
+##### Testing file: 300-010.xml
+No information found for parts 'U3' query `{'mpn': {'manufacturer': 'Linear Technology', 'part': 'LTC3807EFE#PBF'}}`
+No information found for parts 'J2' query `{'mpn': {'manufacturer': 'Phoenix Contact', 'part': '2278364'}}`
+No information found for parts 'SW1' query `{'mpn': {'manufacturer': 'Wurth Electronics', 'part': '418217270902A'}}`
+No information found for parts 'D1' query `{'mpn': {'manufacturer': 'VISHAY', 'part': '78-MSS2P2HM3_A/H'}}`
+No information found for parts 'U1,U2' query `{'mpn': {'manufacturer': 'Texas Instruments', 'part': 'TPS22810DBVR'}}`
+No information found for parts 'J1' query `{'mpn': {'manufacturer': 'Phoenix Contact', 'part': '2278377'}}`
+
+##### Testing file: acquire-PWM_2.xml
+No information found for parts 'J606#1' query `{'mpn': {'manufacturer': '', 'part': '0022232061'}}`
+No information found for parts 'SW603' query `{'mpn': {'manufacturer': '', 'part': 'FSM4JH'}}`
+No information found for parts 'SW606' query `{'mpn': {'manufacturer': '', 'part': 'FSM4JH'}}`
+No information found for parts 'SW604' query `{'mpn': {'manufacturer': '', 'part': 'FSM4JH'}}`
+No information found for parts 'SW602' query `{'mpn': {'manufacturer': '', 'part': 'FSM4JH'}}`
+No information found for parts 'SW601' query `{'mpn': {'manufacturer': '', 'part': '400MDP1R1BLKM2QE-ND'}}`
+No information found for parts 'J606#2' query `{'mpn': {'manufacturer': '', 'part': '0022012067'}}`
+No information found for parts 'U2901,U2902' query `{'mpn': {'manufacturer': '', 'part': 'MCP4922-E/P-ND'}}`
+No information found for parts 'SW605' query `{'mpn': {'manufacturer': '', 'part': 'FSM4JH'}}`
+No information found for parts 'CNN2901#3' query `{'sku': {'vendor': 'Digikey', 'part': '296-29298-ND'}}`
+
+##### Testing file: acquire-PWM.xml
+No information found for parts 'J606#1' query `{'mpn': {'manufacturer': '', 'part': '0022232061'}}`
+No information found for parts 'SW602' query `{'mpn': {'manufacturer': '', 'part': 'FSM4JH'}}`
+No information found for parts 'J606#2' query `{'mpn': {'manufacturer': '', 'part': '0022012067'}}`
+No information found for parts 'J802#1,J902#1,J1002#1,J1102#1,J1502#1,J1602#1,J1702#1,J1802#1,J2002#1,J2102#1,J2202#1,J2302#1,J2502#1,J2602#1,J2702#1,J2802#1' query `{'mpn': {'manufacturer': '', 'part': '0022232061'}}`
+No information found for parts 'SW603' query `{'mpn': {'manufacturer': '', 'part': 'FSM4JH'}}`
+No information found for parts 'SW605' query `{'mpn': {'manufacturer': '', 'part': 'FSM4JH'}}`
+No information found for parts 'CNN2901#3' query `{'sku': {'part': '296-29298-ND', 'vendor': 'Digikey'}}`
+No information found for parts 'SW606' query `{'mpn': {'manufacturer': '', 'part': 'FSM4JH'}}`
+No information found for parts 'J802#2,J902#2,J1002#2,J1102#2,J1502#2,J1602#2,J1702#2,J1802#2,J2002#2,J2102#2,J2202#2,J2302#2,J2502#2,J2602#2,J2702#2,J2802#2' query `{'mpn': {'manufacturer': '', 'part': '0022012067'}}`
+No information found for parts 'Power_input1301' query `{'mpn': {'manufacturer': '', 'part': '0039301020'}}`
+No information found for parts 'SW604' query `{'mpn': {'manufacturer': '', 'part': 'FSM4JH'}}`
+No information found for parts 'SW601' query `{'mpn': {'manufacturer': '', 'part': '400MDP1R1BLKM2QE-ND'}}`
+No information found for parts 'U2901,U2902' query `{'mpn': {'manufacturer': '', 'part': 'MCP4922-E/P-ND'}}`
+
+##### Testing file: Aeronav_R.xml
+No information found for parts 'U18' query `{'mpn': {'part': 'TJA1051TK/3', 'manufacturer': ''}}`
+No information found for parts 'Q1' query `{'mpn': {'part': 'IRLML6344', 'manufacturer': ''}}`
+No information found for parts 'U5' query `{'mpn': {'part': 'TPS2052BDRB', 'manufacturer': ''}}`
+No information found for parts 'U1' query `{'mpn': {'part': 'DRV5033FA', 'manufacturer': ''}}`
+No information found for parts 'U17' query `{'mpn': {'part': 'TRS3122E', 'manufacturer': ''}}`
+No information found for parts 'C6,C8,C9' query `{'mpn': {'part': 'NFM18PS105', 'manufacturer': ''}}`
+No information found for parts 'U16' query `{'mpn': {'part': 'SN65HVD78DRB', 'manufacturer': ''}}`
+
+##### Testing file: b3u_test.xml
+
+##### Testing file: bbsram.xml
+No information found for parts 'U4' query `{'mpn': {'part': 'MR256A08B', 'manufacturer': ''}}`
+No information found for parts 'U1' query `{'mpn': {'part': 'CY62167EV30', 'manufacturer': ''}}`
+
+##### Testing file: BoulderCreekMotherBoard.xml
+
+##### Testing file: CAN Balancer.xml
+No information found for parts 'TH1' query `{'mpn': {'part': '490-2436-1-ND', 'manufacturer': ''}}`
+
+##### Testing file: Decoder.xml
+
+##### Testing file: fitting_test.xml
+No information found for parts 'PM1-PM3' query `{'mpn': {'part': '2553-2x6G', 'manufacturer': 'Ho Chien'}}`
+
+##### Testing file: Indium_X2.xml
+No information found for parts 'D2' query `{'mpn': {'manufacturer': 'Lumex Opto', 'part': 'SML-LX0603SRW-TR'}}`
+No information found for parts 'R3' query `{'mpn': {'manufacturer': 'Vishay Dale', 'part': 'CRCW08050000Z0EAHP'}}`
+
+##### Testing file: kc-test.xml
+
+##### Testing file: LedTest.xml
+
+##### Testing file: local_Indium_X2.xml
+No information found for parts 'R3' query `{'mpn': {'manufacturer': 'Vishay Dale', 'part': 'CRCW08050000Z0EAHP'}}`
+No information found for parts 'D2' query `{'mpn': {'manufacturer': 'Lumex Opto', 'part': 'SML-LX0603SRW-TR'}}`
+
+##### Testing file: multipart2.xml
+No information found for parts 'S1,S2' query `{'mpn': {'part': 'CL-SB-22A-01T', 'manufacturer': 'Coto'}}`
+No information found for parts 'SW1-SW3,SW5-SW9' query `{'mpn': {'part': '431481031816', 'manufacturer': 'Wurth Elektronik'}}`
+No information found for parts 'SW4' query `{'mpn': {'part': '431481', 'manufacturer': 'Wurth Elektronik'}}`
+
+##### Testing file: multipart.xml
+No information found for parts 'S1#2' query `{'mpn': {'part': 'RC1005J000CS', 'manufacturer': 'Coto'}}`
+No information found for parts 'SW4#1' query `{'mpn': {'part': '431481', 'manufacturer': 'Wurth Elektronik'}}`
+No information found for parts 'SW1-SW3,SW5-SW9' query `{'mpn': {'part': '431481031816', 'manufacturer': 'Wurth Elektronik'}}`
+No information found for parts 'SW4#3' query `{'mpn': {'part': '431481', 'manufacturer': 'Wurth Elektronik'}}`
+No information found for parts 'S2' query `{'mpn': {'part': 'CL-SB-22A-01T', 'manufacturer': 'Coto'}}`
+No information found for parts 'S1#1' query `{'mpn': {'part': 'CL-SB-22A-01T', 'manufacturer': 'Coto'}}`
+No information found for parts 'J3#2' query `{'mpn': {'part': 'SHUNT1AQ5', 'manufacturer': ''}}`
+No information found for parts 'SW4#4' query `{'mpn': {'part': 'Q45', 'manufacturer': 'Wurth Elektronik'}}`
+No information found for parts 'SW4#2' query `{'mpn': {'part': '431481', 'manufacturer': 'Wurth Elektronik'}}`
+No information found for parts 'J3#3' query `{'mpn': {'part': 'SHUNT2AW3', 'manufacturer': ''}}`
+
+##### Testing file: NF6X_TestBoard.xml
+No information found for parts 'SW1-SW9' query `{'mpn': {'manufacturer': 'Wurth Elektronik', 'part': '431481031816'}}`
+No information found for parts 'S1,S2' query `{'mpn': {'manufacturer': 'Coto', 'part': 'CL-SB-22A-01T'}}`
+
+##### Testing file: Receiver_1W.xml
+No information found for parts 'L301' query `{'mpn': {'part': 'LQW15AN12NJ00', 'manufacturer': ''}}`
+No information found for parts 'GPIO-1,GPIO-3' query `{'mpn': {'part': 'YA-V36P-2X20-LF', 'manufacturer': ''}}`
+No information found for parts 'U302' query `{'mpn': {'part': 'LM4889', 'manufacturer': ''}}`
+No information found for parts 'L408' query `{'mpn': {'part': 'LQW15AN22NJ00B', 'manufacturer': ''}}`
+No information found for parts 'U402' query `{'mpn': {'part': 'MICRF113YM6TRRHB', 'manufacturer': ''}}`
+No information found for parts 'C505-C507' query `{'mpn': {'part': 'LMK212BJ', 'manufacturer': ''}}`
+No information found for parts 'FB201-FB204,FB401-FB403,FB601-FB603' query `{'mpn': {'part': 'BLM18SG121TN', 'manufacturer': ''}}`
+No information found for parts 'C501,C502' query `{'mpn': {'part': 'EMK212BJ', 'manufacturer': ''}}`
+
+##### Testing file: RPi-Test.xml
+No information found for parts 'XS403' query `{'mpn': {'manufacturer': 'ebay', 'part': '_'}}`
+No information found for parts 'U107' query `{'mpn': {'manufacturer': 'OnSemi', 'part': 'CAT24C64WI'}}`
+No information found for parts 'U106' query `{'mpn': {'manufacturer': 'NXP', 'part': 'PCF8523TS/1'}}`
+No information found for parts 'XS115' query `{'mpn': {'manufacturer': 'ebay', 'part': '_'}}`
+No information found for parts 'HS101' query `{'mpn': {'manufacturer': '_', 'part': '_'}}`
+No information found for parts 'XS107' query `{'mpn': {'manufacturer': '_', 'part': '_'}}`
+No information found for parts 'SW101' query `{'mpn': {'manufacturer': 'ebay', 'part': '_'}}`
+No information found for parts 'XS113,XS121-XS125' query `{'mpn': {'manufacturer': '_', 'part': '_'}}`
+No information found for parts 'XS103' query `{'mpn': {'manufacturer': 'ebay', 'part': '_'}}`
+No information found for parts 'M601' query `{'mpn': {'manufacturer': 'GeneralElectric', 'part': 'APXW003A0X3-SRZ'}}`
+No information found for parts 'Q111' query `{'mpn': {'manufacturer': 'Diodes', 'part': 'DMG2305UX'}}`
+No information found for parts 'XS116,XS117' query `{'mpn': {'manufacturer': '_', 'part': '_'}}`
+No information found for parts 'R128' query `{'mpn': {'manufacturer': 'Panasonic', 'part': 'ERJ-6ENF10K0V'}}`
+No information found for parts 'HW102,HW104,HW106' query `{'mpn': {'manufacturer': 'WuerthElectronik', 'part': '9774030151R'}}`
+No information found for parts 'XS701' query `{'mpn': {'manufacturer': 'ebay', 'part': '_'}}`
+No information found for parts 'M701' query `{'mpn': {'manufacturer': 'ebay', 'part': '_'}}`
+No information found for parts 'U113' query `{'mpn': {'manufacturer': 'TEconnectivity', 'part': 'HTU21D'}}`
+No information found for parts 'XS102' query `{'mpn': {'manufacturer': '_', 'part': '_'}}`
+No information found for parts 'XS105' query `{'mpn': {'manufacturer': 'FCI', 'part': '10067847'}}`
+No information found for parts 'XS108,XS111,XS118' query `{'mpn': {'manufacturer': '3M', 'part': '966210-2000-AR'}}`
+No information found for parts 'MD101' query `{'mpn': {'manufacturer': '3M', 'part': '966240-2000-AR'}}`
+No information found for parts 'HW101,HW103,HW105' query `{'mpn': {'manufacturer': 'WuerthElectronik', 'part': '9774030960R'}}`
+No information found for parts 'XS114,XS120' query `{'mpn': {'manufacturer': 'ebay', 'part': '_'}}`
+No information found for parts 'D101' query `{'mpn': {'manufacturer': 'ebay', 'part': '_'}}`
+No information found for parts 'SW201' query `{'mpn': {'manufacturer': '_', 'part': '_'}}`
+No information found for parts 'FD101-FD103' query `{'mpn': {'manufacturer': '_', 'part': '_'}}`
+No information found for parts 'Q601' query `{'mpn': {'manufacturer': 'OnSemi', 'part': 'NVTFS5116PL'}}`
+No information found for parts 'XS126,XS127' query `{'mpn': {'manufacturer': '_', 'part': '_'}}`
+No information found for parts 'XS402' query `{'mpn': {'manufacturer': 'TEconnectivity', 'part': '215570-8'}}`
+No information found for parts 'U114' query `{'mpn': {'manufacturer': 'TEconnectivity', 'part': 'MS5637'}}`
+No information found for parts 'XS106' query `{'mpn': {'manufacturer': 'ebay', 'part': '_'}}`
+No information found for parts 'U301' query `{'mpn': {'manufacturer': '_', 'part': '_'}}`
+No information found for parts 'F601' query `{'mpn': {'manufacturer': '_', 'part': '_'}}`
+No information found for parts 'J101-J113,J501' query `{'mpn': {'manufacturer': '_', 'part': '_'}}`
+No information found for parts 'Q112' query `{'mpn': {'manufacturer': 'OnSemi', 'part': 'BC856BDW1T'}}`
+No information found for parts 'XS104' query `{'mpn': {'manufacturer': '3M', 'part': '966240-2000-AR'}}`
+
+##### Testing file: RX LR lite.xml
+No information found for parts 'L2' query `{'mpn': {'part': 'B82462G4224M', 'manufacturer': ''}}`
+No information found for parts 'U11,U12' query `{'mpn': {'part': 'RFLA1022', 'manufacturer': ''}}`
+No information found for parts 'U4' query `{'mpn': {'part': 'TPS71725QDRV', 'manufacturer': ''}}`
+No information found for parts 'L3' query `{'mpn': {'part': 'BLM15PD121SN', 'manufacturer': ''}}`
+No information found for parts 'U13' query `{'mpn': {'part': 'SKY13372', 'manufacturer': ''}}`
+No information found for parts 'U8' query `{'mpn': {'part': 'TJA1051TK', 'manufacturer': ''}}`
+No information found for parts 'L1' query `{'mpn': {'part': 'BLM15PD121SN', 'manufacturer': ''}}`
+No information found for parts 'L14-L21' query `{'mpn': {'part': '0402CS-82N', 'manufacturer': ''}}`
+No information found for parts 'L6,L7' query `{'mpn': {'part': 'DLP11SN121SL2', 'manufacturer': ''}}`
+No information found for parts 'U2,U3' query `{'mpn': {'part': 'TPS71750QDRV', 'manufacturer': ''}}`
+No information found for parts 'C7' query `{'mpn': {'part': 'NFM21PS106B0J3', 'manufacturer': ''}}`
+
+##### Testing file: safelink_receiver.xml
+No information found for parts 'P1' query `{'mpn': {'part': '10103594-0001LF', 'manufacturer': 'AMPHENOL FCI'}}`
+No information found for parts 'D8,D9' query `{'mpn': {'part': 'TPD4S009DCKR', 'manufacturer': 'Texas Instruments'}}`
+No information found for parts 'BTCNT1' query `{'mpn': {'part': 'ACC-AANEG-5201', 'manufacturer': 'New Age Enclosures'}}`
+No information found for parts 'BTCNT2' query `{'mpn': {'part': 'ACC-AAPOS-5223', 'manufacturer': 'New Age Enclosures'}}`
+No information found for parts 'CN1' query `{'mpn': {'part': '2041126-1', 'manufacturer': 'TE Connectivity'}}`
+No price information found for parts 'CON2' query `{'sku': {'part': '694-9374', 'vendor': 'RS'}}`
+No information found for parts 'BTCNT3' query `{'mpn': {'part': 'ACC-AADBL-5212', 'manufacturer': 'New Age Enclosures'}}`
+No information found for parts 'C6,C18,C20,C22,C27,C28,C30,C34' query `{'mpn': {'part': '0603B104K500CT', 'manufacturer': 'Walsin'}}`
+No information found for parts 'ENC1' query `{'mpn': {'part': 'S3A-361413', 'manufacturer': 'New Age Enclosures'}}`
+
+##### Testing file: single_component.xml
+
+##### Testing file: StickIt-Hat-old.xml
+
+##### Testing file: StickIt-Hat.xml
+No information found for parts 'PM1-PM3' query `{'mpn': {'part': '2553-2x6G', 'manufacturer': 'Ho Chien'}}`
+
+##### Testing file: StickIt-QuadDAC.xml
+No information found for parts 'PM1' query `{'mpn': {'part': '2553-2x6G', 'manufacturer': 'Ho Chien'}}`
+No information found for parts 'RN1' query `{'mpn': {'part': '742c043472', 'manufacturer': ''}}`
+
+##### Testing file: StickIt-RotaryEncoder.xml
+No information found for parts 'RN1' query `{'mpn': {'manufacturer': '', 'part': '742c163472'}}`
+
+##### Testing file: test2.xml
+
+##### Testing file: test3.xml
+No information found for parts 'D2' query `{'mpn': {'manufacturer': 'Lumex Opto', 'part': 'SML-LX0603SRW-TR'}}`
+No information found for parts 'R3' query `{'mpn': {'manufacturer': 'Vishay Dale', 'part': 'CRCW08050000Z0EAHP'}}`
+
+##### Testing file: TestParts.xml
+No information found for parts 'Y1' query `{'mpn': {'part': 'FQ7050B-8.000', 'manufacturer': 'Fox Electronics'}}`
+No information found for parts 'R1,R2' query `{'mpn': {'part': 'CRCW02011K00FKED', 'manufacturer': 'Vishay Dale'}}`
+No information found for parts 'C3,C4' query `{'mpn': {'part': 'C1005C0G1H060D050BA', 'manufacturer': 'TDK Corporation'}}`
+
+##### Testing file: test.xml
+No information found for parts 'Q7' query `{'mpn': {'part': '5010', 'manufacturer': 'Keystone Electronics'}}`
+
+##### Testing file: part_list_big.csv
+No information found for parts 'GEN111' query `{'mpn': {'part': 'NVTFS5116PL', 'manufacturer': ''}}`
+No information found for parts 'GEN145' query `{'mpn': {'part': 'LQW15AN12NJ00', 'manufacturer': ''}}`
+No information found for parts 'GEN315,GEN316' query `{'mpn': {'part': 'BLM18SG121TN', 'manufacturer': ''}}`
+No information found for parts 'GEN320,GEN321' query `{'mpn': {'part': 'BLM15PD121SN', 'manufacturer': ''}}`
+No information found for parts 'GEN150' query `{'mpn': {'part': 'LMK212BJ', 'manufacturer': ''}}`
+No information found for parts 'GEN323' query `{'mpn': {'part': 'BC856BDW1T', 'manufacturer': ''}}`
+No information found for parts 'GEN207-GEN211' query `{'mpn': {'part': 'FSM4JH', 'manufacturer': ''}}`
+No information found for parts 'GEN105' query `{'mpn': {'part': 'PCF8523TS/1', 'manufacturer': ''}}`
+No information found for parts 'GEN357' query `{'mpn': {'part': '966210-2000-AR', 'manufacturer': ''}}`
+No information found for parts 'GEN362' query `{'mpn': {'part': '78-MSS2P2HM3_A/H', 'manufacturer': ''}}`
+No information found for parts 'GEN329' query `{'mpn': {'part': 'B82462G4224M', 'manufacturer': ''}}`
+No information found for parts 'GEN366' query `{'mpn': {'part': '742c163472', 'manufacturer': ''}}`
+No information found for parts 'GEN242,GEN243' query `{'mpn': {'part': 'EMK212BJ', 'manufacturer': ''}}`
+No information found for parts 'GEN369' query `{'mpn': {'part': '742c043472', 'manufacturer': ''}}`
+No information found for parts 'GEN152' query `{'mpn': {'part': 'LM4889', 'manufacturer': ''}}`
+No information found for parts 'GEN425' query `{'mpn': {'part': '0039301020', 'manufacturer': ''}}`
+No information found for parts 'GEN390' query `{'mpn': {'part': '400MDP1R1BLKM2QE-ND', 'manufacturer': ''}}`
+No information found for parts 'GEN22' query `{'mpn': {'part': 'TJA1051TK', 'manufacturer': ''}}`
+No information found for parts 'GEN115' query `{'mpn': {'part': 'NFM18PS105', 'manufacturer': ''}}`
+No information found for parts 'GEN426,GEN427' query `{'mpn': {'part': '0022232061', 'manufacturer': ''}}`
+No information found for parts 'GEN355,GEN356' query `{'mpn': {'part': '966240-2000-AR', 'manufacturer': ''}}`
+No information found for parts 'GEN13' query `{'mpn': {'part': 'TPS71725QDRV', 'manufacturer': ''}}`
+No information found for parts 'GEN250' query `{'mpn': {'part': 'DLP11SN121SL2', 'manufacturer': ''}}`
+No information found for parts 'GEN386' query `{'mpn': {'part': '490-2436-1-ND', 'manufacturer': ''}}`
+No information found for parts 'GEN419' query `{'mpn': {'part': '10067847', 'manufacturer': ''}}`
+No information found for parts 'GEN249' query `{'mpn': {'part': 'DMG2305UX', 'manufacturer': ''}}`
+No information found for parts 'GEN39' query `{'mpn': {'part': 'SKY13372', 'manufacturer': ''}}`
+No information found for parts 'GEN12' query `{'mpn': {'part': 'TPS71750QDRV', 'manufacturer': ''}}`
+No information found for parts 'GEN164' query `{'mpn': {'part': 'IRLML6344', 'manufacturer': ''}}`
+No information found for parts 'GEN126' query `{'mpn': {'part': 'MCP4922-E/P-ND', 'manufacturer': ''}}`
+No information found for parts 'GEN120' query `{'mpn': {'part': 'MR256A08B', 'manufacturer': ''}}`
+No information found for parts 'GEN113' query `{'mpn': {'part': 'NFM21PS106B0J3', 'manufacturer': ''}}`
+No information found for parts 'GEN428,GEN429' query `{'mpn': {'part': '0022012067', 'manufacturer': ''}}`
+No information found for parts 'GEN256' query `{'mpn': {'part': 'CY62167EV30', 'manufacturer': ''}}`
+
+##### Testing file: part_list_small.csv
+
+##### Testing file: part_list_small_nohdr.csv
+
+If you see this message all BOMs spreadsheet was created without error
