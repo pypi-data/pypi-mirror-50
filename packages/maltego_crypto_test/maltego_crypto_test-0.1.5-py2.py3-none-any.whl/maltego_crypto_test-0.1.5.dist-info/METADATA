@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: maltego_crypto_test
+Version: 0.1.5
+Summary: Maltego OAuth Crypto Helper
+Home-page: http://tendai.co.zw
+License: UNKNOWN
+Author: Tendai M
+Author-email: tmarengereke@hit.ac.zw
+Classifier: License :: OSI Approved :: MIT License
+Requires-Dist: pycryptodome>=3.8.2
+Requires-Dist: six>=1.12.0
+Requires-Dist: pytest >=5.0.1; extra == "test"
+Provides-Extra: test
