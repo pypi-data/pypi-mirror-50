@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: pypax
+Version: 0.0.70
+Summary: CLI tool to organize, version and manage repositories.
+Home-page: https://github.com/GenvisAU/pypax
+Author: Jakrin Juangbhanich
+Author-email: juangbhanich.k@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Requires-Dist: python-dotenv
+Requires-Dist: logkit
+Requires-Dist: requests
+Requires-Dist: pyyaml
+
+UNKNOWN
+
+
