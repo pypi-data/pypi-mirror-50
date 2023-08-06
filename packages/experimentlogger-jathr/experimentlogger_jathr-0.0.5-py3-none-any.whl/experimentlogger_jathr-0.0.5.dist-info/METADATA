@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: experimentlogger-jathr
+Version: 0.0.5
+Summary: Simple logger for Machine Learning experiments
+Home-page: https://github.com/jakthra/ExperimentLogger
+Author: Jakob Thrane
+Author-email: jakobthrane@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: pymongo
+Requires-Dist: simplejson
+Requires-Dist: easydict
+
+# Example Package
+
+This is a simple example package. You can use
+[Github-flavored Markdown](https://guides.github.com/features/mastering-markdown/)
+to write your content.
+
