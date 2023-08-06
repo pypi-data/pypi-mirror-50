@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: pypipes
+Version: 0.1.0
+Summary: Pipeline processing framework
+Home-page: https://github.com/vani-public/pipes
+Author: Victor Anisimov
+Author-email: victor.anisimov@gmail.com
+License: UNKNOWN
+Description: Infrastructure independent task execution framework based on logical task pipelines.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.7
+Provides-Extra: datadog
+Provides-Extra: crypto
+Provides-Extra: celery
+Provides-Extra: memcached
+Provides-Extra: gevent
+Provides-Extra: api
+Provides-Extra: redis
+Provides-Extra: tests
+Provides-Extra: swagger
