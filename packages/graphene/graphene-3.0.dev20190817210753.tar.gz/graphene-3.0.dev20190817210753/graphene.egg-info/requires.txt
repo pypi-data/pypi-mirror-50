@@ -1,0 +1,17 @@
+graphql-core<4,>=3.0.0a0
+graphql-relay<4,>=3.0.0a0
+aniso8601<8,>=6
+
+[test]
+pytest
+pytest-benchmark
+pytest-cov
+pytest-mock
+pytest-asyncio
+snapshottest
+coveralls
+promise
+six
+mock
+pytz
+iso8601
