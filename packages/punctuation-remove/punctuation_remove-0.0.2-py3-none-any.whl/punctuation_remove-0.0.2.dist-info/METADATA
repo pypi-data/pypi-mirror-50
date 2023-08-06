@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: punctuation-remove
+Version: 0.0.2
+Summary: Punctuation
+Home-page: https://github.com/talhashaikh5/Punctuation.git
+Author: Talha Shaikh
+Author-email: talha.shaikh5@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# Punctuation
+This is a python liberary which will remove all the punctuation in a python string
+
