@@ -1,0 +1,3 @@
+[intake.drivers]
+parquet = intake_parquet.source:ParquetSource
+
