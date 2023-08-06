@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: github-languages
+Version: 0.1.3
+Summary: GitHub Languages
+Home-page: https://github.com/upcwangying/github-languages-python
+Author: Ying Wang
+Author-email: upcwangying@126.com
+License: MIT
+Project-URL: Source, https://github.com/upcwangying/github-languages-python
+Project-URL: Tracker, https://github.com/upcwangying/github-languages-python/issues
+Keywords: github,languages,github-languages
+Platform: any
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: >= 2.7, != 3.0.*, != 3.1.*, != 3.2.*
+Description-Content-Type: text/markdown
+Requires-Dist: request (>=2.19.0)
+
+# Github Languages
+
+[![PyPI](https://img.shields.io/pypi/v/github-languages)](https://pypi.org/project/github-languages)
+[![GitHub release](https://img.shields.io/github/release/upcwangying/github-languages-python)](https://github.com/upcwangying/github-languages-python)
+
+A library to get `GitHub languages` for Python developers.
+
+
