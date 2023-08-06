@@ -1,0 +1,14 @@
+redis
+tenacity
+
+[dev]
+pytest
+wheel
+bpython
+pytest
+flake8
+autopep8
+pylint
+
+[test]
+pytest

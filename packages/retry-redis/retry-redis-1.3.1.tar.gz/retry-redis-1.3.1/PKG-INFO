@@ -1,0 +1,93 @@
+Metadata-Version: 2.1
+Name: retry-redis
+Version: 1.3.1
+Summary: Redis Clieht with customizable retrying capability.
+Home-page: https://github.com/Gatsby-Lee/retry-redis
+Author: Gatsby Lee
+License: GPL-3.0
+Description: .. image:: https://img.shields.io/badge/License-GPL%20v3-blue.svg
+           :target: https://www.gnu.org/licenses/gpl-3.0
+        
+        .. image:: https://badge.fury.io/py/retry-redis.svg
+            :target: https://pypi.org/project/retry-redis/
+        
+        .. image:: https://img.shields.io/travis/Gatsby-Lee/retry-redis.svg
+           :target: https://travis-ci.org/Gatsby-Lee/retry-redis
+        
+        
+        retry-redis
+        ===========
+        
+        Redis Clieht with customizable retrying capability.
+        
+        
+        Why did I build this?
+        ---------------------
+        
+        There are Redis exceptions like below that can be handled by simply retrying it.
+        
+        This package is built in order to help people who need to solve same problem.
+        
+        * redis.exceptions.ConnectionError
+        * redis.exceptions.ResponseError
+        * redis.exceptions.TimeoutError
+        
+        
+        Who should use?
+        ---------------
+        
+        Anybody who wants to have retry logic with Redis.
+        
+        
+        
+        How to Install
+        --------------
+        
+        .. code-block:: bash
+        
+            pip install retry-redis
+        
+        
+        How To Use
+        ----------
+        
+        Simply import retry decorated Redis and Use it.
+        
+        
+        .. code-block:: python
+        
+            import logging
+            from retry_redis import Redis
+        
+            logging.basicConfig(level=logging.DEBUG)
+        
+            r = Redis(port=6666)
+            r.lpush('list:test', 1)
+        
+            # This log will be printed.
+            # DEBUG:retry_redis.decorated_redis:Finished call to 'redis.client.Redis.lpush' after 0.002(s), this was the 1st time calling it.
+            # DEBUG:retry_redis.decorated_redis:Finished call to 'redis.client.Redis.lpush' after 2.005(s), this was the 2nd time calling it.
+            # DEBUG:retry_redis.decorated_redis:Finished call to 'redis.client.Redis.lpush' after 6.009(s), this was the 3rd time calling it.
+        
+        
+        Package Dependency
+        ------------------
+        
+        * redis
+        * tenacity
+        
+        
+Keywords: redis retry failure
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+Provides-Extra: test
+Provides-Extra: dev
