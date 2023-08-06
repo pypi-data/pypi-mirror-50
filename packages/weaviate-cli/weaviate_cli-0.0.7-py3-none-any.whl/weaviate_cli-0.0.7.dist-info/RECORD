@@ -1,0 +1,16 @@
+modules/Empty.py,sha256=Do6TyJ12PhUka1vKLYZJvLHODj2vvAJaYD-siA3T-4I,2203
+modules/Helpers.py,sha256=2_PIBz-S_GzMP0Id3P27Pv44gOG64XDGShNq_WTGlF0,8357
+modules/Init.py,sha256=xilwA1_NaEVdXsssUzgwoBRX3_DUdXYFpxfQABN4qW0,4312
+modules/Messages.py,sha256=7iR7krKKKHHW_zfJNrhMcHPYViioHXLtImOs4hBTCOk,7874
+modules/Sandbox.py,sha256=PWgLWkkYiP3ZjTOuyOB0b_qkeud5EPfa3sS4UVDtgzQ,5705
+modules/SchemaExport.py,sha256=v0eL29-B5x6fxPLVTXMhcC_-zwrO7-ZYuv6whSxEBzc,1081
+modules/SchemaImport.py,sha256=zFiS3xn060IIWS-zJPnjcjV1C_-LJ4HiT44OLG6dXVE,4419
+modules/Truncate.py,sha256=9dtp9RyQd5J8Cva8OCddh71jXxOqhb4uv5JCDa5N5GY,2227
+modules/Weaviate.py,sha256=Eznr1YXEaD2J4IH_SdE7kzB7XDHrrOyQ5peaQpPK7t4,6020
+modules/__init__.py,sha256=00NJs6zVVn3FduWF8JnoOku2a8RhkxDtEVSb1FgLqVs,522
+weaviate_cli-0.0.7.dist-info/LICENSE.md,sha256=F1IBhefQnLDjzRrZQRrYr5pkBTv7AVmvnOvbVQXM-2M,1553
+weaviate_cli-0.0.7.dist-info/METADATA,sha256=uGRJKN9gizBG1IV5sQ7XPSr_ZUCe_T38HB-wihmcj9Q,1614
+weaviate_cli-0.0.7.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+weaviate_cli-0.0.7.dist-info/entry_points.txt,sha256=9UWnN-T2wfTr6Od9Qhfrs4REf0-lzhNbjbUmTvkTD64,48
+weaviate_cli-0.0.7.dist-info/top_level.txt,sha256=F7U4jdIxH3MVMmyX9rbajWuG0bj5tcZN4L1DZSxW72E,8
+weaviate_cli-0.0.7.dist-info/RECORD,,
