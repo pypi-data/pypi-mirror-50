@@ -1,0 +1,107 @@
+Metadata-Version: 2.1
+Name: lcg-neuro-plx
+Version: 0.2.1
+Summary: Parsing of PLX neurophysiological data files in Python
+Home-page: https://lcg.gitlab.io/neuro/python-plx
+License: MIT
+Author: Pedro Asad
+Author-email: pasad@lcg.ufrj.br
+Requires-Python: >=3.6,<4.0
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Version Control :: Git
+Provides-Extra: all
+Provides-Extra: cli
+Requires-Dist: attrs (>=19.1,<20.0)
+Requires-Dist: click (>=7.0,<8.0); extra == "all" or extra == "cli"
+Requires-Dist: numpy (>=1.16,<2.0)
+Requires-Dist: pedroasad-attrs-patch (>=0.2.1,<0.3.0)
+Requires-Dist: pedroasad-marshmallow-patch (>=0.1.1,<0.2.0)
+Requires-Dist: pint (>=0.9.0,<0.10.0)
+Requires-Dist: wrapt (>=1.11,<2.0)
+Project-URL: Documentation, https://lcg.gitlab.io/neuro/python-plx
+Project-URL: Repository, https://gitlab.com/lcg/neuro/python-plx
+Description-Content-Type: text/x-rst
+
+lcg-neuro-plx -- Parsing of PLX neurophysiological data files in Python
+=======================================================================
+
++-----------------------------------------------------------------------------------------------------------+
+| |badge-python-version| |badge-version|                                                                    | 
++-----------------------------------------------------------------------------------------------------------+
+| |badge-license| |badge-python-style|                                                                      |
++-----------------------------------------------------------------------------------------------------------+
+| |badge-pipeline| |badge-security| |badge-codecov|                                                         |
++-----------------------------------------------------------------------------------------------------------+
+| `Documentation <https://lcg.gitlab.io/neuro/python-plx>`__                                                |
++-----------------------------------------------------------------------------------------------------------+
+| `Issue tracker <https://gitlab.com/lcg/neuro/python-plx/issues>`__                                        |
++-----------------------------------------------------------------------------------------------------------+
+| `Repository contents <https://gitlab.com/lcg/neuro/python-plx/blob/master/MANIFEST.rst>`__                |
++-----------------------------------------------------------------------------------------------------------+
+| `History of changes <https://gitlab.com/lcg/neuro/python-plx/blob/master/CHANGELOG.rst>`__                |
++-----------------------------------------------------------------------------------------------------------+
+| `Contribution/development guide <https://gitlab.com/lcg/neuro/python-plx/blob/master/CONTRIBUTING.rst>`__ |
++-----------------------------------------------------------------------------------------------------------+
+| `License <https://gitlab.com/lcg/neuro/python-plx/blob/master/LICENSE.txt>`__                             |
++-----------------------------------------------------------------------------------------------------------+
+
+
+Installation
+------------
+
+.. code:: bash
+
+    pip install lcg-neuro-plx
+
+You'll need g++ installed in order to compile the bundled extensions.
+Up to the current version, only source distributions are available on PyPI_.
+
+Usage
+-----
+
+A minimal tutorial is pending.
+For now, see the project's documentation at https://lcg.gitlab.io/neuro/python-plx.
+
+--------------
+
+- Powered by `GitLab CI <https://docs.gitlab.com/ee/ci>`__
+- Created by `Pedro Asad <pasad@lcg.ufrj.br> <mailto:pasad@lcg.ufrj.br>`__
+  using `cookiecutter <http://cookiecutter.readthedocs.io/>`__
+  and `@pedroasad.com/templates/python/python/app-1.0.0 <https://gitlab.com/pedroasad.com/templates/python/python-app/tags/1.0.0>`__
+
+ .. _PyPI: https://pypi.org
+
+.. |badge-python-version| image:: https://img.shields.io/badge/Python-%E2%89%A53.6-blue.svg
+   :target: https://docs.python.org/3.6
+
+.. |badge-version| image:: https://img.shields.io/badge/version-0.2.1%20-orange.svg
+   :target: https://test.pypi.org/project/lcg-neuro-plx/0.2.1/
+
+.. |badge-license| image:: https://img.shields.io/badge/license-MIT-blue.svg
+   :target: https://opensource.org/licenses/MIT
+
+.. |badge-python-style| image:: https://img.shields.io/badge/code%20style-Black-black.svg
+   :target: https://pypi.org/project/black/
+
+.. |badge-pipeline| image:: https://gitlab.com/lcg/neuro/python-plx/badges/master/pipeline.svg
+   :target: https://gitlab.com/lcg/neuro/python-plx
+
+.. |badge-security| image:: https://img.shields.io/badge/security-Check%20here!-yellow.svg
+   :target: https://gitlab.com/lcg/neuro/python-plx/security
+
+.. |badge-codecov| image:: https://codecov.io/gl/lcg:neuro/python-plx/branch/master/graph/badge.svg
+   :target: https://codecov.io/gl/lcg:neuro/python-plx
+
+
