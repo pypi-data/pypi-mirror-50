@@ -1,0 +1,3 @@
+[console_scripts]
+chitanda=chitanda.__main__:run
+
