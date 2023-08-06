@@ -1,0 +1,5 @@
+jsonschema>=3.0.2
+PyYAML>=5.1.2
+dnspython>=1.16.0
+querycontacts>=1.1.1
+requests>=2.22.0
