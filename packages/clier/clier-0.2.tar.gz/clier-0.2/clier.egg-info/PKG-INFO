@@ -1,0 +1,21 @@
+Metadata-Version: 1.2
+Name: clier
+Version: 0.2
+Summary: Makes interactive cli programs of modules
+Home-page: https://github.com/DaniloZZZ/clier
+License: MIT
+Description: Use this package to create an interactive cli app for some funcions 
+        
+        
+        ## Usage
+        
+        Use `clier.command` decorator to add a funcion(command) to cli. Use `cli.start` to start listening input commands.
+        
+        ## Command interface 
+        
+        `help` to display info about commands generated from docstdings.
+        
+        Use funcion name to call from cli and pass params separated by spaces
+        
+Platform: UNKNOWN
+Requires-Python: >=3.7
