@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: itk-bonemorphometry
+Version: 1.1.1
+Summary: An ITK module to compute bone morphometry features and feature maps
+Home-page: https://github.com/InsightSoftwareConsortium/ITKBoneMorphometry
+Author: Jean-Baptiste Vimort
+Author-email: jb.vimort@kitware.com
+License: Apache
+Download-URL: https://github.com/InsightSoftwareConsortium/ITKBoneMorphometry
+Keywords: ITK InsightToolkit bones morphometry
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: C++
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Healthcare Industry
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Medical Science Apps.
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Operating System :: Android
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
+Requires-Dist: itk (>=5.0.1)
+
+ITKBoneMorphometry provides bone analysis filters that compute features from N-dimensional images that represent the internal architecture of bone.
+Please refer to:Vimort J., McCormick M., Paniagua B.,“Computing Bone Morphometric Feature Maps from 3-Dimensional Images”, Insight Journal, January-December 2017, http://hdl.handle.net/10380/3588.
+
