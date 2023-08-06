@@ -1,0 +1,9 @@
+alembic
+flask
+flask-httpauth
+psycopg2-binary
+python-dateutil
+pyyaml
+requests
+sphinx
+sqlalchemy
