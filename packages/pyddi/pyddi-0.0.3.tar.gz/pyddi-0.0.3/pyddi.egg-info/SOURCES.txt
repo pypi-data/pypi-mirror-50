@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+bin/pyddi
+pyddi/__init__.py
+pyddi/dd_source_identification.py
+pyddi.egg-info/PKG-INFO
+pyddi.egg-info/SOURCES.txt
+pyddi.egg-info/dependency_links.txt
+pyddi.egg-info/requires.txt
+pyddi.egg-info/top_level.txt
