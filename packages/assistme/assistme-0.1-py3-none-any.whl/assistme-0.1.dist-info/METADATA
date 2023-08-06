@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: assistme
+Version: 0.1
+Summary: Speech Assistant
+Home-page: https://github.com/tejasjbhor/NLP
+Author: Tejas Bhor
+Author-email: tejasjbhor@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+Markos is your personal voice assistant / software agent that can perform tasks or services for an individual based on verbal commands and strong recommandation system which help you in decision making.
+
+
