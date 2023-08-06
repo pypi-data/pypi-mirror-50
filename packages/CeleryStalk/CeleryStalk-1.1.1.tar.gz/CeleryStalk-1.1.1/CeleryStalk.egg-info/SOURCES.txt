@@ -1,0 +1,13 @@
+README.txt
+setup.cfg
+setup.py
+CeleryStalk/__init__.py
+CeleryStalk/parallelised_pandas_apply.py
+CeleryStalk/paralleliser.py
+CeleryStalk/paralleliser_bk.py
+CeleryStalk/test.py
+CeleryStalk.egg-info/PKG-INFO
+CeleryStalk.egg-info/SOURCES.txt
+CeleryStalk.egg-info/dependency_links.txt
+CeleryStalk.egg-info/requires.txt
+CeleryStalk.egg-info/top_level.txt
