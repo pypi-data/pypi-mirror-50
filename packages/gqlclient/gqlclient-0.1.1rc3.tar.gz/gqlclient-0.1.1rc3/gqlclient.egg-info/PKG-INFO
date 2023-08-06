@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: gqlclient
+Version: 0.1.1rc3
+Summary: Client library for making graphql calls
+Home-page: http://dkist.nso.edu
+Author: "NSO / AURA"
+Author-email: "swiant@nso.edu"
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.6
+Provides-Extra: async
