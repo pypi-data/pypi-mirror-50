@@ -1,0 +1,13 @@
+README.md
+setup.py
+offline_judge/__init__.py
+offline_judge/_checker.c
+offline_judge/ansi.py
+offline_judge/checkers.py
+offline_judge/judge.py
+offline_judge.egg-info/PKG-INFO
+offline_judge.egg-info/SOURCES.txt
+offline_judge.egg-info/dependency_links.txt
+offline_judge.egg-info/entry_points.txt
+offline_judge.egg-info/requires.txt
+offline_judge.egg-info/top_level.txt
