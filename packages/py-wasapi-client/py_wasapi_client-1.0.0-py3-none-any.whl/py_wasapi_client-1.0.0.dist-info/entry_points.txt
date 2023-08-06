@@ -1,0 +1,3 @@
+[console_scripts]
+wasapi-client = wasapi_client:main
+
