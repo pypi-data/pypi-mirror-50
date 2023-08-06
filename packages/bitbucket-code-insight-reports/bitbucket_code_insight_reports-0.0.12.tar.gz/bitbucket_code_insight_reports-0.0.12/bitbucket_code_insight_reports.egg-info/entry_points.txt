@@ -1,0 +1,3 @@
+[console_scripts]
+bitbucket-code-insight-reports = bitbucket_code_insight_reports.cli:main
+
