@@ -1,0 +1,330 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Anonymize: Realistic random data &mdash; Recipe 0.8.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Recipe Examples" href="../examples/index.html" />
+    <link rel="prev" title="BlendRecipe: Combining recipes from different tables" href="blendrecipe.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #4eb2cd" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Recipe
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hidden-cells.html">Hidden Cells</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Key Concepts</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../concepts/overview.html">Overview of Recipe Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/ingredients.html">Ingredients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/shelves.html">Shelves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/from_config.html">Defining Shelves from configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/using_from_config.html">Using Shelves from configuration</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="intro_to_extensions.html">Using Extensions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="automaticfilters.html">AutomaticFilters: Simple filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="summarizeover.html">SummarizeOver: Grouping over a dimenension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparerecipe.html">CompareRecipe: Generating comparison values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blendrecipe.html">BlendRecipe: Combining recipes from different tables</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Anonymize: Realistic random data</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Recipe Examples</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Advanced Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/settings.html">Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/ovens.html">Ovens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/hooks.html">Hooks</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contributing to Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/oven_drivers.html">Custom Oven Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/dynamic_extensions.html">Dynamic Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Recipe</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="intro_to_extensions.html">Using Extensions</a> &raquo;</li>
+        
+      <li>Anonymize: Realistic random data</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/extensions/anonymize.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="anonymize-realistic-random-data">
+<h1>Anonymize: Realistic random data<a class="headerlink" href="#anonymize-realistic-random-data" title="Permalink to this headline">¶</a></h1>
+<p>The Anonymize extension lets generate anonymous data that resembles
+real data.</p>
+<span class="target" id="module-recipe"></span><dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">recipe.</code><code class="descname">Anonymize</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/recipe/extensions.html#Anonymize"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Allows ingredient values in recipes to be anonymized.</p>
+<p>Anonymize extends <code class="docutils literal notranslate"><span class="pre">Ingredient</span></code> to support an <code class="docutils literal notranslate"><span class="pre">anonymizer</span></code> formatting string
+property that uses Faker providers (<a class="reference external" href="https://faker.readthedocs.io/en/master/providers.html">https://faker.readthedocs.io/en/master/providers.html</a>)
+to generate a string value.</p>
+<p>Alternatively, the <code class="docutils literal notranslate"><span class="pre">Ingredient.anonymizer</span></code> property can be a function
+that takes a value and returns an anonymized value.</p>
+<p>Here is an example of both types of anonymizers:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># A formatting string</span>
+<span class="n">Dimension</span><span class="p">(</span><span class="n">MyTable</span><span class="o">.</span><span class="n">student_name</span><span class="p">,</span> <span class="n">anonymizer</span><span class="o">=</span><span class="s1">&#39;{fake:name}&#39;</span><span class="p">)</span>
+
+<span class="c1"># A function that reverses the string</span>
+<span class="n">Dimension</span><span class="p">(</span><span class="n">MyTable</span><span class="o">.</span><span class="n">student_name</span><span class="p">,</span> <span class="n">anonymizer</span><span class="o">=</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><strong>Anonymizer strings can contain multiple generators</strong></p>
+<p>Anonymizer strings are python format strings:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">anonymizer</span><span class="o">=</span><span class="s1">&#39;{fake:random_uppercase_letter}{fake:random_uppercase_letter}{fake:random_uppercase_letter} - {fake:name}&#39;</span>
+</pre></div>
+</div>
+<p>will generate values like ‘ABC - Bob Smith’</p>
+<p><strong>Parameterized anonymizer strings</strong></p>
+<p>Parameters can optionally be provided following a bar “|” in a key1=value1,key2=value2 format. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">anonymizer</span><span class="o">=</span><span class="s1">&#39;{fake:lexify|text=????,letters=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ}&#39;</span>
+</pre></div>
+</div>
+<p>is the same as the following.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fake</span> <span class="o">=</span> <span class="n">Faker</span><span class="p">()</span>
+<span class="n">fake</span><span class="o">.</span><span class="n">lexify</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;????&quot;</span><span class="p">,</span> <span class="n">letters</span><span class="o">=</span><span class="s2">&quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Details</strong></p>
+<p>This flips the anonymize flag on all Ingredients used in the recipe.</p>
+<p>Injects an ingredient.meta._anonymize boolean property on each used
+ingredient.</p>
+<p>Anonymize should occur last in the list of extension_classes.</p>
+<dl class="method">
+<dt>
+<code class="descname">add_ingredients</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/recipe/extensions.html#Anonymize.add_ingredients"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Put the anonymizers in the last position of formatters</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">anonymize</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/recipe/extensions.html#Anonymize.anonymize"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Should this recipe be anonymized. Default is False</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../examples/index.html" class="btn btn-neutral float-right" title="Recipe Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="blendrecipe.html" class="btn btn-neutral float-left" title="BlendRecipe: Combining recipes from different tables" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Chris Gemignani
+      <span class="lastupdated">
+        Last updated on Jul 17, 2019.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
