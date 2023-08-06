@@ -1,0 +1,16 @@
+LICENSE
+README.md
+setup.cfg
+setup.py
+openvpn_control/__init__.py
+openvpn_control/settings.py
+openvpn_control/vpn.py
+openvpn_control/utils/__init__.py
+openvpn_control/utils/fileio.py
+openvpn_control/utils/metadata.py
+openvpn_control/utils/openvpn.py
+python_openvpn_control.egg-info/PKG-INFO
+python_openvpn_control.egg-info/SOURCES.txt
+python_openvpn_control.egg-info/dependency_links.txt
+python_openvpn_control.egg-info/requires.txt
+python_openvpn_control.egg-info/top_level.txt
