@@ -1,0 +1,3 @@
+[console_scripts]
+two_step_clustering = geo_tools.command_line:main
+

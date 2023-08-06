@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: spatial-point-manager
+Version: 0.0.1
+Summary: Contains several objects for managing lat,lng points, as well as a two step clustering algo.
+Home-page: https://github.com/miquel-vv/cluster-creator
+Author: Miquel Vande Velde
+Author-email: miquel.vandevelde@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: csv-to-geojson
+Requires-Dist: scikit-learn
+Requires-Dist: scipy
+Requires-Dist: sklearn
+
+[![Build Status](https://travis-ci.com/miquel-vv/cluster-creator.svg?branch=master)](https://travis-ci.com/miquel-vv/cluster-creator)
+
+### Geospatial Point Manager
+
+This Python tool provides basic tools to handle and cluster geo_coordinated points.
+
+
