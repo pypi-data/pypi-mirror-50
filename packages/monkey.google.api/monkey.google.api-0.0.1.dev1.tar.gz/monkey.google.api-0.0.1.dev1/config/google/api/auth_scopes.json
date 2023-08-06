@@ -1,0 +1,5 @@
+{
+  "include": [
+    "config/google/api/auth_scopes/**/*_auth_scopes.json"
+  ]
+}
