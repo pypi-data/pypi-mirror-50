@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+pademelon/__init__.py
+pademelon/__main__.py
+pademelon/changes.py
+pademelon/check_flake8.py
+pademelon/version.py
+pademelon.egg-info/PKG-INFO
+pademelon.egg-info/SOURCES.txt
+pademelon.egg-info/dependency_links.txt
+pademelon.egg-info/requires.txt
+pademelon.egg-info/top_level.txt
