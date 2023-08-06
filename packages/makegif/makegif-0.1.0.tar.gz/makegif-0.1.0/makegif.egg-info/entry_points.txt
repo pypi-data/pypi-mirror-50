@@ -1,0 +1,3 @@
+[console_scripts]
+makegif = makegif:makegif_cli
+

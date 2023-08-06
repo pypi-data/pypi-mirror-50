@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: makegif
+Version: 0.1.0
+Summary: Make gif from images.
+Home-page: UNKNOWN
+Author: zencore
+Author-email: dobetter@zencore.cn
+License: MIT
+Description: # make-gif
+        
+        Make gif from images.
+        
+        ## Install
+        
+            pip install makegif
+        
+        ## Installed Commands
+        
+        - makegif
+        
+        ## Help
+        
+            D:\code\make-gif>makegif --help
+            Usage: makegif [OPTIONS] [IMAGE_FOLDER]
+        
+            Make gif from images.
+        
+            Options:
+            -o, --output TEXT     Output image path.  [required]
+            -d, --duration FLOAT  Gap time between frames.
+            --help                Show this message and exit.
+        
+        ## Examples
+        
+            D:\code\make-gif>makegif -o test.gif test
+        
+        
+Keywords: makegif
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Description-Content-Type: text/markdown
