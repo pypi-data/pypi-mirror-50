@@ -1,0 +1,17 @@
+python-engineio==3.8.2
+python-socketio[client]==4.1.0
+numpy
+
+[:python_version < "3.4"]
+pathlib
+
+[:python_version > "3.3"]
+janus
+
+[engine]
+aiohttp
+aiohttp_cors
+gputil
+pyyaml
+
+[worker]
