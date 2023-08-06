@@ -1,0 +1,4 @@
+[console_scripts]
+tunacell = tunacell.__main__:main
+tunasimu = tunacell.simu.run:main
+
