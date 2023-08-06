@@ -1,0 +1,17 @@
+collectfast/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+collectfast/boto.py,sha256=_F2izD4AjX0sd58UkmiDFx3Ol9VpVP0uhwaPYI2EaiI,974
+collectfast/etag.py,sha256=4AXb2bzjyfcQHKss9bvRRXG2qmxP9g6awHv581m_364,3490
+collectfast/settings.py,sha256=OHI42MJY5VbPsdOco7UjN-aZJ0I71V3GgkWttwZmCPY,671
+collectfast/management/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+collectfast/management/commands/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+collectfast/management/commands/collectstatic.py,sha256=hRdb6kfZHqc_e7LJO61aSG8bQLEHk687CNwrVt86h-c,5089
+collectfast/tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+collectfast/tests/no_preload_metadata.py,sha256=OHAjU08b0_sz5Z6qhbJXCXA3AYJgx9cbxgpND-6f4yQ,234
+collectfast/tests/test_command.py,sha256=J_Xgw80DTOdG9jiqeebjHnzlMs23t-kBjhzroR_lWn0,2902
+collectfast/tests/test_etag.py,sha256=-2B_O1Eex7gnXiEMeYWZwVsS-LGfz1qaTuCRBUlwP4o,3039
+collectfast/tests/utils.py,sha256=s84mD3bByemkAF0cvd8uJGTU18DOzeN58jX6y0pPpAA,1762
+Collectfast-1.0.0.dist-info/LICENSE,sha256=txByAQ5zbtUX2Fl7fHrsPeqC9_tJS_LjW_o3AU6vveM,1075
+Collectfast-1.0.0.dist-info/METADATA,sha256=vbnI4e3n9Rp029-m5zrtCvj1zhxoOz8sa8FAkx1GDYU,5657
+Collectfast-1.0.0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+Collectfast-1.0.0.dist-info/top_level.txt,sha256=9x27ZTxDOhAq-s2xdmO0r6T8yw7mHKS2GY3WwlqECjg,12
+Collectfast-1.0.0.dist-info/RECORD,,
