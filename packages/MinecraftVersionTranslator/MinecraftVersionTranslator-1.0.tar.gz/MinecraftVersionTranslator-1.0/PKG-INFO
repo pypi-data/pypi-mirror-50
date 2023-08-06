@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: MinecraftVersionTranslator
+Version: 1.0
+Summary: A python module used to create a translation of a minecraft version by creating your own string alteration function
+Home-page: https://github.com/sl4vkek/MinecraftVersionTranslator
+Author: sl4v
+Author-email: iamsl4v@protonmail.com
+License: WTFPL
+Description: A python module used to create a translation of a minecraft version by creating your own string alteration function
+Platform: UNKNOWN
