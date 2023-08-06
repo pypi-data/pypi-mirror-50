@@ -1,0 +1,10 @@
+mmcif>=0.40
+ruamel.yaml
+rcsb.utils.validation>=0.14
+backports.tempfile
+
+[dev]
+check-manifest
+
+[test]
+coverage
