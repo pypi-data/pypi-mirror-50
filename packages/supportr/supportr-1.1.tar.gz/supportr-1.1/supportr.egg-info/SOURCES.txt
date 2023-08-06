@@ -1,0 +1,13 @@
+MANIFEST.in
+README.md
+setup.py
+supportr/__init__.py
+supportr/convert_examples_to_features.py
+supportr/download_features.py
+supportr/predict.py
+supportr/regression_processor.py
+supportr/supportr.py
+supportr.egg-info/PKG-INFO
+supportr.egg-info/SOURCES.txt
+supportr.egg-info/dependency_links.txt
+supportr.egg-info/top_level.txt
