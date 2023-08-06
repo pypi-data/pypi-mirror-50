@@ -1,0 +1,3 @@
+[console_scripts]
+eecalpy = eecalpy.__main__:main
+
