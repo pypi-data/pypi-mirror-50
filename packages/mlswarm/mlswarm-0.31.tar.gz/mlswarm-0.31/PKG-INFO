@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: mlswarm
+Version: 0.31
+Summary: This package trains neural networks using swarm-like optimization algorithms
+Home-page: https://github.com/rafaelcabral96/mlswarm
+Author: Rafael Cabral
+Author-email: rafael.medeiroscabral@kaust.edu.sa
+License: MIT
+Download-URL: https://github.com/rafaelcabral96/mlswarm/archive/v031.tar.gz
+Description: UNKNOWN
+Keywords: machine learning,neural networks,optimization,particle swarm,derivative free
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
