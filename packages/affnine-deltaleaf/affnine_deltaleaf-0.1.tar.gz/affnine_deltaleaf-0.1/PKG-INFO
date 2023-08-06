@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: affnine_deltaleaf
+Version: 0.1
+Summary: Easy way to create MAP (Undirected Graph)and find shortest path from one Node to another.
+Home-page: UNKNOWN
+Author: Biswanath Saha
+Author-email: biswanathamz@gmail.com
+License: UNKNOWN
+Description: # affnine_spf
+        
+        ## Create your own map. Find shortest path from one node to another node.
+        
+         *Main algorithm follows* A* *search.*
+        
+        You can follow us www.facebook.com/affnine
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
