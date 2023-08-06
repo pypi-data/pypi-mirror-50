@@ -1,0 +1,50 @@
+#!/Users/kourtneykroll/anaconda3/bin/python
+# -*- coding: utf-8
+
+import treepy
+
+from treepy.tree_generation import DisplayablePath
+
+import os
+import argparse
+import tempfile
+
+from pathlib import Path
+
+def main(args):
+    root = args['path']
+    DisplayablePath.load_args(args)
+    paths = DisplayablePath.make_tree(Path(root))
+
+    export_script_lines = ['#!/usr/bin/env bash'] # written to file only when -q flag is provided
+
+    for path in paths:
+        line = path.displayable()
+        print(line)
+
+        export_script_lines.append('export {}{}=\"{}\"'.format(treepy.ENV_PREFIX,
+                                                               path.num_paths - 1,
+                                                               str(path.path.resolve())))
+
+    if args['q']:
+        with open(treepy.TEMP_FILE, 'w') as f:
+            f.write('\n'.join(export_script_lines))
+
+
+if __name__ == '__main__':
+    ap = argparse.ArgumentParser()
+    ap.add_argument('path', nargs='?', default=os.getcwd(), help='Root directory of tree. Default is working directory')
+    ap.add_argument('-d', action='store_true', help='Only display directories')
+    ap.add_argument('-f', action='store_true', help='Display the full path')
+    ap.add_argument('-a', action='store_true', help='Include those starting with `.`')
+    ap.add_argument('-q', action='store_true', help='Append quick-access variable path')
+    ap.add_argument('-D', default=10, type=int, help='Maximum depth, default 10')
+    ap.add_argument('-M', default=10, type=int, help='Max items to display per depth, default 10')
+    ap.add_argument('-A', action='store_true', help='Ignore parameters -D and -m (display all)')
+    args = ap.parse_args().__dict__
+
+    if args['A']:
+        args['D'] = None
+        args['M'] = None
+
+    main(args)

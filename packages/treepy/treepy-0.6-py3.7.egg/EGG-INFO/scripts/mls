@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+args="$@"
+
+# if you have mls but not mls_python, try rerunning setup.py
+mls_python $args

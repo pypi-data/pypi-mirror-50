@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+args="$@"
+
+# if you have treepy but not treepy_python, try rerunning setup.py
+treepy_python $args
+
+# was -q in args? then call temp bash script
+for var in $args; do
+    if [[ $var == -* ]]; then
+        if [[ $var == *"q"* ]]; then
+            source ~/.treepy_temp.sh
+            rm ~/.treepy_temp.sh
+        fi
+    fi
+done

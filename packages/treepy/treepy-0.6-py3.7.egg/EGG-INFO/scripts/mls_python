@@ -1,0 +1,27 @@
+#!/Users/kourtneykroll/anaconda3/bin/python
+# -*- coding: utf-8
+
+import treepy
+
+from treepy.mls_generation import MultiLS
+
+import os
+import argparse
+
+def main(args):
+    mls = MultiLS(args)
+    mls.process()
+    for line in mls.display_lines:
+        print(line)
+
+if __name__ == '__main__':
+    ap = argparse.ArgumentParser()
+    ap.add_argument('path', nargs='?', default = os.getcwd(), help='Root directory. Default is working directory')
+    ap.add_argument('-d', action='store_true', help='Only display directories')
+    ap.add_argument('-r', action='store_true', help='Use .. notation for paths relative to `path`')
+    ap.add_argument('-a', action='store_true', help='Include those starting with `.`')
+    ap.add_argument('-P', default=3, type=int, help='Number of parents to show')
+    ap.add_argument('-R', default=None, type=int, help='Max number of rows to display in each parent directory')
+    args = ap.parse_args().__dict__
+
+    main(args)
