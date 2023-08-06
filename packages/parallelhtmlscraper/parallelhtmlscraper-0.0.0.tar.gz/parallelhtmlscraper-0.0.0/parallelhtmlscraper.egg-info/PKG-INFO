@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: parallelhtmlscraper
+Version: 0.0.0
+Summary: This project helps you to web scrape html file.
+Home-page: https://github.com/yukihiko-shinoda/parallel-media-downloader
+Author: Yukihiko Shinoda
+Author-email: yuk.hik.future@gmail.com
+License: UNKNOWN
+Description: # Parallel HTML Scraper
+        
+        This project helps you to web scrape html file.
+        
+Keywords: parallel HTML web scraping scrape aiohttp beautifulsoup beautifulsoup4
+Platform: UNKNOWN
+Description-Content-Type: text/markdown

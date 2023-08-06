@@ -1,0 +1,15 @@
+README.md
+setup.py
+parallelhtmlscraper/__init__.py
+parallelhtmlscraper/exceptions.py
+parallelhtmlscraper/html_analyzer.py
+parallelhtmlscraper/html_request_coroutine.py
+parallelhtmlscraper/html_text_load_coroutine.py
+parallelhtmlscraper/parallel_html_request_coroutine.py
+parallelhtmlscraper/parallel_html_scraper.py
+parallelhtmlscraper/py.typed
+parallelhtmlscraper.egg-info/PKG-INFO
+parallelhtmlscraper.egg-info/SOURCES.txt
+parallelhtmlscraper.egg-info/dependency_links.txt
+parallelhtmlscraper.egg-info/requires.txt
+parallelhtmlscraper.egg-info/top_level.txt
