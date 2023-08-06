@@ -1,0 +1,15 @@
+scraper_factory/__init__.py,sha256=oWndDG689-1JC8egywwywLpPfCa2XRllSyWqa4pTrho,47
+scraper_factory/core/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+scraper_factory/core/base_spider.py,sha256=IN3f7Hdqd176V9uF-qUf2dGvjpe2g2oEfC9QNE6nZ60,829
+scraper_factory/core/scrape.py,sha256=h10pE6UZ7OQgtcsgJSWfKBtj7uU9X99hJ7V9RA_oeZ4,671
+scraper_factory/core/utils.py,sha256=HnCwaDvZV9NtOrH_Yt7ej8UnYa1OUXRuuF4zHwBSJPs,1048
+scraper_factory/spiders/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+scraper_factory/spiders/amazonwishlist.py,sha256=r2PO_VRpnYv7KsMSRXcB0bXbyZiYvauwzYQqqyLfHOk,1489
+tests/utils/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/utils/read_from_file.py,sha256=U9zXqUH-NDn_I_GrMKN0-nWI1pcxviQSB_Tp4EXO038,1619
+tests/utils/spidertestbase.py,sha256=JkHddSXDAPwh0Vsd5W1REBLJCeJJPWqCIw8AGs32v0E,517
+scraper_factory-0.1.0.dist-info/LICENSE,sha256=tos6rCpJS5N5MYolt1qom6hlNwwXTGTPXU6s3Q3kZTg,1065
+scraper_factory-0.1.0.dist-info/METADATA,sha256=UPTaLbaOGVPyXXafmqBe9ttvMjPoDzbkRafk4mIjUo0,3221
+scraper_factory-0.1.0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+scraper_factory-0.1.0.dist-info/top_level.txt,sha256=MkwhY_JUvKhQ_zg9VHmhhrHxLypET1EH0o2RI0xfzg4,22
+scraper_factory-0.1.0.dist-info/RECORD,,
