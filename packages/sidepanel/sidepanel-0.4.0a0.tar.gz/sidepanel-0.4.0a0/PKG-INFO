@@ -1,0 +1,22 @@
+Metadata-Version: 1.1
+Name: sidepanel
+Version: 0.4.0a0
+Summary: Side panel extension for JupyterLab
+Home-page: https://github.com/yarden-livnat/sidepanel
+Author: Yarden Livnat
+Author-email: yarden@sci.utah.edu
+License: BSD
+Description: 
+        An extension for JupyterLab that enable to open new windows from python
+        
+Keywords: Interactive,Interpreter,Shell,Web
+Platform: Linux
+Platform: Mac OS X
+Platform: Windows
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Framework :: Jupyter
