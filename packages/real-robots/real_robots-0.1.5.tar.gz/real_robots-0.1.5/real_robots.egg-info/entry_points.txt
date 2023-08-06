@@ -1,0 +1,3 @@
+[console_scripts]
+real_robots = real_robots.cli:main
+
