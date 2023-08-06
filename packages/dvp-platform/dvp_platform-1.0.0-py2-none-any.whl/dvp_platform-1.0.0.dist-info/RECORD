@@ -1,0 +1,15 @@
+dlpx/__init__.py,sha256=XsCSosO2MME3GlNHah0qMZqN0ziU_USPfqifNsPPol8,124
+dlpx/virtualization/__init__.py,sha256=XsCSosO2MME3GlNHah0qMZqN0ziU_USPfqifNsPPol8,124
+dlpx/virtualization/delphix_platform_pb2.py,sha256=8POk5Jq0WaUSVTITydMe_3C4FxurnxVF0ccXaX2MVSQ,114357
+dlpx/virtualization/platform_pb2.py,sha256=sLpX37Nvrv9-UUv3DuWslGFghL2psySaWHWM7sOTQ2A,169088
+dlpx/virtualization/platform/__init__.py,sha256=w4TckzurI3FsU0H3JveJtC_xG8eoF5ms-hTN8NR0FnU,235
+dlpx/virtualization/platform/_plugin.py,sha256=RGBvkvXTV3LNm22PPsaG3m2bnSweLhxlOCl1J86KxUM,66483
+dlpx/virtualization/platform/_plugin_classes.py,sha256=d3875KgIRKvX019q2KbeTv6ek-7MYoXMgURTrdSecfg,7864
+dlpx/virtualization/platform/exceptions.py,sha256=QfnC0M8ZvOeJuliAL0JvxpfeG-3BelGNlrryVIZzAus,3277
+dlpx/virtualization/platform/operation.py,sha256=SuzR5xOvEuahHikkLFaSbJH58IMk8IpRWJ_12kQB3DU,1039
+dvp_platform-1.0.0.dist-info/DESCRIPTION.rst,sha256=n_GNTXrtmDSFFuICTTE24aeO43KEgNjrrsdzPHRcd_M,537
+dvp_platform-1.0.0.dist-info/METADATA,sha256=qBUFcu-i9BD3Ef7smgRrQ1D4f6MRUWIL9POJa3Yxy3g,1190
+dvp_platform-1.0.0.dist-info/RECORD,,
+dvp_platform-1.0.0.dist-info/WHEEL,sha256=bee59qcPjkyXfMaxNWjl2CGotqfumWx9pC1hlVLr2mM,92
+dvp_platform-1.0.0.dist-info/metadata.json,sha256=i2ai1DZ3pl1jNrhXksdt9lMOU3YOueSnOzuWzgEKhbE,841
+dvp_platform-1.0.0.dist-info/top_level.txt,sha256=DHV0Y6ey7Lf4xGizuzm03Sn2Gb0yukm-th9ZG238il4,5
