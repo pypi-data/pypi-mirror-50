@@ -1,0 +1,15 @@
+[build-system]
+requires = ["flit"]
+build-backend = "flit.buildapi"
+
+[tool.flit.metadata]
+module = "fgread"
+author = "FASTGenomics Team"
+author-email = "contact@fastgenomics.org"
+description-file = 'README.md'
+home-page = 'https://github.com/fastgenomics/jupyter-fgread-py'
+requires-python = '~=3.6'
+requires=[
+    "anndata",
+    'get_version (~=2.0.6)'
+]
