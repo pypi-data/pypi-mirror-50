@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: tdub
+Version: 0.0.1.dev0
+Summary: tdub is tee double-you
+Home-page: https://github.com/douglasdavis/tdub
+Author: Doug Davis
+Author-email: ddavis@ddavis.io
+Maintainer: Doug Davis
+Maintainer-email: ddavis@ddavis.io
+License: BSD 3-clause
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: uproot (>=3.8)
+Requires-Dist: dask[array,dataframe,delayed]
+Requires-Dist: pygram11 (>=0.5.1)
+
+# tdub
+
+
