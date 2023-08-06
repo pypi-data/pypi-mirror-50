@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: loopback
+Version: 0.0.1
+Summary: Thread manager and decorator for asynchronous background function execution.
+License: MIT
+Author: vpuhoff
+Author-email: vpuhoff@live.ru
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+
+# loopback
+Thread manager and decorator for asynchronous background function execution
+
+## Simple usage in code:
+```
+from loopback import manager, loop
+from time import sleep
+
+@loop(manager, interval = 1)
+def threaded_function(arg):
+    print("running ")
+    sleep(arg)
+    return 'OK'
+
+
+while True:
+    print(threaded_function(4))
+    sleep(1)
+```
+
+## Source Code:
+* [https://github.com/vpuhoff/loopback](https://github.com/vpuhoff/loopback)
+
+## Travis CI Deploys:
+* [https://travis-ci.com/vpuhoff/loopback](https://travis-ci.com/vpuhoff/loopback) [![Build Status](https://travis-ci.com/vpuhoff/loopback.svg?branch=master)](https://travis-ci.com/vpuhoff/loopback)
+
