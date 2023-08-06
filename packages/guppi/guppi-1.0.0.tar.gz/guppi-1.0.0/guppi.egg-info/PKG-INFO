@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: guppi
+Version: 1.0.0
+Summary: A daemon to automate your shell environment.
+Home-page: https://github.com/smetj/guppi
+Author: Jelle Smet
+Author-email: development@smetj.net
+License: UNKNOWN
+Download-URL: https://github.com/smetj/guppi/tarball/master
+Description: UNKNOWN
+Platform: Linux
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Provides-Extra: testing
