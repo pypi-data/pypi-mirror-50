@@ -1,0 +1,81 @@
+{
+  "scale_housing_test" : {
+                  
+                  "types" : "varchar(20)",
+                  "id" : "integer",
+                  "price" : "real",
+                  "lotsize" : "real",
+                  "bedrooms" : "real",
+                  "bathrms" : "real",
+                  "stories" : "real"
+                  
+  },
+  "employee_info": {
+    "employee_no" : "integer",
+    "first_name" : "varchar(30)",
+    "marks" : "integer",
+    "dob" : "date",
+    "joined_date" : "date"
+  },
+  "sales": {
+    "accounts" : "varchar(20)",
+    "Feb" : "real",
+    "Jan" : "bigint",
+    "Mar" : "bigint",
+    "Apr" : "bigint",
+    "datetime" : "date FORMAT 'dd/mm/yyyy'"
+  },
+  "admissions_train" :{
+            "id" : "integer",
+            "masters" : "varchar(5)",
+            "gpa" : "real",
+            "stats" : "varchar(30)",
+            "programming" : "varchar(30)",
+            "admitted" : "integer"
+  },
+  "join_table1": {
+    "col1" : "bigint",
+    "col2" : "varchar(30)",
+    "col3" : "float",
+    "col5" : "varchar(30)"
+  },
+   "join_table2": {
+    "col1" : "bigint",
+    "col4" : "varchar(30)",
+    "col3" : "float",
+    "col7" : "varchar(30)"
+  },
+  "iris_test": {
+    "id" : "integer",
+    "sepal_length" : "float",
+    "sepal_width" : "float",
+    "petal_length" : "float",
+    "petal_width" : "float",
+    "species": "integer"
+  },
+  "numerics": {
+    "id_col": "integer",
+    "integer_col": "integer",
+    "smallint_col": "smallint",
+    "bigint_col": "bigint",
+    "decimal_col": "decimal(38,8)",
+    "float_col": "float",
+    "number_col": "number",
+    "number2_col": "number",
+    "number3_col": "number",
+    "byteint_col": "byteint"
+  },
+  "numeric_strings": {
+    "id_col": "integer",
+    "hex_col": "varchar(8)",
+    "decimal_col": "varchar(8)",
+    "commas_col": "varchar(8)",
+    "numbers_col": "varchar(8)"
+  },
+  "bytes_table": {
+    "id_col": "integer",
+    "byte_col": "byte",
+    "varbyte_col": "varbyte(100)",
+    "blob_col": "blob"
+  }
+}
