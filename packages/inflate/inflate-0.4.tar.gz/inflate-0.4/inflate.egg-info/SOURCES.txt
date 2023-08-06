@@ -1,0 +1,16 @@
+README.md
+setup.py
+inflate/__init__.py
+inflate/__main__.py
+inflate/cli.py
+inflate/inflate.py
+inflate.egg-info/PKG-INFO
+inflate.egg-info/SOURCES.txt
+inflate.egg-info/dependency_links.txt
+inflate.egg-info/entry_points.txt
+inflate.egg-info/not-zip-safe
+inflate.egg-info/requires.txt
+inflate.egg-info/top_level.txt
+inflate/data/eur_inflation.json
+inflate/data/uk_inflation.json
+inflate/data/us_inflation.json
