@@ -1,0 +1,14 @@
+tendril/__init__.py,sha256=CyBA-t_7hHvwim5oh7A3IAtD-rOa6LxmGeEtaH83ta0,851
+tendril/schema/__init__.py,sha256=LW3zuwsqtnZA-tPx5zbA4G8mC28igCFeOS2MNLkNpS0,982
+tendril/schema/base.py,sha256=J4SRB4meBrZAUlDRrm0bXtg0KX_VxY6BbNWTcP0R2CI,5864
+tendril/schema/helpers.py,sha256=co-T-AzXCr6DiF8-RhfEjwq98RdJXF1H3iIIE-zDsM4,4660
+tendril/schema/manager.py,sha256=Cd5zKHbW7i4BmHvofttWBuRLRMs1rIXTnuu47qY6ejY,2494
+tendril/validation/__init__.py,sha256=CyBA-t_7hHvwim5oh7A3IAtD-rOa6LxmGeEtaH83ta0,851
+tendril/validation/configs.py,sha256=bGcZ9GkXab-ePazZn-D7-1MkrhihFcFrPoc8YRqC5Tk,6370
+tendril/validation/schema.py,sha256=S8QENxH-BTwIwXT5YweEnoR1WZ32XgiMBpE6pwNx-6Y,2031
+tendril_schema-0.2.1.dist-info/LICENSE,sha256=V8j_M8nAz8PvAOZQocyRDX7keai8UJ9skgmnwqETmdY,34520
+tendril_schema-0.2.1.dist-info/METADATA,sha256=vj0WTRjYY1-wVCfM0CTKbJw2gq5xAw149vhNwmQJoz8,5331
+tendril_schema-0.2.1.dist-info/WHEEL,sha256=HX-v9-noUkyUoxyZ1PMSuS7auUxDAR4VBdoYLqD0xws,110
+tendril_schema-0.2.1.dist-info/entry_points.txt,sha256=kCM-El3TpFtlQLL12mRRFWkxOn8IN0C1f2CFOvhPYr0,66
+tendril_schema-0.2.1.dist-info/top_level.txt,sha256=cZ37ntjo8Mlxd4OJ5PNxFU0yufka_b2hcfS80URElIM,8
+tendril_schema-0.2.1.dist-info/RECORD,,
