@@ -1,0 +1,6 @@
+[console_scripts]
+compile_models = bin.compile_models:main
+dSreg = bin.dsreg:main
+dsreg_plot = bin.dsreg_plot:main
+reg_enrichment = bin.reg_enrichment:main
+
