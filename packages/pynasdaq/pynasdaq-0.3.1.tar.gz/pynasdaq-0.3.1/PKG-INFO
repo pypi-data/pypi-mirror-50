@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: pynasdaq
+Version: 0.3.1
+Summary: Retrieve NASDAQ stock and dividend data
+Home-page: https://github.com/makkader/pynasdaq
+Author: Mak Kader
+Author-email: abdul.kader880@gmail.com
+License: MIT
+Description: # pynasdaq
+        
+        Retrieve stock and dividend data from NASDAQ.
+        
+        # Usages
+        
+        Check usages in https://nbviewer.jupyter.org/github/makkader/pynasdaq/blob/master/usages.ipynb
+        
+        # Install
+        
+        - Use `pip install pynasdaq` for latest release.
+        
+        - use `pip install git+https://github.com/makkader/pynasdaq.git` for the latest development version.
+        
+        # Require
+        
+        - Python3
+        
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
