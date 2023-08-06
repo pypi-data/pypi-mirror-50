@@ -1,0 +1,10 @@
+provider:
+  name: faas
+
+functions:
+  {{ meta["name"] }}:
+    lang: dockerfile
+    handler: function
+    image: {{ meta["image"] + ':' + meta["version"] }}
+    environment:
+{{ environment_as_string }}
