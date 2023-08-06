@@ -1,0 +1,15 @@
+MANIFEST.in
+README.md
+setup.py
+authicola/Authicola.py
+authicola/__init__.py
+authicola/settings.py
+authicola.egg-info/PKG-INFO
+authicola.egg-info/SOURCES.txt
+authicola.egg-info/dependency_links.txt
+authicola.egg-info/requires.txt
+authicola.egg-info/top_level.txt
+authicola/drivers/BaseDriver.py
+authicola/drivers/GitHubDriver.py
+authicola/drivers/GoogleDriver.py
+authicola/drivers/__init__.py
