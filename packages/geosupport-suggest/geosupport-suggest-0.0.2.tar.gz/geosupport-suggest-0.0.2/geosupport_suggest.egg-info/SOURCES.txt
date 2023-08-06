@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+geosupport_suggest.egg-info/PKG-INFO
+geosupport_suggest.egg-info/SOURCES.txt
+geosupport_suggest.egg-info/dependency_links.txt
+geosupport_suggest.egg-info/requires.txt
+geosupport_suggest.egg-info/top_level.txt
+suggest/__init__.py
+suggest/suggest.py
