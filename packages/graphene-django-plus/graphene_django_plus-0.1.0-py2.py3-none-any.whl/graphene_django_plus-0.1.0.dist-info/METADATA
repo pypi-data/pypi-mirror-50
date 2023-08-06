@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: graphene-django-plus
+Version: 0.1.0
+Summary: Tools to easily create permissioned CRUD endpoints in graphene.
+Home-page: https://github.com/0soft/graphene-django-plus
+Author: Thiago Bellini Ribeiro
+Author-email: bellini@zerosoft.com.br
+License: MIT
+Keywords: graphene django extras plus crud guardian permissions graphql query prefetch
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.11
+Classifier: Framework :: Django :: 2.0
+Classifier: Framework :: Django :: 2.1
+Classifier: Framework :: Django :: 2.2
+Description-Content-Type: text/markdown
+
+# graphene-django-extras #
+
+Tools to easily create permissioned CRUD endpoints in graphene.
+
+
