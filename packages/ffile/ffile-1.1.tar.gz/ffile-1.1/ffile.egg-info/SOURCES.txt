@@ -1,0 +1,9 @@
+setup.cfg
+setup.py
+ffile/__init__.py
+ffile/ffile.py
+ffile.egg-info/PKG-INFO
+ffile.egg-info/SOURCES.txt
+ffile.egg-info/dependency_links.txt
+ffile.egg-info/entry_points.txt
+ffile.egg-info/top_level.txt
