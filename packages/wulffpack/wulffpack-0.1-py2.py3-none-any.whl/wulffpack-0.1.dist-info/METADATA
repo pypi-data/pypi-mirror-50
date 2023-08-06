@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: wulffpack
+Version: 0.1
+Summary: A package for making Wulff constructions
+Home-page: UNKNOWN
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: unix
+Classifier: Development Status :: 4 - Beta
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Scientific/Engineering :: Physics
+Requires-Dist: ase
+Requires-Dist: numpy (>=1.12)
+Requires-Dist: spglib
+Requires-Dist: matplotlib
+
+UNKNOWN
+
+
