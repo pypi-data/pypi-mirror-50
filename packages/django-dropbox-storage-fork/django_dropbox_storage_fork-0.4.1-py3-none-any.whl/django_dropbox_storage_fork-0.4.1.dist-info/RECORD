@@ -1,0 +1,14 @@
+django_dropbox_storage/__init__.py,sha256=3g-wbO68tb1ZRaZybC9AmF3sjTcJd9oTRfzq0LkZtf8,99
+django_dropbox_storage/models.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_dropbox_storage/settings.py,sha256=dVQefPkaIwwVk_wj3XCvVNEYxZ9_N5AAvyVr2Vzuvx0,335
+django_dropbox_storage/storage.py,sha256=B3Ge8QTI7h12u8eUQf04iatFSKntFXf-Lm3HuVGVoHc,5678
+django_dropbox_storage/tests.py,sha256=NV7nb6kak6FVNt-zHrZYWmRoazaSo2w1T0_fk5OrOc0,7942
+django_dropbox_storage/views.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_dropbox_storage/management/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_dropbox_storage/management/commands/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_dropbox_storage/management/commands/get_dropbox_token.py,sha256=lkJpaUmfc-PVf98EicqLsVO6fbhHjoV8K_2-j33fVY0,1337
+django_dropbox_storage_fork-0.4.1.dist-info/LICENSE.txt,sha256=nK69VHnNZ-Ka9Ynqw87WGp9xr8raGlkGk6peb3nZZtk,1081
+django_dropbox_storage_fork-0.4.1.dist-info/METADATA,sha256=JTTFdJaVV-KxvqyRbCNVUGJeKGCJGxpGuHTEuRCQ95k,3504
+django_dropbox_storage_fork-0.4.1.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+django_dropbox_storage_fork-0.4.1.dist-info/top_level.txt,sha256=9dUJEXjAylnR7rz9k-YhKKddQEGdEwGsj-KZc_GZj44,23
+django_dropbox_storage_fork-0.4.1.dist-info/RECORD,,
