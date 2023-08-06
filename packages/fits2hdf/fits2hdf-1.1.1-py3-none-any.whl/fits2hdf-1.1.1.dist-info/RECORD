@@ -1,0 +1,17 @@
+fits2hdf/__init__.py,sha256=Py6uqXvEaNKGkXk13vlkiGzcHOjdWnC7kBu3f_E49Oo,126
+fits2hdf/check_file_type.py,sha256=p9haSHbBDFv1T8ZL9LU1Aa7xSDCCIpuCccZ3Y2i7Nu4,1977
+fits2hdf/file_conversion.py,sha256=v63KRkQ6NTzFpFZJuAZIOgOG3UBSBdbhpmPf1i0EfI4,9932
+fits2hdf/idi.py,sha256=_lmqdWSFS3IlrROYdRiwC7fbS3pyw1kcKNPf-XXv9Xk,12590
+fits2hdf/printlog.py,sha256=MY293X6ctZST4sTpnsUYKSEqLg4lHh99O9bJ2V-YlVY,1903
+fits2hdf/pyhdfits.py,sha256=HehRE3aT_EyeMcsc62mFWfUT_asW6ZhjNbGqbwQv3W8,1548
+fits2hdf/unit_conversion.py,sha256=zMv7j1Xzyep1LR7dYRc4mb5NY4EmEqYy4ZJGw7A8_9c,2314
+fits2hdf/io/__init__.py,sha256=RMtIDuQbLpwvUEFiM5bdfwQL2LslVXHw6Frnb2z7KcA,80
+fits2hdf/io/fitsio.py,sha256=rGb2qdPJrRyYjfA0CD3zc9VLSGDV87tptxEjMDwOZXM,15244
+fits2hdf/io/hdfcompress.py,sha256=GqOzMXgOEmT9RPDdiDlZ8j4807LZM5ish8bKY7KEAoU,3896
+fits2hdf/io/hdfio.py,sha256=eChax9Llb-W8W-uAq55RjcL-SNvAmujYjrl7U3vtLlo,12360
+fits2hdf/io/msio.py,sha256=WopsVHv9_5MaCFKvotFVSFVoSj7vKLaa4HaO2SYgGMA,3866
+fits2hdf-1.1.1.dist-info/METADATA,sha256=ONol9yBgDP0zB4RB0N4BO9Bx65ZpMILCYFuvHHyVEkI,2119
+fits2hdf-1.1.1.dist-info/RECORD,,
+fits2hdf-1.1.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+fits2hdf-1.1.1.dist-info/entry_points.txt,sha256=ZeSJcZX5YrNvXJMB8Ys2Z45ybL_puRheqCc1do9495U,189
+fits2hdf-1.1.1.dist-info/top_level.txt,sha256=mzVErhS3Y9Osa2wauSExYkqLNZ3ka5SKTJnv_7mREIs,9
