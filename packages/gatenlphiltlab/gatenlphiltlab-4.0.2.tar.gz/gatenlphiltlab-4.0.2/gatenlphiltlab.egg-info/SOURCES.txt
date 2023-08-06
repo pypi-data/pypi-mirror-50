@@ -1,0 +1,11 @@
+README.md
+setup.py
+gatenlphiltlab/__init__.py
+gatenlphiltlab/regex_patterns.py
+gatenlphiltlab.egg-info/PKG-INFO
+gatenlphiltlab.egg-info/SOURCES.txt
+gatenlphiltlab.egg-info/dependency_links.txt
+gatenlphiltlab.egg-info/not-zip-safe
+gatenlphiltlab.egg-info/requires.txt
+gatenlphiltlab.egg-info/top_level.txt
+gatenlphiltlab/diff/__init__.py
