@@ -1,0 +1,17 @@
+README.md
+setup.py
+libwampli/__init__.py
+libwampli/args.py
+libwampli/connection.py
+libwampli/format.py
+libwampli/session.py
+wampli/__init__.py
+wampli/__main__.py
+wampli/cli.py
+wampli/shell.py
+wampli.egg-info/PKG-INFO
+wampli.egg-info/SOURCES.txt
+wampli.egg-info/dependency_links.txt
+wampli.egg-info/entry_points.txt
+wampli.egg-info/requires.txt
+wampli.egg-info/top_level.txt

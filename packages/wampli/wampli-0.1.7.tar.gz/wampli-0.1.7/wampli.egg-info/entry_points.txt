@@ -1,0 +1,3 @@
+[console_scripts]
+wampli = wampli.cli:main
+
