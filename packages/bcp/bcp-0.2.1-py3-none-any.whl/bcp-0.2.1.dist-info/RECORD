@@ -1,0 +1,12 @@
+bcp/__init__.py,sha256=B31pf04rc-2mMv7jTbl5dVooAjD3Rgwn2zpa5ZgSa4Q,220
+bcp/config.py,sha256=Gs7NWRNuZMpNSAYVXpFkqFOlyuk54erdF1IFwjDUfQw,989
+bcp/connections.py,sha256=ilhqiMc016Y7bJXEfz3Kvnbnh_wJGsn3G_bp8bLWXyA,4216
+bcp/core.py,sha256=sFpyFAHKKHd6RCY0V_x3P6U9ehM-lTQUpVwmrOV6d4I,3258
+bcp/exceptions.py,sha256=NL6W8xO77LxFDT3TdMzJs4Cjoe4_rAZBCcBgOgcNNdY,406
+bcp/files.py,sha256=QT9k7q1-aoYB_jyw3w87IpIy6K4P6VDfmmDTO61H9KE,3150
+bcp/dialects/base.py,sha256=Deea0cFVZDUDXxd3YIbKYX6ec0cEFlntbWVF_lqnpcM,2321
+bcp/dialects/mssql.py,sha256=GIqNni_J2JYzmMV_P3oqXptsChPWIz6lEHE39MjptSE,4956
+bcp-0.2.1.dist-info/LICENSE,sha256=Gb6W8s1UXx7I919bUrjvPEv3Lczo2RQo9pBi_EDpRUU,1128
+bcp-0.2.1.dist-info/WHEEL,sha256=JXk7EE_UnY8Q4113Zu8f6SlrMizLH61VvvtIzqzkSKE,79
+bcp-0.2.1.dist-info/METADATA,sha256=vLnM61YkGNDOvo28fbXcb7BUEeA3tYRLXesszP9gK8Y,2841
+bcp-0.2.1.dist-info/RECORD,,
