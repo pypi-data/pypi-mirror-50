@@ -1,0 +1,64 @@
+Metadata-Version: 2.1
+Name: easystreaming
+Version: 0.0.4
+Summary: A small Server and Client creator
+Home-page: https://edugit.org/jakobkir/simplestreaming
+Author: Jakob Kirsch
+Author-email: jakob.kirsch@teckids.org
+License: UNKNOWN
+Description: This is a little library for creating Servers and Clients to send data.
+        
+        ___Usage:___
+        
+        __ClientStream:__
+        
+        myclient = Clientstream(addr, port) #Generate
+        
+        myclient.connect() #Connect
+        
+        myclient.setListener("connect", connect) #Replace the second argument with a function. Overgiving args: 
+        
+        myclient.setListener("disconnect", disconnect) #Replace the second argument with a function. Overgiving args: 
+        
+        myclient.setListener("recv", recv) #Replace the second argument with a function. Overgiving args: None, data
+        
+        myclient.setListener("recvexception", recv) #Replace the second argument with a function. Overgiving args: exception
+        
+        myclient.send("something") #Send
+        
+        myclient.pause() #Pause
+        
+        myclient.unpause() #Unpause
+        
+        is_paused = myclient.getpaused() #Getpaused
+        
+        myclient.stop() #Stop
+        
+        __ServerStream:__
+        
+        myserver = Serverstream(addr, port, maxclients) #Generate
+        
+        myserver.connect() #Connect
+        
+        myserver.setListener("connect", connect) #Replace the second argument with a function. Overgiving args: sock_id
+        
+        myserver.setListener("disconnect", disconnect) #Replace the second argument with a function. Overgiving args: sock_id
+        
+        myserver.setListener("recv", recv) #Replace the second argument with a function. Overgiving args: sock, data
+        
+        myserver.setListener("recvexception", recv) #Replace the second argument with a function. Overgiving args: exception
+        
+        myserver.send(sock_id "something") #Send to sock_id
+        
+        myserver.pause() #Pause
+        
+        myserver.unpause() #Unpause
+        
+        is_paused = myserver.getpaused() #Getpaused
+        
+        myserver.stop() #Stop
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
