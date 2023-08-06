@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: dfrun
+Version: 0.1.2
+Summary: Code copier for multi experiments
+Home-page: UNKNOWN
+Author: Rudolfxx
+Author-email: mayeoliver@163.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# DFRUN
+##### run tool for dl experiments
+
+1. create a folder saving all your experiment code in your root directory, default 'exps', could be specified as in command '--exp-dir'
+2. create a experiment folder(exp folder) under the dir created in first step.
+3. copy all the code you need into the exp folder, except the ones in the .fkignore file.
+
+example:
+
+dfrun --exp-dir [root dir] --exp-name [experiment name] -c -- python [some py file]
+
