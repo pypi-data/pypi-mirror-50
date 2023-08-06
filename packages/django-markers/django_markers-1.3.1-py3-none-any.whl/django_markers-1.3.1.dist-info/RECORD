@@ -1,0 +1,16 @@
+markers/__init__.py,sha256=-ypEJktJToAL9by62JJKWEzDo_KPCQtmE5kwFgX24z4,22
+markers/exceptions.py,sha256=ggHIAgweqGDh4b9Ss9KDvjDImmECeeb9zWc-XosI-6c,193
+markers/models.py,sha256=6fNy2OaDlH80p5WeLsBCe5azVwl74cNoi8vUB2GkltM,7943
+markers/urls.py,sha256=756gwuJUJRAJd4sTKGEHaW8bebPjkWq162r8Mp4P57E,168
+markers/views.py,sha256=lHysSh6weFTgEdzrDEr7FGTsWhz4bM9I35KJfbyn6I0,1703
+markers/__pycache__/__init__.cpython-37.pyc,sha256=I1FfJfmlHYYJyxz13vb_nkEyBNiHDJNE-_hLBQlK_Rs,164
+markers/management/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+markers/management/commands/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+markers/management/commands/clean_markers.py,sha256=DPcxAELQch_qai4hwYkbThAmDZ8pFOX8k2Ue5t8uKLs,1279
+markers/static/markers/fonts/DroidSans-Bold.ttf,sha256=tjG2d69apzFil6i1ah_jux2nBnN_jJeF1aX8lPquHqk,191032
+markers/templatetags/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+markers/templatetags/markers.py,sha256=ByM6ZJmnr_vWDXopwlqNbYrmi1llstbHIg2VHhFU6qg,755
+django_markers-1.3.1.dist-info/METADATA,sha256=c5NNS_RY9SgNXKB3i8KNp7xB2DHQgvBSeq5p2TUz3zA,5982
+django_markers-1.3.1.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+django_markers-1.3.1.dist-info/top_level.txt,sha256=YOzsLuH2B8mB6PdOuFYajEum1wUkvG4bs1KJJ3MgzoU,8
+django_markers-1.3.1.dist-info/RECORD,,
