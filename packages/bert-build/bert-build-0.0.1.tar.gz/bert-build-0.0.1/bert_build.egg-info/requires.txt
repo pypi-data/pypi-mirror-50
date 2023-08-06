@@ -1,0 +1,10 @@
+click>=5.0
+pyyaml
+docker
+dockerpty
+jinja2
+requests
+whatthepatch>=0.0.6
+
+[docs]
+Sphinx
