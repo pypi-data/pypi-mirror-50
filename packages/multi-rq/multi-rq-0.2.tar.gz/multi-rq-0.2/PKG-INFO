@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: multi-rq
+Version: 0.2
+Summary: Simple async multiprocessing with RQ
+Home-page: https://github.com/russellromney/multi-rq
+Author: Russell Romney
+Author-email: russellromney@gmail.com
+License: MIT
+Description: an extension of rq that emulates the mp.Pool.apply_async behavior in multiprocessing with a task queue
+Keywords: dash rq redis plotly multiprocessing task queue parallel
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
