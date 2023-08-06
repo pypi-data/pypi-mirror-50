@@ -1,0 +1,8 @@
+tornado>=6.0.2
+
+[dev]
+tornado>=6.0.2
+pytest
+pytest-cov
+pylint
+flake8
