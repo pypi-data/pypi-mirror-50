@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: dsu
+Version: 1.4.0
+Summary: 
+Author: Nandhini Anand
+Author-email: cattykatrina4@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: ace (>=0.3.2,<0.4.0)
+Requires-Dist: causality (>=0.0.9,<0.0.10)
+Requires-Dist: cython (>=0.29.13,<0.30.0)
+Requires-Dist: gensim (>=3.8,<4.0)
+Requires-Dist: gym (>=0.14.0,<0.15.0)
+Requires-Dist: hpsklearn (>=0.1.0,<0.2.0)
+Requires-Dist: keras (>=2.2,<3.0)
+Requires-Dist: lifelines (>=0.22.3,<0.23.0)
+Requires-Dist: nltk (>=3.4,<4.0)
+Requires-Dist: numpy (>=1.17,<2.0)
+Requires-Dist: optunity (>=1.1,<2.0)
+Requires-Dist: ortools (>=7.3,<8.0)
+Requires-Dist: patsy (>=0.5.1,<0.6.0)
+Requires-Dist: pymc (>=2.3,<3.0)
+Requires-Dist: robustats (>=0.1.2,<0.2.0)
+Requires-Dist: scikit-MDR (>=0.4.4,<0.5.0)
+Requires-Dist: scikit-build (>=0.10.0,<0.11.0)
+Requires-Dist: scikit-data (>=0.1.3,<0.2.0)
+Requires-Dist: scikit-gof (>=0.1.3,<0.2.0)
+Requires-Dist: scikit-image (>=0.15.0,<0.16.0)
+Requires-Dist: scikit-learn (>=0.21.3,<0.22.0)
+Requires-Dist: scikit-surprise (>=1.0,<2.0)
+Requires-Dist: scipy (>=1.3,<2.0)
+Requires-Dist: seqlearn (>=0.2.0,<0.3.0)
+Requires-Dist: spacy (>=2.1,<3.0)
+Requires-Dist: statsmodels (>=0.10.1,<0.11.0)
+Requires-Dist: tensorflow (>=1.14,<2.0)
+Requires-Dist: tpot (>=0.10.2,<0.11.0)
+Requires-Dist: tsfresh (>=0.12.0,<0.13.0)
+Requires-Dist: umap (>=0.1.1,<0.2.0)
+Requires-Dist: xgboost (>=0.90.0,<0.91.0)
