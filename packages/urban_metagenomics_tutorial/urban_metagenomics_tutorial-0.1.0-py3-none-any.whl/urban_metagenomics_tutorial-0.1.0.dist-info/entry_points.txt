@@ -1,0 +1,3 @@
+[console_scripts]
+umt = urban_metagenomics_tutorial.cli:main
+

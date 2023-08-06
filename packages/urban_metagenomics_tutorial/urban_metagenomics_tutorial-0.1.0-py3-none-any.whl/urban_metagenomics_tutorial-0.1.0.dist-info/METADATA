@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: urban-metagenomics-tutorial
+Version: 0.1.0
+Summary: Metagenomics utilities
+Home-page: https://github.com/dcdanko/urban_metagenomics_tutorial
+Author: David C. Danko
+Author-email: dcdanko@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: click
+Requires-Dist: biopython
+Requires-Dist: capalyzer
+Requires-Dist: gimmebio.kmers
+
+UNKNOWN
+
+
