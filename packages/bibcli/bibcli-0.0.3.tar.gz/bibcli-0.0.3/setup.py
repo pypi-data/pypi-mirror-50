@@ -1,0 +1,55 @@
+#!/usr/bin/python3
+
+# This file is part of bib.
+#
+# bib is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# bib is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with bib. If not, see <https://www.gnu.org/licenses/>.
+
+import os
+from setuptools import setup
+
+def read(fname):
+    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+
+setup(
+    name = "bibcli",
+    version = "0.0.3",
+    author = "Juan Meleiro",
+    author_email = "juan.meleiro@me.com",
+    url = "https://gitlab.com/juanmeleiro/bib",
+    license = "GPLv3+",
+    packages = [
+        "bib"
+    ],
+    description = "Command line bibliography manager",
+    long_description = read("README.md"),
+    long_description_content_type = "text/markdown",
+    include_package_data = True,
+    classifiers = [
+        "Development Status :: 2 - Pre-Alpha",
+        "Environment :: Console",
+        "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+        "Programming Language :: Python :: 3",
+        "Intended Audience :: Science/Research"
+    ],
+    install_requires = [
+        "argparse",
+        "bibtexparser",
+        "termcolor"
+    ],
+    entry_points = {
+        "console_scripts": [
+            "bib = bib:main"
+        ]
+    }
+)
