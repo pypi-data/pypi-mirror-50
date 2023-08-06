@@ -1,0 +1,5 @@
+python-vlc
+watchdog
+
+[:python_version < "3.4"]
+enum34
