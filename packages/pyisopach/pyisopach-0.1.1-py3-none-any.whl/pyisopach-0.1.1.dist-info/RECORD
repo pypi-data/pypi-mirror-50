@@ -1,0 +1,12 @@
+pyisopach/__init__.py,sha256=lp5LaA1mJGkOUtOOm6P_6rRz1AQx4VYuJ_9x0QU6hpQ,60
+pyisopach/element.py,sha256=DgTtQDCl6wHKkgnrRcgbbPZ_QBK5pXm3cx7MVUsa9-I,963
+pyisopach/molecule.py,sha256=YSbW8lwhaplUcHJEv7iSiIc4-cVVsvdPjQctqQHnqIU,4561
+pyisopach/periodic_table.py,sha256=rYL-Ld5uZsM6ct_1894_oTVs9nWqBpx9T7LE6DVN-RY,19332
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_element.py,sha256=7bAIK5OkAuFZZsXoUr_oPCo6LCh3XiwOYnRMgzRRSpA,1572
+tests/test_molecule.py,sha256=VRoK5O_Z3w_MGFG4QQZmoGmS3gsA-5LUXjfu2Th0NrA,2090
+pyisopach-0.1.1.dist-info/LICENSE,sha256=cjFtwSaypkOj1s9n1FCks8es8e8-fCgiN06TYYhOU30,1070
+pyisopach-0.1.1.dist-info/METADATA,sha256=KJwARZzqOMtnaeb-FztOu5ANamkDtEGs8II5R-SqEF0,2479
+pyisopach-0.1.1.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+pyisopach-0.1.1.dist-info/top_level.txt,sha256=LbVDWy_LqkNsl_1B2r-nkrDrwgUvNBxo0r2Jxn9YNsc,16
+pyisopach-0.1.1.dist-info/RECORD,,
