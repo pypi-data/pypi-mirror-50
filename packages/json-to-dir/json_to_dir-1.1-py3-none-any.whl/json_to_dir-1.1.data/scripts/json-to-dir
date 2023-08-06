@@ -1,0 +1,60 @@
+#!python
+
+import os
+import sys
+import json
+import tempfile
+
+
+def main(inputfile, outputdir=None):
+    if not outputdir:
+        outputdir = tempfile.mkdtemp()
+
+    try:
+        data = json.load(open(inputfile))
+    except IOError:
+        print('No file found at ' + inputfile + '.')
+        return
+    except ValueError:
+        print(inputfile + ' is not a valid JSON file.')
+        return
+
+    recurse(data, outputdir, False)
+    print('{} written to {}.'.format(inputfile, outputdir))
+
+
+def recurse(o, d, create_dirs=True):
+    if type(o) is dict:
+        if create_dirs:
+            os.mkdir(d)
+        for k, val in o.items():
+            path = os.path.join(d, k)
+            recurse(val, path)
+    elif type(o) is list:
+        if create_dirs:
+            os.mkdir(d)
+        for i, val in enumerate(o):
+            path = os.path.join(d, str(i))
+            recurse(val, path)
+    else:
+        if type(o) is unicode:
+            o = o.encode('utf-8')
+        elif type(o) is bool:
+            o = json.dumps(o)
+        else:
+            o = str(o)
+        with open(d, 'w') as f:
+            f.write(o)
+
+if __name__ == '__main__':
+    args = sys.argv[1:]
+    if len(args) != 1 and len(args) != 2:
+        print('''
+USAGE
+
+json-to-dir <jsonfile> [output-directory]
+
+output-directory defaults to somewhere in /tmp.
+        ''')
+    else:
+        main(*args)
