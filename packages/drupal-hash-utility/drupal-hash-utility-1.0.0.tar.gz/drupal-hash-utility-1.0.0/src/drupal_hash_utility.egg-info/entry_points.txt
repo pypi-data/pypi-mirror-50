@@ -1,0 +1,3 @@
+[console_scripts]
+drupal-hash-utility = drupal_hash_utility.cli:main
+

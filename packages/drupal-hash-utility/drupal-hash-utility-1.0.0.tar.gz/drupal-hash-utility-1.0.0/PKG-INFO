@@ -1,0 +1,109 @@
+Metadata-Version: 1.2
+Name: drupal-hash-utility
+Version: 1.0.0
+Summary: A hashing utility built from Drupal7 specification.
+Home-page: https://gitlab.com/thaxoo/drupal_hash_utility
+Author: Elliott Neal
+Author-email: elliott.neal@ghostlyhaks.com
+License: MIT license
+Project-URL: Changelog, https://gitlab.com/thaxoo/drupal_hash_utility/blob/master/CHANGELOG.rst
+Project-URL: Issue Tracker, https://gitlab.com/thaxoo/drupal_hash_utility/issues
+Description: ========
+        Overview
+        ========
+        
+        
+        
+        A hashing utility built from Drupal7 specification.
+        
+        * Free software: MIT license
+        
+        Installation
+        ============
+        
+        ::
+        
+            pip install drupal-hash-utility
+        
+        Documentation
+        =============
+        
+        
+        To use the project:
+        
+        .. code-block:: python
+        
+            import drupal_hash_utility
+        
+        
+            drash = DrupalHashUtility()
+        
+            # Read the Help Docs
+            print(help(drash))
+        
+        
+            # Generate Drupal7 Hash
+            password = 'P@ssw0rd'
+            encoded = drash.encode(password)
+        
+            # Verify Password Against Hash
+            drash.verify(password, encoded)
+        
+            # Get Hash Summary
+            drash.summary(encoded)
+        
+        
+        Development
+        ===========
+        
+        To run the all tests run::
+        
+            tox
+        
+        Note, to combine the coverage data from all the tox environments run:
+        
+        .. list-table::
+            :widths: 10 90
+            :stub-columns: 1
+        
+            - - Windows
+              - ::
+        
+                    set PYTEST_ADDOPTS=--cov-append
+                    tox
+        
+            - - Other
+              - ::
+        
+                    PYTEST_ADDOPTS=--cov-append tox
+        
+        
+        Changelog
+        =========
+        
+        0.3.3 (2019-08-15)
+        ------------------
+        
+        * First release on PyPI.
+        
+        1.0.0 (2019-08-16)
+        ------------------
+        
+        * Added cli.
+        
+Keywords: drupal,hash,password
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6
