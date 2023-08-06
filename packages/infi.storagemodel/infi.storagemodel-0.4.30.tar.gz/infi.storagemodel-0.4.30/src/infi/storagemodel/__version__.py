@@ -1,0 +1,11 @@
+__version__ = "0.4.30"
+__git_commiter_name__ = "Arnon Yaari"
+__git_commiter_email__ = "arnony@infinidat.com"
+__git_branch__ = u'develop'
+__git_remote_tracking_branch__ = u'origin/develop'
+__git_remote_url__ = u'git@git.infinidat.com:host-opensource/infi.storagemodel.git'
+__git_head_hash__ = 'af0e2d8d998c42c6d98b7d05faa6fe802f360225'
+__git_head_subject__ = u'Finished Release v0.4.30'
+__git_head_message__ = u''
+__git_dirty_diff__ = u''
+__git_commit_date__ = '2019-08-05 18:07:22'
