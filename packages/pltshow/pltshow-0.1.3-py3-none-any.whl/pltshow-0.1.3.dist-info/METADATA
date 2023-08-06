@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: pltshow
+Version: 0.1.3
+Summary: client for pltshow
+Home-page: https://github.com/quick-sort/pltshow-sdk
+Author: quicksort
+Author-email: quicksort@outlook.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Dist: requests
+Requires-Dist: pandas
+
+client for pltshow to update dataset
+
+
