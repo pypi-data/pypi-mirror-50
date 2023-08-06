@@ -1,0 +1,3 @@
+[console_scripts]
+firotab = firefox_open_tabs.firefox_open_tabs:main
+

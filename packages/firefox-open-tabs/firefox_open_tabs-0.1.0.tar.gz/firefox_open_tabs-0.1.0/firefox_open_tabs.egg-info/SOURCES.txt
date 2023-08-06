@@ -1,0 +1,10 @@
+README.rst
+setup.py
+firefox_open_tabs/__init__.py
+firefox_open_tabs/firefox_open_tabs.py
+firefox_open_tabs.egg-info/PKG-INFO
+firefox_open_tabs.egg-info/SOURCES.txt
+firefox_open_tabs.egg-info/dependency_links.txt
+firefox_open_tabs.egg-info/entry_points.txt
+firefox_open_tabs.egg-info/requires.txt
+firefox_open_tabs.egg-info/top_level.txt

@@ -1,0 +1,7 @@
+lz4
+
+[dev]
+black
+setuptools
+wheel
+twine
