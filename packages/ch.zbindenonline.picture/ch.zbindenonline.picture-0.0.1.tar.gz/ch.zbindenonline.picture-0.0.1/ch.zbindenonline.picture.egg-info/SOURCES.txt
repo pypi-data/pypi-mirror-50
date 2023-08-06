@@ -1,0 +1,12 @@
+README.md
+setup.py
+ch/__init__.py
+ch.zbindenonline.picture.egg-info/PKG-INFO
+ch.zbindenonline.picture.egg-info/SOURCES.txt
+ch.zbindenonline.picture.egg-info/dependency_links.txt
+ch.zbindenonline.picture.egg-info/entry_points.txt
+ch.zbindenonline.picture.egg-info/requires.txt
+ch.zbindenonline.picture.egg-info/top_level.txt
+ch/zbindenonline/__init__.py
+ch/zbindenonline/picture/__init__.py
+ch/zbindenonline/picture/crop.py
