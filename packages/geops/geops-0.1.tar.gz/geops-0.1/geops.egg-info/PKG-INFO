@@ -1,0 +1,19 @@
+Metadata-Version: 1.2
+Name: geops
+Version: 0.1
+Summary: Python frontend for Gmsh scripting language.
+Home-page: UNKNOWN
+Author: Tokarev Artem
+Author-email: tokarev28.art@gmail.com
+License: MIT
+Description: UNKNOWN
+Keywords: mesh,gmsh,mesh generation,mathematics
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Science/Research
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Requires-Python: >=3
