@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: LibSerial6
+Version: 0.1
+Summary: Biblioteca LibSerial6 Exercicio SENAI 
+Home-page: https://github.com/flavioalsoares/LibSerial6
+Author: Flavio Alberto Lopes Soares
+Author-email: flavioalsoares@gmail.com
+License: MIT
+Download-URL: https://github.com/flavioalsoares/LibSerial6/archive/0.1.tar.gz
+Description: UNKNOWN
+Keywords: Serial,Senai,ComPort
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
