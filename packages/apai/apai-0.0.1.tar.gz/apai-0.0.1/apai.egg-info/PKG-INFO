@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: apai
+Version: 0.0.1
+Summary: ML & DL helper library
+Home-page: https://github.com/aupe/apai
+Author: Ausra Petrenaite
+Author-email: ausra.petrenaite@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/mokahaiku/toai
+Description: # AP AI
+        Helper library built on Tensorflow. Provides utility and helper functions for the machine and deep learning tasks.
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown

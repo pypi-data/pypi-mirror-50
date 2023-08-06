@@ -1,0 +1,10 @@
+README.md
+setup.cfg
+setup.py
+apai/__init__.py
+apai/imports.py
+apai.egg-info/PKG-INFO
+apai.egg-info/SOURCES.txt
+apai.egg-info/dependency_links.txt
+apai.egg-info/requires.txt
+apai.egg-info/top_level.txt
