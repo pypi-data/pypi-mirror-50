@@ -1,0 +1,8 @@
+Click
+boto3
+toml
+ssm-cache
+
+[testing]
+pytest
+moto
