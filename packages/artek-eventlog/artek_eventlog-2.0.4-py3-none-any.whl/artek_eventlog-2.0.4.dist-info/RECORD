@@ -1,0 +1,13 @@
+artek/__init__.py,sha256=LJ0QnOqqrO20yNOyQWhTTtc3gVQsGzM3sQzLPnmgAuo,82
+artek/eventlog/__init__.py,sha256=uQKVw8K82LkjLeAsGzdgbrsEWyVV_tA_UwEIJ_XZ5ds,98
+artek/eventlog/admin.py,sha256=D5YX0KL9GfzFGcKzQlK2IWr8bjLf3eJ7_NGhxZAtVhc,325
+artek/eventlog/mixins.py,sha256=7TUEoaKhwN2em2fQ7Tb4GQqgCekAWv4sZsKOJGqYwKQ,764
+artek/eventlog/models.py,sha256=M-8YCtZqGUSk8BKfYAjH5ZQNjfs0PPfN7kZqQBMc5wE,1630
+artek/eventlog/signals.py,sha256=Ziacqqkf4auh1MyGRZ9QH018SlTQ5SHvePF2yBP9KZY,87
+artek/eventlog/stats.py,sha256=GXhvEv-gUl5a0ERStEq49yenoEaP5s2VVj0xSlXkAwE,766
+artek/eventlog/tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+artek/eventlog/tests/tests.py,sha256=aCc58Kf8qYSU_0SCH1La69zSwUGs1gWjwnMssYBFZ7o,3384
+artek_eventlog-2.0.4.dist-info/METADATA,sha256=wApQQuLgb9J0z3Of13tKLQPTzBX_YuPzTdk-GUWTlMI,1135
+artek_eventlog-2.0.4.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+artek_eventlog-2.0.4.dist-info/top_level.txt,sha256=2-v3wUHfM2FiiqLeIjjSjPS77qGKe27MLI9XTI-J8pY,6
+artek_eventlog-2.0.4.dist-info/RECORD,,
