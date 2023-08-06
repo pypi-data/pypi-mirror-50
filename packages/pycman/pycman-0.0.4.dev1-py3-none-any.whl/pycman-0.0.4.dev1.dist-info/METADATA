@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: pycman
+Version: 0.0.4.dev1
+Summary: Python package manager
+Home-page: https://github.com/Singein/Pycman
+Author: Singein Zhang
+Author-email: singein@outlook.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: fire
+Requires-Dist: wheel
+
+== Pycman
+
+
+
