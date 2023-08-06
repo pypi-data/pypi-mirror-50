@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+CurvTimer/__init__.py
+CurvTimer/main.py
+CurvTimer.egg-info/PKG-INFO
+CurvTimer.egg-info/SOURCES.txt
+CurvTimer.egg-info/dependency_links.txt
+CurvTimer.egg-info/entry_points.txt
+CurvTimer.egg-info/not-zip-safe
+CurvTimer.egg-info/top_level.txt
