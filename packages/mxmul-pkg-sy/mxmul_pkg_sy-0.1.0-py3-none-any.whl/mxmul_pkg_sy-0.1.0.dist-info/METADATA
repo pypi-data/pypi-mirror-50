@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: mxmul-pkg-sy
+Version: 0.1.0
+Summary: An example for testing how to publish a Python package
+Home-page: https://github.com/pypa/sampleproject
+Author: sy
+Author-email: phy1818@126.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+#Markdown格式，自由编写，官方模板，使用，函数调用、效果及问题的说明
+# Example Package
+
+This is a simple example package. You can use
+[Github-flavored Markdown](http://guides.github.com/features/mastering-markdown)
+to write your content
+
+~~yahaha~~
+
