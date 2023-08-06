@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: anna-dashboard
+Version: 0.0.2
+Summary: anna dashboard
+Home-page: https://github.com/patrikpihlstrom/anna-dashboard
+Author: Patrik Pihlstrom
+Author-email: patrik.pihlstrom@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: django
+Requires-Dist: anna-client
+Requires-Dist: django-basicauth
+Requires-Dist: django-bootstrap-base-template
+Requires-Dist: octicons
+
+UNKNOWN
+
+
