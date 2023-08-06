@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<portlets>
+  <portlet
+      remove="True"
+      addview="collective.collectionfilter.portlets.CollectionFilter"
+      />
+  <portlet
+      remove="True"
+      addview="collective.collectionfilter.portlets.CollectionSearch"
+      />
+  <portlet
+      rempve="True"
+      addview="collective.collectionfilter.portlets.CollectionMaps"
+      />
+
+</portlets>
