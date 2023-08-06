@@ -1,0 +1,13 @@
+
+[ci]
+flake8
+pep257
+pylint
+tox
+
+[test]
+coverage<5
+pytest-cov
+pytest
+docutils
+pelican
