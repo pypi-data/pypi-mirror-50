@@ -1,0 +1,11 @@
+README.md
+setup.py
+aligi/__init__.py
+aligi/__version__.py
+aligi/core.py
+aligi/types.py
+aligi/wsgi.py
+aligi.egg-info/PKG-INFO
+aligi.egg-info/SOURCES.txt
+aligi.egg-info/dependency_links.txt
+aligi.egg-info/top_level.txt
