@@ -1,0 +1,64 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+smart_preprocess/__init__.py
+smart_preprocess/gui.py
+smart_preprocess/inout.py
+smart_preprocess/operations.py
+smart_preprocess/visualize.py
+smart_preprocess.egg-info/PKG-INFO
+smart_preprocess.egg-info/SOURCES.txt
+smart_preprocess.egg-info/dependency_links.txt
+smart_preprocess.egg-info/requires.txt
+smart_preprocess.egg-info/top_level.txt
+smart_preprocess/dmreader/__init__.py
+smart_preprocess/dmreader/_py2to3.py
+smart_preprocess/dmreader/ctraits.c
+smart_preprocess/dmreader/ctraits.cp35-win_amd64.pyd
+smart_preprocess/dmreader/digital_micrograph.py
+smart_preprocess/dmreader/exceptions.py
+smart_preprocess/dmreader/inout.py
+smart_preprocess/dmreader/operations.py
+smart_preprocess/dmreader/py2to3.h
+smart_preprocess/dmreader/tools.py
+smart_preprocess/dmreader/trait_base.py
+smart_preprocess/dmreader/utils.py
+smart_preprocess/dmreader/utils_readfile.py
+smart_preprocess/dmreader/visualize.py
+smart_preprocess/dmreader/__pycache__/_py2to3.cpython-35.pyc
+smart_preprocess/dmreader/__pycache__/_py2to3.cpython-36.pyc
+smart_preprocess/dmreader/__pycache__/digital_micrograph.cpython-35.pyc
+smart_preprocess/dmreader/__pycache__/digital_micrograph.cpython-36.pyc
+smart_preprocess/dmreader/__pycache__/exceptions.cpython-35.pyc
+smart_preprocess/dmreader/__pycache__/exceptions.cpython-36.pyc
+smart_preprocess/dmreader/__pycache__/tools.cpython-35.pyc
+smart_preprocess/dmreader/__pycache__/tools.cpython-36.pyc
+smart_preprocess/dmreader/__pycache__/trait_base.cpython-35.pyc
+smart_preprocess/dmreader/__pycache__/trait_base.cpython-36.pyc
+smart_preprocess/dmreader/__pycache__/utils.cpython-35.pyc
+smart_preprocess/dmreader/__pycache__/utils.cpython-36.pyc
+smart_preprocess/dmreader/__pycache__/utils_readfile.cpython-35.pyc
+smart_preprocess/dmreader/__pycache__/utils_readfile.cpython-36.pyc
+smart_preprocess/dmreader/etsconfig/__init__.py
+smart_preprocess/dmreader/etsconfig/api.py
+smart_preprocess/dmreader/etsconfig/etsconfig.py
+smart_preprocess/dmreader/etsconfig/__pycache__/__init__.cpython-35.pyc
+smart_preprocess/dmreader/etsconfig/__pycache__/__init__.cpython-36.pyc
+smart_preprocess/dmreader/etsconfig/__pycache__/api.cpython-35.pyc
+smart_preprocess/dmreader/etsconfig/__pycache__/api.cpython-36.pyc
+smart_preprocess/dmreader/etsconfig/__pycache__/etsconfig.cpython-35.pyc
+smart_preprocess/dmreader/etsconfig/__pycache__/etsconfig.cpython-36.pyc
+smart_preprocess/dmreader/etsconfig/tests/__init__.py
+smart_preprocess/dmreader/etsconfig/tests/test_etsconfig.py
+smart_preprocess/help/chambolle.txt
+smart_preprocess/help/contrast.txt
+smart_preprocess/help/downsample.txt
+smart_preprocess/help/gaussian blur.txt
+smart_preprocess/help/gaussian stack.txt
+smart_preprocess/help/median blur.txt
+smart_preprocess/help/median stack.txt
+smart_preprocess/help/remove outliers.txt
+smart_preprocess/help/slice.txt
+smart_preprocess/help/unsharp.txt
