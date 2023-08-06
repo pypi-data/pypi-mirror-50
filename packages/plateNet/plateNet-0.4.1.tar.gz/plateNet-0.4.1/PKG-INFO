@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: plateNet
+Version: 0.4.1
+Summary: plate detect with Yolov3
+Home-page: UNKNOWN
+Author: Hacı
+Author-email: karakus.haciveli@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
