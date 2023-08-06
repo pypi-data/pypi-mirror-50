@@ -1,0 +1,10 @@
+setup.py
+inspora_rasa/__init__.py
+inspora_rasa/fuzzy_synonym_matcher.py
+inspora_rasa/negations.py
+inspora_rasa/price.py
+inspora_rasa_utilities.egg-info/PKG-INFO
+inspora_rasa_utilities.egg-info/SOURCES.txt
+inspora_rasa_utilities.egg-info/dependency_links.txt
+inspora_rasa_utilities.egg-info/requires.txt
+inspora_rasa_utilities.egg-info/top_level.txt

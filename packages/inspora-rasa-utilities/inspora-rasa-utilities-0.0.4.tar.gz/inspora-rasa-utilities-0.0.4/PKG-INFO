@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: inspora-rasa-utilities
+Version: 0.0.4
+Summary: Some Rasa NLU components for making my life easier
+Home-page: UNKNOWN
+Author: Daniel Birnstiel
+Author-email: daniel@inspora.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
