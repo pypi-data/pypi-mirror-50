@@ -1,0 +1,11 @@
+Metadata-Version: 1.2
+Name: copyhere
+Version: 1.1.4
+Summary: Module for copy or unzip a file to cwd
+Home-page: https://github.com/an-dr/copyhere
+Author: Andrei Gramakov
+Author-email: mail@agramakov.me
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3
