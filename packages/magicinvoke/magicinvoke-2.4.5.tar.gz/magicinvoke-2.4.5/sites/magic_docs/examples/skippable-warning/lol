@@ -1,0 +1,81 @@
+INFO:magicinvoke:Done logging return value None for 'tasks.get_tool_output'() to /tmp/.minv/tasks.get_tool_output/56127125310910144247268518245224807371588369172342614881901176600372
+INFO:magicinvoke:Done logging return value None for 'tasks.get_tool_output'() to /tmp/.minv/tasks.get_tool_output/55477375590491226773676975271519804923700789269244228911117299141726
+INFO:magicinvoke:Done logging return value None for 'tasks.get_tool_output'() to /tmp/.minv/tasks.get_tool_output/47680795587384935427159654103609512316601367994241386892312079296778
+INFO:magicinvoke:Done logging return value None for 'tasks.unsafe_run_and_summarize'() to /tmp/.minv/tasks.unsafe_run_and_summarize/38857443782794668442445253964589660155725457384509722978306113512576
+INFO:magicinvoke:Done logging return value None for tasks.get_tool_output() to /tmp/.minv/tasks.get_tool_output/56127125310910144247268518245224807371588369172342614881901176600372. Path should be unique by combo of function name + arguments + hash of function's __code__.
+INFO:magicinvoke:Done logging return value None for tasks.get_tool_output() to /tmp/.minv/tasks.get_tool_output/55477375590491226773676975271519804923700789269244228911117299141726. Path should be unique by combo of function name + arguments + hash of function's __code__.
+INFO:magicinvoke:Done logging return value None for tasks.get_tool_output() to /tmp/.minv/tasks.get_tool_output/47680795587384935427159654103609512316601367994241386892312079296778. Path should be unique by combo of function name + arguments + hash of function's __code__.
+INFO:magicinvoke:Done logging return value None for tasks.unsafe_run_and_summarize() to /tmp/.minv/tasks.unsafe_run_and_summarize/38857443782794668442445253964589660155725457384509722978306113512576. Path should be unique by combo of function name + arguments + hash of function's __code__.
+INFO:magicinvoke:Done logging return value None for tasks.get_tool_output() to /tmp/.minv/tasks.get_tool_output/56127125310910144247268518245224807371588369172342614881901176600372. 
+INFO:magicinvoke:Done logging return value None for tasks.get_tool_output() to /tmp/.minv/tasks.get_tool_output/55477375590491226773676975271519804923700789269244228911117299141726. 
+INFO:magicinvoke:Done logging return value None for tasks.get_tool_output() to /tmp/.minv/tasks.get_tool_output/47680795587384935427159654103609512316601367994241386892312079296778. 
+INFO:magicinvoke:Done logging return value None for tasks.unsafe_run_and_summarize() to /tmp/.minv/tasks.unsafe_run_and_summarize/38857443782794668442445253964589660155725457384509722978306113512576. 
+INFO:magicinvoke:Done logging return value None for tasks.get_tool_output() to /tmp/.minv/tasks.get_tool_output/56127125310910144247268518245224807371588369172342614881901176600372. 
+INFO:magicinvoke:Done logging return value None for tasks.get_tool_output() to /tmp/.minv/tasks.get_tool_output/55477375590491226773676975271519804923700789269244228911117299141726. 
+INFO:magicinvoke:Done logging return value None for tasks.get_tool_output() to /tmp/.minv/tasks.get_tool_output/47680795587384935427159654103609512316601367994241386892312079296778. 
+INFO:magicinvoke:Done logging return value None for tasks.unsafe_run_and_summarize() to /tmp/.minv/tasks.unsafe_run_and_summarize/38857443782794668442445253964589660155725457384509722978306113512576. 
+ERROR:invoke:AttributeError while calling unsafe_run_and_summarize()
+ERROR:invoke:NameError while calling unsafe_run_and_summarize()
+ERROR:invoke:NameError while calling unsafe_run_and_summarize()
+WARNING:root:Received invalid path: True 
+for path-taking parameter 'output_file' of tasks.get_tool_output().
+Add a '_' to beginning of parameter output_file's name to avoid this type-check
+Error, but know that paths passed to _parameters won't have their timestamps
+checked against input path timestamps. This should work fine for functions
+with a simple input -> output dependency; each function stores its last-run
+time in a separate file that caches the return value.
+
+ERROR:invoke:TypeError while calling unsafe_run_and_summarize()
+WARNING:root:Received invalid path: True 
+for path-taking parameter 'output_file' of tasks.get_tool_output().Add a '_' to beginning of parameter output_file's name to avoid this type-check     Error, but know that paths passed to _parameters won't have their timestamps     checked against input path timestamps. This should work fine for functions     with a simple input -> output dependency; each function stores its last-run     time in a separate file that caches the return value.     
+ERROR:invoke:TypeError while calling unsafe_run_and_summarize()
+ERROR:root:Received invalid path: True 
+for path-taking parameter 'output_file' of tasks.get_tool_output().Add a '_' to beginning of parameter output_file's name to avoid this type-check     Error, but know that paths passed to _parameters won't have their timestamps     checked against input path timestamps. This should work fine for functions     with a simple input -> output dependency; each function stores its last-run     time in a separate file that caches the return value.     
+ERROR:invoke:TypeError while calling unsafe_run_and_summarize()
+ERROR:magicinvoke:Received invalid path: True 
+for path-taking parameter 'output_file' of tasks.get_tool_output().Add a '_' to beginning of parameter output_file's name to avoid this type-check     Error, but know that paths passed to _parameters won't have their timestamps     checked against input path timestamps. This should work fine for functions     with a simple input -> output dependency; each function stores its last-run     time in a separate file that caches the return value.     
+ERROR:invoke:TypeError while calling unsafe_run_and_summarize()
+ERROR:magicinvoke:Received invalid path: True 
+for path-taking parameter 'output_file' of tasks.get_tool_output().
+ Add a '_' to beginning of parameter output_file's name to avoid this type-check Error, but know that paths passed to _parameters won't have their timestamps checked against input path timestamps. This should work fine for functions with a simple input -> output dependency; each function stores its last-run time in a separate file that caches the return value. 
+ERROR:invoke:TypeError while calling unsafe_run_and_summarize()
+ERROR:invoke:TypeError while calling unsafe_run_and_summarize()
+ERROR:invoke:TypeError while calling unsafe_run_and_summarize()
+ERROR:invoke:TypeError while calling unsafe_run_and_summarize()
+Traceback (most recent call last):
+  File "/home/hayden/code/invokestuf/magicinvoke/invoke/tasks.py", line 168, in __call__
+    result = self.body(*args, **kwargs)
+TypeError: unsafe_run_and_summarize() got an unexpected keyword argument '_force_run'
+ERROR:invoke:TypeError while calling unsafe_run_and_summarize()
+Traceback (most recent call last):
+  File "/home/hayden/code/invokestuf/magicinvoke/invoke/tasks.py", line 168, in __call__
+    result = self.body(*args, **kwargs)
+  File "<decorator-gen-2>", line 2, in unsafe_run_and_summarize
+  File "/home/hayden/code/invokestuf/magicinvoke/magicinvoke/magicinvoke.py", line 754, in _skippable
+    ci.result = func(*args, **kwargs)
+  File "/home/hayden/code/invokestuf/magicinvoke/sites/magic_docs/examples/skippable-warning/tasks.py", line 23, in unsafe_run_and_summarize
+    get_tool_output(filename, filename)
+  File "<decorator-gen-1>", line 2, in get_tool_output
+  File "/home/hayden/code/invokestuf/magicinvoke/magicinvoke/magicinvoke.py", line 711, in _skippable
+    ci = CallInfo(func).bind(args, kwargs)
+  File "/home/hayden/code/invokestuf/magicinvoke/magicinvoke/magicinvoke.py", line 424, in bind
+    self.output_paths = self._coerce_paths(self.output_params, self.flags)
+  File "/home/hayden/code/invokestuf/magicinvoke/magicinvoke/magicinvoke.py", line 482, in _coerce_paths
+    raise type(e)(msg)
+TypeError: Received invalid path: True 
+for path-taking parameter 'output_file' of tasks.get_tool_output().
+ Add a '_' to beginning of parameter output_file's name to avoid this type-check Error, but know that paths passed to _parameters won't have their timestamps checked against input path timestamps. This should work fine for functions with a simple input -> output dependency; each function stores its last-run time in a separate file that caches the return value. 
+INFO:magicinvoke:Done logging return value None for tasks.get_tool_output() to /tmp/.minv/tasks.get_tool_output/53853944480086040139381108965112287095665261413140355642338592534710. 
+INFO:magicinvoke:Done logging return value None for tasks.get_tool_output() to /tmp/.minv/tasks.get_tool_output/53204194759667122665789565991407284647777681510041969671554715076064. 
+INFO:magicinvoke:Done logging return value None for tasks.get_tool_output() to /tmp/.minv/tasks.get_tool_output/45407614756560831319272244823496992040678260235039127652749495231116. 
+INFO:magicinvoke:Done logging return value None for tasks.unsafe_run_and_summarize() to /tmp/.minv/tasks.unsafe_run_and_summarize/51980381422498991316994777387334047850688891483835468908477803340249. 
+INFO:magicinvoke:Loading return value for 'tasks.unsafe_run_and_summarize' from PosixPath('/tmp/.minv/tasks.unsafe_run_and_summarize/38857443782794668442445253964589660155725457384509722978306113512576')
+INFO:magicinvoke:Done logging return value None for tasks.get_tool_output() to /tmp/.minv/tasks.get_tool_output/56127125310910144247268518245224807371588369172342614881901176600372. 
+INFO:magicinvoke:Done logging return value None for tasks.get_tool_output() to /tmp/.minv/tasks.get_tool_output/55477375590491226773676975271519804923700789269244228911117299141726. 
+INFO:magicinvoke:Done logging return value None for tasks.get_tool_output() to /tmp/.minv/tasks.get_tool_output/47680795587384935427159654103609512316601367994241386892312079296778. 
+INFO:magicinvoke:Done logging return value None for tasks.unsafe_run_and_summarize() to /tmp/.minv/tasks.unsafe_run_and_summarize/46528321930547970955545700349501123472102342878807124266452526775678. 
+INFO:magicinvoke:Done logging return value None for tasks.get_tool_output() to /tmp/.minv/tasks.get_tool_output/56127125310910144247268518245224807371588369172342614881901176600372. 
+INFO:magicinvoke:Done logging return value None for tasks.get_tool_output() to /tmp/.minv/tasks.get_tool_output/55477375590491226773676975271519804923700789269244228911117299141726. 
+INFO:magicinvoke:Done logging return value None for tasks.get_tool_output() to /tmp/.minv/tasks.get_tool_output/47680795587384935427159654103609512316601367994241386892312079296778. 
+INFO:magicinvoke:Done logging return value None for tasks.unsafe_run_and_summarize() to /tmp/.minv/tasks.unsafe_run_and_summarize/38476105121137728567945953445471480577068681494150016836124507892969. 
+INFO:magicinvoke:Loading return value for 'tasks.unsafe_run_and_summarize' from PosixPath('/tmp/.minv/tasks.unsafe_run_and_summarize/38476105121137728567945953445471480577068681494150016836124507892969')
