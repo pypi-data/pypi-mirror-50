@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: couch
+Version: 1.0.1
+Summary: Graphical UI for shuffling names in a game of Four on the Couch
+Home-page: https://gitlab.com/ralphembree/couch
+Author: Ralph Embree
+Author-email: ralph.embree@brominator.org
+License: UNKNOWN
+Description-Content-Type: UNKNOWN
+Description: UNKNOWN
+Keywords: four couch random names
+Platform: UNKNOWN
+Classifier: Environment :: X11 Applications :: GTK
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Games/Entertainment :: Turn Based Strategy
