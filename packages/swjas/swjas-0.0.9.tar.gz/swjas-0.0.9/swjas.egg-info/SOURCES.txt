@@ -1,0 +1,16 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.cfg
+setup.py
+swjas/__init__.py
+swjas/clean.py
+swjas/client.py
+swjas/core.py
+swjas/encoding.py
+swjas/exceptions.py
+swjas.egg-info/PKG-INFO
+swjas.egg-info/SOURCES.txt
+swjas.egg-info/dependency_links.txt
+swjas.egg-info/requires.txt
+swjas.egg-info/top_level.txt
