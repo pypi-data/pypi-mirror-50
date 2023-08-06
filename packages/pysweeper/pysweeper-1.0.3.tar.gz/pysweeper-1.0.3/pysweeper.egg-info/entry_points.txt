@@ -1,0 +1,3 @@
+[console_scripts]
+pysweeper = pysweeper.__main__:main
+

@@ -1,0 +1,31 @@
+Metadata-Version: 1.2
+Name: pysweeper
+Version: 1.0.3
+Summary: Your favorite mine sweeping game, console style.
+Home-page: https://github.com/cpcloud/pysweeper
+Author: Phillip Cloud
+Author-email: cpcloud@gmail.com
+Maintainer: Phillip Cloud
+Maintainer-email: cpcloud@gmail.com
+License: MIT
+Description: # PySweeper
+        
+        Your favorite sweeping game, written in Python.
+        
+        ## Installation
+        
+        ```shell
+        $ pip install pysweeper
+        ```
+        
+        ## Usage
+        ```shell
+        $ pysweeper
+        ```
+        
+        ## TODO
+        
+        * Use an actual graph
+        
+Platform: UNKNOWN
+Requires-Python: >=3.7
