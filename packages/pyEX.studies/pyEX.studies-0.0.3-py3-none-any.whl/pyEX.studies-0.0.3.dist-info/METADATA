@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: pyEX.studies
+Version: 0.0.3
+Summary: Rest API to IEX
+Home-page: https://github.com/timkpaine/pyEX-studies
+Author: Tim Paine
+Author-email: timothy.k.paine@gmail.com
+License: Apache 2.0
+Download-URL: https://github.com/timkpaine/pyEX-studies/archive/v0.0.3.tar.gz
+Keywords: finance data
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: pandas (>=0.22.0)
+Requires-Dist: pyEX (>=0.1.10)
+Requires-Dist: TA-Lib (>=0.4.17)
+Requires-Dist: temporal-cache (>=0.0.3)
+Provides-Extra: dev
+Requires-Dist: pandas (>=0.22.0) ; extra == 'dev'
+Requires-Dist: pyEX (>=0.1.10) ; extra == 'dev'
+Requires-Dist: TA-Lib (>=0.4.17) ; extra == 'dev'
+Requires-Dist: temporal-cache (>=0.0.3) ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Requires-Dist: pylint ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+
+# pyEX-studies
+Predefined financial metrics built on pyEX/IEX
+
+[![Build Status](https://travis-ci.org/timkpaine/pyEX-studies.svg?branch=master)](https://travis-ci.org/timkpaine/pyEX-studies)
+[![Coverage](https://codecov.io/gh/timkpaine/pyEX-studies/branch/master/graph/badge.svg)](https://codecov.io/gh/timkpaine/pyEX-studies)
+[![BCH compliance](https://bettercodehub.com/edge/badge/timkpaine/pyEX-studies?branch=master)](https://bettercodehub.com/)
+[![License](https://img.shields.io/github/license/timkpaine/pyEX-studies.svg)](https://pypi.python.org/pypi/pyEX-studies/)
+[![PyPI](https://img.shields.io/pypi/v/pyEX-studies.svg)](https://pypi.python.org/pypi/pyEX-studies/)
+[![Docs](https://img.shields.io/readthedocs/pyEX-studies.svg)](https://pyEX-studies.readthedocs.io)
+
+
+### Attribution
+If you redistribute our API data:
+
+- Cite IEX using the following text and link: “Data provided for free by [IEX](https://iextrading.com/developer).”
+- Provide a link to https://iextrading.com/api-exhibit-a in your terms of service.
+- Additionally, if you display our TOPS price data, cite “IEX Real-Time Price” near the price.
+
+### Getting Started
+
+- [Read The Docs!](https://pyEX-studies.readthedocs.io)
+- [Demo Notebook](https://github.com/timkpaine/pyEX-studies/blob/master/examples.ipynb)
+
+
