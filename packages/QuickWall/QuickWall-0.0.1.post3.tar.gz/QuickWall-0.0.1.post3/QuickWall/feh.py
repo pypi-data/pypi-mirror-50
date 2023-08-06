@@ -1,0 +1,43 @@
+"""Functions related to usign feh as wallpaper setter."""
+
+import subprocess
+from pathlib import Path
+
+from QuickWall.logger import Logger
+
+# Declare the logger
+logger = Logger("feh")
+
+
+class feh:
+
+    def __init__(self):
+        self.feh_config_path = Path('~/.fehbg').expanduser()
+        self.current = self._find_current()
+
+    def _find_current(self):
+        """
+        Extract the current wall path.
+        """
+        return open(self.feh_config_path).read().split(' ')[4]
+
+    def restore(self):
+        """
+        Restore the wallpaper
+        """
+        command = "feh --bg-fill {}".format(self.current)
+        subprocess.Popen(command.split(), stdout=subprocess.PIPE)
+
+    def set(self, file_path):
+        """
+        Set the wallpaper temporarily.
+        """
+        command = "feh --bg-fill {}".format(file_path)
+        p = subprocess.Popen(command.split(' '), stdout=subprocess.PIPE)
+        ret, err = p.communicate()
+
+    def set_perm(self, file_path):
+        """
+        Set the wallpaper permanently.
+        """
+        self.set(file_path)
