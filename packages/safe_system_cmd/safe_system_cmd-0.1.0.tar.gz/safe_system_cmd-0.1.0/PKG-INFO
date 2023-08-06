@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: safe_system_cmd
+Version: 0.1.0
+Summary: My short description for my project.
+Home-page: https://github.com/me/myproject
+Author: Awesome Soul
+Author-email: me@example.com
+License: MIT
+Description: 
+        safe system cmd
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Description-Content-Type: text/markdown
