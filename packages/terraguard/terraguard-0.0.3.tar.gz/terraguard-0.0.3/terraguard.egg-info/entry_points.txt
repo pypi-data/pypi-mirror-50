@@ -1,0 +1,3 @@
+[console_scripts]
+terraguard = terraguard.terraguard:main
+

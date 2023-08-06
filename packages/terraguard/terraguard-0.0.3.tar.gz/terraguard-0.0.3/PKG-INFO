@@ -1,0 +1,30 @@
+Metadata-Version: 1.1
+Name: terraguard
+Version: 0.0.3
+Summary: Safe guard your Terraformed Environment with simple config driven rulesets.
+Home-page: https://github.com/jamian/terraguard
+Author: Jamie West
+Author-email: jamieianwest@hotmail.com
+License: BSD
+Description: Safe guard your Terraformed Environment with simple config driven rulesets.
+Keywords: terraform python policyenforcement testing qa operations iac
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Testing
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Systems Administration
+Classifier: Topic :: Software Development :: Quality Assurance
