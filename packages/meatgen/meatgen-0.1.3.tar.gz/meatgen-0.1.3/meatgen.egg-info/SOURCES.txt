@@ -1,0 +1,11 @@
+README.md
+setup.py
+meatgen/__init__.py
+meatgen/cli.py
+meatgen/generate.py
+meatgen.egg-info/PKG-INFO
+meatgen.egg-info/SOURCES.txt
+meatgen.egg-info/dependency_links.txt
+meatgen.egg-info/entry_points.txt
+meatgen.egg-info/not-zip-safe
+meatgen.egg-info/top_level.txt
