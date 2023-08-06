@@ -1,0 +1,3 @@
+[console_scripts]
+neu = neulang.main:run
+
