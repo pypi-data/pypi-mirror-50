@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: pytest-reportinfra
+Version: 0.1
+Summary: Pytest plugin for reportinfra
+Home-page: https://github.com/liske/python-pytest-reportinfra
+Author: Thomas Liske
+Author-email: thomas@fiasko-nw.net
+License: GPLv3+
+Download-URL: https://github.com/liske/python-pytest-reportinfra/archive/0.1.tar.gz
+Description: # Pytest plugin for reportinfra
+        
+        This [pytest](https://pytest.org/) plugin can be used to collect the results of [testinfra](https://github.com/philpep/testinfra) and send them to *reportinfra*.
+        
+Keywords: pytest,py.test,reportinfra
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Plugins
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Pytest
+Description-Content-Type: text/markdown

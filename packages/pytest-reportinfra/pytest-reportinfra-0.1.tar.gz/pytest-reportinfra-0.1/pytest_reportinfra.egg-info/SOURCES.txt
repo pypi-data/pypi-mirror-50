@@ -1,0 +1,11 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+pytest-reportinfra/__init__.py
+pytest_reportinfra.egg-info/PKG-INFO
+pytest_reportinfra.egg-info/SOURCES.txt
+pytest_reportinfra.egg-info/dependency_links.txt
+pytest_reportinfra.egg-info/requires.txt
+pytest_reportinfra.egg-info/top_level.txt
