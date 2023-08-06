@@ -1,0 +1,38 @@
+Metadata-Version: 1.1
+Name: otzyvru_com
+Version: 0.1.8
+Summary: Scrabb reviews
+Home-page: https://github.com/NMelis/otzyvru_com
+Author: NMelis
+Author-email: melis.zhoroev@gmail.com
+License: MIT license
+Description: 
+        
+        =======
+        History
+        =======
+        
+        0.1.6 (2019-08-09)
+        ------------------
+        
+        * get_dict method for reviews and rating
+        
+        
+        0.1.0 (2019-07-16)
+        ------------------
+        
+        * First release on PyPI.
+        
+Keywords: otzyvru_com
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
