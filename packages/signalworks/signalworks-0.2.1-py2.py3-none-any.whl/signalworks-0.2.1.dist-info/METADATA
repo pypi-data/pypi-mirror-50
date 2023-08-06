@@ -1,0 +1,139 @@
+Metadata-Version: 2.1
+Name: signalworks
+Version: 0.2.1
+Summary: Library to handle signal data and perform signal processing computations
+Home-page: https://github.com/lxkain/signalworks
+Author: Alex Kain
+Author-email: lxkain@gmail.com
+License: MIT license
+Keywords: signalworks
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: numba
+Provides-Extra: dev
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-runner ; extra == 'dev'
+Requires-Dist: pytest-benchmark ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Requires-Dist: pytest-xdist ; extra == 'dev'
+Requires-Dist: coverage ; extra == 'dev'
+Requires-Dist: tox ; extra == 'dev'
+Requires-Dist: tox-conda ; extra == 'dev'
+Requires-Dist: pre-commit ; extra == 'dev'
+Requires-Dist: mypy ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+Requires-Dist: flake8-bugbear ; extra == 'dev'
+Requires-Dist: flake8-comprehensions ; extra == 'dev'
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: isort ; extra == 'dev'
+Requires-Dist: Sphinx ; extra == 'dev'
+Requires-Dist: watchdog ; extra == 'dev'
+Requires-Dist: pyedflib ; extra == 'dev'
+Requires-Dist: openxdf ; extra == 'dev'
+Requires-Dist: soundfile ; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: Sphinx ; extra == 'docs'
+Requires-Dist: watchdog ; extra == 'docs'
+Provides-Extra: extended_audio
+Requires-Dist: soundfile ; extra == 'extended_audio'
+Provides-Extra: full
+Requires-Dist: p ; extra == 'full'
+Requires-Dist: y ; extra == 'full'
+Requires-Dist: e ; extra == 'full'
+Requires-Dist: d ; extra == 'full'
+Requires-Dist: f ; extra == 'full'
+Requires-Dist: l ; extra == 'full'
+Requires-Dist: i ; extra == 'full'
+Requires-Dist: b ; extra == 'full'
+Requires-Dist: o ; extra == 'full'
+Requires-Dist: n ; extra == 'full'
+Requires-Dist: x ; extra == 'full'
+Requires-Dist: s ; extra == 'full'
+Requires-Dist: u ; extra == 'full'
+Provides-Extra: label
+Requires-Dist: pyedflib ; extra == 'label'
+Requires-Dist: openxdf ; extra == 'label'
+Provides-Extra: lint
+Requires-Dist: mypy ; extra == 'lint'
+Requires-Dist: flake8 ; extra == 'lint'
+Requires-Dist: flake8-bugbear ; extra == 'lint'
+Requires-Dist: flake8-comprehensions ; extra == 'lint'
+Provides-Extra: style
+Requires-Dist: black ; extra == 'style'
+Requires-Dist: isort ; extra == 'style'
+Provides-Extra: test
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-runner ; extra == 'test'
+Requires-Dist: pytest-benchmark ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+Requires-Dist: pytest-xdist ; extra == 'test'
+Requires-Dist: coverage ; extra == 'test'
+Requires-Dist: tox ; extra == 'test'
+Requires-Dist: tox-conda ; extra == 'test'
+Requires-Dist: pre-commit ; extra == 'test'
+
+===========
+signalworks
+===========
+
+
+.. image:: https://img.shields.io/pypi/v/signalworks.svg
+        :target: https://pypi.python.org/pypi/signalworks
+
+.. image:: https://img.shields.io/travis/lxkain/signalworks.svg
+        :target: https://travis-ci.org/lxkain/signalworks
+
+.. image:: https://readthedocs.org/projects/signalworks/badge/?version=latest
+        :target: https://signalworks.readthedocs.io/en/latest/?badge=latest
+        :alt: Documentation Status
+
+
+.. image:: https://pyup.io/repos/github/lxkain/signalworks/shield.svg
+     :target: https://pyup.io/repos/github/lxkain/signalworks/
+     :alt: Updates
+
+
+
+Library to handle signal data and perform signal processing computations
+
+
+* Free software: MIT license
+* Documentation: https://signalworks.readthedocs.io.
+
+
+Installation
+------------
+
+pip install signalworks
+
+Features
+--------
+
+* TODO
+
+Credits
+-------
+
+This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+
+
+=======
+History
+=======
+
+0.1.0 (2018-07-27)
+------------------
+
+* First release on PyPI.
+
+
