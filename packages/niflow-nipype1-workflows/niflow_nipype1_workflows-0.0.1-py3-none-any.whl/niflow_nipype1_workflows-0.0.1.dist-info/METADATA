@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: niflow-nipype1-workflows
+Version: 0.0.1
+Summary: niflow-nipype1-workflows workflow package
+Home-page: https://github.com/niflows/niflow-nipype1-workflows
+Author: Christopher J. Markiewicz
+Author-email: markiewicz@stanford.edu
+License: Apache License, 2.0
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering
+Requires-Dist: nipype
+Requires-Dist: Click
+
+UNKNOWN
+
+
