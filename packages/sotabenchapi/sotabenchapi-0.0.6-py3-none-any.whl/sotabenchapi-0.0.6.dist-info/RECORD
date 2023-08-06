@@ -1,0 +1,16 @@
+sotabenchapi/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+sotabenchapi/__main__.py,sha256=xEjiM3RnDq_IQW7x3WWS5k6VWk5sud6bsKEsI8o18nk,77
+sotabenchapi/config.py,sha256=TFQY7pCTS1Mk4S5J9FE7F0AJMZc3OI7_S5PME6mJX0s,2267
+sotabenchapi/consts.py,sha256=fZx1vXFVmzRRTYrTNNHMWlp5mjPl7-c1AvngJf2EJ7M,106
+sotabenchapi/version.py,sha256=0K8zO-EvlcZmngFL09a-2zZJvMKsF6uClwvtFO02C9E,474
+sotabenchapi/commands/__init__.py,sha256=YIWMFtuliAboB3czbo2PVEjcgxOWrfAQ3x_gJTlH1vU,116
+sotabenchapi/commands/check.py,sha256=bq9ARBgORqDisqIhJhXtziP_fXUxFj0LTEyEOYfVlZQ,1189
+sotabenchapi/commands/cli.py,sha256=3FqeLoX_TH1-B8ymKPK4TMgi-PdsSkC_S1oEHqXOOJI,646
+sotabenchapi/core/__init__.py,sha256=eBreTCHmyuvxhDY7W2tXu4W0RnZewkUZiuT1-7T8z5I,85
+sotabenchapi/core/results.py,sha256=Nsx4EN47amqxjgiI2iGkizHUFU5T0lwSJyU0Gec88bQ,4714
+sotabenchapi-0.0.6.dist-info/LICENSE,sha256=xx0jnfkXJvxRnG63LTGOxlggYnIysveWIZ6H3PNdCrQ,11357
+sotabenchapi-0.0.6.dist-info/METADATA,sha256=W_eTqkR8ueU7KU5fR5gWa0Ul0d2iejOcTZoaC1oeXxM,798
+sotabenchapi-0.0.6.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+sotabenchapi-0.0.6.dist-info/entry_points.txt,sha256=imhbwRB66KeJAA94_i2miRjUJ5qbRp--OI0rnuqyQlI,68
+sotabenchapi-0.0.6.dist-info/top_level.txt,sha256=-4gOU8HfCcs6sqF6_LG3at6w6lnp1hBGwVTT95vsfoU,13
+sotabenchapi-0.0.6.dist-info/RECORD,,
