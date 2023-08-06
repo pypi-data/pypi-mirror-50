@@ -1,0 +1,3 @@
+[console_scripts]
+gumo-dev-server = gumo.dev_server:gumo_dev_server
+
