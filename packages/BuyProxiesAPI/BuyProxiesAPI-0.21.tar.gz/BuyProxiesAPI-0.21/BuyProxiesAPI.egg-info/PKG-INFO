@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: BuyProxiesAPI
+Version: 0.21
+Summary: BuyProxies.org simple API Wrapper
+Home-page: https://github.com/Druidmaciek/BuyProxies.org-API-Wrapper
+Author: Maciej Janowski
+Author-email: maciekjanowski@icloud.com
+License: UNKNOWN
+Download-URL: https://github.com/Druidmaciek/BuyProxies.org-API-Wrapper/archive/0.21.tar.gz
+Project-URL: Bug Reports, https://github.com/Druidmaciek/BuyProxies.org-API-Wrapper/issues
+Project-URL: Funding, https://paypal.me/druidmaciek
+Project-URL: Source, https://github.com/Druidmaciek/BuyProxies.org-API-Wrapper
+Description: This is a wrapper package for Buyproxies.org API.
+        You can retrive your account's proxies in following formats: 
+          - String
+          - Python List
+          - Json
+          
+         ### Installation
+        ```sh
+        $ pip install BuyProxiesAPI
+        ```
+        
+        ### Usage
+        ```python
+        from buyproxies_api import BuyProxiesAPI
+        
+        # buyproxies.org API KEY
+        API_KEY = '021b5584b0c5c4735a9a157169d8c030'
+        
+        # Proxy Service ID
+        service_id = 120810
+        
+        # Initialize the API
+        proxy_api = BuyProxiesAPI(API_KEY)
+        
+        # Retrieve proxies as string
+        proxies_str = proxy_api.get_proxies(service_id, return_as='str')
+        
+        # Retrieve proxies as Python list
+        proxies_list = proxy_api.get_proxies(service_id, return_as='list')
+        
+        # Retrieve proxies as JSON
+        proxies_json = proxy_api.get_proxies(service_id, return_as='json')
+        ```
+Keywords: web proxies development scraping buyproxies.org
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
