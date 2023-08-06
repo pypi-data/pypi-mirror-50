@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: sqlsorcery
+Version: 0.1
+Summary: Dead simple wrapper for pandas and sqlalchemy
+Home-page: http://github.com/dchess/sqlsorcery
+Author: dchess
+Author-email: dc.hess@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: pandas
+Requires-Dist: sqlalchemy
+Requires-Dist: pyodbc
+
+UNKNOWN
+
+
