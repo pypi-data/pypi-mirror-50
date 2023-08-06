@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: MountainProjectPublicAPI
+Version: 0.0.11
+Summary: Python Wrapper for Mountain Project public data API
+Home-page: https://github.com/jacktlange/MountainProject-Python-API
+Author: Jack Lange
+Author-email: jacktlange@gmail.com
+License: UNKNOWN
+Description: This package is a wrapper for the Mountain Project public data API: https://www.mountainproject.com/data
+        
+        Required packages: json, requests
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
