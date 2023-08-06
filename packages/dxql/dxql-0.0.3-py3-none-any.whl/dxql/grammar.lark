@@ -1,0 +1,49 @@
+start: cmd (" | " cmd)*
+
+?cmd: search_cmd
+    | fields_cmd
+    | join_cmd
+    | pp_cmd
+
+search_cmd: "search" (" " expr)*
+
+?expr: disjunction_expr
+
+?disjunction_expr: disjunction_expr " or " not_expr
+                 | not_expr
+
+?not_expr: "not " comparison_expr -> not_expr
+         | comparison_expr
+
+?comparison_expr: string operator string
+
+operator: "="    -> eq
+        | "!="   -> ne
+        | "<"    -> lt
+        | "<="   -> le
+        | ">"    -> gt
+        | ">="   -> ge
+
+fields_cmd: "fields " string (_EXPR_SEPERATOR string)*
+
+join_cmd: "join" (" " args)? " " string (" " join_where_clause)?
+
+join_type: string
+
+join_where_clause: "where " expr (_EXPR_SEPERATOR expr)*
+
+pp_cmd: "prettyprint format=" pp_format
+
+pp_format: "json"   -> json
+         | "table"  -> table
+
+args: arg (" " arg)*
+
+arg: string "=" string
+
+string: /[\w\.\*]+/
+      | ESCAPED_STRING
+
+_EXPR_SEPERATOR: ("," " "*) | (" "+)
+
+%import common.ESCAPED_STRING
