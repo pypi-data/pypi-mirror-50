@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: typeidea-godlike666
+Version: 0.1
+Summary: Blog System base on Django
+Home-page: https://www.godlike666.com
+Author: godlike
+Author-email: 568726669@qq.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: django (~=1.11)
+Provides-Extra: ipython
+Requires-Dist: ipython (==7.4.0) ; extra == 'ipython'
+
+UNKNOWN
+
+
