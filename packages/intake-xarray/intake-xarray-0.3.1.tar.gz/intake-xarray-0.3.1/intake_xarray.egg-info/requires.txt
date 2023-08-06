@@ -1,0 +1,5 @@
+intake>=0.5.2
+xarray>=0.12.0
+zarr
+dask>=2.2
+netcdf4
