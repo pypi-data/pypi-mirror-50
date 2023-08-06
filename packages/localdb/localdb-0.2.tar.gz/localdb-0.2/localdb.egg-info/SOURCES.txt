@@ -1,0 +1,9 @@
+setup.py
+localdb/MySqlite.py
+localdb/SqliteInner.py
+localdb/SqliteSql.py
+localdb/__init__.py
+localdb.egg-info/PKG-INFO
+localdb.egg-info/SOURCES.txt
+localdb.egg-info/dependency_links.txt
+localdb.egg-info/top_level.txt
