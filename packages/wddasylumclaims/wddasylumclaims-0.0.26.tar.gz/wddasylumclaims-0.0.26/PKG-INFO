@@ -1,0 +1,49 @@
+Metadata-Version: 1.1
+Name: wddasylumclaims
+Version: 0.0.26
+Summary: ('Asylum Seekers Claims scrapping of data', 'from web and analysis of outcomes')
+Home-page: https://github.com/benknight135/wdd-asylum-claims
+Author: Ben Knight
+Author-email: benknight135@gmail.com
+License: License :: OSI Approved :: GPL3
+Description: # Asulum Claims python package
+        
+        ## Required modules
+        
+        - bs4
+        - requests
+        - pandas
+        - feather-format
+        - numpy
+        - argparse
+        - pypiwin32
+        - regex
+        - pyodbc
+        
+        Install via pip
+        
+        ```bash
+        python -m pip wddasylumclaims
+        ```
+        
+        This will download all the required modules and install wddasylumclaims
+        
+        ## Run
+        
+        Run script using:
+        
+        ```bash
+        python -m wddasylumclaims [optional arguments]
+        ```
+        
+        For help with optional arguments:
+        
+        ```bash
+        python -m wddasylumclaims -h
+        ```
+        
+Keywords: wdd asylum seekers claims webscrape wddasylumclaims
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: MIT License
