@@ -1,0 +1,47 @@
+from distutils.core import setup, Extension
+import os
+import sys
+
+version = os.environ.get('PYDINEMIC_VERSION')
+boost_lib = None
+if os.path.exists('/usr/lib/x86_64-linux-gnu/libboost_python3.so'):
+    boost_lib = 'boost_python3'
+elif os.path.exists('/usr/lib/x86_64-linux-gnu/libboost_python37.so'):
+    boost_lib = 'boost_python37'
+elif os.path.exists('/usr/lib/x86_64-linux-gnu/libboost_python-py37.so'):
+    boost_lib = 'boost_python-py37'
+elif os.path.exists('/usr/lib/x86_64-linux-gnu/libboost_python3-py37.so'):
+    boost_lib = 'boost_python3-py37'
+elif os.path.exists('/usr/lib/x86_64-linux-gnu/libboost_python-py35.so'):
+    boost_lib = 'boost_python-py35'
+elif os.path.exists('/usr/lib/x86_64-linux-gnu/libboost_python-py35.so'):
+    boost_lib = 'boost_python-py35'
+else:
+    print('Failed to find boost::python libraries. Check in your system')
+    sys.exit(1)
+
+pydinemic = Extension('pydinemic',
+                      sources=['src/pydinemic/module.cpp',
+                               'src/pydinemic/pyaction.cpp',
+                               'src/pydinemic/pydfield.cpp',
+                               'src/pydinemic/pydlist.cpp',
+                               'src/pydinemic/pydmodel.cpp'],
+                      include_dirs=['/usr/include', 'src/pydinemic'],
+                      library_dirs=['/usr/lib/x86_64-linux-gnu/'],
+                      runtime_library_dirs=['/usr/lib/x86_64-linux-gnu/'],
+                      libraries=[boost_lib, 'dinemic'])
+
+
+setup(name='pydinemic',
+      version='19.08.3',
+      author='cloudover.io ltd.',
+      description='Dinemic framework for python',
+      package_dir={'': 'src'},
+      packages=['pkg'],
+      headers=['src/pydinemic/module.h',
+               'src/pydinemic/pyaction.h',
+               'src/pydinemic/pydfield.h',
+               'src/pydinemic/pydlist.h',
+               'src/pydinemic/pydmodel.h',
+               'src/pydinemic/pyaction.h'],
+      ext_modules=[pydinemic])
