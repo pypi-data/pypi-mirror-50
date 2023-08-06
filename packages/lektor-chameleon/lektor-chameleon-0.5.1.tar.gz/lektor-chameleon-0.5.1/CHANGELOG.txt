@@ -1,0 +1,20 @@
+0.5.1 (2019-08-11)
+------------------
+
+- Fix preliminary support for flowblock templates.
+
+0.5 (2019-08-04)
+----------------
+
+- Require explicit enabling of plugin.
+
+0.4 (2019-08-02)
+----------------
+
+- Correctly track template dependencies during builds.
+- Switch to BSD license.
+
+0.1 (2018-10-28)
+----------------
+
+- Initial release.
