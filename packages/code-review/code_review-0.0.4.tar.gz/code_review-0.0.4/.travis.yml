@@ -1,0 +1,24 @@
+language: python
+python:
+    - 3.6
+install:
+- pip install tox-travis
+- pip install codecov
+script:
+ - tox -v -e py
+ - codecov
+after_success:
+  - test $TRAVIS_BRANCH = "master" && test $TRAVIS_PULL_REQUEST = "false" && git config --global user.email "builds@travis-ci.com" && git config --global user.name "Travis CI" && export GIT_TAG=$(curl -H "Authorization:token ${GIT_TOKEN}" -s https://api.github.com/repos/sagersmith8/code_review/releases/latest | python -c 'import json,sys;tag=json.load(sys.stdin)["tag_name"];i=tag.rfind(".");v=int(tag[i+1:]) + 1;print(tag[:i+1] + str(v))') && git tag $GIT_TAG -a -m "Tag auto generated on merge" && git remote add auth https://${GIT_TOKEN}@github.com/sagersmith8/code_review.git && git push auth $GIT_TAG
+deploy:
+  - provider: pypi
+    user: sagersmith8
+    password: $PYPI_PW
+    distributions: sdist bdist_wheel
+    on:
+      tags: true
+      python: 3.6
+  - provider: releases
+    api_key: $GIT_TOKEN
+    skip_cleanup: true
+    on:
+      tags: true

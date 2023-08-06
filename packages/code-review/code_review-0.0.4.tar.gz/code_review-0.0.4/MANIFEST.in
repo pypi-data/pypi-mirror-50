@@ -1,0 +1,11 @@
+include *.lock
+include *.rst
+include *.yml
+include .coveragerc
+include LICENSE
+include Pipfile
+include tox.ini
+include .editorconfig
+recursive-include src *.py
+recursive-include tests *.py
+MANIFEST.in

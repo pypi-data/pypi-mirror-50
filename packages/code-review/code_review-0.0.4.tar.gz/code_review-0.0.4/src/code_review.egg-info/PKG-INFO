@@ -1,0 +1,92 @@
+Metadata-Version: 1.2
+Name: code-review
+Version: 0.0.4
+Summary: code_review
+Home-page: https://github.com/sagersmith8/code_review
+Author: Sage Smith
+Author-email: sagersmith8@gmail.com
+License: Apache Software License 2.0
+Project-URL: Changelog, https://github.com/sagersmith8/code_review/blob/master/CHANGELOG.rst
+Project-URL: Issue Tracker, https://github.com/sagersmith8/code_review/issues
+Description: ========
+        Overview
+        ========
+        
+        
+        
+        Creates links for PR updates
+        
+        * Free software: Apache Software License 2.0
+        
+        Installation
+        ============
+        
+        ::
+        
+            pip install code_review
+        
+        Documentation
+        =============
+        
+        
+        To use the project:
+        
+        .. code-block:: bash
+        
+            $ python -m code_review -h
+            usage: code_review [-h] [-o] [-s] [-t TOKEN]
+        
+            Command description.
+        
+            optional arguments:
+              -h, --help            show this help message and exit
+              -o, --open            Opens new code review updates in default browser
+              -s, --stdout          Prints code review updates
+              -t TOKEN, --token TOKEN
+                                Token to use when checking for updates
+        
+        
+        Development
+        ===========
+        
+        To run the all tests run::
+        
+            tox
+        
+        Note, to combine the coverage data from all the tox environments run:
+        
+        .. list-table::
+            :widths: 10 90
+            :stub-columns: 1
+        
+            - - Windows
+              - ::
+        
+                    set PYTEST_ADDOPTS=--cov-append
+                    tox
+        
+            - - Other
+              - ::
+        
+                    PYTEST_ADDOPTS=--cov-append tox
+        
+        
+        Changelog
+        =========
+        
+        0.0.1 (2019-02-26)
+        ------------------
+        
+        * First release on PyPI.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6
