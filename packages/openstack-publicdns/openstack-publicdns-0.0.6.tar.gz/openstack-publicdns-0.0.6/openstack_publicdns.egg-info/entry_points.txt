@@ -1,0 +1,6 @@
+[designate.storage]
+publicdns = openstack_publicdns.designate.storage:PublicDNSStorage
+
+[neutron.ml2.extension_drivers]
+publicdns = openstack_publicdns.neutron.dns:PublicDNSExtensionDriver
+
