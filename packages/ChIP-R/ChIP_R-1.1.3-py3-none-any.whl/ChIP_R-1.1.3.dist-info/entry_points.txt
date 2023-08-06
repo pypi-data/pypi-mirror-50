@@ -1,0 +1,4 @@
+[console_scripts]
+ChIP-R = chipr.__main__:main
+chipr = chipr.__main__:main
+
