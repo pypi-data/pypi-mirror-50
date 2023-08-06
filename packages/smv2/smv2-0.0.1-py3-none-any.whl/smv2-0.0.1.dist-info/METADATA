@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: smv2
+Version: 0.0.1
+Summary: The CLI Tool for SM.MS, based on API v2.
+Home-page: https://github.com/n0vad3v/smv2
+Author: Nova Kwok
+Author-email: noc@nova.moe
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# SMv2
+
+基于 SM.MS 图床 API v2 的小程序。
+
+## 安装方法
+
+先安装我啦~
+
+```bash
+$ pip3 install smv2
+```
+
+## 使用方法
+
+直接使用：
+
+```bash
+$ smv2 /path/to/image
+```
+
+若有 API Token，则可以在 `~/.smms` 文件中以如下形式写入后使用：
+
+```ini
+[sm.ms]
+api_token=<Enter Your Token Here>
+```
+
+## TODOs
+
+- [x] 支持基于 API Token 的图片上传
+- [ ] 命令行中管理已上传图片
+
