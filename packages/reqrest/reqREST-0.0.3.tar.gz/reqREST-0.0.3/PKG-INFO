@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: reqREST
+Version: 0.0.3
+Summary: A REST API wrapper for requests
+Home-page: https://github.com/rorymurdock/reqREST
+Author: Rory Murdock
+Author-email: rory@itmatic.com.au
+License: UNKNOWN
+Description: #reqREST
+        [![Build Status](https://travis-ci.org/rorymurdock/reqREST.svg?branch=master)](https://travis-ci.org/rorymurdock/reqREST)
+        [![Maintainability](https://api.codeclimate.com/v1/badges/ae2db247ebaa2ed83ea3/maintainability)](https://codeclimate.com/github/rorymurdock/reqREST/maintainability)
+        [![Coverage Status](https://coveralls.io/repos/github/rorymurdock/reqREST/badge.svg?branch=master)](https://coveralls.io/github/rorymurdock/reqREST?branch=master)
+        [![Requirements Status](https://requires.io/github/rorymurdock/reqREST/requirements.svg?branch=master)](https://requires.io/github/rorymurdock/reqREST/requirements/?branch=master)
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
