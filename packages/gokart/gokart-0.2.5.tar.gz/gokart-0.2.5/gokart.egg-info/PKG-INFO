@@ -1,0 +1,11 @@
+Metadata-Version: 1.1
+Name: gokart
+Version: 0.2.5
+Summary: A wrapper of luigi. This make it easy to define tasks.
+Home-page: https://github.com/m3dev/gokart
+Author: M3, inc.
+Author-email: UNKNOWN
+License: MIT License
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
