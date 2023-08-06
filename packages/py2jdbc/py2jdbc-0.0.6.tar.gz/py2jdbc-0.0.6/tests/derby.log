@@ -1,0 +1,44 @@
+----------------------------------------------------------------
+Mon Aug 05 16:12:34 MST 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-016c-640e-488a-0000069b2bd8 
+on database directory /home/scott/git/py2jdbc/tests/py2jdbc_derby with class loader sun.misc.Launcher$AppClassLoader@c387f44 
+Loaded from file:/home/scott/git/py2jdbc/tests/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_121-b13
+user.dir=/home/scott/git/py2jdbc/tests
+os.name=Linux
+os.arch=amd64
+os.version=4.4.0-146-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+Mon Aug 05 16:13:00 MST 2019 Thread[main,5,main] (XID = 770), (SESSIONID = 37), (DATABASE = py2jdbc_derby), (DRDAID = null), Cleanup action starting
+Mon Aug 05 16:13:00 MST 2019 Thread[main,5,main] (XID = 770), (SESSIONID = 37), (DATABASE = py2jdbc_derby), (DRDAID = null), Failed Statement is: select asdf
+ERROR 42X01: Syntax error: Encountered "<EOF>" at line 1, column 11.
+	at org.apache.derby.iapi.error.StandardException.newException(StandardException.java:290)
+	at org.apache.derby.iapi.error.StandardException.newException(StandardException.java:285)
+	at org.apache.derby.impl.sql.compile.ParserImpl.parseStatementOrSearchCondition(ParserImpl.java:175)
+	at org.apache.derby.impl.sql.compile.ParserImpl.parseStatement(ParserImpl.java:130)
+	at org.apache.derby.impl.sql.GenericStatement.prepMinion(GenericStatement.java:359)
+	at org.apache.derby.impl.sql.GenericStatement.prepare(GenericStatement.java:99)
+	at org.apache.derby.impl.sql.conn.GenericLanguageConnectionContext.prepareInternalStatement(GenericLanguageConnectionContext.java:1114)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement.<init>(EmbedPreparedStatement.java:134)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement42.<init>(EmbedPreparedStatement42.java:41)
+	at org.apache.derby.jdbc.Driver42.newEmbedPreparedStatement(Driver42.java:59)
+	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(EmbedConnection.java:1740)
+	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(EmbedConnection.java:1568)
+Cleanup action completed
+Mon Aug 05 16:13:04 MST 2019 Thread[main,5,main] (XID = 949), (SESSIONID = 49), (DATABASE = py2jdbc_derby), (DRDAID = null), Cleanup action starting
+Mon Aug 05 16:13:04 MST 2019 Thread[main,5,main] (XID = 949), (SESSIONID = 49), (DATABASE = py2jdbc_derby), (DRDAID = null), Failed Statement is: insert into tests(id) values (?) with 1 parameters begin parameter #1: null :end parameter 
+ERROR 07000: At least one parameter to the current statement is uninitialized.
+	at org.apache.derby.iapi.error.StandardException.newException(StandardException.java:290)
+	at org.apache.derby.iapi.error.StandardException.newException(StandardException.java:285)
+	at org.apache.derby.impl.sql.execute.BaseActivation.throwIfMissingParms(BaseActivation.java:1354)
+	at org.apache.derby.exe.ac08c04202x016cx640ex488ax0000069b2bd81.reinit(Unknown Source)
+	at org.apache.derby.impl.sql.execute.BaseActivation.execute(BaseActivation.java:284)
+	at org.apache.derby.impl.sql.GenericActivationHolder.execute(GenericActivationHolder.java:337)
+	at org.apache.derby.impl.sql.GenericPreparedStatement.executeStmt(GenericPreparedStatement.java:470)
+	at org.apache.derby.impl.sql.GenericPreparedStatement.execute(GenericPreparedStatement.java:351)
+	at org.apache.derby.impl.jdbc.EmbedStatement.executeStatement(EmbedStatement.java:1344)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement.executeStatement(EmbedPreparedStatement.java:1709)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement.execute(EmbedPreparedStatement.java:1394)
+Cleanup action completed
