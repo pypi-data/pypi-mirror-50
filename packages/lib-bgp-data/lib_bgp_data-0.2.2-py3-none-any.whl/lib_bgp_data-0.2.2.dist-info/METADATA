@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: lib-bgp-data
+Version: 0.2.2
+Summary: UNKNOWN
+Home-page: https://github.com/jfuruness/lib_bgp_data.git
+Author: Justin Furuness
+Author-email: jfuruness@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/jfuruness/lib_bgp_data.git
+Keywords: Furuness,furuness,pypi,package
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: Flask
+Requires-Dist: Werkzeug
+Requires-Dist: beautifulsoup4
+Requires-Dist: flasgger
+Requires-Dist: multiprocess
+Requires-Dist: pathos
+Requires-Dist: psutil
+Requires-Dist: psycopg2-binary
+Requires-Dist: requests
+Requires-Dist: setuptools
+
+UNKNOWN
+
+
