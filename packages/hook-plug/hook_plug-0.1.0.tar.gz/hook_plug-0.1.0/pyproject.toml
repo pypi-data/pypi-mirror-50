@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "hook_plug"
+version = "0.1.0"
+description = "Hook Plug is an extension for testing frameworks. This provides the possibility of decoupling hook responsibilities and extending it with plugins."
+authors = ["dunossauro <mendesxeduardo@gmail.com>"]
+license = "MIT"
+include = ["README.md"]
+
+[tool.poetry.dependencies]
+python = "^3.5"
+pluggy = "^0.12.0"
+
+[tool.poetry.dev-dependencies]
+tox = "^3.13"
+behave = "^1.2"
+ipdb = "^0.12.2"
+radish-bdd = "^0.13.1"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
