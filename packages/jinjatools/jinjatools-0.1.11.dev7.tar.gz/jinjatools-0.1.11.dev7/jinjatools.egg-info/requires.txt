@@ -1,0 +1,11 @@
+Jinja2>=2.10.1
+moretools>=0.1.12
+path.py~=11.5.0
+six>=1.12.0
+zetup>=0.2.60
+
+[all]
+Django~=1.11.3
+
+[django]
+Django~=1.11.3

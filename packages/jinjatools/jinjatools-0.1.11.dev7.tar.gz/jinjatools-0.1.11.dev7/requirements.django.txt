@@ -1,0 +1,2 @@
+#py2 Django ~= 1.11.3 #import django
+#py3 Django >= 2.2.1 #import django
