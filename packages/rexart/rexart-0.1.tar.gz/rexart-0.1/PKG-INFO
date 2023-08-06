@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: rexart
+Version: 0.1
+Summary: Make some art out of TRExFitter output
+Home-page: https://github.com/douglasdavis/rexart
+Author: Doug Davis
+Author-email: ddavis@ddavis.io
+License: BSD 3-clause
+Description: # rexart
+        
+        [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/rexart)](https://pypi.org/project/rexart/)
+        [![PyPI](https://img.shields.io/pypi/v/rexart)](https://pypi.org/project/rexart/)
+        [![Documentation Status](https://readthedocs.org/projects/rexart/badge/?version=latest)](https://rexart.readthedocs.io/en/latest/?badge=latest)
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Physics
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
