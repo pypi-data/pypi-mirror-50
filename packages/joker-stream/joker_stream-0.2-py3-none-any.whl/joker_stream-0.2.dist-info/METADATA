@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: joker-stream
+Version: 0.2
+Summary: File IO wrapper classes
+Home-page: https://github.com/frozflame/joker-stream
+Author: anonym
+Author-email: frozflame@outlook.com
+License: GNU General Public License (GPL)
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.0
+Classifier: Programming Language :: Python :: 3.1
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+
+# joker-stream
+File IO wrapper classes
+
+
