@@ -1,0 +1,6 @@
+mlflow
+
+[testing]
+pytest
+pytest-cov
+matplotlib
