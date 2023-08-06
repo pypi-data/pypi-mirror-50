@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: karajan
+Version: 0.4.0
+Summary: A conductor of aggregations in Apache Airflow
+Home-page: https://github.com/wooga/karajan
+Author: Cedrik Neumann
+Author-email: cedrik.neumann@outlook.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Provides-Extra: dev

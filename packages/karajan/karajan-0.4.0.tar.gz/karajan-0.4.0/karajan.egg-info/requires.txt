@@ -1,0 +1,14 @@
+pyyaml
+apache-airflow[jdbc]~=1.8
+
+[dev]
+behave
+nose
+nose-timer
+rednose
+coverage
+parameterized
+mock
+pylint
+autopep8
+python-semantic-release
