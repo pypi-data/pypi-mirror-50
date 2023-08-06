@@ -1,0 +1,17 @@
+coininfo_collector/__init__.py,sha256=fUguSzPNbHvhHZ02OcVJaxvbf-Oq3WJrPowuIrBZm4o,400
+coininfo_collector/coinClient.py,sha256=auetQmaHtrp5eByoRD9a1FZyLHxh0plxEJygG_otyak,15092
+coininfo_collector/coinCommons.py,sha256=FYhP09O5LUj5yShEbsTGg-zQJ6ygOqZKv2o4cHjRomE,96
+coininfo_collector/coinScheduler.py,sha256=FkJAnOWGj7GqtNvnNy9mrPOqdLOIDIE0pHN_DVnHR5k,13850
+coininfo_collector/coinSummary.py,sha256=D7i5Sv_enb89tUt7gq4AIab_uDazD81mBbx-_VuZVHY,6021
+coininfo_collector/db_manager.py,sha256=TOXNINgwk-7zVM2_C7sptFqhMKwts-lZl9ko8Sb9djo,6101
+coininfo_collector/ijMarketPriceGlobal.py,sha256=2GAthe15g5WhYpKi3YiMtquxMndXAUTCp72-wsYRlQU,3589
+coininfo_collector/marketPairs.py,sha256=rJXCcGxUBZ066XLGV1XfqKuYXlRjbP7fYVsmfBj8N00,38
+coininfo_collector/priceInExchange.py,sha256=QH-KcBL7fqdcF5tyxHYTEVKLylbLwCF1VEJncFEXbz0,5181
+coininfo_collector/s3Interface.py,sha256=oc8je8XL2ndFx3mUmHPdV58bzXDNHisbZ7v7qDWGQ_o,3034
+coininfo_collector/sparklineWriter.py,sha256=S_AAy98Xd-iezRzbwDaybpXFaozZccyoirQXJ0S_yz8,6736
+coininfo_collector/ssfixedJobs.py,sha256=nRS6K-yzZlQrDGl6V2wY_o-LjG4SCwGh1oNgy2vF4hU,11755
+coininfo_collector-0.0.21.dist-info/LICENSE,sha256=AhCUJ_9DtzBrW-PRcbI3on-T7TWlr0wyhM3Bbt0slt8,1068
+coininfo_collector-0.0.21.dist-info/METADATA,sha256=HSBzbYDVuXAkemHLDcKv4PxYMSoW6SSlaHEpFbSn_1M,642
+coininfo_collector-0.0.21.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+coininfo_collector-0.0.21.dist-info/top_level.txt,sha256=lPQ1yGwltZEwiP9GjBXaopTUl-N6Tp4awFe99-gQkgY,19
+coininfo_collector-0.0.21.dist-info/RECORD,,
