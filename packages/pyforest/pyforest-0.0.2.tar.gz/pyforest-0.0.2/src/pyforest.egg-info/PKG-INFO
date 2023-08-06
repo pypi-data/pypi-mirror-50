@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: pyforest
+Version: 0.0.2
+Summary: Lazy-import of all popular Python Data Science libraries. Stop writing the same imports over and over again.
+Home-page: https://github.com/8080labs/pyforest/
+Author: Florian Wetschoreck, Guido Drechsel, Tobias Krabel
+Author-email: info@edaviz.com
+License: mit
+Project-URL: Documentation, https://github.com/8080labs/pyforest/
+Description: UNKNOWN
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Provides-Extra: testing
