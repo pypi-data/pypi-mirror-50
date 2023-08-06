@@ -1,0 +1,15 @@
+rvtts/__init__.py,sha256=6qAIxdbUeUtxpnJtwtH7Pj4fzbXdw79VmrEUHuPLfdQ,14
+rvtts/rvtts.py,sha256=y8D_7rhtYG3Jgbbk8-4Jic7UQEqyYsL7NivAr_SYPss,14159
+rvtts/utils.py,sha256=35joxUnrA8DjT7xYe09nfzAB8m0D7R6XZ8h5up1OnOI,2818
+rvtts/version.py,sha256=bMIenWosteoeUs51RbaWVZetIuzRhWymuyy-n0rfK0I,21
+rvtts/tokenizer/__init__.py,sha256=nvP8WQU7ZlYeHnjLWmLj-pjQCURlIn8SH75PqWHo3u8,115
+rvtts/tokenizer/core.py,sha256=FDnNfxapLR6guFPF26iH_Uutr13IyNXS2_x1-KabnUY,10899
+rvtts/tokenizer/pre_processors.py,sha256=FSqbzVkhT6MwGc4qdb_Yil6MRwIYGlqUQ_-OpfKXiyI,1581
+rvtts/tokenizer/symbols.py,sha256=InDRlUYQI7HTyZBOksqDhHG1FSTi0M7hs41Psh9vcKk,277
+rvtts/tokenizer/tokenizer_cases.py,sha256=iAgv9AIrq7exRqEKgDQfHXArylRD9RAIbPRJsk1MayA,1985
+rvtts-1.0.1.dist-info/LICENSE,sha256=e8hSZ8yEf1etjNlqbo_YRG6i5J1nPSkSxHXgSUC55nI,1086
+rvtts-1.0.1.dist-info/METADATA,sha256=8jT17Iat8_9ZQW8uK3sJ5SpwFvV2LaYTlZrQJnXUDJA,2226
+rvtts-1.0.1.dist-info/WHEEL,sha256=QBOOAdG2icRHGBs2s94rfaUlHrdfNBp-TceubUYCwOE,97
+rvtts-1.0.1.dist-info/entry_points.txt,sha256=wWI39T9yW3qFwsqG9tqnQgUsys-q-xls7IqmdrUWvRY,43
+rvtts-1.0.1.dist-info/top_level.txt,sha256=nQpVO1CV3ud93ftRVimv2mfnESNaYFy9pdeK3MOFvhQ,6
+rvtts-1.0.1.dist-info/RECORD,,
