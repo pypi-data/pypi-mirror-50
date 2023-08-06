@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: gurux-common
+Version: 1.0.2
+Summary: Gurux common helpers for device commmunication.
+Home-page: https://github.com/gurux/gurux.common.python
+Author: Gurux Ltd
+Author-email: gurux@gurux.org
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+Gurux common helpers for device commmunication.
+
+
