@@ -1,0 +1,3 @@
+[console_scripts]
+tigrex = tigrex.__main__:main
+
