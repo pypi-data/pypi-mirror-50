@@ -1,0 +1,9 @@
+README.md
+setup.py
+sotabenchapi/__init__.py
+sotabenchapi.egg-info/PKG-INFO
+sotabenchapi.egg-info/SOURCES.txt
+sotabenchapi.egg-info/dependency_links.txt
+sotabenchapi.egg-info/top_level.txt
+sotabenchapi/core/__init__.py
+sotabenchapi/core/results.py
