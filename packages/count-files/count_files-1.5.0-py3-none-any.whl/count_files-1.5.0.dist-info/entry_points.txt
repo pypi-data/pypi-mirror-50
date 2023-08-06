@@ -1,0 +1,3 @@
+[console_scripts]
+count-files = count_files.__main__:main_flow
+
