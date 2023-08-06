@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: bits-mongo
+Version: 1.0.0
+Summary: BITS Mongo
+Home-page: UNKNOWN
+Author: Lukas Karlsson
+Author-email: karlsson@broadinstitute.org
+License: Apache Software License
+Platform: UNKNOWN
+Requires-Dist: bits-progressbar
+Requires-Dist: pymongo
+
+UNKNOWN
+
+
