@@ -1,0 +1,10 @@
+README.md
+setup.py
+wirepickle/__init__.py
+wirepickle/client.py
+wirepickle/server.py
+wirepickle.egg-info/PKG-INFO
+wirepickle.egg-info/SOURCES.txt
+wirepickle.egg-info/dependency_links.txt
+wirepickle.egg-info/requires.txt
+wirepickle.egg-info/top_level.txt
