@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: triqt
+Version: 1.0.0
+Summary: Run the Qt event loop from within the Trio event loop
+Home-page: https://github.com/henry232323/triqt
+Author: henry232323
+License: MIT
+Description: # triqt
+        Run the Qt event loop from within the Trio event loop.
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
