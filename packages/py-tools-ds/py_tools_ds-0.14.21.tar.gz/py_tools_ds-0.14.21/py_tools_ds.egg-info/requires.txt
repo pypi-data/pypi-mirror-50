@@ -1,0 +1,11 @@
+gdal
+numpy
+shapely
+six
+rasterio
+pandas
+geopandas
+scikit-image
+pyproj
+spectral
+pyresample>=1.11.0
