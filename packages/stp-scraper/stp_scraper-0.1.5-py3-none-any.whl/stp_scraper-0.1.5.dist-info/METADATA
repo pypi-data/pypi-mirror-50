@@ -1,0 +1,71 @@
+Metadata-Version: 2.1
+Name: stp-scraper
+Version: 0.1.5
+Summary: Extract sent and received transactions of an STP account.
+Home-page: https://github.com/cuenca-mx/stp-scraper
+Author: Cuenca
+Author-email: dev@cuenca.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: requests (<2.22.0,>=2.21.0)
+Requires-Dist: boto3 (<1.10.0,>=1.9.88)
+Requires-Dist: botocore (<1.13,>=1.12.88)
+Requires-Dist: sentry-sdk (<0.7.9SQLAlchemy>=1.2.18,<1.3,>=0.7.8)
+Requires-Dist: sqlalchemy-redshift (<0.8,>=0.7.3)
+Provides-Extra: test
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-vcr ; extra == 'test'
+Requires-Dist: pycodestyle ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+Requires-Dist: black ; extra == 'test'
+Requires-Dist: isort ; extra == 'test'
+Requires-Dist: moto ; extra == 'test'
+Requires-Dist: responses ; extra == 'test'
+Requires-Dist: google-compute-engine ; extra == 'test'
+
+[![Coverage Status](https://coveralls.io/repos/github/cuenca-mx/stp-scraper/badge.svg?branch=master&t=V0q7kh)](https://coveralls.io/github/cuenca-mx/stp-scraper?branch=master)
+[![Build Status](https://travis-ci.com/cuenca-mx/stp-scraper.svg?token=MSMdx4sxrH14mMPzx2Cx&branch=master)](https://travis-ci.com/cuenca-mx/stp-scraper)
+[![PyPI](https://img.shields.io/pypi/v/stp-scraper.svg)](https://pypi.org/project/stp-scraper/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
+
+# stp-scraper
+STP scraper library for obtaining all transactions given a range of dates.
+
+## Requirements
+Python 3.7+
+
+## Installation
+```bash
+pip install stp_scraper
+```
+
+## Tests
+```bash
+make test
+```
+
+## Basic usage
+Get transactions of prior week
+```python
+import stp_scraper
+stp_scraper.extract(None, None, 7)
+```
+
+Get transactions for specific dates
+```python
+from stp_scraper import extract
+extract('01/02/2019', '15/02/2019')
+```
+
+## Release to PyPi
+
+```bash
+pip install -U setuptools wheel twine
+make release
+# PyPi will prompt you to log in
+```
+
