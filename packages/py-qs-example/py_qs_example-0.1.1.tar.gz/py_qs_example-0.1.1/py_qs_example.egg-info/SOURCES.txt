@@ -1,0 +1,10 @@
+README.md
+setup.py
+py_qs_example/__init__.py
+py_qs_example/mymodule.py
+py_qs_example.egg-info/PKG-INFO
+py_qs_example.egg-info/SOURCES.txt
+py_qs_example.egg-info/dependency_links.txt
+py_qs_example.egg-info/top_level.txt
+py_qs_example/mypackage/__init__.py
+py_qs_example/mypackage/module.py
