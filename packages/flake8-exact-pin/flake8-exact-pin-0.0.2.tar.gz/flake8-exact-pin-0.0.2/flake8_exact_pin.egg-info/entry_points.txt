@@ -1,0 +1,3 @@
+[flake8.extension]
+P = flake8_exact_pin:ExactPinChecker
+
