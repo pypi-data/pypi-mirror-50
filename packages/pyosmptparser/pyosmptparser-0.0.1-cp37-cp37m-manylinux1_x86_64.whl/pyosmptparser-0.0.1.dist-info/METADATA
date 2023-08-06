@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: pyosmptparser
+Version: 0.0.1
+Author: Julian Perelli <jperelli@gmail.com>
+Author-Email: Julian Perelli <jperelli@gmail.com>
+License: AGPL-3.0-or-later
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+
+# A python wrapper for osmptparser
+
+```
+git clone git@github.com:cualbondi/pyosmptparser.git
+cd pyosmptparser
+rustup override set nightly
+virtualenv --python python3 .env
+source .env/bin/activate
+
+# run tests
+pip3 install tox
+tox
+
+# build and copy
+pyo3-pack develop
+cp target/debug/libpyosmptparser.so pyosmptparser.so
+
+# build and deploy
+
+```
+
