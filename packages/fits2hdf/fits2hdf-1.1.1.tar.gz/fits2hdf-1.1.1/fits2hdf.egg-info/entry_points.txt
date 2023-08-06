@@ -1,0 +1,5 @@
+[console_scripts]
+fits2fits = fits2hdf.file_conversion:convert_fits_to_fits
+fits2hdf = fits2hdf.file_conversion:convert_fits_to_hdf
+hdf2fits = fits2hdf.file_conversion:convert_hdf_to_fits
+
