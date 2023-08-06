@@ -1,0 +1,46 @@
+CHANGES
+=======
+
+v1.0
+----
+
+* README update
+* Remove forgotten print
+* Add ssh to parsed protocols, minor renaming
+* Enforce required options
+* Per repo config storage and api token handling
+* README update
+* API key handle for mere and create
+* Guess project url and project name
+* Handle API keys in config
+* Move the create command into separate file
+* Move the merge command into separate file
+* Move the get command into separate file
+* Register command groups the click way
+* Improve setup.py and setup.cfg
+* Fix README typo
+* Fix pagure\_repository
+* changes regarding the repo\_to
+* Add repo\_from option to create\_pr function
+* pagure instance created for every function
+* README update
+
+v0.2.2
+------
+
+* Fix setup.py and add setup.cfg to include license
+* add license
+* add cranc create pr
+* add merge pr
+* add test info
+* add cranc get issues
+* cranc get prs instead of pr list
+* add docs commands
+* add test of pr\_list status
+* add logging to cranc.py
+* split function for easy testing
+* add \`cranc pr list\`
+* add .gitignore
+* add the cranc module
+* add setup.py and requirements.txt
+* Add README

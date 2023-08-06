@@ -1,0 +1,118 @@
+Metadata-Version: 1.0
+Name: cranc
+Version: 1.0.0
+Summary: command line interface tool for Pagure pull requests
+Home-page: https://pagure.io/cranc
+Author: Lenka Segura
+Author-email: lenka@sepu.cz
+License: UNKNOWN
+Description: Cranc
+        =====
+        
+        Cranc is command line interface tool to interact with Pagure
+        
+        homepage: https://pagure.io/cranc
+        
+        What Cranc does
+        ~~~~~~~~~~~~~~~
+        
+        At the moment cranc lists pull requests and issues of a project. With
+        this commands:
+        
+        ``cranc get prs``
+        
+        -  ``[author]`` optional
+        
+        -  ``[status]`` optional
+        
+        -  ``[assignee]`` optional
+        
+        ``cranc get issues``
+        
+        -  ``[author]`` optional
+        
+        -  ``[status]`` optional
+        
+        -  ``[assignee]`` optional
+        
+        ``cranc merge pr [request_id]``
+        
+        ``cranc create pr [title] [repo] [brach_from] [branch_to]``
+        
+        -  ``[initial_comment]`` is optional
+        
+        About its name
+        ~~~~~~~~~~~~~~
+        
+        Since Pagure is a hermit crab, cranc is crab in catalan.
+        
+        Run
+        ~~~
+        
+        Create the virtual environment:
+        
+        ``virtualenv3 ~/venvs/cranc-env``
+        
+        ``source ~/venvs/cranc-env/bin/activate``
+        
+        Retrieve the sources:
+        
+        ``git clone https://pagure.io/cranc.git``
+        
+        ``cd cranc``
+        
+        Install dependencies:
+        
+        ``pip install -r requirements.txt``
+        
+        Run the setup file. This creates a link in the venv directory pointing
+        to the cranc directory:
+        
+        ``python setup.py install``
+        
+        Run the app:
+        
+        ``cranc``
+        
+        ::
+        
+           Usage: cranc [OPTIONS] COMMAND [ARGS]...
+        
+           Options:
+             -a, --api-key API-KEY    your API key for Pagure.io
+             -r, --repo-url TEXT      Repo url
+             -i, --instance-url TEXT  Pagure instance url
+             -c, --config-file PATH
+             --help                   Show this message and exit.
+        
+           Commands:
+             config
+             create
+             get
+             merge
+        
+        ``cranc``
+        
+        Or run the command:
+        
+        ``cranc get prs``
+        
+        ``cranc merge pr --request_id [request_id]``
+        
+        When API TOKEN is needed, cranc will prompt you to insert it. It will ve
+        stored in a ``.config`` file. Cranc will also try to guess the repo url
+        and instance url, and prompt you to confirm/change.
+        
+        Test
+        ~~~~
+        
+        To run tests type:
+        
+        ``pytest``
+        
+        Or to run only 1 test type:
+        
+        ``pytest tests/[name_of_the_test]``
+        
+        
+Platform: UNKNOWN

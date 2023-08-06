@@ -1,0 +1,10 @@
+# Used for when working from a virtualenv.
+# Use this file by running "$ pip install -r requirements.txt"
+black
+click
+git-url-parse
+-e git+https://pagure.io/libpagure.git#egg=libpagure
+pbr
+pygit2
+pytest
+requests
