@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: qarl
+Version: 0.1
+Summary: A QEMU automator.
+Home-page: https://github.com/jcaru/qarl
+Author: Joseph (Jacy) Caruso
+Author-email: jcaru@jcaru.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# QARL
+
+Qemu Automation that is Really Light-weight.
+
+
