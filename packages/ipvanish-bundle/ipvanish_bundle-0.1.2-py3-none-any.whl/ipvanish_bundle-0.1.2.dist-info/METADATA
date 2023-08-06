@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: ipvanish-bundle
+Version: 0.1.2
+Summary: UNKNOWN
+Home-page: https://gitlab.com/merx/ipvanish-bundle
+Author: Merx Development
+Author-email: dev@merx.io
+Maintainer: dev@merx.io
+License: GPLv3
+Keywords: python setuptools
+Platform: linux
+Platform: linux2
+Platform: darwin
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: SQL
+Classifier: Natural Language :: English
+Classifier: Topic :: Database
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Typing :: Typed
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
+Requires-Dist: setuptools
+
+# ipvanish-bundle
+
+
