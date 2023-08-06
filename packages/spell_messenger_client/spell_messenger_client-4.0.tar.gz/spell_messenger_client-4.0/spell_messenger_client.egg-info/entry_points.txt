@@ -1,0 +1,3 @@
+[console_scripts]
+spell_messenger_client = spell_messenger_client:__main__
+
