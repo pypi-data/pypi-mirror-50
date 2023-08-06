@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: jsondir
+Version: 0.1.0
+Summary: Display a directory tree in JSON format.
+Home-page: https://github.com/LeftySolara/jsondir
+Author: Jalen Adams
+Author-email: jalen@jalenkadams.me
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Environment :: Console
+Classifier: Natural Language :: English
+Description-Content-Type: text/markdown
+
+# jsondir
+
+A small program that displays a directory's contrnts in JSON format.
+
