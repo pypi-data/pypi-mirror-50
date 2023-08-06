@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: gpu-debugger
+Version: 0.0.1
+Summary: Add a short description here!
+Home-page: https://github.com/pyscaffold/pyscaffold/
+Author: kulasama
+Author-email: kulasama@foxmail.com
+License: MIT
+Project-URL: Documentation, https://pyscaffold.org/
+Description: ============
+        gpu_debugger
+        ============
+        
+        
+        a gpu debug tool
+        
+        Description
+        ===========
+        
+        debug for gpu development
+        
+        
+        Note
+        ====
+        
+        >>>from gpu_debugger import print_memory
+        >>>print_memory()
+        
+        More to come Documentation is being worked on
+        
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Description-Content-Type: text/x-rst; charset=UTF-8
+Provides-Extra: testing
