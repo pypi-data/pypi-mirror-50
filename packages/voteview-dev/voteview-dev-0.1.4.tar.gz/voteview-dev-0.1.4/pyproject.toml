@@ -1,0 +1,99 @@
+[build-system]
+    requires = ["poetry>=0.12"]
+    build-backend = "poetry.masonry.api"
+
+
+[tool.poetry]
+name = "voteview-dev"
+packages = [{include="vvtool", from="src"}]
+version = "0.1.4"
+description = "Voteview command-line interface"
+authors = ["Adam Boche <aboche@ucla.edu>"]
+readme = "README.rst"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+click = "7.0"
+pymongo = "3.8"
+mongoengine = "0.18.2"
+pylint = "2.3"
+alley = "0.0.3"
+importlib_resources = "1.0"
+attrs = "19.1"
+
+
+
+
+[tool.poetry.dev-dependencies]
+cuvner = "^18.0"
+tox = "^3.13"
+versioneer = "^0.18.0"
+pex = "^1.6"
+bump2version = "^0.5.10"
+docutils = "^0.15.2"
+readme-renderer = "^24.0"
+isort = "^4.3"
+mypy = "^0.720.0"
+pytest-sphinx = "^0.2.2"
+towncrier = "^19.2"
+py-find-injection = "^0.1.1"
+twine = "^1.13"
+docshtest = "^0.0.2"
+pytest-cov = "^2.7"
+tox-docker = "^1.4"
+q = "^2.6"
+check-manifest = "^0.39.0"
+pylint_mongoengine = "^0.3.3"
+coverage = "^4.5"
+
+
+[tool.poetry.scripts]
+vvtool = "vvtool.cli:cli"
+
+[tool.towncrier]
+
+   package = "vvtool"
+   package_dir = "src"
+   filename = "CHANGELOG.rst"
+   template = "changelog.d/towncrier_template.rst"
+   issue_format = "`#{issue} <https://github.com/voteview/voteview-dev/issues/{issue}>`_"
+   directory = "changelog.d"
+   title_format = "{version} ({project_date})"
+   underlines = ["-", "^"]
+
+   [[tool.towncrier.section]]
+       path = ""
+
+    [[tool.towncrier.type]]
+        directory = "breaking"
+        name = "Backward-incompatible Changes"
+        showcontent = true
+
+    [[tool.towncrier.type]]
+        directory = "deprecation"
+        name = "Deprecations"
+        showcontent = true
+
+    [[tool.towncrier.type]]
+        directory = "change"
+        name = "Changes"
+        showcontent = true
+
+
+[tool.black]
+
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.?venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
