@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: AWSCloudLogger
+Version: 0.0.1
+Summary: Lambda function and Library for writing and reading logs to and from SQS or CloudWatch
+Home-page: https://github.com/pentairiot/AWSCloudLogger
+Author: PentairIoT
+Author-email: pentairiot@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: boto3
+
+UNKNOWN
+
+
