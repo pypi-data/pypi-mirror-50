@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: refresh-my-ip
+Version: 0.0.1
+Summary: Refresh your "my IP" in AWS security groups
+Home-page: https://github.com/troylar/refresh-my-ip
+Author: Troy Larson
+Author-email: troylar+github@pm.me
+License: UNKNOWN
+Description: # reset-my-ip
+        Update your "my IP" on all security groups with a specific description
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
