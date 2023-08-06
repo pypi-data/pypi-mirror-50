@@ -1,0 +1,60 @@
+Metadata-Version: 1.1
+Name: feedj
+Version: 0.0.1
+Summary: feeding j
+Home-page: https://github.com/mlcristina/feedj
+Author: mcc
+Author-email: cristina.caputo+test@gmail.com
+License: none
+Download-URL: https://github.com/mlcristina/feedj/archive/0.0.0.tar.gz
+Description: ================================================================================
+        feedj
+        ================================================================================
+        
+        .. image:: https://api.travis-ci.org/mlcristina/feedj.svg
+           :target: http://travis-ci.org/mlcristina/feedj
+        
+        .. image:: https://codecov.io/github/mlcristina/feedj/coverage.png
+           :target: https://codecov.io/github/mlcristina/feedj
+        
+        
+        .. image:: https://readthedocs.org/projects/feedj/badge/?version=latest
+           :target: http://feedj.readthedocs.org/en/latest/
+        
+        
+        Installation
+        ================================================================================
+        
+        You can get it:
+        
+        .. code-block:: bash
+        
+            $ git clone https://github.com/mlcristina/feedj.git
+            $ cd feedj
+            $ python setup.py install
+        
+        Change log
+        ================================================================================
+        
+        0.0.1 - None
+        --------------------------------------------------------------------------------
+        
+        first release
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        #. what a feat!
+        
+        
+Keywords: python
+Platform: UNKNOWN
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Programming Language :: Python
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
