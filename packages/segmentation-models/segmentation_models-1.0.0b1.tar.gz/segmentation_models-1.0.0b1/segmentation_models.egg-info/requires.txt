@@ -1,0 +1,7 @@
+keras_applications<=1.0.8,>=1.0.7
+image-classifiers==1.0.0b1
+efficientnet==1.0.0b3
+
+[tests]
+pytest
+scikit-image
