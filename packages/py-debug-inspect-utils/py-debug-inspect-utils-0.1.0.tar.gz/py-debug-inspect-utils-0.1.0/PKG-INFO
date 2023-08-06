@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: py-debug-inspect-utils
+Version: 0.1.0
+Summary: Utils to inspect a stack to quickly debug 'magic' libraries.
+Home-page: https://github.com/NyanKiyoshi/py-debug-inspect-utils/
+Author: NyanKiyoshi
+Author-email: hello@vanille.bid
+License: UNKNOWN
+Description: ## Example Usage
+        
+        ```python
+        def get_prefetch_queryset(self, instances, queryset=None):
+            query = {'%s__in' % self.field.name: instances}
+        
+            from py_debug_inspect_utils import debug_print
+            debug_print(query=query)
+        ```  
+        
+        Output:
+        ```
+        /Users/Development/venv/lib/python3.7/site-packages/django/db/models/fields/related_descriptors.py:625 (get_prefetch_queryset)
+        ()
+        {'query': {'attribute__in': [<Attribute: Flavor>]}}
+        ```
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: License :: Public Domain
+Description-Content-Type: text/markdown
