@@ -1,0 +1,87 @@
+{
+  "index_patterns": [
+    "__SEARCH_INDEX_PREFIX__*"
+  ],
+  "mappings": {
+    "_doc": {
+      "properties": {
+        "identifier": {
+          "type": "keyword"
+        },
+        "abstract": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 100
+            }
+          }
+        },
+        "title": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 100
+            }
+          }
+        },
+        "alternative": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 100
+            }
+          }
+        },
+        "description": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 100
+            }
+          }
+        },
+        "created": {
+          "type": "date",
+          "format": "date"
+        },
+        "available": {
+          "type": "date",
+          "format": "date"
+        },
+        "dateSubmitted": {
+          "type": "date",
+          "format": "date"
+        },
+        "modified": {
+          "type": "date",
+          "format": "date"
+        },
+        "creator": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 100
+            }
+          }
+        },
+        "contributor": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 100
+            }
+          }
+        },
+        "language": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}

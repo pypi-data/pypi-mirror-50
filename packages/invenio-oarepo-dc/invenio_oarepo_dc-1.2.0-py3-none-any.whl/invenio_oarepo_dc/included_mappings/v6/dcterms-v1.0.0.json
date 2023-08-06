@@ -1,0 +1,59 @@
+{
+  "DCObject": {
+    "type": "nested",
+    "properties": {
+      "identifier": {
+        "type": "keyword"
+      },
+      "abstract": {
+        "type": "multilingual-v1.0.0.json#/MultilingualString"
+      },
+      "title": {
+        "type": "multilingual-v1.0.0.json#/MultilingualString"
+      },
+      "alternative": {
+        "type": "multilingual-v1.0.0.json#/MultilingualString"
+      },
+      "description": {
+        "type": "multilingual-v1.0.0.json#/MultilingualString"
+      },
+      "created": {
+        "type": "date",
+        "format": "date"
+      },
+      "available": {
+        "type": "date",
+        "format": "date"
+      },
+      "dateSubmitted": {
+        "type": "date",
+        "format": "date"
+      },
+      "modified": {
+        "type": "date",
+        "format": "date"
+      },
+      "creator": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 100
+          }
+        }
+      },
+      "contributor": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 100
+          }
+        }
+      },
+      "language": {
+        "type": "keyword"
+      }
+    }
+  }
+}
