@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: astar-art
+Version: 0.0.1
+Summary: Python implementation ART
+Home-page: https://gitee.com/a_star/ART2py
+Author: A.Star
+Author-email: astar@snowland.ltd
+Maintainer: A.Star
+Maintainer-email: astar@snowland.ltd
+License: MIT License
+Platform: all
+Classifier: Development Status :: 4 - Beta
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: Implementation
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development :: Libraries
+Requires-Dist: astartool (>=0.0.2)
+Requires-Dist: numpy (>=1.0.0)
+Requires-Dist: matplotlib
+
+=========
+astar_art
+=========
+
+ART2 for python
+
