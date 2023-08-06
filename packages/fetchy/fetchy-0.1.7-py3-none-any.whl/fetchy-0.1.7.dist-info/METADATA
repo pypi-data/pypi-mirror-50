@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: fetchy
+Version: 0.1.7
+Summary: Minuscule docker images made trivial!
+Home-page: https://github.com/ThomasKluiters/fetchy
+Author: thomas
+Author-email: thomas.kluiters@gmail.com
+Requires-Python: >=3.6,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: PyInquirer (>=1.0,<2.0)
+Requires-Dist: cleo (>=0.7.5,<0.8.0)
+Requires-Dist: distro (>=1.4,<2.0)
+Requires-Dist: docker (>=4.0,<5.0)
+Requires-Dist: pyelftools (>=0.25.0,<0.26.0)
+Requires-Dist: pyyaml (>=5.1,<6.0)
+Requires-Dist: tqdm (>=4.32,<5.0)
+Requires-Dist: unix_ar (>=0.2.1,<0.3.0)
+Requires-Dist: validators (>=0.13.0,<0.14.0)
+Project-URL: Repository, https://github.com/ThomasKluiters/fetchy
