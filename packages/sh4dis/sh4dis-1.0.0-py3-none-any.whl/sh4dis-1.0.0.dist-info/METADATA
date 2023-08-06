@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: sh4dis
+Version: 1.0.0
+Summary: SH4 disassembler library
+Home-page: https://github.com/lwerdna/sh4dis
+Author: Andrew Lamoureux
+Author-email: foo@bar.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: Public Domain
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# sh4dis
+
+A python disassembler library for SH4
+
+# Use
+
+```
+>>> from sh4dis import sh4
+>>> sh4.disasm(0x1234, 0)
+'mov.l r3,@(16,r2)'
+```
+
+Or, if you'd like access to the instruction internals, like opcode identifier and operands:
+
+```
+>>> decoded = sh4.decode(0x1234, 0)
+>>> decoded.op
+<OP.MOV: 53>
+>>> decoded.operands[0]
+(<OPER_TYPE.GPREG: 10>, <REG.R3: 4>)
+>>> decoded.operands[1]
+(<OPER_TYPE.DEREF_REG_IMM: 7>, <REG.R2: 3>, 16)
+2
+```
+
+The decoded structure can still be made into a string:
+
+```
+>>> sh4.disasm(decoded)
+'mov.l r3,@(16,r2)'
+```
+
+
