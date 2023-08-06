@@ -1,0 +1,17 @@
+amen/__init__.py,sha256=vtPVj2DIZ5dMKm-RDMcTZz0GocgblyP3dS-h9BJqVw4,189
+amen/audio.py,sha256=2LnMUnvnVAPVmdmLA1Lr2sD3-i-S20hO-e87x9yekAA,10030
+amen/deformation.py,sha256=H8kIf-wIQFcB4tDD4kt_0zjmA0zXgvX7mZB1bTbQno0,2893
+amen/echo_nest_converter.py,sha256=MVIQauA3YrA-h1MlBI5a0SG6Mz-CYUQjP2FdxPHSiWE,5465
+amen/exceptions.py,sha256=G01h9s3c0GpTLhlmVX2cYCXf-SM9_R4y3zlPRICaroE,381
+amen/feature.py,sha256=fTrDM_DAGrooERMxOyLTfF4oD-Mi6avNSdRMGkmhk5g,6046
+amen/synthesize.py,sha256=eYWXe2GKbQWaorLdFkUdfJgoPW64R1WladkJ0M0N9So,3420
+amen/timing.py,sha256=DbzXZRiqYh_mv6FKl16t4s_Hh0uwnzwIGC19UpsA-Js,3596
+amen/utils.py,sha256=AI2hytOWjZ6X9HM4ZTr9NriT0HcC6bt3WdH477rAZPo,420
+amen/version.py,sha256=zvsIhGImr6puo5TWcu8SyKldu_YPJHPfvO7_9zUlgPI,106
+amen/example_audio/amen-mono.wav,sha256=fb9rDq7yLt0XVL-ePU4fF-Lha_omhhT5T6v5GALmNG8,614866
+amen/example_audio/amen.wav,sha256=xnlsQBusiprHd8fDYLMl3509wNqEc3lQb-kQlL14SBs,1233740
+amen-0.0.4.dist-info/LICENSE,sha256=OKKgJi0nb3sILCEq0O0PM-9fvHyPzVb1AVEbb9-9FDc,1313
+amen-0.0.4.dist-info/METADATA,sha256=D_v11F8B3hKljNcx-BRFUgZ-TL3hop2FEydtqz9VQHc,1007
+amen-0.0.4.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+amen-0.0.4.dist-info/top_level.txt,sha256=Ot0LsWWgOO3jySIhly8qjAYj2sTASmVdbvE1LtBasdg,5
+amen-0.0.4.dist-info/RECORD,,
