@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: PySliders
+Version: 0.1
+Summary: A sliders add-on for PyGame
+Home-page: https://github.com/stshrewsburyDev/PySliders
+Author: Steven Shrewsbury
+Author-email: UNKNOWN
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: pygame
+
+PySliders
+A sliders add-on for PyGame
+Made by Steven Shrewsbury (stshrewsburyDev)
+
+Version 0.1
+
+Read the full README on the projects GitHub here:
+https://github.com/stshrewsburyDev/PySliders
+
