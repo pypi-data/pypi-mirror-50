@@ -1,0 +1,1 @@
+# unionService - alibaba taobao & jd union service, a part of haoyouhui project
