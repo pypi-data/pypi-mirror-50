@@ -1,0 +1,15 @@
+recolonyzer/__init__.py,sha256=qKK4BMzdt84HiCorJPWqgEfa_DbJeuGx_bIPrDui2vc,22
+recolonyzer/analysis.py,sha256=_-nLwux3tm1eQjvlMGH65DpfmFexUCGJTczI_efOuM4,7257
+recolonyzer/filesystem.py,sha256=4pfQfvhGfL0-ymUl6VPoZOMqjNOJHN1BomZbeB0LNiw,3171
+recolonyzer/image_processing.py,sha256=CiTZ4qf-a9lgNg9_k3oklCvFyDGKqz6rIF6qNMHq35Q,2725
+recolonyzer/utils.py,sha256=lF589bYYLDcTJEdJoNu5W6ere0e8QfmVWkTVPv_rNaY,3196
+recolonyzer/commands/__init__.py,sha256=OmTo1E6EcD3JpFz7PAD-9V1AeXjE9_PElR-gyQqO-kA,52
+recolonyzer/commands/abstract.py,sha256=h0Q8ymE5eGilYIkR8TV7I1sI7SB0orBqlzSOdmzpOZ0,1007
+recolonyzer/commands/analyse.py,sha256=GFEgnGW_0px8YW9wSni4idbpIE52TuMljP4ah9yuj3Y,3384
+recolonyzer/commands/rename_images.py,sha256=i7Dv7V45hZBpTQdxvIINgIXlHVi1fIY10bH5rfc7r5I,3106
+recolonyzer-1.0.3.data/scripts/recolonyzer,sha256=fWp-QAO8-eMLUGT5R1pm34--KTI_GfSciA5a0bQ1Fkg,945
+recolonyzer-1.0.3.dist-info/LICENSE,sha256=flUgRXs7dbS_75_lJ_FQeRrYp0KpoCMKCdQrmFXj9WM,1079
+recolonyzer-1.0.3.dist-info/METADATA,sha256=kV37W1t2V-zxfT5UTRT-5wC4GVRDAjKbMCKfh-Rzjg4,1210
+recolonyzer-1.0.3.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+recolonyzer-1.0.3.dist-info/top_level.txt,sha256=r-5PZrm_EXM5DsrHz_zNfHUnzkQrsxBNIP4SwY6e-jA,12
+recolonyzer-1.0.3.dist-info/RECORD,,
