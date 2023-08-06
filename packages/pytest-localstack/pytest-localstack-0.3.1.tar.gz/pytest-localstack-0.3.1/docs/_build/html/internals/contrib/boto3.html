@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>boto3 &#8212; pytest-localstack 0.1.6 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="botocore" href="botocore.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pytest_localstack.contrib.boto3">
+<span id="boto3"></span><h1>boto3<a class="headerlink" href="#module-pytest_localstack.contrib.boto3" title="Permalink to this headline">¶</a></h1>
+<p>pytest-localstack extensions for boto3.</p>
+<dl class="class">
+<dt id="pytest_localstack.contrib.boto3.Boto3TestResourceFactory">
+<em class="property">class </em><code class="descclassname">pytest_localstack.contrib.boto3.</code><code class="descname">Boto3TestResourceFactory</code><span class="sig-paren">(</span><em>localstack_session</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pytest_localstack/contrib/boto3.html#Boto3TestResourceFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytest_localstack.contrib.boto3.Boto3TestResourceFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create boto3 clients and resources to interact with a <a class="reference internal" href="../session.html#pytest_localstack.session.LocalstackSession" title="pytest_localstack.session.LocalstackSession"><code class="xref py py-class docutils literal notranslate"><span class="pre">LocalstackSession</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>localstack_session</strong> (<a class="reference internal" href="../session.html#pytest_localstack.session.LocalstackSession" title="pytest_localstack.session.LocalstackSession"><code class="xref py py-class docutils literal notranslate"><span class="pre">LocalstackSession</span></code></a>) – The session that this factory should create test resources for.</p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="pytest_localstack.contrib.boto3.Boto3TestResourceFactory.client">
+<code class="descname">client</code><span class="sig-paren">(</span><em>service_name</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pytest_localstack/contrib/boto3.html#Boto3TestResourceFactory.client"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytest_localstack.contrib.boto3.Boto3TestResourceFactory.client" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a patched boto3 Client object that will use localstack.</p>
+<p>Arguments are the same as <a class="reference external" href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/boto3.html#boto3.client" title="(in Boto 3 Docs v1.9.109)"><code class="xref py py-func docutils literal notranslate"><span class="pre">boto3.client()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pytest_localstack.contrib.boto3.Boto3TestResourceFactory.default_session">
+<code class="descname">default_session</code><a class="headerlink" href="#pytest_localstack.contrib.boto3.Boto3TestResourceFactory.default_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a default boto3 Localstack Session.</p>
+<p>Most applications only need one Session.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytest_localstack.contrib.boto3.Boto3TestResourceFactory.resource">
+<code class="descname">resource</code><span class="sig-paren">(</span><em>service_name</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pytest_localstack/contrib/boto3.html#Boto3TestResourceFactory.resource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytest_localstack.contrib.boto3.Boto3TestResourceFactory.resource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a patched boto3 Resource object that will use localstack.</p>
+<p>Arguments are the same as <a class="reference external" href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/boto3.html#boto3.resource" title="(in Boto 3 Docs v1.9.109)"><code class="xref py py-func docutils literal notranslate"><span class="pre">boto3.resource()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytest_localstack.contrib.boto3.Boto3TestResourceFactory.session">
+<code class="descname">session</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pytest_localstack/contrib/boto3.html#Boto3TestResourceFactory.session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytest_localstack.contrib.boto3.Boto3TestResourceFactory.session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a boto3 Session object that will use localstack.</p>
+<p>Arguments are the same as <a class="reference external" href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html#boto3.session.Session" title="(in Boto 3 Docs v1.9.109)"><code class="xref py py-class docutils literal notranslate"><span class="pre">boto3.session.Session</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="pytest_localstack.contrib.boto3.contribute_to_session">
+<code class="descclassname">pytest_localstack.contrib.boto3.</code><code class="descname">contribute_to_session</code><span class="sig-paren">(</span><em>session</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pytest_localstack/contrib/boto3.html#contribute_to_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytest_localstack.contrib.boto3.contribute_to_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add <a class="reference internal" href="#pytest_localstack.contrib.boto3.Boto3TestResourceFactory" title="pytest_localstack.contrib.boto3.Boto3TestResourceFactory"><code class="xref py py-class docutils literal notranslate"><span class="pre">Boto3TestResourceFactory</span></code></a> to <a class="reference internal" href="../session.html#pytest_localstack.session.LocalstackSession" title="pytest_localstack.session.LocalstackSession"><code class="xref py py-class docutils literal notranslate"><span class="pre">LocalstackSession</span></code></a>.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pytest-localstack</a></h1>
+
+
+
+<p class="blurb">AWS integration tests via Localstack Docker container.</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=mintel&repo=pytest-localstack&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../using.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Internals</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../session.html">LocalstackSession</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hooks.html">Plugins/Hooks</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Contrib</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Internals</a><ul>
+  <li><a href="index.html">Contrib</a><ul>
+      <li>Previous: <a href="botocore.html" title="previous chapter">botocore</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Mintel.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.0b1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/internals/contrib/boto3.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/mintel/pytest-localstack" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
