@@ -1,0 +1,73 @@
+Metadata-Version: 2.1
+Name: sp-games
+Version: 0.0.3
+Summary: CLI Utility to extract information from Giant Bomb
+Home-page: UNKNOWN
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: argparse
+Requires-Dist: PyInquirer
+Requires-Dist: requests
+Requires-Dist: clint
+
+## Installation Instructions
+
+NOTE - Only tested in MacOS Mojave.
+
+`pip install sp-games`
+
+## Getting Started
+
+First item of business is to create an API Key from [Giant Bomb](https://www.giantbomb.com/api/)
+
+`spag congfigure`
+
+## Searching
+
+To search all games, please bear in mind that the API only responds with 100 results and there is currently no pagination.
+
+`spag search`
+
+### Additional options 
+
+`-n` which will be a fuzzy text lookup of the name so:
+
+`spag search -n Fallout`
+
+Providing you have a valid API key this will return some JSON with the matching game titles and GUID.
+
+## Specific Game
+
+To search for a specific game you need the GUID which can be got from [Search](#searching)
+
+`spag game -g 3030-20504`
+
+Will return the specific information about that game.
+
+### Additional Options
+
+`-d` will add an additional search for the DLCs for that game and return them (if any) in order of release date.
+
+Please note if you are searching for Rock Band 2 for example there are a lot of DLCs!
+
+`spag game -g 3030-20504 -d`
+
+## Things to note
+
+- JSON was readable enough for this first version.  This can be improved.
+- Friendly User Interaction responses in this version are not yet at a decent level, for example it will not specifically say if there are no DLCs for a game.
+- Error Handling leave a lot to be desired at this point in time.
+- The API called (being python) for getting DLC release date are not async or threaded so this should probably be done to make this faster.
+- Code duplication is currently quite high and can be refactored to be more generic.
+
+## Potential Additions
+- We could add an option to pick the response type: i.e. json, text
+- Types of information to respond with about a game
+- More API integrations...
+
+
+
