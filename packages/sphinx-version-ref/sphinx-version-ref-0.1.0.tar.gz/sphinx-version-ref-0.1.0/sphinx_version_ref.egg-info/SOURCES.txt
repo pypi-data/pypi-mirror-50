@@ -1,0 +1,12 @@
+LICENSE
+README.rst
+setup.py
+docs/source/conf.py
+docs/source/index.rst
+sphinx_version_ref/__init__.py
+sphinx_version_ref.egg-info/PKG-INFO
+sphinx_version_ref.egg-info/SOURCES.txt
+sphinx_version_ref.egg-info/dependency_links.txt
+sphinx_version_ref.egg-info/not-zip-safe
+sphinx_version_ref.egg-info/requires.txt
+sphinx_version_ref.egg-info/top_level.txt

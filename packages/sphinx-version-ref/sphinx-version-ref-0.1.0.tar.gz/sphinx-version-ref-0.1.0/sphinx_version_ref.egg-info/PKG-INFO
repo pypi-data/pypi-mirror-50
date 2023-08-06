@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: sphinx-version-ref
+Version: 0.1.0
+Summary: Sphinx extension to substitute version in references.
+Home-page: http://sphinx-version-ref.readthedocs.io/
+Author: M.J.W. Snippe
+Author-email: maxsnippe@gmail.com
+License: MIT
+Project-URL: Issue tracker, https://github.com/max-sn/sphinx_version_ref/issues
+Project-URL: Documentation, http://sphinx-version-ref.readthedocs.io/
+Project-URL: Repository, https://github.com/max-sn/sphinx_version_ref/
+Description: sphinx_version_ref
+        ==================
+        
+        .. image:: https://img.shields.io/pypi/v/sphinx-version-ref
+          :target: https://pypi.org/project/sphinx-version-ref/
+          :alt: PyPi version
+        
+        .. image:: https://img.shields.io/pypi/dm/sphinx-version-ref
+          :target: https://pypi.org/project/sphinx-version-ref/
+          :alt: PyPi downloads per month
+        
+        .. image:: https://img.shields.io/readthedocs/sphinx-version-ref/latest
+          :target: https://sphinx-version-ref.readthedocs.io/en/latest/
+          :alt: Documentation Status
+        
+        This extension adds a single role to `Sphinx <http://www.sphinx-doc.org/>`_.
+        With ``:version-ref:`<ref>``` one can substitute the version given in
+        ``conf.py`` into ``<ref>``.
+        
+        Usage
+        -----
+        
+        In your ``conf.py`` file::
+        
+          release = '1.4.1a5'
+          version = '.'.join(release.split('.')[:2])
+          extensions = ['sphinx_version_ref']
+        
+        Where version can of course be any string. The following uses of ``<ref>``
+        then will be parsed as:
+        
+        .. list-table::
+          :header-rows: 1
+        
+          * - Entered as ``<ref>``
+            - Parsed as
+          * - ``https://docs.com/{version}/index.html`` 
+            - ```https://docs.com/1.4/index.html`_``
+          * - ``{version} <http://github.com/user/project/tree/{version}>``
+            - ```1.4 <http://github.com/user/project/tree/1.4>`_``
+          * - ``See version {version} <http://github.com/user/project/tree/{release}>``
+            - ```See version 1.4 <http://github.com/user/project/tree/1.4.1a5>`_``
+        
+        See `the docs <http://sphinx-version-ref.readthedocs.io>`_ for more
+        information.
+        
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Documentation
+Classifier: Topic :: Utilities
+Description-Content-Type: text/x-rst
