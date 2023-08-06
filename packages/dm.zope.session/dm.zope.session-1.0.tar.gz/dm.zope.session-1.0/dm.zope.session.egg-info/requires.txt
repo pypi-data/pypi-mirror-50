@@ -1,0 +1,5 @@
+setuptools
+dm.zope.generate
+dm.zodb.asynchronous
+zope.schema
+zc.lockfile
