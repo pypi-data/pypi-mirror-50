@@ -1,0 +1,14 @@
+LICENSE
+README.md
+setup.cfg
+setup.py
+damson/__init__.py
+damson/__version__.py
+damson/constraint.py
+damson/exception.py
+damson/kernel.py
+damson/support.py
+damson.egg-info/PKG-INFO
+damson.egg-info/SOURCES.txt
+damson.egg-info/dependency_links.txt
+damson.egg-info/top_level.txt
