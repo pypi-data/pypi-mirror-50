@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: ssid-scanner
+Version: 0.1.0
+Summary: A package for scanning nearby wireless access points on Linux machines.
+Home-page: https://gitlab.com/ae-ou/ssid_scanner
+Author: ae-ou
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: POSIX :: Linux
+Classifier: License :: Other/Proprietary License
+Classifier: Topic :: System :: Networking
+Requires-Dist: pyric (==0.1.6.3)
+Requires-Dist: wifi (==0.3.8)
+
+# SSID Scanner
+
+This module is used to scan for nearby Wireless Access points on Linux machines.
+
+# Requirements
+
+- Linux-based OS (e.g. Ubuntu 18.04)
+- iw
+- iwlist
+
+## License
+
+Creative Commons Attribution Share Alike 4.0 International
+
