@@ -1,0 +1,1 @@
+from opossum import UserInterface
