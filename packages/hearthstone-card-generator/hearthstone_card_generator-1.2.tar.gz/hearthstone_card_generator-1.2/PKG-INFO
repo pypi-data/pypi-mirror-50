@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: hearthstone_card_generator
+Version: 1.2
+Summary: Generates completely random hearthstone cards (random mana cost, attack, health, name, and a description generated using markov chains from existing descriptions)
+Home-page: https://github.com/maymike321/hearthstone_card_generator
+Author: Michael May
+Author-email: yamekim@comcast.net
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
