@@ -1,0 +1,1 @@
+from .pygameoflife_dadeerh import LifeGame
