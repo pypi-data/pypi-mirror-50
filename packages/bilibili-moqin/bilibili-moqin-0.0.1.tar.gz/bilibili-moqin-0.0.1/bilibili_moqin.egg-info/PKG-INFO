@@ -1,0 +1,31 @@
+Metadata-Version: 1.2
+Name: bilibili-moqin
+Version: 0.0.1
+Summary: python package which could get bilibili's data
+Home-page: https://github.com/jimmy-moqin/mypy
+Author: xuqingyi
+Author-email: 374221195@qq.com
+Maintainer: xuqingyi
+Maintainer-email: 374221195@qq.com
+License: MIT
+Description: # bilibili package HELP Doc
+        ## vision=1.0
+        **The detail uesage is uoloaded to my github**
+        
+        **Here is the link following**
+        
+        [plaese go to my github for detail the useage](https://github.com/jimmy-moqin/mypy)
+Platform: all
+Classifier: Development Status :: 4 - Beta
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: Implementation
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development :: Libraries
