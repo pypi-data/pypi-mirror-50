@@ -1,0 +1,8 @@
+README.rst
+setup.py
+exception_template/__init__.py
+exception_template/exception_template.py
+exception_template.egg-info/PKG-INFO
+exception_template.egg-info/SOURCES.txt
+exception_template.egg-info/dependency_links.txt
+exception_template.egg-info/top_level.txt
