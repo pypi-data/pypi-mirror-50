@@ -1,0 +1,17 @@
+README.md
+setup_xbrief.py
+src/xbrief/__init__.py
+src/xbrief/fm.py
+src/xbrief/mapx.py
+src/xbrief/matx.py
+src/xbrief/strx.py
+src/xbrief/typ.py
+src/xbrief/vecx.py
+src/xbrief.egg-info/PKG-INFO
+src/xbrief.egg-info/SOURCES.txt
+src/xbrief.egg-info/dependency_links.txt
+src/xbrief.egg-info/requires.txt
+src/xbrief.egg-info/top_level.txt
+src/xbrief/abbrev/__init__.py
+src/xbrief/curt/__init__.py
+src/xbrief/preci/__init__.py
