@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: selenium-pages
+Version: 0.1.0a0
+Summary: A page based framework for creating Selenium test suites
+Home-page: https://github.com/zagaran/selenium-pages
+Author: Zagaran, Inc.
+Author-email: info@zagaran.com
+License: MIT
+Description: # selenium-pages
+        A page based framework for creating Selenium test suites
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Testing
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
