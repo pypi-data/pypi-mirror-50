@@ -1,0 +1,14 @@
+README.md
+setup_crostab.py
+src/crostab/__init__.py
+src/crostab/aggreg.py
+src/crostab/crit.py
+src/crostab/crostab.py
+src/crostab/infer_dp_type.py
+src/crostab/table.py
+src/crostab/table_spec.py
+src/crostab.egg-info/PKG-INFO
+src/crostab.egg-info/SOURCES.txt
+src/crostab.egg-info/dependency_links.txt
+src/crostab.egg-info/requires.txt
+src/crostab.egg-info/top_level.txt
