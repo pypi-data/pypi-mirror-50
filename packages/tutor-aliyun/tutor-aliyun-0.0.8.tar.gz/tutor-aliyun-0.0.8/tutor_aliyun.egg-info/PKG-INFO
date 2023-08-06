@@ -1,0 +1,60 @@
+Metadata-Version: 1.2
+Name: tutor-aliyun
+Version: 0.0.8
+Summary: Aliyun plugin for Tutor, for deploying edx instance to aliyun by tutor
+Home-page: https://github.com/WeJie/tutor-aliyun
+Author: weijie
+Author-email: wejie00@foxmail.com
+License: AGPLv3
+Project-URL: Issue tracker, https://github.com/WeJie/tutor-aliyun/issues
+Project-URL: Documentation, https://github.com/WeJie/tutor-aliyun
+Project-URL: Community, https://github.com/WeJie/tutor-aliyun
+Project-URL: Code, https://github.com/WeJie/tutor-aliyun
+Description: .. image:: https://badge.fury.io/py/tutor-aliyun.svg
+            :target: https://pypi.org/project/tutor-aliyun/
+        
+        Aliyun plugin for `Tutor <https://docs.tutor.overhang.io>`_
+        ============================================================
+        
+        This is a plugin for `Tutor <https://docs.tutor.overhang.io>`_ that make `tutor k8s` can deploy edx on aliyun kubernetes service.
+        
+        
+        Installation
+        ------------
+        
+        This plugin requires tutor>=3.6.0. Also, you should have installed tutor from source, and not from a pre-compiled binary.
+        
+        ::
+        
+            pip install tutor-aliyun
+        
+        Then, to enable this plugin, run::
+        
+            tutor plugins enable aliyun 
+        
+        You will have to re-generate the environment::
+        
+            tutor config save
+        
+        Then deploy to k8s cluster::
+        
+            tutor k8s quickstart 
+        
+        Set true to ALIYUN_USE_NAS_STORAGE in config.yml, if you want to use NAS(Network Attached Storage)::
+            ALIYUN_USE_NAS_STORAGE: true
+        
+        Check if kustomization.yml file is right.::
+        
+            kubectl kustomize "$(tutor config printroot)/env"
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.5
