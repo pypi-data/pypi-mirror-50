@@ -1,0 +1,26 @@
+Metadata-Version: 1.1
+Name: lsrm
+Version: 0.0.3
+Summary: land surface recharge model
+Home-page: https://github.com/Data-to-Knowledge/lsrm
+Author: Mike Kittridge
+Author-email: mullenkamp1@gmail.com
+License: Apache
+Description: lsrm
+        ==================================
+        
+        This git repository contains project code for the land surface recharge models (lsrm) developed at Environment Canterbury (ECan).
+        The current lsrm available was originally developed by David Scott in Fortran, but has been transcribed and improved by Mike Kittridge into this Python package.
+        
+Keywords: lsrm
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
