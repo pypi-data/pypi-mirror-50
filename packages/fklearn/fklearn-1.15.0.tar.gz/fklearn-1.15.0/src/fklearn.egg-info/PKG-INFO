@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: fklearn
+Version: 1.15.0
+Summary: Functional machine learning
+Home-page: https://github.com/nubank/fklearn
+Author: Nubank
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Provides-Extra: test_deps
