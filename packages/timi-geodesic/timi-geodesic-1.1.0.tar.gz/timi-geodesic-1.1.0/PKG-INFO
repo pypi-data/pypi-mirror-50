@@ -1,0 +1,22 @@
+Metadata-Version: 1.1
+Name: timi-geodesic
+Version: 1.1.0
+Summary: 根据传入待测点坐标，所有已知坐标点，返回待测点坐标到所有已知坐标点的距离，并按距离升序输出该待测点到各已知坐标点的距离
+Home-page: http://github.com/lxl0928/timi_geodesic
+Author: Timi long
+Author-email: lixiaolong@smuer.cn
+License: UNKNOWN
+Description: 根据传入待测点坐标，所有已知坐标点，返回待测点坐标到所有已知坐标点的距离，并按距离升序输出该待测点到各已知坐标点的距离
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
