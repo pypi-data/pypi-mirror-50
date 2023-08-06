@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: lemay-ai-sidecar
+Version: 0.0.1
+Summary: UNKNOWN
+Home-page: UNKNOWN
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: pandas (>=0.24.*)
+Requires-Dist: Keras (>=2.2.4)
+Requires-Dist: scikit-learn (>=0.21.3)
+Requires-Dist: scipy (>=0.17.0)
+Requires-Dist: tensorflow (<1.14.*,>=1.11.*)
+Requires-Dist: numpy (>=1.16.*)
+Requires-Dist: gensim (>=3.8.0)
+Requires-Dist: wget (>=3.2)
+
+UNKNOWN
+
+
