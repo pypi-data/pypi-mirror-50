@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: micropython-uploader
+Version: 0.3.1
+Summary: UNKNOWN
+Home-page: https://github.com/Sapfir0/micropython-uploader
+Author: Alex Yurev
+Author-email: sapfir999999@yandex.ru
+License: MIT
+Keywords: hardware micropython circuitpython uploaders upload ampy
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: ampy
+
+
+## Micropython Uploader
+
+### The script can:
+
+* Recursively bypass the current directory
+* Download detected files to mk. It was decided that you should push only `.py` files.
+* Delete all files with mk (ps directory is also a file)
+
+## Installation
+
+On MacOS or Linux, in a terminal run the following command (assuming
+Python 3):
+
+    pip3 install --user micropython-uploader
+
+On Windows, do:
+
+    pip install micropython-uploader
+
+## Usage
+
+In terminal run:
+
+    mploader
+
+### Requirements:
+
+* ampy
+
+        pip3 install ampy
+
+
+* `micropython` as firmware for microcontroller
+
+
