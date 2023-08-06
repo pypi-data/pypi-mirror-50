@@ -1,0 +1,9 @@
+setup.cfg
+setup.py
+datadog_metrics/metrics.py
+datadog_metrics.egg-info/PKG-INFO
+datadog_metrics.egg-info/SOURCES.txt
+datadog_metrics.egg-info/dependency_links.txt
+datadog_metrics.egg-info/entry_points.txt
+datadog_metrics.egg-info/requires.txt
+datadog_metrics.egg-info/top_level.txt

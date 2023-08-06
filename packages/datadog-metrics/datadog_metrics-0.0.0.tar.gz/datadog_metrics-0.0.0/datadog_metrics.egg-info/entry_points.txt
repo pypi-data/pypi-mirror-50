@@ -1,0 +1,3 @@
+[console_scripts]
+datadog_metrics = datadog_metrics.main:main
+
