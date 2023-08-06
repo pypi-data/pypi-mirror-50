@@ -1,0 +1,48 @@
+FROM python:3.7
+
+RUN apt-get -y update \
+    && apt-get install -y --no-install-recommends curl apt-transport-https ca-certificates \
+    && curl -sSLf https://github.com/openfaas-incubator/of-watchdog/releases/download/0.5.0/of-watchdog > /usr/bin/fwatchdog \
+    && chmod +x /usr/bin/fwatchdog \
+    && rm -rf /var/lib/apt/lists/* \
+    && mkdir -p /app/
+
+{% if build["dependencies"] is defined and build["dependencies"]|length > 0 -%}
+RUN apt-get -y update \
+    && apt-get install -y --no-install-recommends {{ build["dependencies"]|join(" ") }} \
+    && rm -rf /var/lib/apt/lists/*
+{%- endif %}
+
+WORKDIR /app/
+
+
+{%- if build["copy_files"] is not none and build["copy_files"]|length > 0 -%}
+    {%- for file in build["copy_files"] %}
+        {%- if file["src"].startswith("http://") or file["src"].startswith("https://") %}
+ADD {{ file["src"] }} {{ file["dest"] }}
+        {%- else %}
+COPY {{ file["src"] }} {{ file["dest"] }}
+        {%- endif %}
+    {%- endfor %}
+{%- endif %}
+
+RUN pip install -U --no-cache-dir pip \
+{%- if build["extras"] is defined %}
+    && pip install --no-cache-dir gunicorn faastapi[{{ build["extras"]|join(',') }}]
+{%- else %}
+    && pip install --no-cache-dir gunicorn faastapi
+{%- endif %}
+
+COPY handler.py ./
+COPY main.py ./
+COPY models.py ./
+
+ENV fprocess="gunicorn main:app -w 2 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000" \
+    cgi_headers="true" \
+    mode="http" \
+    upstream_url="http://127.0.0.1:8000"
+
+HEALTHCHECK --interval=5s CMD [ -e /tmp/.lock ] || exit 1
+
+CMD ["fwatchdog"]
+
