@@ -1,0 +1,14 @@
+README.md
+setup.cfg
+setup.py
+ipfscluster/__init__.py
+ipfscluster/allocations.py
+ipfscluster/health.py
+ipfscluster/http.py
+ipfscluster/peers.py
+ipfscluster/pins.py
+ipfscluster.egg-info/PKG-INFO
+ipfscluster.egg-info/SOURCES.txt
+ipfscluster.egg-info/dependency_links.txt
+ipfscluster.egg-info/requires.txt
+ipfscluster.egg-info/top_level.txt
