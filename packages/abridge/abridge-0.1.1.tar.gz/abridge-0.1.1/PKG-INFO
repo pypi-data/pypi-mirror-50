@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: abridge
+Version: 0.1.1
+Summary: Splice similar frames from videos
+Home-page: https://github.com/sdispater/poetry
+License: MIT
+Keywords: video,automatic,cutting,ffmpeg,moviepy
+Author: Oliver Bell
+Author-email: freshollie@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: enlighten (>=1.3,<2.0)
+Requires-Dist: moviepy (>=1.0,<2.0)
+Requires-Dist: numpy (>=1.17,<2.0)
+Requires-Dist: proglog (>=0.1.9,<0.2.0)
+Project-URL: Repository, https://github.com/sdispater/poetry
+Description-Content-Type: text/markdown
+
+# abridge
+
+Automatically cutout similar frames from videos
+
