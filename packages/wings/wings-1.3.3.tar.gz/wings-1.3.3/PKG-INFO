@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: wings
+Version: 1.3.3
+Summary: Interact with a WINGS instance
+Home-page: https://github.com/KnowledgeCaptureAndDiscovery/wings-client
+Author: Maximiliano Osorio
+Author-email: mosorio@isi.edu
+License: Apache-2
+Description: # WINGS client Python
+        
+        [![Build Status](https://travis-ci.org/KnowledgeCaptureAndDiscovery/wings-client.svg?branch=master)](https://travis-ci.org/KnowledgeCaptureAndDiscovery/wings-client)
+        [![PyPI version](https://badge.fury.io/py/wings.svg)](https://pypi.org/project/wings/)
+        [![Downloads](https://img.shields.io/pypi/dm/wings.svg)](https://pypi.org/project/wings/)
+        [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+        
+        
+        ## Installation
+        
+        ```bash
+        pip install wings
+        ```
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Intended Audience :: Science/Research
+Classifier: Operating System :: Unix
+Description-Content-Type: text/markdown
