@@ -1,0 +1,138 @@
+Architect Python SDK
+=====================
+This is the Python SDK used for brokering connections to microservice dependencies via Architect's deployment platform. If you're unfamiliar with the platform or our deploy tools, please check out Architect.io and our [CLI](https://github.com/architect-team/architect-cli) to get started.
+
+# SDK Documentation
+
+## Connecting to dependencies
+
+```python
+import architect.sdk as architect
+
+my_dependency = architect.service('my_dependency_name')
+
+# Client used to connect to service
+client = my_dependency.client
+
+# Dynamically imported models used for message formatting
+# Used by protocols supporting code-gen like gRPC
+defs = my_dependency.defs
+```
+
+### REST
+The Architect SDK uses the popular REST client, [Requests](https://2.python-requests.org/en/master/), to broker communication to downstream REST microservices. The client that is provided is a requests [session](https://2.python-requests.org/en/master/user/advanced/#session-objects) that is enriched with the proper service location meaning only URIs and HTTP actions need be provided:
+
+```python
+res = my_dependency.client.get('/resource')
+res = my_dependency.client.post('/resource', { data })
+res = my_dependency.client.put('/resource/:resource_id', { data })
+res = my_dependency.client.delete('/resource/:resource_id')
+```
+
+### gRPC
+Architect handles the code-gen for gRPC services for you. Every time you run `$ architect install ...`, you'll find relevant gRPC stubs generated and placed inside an `architect_services` folder in your service's root directory. This SDK handles the import of generated model objects for parsing input/output messages as well as the import and enrichment of client code for making calls to dependencies.
+
+```protobuf
+// service.proto
+syntax = "proto3";
+
+package example_service;
+
+message PayRequest {
+    int32 amount = 1;
+}
+
+message PayResponse {
+    int32 output = 1;
+}
+
+service Example {
+  rpc Pay (PayRequest) returns (PayResponse) {}
+}
+```
+
+```python
+# Model definitions will match message names in the .proto file for the service
+pay_req = my_dependency.defs.PayRequest(amount=10)
+
+# Client will automatically have methods matching the service definition from 
+# the dependency's .proto file. Response handling matches gRPC documentation.
+pay_res = my_dependency.client.Pay(pay_req)
+output = pay_res.output
+```
+
+## Connecting to data stores
+Since there are so many DB clients available, we don't want to choose a default for developers. Instead, the Architect SDK provides easy mechanics to parse credentials provided by the platform:
+
+```python
+import psycopg2
+import architect.sdk as architect
+
+# Key used to cite the datastore must match the key used in your 
+# architect service config
+db_config = architect.datastore('primary_db')
+connection = psycopg2.connect(dbname=db_config.name, 
+                              user=db_config.username,
+                              password=db_config.password, 
+                              host=db_config.host,
+                              port=db_config.port)
+```
+
+## Events and messaging
+The Architect platform also supports pub/sub based communication between services. The primary use-case for this flow would be to allow services to broadcast events for other services to subscribe to without needing to know who the subscribers are.
+
+NOTE: As of v0.2.x of the SDK, the only method for publishing/subscribing to events using Architect is via REST (mirroring the function of traditional webhooks). We're actively working on means of supporting queuing systems like RabbitMQ, AWS SQS, and more.
+
+### Subscribing
+
+```javascript
+// architect.json
+{
+  "subscriptions": {
+    "<service_name>": {
+      "<event_name>": {
+        "uri": "/event/callback",
+        "headers": {
+          "x-custom-header": "example"
+        }
+      }
+    }
+  }
+}
+```
+
+The URI used for registration must match a URI on your service:
+
+```python
+from flask import Flask, request
+import architect.sdk as architect
+
+app = Flask(__name__)
+
+@app.route("/event/callback")
+def callback():
+    # Custom event handling here
+
+if __name__ == '__main__':
+    app.run(host=os.environ['HOST'], port=os.environ['PORT'])
+```
+
+### Publishing
+_NOTE: simple publication methods coming soon. For now, you can iterate through
+subscribers to submit events._
+
+```js
+// architect.json
+{
+  "notifications": ["<event_name>"]
+}
+```
+
+```python
+from requests import Request, Session
+import architect.sdk as architect
+
+# Iterate through notification subscribers to POST payload
+for sub in architect.notification('<event_name>').subscriptions:
+    r = requests.post('{}:{}{}'.format(sub.host, sub.port, sub.uri), data = {})
+```
