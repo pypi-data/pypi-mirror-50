@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: dialog-api
+Version: 0.0.39
+Summary: Dialog API for Python
+Home-page: https://github.com/dialogs/api-schema
+Author: Dialog LLC
+Author-email: services@dlg.im
+License: Apache License 2.0
+Description: dialog api schema
+        =================
+        
+        Dialog gRPC API Schema.
+        
+        java-api-schema [![CircleCI](https://circleci.com/gh/dialogs/api-schema/tree/master.svg?style=svg)](https://circleci.com/gh/dialogs/api-schema/tree/master) 
+        
+        [Chat](https://dlg.im/@botsfordialog)
+        
+        [API documentation](https://dialogs.github.io/api-schema/)
+        
+        Usage
+        -----
+        
+        Currently API available by request in Dialog [chat](https://dlg.im/@botsfordialog).
+        
+        | Project      | Link                                      |
+        |--------------|-------------------------------------------|
+        | Java Bot SDK | https://github.com/dialogs/java-bot-sdk   |
+        | JS Bot SDK   | https://github.com/dialogs/js-bot-sdk     |
+        | Python (WIP) | https://github.com/dialogs/python-bot-sdk |
+        | Go (Example) | https://github.com/dialogs/stressbot      |
+        
+Keywords: dialog messenger
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3
+Description-Content-Type: text/markdown
