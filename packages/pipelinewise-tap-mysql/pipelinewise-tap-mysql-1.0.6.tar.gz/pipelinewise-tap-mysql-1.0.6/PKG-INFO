@@ -1,0 +1,12 @@
+Metadata-Version: 1.1
+Name: pipelinewise-tap-mysql
+Version: 1.0.6
+Summary: Singer.io tap for extracting data from MySQL - PipelineWise compatible
+Home-page: https://github.com/transferwise/pipelinewise-tap-mysql
+Author: Stitch
+Author-email: UNKNOWN
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Programming Language :: Python :: 3 :: Only
