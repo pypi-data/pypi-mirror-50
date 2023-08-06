@@ -1,0 +1,13 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+clanimate/__init__.py
+clanimate/barindicator.py
+clanimate/indicator.py
+clanimate/scrolltextindicator.py
+clanimate/wheelindicator.py
+clanimate.egg-info/PKG-INFO
+clanimate.egg-info/SOURCES.txt
+clanimate.egg-info/dependency_links.txt
+clanimate.egg-info/top_level.txt
