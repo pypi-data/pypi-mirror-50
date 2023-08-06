@@ -1,0 +1,10 @@
+README.md
+setup.py
+ossapi/__init__.py
+ossapi/endpoints.py
+ossapi/exceptions.py
+ossapi/ossapi.py
+ossapi.egg-info/PKG-INFO
+ossapi.egg-info/SOURCES.txt
+ossapi.egg-info/dependency_links.txt
+ossapi.egg-info/top_level.txt
