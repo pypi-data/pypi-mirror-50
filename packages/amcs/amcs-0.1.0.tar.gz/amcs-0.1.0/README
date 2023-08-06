@@ -1,0 +1,11 @@
+Use word embedding model to compute vectors for business descriptions, process other data, and finally,
+optimize custom distance function to find public peers for new private companies.
+
+Instructions for implementation -
+
+1. 'business_description_processing.py':
+    a. import dataset (df), reduce Business Description 2 column to key features, and save the df
+    b. generate sector-specific tf-idf values using cleaned business descriptions (from df) and save results (tfidf_df)
+    c. over the long-run also recreate word embeddings with fresh corpus of business description text
+
+2. 'comp_similarity': Load models and data, processing new company and generate peer chart
