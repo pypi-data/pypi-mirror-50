@@ -1,0 +1,11 @@
+README.md
+setup.py
+cognite/model_hosting/notebook/__init__.py
+cognite/model_hosting/notebook/_model_file.py
+cognite/model_hosting/notebook/_setup_file.py
+cognite/model_hosting/notebook/notebook.py
+cognite_model_hosting_notebook.egg-info/PKG-INFO
+cognite_model_hosting_notebook.egg-info/SOURCES.txt
+cognite_model_hosting_notebook.egg-info/dependency_links.txt
+cognite_model_hosting_notebook.egg-info/requires.txt
+cognite_model_hosting_notebook.egg-info/top_level.txt
