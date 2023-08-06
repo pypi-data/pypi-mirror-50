@@ -1,0 +1,248 @@
+---
+title: "Read QC Report"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+author: "`r Sys.info()[[7]]`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_collapsed: true
+    theme: yeti
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.align="center", warning=FALSE, message=FALSE)
+```
+
+```{r libraries, include=FALSE}
+library("ggplot2")
+library("tidyverse")
+library("ggpubr")
+library("knitr")
+library("fastqcr")
+library(DT)
+library(RColorBrewer)
+```
+
+Report generated based on data located in `r getwd()` \  
+
+```{r samtool, include=FALSE}
+## Samtools ##
+
+sam_tools <- read_delim(file = "../multiqc_data/multiqc_samtools_stats.txt", delim = '\t', col_names = TRUE)
+sam_tools <- dplyr::select(sam_tools, c("Sample", "raw_total_sequences", "reads_mapped", "reads_unmapped"))
+sam_tools <- gather(sam_tools, "Mapped/Unmapped", "Number", 3:4)
+sam_tools$`Mapped/Unmapped` <- ifelse(sam_tools$`Mapped/Unmapped` == "reads_mapped", "Mapped", "Unmapped" )
+
+sam_tools$Percentages <- 100*(sam_tools$Number / sam_tools$raw_total_sequences)
+sam_tools$Sample <- gsub("\\.stats$", "", sam_tools$Sample )
+```
+
+Samples: `r unique(sam_tools$Sample)` \n  
+
+Report generated at: `r format(Sys.time(), "%X %x ")` \n 
+
+# General stats
+MultiQC general stats from Bowtie, featureCounts, FastQC and Samtools. 
+```{r, general_stats, echo = FALSE}
+# General stats
+general <- read_delim(file = "../multiqc_data/multiqc_general_stats.txt", delim = '\t', col_names = TRUE)
+colnames(general) <- c("Sample Name", "Bowtie: % Reads Aligned", "Bowtie: Reads Aligned", "FC: % Assigned", "FC: Assigned", "FastQC: % Duplicates", "FastQC: % GC", "FastQC: Average Sequence Length", "FastQC: % Fails", "FastQC: Total Sequences", "Samtools: % Error Rate", "Samtools: Non Primary Allignments", "Samtools: Reads Mapped", "Samtools: % Reads Mapped", "Samtools: Raw Total Sequences")
+general$`Samtools: % Error Rate` <- as.numeric(general$`Samtools: % Error Rate`)*100
+#general <- general %>% replace(is.na(.), "-")
+datatable(general) 
+```
+FC: featureCounts
+
+# Samtools 
+
+SAM (Sequence Alignment/Map) format is a generic format for storing large nucleotide sequence alignments.
+
+SAM Tools provide various utilities for manipulating alignments in the SAM format, including sorting, merging, indexing and generating alignments in a per-position format (hosted on github: https://github.com/samtools/samtools)
+
+## Reads mapped stats {.tabset .tabset-pills}
+
+### Number of reads
+Mapped vs unmapped reads
+```{r samtools_plot1, include=TRUE, echo =FALSE}
+# Plots
+samtools_plot <- ggplot(data=sam_tools, aes(x=Sample, y=Number, fill=`Mapped/Unmapped`)) +
+  geom_bar(stat="identity") + coord_flip() + fill_palette("lancet")
+
+print(samtools_plot)
+```
+
+### Percentages
+Mapped vs unmapped reads
+```{r, samtools_plot2, include = TRUE, echo=FALSE}
+samtools_plot_percent <- ggplot(data=sam_tools, aes(x=Sample, y=Percentages, fill=`Mapped/Unmapped`)) +
+  geom_bar(stat="identity") + coord_flip() + fill_palette("lancet")
+
+print(samtools_plot_percent)
+```
+
+## Alignment Metrics 
+Alignment metrics from samtools stats
+
+```{r, kable_alignment_metrics, echo = FALSE, fig.align='center'}
+sam_table <- read_tsv("../multiqc_data/multiqc_samtools_stats.txt")
+sam_table$Sample <- gsub("\\.stats$", "", sam_table$Sample)
+sam_table_subset <- sam_table %>% dplyr::select(contains("Sample"),  contains("total_sequences"), contains("reads"), contains("bases"), contains("pairs"), -contains("percent")) %>%
+  rename(total_sequences = raw_total_sequences, `mapped_paired` = reads_mapped_and_paired, `MQ0_reads` = reads_MQ0 ) %>% rename_all(~sub('reads_', '', .x)) %>%
+  rename_all(~sub('^pairs[^_]*_[^_]*_', '', .x))
+datatable(sam_table_subset)
+```
+
+## Mapped reads per contig {.tabset .tabset-pills}
+The samtools idxstats tool counts the number of mapped reads per chromosome / contig. Chromosomes with < 0.1% of the total aligned reads are omitted from this plot
+
+```{r mapped_reads_contig, include = FALSE}
+contig <- read_delim(file = "../multiqc_data/multiqc_samtools_idxstats.txt", delim = '\t', col_names = TRUE)
+contig <- contig %>% replace(is.na(.), 0)
+contig$total <- rowSums(contig[, -c(1)])
+
+# Chromosomes with < 0.1% of the total aligned reads are omitted from this plot
+contig <- contig %>% select_if(function(x) is.character(x) || sum(x) > sum(contig$total)*0.001)
+
+contig <- gather(contig, "Chromosome Name", "Count", -c(1, ncol(contig)))
+
+contig$Percentages <- 100*(contig$Count / contig$total)
+
+# Normalised
+contig_plot_norm <- ggplot(contig, aes(x = `Chromosome Name`, y = Percentages, group=Sample)) + geom_line(aes(color=Sample))  +
+  theme_bw() + theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+contig_plot_norm <- set_palette(contig_plot_norm, "lancet")
+
+# Count
+contig_plot_count <- ggplot(contig, aes(x = `Chromosome Name`, y = Count, group=Sample)) + geom_line(aes(color=Sample)) + 
+  theme_bw() + theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+contig_plot_count <- set_palette(contig_plot_count, "lancet")
+```
+
+### Normalised counts
+```{r mapped_reads_contig_norm, echo = FALSE, fig.height=5, fig.width=10}
+print(contig_plot_norm)
+```
+
+### Counts
+```{r mapped_reads_count, echo = FALSE, fig.height=5, fig.width=10}
+print(contig_plot_count)
+```
+
+
+# Bowtie {.tabset .tabset-pills}
+
+```{r bowtie_intro, include = FALSE}
+bowtie <- read_delim(file = "../multiqc_data/multiqc_bowtie1.txt", delim = '\t', col_names = TRUE)
+bowtie <- dplyr::select(bowtie, -contains("percentage"))
+bowtie <- gather(bowtie, "Aligned/Not aligned", "Number", 3:4)
+bowtie$`Aligned/Not aligned` <- ifelse(bowtie$`Aligned/Not aligned` == "reads_aligned", "Aligned", "Not Aligned")
+bowtie$Percentages <- 100*(bowtie$Number / bowtie$reads_processed)
+
+# Number Plot
+bowtie_plot <- ggplot(data=bowtie, aes(x=Sample, y=Number, fill=`Aligned/Not aligned`)) +
+  geom_bar(stat="identity") + coord_flip() + fill_palette("lancet")
+
+# Percentage plot
+bowtie_plot_percent <- ggplot(data=bowtie, aes(x=Sample, y=Percentages, fill=`Aligned/Not aligned`)) +
+  geom_bar(stat="identity") + coord_flip() + fill_palette("lancet")
+```
+
+## Number of Reads
+```{r number_bowtie_plot, echo = FALSE}
+print(bowtie_plot)
+```
+
+## Percentages
+```{r percent_bowtie_plot, echo = FALSE}
+print(bowtie_plot_percent)
+```
+
+# Feature Counts 
+
+Subread featureCounts is a highly efficient general-purpose read summarization program that counts mapped reads for genomic features. Feature counts obtains data from bam files located in mapping.dir.
+
+## Gene IDs {.tabset .tabset-pills}
+
+```{r feature_counts, include = FALSE}
+file_paths = list.files(path= "../",pattern='_small.tsv$', recursive=TRUE, full.names = TRUE)
+num_samples <- length(file_paths)
+feature_count_tibble_all_samples = NULL
+
+for(i in 1:num_samples){
+  path <- file_paths[i]
+  feature_count_tibble <-read_tsv(path, col_names = FALSE, skip = 2)
+  colnames(feature_count_tibble) <- c("GeneID", "NumberMapped")
+  # Get sample name 
+  sample <- stringr::str_match(path, ".*/.*/(.*?)/")[2]
+  feature_count_tibble$Sample <- sample
+  total_mapped <- sum(feature_count_tibble$NumberMapped)
+  feature_count_tibble$Percentages <- 100*(feature_count_tibble$NumberMapped / total_mapped)
+  feature_count_tibble_all_samples = bind_rows(feature_count_tibble_all_samples,feature_count_tibble)
+}
+fc_tibble_all_samples_nonzero <- dplyr::filter(feature_count_tibble_all_samples, NumberMapped >= 150)
+fc_tibble_all_samples_nonzero<- fc_tibble_all_samples_nonzero[,c(3,1,2,4)]
+
+qual_cols_pal <- brewer.pal.info[brewer.pal.info$category == "qual",]
+col_vector <- unlist(mapply(brewer.pal, qual_cols_pal$maxcolors, rownames(qual_cols_pal)))
+
+feature_count_plot <- ggplot(data=fc_tibble_all_samples_nonzero, aes(x=Sample, y=NumberMapped, fill=`GeneID`)) +
+  geom_bar(stat="identity") + coord_flip() + scale_fill_manual(values=col_vector)
+
+feature_count_plot_percent <- ggplot(data=fc_tibble_all_samples_nonzero, aes(x=Sample, y=Percentages, fill=`GeneID`)) +
+  geom_bar(stat="identity") + coord_flip() + scale_fill_manual(values=col_vector)
+
+postscript("feature_count_pct.eps")
+feature_count_plot_percent
+dev.off()
+
+postscript("feature_count.eps")
+feature_count_plot
+dev.off()
+```
+
+### Number
+```{r fc_plot, echo =FALSE, fig.align='center'}
+print(feature_count_plot)
+```
+
+### Percent
+```{r fc_plot_percent, echo =FALSE, fig.align='center'}
+print(feature_count_plot_percent)
+```
+
+## Feature Count Table
+```{r, fc_table, echo=FALSE, fig.align='center'}
+datatable(fc_tibble_all_samples_nonzero) 
+```
+
+## Assigned/ Unassigned {.tabset .tabset-pills}
+
+```{r fc_mapped, include = FALSE}
+fc_tibble <- read_tsv("../multiqc_data/multiqc_featureCounts.txt", col_names = TRUE, skip = 0)
+fc_tibble <- fc_tibble[, !names(fc_tibble) %in% c("percent_assigned")]
+fc_tibble <- gather(fc_tibble, "Status", "Number", -c(1,2) )
+fc_tibble$Percentages <- 100*(fc_tibble$Number/fc_tibble$Total)
+fc_tibble <- fc_tibble[fc_tibble$Number != 0,]
+
+feature_count_plot <- ggplot(data=fc_tibble, aes(x=Sample, y=Number, fill=`Status`)) +
+  geom_bar(stat="identity") + coord_flip() + scale_fill_manual(values=col_vector)
+
+feature_count_plot_percent <- ggplot(data=fc_tibble, aes(x=Sample, y=Percentages, fill=`Status`)) +
+  geom_bar(stat="identity") + coord_flip() + scale_fill_manual(values=col_vector)
+  
+fc_tibble_final <- fc_tibble[, !names(fc_tibble) %in% c("Total")]
+```
+
+
+### Number of reads
+```{r fc_plot2, echo = FALSE}
+print(feature_count_plot)
+```
+`r datatable(fc_tibble_final)`
+
+### Percentages
+```{r fc_plot3, echo = FALSE}
+print(feature_count_plot_percent)
+```
+

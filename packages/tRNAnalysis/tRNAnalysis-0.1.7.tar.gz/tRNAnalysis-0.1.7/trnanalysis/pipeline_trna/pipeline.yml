@@ -1,0 +1,154 @@
+################################################################
+#
+# Pipeline pipeline_trna.py configuration file
+#
+# This pipeline.yml file lists some configuration options that you
+# need to set before running the pipeline. 
+#
+################################################################
+
+# Copyright statement
+copyright: Cribbs Group, Botnar Research Centre (2018)
+
+##########################################################
+# Location of the ensembl gtf
+##########################################################
+
+# Full diectory of the gtf
+gtf_location: /ifs/projects/adam/tRNA-analysis-test/geneset_all.gtf.gz
+
+
+##########################################################
+# Location of output for tScan-SE
+# If you would like to speed the analysis of your data
+# then you can use pre-ran outputs, for hg38 and mm10 these
+# can be downloaded from /ifs/public/adam/data_trnanalysis/hg38|mm10_tRNAscan.nuc.csv
+
+# Specify if a pre-ran tScan-SE is present:
+trna_scan_load: 0
+
+# full path to file for tScan-SE output download
+trna_scan_path: /ifs/projects/adam/tRNA-analysis/tRNAscan.nuc.csv
+ 
+###############################
+# Genomecoverage for each file
+# For large files the genomecoverage function may give a memory error
+# In this case the memory for this job can be increased here
+# This is the memory for each job (i.e. per file) not in total for all jobs
+###############################
+
+genomecov_memory: "20G"
+
+##########################################################
+# UCSC database options
+# This section controls the parameters required for
+# repeats from the ucsc
+##########################################################
+
+ucsc:
+# UCSC database host
+    host: genome-mysql.cse.ucsc.edu
+
+# UCSC database user name
+    user: genome
+
+# UCSC database name
+    database: mm10
+
+# repeats to collect as ',' separated list
+    repeattypes: DNA,LINE,SINE,LTR,Transposon
+
+# RNA repeats to collect as ',' separated list
+    rnatypes: RNA,rRNA,scRNA,snRNA,srpRNA,tRNA
+
+# comma separated list of regular expressions (a word contained in the contig that defines the contigs to be removed) 
+# for contigs (ensembl nomenclature)
+# to be removed from ensembl_filename_gtf during genome
+# sanitization
+    remove_contigs: [random,chrUn,na,alt]
+
+
+################################################################
+# trimmomatic options
+################################################################
+trimmomatic:
+# http://www.usadellab.org/cms/?page=trimmomatic
+
+# specify with 1 or 0 if trimmomatic should be ran
+    run: 0
+
+#options
+    options: LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+
+# specify the phred score as per trimmomatic documentation
+    phred: -phred33
+
+# if adapter removal is required, specify the location of a fasta file
+# containing adapters and define the adapter parameters
+# this variable will be overriden if auto_remove != 0
+    adapter: /ifs/apps/bio/trimmomatic-0.32/adapters/TruSeq2-PE.fa
+
+# max mismatches in adapter sequence
+    mismatches: 1
+
+# accuracy thresholds. these values are (very roughly speaking) log-10
+# probabilities of getting a match at random
+# A threshold of 10 requires a perfect match of ~17bp (see above website)
+    c_thresh: 10
+
+# only used in paired end mode
+    p_thresh: 30
+
+########################################################
+# the genome to use (UCSC convention)
+########################################################
+
+# The name of the genome (single word with no "_" or "-" and including a number, without the .fa. e.g. hg19, genome1)
+genome: mm10
+
+# The folder that the genome is located in
+genome_dir: /ifs/mirror/genomes/index/
+
+##########################################################
+# location of a bowtie2 indexed genome
+# for infomation on how to build this please refer to: http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml#getting-started-with-bowtie-2-lambda-phage-example
+##########################################################
+
+bowtie:
+    genome : mm10
+
+    genome_dir: /ifs/mirror/genomes/bowtie/
+
+    # These are the options used for mapping tRNA fragments to
+    # a genome. I have noticed that the mapping can be affected
+    # substantially by modification of these paramaters. The default ones are
+    # mostly fine for most samples but you may like to experiment with
+    # these options
+    options: -n 3 -k 5 -l 20 -e 500
+
+###########################################################
+# Differential expression
+###########################################################
+
+diff_eprs:
+    # Is a Wald or LRT test required?
+    model: Wald
+    # This is the design formula to use for DESeq2
+    design: ~Condition
+
+# If the wald test is set then specify the following values:
+Wald:
+    # Select the column with the contrast for your analysis
+    value: Condition
+    # Select the control
+    control: cel_s
+    # Select the test value
+    test: ev_s
+
+# If the LRT test is set then specify the full and reduced model
+LRT:   
+    
+    full: ~Condition
+    
+    reduced: ~1
+
