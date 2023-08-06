@@ -1,0 +1,10 @@
+setup.cfg
+setup.py
+koreanforpygame.egg-info/PKG-INFO
+koreanforpygame.egg-info/SOURCES.txt
+koreanforpygame.egg-info/dependency_links.txt
+koreanforpygame.egg-info/not-zip-safe
+koreanforpygame.egg-info/requires.txt
+koreanforpygame.egg-info/top_level.txt
+sample/__init__.py
+sample/kotifpg.py
