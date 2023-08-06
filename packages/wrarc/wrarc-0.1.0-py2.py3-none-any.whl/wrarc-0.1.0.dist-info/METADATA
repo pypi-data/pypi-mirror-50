@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: wrarc
+Version: 0.1.0
+Summary: This is a wrapper around phabricator to make the interactions with tasks seamless and fast.
+Author: Wasiur Rahman
+Author-email: wrahman@uber.com
+Requires-Python: >=2.7,<3.0
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7

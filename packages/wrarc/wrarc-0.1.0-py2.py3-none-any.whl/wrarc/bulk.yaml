@@ -1,0 +1,33 @@
+-   title: Task title
+    description: |
+        This is a description
+
+        We will have multiple layers of description
+    assigned: wrahman
+    subscribers: wrahman
+    tag_ids: 51001
+    parent: T3610447
+-   title: Task title 2
+    description: |
+        This is a description
+
+        We will have multiple layers of description
+    assigned: wrahman
+    subscribers: wrahman
+    tag_ids: 51001
+    parent: T3610447
+    child:
+        -   title: This is a child task
+            description: |
+                this is a description of the child task
+
+                we have multi line descriptions too.
+            assigned: wrahman
+            tag_ids: 51001
+        -   title: This is another child task
+            description: |
+                this is a description of the child task
+
+                we have multi line descriptions too.
+            assigned: wrahman
+            tag_ids: 51001
