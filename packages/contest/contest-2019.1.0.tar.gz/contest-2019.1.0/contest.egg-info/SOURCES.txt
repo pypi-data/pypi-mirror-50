@@ -1,0 +1,12 @@
+README.md
+setup.py
+contest/__init__.py
+contest/__main__.py
+contest/__version__.py
+contest/runner.py
+contest.egg-info/PKG-INFO
+contest.egg-info/SOURCES.txt
+contest.egg-info/dependency_links.txt
+contest.egg-info/entry_points.txt
+contest.egg-info/requires.txt
+contest.egg-info/top_level.txt
