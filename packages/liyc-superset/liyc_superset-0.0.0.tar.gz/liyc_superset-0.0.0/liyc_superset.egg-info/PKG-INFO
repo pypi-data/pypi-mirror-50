@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: liyc-superset
+Version: 0.0.0
+Summary: A modern, enterprise-ready business intelligence web application
+Home-page: UNKNOWN
+Author: 
+Author-email: 
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Provides-Extra: presto
+Provides-Extra: bigquery
+Provides-Extra: cors
+Provides-Extra: mysql
+Provides-Extra: postgres
+Provides-Extra: hive
+Provides-Extra: gsheets
