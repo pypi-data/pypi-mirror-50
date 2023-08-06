@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: meta-array-beta
+Version: 0.2.5
+Summary: Snark Meta
+Home-page: https://github.com/snarkai/meta
+Author: Snark AI Inc.
+Author-email: support@snark.ai
+License: UNKNOWN
+Keywords: snark-meta
+Platform: UNKNOWN
+Requires-Python: >=3
+Requires-Dist: click (<7,>=6.7)
+Requires-Dist: cloud-volume (==0.56.2)
+
+UNKNOWN
+
+
