@@ -1,0 +1,9 @@
+setuptools
+SQLAlchemy>=0.5.6
+pyembedpg
+
+[test]
+gocept.testing
+mock
+psycopg2
+PyMySQL
