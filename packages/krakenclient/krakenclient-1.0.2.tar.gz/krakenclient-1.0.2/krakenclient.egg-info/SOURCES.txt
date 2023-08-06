@@ -1,0 +1,9 @@
+README.md
+setup.py
+krakenclient/__init__.py
+krakenclient/kraken_client_api.py
+krakenclient.egg-info/PKG-INFO
+krakenclient.egg-info/SOURCES.txt
+krakenclient.egg-info/dependency_links.txt
+krakenclient.egg-info/requires.txt
+krakenclient.egg-info/top_level.txt
