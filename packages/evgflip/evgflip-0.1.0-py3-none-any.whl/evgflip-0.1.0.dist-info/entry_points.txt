@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        evg-flip=evgflip.cli:main
+    

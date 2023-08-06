@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: evgflip
+Version: 0.1.0
+Summary: UNKNOWN
+Home-page: https://github.com/dbradf/evgflip
+Author: David Bradford
+Author-email: david.bradford@mongodb.com
+License: Apache License, Version 2.0
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Description-Content-Type: text/markdown
+Requires-Dist: Click (==7.0)
+Requires-Dist: evergreen.py (==0.5.0)
+Requires-Dist: PyYAML (==5.1)
+Requires-Dist: structlog (==19.1.0)
+
+# evgflip
+
+A tool for find when tasks flip from passing to failing in evergreen.
+
+## Testing
+
+Testing is done via pytest.
+
+```
+$ pip install -r requirements.txt
+$ pytest
+```
+
+To get code coverage information, you can run pytest directly.
+
+```
+$ pip install -r requirements.txt
+$ pytest --cov=src --cov-report=html
+```
+
+This will generate an html coverage report in `htmlcov/` directory.
+
+
