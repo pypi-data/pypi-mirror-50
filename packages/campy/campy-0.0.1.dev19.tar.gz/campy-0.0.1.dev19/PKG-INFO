@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: campy
+Version: 0.0.1.dev19
+Summary: Stanford's introductory libraries in Python, including the ACM graphical libraries.
+Home-page: https://campy.sredmond.io
+Author: Sam Redmond
+Author-email: sredmond@stanford.edu
+License: MIT
+Project-URL: Source, https://github.com/sredmond/campy/
+Project-URL: Bug Reports, https://github.com/sredmond/campy/issues
+Project-URL: Say Thanks!, http://saythanks.io/to/sredmond
+Description: # `campy`: Stanford's Graphical Libraries in Python
+        
+        ![GitHub Top Language](https://img.shields.io/github/languages/top/sredmond/campy.svg)
+        ![GitHub Issues](https://img.shields.io/github/issues/sredmond/campy.svg)
+        ![GitHub License](https://img.shields.io/github/license/sredmond/campy.svg)
+        ![PyPI](https://img.shields.io/pypi/v/campy.svg)
+        ![PyPI - Status](https://img.shields.io/pypi/status/campy.svg)
+        ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/campy.svg)
+        
+        ## Features
+        
+        - All your favorite `GObject`s, like `GOval`s, `GRect`s, and more.
+        - Functional event-driving GUIs.
+        - I/O helpers.
+        - Cross-platform support.
+        
+        
+        ## Installation
+        
+        To install `campy`, simply use `pip`:
+        
+        ```
+        $ pip install campy
+        ```
+        
+        ## Documentation
+        
+        Learn more about `campy` at `https://campy.sredmond.io/`.
+        
+Keywords: Stanford teaching education intro introductory ACM graphics CS106A CS106B CS106X CS106AP Karel GObject GOval GRect GWindow
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Education
+Classifier: Topic :: Software Development :: User Interfaces
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.4, <4
+Description-Content-Type: text/markdown
+Provides-Extra: test
+Provides-Extra: dev
+Provides-Extra: with-pillow
