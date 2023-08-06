@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: daft-builder
+Version: 1.0.1
+Summary: Wrapper library on daft that provides a builder interface for rendering probabilistic graphical models (PGMs).
+Home-page: https://github.com/macks22/daft-builder
+Author: Mack Sweeney
+Author-email: mackenzie.sweeney@gmail.com
+Maintainer: Mack Sweeney
+Maintainer-email: mackenzie.sweeney@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Description-Content-Type: text/markdown
+Requires-Dist: daft
+Requires-Dist: toposort
+
+# daft-builder
+
+Wrapper library on daft that provides a builder interface for rendering probabilistic graphical models (PGMs).
+
+See `notebooks/examples` for example usage.
+
+
