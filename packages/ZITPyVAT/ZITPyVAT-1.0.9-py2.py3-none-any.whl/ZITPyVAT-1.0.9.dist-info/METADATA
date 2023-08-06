@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: ZITPyVAT
+Version: 1.0.9
+Summary: ZIT python vat common packages
+Home-page: http://www.tjzit.com/
+Author: Liugang
+Author-email: liugang@gosusncn.com
+Maintainer: Liugang
+Maintainer-email: liugang@gosusncn.com
+License: None
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: Implementation
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+Requires-Dist: PyVISA (>=1.8)
+Requires-Dist: requests (>=2.20.1)
+Requires-Dist: pyserial (==3.0)
+Requires-Dist: pandas (>=0.20.3)
+Requires-Dist: matplotlib (>=2.0.0)
+Requires-Dist: ntplib (>=0.3.3)
+
+:Title: PyVAT
+
+:Author: Liu Gang
+
+:Description: For ZIT VAT Test.
+:Update History: 
+V1.0.1 Improve install_requires 20181203 Liugang 
+V1.0.2 Add E4438C support 20190108 Liugang 
+V1.0.3 Add SQLite Operation,fix SG operation BUG 20190110 Liugang 
+V1.0.4 Add Python3 Support 20190520 Liugang 
+V1.0.5 Fix Vatbase setvalue exception handle 20190521 Liugang 
+V1.0.6 Add Python Version recognize 20190521 Liugang
+V1.0.7 fix bugs 20190524 Liugang
+V1.0.8 Add sqlite ts_resutl table creation 20190521 Liugang
+
+
