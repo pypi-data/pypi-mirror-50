@@ -1,0 +1,15 @@
+turfik/__init__.py,sha256=w2Z7-ZzYDnpjUs02BDuxscHUCs6G87ILFRy43zwZ4Xw,258
+turfik/centroid.py,sha256=K1GOnoQ7sBspOAQqJpfWLSBuwGYaz5h5J6oRU4v8B8A,555
+turfik/destination.py,sha256=Nlq0f5vj-68pTsjYZ7WprOQWM-r9fYIqOh-YSV0ok3A,1350
+turfik/distance.py,sha256=Iw_YnSCNc-ScC9Qohdmjfhf1MArdUq1t5lS9TbNhhII,739
+turfik/helpers.py,sha256=duFXJcY5TaIglfwqbwhT7D5_aokVdT6Rj_LE4dkImYc,3292
+turfik/invariant.py,sha256=ZphoeXaBlQkCZVjJs81NH_8xhAxYIJ8aGUCmK6qLWj8,1344
+turfik/rhumb_bearing.py,sha256=KwUare0ospH7Eyf5slkj5cVyCjDYR1fHiAxTdzYwWhU,1594
+turfik/rhumb_destination.py,sha256=zouX7b7HZoyqRv1vvYKlsN6zxLTxeZKjxZ3scXgsGYg,2562
+turfik/rhumb_distance.py,sha256=V43GqQMnY19Kf_1RAcqA3L1PQw5IYU1Ah4yYHAlbu8w,2421
+turfik/transform_rotate.py,sha256=LBw3OrY1tleJyvqDCHoDGP6xO5SVLmTUx6MBJ-dfwGA,1571
+turfik/transform_translate.py,sha256=FMj97g4hBYkXEZkLmGYUwDmtwh4yOpZeJ4sxDwUlpDs,2005
+turfik-0.0.2.dist-info/METADATA,sha256=FwGH20MNebh9CTO48pz5o829mbPUOMTgIY0FKUnrqhQ,437
+turfik-0.0.2.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+turfik-0.0.2.dist-info/top_level.txt,sha256=MS5EcOdR7djc_hdv0gsLKbgfUSaxHGYouMmJkjX27t0,7
+turfik-0.0.2.dist-info/RECORD,,

@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: turfik
+Version: 0.0.2
+Summary: Turfik is implementation of Turf.js library on Python
+Home-page: https://github.com/zubroide/turfik
+Author: Nikolay Matyushenkov, Zubroid
+Author-email: mnvx@yandex.ru
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Dist: shapely
+
+UNKNOWN
+
+
