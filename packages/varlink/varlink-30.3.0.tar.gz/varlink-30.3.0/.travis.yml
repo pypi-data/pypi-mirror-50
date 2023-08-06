@@ -1,0 +1,47 @@
+language: python
+sudo: false
+dist: trusty
+python:
+- '3.6'
+- '3.5'
+- '3.4'
+- '2.7'
+install:
+- pip install tox-travis .[devel]
+- pip install -r test-requirements.txt
+script:
+# Check packaging first (README format etc...)
+- pip install -U setuptools
+- pip install -U wheel
+- pip install -U twine
+- python setup.py sdist
+- python setup.py bdist_wheel
+- twine check dist/*
+- tox
+- "python -m varlink.cli -A 'python -m varlink.tests.test_orgexamplemore --varlink=$VARLINK_ADDRESS' call org.example.more.Ping '{  \"ping\": \"Ping\" }'"
+- PYTHONPATH=$(pwd) python ./varlink/tests/test_certification.py
+- PYTHONPATH=$(pwd) python ./varlink/tests/test_orgexamplemore.py
+- python -m varlink.tests.test_certification -A 'python -m varlink.tests.test_certification --varlink=$VARLINK_ADDRESS' --client
+- python -m varlink.tests.test_orgexamplemore -A 'python -m varlink.tests.test_orgexamplemore --varlink=$VARLINK_ADDRESS' --client
+after_success:
+- coveralls
+env:
+  global:
+    secure: kikKJZDrlT8NMKi/sDPGCwgyOVrJW2xB/QkXvMu2bGqq9GFYpSBQSCLO2WIx3s1ANP07cNCI6LwmsEfJgxCcFwPwj4NyeBwLvC1M3tcJcnEqA1D8BPnUZZrcDJ60p7qT6Y2MUThM08UgptNFwoEXY2H+VeAKLPEj54DzugqPGV8tN3SbrApFWrrSOegAQovbcrmIt8pN5q4+GZXl1zhQFdc+VBHpOTGidTqoIRjDSFLf7+MmFCamUH6Tad+4UoUyFYA/2747nnwB3RRJobJkDD+tmAdpXwHNzAQ9PtZVfQlEzrl9fWds1/A0TiYfwVS5ASOcu2O292OTY9ZnVVDmmkGRbFq5sn9/XwwXv0JPL7egkU967BOsrS8GU09f5cd6AG/HcgXbr8EwdYgP7qa2upc2qEO0UrjgPgNVdhgWUNducwkBwlxHNpuL9Za4vhyF8YkFiWdoRKoRjvoySYoCUsn/MqlQuxn5H+m3lS71p3RKv2FYQYF4UzYXc0IWE7mRhJqdZdS1ZGVlnN4JzjNdItuy/0ZaX+xtFU+IVONwMxi3+vw4mFtJHnng+H6MAsYE8GHf77/IeBHA+2i0hwapiQSsAk2hnFkcPHC0RBVjfjhZvKcXXM9rGGRYImRyWsY3uggF7Eh5R9WCe4Yn9pqWmV/a7F4ngshCTjTvq4K/H/k=
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/8cfd8d5fa3c31aa3d0c3
+    on_success: change  # options: [always|never|change] default: always
+    on_failure: always  # options: [always|never|change] default: always
+    on_start: never     # options: [always|never|change] default: always
+
+deploy:
+  - provider: pypi
+    user: varlink
+    on:
+      tags: true
+    distributions: sdist bdist_wheel
+    skip_existing: true
+    password:
+      secure: AnvsE0P1thGN9Xv3kg1kZRsb1K6fy3iqUK23LGvwes3d1CjeCoFfc7e1Q5t66/Ajb3tWWcE4oovHD8BUUQS1VWE1jcqKILhAlDgYdDsMenBWHMjVyEIcSKR5z02BBfU8Zhf/E3mCQIj+Oa6l22XHF4WLPgF4nkNWUTYACkQzUCoJg2MMtYK0CVh1VP5bgAm0Tq31/H1M1h7ik7r5OzGVPn82eVZUxndRJ3GFLuZVJLt+vlo9JrdXqhoPvquK1FSljKIHNbflw39OoUhVkOoe/eksuRkd1jbAnFlZjr3DXcauTVTTzXc1p8m0q+Zaaaw8/WlDCnzRkdnAqYxTfznXO1p/UGPJ/pzvx1mTlZEbgGjx4Q7CtbpHFldWO4bgCI5rZd213/08QtV4bA8jj3cWMpzgsYkgNC2ruaGkVCmKxTJLWupadD+V9jmeJpIaXpjRI/dZWKkMw2cHX74qqpPSHCgJ+zkzbQdpSr+0US12NBayShfp8lTO5Umm6UyxGSKgH/OgGO1SmduEqaPjOH0KV8W11zRtMRuPA7KH0soo1mDgduEzTYZc4Oq4SWf4HPRIh21eNIlLERBnGTloGfSfvP7CYXD2XtcPEGswSZnq3Dj85cUaFzcD8cLFmbShwnlEWc1s9s3PN/DCz5TQhPl9E1zkIKaZGtDFJUOaPliOnSY=
