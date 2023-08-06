@@ -1,0 +1,3836 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<faultinfos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<row>
+		<ID>0</ID>
+		<Class>-</Class>
+		<PRC>-</PRC>
+		<Description>$Id: FAE_info_pt.xml 4461 2019-02-06 10:35:31Z gorthe $</Description>
+		<Display>-</Display>
+		<Warning>-</Warning>
+		<ExtText>-</ExtText>
+		<Possible_malfunction_or_causes>-</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>-</Behaviour_of_control_system>
+		<Machinery>-</Machinery>
+	</row>
+	<row>
+		<ID>1</ID>
+		<Class>Error</Class>
+		<PRC>-</PRC>
+		<Description>Barramento CAN bus perturbado,  barramento CAN bus não alcançou o modo de operação adicional</Description>
+		<Display>impossível</Display>
+		<Warning>false</Warning>
+		<ExtText>CAN bus error, CAN bus has not reached normal operating mode </ExtText>
+		<Possible_malfunction_or_causes>- Check Can bus connection ( plug loose / cable defective / ... )
+- Other Can bus subscriber not working
+- Incorrect setting ( parameters / Dip switches / final resistor / ... )</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>2</ID>
+		<Class>Error</Class>
+		<PRC>-</PRC>
+		<Description>Barramento CAN bus perturbado, barramento CAN bus está passivo ou transbordos de tampão na comunicação CAN</Description>
+		<Display>impossível</Display>
+		<Warning>false</Warning>
+		<ExtText>CAN bus error, CAN bus passive or buffer overflows in CAN communication </ExtText>
+		<Possible_malfunction_or_causes>- CAN bus connection incorrect
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>3</ID>
+		<Class>Error</Class>
+		<PRC>3</PRC>
+		<Description>K1 não se comporta como esperado (não actua, não se desexcita, fällt nicht ab, geração da tensão de comando, contacto de retorno)</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>K1 shows unexpected behaviour (does not pull up, does not drop, generation of control voltage
+feedback contact)</ExtText>
+		<Possible_malfunction_or_causes>&gt; K1 defective or K1 wiring incorrect
+&gt; Configuration of DR control (jumper / bridges) incorrect
+&gt; Parameter seting does not correspond to the limit switch variant
+&gt; DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Up to SW V2.47 =&gt; emergency operation (lowering V1) and
+message
+From SW V3.00 =&gt; emergency operation, message and
+removal of enable in the case of parallel operation</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>4</ID>
+		<Class>Error</Class>
+		<PRC>4</PRC>
+		<Description>O termo-contacto do motor de elevação (da ponte) reagiu</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Thermal contact of hoist motor tripped </ExtText>
+		<Possible_malfunction_or_causes>- Motor overheated
+- Thermal contact defective
+- Connection to motor defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Emergency operation (lowering V1)</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>5</ID>
+		<Class>Error</Class>
+		<PRC>5</PRC>
+		<Description>Defeito de hardware: Uma saída não assume o estado desejado</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>6</ID>
+		<Class>Error</Class>
+		<PRC>6</PRC>
+		<Description>Curso de frenagem máximo permtido od mecanismo de elevação foi ultrapassado (Distância de trenagem máxima permitida da ponte foi ultrapassada
+[somente com sensor de rotações])</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Max. permissible braking distance of hoist unit exceeded </ExtText>
+		<Possible_malfunction_or_causes>- Check brake
+- Parameter error
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>7</ID>
+		<Class>Error</Class>
+		<PRC/>
+		<Description>Diferença máxima permitida entre dois mecanismos de elevação com marcha síncirona foi ultrapassada</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Maximum permitted path difference between two hoists in simultaneous operation exceeded </ExtText>
+		<Possible_malfunction_or_causes>- Simultaneous operation not possible due to mechanical or electrical problems
+- "Maximum simultaneous running difference" parameter defective
+- Inverter defective or incorrectly programmed</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>8</ID>
+		<Class>Error</Class>
+		<PRC>108</PRC>
+		<Description>Ao ligar o mecanismo de elevação ficou-se abaixo do ponto de comutação cabo lasso</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>While unloading hoist unit, value dropped below slack rope switching point </ExtText>
+		<Possible_malfunction_or_causes>- Spreader lowered with active slack rope function
+- Incorrect parameter programming (dead load / ZMS setting values / reeving /... )
+- External interference (EMC)
+- Load detection (ZMS) defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Lowering no longer possible</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>9</ID>
+		<Class>Error</Class>
+		<PRC>9</PRC>
+		<Description>Defeito de software: Dados da avaliação ZMS não foram correctamente analizados</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Software error: Data for ZMS evaluation not correctly initialized
+or distorted at a later date</ExtText>
+		<Possible_malfunction_or_causes>- Incorrect parameter programming
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Lifting no longer possible + "Parameter error" horn sequence</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>10</ID>
+		<Class>Error</Class>
+		<PRC>10</PRC>
+		<Description>Valor medido do  ZMS 1 dem. pequeno com gancho vazio</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Measuring value of ZMS 1 with empty hook too small </ExtText>
+		<Possible_malfunction_or_causes>- Incorrect parameter programming (ZMS offset)
+- External interference (EMC)
+- Load detection (ZMS) defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Lifting no longer possible</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>11</ID>
+		<Class>Error</Class>
+		<PRC>11</PRC>
+		<Description>Valor medido do  ZMS 2 dem. pequeno com gancho vazio</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Measuring value of ZMS 2 with empty hook too small </ExtText>
+		<Possible_malfunction_or_causes>See error 10 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Lifting no longer possible</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>12</ID>
+		<Class>Error</Class>
+		<PRC>12</PRC>
+		<Description>A monitoração da alimentação +/-12 V do ZMS detectou um defeito</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring system of +/-12 V supply for ZMS has detected an error </ExtText>
+		<Possible_malfunction_or_causes>- External interference (EMC)
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Lifting no longer possible</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>13</ID>
+		<Class>Error</Class>
+		<PRC>13</PRC>
+		<Description>Na verificação foi detectado um erro na avaliação ZMS devido à desafinação</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Error on ZMS evaluation detected during check caused by deviation </ExtText>
+		<Possible_malfunction_or_causes>&gt; Load detection (ZMS) defective
+&gt; ZMS wiring defective
+&gt; DR control system error (replace control system)
+(Error is retained for approx. 3 minutes)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Lifting no longer possible</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>14</ID>
+		<Class>Error</Class>
+		<PRC>14</PRC>
+		<Description>A diferença de carga entre dois mecanismo de elevação é demasiado grande</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Load difference between two hoist units too large </ExtText>
+		<Possible_malfunction_or_causes>- Normal operating status
+- Parameter error
+- Load detection (ZMS) defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Lifting no longer possible</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>15</ID>
+		<Class>Error</Class>
+		<PRC>15</PRC>
+		<Description>Hauptcontroller hat Überlast erkannt, Überwachungscontroller (noch) nicht</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Main controller has detected overload, monitoring controller not (yet) </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Lifting no longer possible</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>16</ID>
+		<Class>Error</Class>
+		<PRC>16</PRC>
+		<Description>noch nicht verwendet</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>not yet used </ExtText>
+		<Possible_malfunction_or_causes>not yet used </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>not yet used</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>17</ID>
+		<Class>Error</Class>
+		<PRC>17</PRC>
+		<Description>Avaliação sensor de rotações do curso de elevação: o valor teórico está presente,  mas o eixo está parado</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Evaluation rotary encoder lifting: Setpoint value available, however, axis at standstill </ExtText>
+		<Possible_malfunction_or_causes>- Motor not turning
+- Motor cable defective
+- Rotary encoder defective
+- Rotary encoder cable defective
+- Rotary encoder amplifier module defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>18</ID>
+		<Class>Error</Class>
+		<PRC>18</PRC>
+		<Description>Avaliação sensor de rotações do curso de elevação: não há valor teórico, mas o eixo não está parado</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Evaluation rotary encoder lifting: No setpoint value available, however, axis not at standstill </ExtText>
+		<Possible_malfunction_or_causes>- Motor turning without setpoint value specification (detail analysis required)
+- Rotary encoder defective</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>19</ID>
+		<Class>Error</Class>
+		<PRC>19</PRC>
+		<Description>Avaliação sensor de rotações do curso de elevação: Há valor teórica e o eixo desloca-se dem. rápido</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Evaluation rotary encoder lifting: Setpoint value available and axis travels too fast </ExtText>
+		<Possible_malfunction_or_causes>- Motor turning faster than setpoint value
+- Parameter error (50 / 60 Hz settings)
+- Line frequency fluctuation
+- Rotary encoder, driver module or cable defective
+- DIP switch 7 set wrong
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>20</ID>
+		<Class>Error</Class>
+		<PRC>20</PRC>
+		<Description>O conversor de frequência da elevação avisa uma perturbação, a descrição exacta da perturbação pode ser lida na memória de defeitos do conversor de frequência da elevação através de software PC</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hoist FI signals an error, the precise error description can be read in the error memory of the
+hoist FI via PC software</ExtText>
+		<Possible_malfunction_or_causes>- Message of inverter after actuation of emergency stop
+- Other inverter error. The precise error description Can be read in The error memor
+                                                                                                                                                                                                                                                                of The hoist FI via PC software</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>21</ID>
+		<Class>Error</Class>
+		<PRC>21</PRC>
+		<Description>O conversor de frequência do carrinho (da ponte) não avisa operacionalidade. Causas possíveis: contacto térmico</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Trolley inverter does not signal to be ready. Possible causes: Thermal contact </ExtText>
+		<Possible_malfunction_or_causes>- Check travel motor thermal contact
+- Otherwise read the error memory
+of the hoist FI via PC software</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Trolley stops</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>22</ID>
+		<Class>Error</Class>
+		<PRC>22</PRC>
+		<Description>Avaliação sensor de rotações elevação: o valor teórica está presente e o eixo desloca-se demasiado lento</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Evaluation rotary encoder lifting: Setpoint value available and axis travels too slow </ExtText>
+		<Possible_malfunction_or_causes>- Brake defective
+- Parameter error (50 / 60 Hz settings or rated speed)
+- Line frequency fluctuation
+- Rotary encoder defective
+- Rotary encoder cable defective
+- Rotary encoder amplifier module defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>23</ID>
+		<Class>Error</Class>
+		<PRC>23</PRC>
+		<Description>Contacto de sobrecorrente duma resistência de frenagem actuou (conversor de frequência da elevação)</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Overcurrent contact of one braking resistor tripped (hoist FI) </ExtText>
+		<Possible_malfunction_or_causes>- Hoist inverter defective
+- Overcurrent contact defective
+- Overcurrent contact tripped
+- Inverter / overcurrent contact connection defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>24</ID>
+		<Class>Error</Class>
+		<PRC>24</PRC>
+		<Description>Um dos valores hexadecimais dos interruptores fornece um valor inválido ( superior a 15 )</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hex switch value invalid (larger than 15) 
+</ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>25</ID>
+		<Class>Error</Class>
+		<PRC>25</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>Programmed parameters do not match hardware configuration (for modular hardware) </ExtText>
+		<Possible_malfunction_or_causes>- Parameter error
+- control system fitted with incorrect modules
+- module defective (replace module)
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>26</ID>
+		<Class>Error</Class>
+		<PRC>26</PRC>
+		<Description>Erro na monitoração dinâmica de sinais relacionado à segurança (ODDS)</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Error of dynamic monitoring of safety relevant signals (ODDS) 
+Parameter missing or has invalid value, detected by check-sum check </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) 
+- Parameter error
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)
+Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>27</ID>
+		<Class>Error</Class>
+		<PRC>27</PRC>
+		<Description>O parâmetro falta ou tem um valor inválido, foi detectado através de uma verificação cíclica da soma de teste</Description>
+		<Display>impossível</Display>
+		<Warning>false</Warning>
+		<ExtText>Error of dynamic monitoring of safety relevant signals (ODDS) 
+Parameter missing or has invalid value, detected by check-sum check </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) 
+- Parameter error
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)
+Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>28</ID>
+		<Class>Error</Class>
+		<PRC>28</PRC>
+		<Description>O interruptor DIP 5 está numa posição errada ou a ponte/carrinho estão incorrectamente parametrizados</Description>
+		<Display>ggf.</Display>
+		<Warning>false</Warning>
+		<ExtText>DIP switch 5 in incorrect position or incorrect parameter setting of crane/trolley </ExtText>
+		<Possible_malfunction_or_causes>- Parameter error (trolley - crane setting)
+- Dip switch 5 incorrectly set</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Error message and horn signal</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>29</ID>
+		<Class>Error</Class>
+		<PRC>29</PRC>
+		<Description>Monitoração do estado de ligação de K2 detectou um desvio do estado de ligalção esperado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>K2 switching status monitoring has detected deviation from expected switching status </ExtText>
+		<Possible_malfunction_or_causes>For ISS: DR control system error (replace control system)
+for HSS:
+- K2 defective (replace contactor set)
+- Cable loom to contactor set defective (replace contactor set)
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Up to SW V2.47 =&gt; hoist stops but no info to hoist unit working
+in parallel
+From SW V3.00 =&gt; hoist stops, removal of enable in the case
+of parallel operation</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>30</ID>
+		<Class>Error</Class>
+		<PRC>30</PRC>
+		<Description>Monitoração do estado de ligação de K3 detectou um desvio do estado de ligalção esperado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>K3 switching status monitoring has detected deviation from expected switching status </ExtText>
+		<Possible_malfunction_or_causes>For ISS: DR control system error (replace control system)
+for HSS:
+- K3 defective (replace contactor set)
+- Cable loom to contactor set defective (replace contactor set)
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Up to SW V2.47 =&gt; hoist stops but no info to hoist unit working
+in parallel
+From SW V3.00 =&gt; hoist stops, removal of enable in the case
+of parallel operation</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>31</ID>
+		<Class>Error</Class>
+		<PRC>31</PRC>
+		<Description>O contacto de monitoração do travão de elevação avisa um travão inadmissivelmente levantado</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring contact of hoist brake signals an impermissible brake release </ExtText>
+		<Possible_malfunction_or_causes>- Brake / brake coil defective
+- Micro switch (brake release contact) incorrectly set
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>32</ID>
+		<Class>Error</Class>
+		<PRC>32</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>not yet used </ExtText>
+		<Possible_malfunction_or_causes>not yet used </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>not yet used</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>33</ID>
+		<Class>Error</Class>
+		<PRC>33</PRC>
+		<Description>Defeito e hardware ZMS1 / SGS:
+&gt; ZMS: ZMS com defeito, não ligado ou tem cabo quebrado
+&gt; SGS: A frequência do sinal para captar o estado de ligação do SGS é demasiado alta</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error ZMS1 / SGS:
+&gt; ZMS: ZMS defective, not connected or has broken wire
+&gt; SGS: Frequency of signal for detection of switching status of SGS too high</ExtText>
+		<Possible_malfunction_or_causes>- ZMS defective
+- ZMS not connected
+- ZMS conductor broken
+- Parameter error
+- EMC interference- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Lifting no longer possible</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>34</ID>
+		<Class>Error</Class>
+		<PRC>34</PRC>
+		<Description>A chave limite superior de emergência foi activada sem que se tenha feita uma verificação da chave limte</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Emergency limit switch top tripped without Limit switch check </ExtText>
+		<Possible_malfunction_or_causes>- Limit switches incorrectly set
+- Jumper settings wrong for limit switches
+- Parameter error
+- Error when checking limit switches (incorrect sequence)
+- Geared limit switch / cable defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist unit is stopped until the next time it is switched off and on
+again.</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>35</ID>
+		<Class>Error</Class>
+		<PRC>35</PRC>
+		<Description>A chave limite inferior de emergência foi activada sem que se tenha feita uma verificação da chave limte</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Emergency limit switch bottom tripped without Limit switch check </ExtText>
+		<Possible_malfunction_or_causes>See error 34 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist unit is stopped until the next time it is switched off and on
+again.</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>36</ID>
+		<Class>Error</Class>
+		<PRC>36</PRC>
+		<Description>O contacto de monitoração do travão de elevação avisa que o travão não se deixa levantar</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring contact of hoist brake signals that brake cannot be released </ExtText>
+		<Possible_malfunction_or_causes>- Brake / brake coil defective
+- Micro switch (brake release contact) incorrectly set
+- Motor protection switch not switched on
+- Motor supply cable defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>37</ID>
+		<Class>Error</Class>
+		<PRC>37</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>not yet used</ExtText>
+		<Possible_malfunction_or_causes>not yet used </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>not yet used</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>38</ID>
+		<Class>Error</Class>
+		<PRC>38</PRC>
+		<Description>Avaliação do sensor de rotações da elevação: o valor teórico está presente e o eixo desloca-se para o sentido errado</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Evaluation rotary encoder lifting: Setpoint value available and axis moves into wrong direction - Phases swapped</ExtText>
+		<Possible_malfunction_or_causes>- Rotary encoder defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops
+Attention: Error stored until next start-up!</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>39</ID>
+		<Class>Error</Class>
+		<PRC>39</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>not yet used </ExtText>
+		<Possible_malfunction_or_causes>not yet used</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>not yet used</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>40</ID>
+		<Class>Error</Class>
+		<PRC>40</PRC>
+		<Description>Falta o consentimento da ponte para ligar  K1 através do barramento CAN bus (Falta o consentimento de pelo menos um carrinho para ligar o contactor da ponte através do barramento CAN bus)</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>OK of crane for switching K1 on via CAN bus missing </ExtText>
+		<Possible_malfunction_or_causes>- Can bus defective (see error 1)
+- Parameter error (crane, trolley, solo travelling hoist)
+- Dip switch 5 incorrectly set
+- Crane control system failed (e.g. no control voltage)
+- Consequential error following crane control system error</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>41</ID>
+		<Class>Error</Class>
+		<PRC>141</PRC>
+		<Description>Mensagem interna do comando em caso de sobrecarga</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>Internal control system message on overload 
+Hardware error ZMS2: ZMS defective, not connected or has broken wire </ExtText>
+		<Possible_malfunction_or_causes>Internal control system message on overload 
+See error 33 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Lifting no longer possible
+Lifting no longer possible</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>42</ID>
+		<Class>Error</Class>
+		<PRC>42</PRC>
+		<Description>Defeito hardware ZMS2: ZMS cin defeitom, não conectado ou quebra do cabo</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>Internal control system message on overload 
+Hardware error ZMS2: ZMS defective, not connected or has broken wire </ExtText>
+		<Possible_malfunction_or_causes>Internal control system message on overload 
+See error 33 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Lifting no longer possible
+Lifting no longer possible</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>43</ID>
+		<Class>Error</Class>
+		<PRC>43</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>Error of double limit switch monitoring system </ExtText>
+		<Possible_malfunction_or_causes>&gt; Limit switches/actuators incorrectly fitted
+&gt;Limit switches defective
+&gt;Cable connection to limit switch defective
+&gt;Parameters, jumpers and limit switch configuration do not match
+&gt;DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Only limited emergency operation still possible (lowering and
+travelling at small speed).
+Attention: Error is saved until the next start-up.</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>44</ID>
+		<Class>Error</Class>
+		<PRC>44</PRC>
+		<Description>Erro na sequência de ligações das chaves limite da ponte (carrinho(s))</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Error in switching sequence of trolley limit switches </ExtText>
+		<Possible_malfunction_or_causes>- Limit switches/actuators incorrectly fitted
+- Limit switch, supply line or connector defective
+- Parameters and limit switch configuration do not match
+- Short circuit protection Usichi has switched off (briefly)
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Message only</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>45</ID>
+		<Class>Error</Class>
+		<PRC>45</PRC>
+		<Description>Erro na sequência de ligações das chaves limite da elevação</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Error in switching sequence of hoist limit switches </ExtText>
+		<Possible_malfunction_or_causes>- Geared limit switch incorrectly adjusted
+- Geared limit switch defective
+- Cable connection to limit switch defective
+- Parameters, jumpers and limit switch setting do not match
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Message only</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>46</ID>
+		<Class>Error</Class>
+		<PRC>46</PRC>
+		<Description>O software do controlador de monitoração desvia do comportamento de tempo previsto</Description>
+		<Display>se necessário</Display>
+		<Warning>false</Warning>
+		<ExtText>Software of monitoring controller deviates from planned time behaviour 
+The number of safety relevant control signals has exceeded the limit value </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) 
+- 2 CAN control sources are connected to the CAN bus </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops
+Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>47</ID>
+		<Class>Error</Class>
+		<PRC>47</PRC>
+		<Description>noch nicht verwendet</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>Software of monitoring controller deviates from planned time behaviour 
+The number of safety relevant control signals has exceeded the limit value </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) 
+- 2 CAN control sources are connected to the CAN bus </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops
+Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>48</ID>
+		<Class>Error</Class>
+		<PRC>48</PRC>
+		<Description>A comunicação com  PRC/ponte automática está perturbada</Description>
+		<Display>(impossível)</Display>
+		<Warning>false</Warning>
+		<ExtText>Communication error to PRC/automatic crane </ExtText>
+		<Possible_malfunction_or_causes>- Check Can bus connection ( plug loose / cable defective / ... )
+- PRC/automatic crane not working
+- Connection to PRC/automatic crane not working
+- Incorrect setting ( parameters / Dip switches / final resistor / ... )</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>All movements are stopped (control system acts as if
+emergency stop was actuated)</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>49</ID>
+		<Class>Error</Class>
+		<PRC>49</PRC>
+		<Description>Timeout na troca de dados necessários para a marcha síncrona entre dois mecanismos de elevação</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>Synchronous operation timeout </ExtText>
+		<Possible_malfunction_or_causes>- Error in exchange of position values between hoist units </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>50</ID>
+		<Class>Error</Class>
+		<PRC>50</PRC>
+		<Description>Com barramento CAN bus: barramento não está activo, erro SRDO ou foi activada a paragem de emergência
+Comando paralelo: paragem de emergência activada</Description>
+		<Display>STOP</Display>
+		<Warning>false</Warning>
+		<ExtText>With CAN bus: Bus not active, SRDO error or emergency stop activated
+Parallel control: Emergency stop actuated</ExtText>
+		<Possible_malfunction_or_causes>- Operating condition when switched on, if Emergency-stop on DSE is pressed
+(DSE8-R)
+- See error 1
+- External interference (EMC)
+- Consequential error following safety-relevant malfunction of another CAN
+subscriber</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>All movements are stopped</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>51</ID>
+		<Class>Error</Class>
+		<PRC>51</PRC>
+		<Description>Contacto de monitoração do contactor da ponte avisa que o contactor da ponte não acuta</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring contact of crane contactor signals that crane contactor does not pull up </ExtText>
+		<Possible_malfunction_or_causes>- Crane contactor not pulling up properly
+- Error in connection to crane contactor
+- Crane contactor feedback contact defective
+- Jumper for NoEmergencyStop signal (J101) incorrectly fitted or missing
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor remains switched off</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>52</ID>
+		<Class>Error</Class>
+		<PRC>52</PRC>
+		<Description>Erro na troca de informações com relevância de segurança sober o barramento CAN bus: SRDO falta; ordem de sequência, comportamnto de tempo ou conteúdo SRDO com defeito</Description>
+		<Display>ggf. nur
+ bei RC10</Display>
+		<Warning>false</Warning>
+		<ExtText>Error while exchanging safety-relevant information via CAN bus: SRDO missing; sequence,
+time behaviour or SRDO contents incorrect</ExtText>
+		<Possible_malfunction_or_causes>See error 50 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>53</ID>
+		<Class>Error</Class>
+		<PRC>53</PRC>
+		<Description>O contacto de monitoração do contactor da ponte avisa que o contactor da ponte não se desexcita</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring contact of crane contactor signals that crane contactor does not drop </ExtText>
+		<Possible_malfunction_or_causes>- Crane contactor not dropping properly
+- Error in connection to crane contactor
+- Crane contactor feedback contact defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>All movements are stopped or prevented</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>54</ID>
+		<Class>Error</Class>
+		<PRC>54</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>Warning "impermissible operation" </ExtText>
+		<Possible_malfunction_or_causes>One of the following impermissible functions has been caused:
+- Limit switch check with both hoist units at the same time</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Response of DR control system:
+- Lifting and lowering motions are prevented</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>55</ID>
+		<Class>Error</Class>
+		<PRC>55</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>Warning "Timeout after travel command": After a travel command, the travel motion was not
+started within the permissible time and therefore is prevented by the control system for safety
+reasons</ExtText>
+		<Possible_malfunction_or_causes>&gt; Another trolley blocks travel owing to malfunction or similar in the case of parallel
+operation
+&gt; other parameter or hardware errors
+&gt; Signal time before travel start only programmed for one of the two trolleys</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Motion of the axis concerned is not started</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>56</ID>
+		<Class>Error</Class>
+		<PRC>156</PRC>
+		<Description>A janela de medição da carga não foi alcançada dentro do tempo permitido</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Load detection window not reached in permitted time </ExtText>
+		<Possible_malfunction_or_causes>- Binding brake,
+- Tight movement in gearbox
+- Incorrect DR parameter values:
++ “E_063_02” DR parameter line frequency not 50 or 60 Hz
++ “E_063_03” DR parameter hoist motor rated speed V1
++ “E_063_04” DR parameter hoist motor rated speed V2</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>If incorrect parameters have been detected, the hoist stops</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>57</ID>
+		<Class>Error</Class>
+		<PRC>157</PRC>
+		<Description>Errore "Parâmetros errados para captação da cargat"</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>"Parameter for load detection via slip evaluation incorrect" error </ExtText>
+		<Possible_malfunction_or_causes>- At least one load detection parameter has non-permitted value </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>If incorrect parameters have been detected, the hoist stops</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>58</ID>
+		<Class>Error</Class>
+		<PRC>158</PRC>
+		<Description>Advertência "A verificação da chave limite foi interromida"</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Warning "Limit switch check aborted" </ExtText>
+		<Possible_malfunction_or_causes>- Limit switch check not completed
+- “Limit switch check” signal missing</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Operating limit switch active again (can also be acknowledged
+via STOP key)</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>59</ID>
+		<Class>Error</Class>
+		<PRC>159</PRC>
+		<Description>Advertência "Travão de retenção": Baixar não é possível porque o travão de retenção reagiu</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Warning "Catching brake": Lowering not possible, as catching brake has tripped. </ExtText>
+		<Possible_malfunction_or_causes>- Catching brake really tripped
+- Signal contact/actuation defective
+- Cable to contact defective/not correctly connected
+- Jumper setting incorrect
+- Catching brake parameters programmed, but none available
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist can only lift at slow speed</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>60</ID>
+		<Class>Error</Class>
+		<PRC>160</PRC>
+		<Description>Advertência "Chave limite": Translação no sentido desejado não é possível porque se activou a chave limite.</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Warning "While in limit switch": Moving in selected direction not possible, limit switch reached. - Limit switch really reached</ExtText>
+		<Possible_malfunction_or_causes>- Limit switch or actuation defective
+- Cable to limit switch defective / not correctly connected
+- Jumper setting incorrect
+- Incorrect parameters programmed
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Movement in the direction switched off by the limit switch no
+longer possible</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>61</ID>
+		<Class>Error</Class>
+		<PRC>161</PRC>
+		<Description>Advertência "Stop devido à área bloqueada": A translação no sentido desejado é  impedida através do comando de translação de desvio.</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Warning "Stop due to blocked area": Motion in selected direction is prevented by by-pass
+control system.</ExtText>
+		<Possible_malfunction_or_causes>- Entry into blocked area attempted
+- Area switch or actuation defective
+- Cable to area switch defective / not correctly connected
+- Incorrect parameters programmed
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Movement in the direction of the blocked area no longer
+possible</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>62</ID>
+		<Class>Error</Class>
+		<PRC>162</PRC>
+		<Description>Advertência "Stop devido à carga excessiva na área com carga reduzida: O movimento para o sentido desejado é impedido porque a carga é demasiado grande para esta ára.</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Warning "Stop since load is too large for reduced load area": Moving in selected direction
+prevented, since load is too large for this area.</ExtText>
+		<Possible_malfunction_or_causes>- Load too large for area with load reduction
+- Area switch or actuation defective
+- Cable to area switch defective / not correctly connected
+- Incorrect parameters programmed
+- Load detection defective (see overload)
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Movement in the direction of the area with reduced load no
+longer possible</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>63</ID>
+		<Class>Error</Class>
+		<PRC>163</PRC>
+		<Description>Advertência "Interface conversor de frequência ainda não disponível"
+O movimento para o sentido desejado é impedido porque os parâmetros necessários do  conversor de frequência da elevação ainda não foram lidos ou foram erradamente estabelecidos.</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Warning "Inverter interface not available yet"
+Moving in selected direction not possible, because necessary hoist inverter parameters:
+- have not been read or are incorrectly programmed.</ExtText>
+		<Possible_malfunction_or_causes>Operational message every time the crane is switched on. May also be caused by
+- Error in CAN connection to hoist inverter
+- Parameter 830 "Load spectrum operating mode" is programmed to "Off" instead</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>If no parameters can be read from the inverter, no lifting
+movement is possible</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>64</ID>
+		<Class>Error</Class>
+		<PRC>64</PRC>
+		<Description>Defeito de hardware: O cão de guarda do controlador de monitoração não trabalha</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: Watchdog of monitoring controller not working </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>65</ID>
+		<Class>Error</Class>
+		<PRC>65</PRC>
+		<Description>Defeito de hardware: Porque a saída do controlador de monitoração para o comando do contactor da ponte não trabalha é apenas possível a operação de emergência de todos os eixos</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: As output of monitoring controller for controlling crane contactor is not working
+only emergency operation of all axes possible</ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>66</ID>
+		<Class>Error</Class>
+		<PRC>66</PRC>
+		<Description>Devido a erros na monitoração dinâmica de sinais de relevância de segurança (ODDS) é  apenas possível a operação de emergência de todos os eixos, eventualmtne falta a ponte ODDS no conector de uma entrada não utilizada (UniIn ou chave limite)</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Owing to error of dynamics monitoring of safety-relevant signals (ODDS), only emergency
+operation of all axes, ODDS bridge may be missing on connector of an unused input (UniIn or
+limit switch)</ExtText>
+		<Possible_malfunction_or_causes>- ODDS signal (dynamic monitoring of the limit switches) defective
+- ODDS bridge missing on an unused limit switch
+- Limit switches defective</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>67</ID>
+		<Class>Error</Class>
+		<PRC>67</PRC>
+		<Description>Devido a um erro de parametrização é apenas possível  a operação de emergência de todos os eixos</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Parameters transmitted from HCS12 to PIC or reference values are not
+usable. Therefore, only emergency operation is possible</ExtText>
+		<Possible_malfunction_or_causes>&gt; Parameter error
+&gt; Error in calculation of reference values
+&gt; Detection of +/- 12 V for ZMS defective</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>68</ID>
+		<Class>Error</Class>
+		<PRC>68</PRC>
+		<Description>Devido a um defeito do contactor do motor do carrinho é apenas permitida a operação de emergência</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Only emergency operation permissible owing to error of trolley motor contactor </ExtText>
+		<Possible_malfunction_or_causes>- No longer active, since trolley motor contactor left out
+(remove trolley motor contactor, if required)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation of trolley (travel at V1)</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>69</ID>
+		<Class>Error</Class>
+		<PRC>69</PRC>
+		<Description>Defeito de hardware: Porque a saída do controlador de monitoração para o comando do contactor K1 não pode ser desactivada, com o eixo  K1 é apenas possível a operação de emergência</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>70</ID>
+		<Class>Error</Class>
+		<PRC>70</PRC>
+		<Description>Defeito de hardware: Porque falta a retroalimentação do comando K1 falta, com eixo K1 és somente possível a operação de emergência</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: As feedback of K1 control is missing, only emergency operation of K1 axis
+possible</ExtText>
+		<Possible_malfunction_or_causes>- Contactor incorrectly connected after K1 replaced
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>71</ID>
+		<Class>Error</Class>
+		<PRC>71</PRC>
+		<Description>Defeito de hardware: Porque o controlador de monitoração não pode activar o travão, para o eixo K1 é somente possível a operação de emergência</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: As monitoring controller cannot de-activate the brake, only emergency</ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>72</ID>
+		<Class>Error</Class>
+		<PRC>72</PRC>
+		<Description>A retroalimentação K1 fica activa, para o eixo  K1 apenas é possível a operação de emergência</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>operation of K1 a is permissible
+K1 feedback remains active, for K1 axis only emergency operation </ExtText>
+		<Possible_malfunction_or_causes>See error 70 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>73</ID>
+		<Class>Error</Class>
+		<PRC>73</PRC>
+		<Description>Defeito de hardware: Devido a defeitos do ZMS ou SGS é apenas possível a operação de emergência do mecanismo de elevação</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: Only emergency operation of hoist unit owing to ZMS or SGS error </ExtText>
+		<Possible_malfunction_or_causes>See error 33 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist can only lift at slow speed</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>74</ID>
+		<Class>Error</Class>
+		<PRC>74</PRC>
+		<Description>A chave limite de emergência foi activada sem que tenha sido activa a verificação da chave limite</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Emergency limit switch tripped without Limit switch check being active </ExtText>
+		<Possible_malfunction_or_causes>see errors 34 and 35 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>75</ID>
+		<Class>Error</Class>
+		<PRC>75</PRC>
+		<Description>Defeito de hardware: O contactor do motor do carrinho não actua</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: Trolley motor contactor does not pick up </ExtText>
+		<Possible_malfunction_or_causes>- No longer active, since trolley motor contactor left out
+(remove trolley motor contactor, if required)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Trolley stops</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>76</ID>
+		<Class>Error</Class>
+		<PRC>76</PRC>
+		<Description>Defeito de hardware: Porque o controlador de monitoração não pode liberar o travão, não é possível a operação do mecanismo de elevação</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: As monitoring controller cannot enable the brake, operation of hoist unit not
+possible</ExtText>
+		<Possible_malfunction_or_causes>See error 71 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>77</ID>
+		<Class>Error</Class>
+		<PRC>77</PRC>
+		<Description>Defeito de hardware: K1 não actua</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: K1 does not pick up </ExtText>
+		<Possible_malfunction_or_causes>See error 3 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>78</ID>
+		<Class>Error</Class>
+		<PRC>78</PRC>
+		<Description>Erro do sentido de rotação da elevação</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Direction of revolution error Lifting: </ExtText>
+		<Possible_malfunction_or_causes>See error 38 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>79</ID>
+		<Class>Error</Class>
+		<PRC>79</PRC>
+		<Description>Falta o consentimento de pelo menos um carrinho para ligar o contactor da ponte através do barramento CAN bus</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>80</ID>
+		<Class>Error</Class>
+		<PRC>80</PRC>
+		<Description>Falta o consentimento da ponte para ligarr K1 através do barramento CAN bus fehlt</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>OK of min. one trolley for switching the crane contactor on via CAN bus missing 
+OK of crane for switching K1 on via CAN bus missing </ExtText>
+		<Possible_malfunction_or_causes>See error 40 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>All movements are stopped</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>81</ID>
+		<Class>Error</Class>
+		<PRC>181</PRC>
+		<Description>O controlador de monitoração detectou sobrecarga, o controlador principal (ainda) não.</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring controller has detected overload, main controller not (yet) </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist can only lift at slow speed</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>82</ID>
+		<Class>Error</Class>
+		<PRC>82</PRC>
+		<Description>O controlador principal causa movimentos de translação do mecanismo de elevação  para os quais não existem os correspondentes comandos de controlo.</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Main controller causes motions of hoist unit without the corresponding control commands being
+available</ExtText>
+		<Possible_malfunction_or_causes>- DR control system parameter error
+- Inverter parameter error
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>83</ID>
+		<Class>Error</Class>
+		<PRC>83</PRC>
+		<Description>O controlador de monitoração detectou que o controlador principal origina movimentos de translação do carrinho (da ponte) para os quais não existem os correspondentes comandos.</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring controller has detected that main controller causes motions of the travelling hoist
+without the corresponding control commands being available</ExtText>
+		<Possible_malfunction_or_causes>&gt; DR control system parameter error (speed V1 too high)
+&gt; For older SW version: Crab selection changed during travel
+&gt; DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Trolley stops</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>84</ID>
+		<Class>Error</Class>
+		<PRC>84</PRC>
+		<Description>Defeito de hardware: A saída do controlador de monitoração para desligar o contactor da ponte está activa e por isso  o  barramento CAN bus está bloqueado</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: Output of monitoring controller for switching off the crane contactor is active (o
+in modular hardware the output for switching off the CAN bus), this causes CAN bus to be
+blocked</ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>85</ID>
+		<Class>Error</Class>
+		<PRC>85</PRC>
+		<Description>Evento: O comando do controlador principal para a passagem para o estado seguro foi recebido</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Event: Command from main controller to assume safe status was received </ExtText>
+		<Possible_malfunction_or_causes>- Response of main controller to external interference (EMC)
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>All movements are stopped</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>86</ID>
+		<Class>Error</Class>
+		<PRC>86</PRC>
+		<Description>O software do controlador principal desvia do comportamento de tempo previsto</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Software of main controller deviates from planned time behaviour </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>87</ID>
+		<Class>Error</Class>
+		<PRC>87</PRC>
+		<Description>A monitoração do controlador principal detectou um defeito ou uma reacção faltante do controlador principal</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring system of main controller has detected an error or a missing response of main controller</ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>88</ID>
+		<Class>Error</Class>
+		<PRC>88</PRC>
+		<Description>A comunicação com PRC/ponte automática está perturbada</Description>
+		<Display>(impossível)</Display>
+		<Warning>false</Warning>
+		<ExtText>Communication error to PRC/automatic crane </ExtText>
+		<Possible_malfunction_or_causes>See error 48 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>89</ID>
+		<Class>Error</Class>
+		<PRC>89</PRC>
+		<Description>Defeito de hardware: O controlador de monitoração detectou um próprio defeto de hardware</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: Monitoring controller has detected own HW error </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>All movements are stopped</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>90</ID>
+		<Class>Error</Class>
+		<PRC>90</PRC>
+		<Description>Com barramento CAN bus: O barramento não está activo,  defeitode SRDO ou o botão de emergência foi premida
+Comando paralelo: O botão da paragem de emergência foi premida</Description>
+		<Display>ggf.</Display>
+		<Warning>false</Warning>
+		<ExtText>Emergency stop / STOP actuated during axis movement (for CAN bus, bus may not be active,
+or SRDO error)</ExtText>
+		<Possible_malfunction_or_causes>Emergency stop / STOP actuated during axis movement </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>91</ID>
+		<Class>Error</Class>
+		<PRC>91</PRC>
+		<Description>Defeito do contactor da ponte: K1 e  KMS são desligado</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Error of crane contactor: K1 and KMS are switched off </ExtText>
+		<Possible_malfunction_or_causes>See error 51 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>92</ID>
+		<Class>Error</Class>
+		<PRC>92</PRC>
+		<Description>Erro na troca de informações de relevância de segurança através do barramento CAN bus: SRDO falta, ordem de sequência, o comportamento de tempo ou o conteúdo de SRDO não é correcto</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Error while exchanging safety-relevant information via CAN bus: SRDO missing; sequence, time behavior of SRDO contents incorrect</ExtText>
+		<Possible_malfunction_or_causes>See error 50 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>93</ID>
+		<Class>Error</Class>
+		<PRC>93</PRC>
+		<Description>O contacto de monitoração do contactor da ponte avisa que o contactor da ponte não se desexcita</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring contact of crane contactor signals that crane contactor does not drop </ExtText>
+		<Possible_malfunction_or_causes>See error 53 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>All movements are stopped</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>94</ID>
+		<Class>Error</Class>
+		<PRC>94</PRC>
+		<Description>O contacto de monitoração de  K1 avisa que o K1 não se desexcitat</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring contact of K1 signals that K1 does not drop </ExtText>
+		<Possible_malfunction_or_causes>See error 3 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>95</ID>
+		<Class>Error</Class>
+		<PRC>95</PRC>
+		<Description>O contactor do motor do carrinho KMS não se desexcita, o contactor da ponte é desligada</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>KMS trolley motor contactor does not drop, crane contactor is switched off </ExtText>
+		<Possible_malfunction_or_causes>- No longer active, since trolley motor contactor left out
+(remove trolley motor contactor, if required)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>96</ID>
+		<Class>Error</Class>
+		<PRC>96</PRC>
+		<Description>O controlador de monitoração detectou uma falha total do controlador principal</Description>
+		<Display>ggf.</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring controller has detected complete failure of main controller</ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>97</ID>
+		<Class>Error</Class>
+		<PRC>97</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>not yet used </ExtText>
+		<Possible_malfunction_or_causes>not yet used</Possible_malfunction_or_causes>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>98</ID>
+		<Class>Error</Class>
+		<PRC>98</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>not yet used </ExtText>
+		<Possible_malfunction_or_causes>not yet used</Possible_malfunction_or_causes>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>99</ID>
+		<Class>Error</Class>
+		<PRC>99</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>not yet used </ExtText>
+		<Possible_malfunction_or_causes>not yet used</Possible_malfunction_or_causes>
+		<Machinery>Active_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>100</ID>
+	</row>
+	<row>
+		<ID>101</ID>
+		<Class>Error</Class>
+		<PRC>-</PRC>
+		<Description>Barramento CAN bus perturbado,  barramento CAN bus não alcançou o modo de operação adicional</Description>
+		<Display>impossível</Display>
+		<Warning>false</Warning>
+		<ExtText>CAN bus error, CAN bus has not reached normal operating mode </ExtText>
+		<Possible_malfunction_or_causes>- Check Can bus connection ( plug loose / cable defective / ... )
+- Other Can bus subscriber not working
+- Incorrect setting ( parameters / Dip switches / final resistor / ... )</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>102</ID>
+		<Class>Error</Class>
+		<PRC>-</PRC>
+		<Description>Barramento CAN bus perturbado, barramento CAN bus está passivo ou transbordos de tampão na comunicação CAN</Description>
+		<Display>impossível</Display>
+		<Warning>false</Warning>
+		<ExtText>CAN bus error, CAN bus passive or buffer overflows in CAN communication </ExtText>
+		<Possible_malfunction_or_causes>- CAN bus connection incorrect
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>103</ID>
+		<Class>Error</Class>
+		<PRC>3</PRC>
+		<Description>K1 não se comporta como esperado (não actua, não se desexcita, fällt nicht ab, geração da tensão de comando, contacto de retorno)</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>K1 shows unexpected behaviour (does not pull up, does not drop, generation of control voltage
+feedback contact)</ExtText>
+		<Possible_malfunction_or_causes>&gt; K1 defective or K1 wiring incorrect
+&gt; Configuration of DR control (jumper / bridges) incorrect
+&gt; Parameter seting does not correspond to the limit switch variant
+&gt; DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Up to SW V2.47 =&gt; emergency operation (lowering V1) and
+message
+From SW V3.00 =&gt; emergency operation, message and
+removal of enable in the case of parallel operation</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>104</ID>
+		<Class>Error</Class>
+		<PRC>4</PRC>
+		<Description>O termo-contacto do motor de elevação (da ponte) reagiu</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Thermal contact of crane motor tripped </ExtText>
+		<Possible_malfunction_or_causes>See error 4
+- Short-circuit bridge missing for motors without thermal contact</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Cranes stops</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>105</ID>
+		<Class>Error</Class>
+		<PRC>5</PRC>
+		<Description>Defeito de hardware: Uma saída não assume o estado desejado</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: One output of controller does not assume required status 
+</ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>106</ID>
+		<Class>Error</Class>
+		<PRC>6</PRC>
+		<Description>Curso de frenagem máximo permtido od mecanismo de elevação foi ultrapassado (Distância de trenagem máxima permitida da ponte foi ultrapassada
+[somente com sensor de rotações])</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Max. permissible braking distance of crane exceeded (only with rotary encoder) </ExtText>
+		<Possible_malfunction_or_causes>Implementation not possible due to missing encoder </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>does not exist</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>107</ID>
+	</row>
+	<row>
+		<ID>108</ID>
+		<ExtText>While unloading hoist unit, value dropped below slack rope switching point </ExtText>
+		<Possible_malfunction_or_causes>- Spreader lowered with active slack rope function
+- Incorrect parameter programming (dead load / ZMS setting values / reeving /... )
+- External interference (EMC)
+- Load detection (ZMS) defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Lowering no longer possible</Behaviour_of_control_system>
+	</row>
+	<row>
+		<ID>109</ID>
+	</row>
+	<row>
+		<ID>110</ID>
+	</row>
+	<row>
+		<ID>111</ID>
+	</row>
+	<row>
+		<ID>112</ID>
+	</row>
+	<row>
+		<ID>113</ID>
+	</row>
+	<row>
+		<ID>114</ID>
+	</row>
+	<row>
+		<ID>115</ID>
+	</row>
+	<row>
+		<ID>116</ID>
+		<Class>Error</Class>
+		<PRC>16</PRC>
+		<Description>noch nicht verwendet</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>117</ID>
+	</row>
+	<row>
+		<ID>118</ID>
+	</row>
+	<row>
+		<ID>119</ID>
+	</row>
+	<row>
+		<ID>120</ID>
+	</row>
+	<row>
+		<ID>121</ID>
+		<Class>Error</Class>
+		<PRC>21</PRC>
+		<Description>O conversor de frequência do carrinho (da ponte) não avisa operacionalidade. Causas possíveis: contacto térmico</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Crane inverter does not signal to be ready. Possible causes: Thermal contact </ExtText>
+		<Possible_malfunction_or_causes>See error 19
+- Line frequency fluctuation</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane stops</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>122</ID>
+	</row>
+	<row>
+		<ID>123</ID>
+	</row>
+	<row>
+		<ID>124</ID>
+	</row>
+	<row>
+		<ID>125</ID>
+		<Class>Error</Class>
+		<PRC>25</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>Programmed parameters do not match hardware configuration (for modular hardware) </ExtText>
+		<Possible_malfunction_or_causes>- Parameter error
+- control system fitted with incorrect modules
+- module defective (replace module)
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>126</ID>
+		<Class>Error</Class>
+		<PRC>26</PRC>
+		<Description>Erro na monitoração dinâmica de sinais relacionado à segurança (ODDS)</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Error of dynamic monitoring of safety relevant signals (ODDS) 
+Parameter missing or has invalid value, detected by check-sum check </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) 
+- Parameter error
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)
+Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>127</ID>
+		<Class>Error</Class>
+		<PRC>27</PRC>
+		<Description>O parâmetro falta ou tem um valor inválido, foi detectado através de uma verificação cíclica da soma de teste</Description>
+		<Display>impossível</Display>
+		<Warning>false</Warning>
+		<ExtText>Parameter missing or has invalid value, detected by check-sum check </ExtText>
+		<Possible_malfunction_or_causes>- Parameter error
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>128</ID>
+		<Class>Error</Class>
+		<PRC>28</PRC>
+		<Description>O interruptor DIP 5 está numa posição errada ou a ponte/carrinho estão incorrectamente parametrizados</Description>
+		<Display>ggf.</Display>
+		<Warning>false</Warning>
+		<ExtText>DIP switch 5 in incorrect position or incorrect parameter setting of crane/trolley </ExtText>
+		<Possible_malfunction_or_causes>- Parameter error (trolley - crane setting)
+- Dip switch 5 incorrectly set</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Error message and horn signal</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>129</ID>
+		<Class>Error</Class>
+		<PRC>29</PRC>
+		<Description>Monitoração do estado de ligação de K2 detectou um desvio do estado de ligalção esperado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>K2 switching status monitoring has detected deviation from expected switching status </ExtText>
+		<Possible_malfunction_or_causes>For ISS: DR control system error (replace control system)
+for HSS:
+- K2 defective (replace contactor set)
+- Cable loom to contactor set defective (replace contactor set)
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Up to SW V2.47 =&gt; hoist stops but no info to hoist unit working
+in parallel
+From SW V3.00 =&gt; hoist stops, removal of enable in the case
+of parallel operation</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>130</ID>
+		<Class>Error</Class>
+		<PRC>30</PRC>
+		<Description>Monitoração do estado de ligação de K3 detectou um desvio do estado de ligalção esperado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>K3 switching status monitoring has detected deviation from expected switching status </ExtText>
+		<Possible_malfunction_or_causes>For ISS: DR control system error (replace control system)
+for HSS:
+- K3 defective (replace contactor set)
+- Cable loom to contactor set defective (replace contactor set)
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Up to SW V2.47 =&gt; hoist stops but no info to hoist unit working
+in parallel
+From SW V3.00 =&gt; hoist stops, removal of enable in the case
+of parallel operation</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>131</ID>
+	</row>
+	<row>
+		<ID>132</ID>
+		<Class>Error</Class>
+		<PRC>32</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>not yet used </ExtText>
+		<Possible_malfunction_or_causes>not yet used </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>not yet used</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>133</ID>
+	</row>
+	<row>
+		<ID>134</ID>
+	</row>
+	<row>
+		<ID>135</ID>
+	</row>
+	<row>
+		<ID>136</ID>
+	</row>
+	<row>
+		<ID>137</ID>
+		<Class>Error</Class>
+		<PRC>37</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>not yet used</ExtText>
+		<Possible_malfunction_or_causes>not yet used </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>not yet used</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>138</ID>
+	</row>
+	<row>
+		<ID>139</ID>
+		<Class>Error</Class>
+		<PRC>39</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>not yet used </ExtText>
+		<Possible_malfunction_or_causes>not yet used</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>not yet used</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>140</ID>
+		<Class>Error</Class>
+		<PRC>40</PRC>
+		<Description>Falta o consentimento da ponte para ligar  K1 através do barramento CAN bus (Falta o consentimento de pelo menos um carrinho para ligar o contactor da ponte através do barramento CAN bus)</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>OK of min. one trolley for switching the crane contactor on via CAN bus missing </ExtText>
+		<Possible_malfunction_or_causes>See error 40
+- Consequential error following trolley control system error</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>141</ID>
+	</row>
+	<row>
+		<ID>142</ID>
+	</row>
+	<row>
+		<ID>143</ID>
+		<Class>Error</Class>
+		<PRC>43</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>Error of double limit switch monitoring system </ExtText>
+		<Possible_malfunction_or_causes>&gt; Limit switches/actuators incorrectly fitted
+&gt;Limit switches defective
+&gt;Cable connection to limit switch defective
+&gt;Parameters, jumpers and limit switch configuration do not match
+&gt;DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Only limited emergency operation still possible (lowering and
+travelling at small speed).
+Attention: Error is saved until the next start-up.</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>144</ID>
+		<Class>Error</Class>
+		<PRC>44</PRC>
+		<Description>Erro na sequência de ligações das chaves limite da ponte (carrinho(s))</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Error in switching sequence of crane limit switches </ExtText>
+		<Possible_malfunction_or_causes>- Limit switches/actuators incorrectly fitted
+- Limit switches defective
+- Cable connection to limit switch defective
+- Parameters, jumpers and limit switch configuration do not match
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Message only</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>145</ID>
+		<Class>Error</Class>
+		<PRC>45</PRC>
+		<Description>Erro na sequência de ligações das chaves limite da elevação</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Error in switching sequence of hoist limit switches </ExtText>
+		<Possible_malfunction_or_causes>- Geared limit switch incorrectly adjusted
+- Geared limit switch defective
+- Cable connection to limit switch defective
+- Parameters, jumpers and limit switch setting do not match
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Message only</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>146</ID>
+		<Class>Error</Class>
+		<PRC>46</PRC>
+		<Description>O software do controlador de monitoração desvia do comportamento de tempo previsto</Description>
+		<Display>se necessário</Display>
+		<Warning>false</Warning>
+		<ExtText>Software of monitoring controller deviates from planned time behaviour 
+The number of safety relevant control signals has exceeded the limit value </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) 
+- 2 CAN control sources are connected to the CAN bus </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops
+Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>147</ID>
+		<Class>Error</Class>
+		<PRC>47</PRC>
+		<Description>noch nicht verwendet</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>Software of monitoring controller deviates from planned time behaviour 
+The number of safety relevant control signals has exceeded the limit value </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) 
+- 2 CAN control sources are connected to the CAN bus </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops
+Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>148</ID>
+	</row>
+	<row>
+		<ID>149</ID>
+		<Class>Error</Class>
+		<PRC>49</PRC>
+		<Description>Timeout na troca de dados necessários para a marcha síncrona entre dois mecanismos de elevação</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>Synchronous operation timeout </ExtText>
+		<Possible_malfunction_or_causes>- Error in exchange of position values between hoist units </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>150</ID>
+		<Class>Error</Class>
+		<PRC>50</PRC>
+		<Description>Com barramento CAN bus: barramento não está activo, erro SRDO ou foi activada a paragem de emergência
+Comando paralelo: paragem de emergência activada</Description>
+		<Display>STOP</Display>
+		<Warning>false</Warning>
+		<ExtText>With CAN bus: Bus not active, SRDO error or emergency stop activated
+Parallel control: Emergency stop actuated</ExtText>
+		<Possible_malfunction_or_causes>- Operating condition when switched on, if Emergency-stop on DSE is pressed
+(DSE8-R)
+- See error 1
+- External interference (EMC)
+- Consequential error following safety-relevant malfunction of another CAN
+subscriber</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>All movements are stopped</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>151</ID>
+		<Class>Error</Class>
+		<PRC>51</PRC>
+		<Description>Contacto de monitoração do contactor da ponte avisa que o contactor da ponte não acuta</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring contact of crane contactor signals that crane contactor does not pull up </ExtText>
+		<Possible_malfunction_or_causes>- Crane contactor not pulling up properly
+- Error in connection to crane contactor
+- Crane contactor feedback contact defective
+- Jumper for NoEmergencyStop signal (J101) incorrectly fitted or missing
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor remains switched off</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>152</ID>
+		<Class>Error</Class>
+		<PRC>52</PRC>
+		<Description>Erro na troca de informações com relevância de segurança sober o barramento CAN bus: SRDO falta; ordem de sequência, comportamnto de tempo ou conteúdo SRDO com defeito</Description>
+		<Display>ggf. nur
+ bei RC10</Display>
+		<Warning>false</Warning>
+		<ExtText>Error while exchanging safety-relevant information via CAN bus: SRDO missing; sequence,
+time behaviour or SRDO contents incorrect</ExtText>
+		<Possible_malfunction_or_causes>See error 50 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>153</ID>
+		<Class>Error</Class>
+		<PRC>53</PRC>
+		<Description>O contacto de monitoração do contactor da ponte avisa que o contactor da ponte não se desexcita</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring contact of crane contactor signals that crane contactor does not drop </ExtText>
+		<Possible_malfunction_or_causes>- Crane contactor not dropping properly
+- Error in connection to crane contactor
+- Crane contactor feedback contact defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>All movements are stopped or prevented</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>154</ID>
+		<Class>Error</Class>
+		<PRC>54</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>Warning "impermissible operation" </ExtText>
+		<Possible_malfunction_or_causes>One of the following impermissible functions has been caused:
+- Limit switch check with both hoist units at the same time</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Response of DR control system:
+- Lifting and lowering motions are prevented</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>155</ID>
+		<Class>Error</Class>
+		<PRC>55</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>Warning "Timeout after travel command": After a travel command, the travel motion was not
+started within the permissible time and therefore is prevented by the control system for safety
+reasons</ExtText>
+		<Possible_malfunction_or_causes>&gt; Another trolley blocks travel owing to malfunction or similar in the case of parallel
+operation
+&gt; other parameter or hardware errors
+&gt; Signal time before travel start only programmed for one of the two trolleys</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Motion of the axis concerned is not started</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>156</ID>
+		<ExtText>Load detection window not reached in permitted time </ExtText>
+		<Possible_malfunction_or_causes>- Binding brake,
+- Tight movement in gearbox
+- Incorrect DR parameter values:
++ “E_063_02” DR parameter line frequency not 50 or 60 Hz
++ “E_063_03” DR parameter hoist motor rated speed V1
++ “E_063_04” DR parameter hoist motor rated speed V2</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>If incorrect parameters have been detected, the hoist stops</Behaviour_of_control_system>
+	</row>
+	<row>
+		<ID>157</ID>
+		<ExtText>"Parameter for load detection via slip evaluation incorrect" error </ExtText>
+		<Possible_malfunction_or_causes>- At least one load detection parameter has non-permitted value </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>If incorrect parameters have been detected, the hoist stops</Behaviour_of_control_system>
+	</row>
+	<row>
+		<ID>158</ID>
+		<ExtText>Warning "Limit switch check aborted" </ExtText>
+		<Possible_malfunction_or_causes>- Limit switch check not completed
+- “Limit switch check” signal missing</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Operating limit switch active again (can also be acknowledged
+via STOP key)</Behaviour_of_control_system>
+	</row>
+	<row>
+		<ID>159</ID>
+		<Class>Error</Class>
+		<PRC>159</PRC>
+		<Description>Advertência "Travão de retenção": Baixar não é possível porque o travão de retenção reagiu</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Warning "Catching brake": Lowering not possible, as catching brake has tripped. </ExtText>
+		<Possible_malfunction_or_causes>- Catching brake really tripped
+- Signal contact/actuation defective
+- Cable to contact defective/not correctly connected
+- Jumper setting incorrect
+- Catching brake parameters programmed, but none available
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist can only lift at slow speed</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>160</ID>
+		<Class>Error</Class>
+		<PRC>160</PRC>
+		<Description>Advertência "Chave limite": Translação no sentido desejado não é possível porque se activou a chave limite.</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Warning "While in limit switch": Moving in selected direction not possible, limit switch reached. - Limit switch really reached</ExtText>
+		<Possible_malfunction_or_causes>- Limit switch or actuation defective
+- Cable to limit switch defective / not correctly connected
+- Jumper setting incorrect
+- Incorrect parameters programmed
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Movement in the direction switched off by the limit switch no
+longer possible</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>161</ID>
+		<Class>Error</Class>
+		<PRC>161</PRC>
+		<Description>Advertência "Stop devido à área bloqueada": A translação no sentido desejado é  impedida através do comando de translação de desvio.</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Warning "Stop due to blocked area": Motion in selected direction is prevented by by-pass
+control system.</ExtText>
+		<Possible_malfunction_or_causes>- Entry into blocked area attempted
+- Area switch or actuation defective
+- Cable to area switch defective / not correctly connected
+- Incorrect parameters programmed
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Movement in the direction of the blocked area no longer
+possible</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>162</ID>
+		<Class>Error</Class>
+		<PRC>162</PRC>
+		<Description>Advertência "Stop devido à carga excessiva na área com carga reduzida: O movimento para o sentido desejado é impedido porque a carga é demasiado grande para esta ára.</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Warning "Stop since load is too large for reduced load area": Moving in selected direction
+prevented, since load is too large for this area.</ExtText>
+		<Possible_malfunction_or_causes>- Load too large for area with load reduction
+- Area switch or actuation defective
+- Cable to area switch defective / not correctly connected
+- Incorrect parameters programmed
+- Load detection defective (see overload)
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Movement in the direction of the area with reduced load no
+longer possible</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>163</ID>
+		<Class>Error</Class>
+		<PRC>163</PRC>
+		<Description>Advertência "Interface conversor de frequência ainda não disponível"
+O movimento para o sentido desejado é impedido porque os parâmetros necessários do  conversor de frequência da elevação ainda não foram lidos ou foram erradamente estabelecidos.</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Warning "Inverter interface not available yet"
+Moving in selected direction not possible, because necessary hoist inverter parameters:
+- have not been read or are incorrectly programmed.</ExtText>
+		<Possible_malfunction_or_causes>Operational message every time the crane is switched on. May also be caused by
+- Error in CAN connection to hoist inverter
+- Parameter 830 "Load spectrum operating mode" is programmed to "Off" instead</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>If no parameters can be read from the inverter, no lifting
+movement is possible</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>164</ID>
+		<Class>Error</Class>
+		<PRC>64</PRC>
+		<Description>Defeito de hardware: O cão de guarda do controlador de monitoração não trabalha</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: Watchdog of monitoring controller not working </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>165</ID>
+		<Class>Error</Class>
+		<PRC>65</PRC>
+		<Description>Defeito de hardware: Porque a saída do controlador de monitoração para o comando do contactor da ponte não trabalha é apenas possível a operação de emergência de todos os eixos</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: As output of monitoring controller for controlling crane contactor is not working
+only emergency operation of all axes possible</ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>166</ID>
+		<Class>Error</Class>
+		<PRC>66</PRC>
+		<Description>Devido a erros na monitoração dinâmica de sinais de relevância de segurança (ODDS) é  apenas possível a operação de emergência de todos os eixos, eventualmtne falta a ponte ODDS no conector de uma entrada não utilizada (UniIn ou chave limite)</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Owing to error of dynamics monitoring of safety-relevant signals (ODDS), only emergency
+operation of all axes, ODDS bridge may be missing on connector of an unused input (UniIn or
+limit switch)</ExtText>
+		<Possible_malfunction_or_causes>- ODDS signal (dynamic monitoring of the limit switches) defective
+- ODDS bridge missing on an unused limit switch
+- Limit switches defective</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>167</ID>
+		<Class>Error</Class>
+		<PRC>67</PRC>
+		<Description>Devido a um erro de parametrização é apenas possível  a operação de emergência de todos os eixos</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Parameters transmitted from HCS12 to PIC or reference values are not
+usable. Therefore, only emergency operation is possible</ExtText>
+		<Possible_malfunction_or_causes>&gt; Parameter error
+&gt; Error in calculation of reference values
+&gt; Detection of +/- 12 V for ZMS defective</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>168</ID>
+		<Class>Error</Class>
+		<PRC>68</PRC>
+		<Description>Devido a um defeito do contactor do motor do carrinho é apenas permitida a operação de emergência</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Only emergency operation permissible owing to error of trolley motor contactor </ExtText>
+		<Possible_malfunction_or_causes>- No longer active, since trolley motor contactor left out
+(remove trolley motor contactor, if required)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation of trolley (travel at V1)</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>169</ID>
+		<Class>Error</Class>
+		<PRC>69</PRC>
+		<Description>Defeito de hardware: Porque a saída do controlador de monitoração para o comando do contactor K1 não pode ser desactivada, com o eixo  K1 é apenas possível a operação de emergência</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>170</ID>
+		<Class>Error</Class>
+		<PRC>70</PRC>
+		<Description>Defeito de hardware: Porque falta a retroalimentação do comando K1 falta, com eixo K1 és somente possível a operação de emergência</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: As feedback of K1 control is missing, only emergency operation of K1 axis
+possible</ExtText>
+		<Possible_malfunction_or_causes>- Contactor incorrectly connected after K1 replaced
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>171</ID>
+		<Class>Error</Class>
+		<PRC>71</PRC>
+		<Description>Defeito de hardware: Porque o controlador de monitoração não pode activar o travão, para o eixo K1 é somente possível a operação de emergência</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: As monitoring controller cannot de-activate the brake, only emergency</ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>172</ID>
+		<Class>Error</Class>
+		<PRC>72</PRC>
+		<Description>A retroalimentação K1 fica activa, para o eixo  K1 apenas é possível a operação de emergência</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>operation of K1 a is permissible
+K1 feedback remains active, for K1 axis only emergency operation </ExtText>
+		<Possible_malfunction_or_causes>See error 70 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>173</ID>
+	</row>
+	<row>
+		<ID>174</ID>
+	</row>
+	<row>
+		<ID>175</ID>
+		<Class>Error</Class>
+		<PRC>75</PRC>
+		<Description>Defeito de hardware: O contactor do motor do carrinho não actua</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: Trolley motor contactor does not pick up </ExtText>
+		<Possible_malfunction_or_causes>- No longer active, since trolley motor contactor left out
+(remove trolley motor contactor, if required)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Trolley stops</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>176</ID>
+		<Class>Error</Class>
+		<PRC>76</PRC>
+		<Description>Defeito de hardware: Porque o controlador de monitoração não pode liberar o travão, não é possível a operação do mecanismo de elevação</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: As monitoring controller cannot enable the brake, operation of hoist unit not
+possible</ExtText>
+		<Possible_malfunction_or_causes>See error 71 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>177</ID>
+		<Class>Error</Class>
+		<PRC>77</PRC>
+		<Description>Defeito de hardware: K1 não actua</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: K1 does not pick up </ExtText>
+		<Possible_malfunction_or_causes>See error 3 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>178</ID>
+	</row>
+	<row>
+		<ID>179</ID>
+		<Class>Error</Class>
+		<PRC>79</PRC>
+		<Description>Falta o consentimento de pelo menos um carrinho para ligar o contactor da ponte através do barramento CAN bus</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>OK of min. one trolley for switching the crane contactor on via CAN bus missing 
+OK of crane for switching K1 on via CAN bus missing </ExtText>
+		<Possible_malfunction_or_causes>See error 140 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>180</ID>
+	</row>
+	<row>
+		<ID>181</ID>
+	</row>
+	<row>
+		<ID>182</ID>
+	</row>
+	<row>
+		<ID>183</ID>
+		<Class>Error</Class>
+		<PRC>83</PRC>
+		<Description>O controlador de monitoração detectou que o controlador principal origina movimentos de translação do carrinho (da ponte) para os quais não existem os correspondentes comandos.</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring controller has detected that main controller causes motions of the crane without the
+corresponding control commands being available</ExtText>
+		<Possible_malfunction_or_causes>&gt; DR control system parameter error (speed V1 too high)
+&gt; Inverter parameter error
+&gt; DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane stops</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>184</ID>
+		<Class>Error</Class>
+		<PRC>84</PRC>
+		<Description>Defeito de hardware: A saída do controlador de monitoração para desligar o contactor da ponte está activa e por isso  o  barramento CAN bus está bloqueado</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: Output of monitoring controller for switching off the crane contactor is active (o
+in modular hardware the output for switching off the CAN bus), this causes CAN bus to be
+blocked</ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>185</ID>
+		<Class>Error</Class>
+		<PRC>85</PRC>
+		<Description>Evento: O comando do controlador principal para a passagem para o estado seguro foi recebido</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Event: Command from main controller to assume safe status was received </ExtText>
+		<Possible_malfunction_or_causes>- Response of main controller to external interference (EMC)
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>All movements are stopped</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>186</ID>
+		<Class>Error</Class>
+		<PRC>86</PRC>
+		<Description>O software do controlador principal desvia do comportamento de tempo previsto</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Software of main controller deviates from planned time behaviour </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>187</ID>
+		<Class>Error</Class>
+		<PRC>87</PRC>
+		<Description>A monitoração do controlador principal detectou um defeito ou uma reacção faltante do controlador principal</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring system of main controller has detected an error or a missing response of main controller</ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>188</ID>
+	</row>
+	<row>
+		<ID>189</ID>
+		<Class>Error</Class>
+		<PRC>89</PRC>
+		<Description>Defeito de hardware: O controlador de monitoração detectou um próprio defeto de hardware</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: Monitoring controller has detected own HW error </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>All movements are stopped</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>190</ID>
+		<Class>Error</Class>
+		<PRC>90</PRC>
+		<Description>Com barramento CAN bus: O barramento não está activo,  defeitode SRDO ou o botão de emergência foi premida
+Comando paralelo: O botão da paragem de emergência foi premida</Description>
+		<Display>ggf.</Display>
+		<Warning>false</Warning>
+		<ExtText>Emergency stop / STOP actuated during axis movement (for CAN bus, bus may not be active,
+or SRDO error)</ExtText>
+		<Possible_malfunction_or_causes>Emergency stop / STOP actuated during axis movement </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>191</ID>
+		<Class>Error</Class>
+		<PRC>91</PRC>
+		<Description>Defeito do contactor da ponte: K1 e  KMS são desligado</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Error of crane contactor: K1 and KMS are switched off </ExtText>
+		<Possible_malfunction_or_causes>See error 51 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>192</ID>
+		<Class>Error</Class>
+		<PRC>92</PRC>
+		<Description>Erro na troca de informações de relevância de segurança através do barramento CAN bus: SRDO falta, ordem de sequência, o comportamento de tempo ou o conteúdo de SRDO não é correcto</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Error while exchanging safety-relevant information via CAN bus: SRDO missing; sequence, time behavior of SRDO contents incorrect</ExtText>
+		<Possible_malfunction_or_causes>See error 50 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>193</ID>
+		<Class>Error</Class>
+		<PRC>93</PRC>
+		<Description>O contacto de monitoração do contactor da ponte avisa que o contactor da ponte não se desexcita</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring contact of crane contactor signals that crane contactor does not drop </ExtText>
+		<Possible_malfunction_or_causes>See error 53 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>All movements are stopped</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>194</ID>
+		<Class>Error</Class>
+		<PRC>94</PRC>
+		<Description>O contacto de monitoração de  K1 avisa que o K1 não se desexcitat</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring contact of K1 signals that K1 does not drop </ExtText>
+		<Possible_malfunction_or_causes>See error 3 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>195</ID>
+		<Class>Error</Class>
+		<PRC>95</PRC>
+		<Description>O contactor do motor do carrinho KMS não se desexcita, o contactor da ponte é desligada</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>KMS trolley motor contactor does not drop, crane contactor is switched off </ExtText>
+		<Possible_malfunction_or_causes>- No longer active, since trolley motor contactor left out
+(remove trolley motor contactor, if required)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>196</ID>
+		<Class>Error</Class>
+		<PRC>96</PRC>
+		<Description>O controlador de monitoração detectou uma falha total do controlador principal</Description>
+		<Display>ggf.</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring controller has detected complete failure of main controller</ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>197</ID>
+		<Class>Error</Class>
+		<PRC>97</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>not yet used </ExtText>
+		<Possible_malfunction_or_causes>not yet used</Possible_malfunction_or_causes>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>198</ID>
+		<Class>Error</Class>
+		<PRC>98</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>not yet used </ExtText>
+		<Possible_malfunction_or_causes>not yet used</Possible_malfunction_or_causes>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>199</ID>
+		<Class>Error</Class>
+		<PRC>99</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>not yet used </ExtText>
+		<Possible_malfunction_or_causes>not yet used</Possible_malfunction_or_causes>
+		<Machinery>Crane</Machinery>
+	</row>
+	<row>
+		<ID>200</ID>
+	</row>
+	<row>
+		<ID>201</ID>
+		<Class>Error</Class>
+		<PRC>-</PRC>
+		<Description>Barramento CAN bus perturbado,  barramento CAN bus não alcançou o modo de operação adicional</Description>
+		<Display>impossível</Display>
+		<Warning>false</Warning>
+		<ExtText>CAN bus error, CAN bus has not reached normal operating mode </ExtText>
+		<Possible_malfunction_or_causes>- Check Can bus connection ( plug loose / cable defective / ... )
+- Other Can bus subscriber not working
+- Incorrect setting ( parameters / Dip switches / final resistor / ... )</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>202</ID>
+		<Class>Error</Class>
+		<PRC>-</PRC>
+		<Description>Barramento CAN bus perturbado, barramento CAN bus está passivo ou transbordos de tampão na comunicação CAN</Description>
+		<Display>impossível</Display>
+		<Warning>false</Warning>
+		<ExtText>CAN bus error, CAN bus passive or buffer overflows in CAN communication </ExtText>
+		<Possible_malfunction_or_causes>- CAN bus connection incorrect
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>203</ID>
+		<Class>Error</Class>
+		<PRC>3</PRC>
+		<Description>K1 não se comporta como esperado (não actua, não se desexcita, fällt nicht ab, geração da tensão de comando, contacto de retorno)</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>K1 shows unexpected behaviour (does not pull up, does not drop, generation of control voltage
+feedback contact)</ExtText>
+		<Possible_malfunction_or_causes>&gt; K1 defective or K1 wiring incorrect
+&gt; Configuration of DR control (jumper / bridges) incorrect
+&gt; Parameter seting does not correspond to the limit switch variant
+&gt; DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Up to SW V2.47 =&gt; emergency operation (lowering V1) and
+message
+From SW V3.00 =&gt; emergency operation, message and
+removal of enable in the case of parallel operation</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>204</ID>
+		<Class>Error</Class>
+		<PRC>4</PRC>
+		<Description>O termo-contacto do motor de elevação (da ponte) reagiu</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Thermal contact of hoist motor tripped </ExtText>
+		<Possible_malfunction_or_causes>- Motor overheated
+- Thermal contact defective
+- Connection to motor defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Emergency operation (lowering V1)</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>205</ID>
+		<Class>Error</Class>
+		<PRC>5</PRC>
+		<Description>Defeito de hardware: Uma saída não assume o estado desejado</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: One output of controller does not assume required status 
+</ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>206</ID>
+		<Class>Error</Class>
+		<PRC>6</PRC>
+		<Description>Curso de frenagem máximo permtido od mecanismo de elevação foi ultrapassado (Distância de trenagem máxima permitida da ponte foi ultrapassada
+[somente com sensor de rotações])</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Max. permissible braking distance of hoist unit exceeded </ExtText>
+		<Possible_malfunction_or_causes>- Check brake
+- Parameter error
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>207</ID>
+		<Class>Error</Class>
+		<PRC/>
+		<Description>Diferença máxima permitida entre dois mecanismos de elevação com marcha síncirona foi ultrapassada</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Maximum permitted path difference between two hoists in simultaneous operation exceeded </ExtText>
+		<Possible_malfunction_or_causes>- Simultaneous operation not possible due to mechanical or electrical problems
+- "Maximum simultaneous running difference" parameter defective
+- Inverter defective or incorrectly programmed</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>208</ID>
+		<Class>Error</Class>
+		<PRC>108</PRC>
+		<Description>Ao ligar o mecanismo de elevação ficou-se abaixo do ponto de comutação cabo lasso</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>While unloading hoist unit, value dropped below slack rope switching point </ExtText>
+		<Possible_malfunction_or_causes>- Spreader lowered with active slack rope function
+- Incorrect parameter programming (dead load / ZMS setting values / reeving /... )
+- External interference (EMC)
+- Load detection (ZMS) defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Lowering no longer possible</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>209</ID>
+		<Class>Error</Class>
+		<PRC>9</PRC>
+		<Description>Defeito de software: Dados da avaliação ZMS não foram correctamente analizados</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Software error: Data for ZMS evaluation not correctly initialized
+or distorted at a later date</ExtText>
+		<Possible_malfunction_or_causes>- Incorrect parameter programming
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Lifting no longer possible + "Parameter error" horn sequence</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>210</ID>
+		<Class>Error</Class>
+		<PRC>10</PRC>
+		<Description>Valor medido do  ZMS 1 dem. pequeno com gancho vazio</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Measuring value of ZMS 1 with empty hook too small </ExtText>
+		<Possible_malfunction_or_causes>- Incorrect parameter programming (ZMS offset)
+- External interference (EMC)
+- Load detection (ZMS) defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Lifting no longer possible</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>211</ID>
+		<Class>Error</Class>
+		<PRC>11</PRC>
+		<Description>Valor medido do  ZMS 2 dem. pequeno com gancho vazio</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Measuring value of ZMS 2 with empty hook too small </ExtText>
+		<Possible_malfunction_or_causes>See error 10 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Lifting no longer possible</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>212</ID>
+		<Class>Error</Class>
+		<PRC>12</PRC>
+		<Description>A monitoração da alimentação +/-12 V do ZMS detectou um defeito</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring system of +/-12 V supply for ZMS has detected an error </ExtText>
+		<Possible_malfunction_or_causes>- External interference (EMC)
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Lifting no longer possible</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>213</ID>
+		<Class>Error</Class>
+		<PRC>13</PRC>
+		<Description>Na verificação foi detectado um erro na avaliação ZMS devido à desafinação</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Error on ZMS evaluation detected during check caused by deviation </ExtText>
+		<Possible_malfunction_or_causes>&gt; Load detection (ZMS) defective
+&gt; ZMS wiring defective
+&gt; DR control system error (replace control system)
+(Error is retained for approx. 3 minutes)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Lifting no longer possible</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>214</ID>
+		<Class>Error</Class>
+		<PRC>14</PRC>
+		<Description>A diferença de carga entre dois mecanismo de elevação é demasiado grande</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Load difference between two hoist units too large </ExtText>
+		<Possible_malfunction_or_causes>- Normal operating status
+- Parameter error
+- Load detection (ZMS) defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Lifting no longer possible</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>215</ID>
+		<Class>Error</Class>
+		<PRC>15</PRC>
+		<Description>Hauptcontroller hat Überlast erkannt, Überwachungscontroller (noch) nicht</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Main controller has detected overload, monitoring controller not (yet) </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Lifting no longer possible</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>216</ID>
+		<Class>Error</Class>
+		<PRC>16</PRC>
+		<Description>noch nicht verwendet</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>not yet used </ExtText>
+		<Possible_malfunction_or_causes>not yet used </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>not yet used</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>217</ID>
+		<Class>Error</Class>
+		<PRC>17</PRC>
+		<Description>Avaliação sensor de rotações do curso de elevação: o valor teórico está presente,  mas o eixo está parado</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Evaluation rotary encoder lifting: Setpoint value available, however, axis at standstill </ExtText>
+		<Possible_malfunction_or_causes>- Motor not turning
+- Motor cable defective
+- Rotary encoder defective
+- Rotary encoder cable defective
+- Rotary encoder amplifier module defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>218</ID>
+		<Class>Error</Class>
+		<PRC>18</PRC>
+		<Description>Avaliação sensor de rotações do curso de elevação: não há valor teórico, mas o eixo não está parado</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Evaluation rotary encoder lifting: No setpoint value available, however, axis not at standstill </ExtText>
+		<Possible_malfunction_or_causes>- Motor turning without setpoint value specification (detail analysis required)
+- Rotary encoder defective</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>219</ID>
+		<Class>Error</Class>
+		<PRC>19</PRC>
+		<Description>Avaliação sensor de rotações do curso de elevação: Há valor teórica e o eixo desloca-se dem. rápido</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Evaluation rotary encoder lifting: Setpoint value available and axis travels too fast </ExtText>
+		<Possible_malfunction_or_causes>- Motor turning faster than setpoint value
+- Parameter error (50 / 60 Hz settings)
+- Line frequency fluctuation
+- Rotary encoder, driver module or cable defective
+- DIP switch 7 set wrong
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>220</ID>
+		<Class>Error</Class>
+		<PRC>20</PRC>
+		<Description>O conversor de frequência da elevação avisa uma perturbação, a descrição exacta da perturbação pode ser lida na memória de defeitos do conversor de frequência da elevação através de software PC</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hoist FI signals an error, the precise error description can be read in the error memory of the
+hoist FI via PC software</ExtText>
+		<Possible_malfunction_or_causes>- Message of inverter after actuation of emergency stop
+- Other inverter error. The precise error description Can be read in The error memor
+                                                                                                                                                                                                                                                                of The hoist FI via PC software</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>221</ID>
+		<Class>Error</Class>
+		<PRC>21</PRC>
+		<Description>O conversor de frequência do carrinho (da ponte) não avisa operacionalidade. Causas possíveis: contacto térmico</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Trolley inverter does not signal to be ready. Possible causes: Thermal contact </ExtText>
+		<Possible_malfunction_or_causes>- Check travel motor thermal contact
+- Otherwise read the error memory
+of the hoist FI via PC software</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Trolley stops</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>222</ID>
+		<Class>Error</Class>
+		<PRC>22</PRC>
+		<Description>Avaliação sensor de rotações elevação: o valor teórica está presente e o eixo desloca-se demasiado lento</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Evaluation rotary encoder lifting: Setpoint value available and axis travels too slow </ExtText>
+		<Possible_malfunction_or_causes>- Brake defective
+- Parameter error (50 / 60 Hz settings or rated speed)
+- Line frequency fluctuation
+- Rotary encoder defective
+- Rotary encoder cable defective
+- Rotary encoder amplifier module defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>223</ID>
+		<Class>Error</Class>
+		<PRC>23</PRC>
+		<Description>Contacto de sobrecorrente duma resistência de frenagem actuou (conversor de frequência da elevação)</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Overcurrent contact of one braking resistor tripped (hoist FI) </ExtText>
+		<Possible_malfunction_or_causes>- Hoist inverter defective
+- Overcurrent contact defective
+- Overcurrent contact tripped
+- Inverter / overcurrent contact connection defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>224</ID>
+		<Class>Error</Class>
+		<PRC>24</PRC>
+		<Description>Um dos valores hexadecimais dos interruptores fornece um valor inválido ( superior a 15 )</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hex switch value invalid (larger than 15) 
+</ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>225</ID>
+		<Class>Error</Class>
+		<PRC>25</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>Programmed parameters do not match hardware configuration (for modular hardware) </ExtText>
+		<Possible_malfunction_or_causes>- Parameter error
+- control system fitted with incorrect modules
+- module defective (replace module)
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>226</ID>
+		<Class>Error</Class>
+		<PRC>26</PRC>
+		<Description>Erro na monitoração dinâmica de sinais relacionado à segurança (ODDS)</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Error of dynamic monitoring of safety relevant signals (ODDS) 
+Parameter missing or has invalid value, detected by check-sum check </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) 
+- Parameter error
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)
+Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>227</ID>
+		<Class>Error</Class>
+		<PRC>27</PRC>
+		<Description>O parâmetro falta ou tem um valor inválido, foi detectado através de uma verificação cíclica da soma de teste</Description>
+		<Display>impossível</Display>
+		<Warning>false</Warning>
+		<ExtText>Error of dynamic monitoring of safety relevant signals (ODDS) 
+Parameter missing or has invalid value, detected by check-sum check </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) 
+- Parameter error
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)
+Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>228</ID>
+		<Class>Error</Class>
+		<PRC>28</PRC>
+		<Description>O interruptor DIP 5 está numa posição errada ou a ponte/carrinho estão incorrectamente parametrizados</Description>
+		<Display>ggf.</Display>
+		<Warning>false</Warning>
+		<ExtText>DIP switch 5 in incorrect position or incorrect parameter setting of crane/trolley </ExtText>
+		<Possible_malfunction_or_causes>- Parameter error (trolley - crane setting)
+- Dip switch 5 incorrectly set</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Error message and horn signal</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>229</ID>
+		<Class>Error</Class>
+		<PRC>29</PRC>
+		<Description>Monitoração do estado de ligação de K2 detectou um desvio do estado de ligalção esperado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>K2 switching status monitoring has detected deviation from expected switching status </ExtText>
+		<Possible_malfunction_or_causes>For ISS: DR control system error (replace control system)
+for HSS:
+- K2 defective (replace contactor set)
+- Cable loom to contactor set defective (replace contactor set)
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Up to SW V2.47 =&gt; hoist stops but no info to hoist unit working
+in parallel
+From SW V3.00 =&gt; hoist stops, removal of enable in the case
+of parallel operation</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>230</ID>
+		<Class>Error</Class>
+		<PRC>30</PRC>
+		<Description>Monitoração do estado de ligação de K3 detectou um desvio do estado de ligalção esperado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>K3 switching status monitoring has detected deviation from expected switching status </ExtText>
+		<Possible_malfunction_or_causes>For ISS: DR control system error (replace control system)
+for HSS:
+- K3 defective (replace contactor set)
+- Cable loom to contactor set defective (replace contactor set)
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Up to SW V2.47 =&gt; hoist stops but no info to hoist unit working
+in parallel
+From SW V3.00 =&gt; hoist stops, removal of enable in the case
+of parallel operation</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>231</ID>
+		<Class>Error</Class>
+		<PRC>31</PRC>
+		<Description>O contacto de monitoração do travão de elevação avisa um travão inadmissivelmente levantado</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring contact of hoist brake signals an impermissible brake release </ExtText>
+		<Possible_malfunction_or_causes>- Brake / brake coil defective
+- Micro switch (brake release contact) incorrectly set
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>232</ID>
+		<Class>Error</Class>
+		<PRC>32</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>not yet used </ExtText>
+		<Possible_malfunction_or_causes>not yet used </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>not yet used</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>233</ID>
+		<Class>Error</Class>
+		<PRC>33</PRC>
+		<Description>Defeito e hardware ZMS1 / SGS:
+&gt; ZMS: ZMS com defeito, não ligado ou tem cabo quebrado
+&gt; SGS: A frequência do sinal para captar o estado de ligação do SGS é demasiado alta</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error ZMS1 / SGS:
+&gt; ZMS: ZMS defective, not connected or has broken wire
+&gt; SGS: Frequency of signal for detection of switching status of SGS too high</ExtText>
+		<Possible_malfunction_or_causes>- ZMS defective
+- ZMS not connected
+- ZMS conductor broken
+- Parameter error
+- EMC interference- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Lifting no longer possible</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>234</ID>
+		<Class>Error</Class>
+		<PRC>34</PRC>
+		<Description>A chave limite superior de emergência foi activada sem que se tenha feita uma verificação da chave limte</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Emergency limit switch top tripped without Limit switch check </ExtText>
+		<Possible_malfunction_or_causes>- Limit switches incorrectly set
+- Jumper settings wrong for limit switches
+- Parameter error
+- Error when checking limit switches (incorrect sequence)
+- Geared limit switch / cable defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist unit is stopped until the next time it is switched off and on
+again.</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>235</ID>
+		<Class>Error</Class>
+		<PRC>35</PRC>
+		<Description>A chave limite inferior de emergência foi activada sem que se tenha feita uma verificação da chave limte</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Emergency limit switch bottom tripped without Limit switch check </ExtText>
+		<Possible_malfunction_or_causes>See error 34 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist unit is stopped until the next time it is switched off and on
+again.</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>236</ID>
+		<Class>Error</Class>
+		<PRC>36</PRC>
+		<Description>O contacto de monitoração do travão de elevação avisa que o travão não se deixa levantar</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring contact of hoist brake signals that brake cannot be released </ExtText>
+		<Possible_malfunction_or_causes>- Brake / brake coil defective
+- Micro switch (brake release contact) incorrectly set
+- Motor protection switch not switched on
+- Motor supply cable defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>237</ID>
+		<Class>Error</Class>
+		<PRC>37</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>not yet used</ExtText>
+		<Possible_malfunction_or_causes>not yet used </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>not yet used</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>238</ID>
+		<Class>Error</Class>
+		<PRC>38</PRC>
+		<Description>Avaliação do sensor de rotações da elevação: o valor teórico está presente e o eixo desloca-se para o sentido errado</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Evaluation rotary encoder lifting: Setpoint value available and axis moves into wrong direction - Phases swapped</ExtText>
+		<Possible_malfunction_or_causes>- Rotary encoder defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops
+Attention: Error stored until next start-up!</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>239</ID>
+		<Class>Error</Class>
+		<PRC>39</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>not yet used </ExtText>
+		<Possible_malfunction_or_causes>not yet used</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>not yet used</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>240</ID>
+		<Class>Error</Class>
+		<PRC>40</PRC>
+		<Description>Falta o consentimento da ponte para ligar  K1 através do barramento CAN bus (Falta o consentimento de pelo menos um carrinho para ligar o contactor da ponte através do barramento CAN bus)</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>OK of crane for switching K1 on via CAN bus missing </ExtText>
+		<Possible_malfunction_or_causes>- Can bus defective (see error 1)
+- Parameter error (crane, trolley, solo travelling hoist)
+- Dip switch 5 incorrectly set
+- Crane control system failed (e.g. no control voltage)
+- Consequential error following crane control system error</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>241</ID>
+		<Class>Error</Class>
+		<PRC>141</PRC>
+		<Description>Mensagem interna do comando em caso de sobrecarga</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>Internal control system message on overload 
+Hardware error ZMS2: ZMS defective, not connected or has broken wire </ExtText>
+		<Possible_malfunction_or_causes>Internal control system message on overload 
+See error 33 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Lifting no longer possible
+Lifting no longer possible</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>242</ID>
+		<Class>Error</Class>
+		<PRC>42</PRC>
+		<Description>Defeito hardware ZMS2: ZMS cin defeitom, não conectado ou quebra do cabo</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>Internal control system message on overload 
+Hardware error ZMS2: ZMS defective, not connected or has broken wire </ExtText>
+		<Possible_malfunction_or_causes>Internal control system message on overload 
+See error 33 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Lifting no longer possible
+Lifting no longer possible</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>243</ID>
+		<Class>Error</Class>
+		<PRC>43</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>Error of double limit switch monitoring system </ExtText>
+		<Possible_malfunction_or_causes>&gt; Limit switches/actuators incorrectly fitted
+&gt;Limit switches defective
+&gt;Cable connection to limit switch defective
+&gt;Parameters, jumpers and limit switch configuration do not match
+&gt;DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Only limited emergency operation still possible (lowering and
+travelling at small speed).
+Attention: Error is saved until the next start-up.</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>244</ID>
+		<Class>Error</Class>
+		<PRC>44</PRC>
+		<Description>Erro na sequência de ligações das chaves limite da ponte (carrinho(s))</Description>
+		<Display>sim</Display>
+		<Warning>false</Warning>
+		<ExtText>Error in switching sequence of trolley limit switches </ExtText>
+		<Possible_malfunction_or_causes>- Limit switches/actuators incorrectly fitted
+- Limit switch, supply line or connector defective
+- Parameters and limit switch configuration do not match
+- Short circuit protection Usichi has switched off (briefly)
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Message only</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>245</ID>
+		<Class>Error</Class>
+		<PRC>45</PRC>
+		<Description>Erro na sequência de ligações das chaves limite da elevação</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Error in switching sequence of hoist limit switches </ExtText>
+		<Possible_malfunction_or_causes>- Geared limit switch incorrectly adjusted
+- Geared limit switch defective
+- Cable connection to limit switch defective
+- Parameters, jumpers and limit switch setting do not match
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Message only</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>246</ID>
+		<Class>Error</Class>
+		<PRC>46</PRC>
+		<Description>O software do controlador de monitoração desvia do comportamento de tempo previsto</Description>
+		<Display>se necessário</Display>
+		<Warning>false</Warning>
+		<ExtText>Software of monitoring controller deviates from planned time behaviour 
+The number of safety relevant control signals has exceeded the limit value </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) 
+- 2 CAN control sources are connected to the CAN bus </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops
+Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>247</ID>
+		<Class>Error</Class>
+		<PRC>47</PRC>
+		<Description>noch nicht verwendet</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>Software of monitoring controller deviates from planned time behaviour 
+The number of safety relevant control signals has exceeded the limit value </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) 
+- 2 CAN control sources are connected to the CAN bus </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops
+Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>248</ID>
+	</row>
+	<row>
+		<ID>249</ID>
+		<Class>Error</Class>
+		<PRC>49</PRC>
+		<Description>Timeout na troca de dados necessários para a marcha síncrona entre dois mecanismos de elevação</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>Synchronous operation timeout </ExtText>
+		<Possible_malfunction_or_causes>- Error in exchange of position values between hoist units </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>250</ID>
+		<Class>Error</Class>
+		<PRC>50</PRC>
+		<Description>Com barramento CAN bus: barramento não está activo, erro SRDO ou foi activada a paragem de emergência
+Comando paralelo: paragem de emergência activada</Description>
+		<Display>STOP</Display>
+		<Warning>false</Warning>
+		<ExtText>With CAN bus: Bus not active, SRDO error or emergency stop activated
+Parallel control: Emergency stop actuated</ExtText>
+		<Possible_malfunction_or_causes>- Operating condition when switched on, if Emergency-stop on DSE is pressed
+(DSE8-R)
+- See error 1
+- External interference (EMC)
+- Consequential error following safety-relevant malfunction of another CAN
+subscriber</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>All movements are stopped</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>251</ID>
+		<Class>Error</Class>
+		<PRC>51</PRC>
+		<Description>Contacto de monitoração do contactor da ponte avisa que o contactor da ponte não acuta</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring contact of crane contactor signals that crane contactor does not pull up </ExtText>
+		<Possible_malfunction_or_causes>- Crane contactor not pulling up properly
+- Error in connection to crane contactor
+- Crane contactor feedback contact defective
+- Jumper for NoEmergencyStop signal (J101) incorrectly fitted or missing
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor remains switched off</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>252</ID>
+		<Class>Error</Class>
+		<PRC>52</PRC>
+		<Description>Erro na troca de informações com relevância de segurança sober o barramento CAN bus: SRDO falta; ordem de sequência, comportamnto de tempo ou conteúdo SRDO com defeito</Description>
+		<Display>ggf. nur
+ bei RC10</Display>
+		<Warning>false</Warning>
+		<ExtText>Error while exchanging safety-relevant information via CAN bus: SRDO missing; sequence,
+time behaviour or SRDO contents incorrect</ExtText>
+		<Possible_malfunction_or_causes>See error 50 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>253</ID>
+		<Class>Error</Class>
+		<PRC>53</PRC>
+		<Description>O contacto de monitoração do contactor da ponte avisa que o contactor da ponte não se desexcita</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring contact of crane contactor signals that crane contactor does not drop </ExtText>
+		<Possible_malfunction_or_causes>- Crane contactor not dropping properly
+- Error in connection to crane contactor
+- Crane contactor feedback contact defective
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>All movements are stopped or prevented</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>254</ID>
+		<Class>Error</Class>
+		<PRC>54</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>Warning "impermissible operation" </ExtText>
+		<Possible_malfunction_or_causes>One of the following impermissible functions has been caused:
+- Limit switch check with both hoist units at the same time</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Response of DR control system:
+- Lifting and lowering motions are prevented</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>255</ID>
+		<Class>Error</Class>
+		<PRC>55</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>Warning "Timeout after travel command": After a travel command, the travel motion was not
+started within the permissible time and therefore is prevented by the control system for safety
+reasons</ExtText>
+		<Possible_malfunction_or_causes>&gt; Another trolley blocks travel owing to malfunction or similar in the case of parallel
+operation
+&gt; other parameter or hardware errors
+&gt; Signal time before travel start only programmed for one of the two trolleys</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Motion of the axis concerned is not started</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>256</ID>
+		<Class>Error</Class>
+		<PRC>156</PRC>
+		<Description>A janela de medição da carga não foi alcançada dentro do tempo permitido</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Load detection window not reached in permitted time </ExtText>
+		<Possible_malfunction_or_causes>- Binding brake,
+- Tight movement in gearbox
+- Incorrect DR parameter values:
++ “E_063_02” DR parameter line frequency not 50 or 60 Hz
++ “E_063_03” DR parameter hoist motor rated speed V1
++ “E_063_04” DR parameter hoist motor rated speed V2</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>If incorrect parameters have been detected, the hoist stops</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>257</ID>
+		<Class>Error</Class>
+		<PRC>157</PRC>
+		<Description>Errore "Parâmetros errados para captação da cargat"</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>"Parameter for load detection via slip evaluation incorrect" error </ExtText>
+		<Possible_malfunction_or_causes>- At least one load detection parameter has non-permitted value </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>If incorrect parameters have been detected, the hoist stops</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>258</ID>
+		<Class>Error</Class>
+		<PRC>158</PRC>
+		<Description>Advertência "A verificação da chave limite foi interromida"</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Warning "Limit switch check aborted" </ExtText>
+		<Possible_malfunction_or_causes>- Limit switch check not completed
+- “Limit switch check” signal missing</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Operating limit switch active again (can also be acknowledged
+via STOP key)</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>259</ID>
+		<Class>Error</Class>
+		<PRC>159</PRC>
+		<Description>Advertência "Travão de retenção": Baixar não é possível porque o travão de retenção reagiu</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Warning "Catching brake": Lowering not possible, as catching brake has tripped. </ExtText>
+		<Possible_malfunction_or_causes>- Catching brake really tripped
+- Signal contact/actuation defective
+- Cable to contact defective/not correctly connected
+- Jumper setting incorrect
+- Catching brake parameters programmed, but none available
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist can only lift at slow speed</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>260</ID>
+		<Class>Error</Class>
+		<PRC>160</PRC>
+		<Description>Advertência "Chave limite": Translação no sentido desejado não é possível porque se activou a chave limite.</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Warning "While in limit switch": Moving in selected direction not possible, limit switch reached. - Limit switch really reached</ExtText>
+		<Possible_malfunction_or_causes>- Limit switch or actuation defective
+- Cable to limit switch defective / not correctly connected
+- Jumper setting incorrect
+- Incorrect parameters programmed
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Movement in the direction switched off by the limit switch no
+longer possible</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>261</ID>
+		<Class>Error</Class>
+		<PRC>161</PRC>
+		<Description>Advertência "Stop devido à área bloqueada": A translação no sentido desejado é  impedida através do comando de translação de desvio.</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Warning "Stop due to blocked area": Motion in selected direction is prevented by by-pass
+control system.</ExtText>
+		<Possible_malfunction_or_causes>- Entry into blocked area attempted
+- Area switch or actuation defective
+- Cable to area switch defective / not correctly connected
+- Incorrect parameters programmed
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Movement in the direction of the blocked area no longer
+possible</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>262</ID>
+		<Class>Error</Class>
+		<PRC>162</PRC>
+		<Description>Advertência "Stop devido à carga excessiva na área com carga reduzida: O movimento para o sentido desejado é impedido porque a carga é demasiado grande para esta ára.</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Warning "Stop since load is too large for reduced load area": Moving in selected direction
+prevented, since load is too large for this area.</ExtText>
+		<Possible_malfunction_or_causes>- Load too large for area with load reduction
+- Area switch or actuation defective
+- Cable to area switch defective / not correctly connected
+- Incorrect parameters programmed
+- Load detection defective (see overload)
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Movement in the direction of the area with reduced load no
+longer possible</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>263</ID>
+		<Class>Error</Class>
+		<PRC>163</PRC>
+		<Description>Advertência "Interface conversor de frequência ainda não disponível"
+O movimento para o sentido desejado é impedido porque os parâmetros necessários do  conversor de frequência da elevação ainda não foram lidos ou foram erradamente estabelecidos.</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Warning "Inverter interface not available yet"
+Moving in selected direction not possible, because necessary hoist inverter parameters:
+- have not been read or are incorrectly programmed.</ExtText>
+		<Possible_malfunction_or_causes>Operational message every time the crane is switched on. May also be caused by
+- Error in CAN connection to hoist inverter
+- Parameter 830 "Load spectrum operating mode" is programmed to "Off" instead</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>If no parameters can be read from the inverter, no lifting
+movement is possible</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>264</ID>
+		<Class>Error</Class>
+		<PRC>64</PRC>
+		<Description>Defeito de hardware: O cão de guarda do controlador de monitoração não trabalha</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: Watchdog of monitoring controller not working </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>265</ID>
+		<Class>Error</Class>
+		<PRC>65</PRC>
+		<Description>Defeito de hardware: Porque a saída do controlador de monitoração para o comando do contactor da ponte não trabalha é apenas possível a operação de emergência de todos os eixos</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: As output of monitoring controller for controlling crane contactor is not working
+only emergency operation of all axes possible</ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>266</ID>
+		<Class>Error</Class>
+		<PRC>66</PRC>
+		<Description>Devido a erros na monitoração dinâmica de sinais de relevância de segurança (ODDS) é  apenas possível a operação de emergência de todos os eixos, eventualmtne falta a ponte ODDS no conector de uma entrada não utilizada (UniIn ou chave limite)</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Owing to error of dynamics monitoring of safety-relevant signals (ODDS), only emergency
+operation of all axes, ODDS bridge may be missing on connector of an unused input (UniIn or
+limit switch)</ExtText>
+		<Possible_malfunction_or_causes>- ODDS signal (dynamic monitoring of the limit switches) defective
+- ODDS bridge missing on an unused limit switch
+- Limit switches defective</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>267</ID>
+		<Class>Error</Class>
+		<PRC>67</PRC>
+		<Description>Devido a um erro de parametrização é apenas possível  a operação de emergência de todos os eixos</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Parameters transmitted from HCS12 to PIC or reference values are not
+usable. Therefore, only emergency operation is possible</ExtText>
+		<Possible_malfunction_or_causes>&gt; Parameter error
+&gt; Error in calculation of reference values
+&gt; Detection of +/- 12 V for ZMS defective</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>268</ID>
+		<Class>Error</Class>
+		<PRC>68</PRC>
+		<Description>Devido a um defeito do contactor do motor do carrinho é apenas permitida a operação de emergência</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Only emergency operation permissible owing to error of trolley motor contactor </ExtText>
+		<Possible_malfunction_or_causes>- No longer active, since trolley motor contactor left out
+(remove trolley motor contactor, if required)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation of trolley (travel at V1)</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>269</ID>
+		<Class>Error</Class>
+		<PRC>69</PRC>
+		<Description>Defeito de hardware: Porque a saída do controlador de monitoração para o comando do contactor K1 não pode ser desactivada, com o eixo  K1 é apenas possível a operação de emergência</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>270</ID>
+		<Class>Error</Class>
+		<PRC>70</PRC>
+		<Description>Defeito de hardware: Porque falta a retroalimentação do comando K1 falta, com eixo K1 és somente possível a operação de emergência</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: As feedback of K1 control is missing, only emergency operation of K1 axis
+possible</ExtText>
+		<Possible_malfunction_or_causes>- Contactor incorrectly connected after K1 replaced
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>271</ID>
+		<Class>Error</Class>
+		<PRC>71</PRC>
+		<Description>Defeito de hardware: Porque o controlador de monitoração não pode activar o travão, para o eixo K1 é somente possível a operação de emergência</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: As monitoring controller cannot de-activate the brake, only emergency</ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>272</ID>
+		<Class>Error</Class>
+		<PRC>72</PRC>
+		<Description>A retroalimentação K1 fica activa, para o eixo  K1 apenas é possível a operação de emergência</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>operation of K1 a is permissible
+K1 feedback remains active, for K1 axis only emergency operation </ExtText>
+		<Possible_malfunction_or_causes>See error 70 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>273</ID>
+		<Class>Error</Class>
+		<PRC>73</PRC>
+		<Description>Defeito de hardware: Devido a defeitos do ZMS ou SGS é apenas possível a operação de emergência do mecanismo de elevação</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: Only emergency operation of hoist unit owing to ZMS or SGS error </ExtText>
+		<Possible_malfunction_or_causes>See error 33 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist can only lift at slow speed</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>274</ID>
+		<Class>Error</Class>
+		<PRC>74</PRC>
+		<Description>A chave limite de emergência foi activada sem que tenha sido activa a verificação da chave limite</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Emergency limit switch tripped without Limit switch check being active </ExtText>
+		<Possible_malfunction_or_causes>see errors 34 and 35 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Reduced operation (lifting or lowering at V1)</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>275</ID>
+		<Class>Error</Class>
+		<PRC>75</PRC>
+		<Description>Defeito de hardware: O contactor do motor do carrinho não actua</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: Trolley motor contactor does not pick up </ExtText>
+		<Possible_malfunction_or_causes>- No longer active, since trolley motor contactor left out
+(remove trolley motor contactor, if required)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Trolley stops</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>276</ID>
+		<Class>Error</Class>
+		<PRC>76</PRC>
+		<Description>Defeito de hardware: Porque o controlador de monitoração não pode liberar o travão, não é possível a operação do mecanismo de elevação</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: As monitoring controller cannot enable the brake, operation of hoist unit not
+possible</ExtText>
+		<Possible_malfunction_or_causes>See error 71 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>277</ID>
+		<Class>Error</Class>
+		<PRC>77</PRC>
+		<Description>Defeito de hardware: K1 não actua</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: K1 does not pick up </ExtText>
+		<Possible_malfunction_or_causes>See error 3 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>278</ID>
+		<Class>Error</Class>
+		<PRC>78</PRC>
+		<Description>Erro do sentido de rotação da elevação</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Direction of revolution error Lifting: </ExtText>
+		<Possible_malfunction_or_causes>See error 38 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>279</ID>
+		<Class>Error</Class>
+		<PRC>79</PRC>
+		<Description>Falta o consentimento de pelo menos um carrinho para ligar o contactor da ponte através do barramento CAN bus</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>280</ID>
+		<Class>Error</Class>
+		<PRC>80</PRC>
+		<Description>Falta o consentimento da ponte para ligarr K1 através do barramento CAN bus fehlt</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>OK of min. one trolley for switching the crane contactor on via CAN bus missing 
+OK of crane for switching K1 on via CAN bus missing </ExtText>
+		<Possible_malfunction_or_causes>See error 40 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>All movements are stopped</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>281</ID>
+		<Class>Error</Class>
+		<PRC>181</PRC>
+		<Description>O controlador de monitoração detectou sobrecarga, o controlador principal (ainda) não.</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring controller has detected overload, main controller not (yet) </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist can only lift at slow speed</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>282</ID>
+		<Class>Error</Class>
+		<PRC>82</PRC>
+		<Description>O controlador principal causa movimentos de translação do mecanismo de elevação  para os quais não existem os correspondentes comandos de controlo.</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Main controller causes motions of hoist unit without the corresponding control commands being
+available</ExtText>
+		<Possible_malfunction_or_causes>- DR control system parameter error
+- Inverter parameter error
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>283</ID>
+		<Class>Error</Class>
+		<PRC>83</PRC>
+		<Description>O controlador de monitoração detectou que o controlador principal origina movimentos de translação do carrinho (da ponte) para os quais não existem os correspondentes comandos.</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring controller has detected that main controller causes motions of the travelling hoist
+without the corresponding control commands being available</ExtText>
+		<Possible_malfunction_or_causes>&gt; DR control system parameter error (speed V1 too high)
+&gt; For older SW version: Crab selection changed during travel
+&gt; DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Trolley stops</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>284</ID>
+		<Class>Error</Class>
+		<PRC>84</PRC>
+		<Description>Defeito de hardware: A saída do controlador de monitoração para desligar o contactor da ponte está activa e por isso  o  barramento CAN bus está bloqueado</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: Output of monitoring controller for switching off the crane contactor is active (o
+in modular hardware the output for switching off the CAN bus), this causes CAN bus to be
+blocked</ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>285</ID>
+		<Class>Error</Class>
+		<PRC>85</PRC>
+		<Description>Evento: O comando do controlador principal para a passagem para o estado seguro foi recebido</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Event: Command from main controller to assume safe status was received </ExtText>
+		<Possible_malfunction_or_causes>- Response of main controller to external interference (EMC)
+- DR control system error (replace control system)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>All movements are stopped</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>286</ID>
+		<Class>Error</Class>
+		<PRC>86</PRC>
+		<Description>O software do controlador principal desvia do comportamento de tempo previsto</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Software of main controller deviates from planned time behaviour </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>287</ID>
+		<Class>Error</Class>
+		<PRC>87</PRC>
+		<Description>A monitoração do controlador principal detectou um defeito ou uma reacção faltante do controlador principal</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring system of main controller has detected an error or a missing response of main controller</ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>288</ID>
+	</row>
+	<row>
+		<ID>289</ID>
+		<Class>Error</Class>
+		<PRC>89</PRC>
+		<Description>Defeito de hardware: O controlador de monitoração detectou um próprio defeto de hardware</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Hardware error: Monitoring controller has detected own HW error </ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>All movements are stopped</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>290</ID>
+		<Class>Error</Class>
+		<PRC>90</PRC>
+		<Description>Com barramento CAN bus: O barramento não está activo,  defeitode SRDO ou o botão de emergência foi premida
+Comando paralelo: O botão da paragem de emergência foi premida</Description>
+		<Display>ggf.</Display>
+		<Warning>false</Warning>
+		<ExtText>Emergency stop / STOP actuated during axis movement (for CAN bus, bus may not be active,
+or SRDO error)</ExtText>
+		<Possible_malfunction_or_causes>Emergency stop / STOP actuated during axis movement </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>291</ID>
+		<Class>Error</Class>
+		<PRC>91</PRC>
+		<Description>Defeito do contactor da ponte: K1 e  KMS são desligado</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Error of crane contactor: K1 and KMS are switched off </ExtText>
+		<Possible_malfunction_or_causes>See error 51 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Hoist stops</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>292</ID>
+		<Class>Error</Class>
+		<PRC>92</PRC>
+		<Description>Erro na troca de informações de relevância de segurança através do barramento CAN bus: SRDO falta, ordem de sequência, o comportamento de tempo ou o conteúdo de SRDO não é correcto</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Error while exchanging safety-relevant information via CAN bus: SRDO missing; sequence, time behavior of SRDO contents incorrect</ExtText>
+		<Possible_malfunction_or_causes>See error 50 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>293</ID>
+		<Class>Error</Class>
+		<PRC>93</PRC>
+		<Description>O contacto de monitoração do contactor da ponte avisa que o contactor da ponte não se desexcita</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring contact of crane contactor signals that crane contactor does not drop </ExtText>
+		<Possible_malfunction_or_causes>See error 53 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>All movements are stopped</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>294</ID>
+		<Class>Error</Class>
+		<PRC>94</PRC>
+		<Description>O contacto de monitoração de  K1 avisa que o K1 não se desexcitat</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring contact of K1 signals that K1 does not drop </ExtText>
+		<Possible_malfunction_or_causes>See error 3 </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>295</ID>
+		<Class>Error</Class>
+		<PRC>95</PRC>
+		<Description>O contactor do motor do carrinho KMS não se desexcita, o contactor da ponte é desligada</Description>
+		<Display>ja</Display>
+		<Warning>false</Warning>
+		<ExtText>KMS trolley motor contactor does not drop, crane contactor is switched off </ExtText>
+		<Possible_malfunction_or_causes>- No longer active, since trolley motor contactor left out
+(remove trolley motor contactor, if required)</Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>296</ID>
+		<Class>Error</Class>
+		<PRC>96</PRC>
+		<Description>O controlador de monitoração detectou uma falha total do controlador principal</Description>
+		<Display>ggf.</Display>
+		<Warning>false</Warning>
+		<ExtText>Monitoring controller has detected complete failure of main controller</ExtText>
+		<Possible_malfunction_or_causes>- DR control system error (replace control system) </Possible_malfunction_or_causes>
+		<Behaviour_of_control_system>Crane contactor is switched off</Behaviour_of_control_system>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>297</ID>
+		<Class>Error</Class>
+		<PRC>97</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>not yet used </ExtText>
+		<Possible_malfunction_or_causes>not yet used</Possible_malfunction_or_causes>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>298</ID>
+		<Class>Error</Class>
+		<PRC>98</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>not yet used </ExtText>
+		<Possible_malfunction_or_causes>not yet used</Possible_malfunction_or_causes>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+	<row>
+		<ID>299</ID>
+		<Class>Error</Class>
+		<PRC>99</PRC>
+		<Description>ainda não utiliizado</Description>
+		<Display/>
+		<Warning>false</Warning>
+		<ExtText>not yet used </ExtText>
+		<Possible_malfunction_or_causes>not yet used</Possible_malfunction_or_causes>
+		<Machinery>2nd_Trolley</Machinery>
+	</row>
+</faultinfos>
