@@ -1,0 +1,16 @@
+Metadata-Version: 2.0
+Name: cpymad
+Version: 1.4.1
+Summary: Cython binding to MAD-X
+Home-page: UNKNOWN
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: importlib-resources
+Requires-Dist: minrpc (>=0.0.8)
+Requires-Dist: numpy
+
+UNKNOWN
+
+
