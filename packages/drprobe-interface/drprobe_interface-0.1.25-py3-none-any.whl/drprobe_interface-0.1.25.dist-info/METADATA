@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: drprobe-interface
+Version: 0.1.25
+Summary: Python interface to the Dr Probe software package
+Home-page: https://github.com/FWin22/drprobe_interface
+Author: Florian Winkler
+Author-email: flowinkler22@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: numpy
+
+UNKNOWN
+
+
