@@ -1,0 +1,16 @@
+lingtypology/__init__.py,sha256=rpoEAbDxPB-GdyrJUeRtnnKOqBvsk7CYd9XLr2A2yd4,1235
+lingtypology/autotyp_lang_mapping.json,sha256=kSrsCT8SuQdHHCSxGGVak7a_sfY9JnwZqfNl-fVl6yc,69818
+lingtypology/datasets.py,sha256=NpwWI_iyIvr35whfGum7PIWY7WqzFcRxJ5sqHtzpzFg,29730
+lingtypology/db_apis.py,sha256=-uWbVRBPEgzw6_fjIMb2tkhF_ITY1Zd91Mwc46QCwpc,195
+lingtypology/glottolog-languoids-v4.0-26-gb2138530b3.csv,sha256=fErlKKLpcn6BFGllvajIOXLy8qJpxUErGEhD7wbagY8,3785651
+lingtypology/glottolog-languoids-v4.0-26-gb2138530b3.csv-metadata.json,sha256=ncdpZ82xbl8iZxCk5Vm1iFFTNZTFan-xGPX4Tz9vSn4,4035
+lingtypology/glottolog.py,sha256=GlvzNp0PcgWuVkyUF5P1UeJdllOLfTr44StIgA149PA,7502
+lingtypology/language_elevation_mapping.json,sha256=U55Wiha5ITO5UAJ4kbXstpibTSaVYxYkZ2HboAn00Bw,180355
+lingtypology/legend.html,sha256=EiqN4mtJ-i2RiHVX7oK7kpCYiBdIS3-mWWat1WAonCM,4057
+lingtypology/lingtypology_exceptions.py,sha256=ey3Yaybhvbyfa6qZaQIqkDzUwzNsa76kA4YezYRGQ_I,167
+lingtypology/maps.py,sha256=zB5Kf23YpZ21orQiUMJbjyUeHQpk9bdH0Wueqh8hSyY,63598
+lingtypology-0.8.6.dist-info/LICENSE.md,sha256=M7wm1EmMGDtwPRdg7kW4d00h1uAXjKOT3HFScYQMeiE,34916
+lingtypology-0.8.6.dist-info/METADATA,sha256=M6w5uSouatQ3sZkxTPXPU1pj4xQAtbzUD52KWCTVGy8,1847
+lingtypology-0.8.6.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+lingtypology-0.8.6.dist-info/top_level.txt,sha256=vDSJ9Fh26KdHiC-SFuRmbuzz0GHg-PXxMoUE1BueqiU,13
+lingtypology-0.8.6.dist-info/RECORD,,
