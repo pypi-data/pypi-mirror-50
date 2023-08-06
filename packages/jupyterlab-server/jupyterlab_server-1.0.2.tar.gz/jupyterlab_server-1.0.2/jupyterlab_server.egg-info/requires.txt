@@ -1,0 +1,7 @@
+json5
+jsonschema>=3.0.1
+notebook>=4.2.0
+
+[test]
+pytest
+requests
