@@ -1,0 +1,15 @@
+{
+  "_id": "_design/styles",
+  "language": "javascript",
+  "views": {
+    "by-category": {
+      "map": "function (doc) {\n  if (doc.$type == \"style\") {\n    category = doc._id.match(/[0-9]+|[a-zA-Z]+/g)\n    category[0] = parseInt(category[0])\n    emit(category, doc.name)\n  }\n}"
+    },
+    "by-name": {
+      "map": "function (doc) {\n  if (doc.$type == \"style\") {\n    emit(doc.name, doc.name)\n  }\n}"
+    }
+  },
+  "lists": {},
+  "indexes": {},
+  "shows": {}
+}

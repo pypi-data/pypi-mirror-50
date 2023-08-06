@@ -1,0 +1,4 @@
+graft src/humulus/static
+graft src/humulus/templates
+graft src/humulus/designs
+global-exclude *.pyc

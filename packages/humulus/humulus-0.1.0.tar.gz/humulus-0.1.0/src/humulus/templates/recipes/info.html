@@ -1,0 +1,250 @@
+{#-
+  Copyright 2019 Mike Shoup
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-#}
+{% import '_macros.html' as macros %}
+
+{% extends '_base.html' %}
+{% block title %}{{ recipe.name }}{% endblock %}
+
+{% block body %}
+<div class="row"><h1>{{ recipe.name }}</h1></div>
+{% if style %}
+<div class="row">
+  <h2><a href="{{ url_for('styles.recipes', id=style._id) }}">{{ style._id }} {{ style.name }}</a></h2>
+</div>
+{% endif %}
+{#-
+  Recipe Details
+-#}
+<div class="row border-top"><h2>Details</h2></div>
+<div class="row">
+  <div class="col-sm">
+    <dl>
+      <dt>Recipe Type</dt>
+      <dd>{{ recipe.type }}</dd>
+      <dt>Batch Efficiency</dt>
+      <dd>{{ recipe.efficiency|int }}%</dd>
+      <dt>Batch Volume</dt>
+      <dd>{{ recipe.volume|float|round(1) }} gal.</dd>
+    </dl>
+  </div>
+  <div class="col-sm">
+    <dl>
+      {% if 'created' in recipe %}
+      <dt>Created</dt>
+      <dd>{{ macros.moment(recipe.created) }}</dd>
+      {% endif %}
+      {% if 'updated' in recipe %}
+      <dt>Updated</dt>
+      <dd>{{ macros.moment(recipe.updated) }}</dd>
+      {% endif %}
+    </dl>
+  </div>
+</div>
+<div class="row"><h3>Estimated Specifications</h3></div>
+<div class="row">
+  <div class="col-sm">
+    <dl>
+      <dt>Original Gravity</dt>
+      <dd>
+        {% if style %}
+          {{ macros.render_progressbar(recipe|recipe_og|float, style.og.low|float, style.og.high|float, class='spec-progress') }}
+        {% else %}
+          {{ recipe|recipe_og }}
+        {% endif %}
+      </dd>
+      <dt>Final Gravity</dt>
+      <dd>
+        {% if style %}
+          {{ macros.render_progressbar(recipe|recipe_fg|float, style.fg.low|float, style.fg.high|float, class='spec-progress') }}
+        {% else %}
+          {{ recipe|recipe_fg }}
+        {% endif %}
+      </dd>
+    </dl>
+  </div>
+  <div class="col-sm">
+    <dl>
+      <dt>Alcohol</dt>
+      <dd>
+        {% if style %}
+          {{ macros.render_progressbar(recipe|recipe_abv|float, style.abv.low|float, style.abv.high|float, unit=' %/vol', class='spec-progress') }}
+        {% else %}
+          {{ recipe|recipe_abv }} %/vol.
+        {% endif %}
+      </dd>
+      <dt>Color</dt>
+      <dd>
+        {% if style %}
+          {{ macros.render_progressbar(recipe|recipe_srm|float, style.srm.low|float, style.srm.high|float, unit=' SRM', class='spec-progress') }}
+        {% else %}
+          {{ recipe|recipe_srm }} SRM
+        {% endif %}
+      </dd>
+    </dl>
+  </div>
+  <div class="col-sm">
+    <dl>
+      <dt>Bitterness</dt>
+      <dd>
+        {% if style %}
+          {{ macros.render_progressbar(recipe|recipe_ibu|float, style.ibu.low|float, style.ibu.high|float, unit=' IBU', class='spec-progress') }}
+        {% else %}
+          {{ recipe|recipe_ibu }} IBU
+        {% endif %}
+      </dd>
+      <dt>Bitterness Ratio</dt>
+      <dd>{{ recipe|recipe_ibu_ratio }} IBU/OG</dd>
+    </dl>
+  </div>
+</div>
+{#-
+  Fermentables
+-#}
+<div class="row border-top"><h2>Fermentables</h2></div>
+<div class="row"><div class="table-responsive">
+  <table class="table table-hover table-sm">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>PPG</th>
+        <th>Color</th>
+        <th>%</th>
+      </tr>
+    </thead>
+    {%- for fermentable in recipe.fermentables|ferm_pct|sort(attribute='amount', reverse=True) -%}
+    <tr>
+      <td>{{ fermentable.name }}</td>
+      <td>{{ fermentable.amount|float|round(2) }} lb.</td>
+      <td>{{ fermentable.ppg|float|round }}</td>
+      <td>{{ fermentable.color|float|round(1) }}°L</td>
+      <td>{{ fermentable.pct|float|round(1) }}%</td>
+    </tr>
+    {%- endfor -%}
+  </table>
+</div></div>
+{#-
+  Hops
+-#}
+<div class="row border-top"><h2>Hops</h2></div>
+<div class="row"><div class="table-responsive">
+  <table class="table table-hover table-sm">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Duration</th>
+        <th>Alpha Acid</th>
+        <th>Usage</th>
+      </tr>
+    </thead>
+    {%- for hop in recipe.hops|sort_hops -%}
+    <tr>
+      <td>{{ hop.name }}</td>
+      <td>{{ hop.amount|float|round(2) }} oz.</td>
+      <td>{{ hop.duration|int }} {% if hop.use == 'Dry-Hop' %}days{% else %}min{% endif %}</td>
+      <td>{{ hop.alpha|float|round(1) }}%</td>
+      <td>{{ hop.use }}</td>
+    </tr>
+    {%- endfor -%}
+  </table>
+</div></div>
+{#-
+  Yeast
+-#}
+{% if 'yeast' in recipe %}
+<div class="row border-top"><h2>Yeast</h2></div></div>
+<div class="row"><div class="table-responsive">
+  <table class="table table-hover table-sm">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Lab</th>
+        <th>Code</th>
+        <th>Atten.</th>
+        <th>Temp.</th>
+        <th>Flocc.</th>
+        <th>ABV Max</th>
+      </tr>
+    </thead>
+    <tr>
+      <td>{{ recipe.yeast.name }}</td>
+      <td>{{ recipe.yeast.lab }}</td>
+      <td>{{ recipe.yeast.code }}</td>
+      <td>
+        {% if 'low_attenuation' in recipe.yeast %}{{ recipe.yeast.low_attenuation|int }}%{% endif %}
+        {% if 'low_attenuation' in recipe.yeast and 'high_attenuation' in recipe.yeast %} - {% endif %}
+        {% if 'high_attenuation' in recipe.yeast %}{{ recipe.yeast.high_attenuation|int }}%{% endif %}
+      </td>
+      <td>
+        {% if 'min_temperature' in recipe.yeast %}{{ recipe.yeast.min_temperature|int }}°F{% endif %}
+        {% if 'min_temperature' in recipe.yeast and 'max_temperature' in recipe.yeast %} - {% endif %}
+        {% if 'max_temperature' in recipe.yeast %}{{ recipe.yeast.max_temperature|int }}°F{% endif %}
+      </td>
+      <td>{% if 'flocculation' in recipe.yeast %}{{ recipe.yeast.flocculation }}{% endif %}</td>
+      <td>{% if 'abv_tolerance' in recipe.yeast %}{{ recipe.yeast.abv_tolerance|int }}%{% endif %}</td>
+    </tr>
+  </table>
+</div></div>
+{% endif %}
+{% if recipe.mash and recipe.mash.name %}
+<div class="row border-top"><h2>Mash</h2></div>
+<div class="row">{{ recipe.mash.name }}</div>
+<div class="table-responsive">
+  <table class="table table-hover table-sm">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Step Name</th>
+        <th>Type</th>
+        <th>Temp</th>
+        <th>Time</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+  {% for step in recipe.mash.steps %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ step.name }}</td>
+      <td>{{ step.type }}</td>
+      <td>{% if step.temp %}{{ step.temp }} °F{% endif %}</td>
+      <td>{% if step.time %}{{ step.time }} min.{% endif %}</td>
+      <td>{% if step.amount %}{{ step.amount }} gal.{% endif %}</td>
+    </tr>
+  {% endfor %}
+  </table>
+</div>
+{% endif %}
+{#-
+  Recipe Notes
+-#}
+{% if recipe.notes %}
+<div class="row border-top"><h2>Recipe Notes</h2></div>
+<div class="row"><div class="col">{{ recipe.notes }}</div></div>
+{% endif %}
+{#-
+  Buttons to do things
+-#}
+{% if session.logged_in %}
+<div class="row mt-4 pt-1 border-top">
+  <a class="btn btn-secondary mr-1" href="{{ url_for('recipes.update', id=recipe._id) }}">Update Recipe</a>
+  {{ macros.render_delete_button('Delete Recipe', 'deleteRecipe', 'btn-danger') }}
+</div>
+{{ macros.render_delete_modal(url_for('recipes.delete', id=recipe._id), 'deleteRecipe', recipe.name) }}
+{% endif %}
+<div class="row mt-4"><a href="{{ url_for('recipes.info_json', id=recipe._id) }}">Export JSON</a></div>
+<div class="row">Recipe revision: {{ recipe._rev }}</div>
+{% endblock %}

@@ -1,0 +1,82 @@
+{#-
+  Copyright 2019 Mike Shoup
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-#}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+
+    <title>{% block title %}{% endblock %} - Humulus</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="{{ url_for('index') }}">Humulus</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHumulusDefault" aria-controls="navbarHumulusDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarHumulusDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item {% if request.url_rule.endpoint == 'recipes.index' %}active{% endif %}">
+            <a class="nav-link" href="{{ url_for('recipes.index') }}">Recipes</a>
+          </li>
+          {% if session.logged_in %}
+          <li class="nav-item {% if request.url_rule.endpoint == 'styles.index' %}active{% endif %}">
+            <a class="nav-link" href="{{ url_for('styles.index') }}">Styles</a>
+          </li>
+          {% endif %}
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item {% if request.url_rule.endpoint == 'home.about' %}active{% endif %}">
+            <a class="nav-link" href="{{ url_for('home.about') }}">About</a>
+          </li>
+          <li class="nav-item active">
+            {% if session.logged_in %}
+            <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+            {% else %}
+            <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+            {% endif %}
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='moment.min.js')}}"></script>
+    <main role="main" class="container">
+      {% block alert %}
+        {% for category, message in get_flashed_messages(with_categories=true) %}
+          <div class="container">
+            <div  class="alert alert-{{ category }}" role="alert">{{ message }}</div>
+          </div>
+        {% endfor %}
+      {% endblock %}
+      {% block body %}{% endblock %}
+    </main><!-- /.container -->
+
+    <footer class="fixed-bottom">{% block footer %}{% endblock %}</footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

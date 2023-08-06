@@ -1,0 +1,85 @@
+{#-
+  Copyright 2019 Mike Shoup
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-#}
+{% from "_macros.html" import moment %}
+
+{% macro render_detail(field, header) %}
+<div class="row">
+  <h2>{{ header }}</h2>
+</div>
+<div class="row">
+  <p>{{ field }}</p>
+</div>
+{% endmacro %}
+
+
+{% extends '_base.html' %}
+{% block title %}{{ style._id }} {{ style.name }}{% endblock %}
+
+{% block body %}
+<div class="row mb-3"><h1>{{ style._id }} {{ style.name }}</h1></div>
+<p><a href="{{ url_for('styles.recipes', id=style._id) }}">View recipes using this style</a></p>
+{{ render_detail(style.impression, 'Overall Impression') }}
+{{ render_detail(style.appearance, 'Appearance') }}
+{{ render_detail(style.aroma, 'Aroma') }}
+{{ render_detail(style.flavor, 'Flavor') }}
+{{ render_detail(style.mouthfeel, 'Mouthfeel') }}
+
+{% if style.comments %}
+  {{ render_detail(style.comments, 'Comments') }}
+{% endif %}
+{% if style.history %}
+{{ render_detail(style.history, 'History') }}
+{% endif %}
+{% if style.ingredients %}
+{{ render_detail(style.ingredients, 'Characteristic Ingredients') }}
+{% endif %}
+{% if style.comparison %}
+{{ render_detail(style.comparison, 'Style Comparisons') }}
+{% endif %}
+
+<div class="row">
+  <h2>Vital Statistics</h2>
+  <table class="table">
+    <tr>
+      <th>IBU</th>
+      <td>{{ style.ibu.low }} - {{ style.ibu.high }}</td>
+    </tr>
+    <tr>
+      <th>OG</th>
+      <td>{{ '%.3f' | format(style.og.low|float) }} - {{ '%.3f' | format(style.og.high|float) }}</td>
+    </tr>
+    <tr>
+      <th>FG</th>
+      <td>{{ '%.3f' | format(style.fg.low|float) }} - {{ '%.3f' | format(style.fg.high|float) }}</td>
+    </tr>
+    <tr>
+      <th>SRM</th>
+      <td>{{ style.srm.low }} - {{ style.srm.high }}</td>
+    </tr>
+    <tr>
+      <th>ABV</th>
+      <td>{{ style.abv.low }} - {{ style.abv.high }}</td>
+    </tr>
+  </table>
+</div>
+
+{% if style.examples %}
+{{ render_detail(style.examples, 'Commercial Examples') }}
+{% endif %}
+
+<div class="row"><a href="{{ url_for('styles.index') }}">Back to styles list</a></div>
+
+{% endblock %}

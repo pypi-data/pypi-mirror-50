@@ -1,0 +1,5 @@
+Flask==1.0.3
+Flask-WTF==0.14.2
+simplejson==3.16.0
+python-slugify==3.0.2
+cloudant==2.12.0

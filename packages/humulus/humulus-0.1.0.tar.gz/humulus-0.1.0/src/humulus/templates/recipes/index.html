@@ -1,0 +1,82 @@
+{#-
+  Copyright 2019 Mike Shoup
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-#}
+{% from "_macros.html" import moment %}
+{% from "recipes/_macros.html" import render_recipe_form %}
+
+{% extends '_base.html' %}
+{% block title %}Recipes{% endblock %}
+
+{% block body %}
+<div class="row"><h1>Recipes</h1></div>
+{% if session.logged_in %}
+<div class="row">
+  <a href="{{ url_for('recipes.create') }}" class="btn btn-primary btn-sm mt-1 mb-2 ml-auto">Create a recipe</a>
+  <a href="{{ url_for('recipes.create_json') }}" class="btn btn-secondary btn-sm mt-1 mb-2 ml-1">Import JSON recipe</a>
+</div>
+{% endif %}
+<div class="row">
+<table class="table table-hover table-sm">
+  <thead>
+    <tr>
+      <th>
+        {% if sort_by == 'name' and descending %}
+        <a class="text-dark" href="{{ url_for('recipes.index', descending='false', sort_by='name') }}">Name &darr;</a>
+        {% elif sort_by == 'name' %}
+        <a class="text-dark" href="{{ url_for('recipes.index', descending='true', sort_by='name') }}">Name &uarr;</a>
+        {% else %}
+        <a class="text-dark" href="{{ url_for('recipes.index', descending='false', sort_by='name') }}">Name</a>
+        {% endif %}
+      </th>
+      <th>
+        {% if sort_by == 'volume' and descending %}
+        <a class="text-dark" href="{{ url_for('recipes.index', descending='false', sort_by='volume') }}">Batch Size &darr;</a>
+        {% elif sort_by == 'volume' %}
+        <a class="text-dark" href="{{ url_for('recipes.index', descending='true', sort_by='volume') }}">Batch Size &uarr;</a>
+        {% else %}
+        <a class="text-dark" href="{{ url_for('recipes.index', descending='false', sort_by='volume') }}">Batch Size</a>
+        {% endif %}
+      </th>
+      <th>
+        {% if sort_by == 'type' and descending %}
+        <a class="text-dark" href="{{ url_for('recipes.index', descending='false', sort_by='type') }}">Type &darr;</a>
+        {% elif sort_by == 'type' %}
+        <a class="text-dark" href="{{ url_for('recipes.index', descending='true', sort_by='type') }}">Type &uarr;</a>
+        {% else %}
+        <a class="text-dark" href="{{ url_for('recipes.index', descending='false', sort_by='type') }}">Type</a>
+        {% endif %}
+      </th>
+      <th>
+        {% if sort_by == 'date' and descending %}
+        <a class="text-dark" href="{{ url_for('recipes.index', descending='false', sort_by='date') }}">Created On &darr;</a>
+        {% elif sort_by == 'date' %}
+        <a class="text-dark" href="{{ url_for('recipes.index', descending='true', sort_by='date') }}">Created On &uarr;</a>
+        {% else %}
+        <a class="text-dark" href="{{ url_for('recipes.index', descending='false', sort_by='date') }}">Created On</a>
+        {% endif %}
+      </th>
+    </tr>
+  </thead>
+  {% for row in rows %}
+  <tr>
+    <td><a href="{{ url_for('recipes.info', id=row.id) }}">{{ row.doc.name }}</a></td>
+    <td>{{ row.doc.volume }} gal.</td>
+    <td>{{ row.doc.type }}</td>
+    <td>{{ moment(row.doc.created) }}</td>
+  </tr>
+  {% endfor %}
+</table>
+</div>
+{% endblock %}

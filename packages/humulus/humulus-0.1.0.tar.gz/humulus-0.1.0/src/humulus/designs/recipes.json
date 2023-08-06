@@ -1,0 +1,24 @@
+{
+  "_id": "_design/recipes",
+  "language": "javascript",
+  "views": {
+    "by-date": {
+      "map": "function (doc) {\n  if (doc.$type == \"recipe\" && doc.created && doc.name) {\n    emit(doc.created, doc.name)\n  }\n}"
+    },
+    "by-name": {
+      "map": "function (doc) {\n  if (doc.$type == \"recipe\" && doc.name) {\n    emit(doc.name, doc.name)\n  }\n}"
+    },
+    "by-volume": {
+      "map": "function (doc) {\n  if (doc.$type == \"recipe\" && doc.volume && doc.name) {\n    emit(doc.volume, doc.name)\n  }\n}"
+    },
+    "by-type": {
+      "map": "function (doc) {\n  if (doc.$type == \"recipe\" && doc.type && doc.name) {\n    emit(doc.type, doc.name)\n  }\n}"
+    },
+    "by-style": {
+      "map": "function (doc) {\n  if (doc.$type == \"recipe\" && doc.style && doc.name) {\n    emit(doc.style, doc.name)\n  }\n}"
+    }
+  },
+  "lists": {},
+  "indexes": {},
+  "shows": {}
+}
