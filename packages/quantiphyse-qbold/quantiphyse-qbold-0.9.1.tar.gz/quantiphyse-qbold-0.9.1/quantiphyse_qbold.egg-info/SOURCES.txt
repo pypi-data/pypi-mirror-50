@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+quantiphyse_qbold/__init__.py
+quantiphyse_qbold/_version.py
+quantiphyse_qbold/qbold.png
+quantiphyse_qbold/qbold.svg
+quantiphyse_qbold/widget.py
+quantiphyse_qbold.egg-info/PKG-INFO
+quantiphyse_qbold.egg-info/SOURCES.txt
+quantiphyse_qbold.egg-info/dependency_links.txt
+quantiphyse_qbold.egg-info/entry_points.txt
+quantiphyse_qbold.egg-info/requires.txt
+quantiphyse_qbold.egg-info/top_level.txt
