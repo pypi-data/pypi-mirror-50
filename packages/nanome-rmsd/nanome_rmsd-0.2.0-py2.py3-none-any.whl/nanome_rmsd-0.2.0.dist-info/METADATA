@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: nanome-rmsd
+Version: 0.2.0
+Summary: Nanome Plugin for RMSD alignment
+Home-page: https://github.com/nanome-ai/plugin-rmsd
+Author: Nanome
+Author-email: hello@nanome.ai
+License: MIT
+Keywords: virtual-reality,chemistry,python,api,plugin
+Platform: any
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Requires-Dist: nanome
+Requires-Dist: numpy
+Requires-Dist: scipy
+
+# Nanome - RMSD
+
+### Installation
+
+```sh
+$ pip install nanome-rmsd
+```
+
+### Usage
+
+To start the plugin:
+
+```sh
+$ nanome-rmsd -a plugin_server_address
+```
+
+### License
+
+MIT
+
+
