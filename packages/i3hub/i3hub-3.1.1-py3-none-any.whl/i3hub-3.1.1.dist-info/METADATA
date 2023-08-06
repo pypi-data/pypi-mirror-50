@@ -1,0 +1,16 @@
+Metadata-Version: 2.0
+Name: i3hub
+Version: 3.1.1
+Summary: i3 extension runtime
+Home-page: https://github.com/tarruda/i3hub
+Author: Thiago de Arruda
+Author-email: tpadilha84@gmail.com
+License: MIT
+Download-URL: https://github.com/tarruda/i3hub/archive/3.1.1.tar.gz
+Platform: UNKNOWN
+Requires-Python: >=3.5
+Requires-Dist: pyxdg
+
+UNKNOWN
+
+
