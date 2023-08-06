@@ -1,0 +1,14 @@
+oriole/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+oriole/cli.py,sha256=X3CNLqQHtsBDgPH86B1ekI0f9d4gXS_wRan7ya4Z4XM,1128
+oriole/db.py,sha256=Y5oLEE2nA3LWCv1sHuhe6VOaiByC6Ibl8Ic6eAiT_Ko,2418
+oriole/fake.py,sha256=vTFOGuX5viY7YJkHH9Jwrod69QgegaySxHxZ8KDh6Fo,1292
+oriole/log.py,sha256=XNTX-QchYraLIENMPZYvl5TcycueRnVzeJLRdyupIxk,968
+oriole/ops.py,sha256=yRckXwjuj9CMLVfvWOk_ZG1R6JYXcRvBx38IJYKZdhc,1315
+oriole/vos.py,sha256=tX68EihPfGEQajpHDrNAH0W-0Fo5FgYi13W18dmnAsg,3873
+oriole/yml.py,sha256=X6Fp9h1KclyqcTWFMU-2N4O6VUpwsqS5tvhJQsqdBik,701
+oriole-22.0.0.dist-info/LICENSE,sha256=TkN8YTrx8SkuhXqxN2CuEZvO2iM3H5Jkhvofx9Vnwog,553
+oriole-22.0.0.dist-info/METADATA,sha256=hu5qzRofyOGidGeRi0Dwa-rXZcNIiobIF2Jup6dnaFE,1062
+oriole-22.0.0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+oriole-22.0.0.dist-info/top_level.txt,sha256=ZE6H2gM94jB0vpCsXySSHn4Auu5jP9aAo4Wa4AJS6R4,7
+oriole-22.0.0.dist-info/zip-safe,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
+oriole-22.0.0.dist-info/RECORD,,
