@@ -1,0 +1,39 @@
+Metadata-Version: 1.1
+Name: tigersec
+Version: 0.1.1
+Summary: Penetration Testing Tools Implemented in Python
+Home-page: https://www.github.com/dssecret/tigersec
+Author: Deekshan Saravanan
+Author-email: dsstudios.dev@gmail.com
+License: MIT License
+Description: .. _readme:
+        
+        ========
+        tigersec
+        ========
+        
+        ``tigersec`` is a Python package for Penetration Testing. ``tigersec`` is currently on PyPI, but will soon also be exported onto Debian Package Registry and the Ubuntu Package Registry.
+        
+        
+        Available Tools
+        ###############
+        1. portscanner
+        
+        Under Development
+        #################
+        1. sshcracker
+        2. netscan
+        
+        Planned
+        #######
+        1. ftpcracker
+        2. httpbrutus
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Console
+Classifier: Intended Audience :: System Administrators
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Security
