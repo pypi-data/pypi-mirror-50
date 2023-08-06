@@ -1,0 +1,13 @@
+README.md
+obniz_cli.py
+setup.py
+commands/__init__.py
+commands/eraseos.py
+commands/flashos.py
+commands/util.py
+obniz_cli.egg-info/PKG-INFO
+obniz_cli.egg-info/SOURCES.txt
+obniz_cli.egg-info/dependency_links.txt
+obniz_cli.egg-info/entry_points.txt
+obniz_cli.egg-info/requires.txt
+obniz_cli.egg-info/top_level.txt

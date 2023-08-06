@@ -1,0 +1,3 @@
+[console_scripts]
+obniz_cli = obniz_cli:main
+
