@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: hub
+Version: 0.1.2
+Summary: Snark Hub
+Home-page: https://github.com/snarkai/hub
+Author: Snark AI Inc.
+Author-email: support@snark.ai
+License: UNKNOWN
+Keywords: snark-hub
+Platform: UNKNOWN
+Requires-Python: >=3
+Requires-Dist: click (<7,>=6.7)
+Requires-Dist: pathos (==0.2.2.1)
+Requires-Dist: boto3 (==1.9.2)
+Requires-Dist: botocore (==1.12.204)
+Requires-Dist: numpy
+Requires-Dist: tenacity
+
+UNKNOWN
+
+
