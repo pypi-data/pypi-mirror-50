@@ -1,0 +1,130 @@
+Metadata-Version: 2.1
+Name: haspirater
+Version: 0.2
+Summary: detect aspirated 'h' in French words
+Home-page: https://gitlab.com/a3nm/haspirater
+Author: Antoine Amarilli
+Author-email: a3nm@a3nm.net
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+
+haspirater -- a toolkit to detect initial aspirated 'h' in French words
+Copyright (C) 2011-2019 by Antoine Amarilli
+Repository URL: https://gitlab.com/a3nm/haspirater
+
+== 0. License (MIT license) ==
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+== 1. Features ==
+
+haspirater is a tool to detect if a French word starts with an aspirated
+'h' or not. It is not based on a list of words but on a trie trained
+from a corpus, which ensures that it should do a reasonable job for
+unseen words which are similar to known ones, without carrying a big
+exceptions list. The json trie used is less than 10 Kio, and the lookup
+script is 40 lines of Python.
+
+== 2. Usage ==
+
+If you just want to use the included training data, you can either run
+haspirater.py, giving one word per line in stdin and getting the
+annotation on stdout, or you can import it in a Python file and call
+haspirater.lookup(word) which returns True if the leading 'h' is
+aspirated, False if it isn't, and raises ValueError if there is no
+leading 'h'.
+
+Please report any errors in the training data, keeping in mind than only
+one possibility is returned even when both are attested.
+
+== 3. Training ==
+
+The training data used by haspirater.py is loaded at runtime from the
+haspirater.json file which has been trained from French texts taken from
+Project Gutenberg <www.gutenberg.org>, from the list in the Wikipedia
+article <http://fr.wikipedia.org/wiki/H_aspir%C3%A9>, from the
+categories in the French Wiktionary
+<http://fr.wiktionary.org/wiki/Catégorie:Mots_à_h_muet> and
+<http://fr.wiktionary.org/wiki/Catégorie:Mots_à_h_aspiré> and from a custom
+set of exceptions. If you want to create your own data, or adapt the
+approach here to other linguistic features, read on.
+
+The master script is make.sh which accepts French text on stdin and a
+list of exceptions files as arguments. Included exception files are
+additions and wikipedia. These exceptions are just like training data
+and are not stored as-is; they are just piped later on in the training
+phase. make.sh produces on stdout the json trie. Thus, you would run
+something like:
+
+  $ cat corpus | ./make.sh exceptions > haspirater/haspirater.json
+
+== 4. Training details ==
+
+=== 4.1. Corpus preparation (prepare.sh) ===
+
+This script removes useless characters, and separates words (one per
+line).
+
+=== 4.2. Property inference (detect.pl) ===
+
+This script examines the output, notices occurrences of words for which
+the preceding word indicates the aspirated or non-aspirated status, and
+outputs them.
+
+The format used for the output of this phase is the same as that of the
+exceptions file.
+
+=== 4.3. Removing leading 'h' ===
+
+This is a quick optimization.
+
+=== 4.4. Trie construction (buildtrie.py) ===
+
+The occurrences are read one after the other and are used to populate a
+trie carrying the value count for each occurrence having a given prefix.
+
+=== 4.5. Trie compression (compresstrie.py) ===
+
+The trie is then compressed by removing branches which are not needed to
+infer a value. This step could be followed by a removal of branches with
+very little dissent from the majority value if we wanted to reduce the
+trie size at the expense of accuracy: for aspirated h, this isn't
+needed.
+
+=== 4.6. Trie majority relabeling (majoritytrie.py) ===
+
+Instead of the list of values with their counts, nodes are relabeled to
+carry the most common value. This step could be skipped to keep
+confidence values. We also drop useless leaf nodes there.
+
+== 5. Additional stuff ==
+
+You can use trie2dot.py to convert the output of buildtrie.py or
+compresstrie.py in the dot format which can be used to render a drawing
+of the trie ("trie2dot.py h 0 1"). The result of such a drawing is given
+as haspirater.pdf (before majoritytrie.py: contains frequency info, but
+more nodes) and haspirater_majority.pdf (no frequency, less nodes).
+
+You can use leavestrie.py to get the leaves of a trie.
+
+
+
