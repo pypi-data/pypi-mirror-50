@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: django-photobooth-widget
+Version: 0.1.1
+Summary: A device camera picture capture widget for Django
+Home-page: https://github.com/rsd/django-photobooth-widget.git
+Author: Raul Dias
+Author-email: raul@dias.com.br
+License: MIT
+Description: A widget based on photobooth.js to take photos from the user's device camera.
+Keywords: django-photobooth-widget
+Platform: any
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Framework :: Django
+Classifier: Programming Language :: Python
+Classifier: Natural Language :: English
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content

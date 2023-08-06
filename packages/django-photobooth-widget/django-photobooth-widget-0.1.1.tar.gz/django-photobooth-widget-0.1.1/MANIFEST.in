@@ -1,0 +1,2 @@
+include README.md
+recursive-include django_photobooth_widget *.html *.png *.gif *js *.css *jpg *jpeg *svg *py

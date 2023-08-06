@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+setup.py
+django_photobooth_widget/__init__.py
+django_photobooth_widget/widgets.py
+django_photobooth_widget.egg-info/PKG-INFO
+django_photobooth_widget.egg-info/SOURCES.txt
+django_photobooth_widget.egg-info/dependency_links.txt
+django_photobooth_widget.egg-info/top_level.txt
+django_photobooth_widget/static/photobooth_widget/css/photobooth_widget.css
+django_photobooth_widget/static/photobooth_widget/js/photobooth.js
+django_photobooth_widget/static/photobooth_widget/js/photobooth_activate.js
+django_photobooth_widget/static/photobooth_widget/js/photobooth_min.js
+django_photobooth_widget/templates/photobooth_widget/photobooth_widget.html
