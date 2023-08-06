@@ -1,0 +1,14 @@
+coloredlogs
+colorful
+ipaddress
+markdown2
+patchy
+pymdown-extensions
+python-slugify
+six
+tqdm
+
+[:python_version >= "3.4"]
+numpy
+pandas
+weasyprint
