@@ -1,0 +1,3 @@
+[console_scripts]
+nanome-rmsd = nanome_rmsd.RMSD:main
+
