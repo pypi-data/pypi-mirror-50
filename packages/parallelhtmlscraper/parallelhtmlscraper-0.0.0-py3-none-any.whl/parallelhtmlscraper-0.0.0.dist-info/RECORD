@@ -1,0 +1,12 @@
+parallelhtmlscraper/__init__.py,sha256=US-WbNvWUMH9dF7mqlc1g_rumkYldu50tvxgxTvIqjY,444
+parallelhtmlscraper/exceptions.py,sha256=1BGLTSsQ2yvhEHeN7wcYiFjZaVF14ZIc1RwzbRBJRGM,497
+parallelhtmlscraper/html_analyzer.py,sha256=USlIBBVFaKNGphSmB6epKrlXjl84yjrwIvd-ZsV6qRk,314
+parallelhtmlscraper/html_request_coroutine.py,sha256=fN427EJ3VcQ4xvgZ8IovPhLSZta8KGB157sVz8wNc6E,2464
+parallelhtmlscraper/html_text_load_coroutine.py,sha256=oi3b05GIFBg_jkuIP9LHmjiuHT1r9NtRDNDKudKxo3w,1139
+parallelhtmlscraper/parallel_html_request_coroutine.py,sha256=9bP702EVT2FTeKhGqtZcWEgHmk4tnpPF3pE5jpuM-cw,1066
+parallelhtmlscraper/parallel_html_scraper.py,sha256=8teYrwFnBVeSHXsY5ta5WT_1JxabZG4P_3Xuspri2JE,1305
+parallelhtmlscraper/py.typed,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+parallelhtmlscraper-0.0.0.dist-info/METADATA,sha256=bc7royNADO5oHRoboXq5P3INuVit5SeHJSLJObScTYE,542
+parallelhtmlscraper-0.0.0.dist-info/WHEEL,sha256=QBOOAdG2icRHGBs2s94rfaUlHrdfNBp-TceubUYCwOE,97
+parallelhtmlscraper-0.0.0.dist-info/top_level.txt,sha256=-aMQgy5nq6SjTdbnX2ugXmLvCJRJOQdEZ3DNCaMj04I,20
+parallelhtmlscraper-0.0.0.dist-info/RECORD,,
