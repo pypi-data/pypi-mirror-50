@@ -1,0 +1,17 @@
+hicmatrix/HiCMatrix.py,sha256=kK2zAf5q-VRlVKEv5cVzfnS4qhHnmiXljAwlWueS8UQ,41731
+hicmatrix/__init__.py,sha256=MpRzuinRy6TfTYTXXqgpGDtvfpwVrTxc384IbIroyRE,109
+hicmatrix/_version.py,sha256=-c8N0BYl7IYzIr9-n0DRuYtwkBxZw3E-kWUGTqwRWGs,62
+hicmatrix/utilities.py,sha256=GVhSonpgieX4a85dOkRchKORno_tpEUr3G84x4aRwCA,2911
+hicmatrix/lib/__init__.py,sha256=awyL3Qs-LH1Mr8rPZMgzhJXAg6kLz_HO9F3CLzJwFiE,63
+hicmatrix/lib/cool.py,sha256=nAtMXfUnR-t_8nWks1SgINCRkNc67lknY6fZTi8cc20,18807
+hicmatrix/lib/ginteractions.py,sha256=Ukp7XQ5_YY7H-3GHdplex71u-ZZMasLd9hJjrLvcDSQ,1008
+hicmatrix/lib/h5.py,sha256=StrM3EfVR8PKMJB8MVIgGvKrDkYfKYbwCPberAHRwd8,7343
+hicmatrix/lib/hicpro.py,sha256=_6SdOHTd_tceLOBDOSs1gIsqAgo-jhZhDxtb2yhZH1I,1198
+hicmatrix/lib/homer.py,sha256=YEFdRZBDTuBhcZy6zMDJDITFTvPbp4EuB_7dV-1oinM,2240
+hicmatrix/lib/matrixFile.py,sha256=7ZZUyPHxeop9EJdaeIk2Fb0ZEl95Lzt0Yj8V9N-idaA,917
+hicmatrix/lib/matrixFileHandler.py,sha256=5of9qn2m5jZb8OCFnhrhTirBJXgrzgBRN12g6ztPgPI,2559
+HiCMatrix-11.dist-info/LICENSE,sha256=jOtLnuWt7d5Hsx6XXB2QxzrSe2sWWh3NgMfFRetluQM,35147
+HiCMatrix-11.dist-info/METADATA,sha256=9ofB8_8kW8gaNyrGnG8YG8nYWVTtzywgIFCABeA5WsY,1236
+HiCMatrix-11.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+HiCMatrix-11.dist-info/top_level.txt,sha256=dUKHqn3LSEwT6wKVBFDPFLaAd9n8Ri37WH0FzHTQTag,10
+HiCMatrix-11.dist-info/RECORD,,
