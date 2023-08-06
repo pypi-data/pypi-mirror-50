@@ -1,0 +1,11 @@
+README.md
+setup.cfg
+setup.py
+iocare/__init__.py
+iocare/iocareapi.py
+iocare/devices/__init__.py
+iocare/devices/purifier.py
+python_iocare.egg-info/PKG-INFO
+python_iocare.egg-info/SOURCES.txt
+python_iocare.egg-info/dependency_links.txt
+python_iocare.egg-info/top_level.txt
