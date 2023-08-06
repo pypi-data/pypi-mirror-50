@@ -1,0 +1,15 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+CalcMin.egg-info/PKG-INFO
+CalcMin.egg-info/SOURCES.txt
+CalcMin.egg-info/dependency_links.txt
+CalcMin.egg-info/requires.txt
+CalcMin.egg-info/top_level.txt
+calcmin/__init__.py
+calcmin/core.py
+calcmin/datasets/__init__.py
+calcmin/tests/__init__.py
+calcmin/tests/test_eto.py
