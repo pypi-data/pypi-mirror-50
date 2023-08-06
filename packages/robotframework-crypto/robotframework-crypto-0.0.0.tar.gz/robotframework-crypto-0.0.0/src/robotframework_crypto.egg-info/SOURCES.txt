@@ -1,0 +1,12 @@
+COPYRIGHT.txt
+LICENSE
+MANIFEST.in
+Readme.rst
+setup.py
+src/CryptoLibrary/CryptoLibrary.py
+src/CryptoLibrary/__init__.py
+src/robotframework_crypto.egg-info/PKG-INFO
+src/robotframework_crypto.egg-info/SOURCES.txt
+src/robotframework_crypto.egg-info/dependency_links.txt
+src/robotframework_crypto.egg-info/requires.txt
+src/robotframework_crypto.egg-info/top_level.txt
