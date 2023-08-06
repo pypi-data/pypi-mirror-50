@@ -1,0 +1,6 @@
+[console_scripts]
+PlateScale = PlateScale:main
+PlateScaleFITS = PlateScaleFITS:main
+PrintSourceRaDec = PrintSourceRaDec:main
+downloadIndex = downloadIndex:main
+
