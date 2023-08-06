@@ -1,0 +1,9 @@
+README.md
+setup.cfg
+setup.py
+versionchecker/__init__.py
+versionchecker/main.py
+versionchecker.egg-info/PKG-INFO
+versionchecker.egg-info/SOURCES.txt
+versionchecker.egg-info/dependency_links.txt
+versionchecker.egg-info/top_level.txt
