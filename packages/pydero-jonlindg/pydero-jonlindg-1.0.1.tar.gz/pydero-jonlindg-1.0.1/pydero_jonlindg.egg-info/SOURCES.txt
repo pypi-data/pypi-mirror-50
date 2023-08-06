@@ -1,0 +1,11 @@
+README.md
+setup.py
+pydero/__init__.py
+pydero/connection.py
+pydero/contract.py
+pydero/utils.py
+pydero_jonlindg.egg-info/PKG-INFO
+pydero_jonlindg.egg-info/SOURCES.txt
+pydero_jonlindg.egg-info/dependency_links.txt
+pydero_jonlindg.egg-info/requires.txt
+pydero_jonlindg.egg-info/top_level.txt
