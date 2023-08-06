@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: greendb
+Version: 0.2.3
+Summary: greendb
+Home-page: http://github.com/coleifer/greendb/
+Author: Charles Leifer
+Author-email: coleifer@gmail.com
+License: UNKNOWN
+Description: greendb
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
