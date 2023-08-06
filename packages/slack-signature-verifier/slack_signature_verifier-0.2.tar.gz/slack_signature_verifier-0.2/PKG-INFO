@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: slack_signature_verifier
+Version: 0.2
+Summary: Verify your request from slack with your slack signing secret
+Home-page: https://github.com/ebarnsli/slack_signature_verifier
+Author: Erik Barns
+Author-email: ebarns@labelinsight.com
+License: MIT
+Download-URL: https://github.com/ebarnsli/slack_signature_verifier/archive/0.0.4.tar.gz
+Description: UNKNOWN
+Keywords: SLACK,SIGNING,SIGNATURE
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.7
