@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: conpy
+Version: 0.1.1
+Summary: python interface to submit functions to a HTCondor batch cluster
+Home-page: UNKNOWN
+Author: Shane Breeze
+Author-email: sdb15@ic.ac.uk
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Classifier: Development Status :: 3 - Alpha
+Description-Content-Type: text/markdown
+Requires-Dist: future (>=0.17.1)
+Requires-Dist: tqdm (>=4.31.1)
+Requires-Dist: subprocess32 (>=3.5.4)
+
+# Conpy
+
+Call python functions on (CERN) HTCondor batch cluster - with tqdm progress bars.
+
+## How to use
+
+High-level interface use:
+
+```
+import conpy
+
+tasks = [...] # list of dicts with keys ["task", "args", "kwargs"] run on each node as task(*args, **kwargs)
+
+results = conpy.local_submit(tasks)
+results = conpy.mp_submit(tasks, ncores=4)
+results = conpy.sge_submit("name", "/tmp/conpy-temporaries", tasks=tasks, options="-q hep.q")
+```
+
+The return value is a list of results for each task, in order o tasks.
+
+
