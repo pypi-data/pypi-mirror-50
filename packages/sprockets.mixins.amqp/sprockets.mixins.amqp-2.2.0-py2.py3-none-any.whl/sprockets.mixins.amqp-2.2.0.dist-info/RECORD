@@ -1,0 +1,15 @@
+sprockets.mixins.amqp-2.2.0-py3.7-nspkg.pth,sha256=TRDnDx5vBMCvXc2iKEnTq-rKyDTRf6d0GlOOlNhkSl8,1752
+sprockets/mixins/amqp/__init__.py,sha256=KjZ2CGRvSqbCHq-YUMeumBYclBkF1xG3ZwUTVdUYmWc,23293
+tests/__init__.py,sha256=W4pPTvVgUEVGzrhHIP9h9V_NerFSGv_NjiEjeKHfBCA,336
+tests/base.py,sha256=UGtUk-90WsbTDq12wpFuGp-g5Th-avspmJpiXHuAudU,4045
+tests/client_tests.py,sha256=wX28zq02ruGop-nOqlZMbo9XAm0Q7dJPGVHhwrSWZqo,11138
+tests/install_tests.py,sha256=qXRI4RQqPcqC-W5f9CNHx7_ANKNU0AciroKZCf3a-jA,5120
+tests/integration_tests.py,sha256=ZuslavEMuYNdKkhItsLk5i9pW2DA0AQeNhGDy7xbE6o,5072
+tests/mixin_tests.py,sha256=_cnPMAcjoEKqBP_oLyUodFlZXmqdgAxfPxcohxzyWKg,4294
+sprockets.mixins.amqp-2.2.0.dist-info/LICENSE,sha256=63s9xQZjCWsyD0LSHU8BRMJ9CDT-tvkEcHopbKefp0A,1498
+sprockets.mixins.amqp-2.2.0.dist-info/METADATA,sha256=QaqIb94cTJL4Qttpps1GGoKbevqUWnIl7FPvVMZXZD0,5485
+sprockets.mixins.amqp-2.2.0.dist-info/WHEEL,sha256=h_aVn5OB2IERUjMbi2pucmR_zzWJtk303YXvhh60NJ8,110
+sprockets.mixins.amqp-2.2.0.dist-info/namespace_packages.txt,sha256=Zz8-pT3ZEmFQXWDB8LeYIqJXlxsnQu8VKvWU9y9yNtQ,27
+sprockets.mixins.amqp-2.2.0.dist-info/top_level.txt,sha256=5dnQrVlMX891sNuBZ9R6FFVGFhzxV9SRU5mybOQcxu0,16
+sprockets.mixins.amqp-2.2.0.dist-info/zip-safe,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
+sprockets.mixins.amqp-2.2.0.dist-info/RECORD,,
