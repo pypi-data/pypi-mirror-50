@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+setup.py
+a_world_of_countries.egg-info/PKG-INFO
+a_world_of_countries.egg-info/SOURCES.txt
+a_world_of_countries.egg-info/dependency_links.txt
+a_world_of_countries.egg-info/not-zip-safe
+a_world_of_countries.egg-info/requires.txt
+a_world_of_countries.egg-info/top_level.txt
+awoc/__init__.py
+awoc/data/world.json
+test/test_continent.py
+test/test_countries.py
+test/test_world.py
