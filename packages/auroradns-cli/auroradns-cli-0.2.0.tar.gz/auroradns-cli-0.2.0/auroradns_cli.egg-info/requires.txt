@@ -1,0 +1,4 @@
+apache-libcloud
+pycurl>=7.43.0.2
+tldextract
+urllib3
