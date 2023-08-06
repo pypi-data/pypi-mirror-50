@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: exampe_pip_package
+Version: 0.0.1
+Summary: Just a pip package example
+Home-page: https://github.com/XingangShi/exampe_pip_package.git
+Author: geekpanshi
+Author-email: vincentsxg@gmail.com
+License: UNKNOWN
+Description: #### Installation
+        ```bash
+        $ [sudo] pip install exampe_pip_package
+        ```
+        
+        #### Features
+        *   **example for add a new pip package**
+        
+        #### Classes
+        class|`__doc__`
+        -|-
+        `exampe_pip_package.pip_test` |
+        
+        #### Examples
+        ```python
+        >>> from exampe_pip_package import pip_test
+        
+        >>> example = pip_test()
+        
+        >>> example.get_info()
+        Hello, this is just a pip package example.
+        Package name is exampe_pip_package
+        
+        ```
+        
+        <p align="center">
+            <a href="https://github.com/xingangshi">more info</a>
+        </p>
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
