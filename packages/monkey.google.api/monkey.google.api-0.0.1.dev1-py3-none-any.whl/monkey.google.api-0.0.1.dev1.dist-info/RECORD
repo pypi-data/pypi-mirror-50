@@ -1,0 +1,17 @@
+monkey/__init__.py,sha256=_VZQFYZIpxxCrN3RDDCWCGNDIA0SpVOsOvfwhIkz4TM,103
+monkey/google/__init__.py,sha256=_VZQFYZIpxxCrN3RDDCWCGNDIA0SpVOsOvfwhIkz4TM,103
+monkey/google/api/__init__.py,sha256=51_zzYa8oACV7k2HNZSxdIIGekWNS0CwHzZFRJVyspI,46
+monkey/google/api/helpers.py,sha256=5lWrGcdr-t-tuf8jxkiKTgpqDzDczhbAy86Gbm_wqUY,2588
+monkey/google/api/apps/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+monkey/google/api/apps/helpers.py,sha256=mFVPfLkfuuVdA2j8Q-wef5aEK_5uwBDV_MPbvn4MOxc,699
+monkey/google/api/directory/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+monkey/google/api/directory/helpers.py,sha256=8zRo5LvmWn_WEJkloWtXC0HBqABuc-AAy0flrVEsYrU,9583
+monkey/google/api/drive/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+monkey/google/api/drive/helpers.py,sha256=xjkk1qezv20OYMN3xPDqhSBxbpeQhimHoC9wG5lddVs,684
+monkey/google/api/gmail/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+monkey/google/api/gmail/helpers.py,sha256=9nRmJFtkAyQtOXOBiGx5jdjZ701NE-1abH6C3QU7eXg,1235
+monkey.google.api-0.0.1.dev1.dist-info/LICENSE.txt,sha256=WtjCEwlcVzkh1ziO35P2qfVEkLjr87Flro7xlHz3CEY,11556
+monkey.google.api-0.0.1.dev1.dist-info/METADATA,sha256=fHeWEw9aoNgxh9na0qOnWPtHdjr4ldWfoqNkRmiLZjg,859
+monkey.google.api-0.0.1.dev1.dist-info/WHEEL,sha256=QBOOAdG2icRHGBs2s94rfaUlHrdfNBp-TceubUYCwOE,97
+monkey.google.api-0.0.1.dev1.dist-info/top_level.txt,sha256=Wm5IEF_qdczMxmoDgxjzmMQnYUldc4eG3IptQxeaoWo,7
+monkey.google.api-0.0.1.dev1.dist-info/RECORD,,
