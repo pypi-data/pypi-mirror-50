@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: lihzahrd
+Version: 1.0a1
+Summary: A Terraria world parser in Python
+Home-page: https://github.com/Steffo99/lihzahrd
+Author: Stefano Pigozzi
+Author-email: ste.pigozzi@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+
+# lihzahrd
+A Terraria world parser in Python
+
+## References
+- http://seancode.com/terrafirma/world.html
+- http://ludwig.schafer.free.fr/
+- https://github.com/cokolele/terraria-world-parser/
+- https://github.com/TEdit/Terraria-Map-Editor/blob/master/TEditXna/Terraria/World.FileV2.cs
+- https://steamcommunity.com/sharedfiles/filedetails/?id=841032800
+
