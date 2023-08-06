@@ -1,0 +1,3 @@
+[console_scripts]
+wddasylumclaims=wddasylumclaims.__main__:mainconvertFeather = wddasylumclaims.FeatherConvert:feather_convert
+
