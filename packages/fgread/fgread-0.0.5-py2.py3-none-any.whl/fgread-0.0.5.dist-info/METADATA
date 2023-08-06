@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: fgread
+Version: 0.0.5
+Summary: Module for reading files shared on FASTGenomics
+Home-page: https://github.com/fastgenomics/jupyter-fgread-py
+License: UNKNOWN
+Author: FASTGenomics Team
+Author-email: contact@fastgenomics.org
+Requires-Python: ~=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: anndata
+Requires-Dist: get_version (~=2.0.6)
+
+[![Documentation Status](https://readthedocs.org/projects/jupyter-fgread-py/badge/?version=latest)](https://jupyter-fgread-py.readthedocs.io/en/latest/?badge=latest)
+
