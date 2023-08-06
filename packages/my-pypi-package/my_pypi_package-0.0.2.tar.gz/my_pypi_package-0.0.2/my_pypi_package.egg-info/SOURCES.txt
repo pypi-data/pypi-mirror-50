@@ -1,0 +1,9 @@
+README.md
+setup.py
+my_pypi_package.egg-info/PKG-INFO
+my_pypi_package.egg-info/SOURCES.txt
+my_pypi_package.egg-info/dependency_links.txt
+my_pypi_package.egg-info/requires.txt
+my_pypi_package.egg-info/top_level.txt
+sayhello/__init__.py
+sayhello/say_hello.py
