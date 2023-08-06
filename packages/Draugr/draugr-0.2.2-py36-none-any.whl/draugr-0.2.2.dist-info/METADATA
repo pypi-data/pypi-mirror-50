@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: draugr
+Version: 0.2.2
+Summary: A package for plotting directly in your terminal
+Home-page: https://github.com/cnheider/draugr
+Author: Christian Heider Nielsen
+Author-email: christian.heider@alexandra.dk
+Maintainer: Christian Heider Nielsen
+Maintainer-email: christian.heider@alexandra.dk
+License: Apache License, Version 2.0
+Download-URL: https://github.com/cnheider/draugr/releases
+Keywords: python reinforcement-learning interface api
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Natural Language :: English
+Requires-Python: >=3
+Description-Content-Type: text/markdown
+Requires-Dist: apppath
+Requires-Dist: warg
+Requires-Dist: numpy
+Requires-Dist: six
+Requires-Dist: pytest
+Provides-Extra: all
+Requires-Dist: matplotlib ; extra == 'all'
+Requires-Dist: pandas ; extra == 'all'
+Requires-Dist: scikit-learn ; extra == 'all'
+Requires-Dist: torch ; extra == 'all'
+Requires-Dist: tensorboardX ; extra == 'all'
+Provides-Extra: writers
+Requires-Dist: matplotlib ; extra == 'writers'
+Requires-Dist: pandas ; extra == 'writers'
+Requires-Dist: scikit-learn ; extra == 'writers'
+Requires-Dist: torch ; extra == 'writers'
+Requires-Dist: tensorboardX ; extra == 'writers'
+
+# Draugr
+
+A package for plotting directly in your terminal
+
+https://en.wikipedia.org/wiki/Draugr
+
