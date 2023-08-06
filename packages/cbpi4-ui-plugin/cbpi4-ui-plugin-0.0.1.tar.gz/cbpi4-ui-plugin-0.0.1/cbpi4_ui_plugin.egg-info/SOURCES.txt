@@ -1,0 +1,17 @@
+MANIFEST.in
+README.md
+setup.py
+cbpi4-ui-plugin/__init__.py
+cbpi4-ui-plugin/config.yaml
+cbpi4-ui-plugin/static/favicon.ico
+cbpi4-ui-plugin/static/index.html
+cbpi4-ui-plugin/static/css/bootstrap.min.css
+cbpi4-ui-plugin/static/css/bootstrap_dark.css
+cbpi4-ui-plugin/static/css/custom_theme.css
+cbpi4-ui-plugin/static/css/fontawesome-all.min.css
+cbpi4-ui-plugin/static/js/bootstrap.min.js
+cbpi4-ui-plugin/static/js/index_bundle.js
+cbpi4_ui_plugin.egg-info/PKG-INFO
+cbpi4_ui_plugin.egg-info/SOURCES.txt
+cbpi4_ui_plugin.egg-info/dependency_links.txt
+cbpi4_ui_plugin.egg-info/top_level.txt

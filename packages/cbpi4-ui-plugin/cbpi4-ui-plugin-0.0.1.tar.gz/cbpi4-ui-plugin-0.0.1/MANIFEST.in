@@ -1,0 +1,2 @@
+include cbpi4-ui-plugin/config.yaml
+recursive-include cbpi4-ui-plugin/static *
