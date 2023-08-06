@@ -1,0 +1,33 @@
+### GD BUILD
+
+A helper python module to build godot projects from command line.
+
+##### Example Usage
+```
+from gd_build import GDBuild
+
+    # Build for all platforms
+    gd_build_action_game = GDBuild(
+        project_path="C:\\GodotProjects\\ActionGameProto",
+        build_path="C:\\GameBuilds\\ActionGameProtoBuilds",
+        game_name="ActionGameProto",
+        godot_file_path="C:\\Godot\\godot.exe",
+        export_debug=True,
+        windows_build_name="Windows Desktop",
+        macosx_build_name="Mac OSX",
+        linux_build_name="Linux/X11",
+        create_zip=True,
+        execute_build_on_init=True
+    )
+    # Build for Windows only
+    gd_build_strategy_game = GDBuild(
+        project_path="C:\\GodotProjects\\StrategyGameProto",
+        build_path="C:\\GameBuilds\\StrategyGameProtoBuilds",
+        game_name="StrategyGameProto",
+        godot_file_path="C:\\Godot\\godot.exe",
+        export_debug=True,
+        windows_build_name="Windows Desktop",
+        create_zip=True,
+        execute_build_on_init=True
+    )
+```

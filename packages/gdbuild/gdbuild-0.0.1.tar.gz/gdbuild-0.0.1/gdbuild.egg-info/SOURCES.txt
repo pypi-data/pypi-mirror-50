@@ -1,0 +1,9 @@
+README.md
+setup.py
+gdbuild/__init__.py
+gdbuild/file_helper.py
+gdbuild/gdbuild.py
+gdbuild.egg-info/PKG-INFO
+gdbuild.egg-info/SOURCES.txt
+gdbuild.egg-info/dependency_links.txt
+gdbuild.egg-info/top_level.txt
