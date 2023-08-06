@@ -1,0 +1,11 @@
+README.md
+setup.py
+pytest_notion/__init__.py
+pytest_notion/_plugin.py
+pytest_notion/_reporter.py
+pytest_notion.egg-info/PKG-INFO
+pytest_notion.egg-info/SOURCES.txt
+pytest_notion.egg-info/dependency_links.txt
+pytest_notion.egg-info/entry_points.txt
+pytest_notion.egg-info/requires.txt
+pytest_notion.egg-info/top_level.txt

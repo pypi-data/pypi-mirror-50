@@ -1,0 +1,6 @@
+pytest>=3.6
+six>=1.0.0
+notion>=0.0.23
+
+[test]
+pytest-xdist>=1.26.0
