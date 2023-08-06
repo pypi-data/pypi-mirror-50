@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: SharestoreAPI
+Version: 1.0.4
+Summary: Sharestore API
+Home-page: https://gitlab.ushareit.me/cbs/baseservice/sharestore/tree/jiangyt/client/python
+Author: jiangyt
+Author-email: jiangyt@ushareit.com
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: gevent (>=1.1.2)
+Requires-Dist: flask
+Requires-Dist: gunicorn
+
+SharestoreAPI:query
+
+
