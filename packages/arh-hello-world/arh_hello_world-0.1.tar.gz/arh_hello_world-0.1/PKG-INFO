@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: arh_hello_world
+Version: 0.1
+Summary: My first pype project upload
+Home-page: https://github.com/alencarrh/
+Author: Alencar Rodrigo Hentges
+Author-email: alencarhentges@gmail.com
+License: MIT
+Download-URL: https://github.com/alencarrh
+Description: UNKNOWN
+Keywords: MY,FIRST,PROJECT,TO,PYPI,UPLOAD
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
