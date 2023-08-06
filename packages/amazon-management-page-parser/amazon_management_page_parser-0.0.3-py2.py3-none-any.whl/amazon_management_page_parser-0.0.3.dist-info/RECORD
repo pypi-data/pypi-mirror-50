@@ -1,0 +1,10 @@
+amazon_management_page_parser/VERSION,sha256=dEj8KrFke0LnS0oaAsirXMHgTLLcLZS-xELsN8s-KUg,5
+amazon_management_page_parser/__init__.py,sha256=gWE65QGhmvaUpBUZkO0qzNz1idDWrscCCS4MjXSdB78,466
+amazon_management_page_parser/seller_profile_parser.py,sha256=fLA4mCjOdjqJn0nga4S-x1oD5oxUW57zqXry4sDu68E,1876
+tests/__init__.py,sha256=rpJWJDsA4o7kdEn6TT-dmBgRSLgMXdYvnYmzeYOtmNo,132
+tests/conftest.py,sha256=oI7Lirp7x8UFWFWv9_-dAmIoKIPjZwIb0OtmnKQ5VTQ,3329
+tests/test_seller_profile_parser.py,sha256=Tdw7kMBLwzQ5JiQzepfz1v3zY_G0r-ex8UR7Uq2hbVw,1012
+amazon_management_page_parser-0.0.3.dist-info/METADATA,sha256=ccfQfmQMgEGo9vgzMLRTCpaZAFo6Aym63EYnOtPOjUk,2056
+amazon_management_page_parser-0.0.3.dist-info/WHEEL,sha256=_wJFdOYk7i3xxT8ElOkUJvOdOvfNGbR9g-bf6UQT6sU,110
+amazon_management_page_parser-0.0.3.dist-info/top_level.txt,sha256=l0sV8h7I4ORLCzhIfQFWG0-Sig5L4PHUy3ox5bKmebw,36
+amazon_management_page_parser-0.0.3.dist-info/RECORD,,

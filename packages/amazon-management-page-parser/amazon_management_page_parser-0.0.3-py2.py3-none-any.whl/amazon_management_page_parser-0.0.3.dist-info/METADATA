@@ -1,0 +1,84 @@
+Metadata-Version: 2.1
+Name: amazon-management-page-parser
+Version: 0.0.3
+Summary: Amazon management page parsing tool.
+Home-page: https://bitbucket.org/sfds-dev/amazon-management-page-parser
+Author: Neal Wong
+Author-email: neal.wkacc@gmail.com
+License: MIT
+Keywords: amazon mangement parser
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
+Requires-Dist: parsel
+
+amazon-management-page-parser
+=====================
+
+Currently only support seller profile page parsing. All fields use same encoding 'utf-8'.
+
+Seller profile fields:
+
+* name
+* storefront_url
+* feedbacks
+    * 30days
+        * positive
+        * neutral
+        * negative
+        * count
+    * 90days
+        * positive
+        * neutral
+        * negative
+        * count
+    * 12mons
+        * positive
+        * neutral
+        * negative
+        * count
+    * lifetime
+        * positive
+        * neutral
+        * negative
+        * count
+
+
+Content
+-------------
+
+* amazon_management_page_parser.seller_profile_parser.SellerProfileParser
+
+
+Installation
+-------------
+
+The simplest way is to install it via `pip`:
+
+    pip install amazon-management-page-parser
+
+
+Run Test
+-------------
+
+`pip install -r requirements-dev.txt`
+
+`tox`
+
+
