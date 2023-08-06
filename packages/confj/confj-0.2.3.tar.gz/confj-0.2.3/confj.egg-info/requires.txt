@@ -1,0 +1,6 @@
+
+[test]
+pytest
+
+[validation]
+jsonschema
