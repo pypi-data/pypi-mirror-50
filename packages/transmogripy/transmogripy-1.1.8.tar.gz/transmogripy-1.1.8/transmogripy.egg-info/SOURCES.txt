@@ -1,0 +1,17 @@
+CHANGELOG.md
+LICENSE
+README.md
+setup.py
+transmogripy/__data__.py
+transmogripy/__init__.py
+transmogripy/__util.py
+transmogripy/convert.py
+transmogripy/filter_multiline_comments.py
+transmogripy/rule.py
+transmogripy/rules.py
+transmogripy/segment.py
+transmogripy/trans_dir.py
+transmogripy.egg-info/PKG-INFO
+transmogripy.egg-info/SOURCES.txt
+transmogripy.egg-info/dependency_links.txt
+transmogripy.egg-info/top_level.txt

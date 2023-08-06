@@ -1,0 +1,10 @@
+Metadata-Version: 1.2
+Name: transmogripy
+Version: 1.1.8
+Summary: tool to convert short pascal scripts to python
+Home-page: https://github.com/talos-gis/transmogripy
+Author: Ben Avrahami
+License: gpl-2.0
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.6.0
