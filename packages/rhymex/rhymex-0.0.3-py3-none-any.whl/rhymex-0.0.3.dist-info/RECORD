@@ -1,0 +1,15 @@
+rhymex/__init__.py,sha256=iUHhbQkAK9HPf0wP38oeFSGccq1cMa8uPL9wvDaw5mo,1422
+rhymex/hyperparams.py,sha256=l5H7Kd-WvEUiklUlG-ih4mlBxLsCol31B9c4eT0Uo-Q,248
+rhymex/stress_model.py,sha256=X2yo-s2rgg4hyigzeRGRDGzhmANHtojGzW5Y6hFLkbE,570
+rhymex/syllables.py,sha256=cGI6Fa-zWTmNBtFhgJurhQc0ptF3VkvzjTSxvWoWcxg,4403
+rhymex/utils.py,sha256=-M9HKHk_l4kOnBbvX4eqK203DlGaeOSxL_EM57YZDZA,768
+rhymex/word_profile.py,sha256=Gek8lmjsMzNP9RmC_oUOk7DmjOZt31696LGlgQ_cuxI,1150
+rhymex/model/model.h5,sha256=UOigNcdwnoRWGlshY68CHj4bCLHovUWoalPYAxZmUr8,478224
+rhymex/model/tokenizer.bin,sha256=9voXU3VGzHnj10sVXBuNhvAeBDzDT0HaNt66tgKQOx8,1502
+rhymex/model/weights.h5,sha256=5bqB7EJxLjfE80QBlGpIGa1svdC3j1gLukHPnzuNQv4,164408
+rhymex/vocabs/all_forms.rar,sha256=J8BVkO1opt8wFWpAJ4RkRsFmxm2tS_Q1AGtbwSSUZM8,6104483
+rhymex-0.0.3.dist-info/LICENSE,sha256=2bm9uFabQZ3Ykb_SaSU_uUbAj2-htc6WJQmS_65qD00,1073
+rhymex-0.0.3.dist-info/METADATA,sha256=cWTukU8H9lV9bzcaQWCy0YK2KXBziHkhvKAjSFnC-EM,476
+rhymex-0.0.3.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+rhymex-0.0.3.dist-info/top_level.txt,sha256=l1XPj9idXHI4iXw3iP_0jrNkSiMqwe6nhAVhMV31_Fs,7
+rhymex-0.0.3.dist-info/RECORD,,
