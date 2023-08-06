@@ -1,0 +1,3 @@
+[console_scripts]
+omwimport = importmod.main:main
+
