@@ -1,0 +1,20 @@
+{% extends 'pages/base.html' %}
+{% load seo_tags partners_tags %}
+{% block seo %}
+    {% seo page %}
+{% endblock seo %}
+
+{% block pages %}
+    {{ page.text|safe }}
+    <section id="our-clients" class="row inner-sm">
+        <div class="container">
+            <h2 class="sr-only">Клиенты</h2>
+            <ul class="list-unstyled row list-clients">
+                {% all_partners as partners %}
+                {% for partner in partners %}
+                    <li class="col-md-2"><a href="{{ partner.link }}"><img alt="" src="{{ partner.picture.url }}"/></a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+{% endblock pages %}
