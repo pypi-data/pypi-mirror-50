@@ -1,0 +1,12 @@
+README
+setup.py
+gdadorn/__init__.py
+gdadorn.egg-info/PKG-INFO
+gdadorn.egg-info/SOURCES.txt
+gdadorn.egg-info/dependency_links.txt
+gdadorn.egg-info/not-zip-safe
+gdadorn.egg-info/requires.txt
+gdadorn.egg-info/top_level.txt
+gdadorn/etc/nbextension.json
+gdadorn/etc/serverextension.json
+gdadorn/static/main.js
