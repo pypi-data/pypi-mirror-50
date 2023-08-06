@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: metrdsutil
+Version: 0.1.1
+Summary: Common exploratory data functionality for METR
+Home-page: https://bitbucket.org/danielhopp/metrdsutil/
+Author: Daniel Hopp
+Author-email: daniel.hopp@metr.systems
+License: MIT
+Download-URL: https://bitbucket.org/danielhopp/metrdsutil/get/v0.1.1.tar.gz
+Description: UNKNOWN
+Keywords: data science,exploratory analysis
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.7
