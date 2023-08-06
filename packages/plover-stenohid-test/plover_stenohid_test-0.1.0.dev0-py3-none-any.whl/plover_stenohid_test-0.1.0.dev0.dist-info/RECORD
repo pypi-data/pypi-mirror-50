@@ -1,0 +1,12 @@
+plover_qmk/__init__.py,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
+plover_qmk/find_dev.py,sha256=xK0DJVUcve1nZLPNDIw4ZCg0nUrlrwNUrG5KayT_2D4,3996
+plover_qmk/hidapi_backend.py,sha256=VZG8u16BeQS8jYHAclx-MGqRTap3Q0dobRY-cgpxqjI,5025
+plover_qmk/hiddev.py,sha256=Wnh-pFlNvso8MJuRpKbkW8rZQx1fCmGa69GkgO5NiU4,8389
+plover_qmk/linux_backend.py,sha256=FnLyXRIz9qTIBmfaJr4nlwjpghsNcLGRwH6WPkFDUy0,5177
+plover_stenohid_test-0.1.0.dev0.dist-info/DESCRIPTION.rst,sha256=OCTuuN6LcWulhHS3d5rfjdsQtW22n7HENFRh6jC6ego,10
+plover_stenohid_test-0.1.0.dev0.dist-info/METADATA,sha256=nqw5VcGaMjcQ2nHwXuZ5CDvR5XLe5aVGC6e6hh0Izi8,1086
+plover_stenohid_test-0.1.0.dev0.dist-info/RECORD,,
+plover_stenohid_test-0.1.0.dev0.dist-info/WHEEL,sha256=8Lm45v9gcYRm70DrgFGVe4WsUtUMi1_0Tso1hqPGMjA,92
+plover_stenohid_test-0.1.0.dev0.dist-info/entry_points.txt,sha256=2VsuHu4o13VxLKJ18oNK0TWPMtIZWRNwJHWsxeAWiTE,179
+plover_stenohid_test-0.1.0.dev0.dist-info/metadata.json,sha256=yh3DfB2Y9ziWy8mljaryx1jwmuqw3YcfDpe27_hqQlo,1505
+plover_stenohid_test-0.1.0.dev0.dist-info/top_level.txt,sha256=0V7dkpjdcsTZ9j80LsWxqTprVGoy1TvkxVKvke04UwU,11

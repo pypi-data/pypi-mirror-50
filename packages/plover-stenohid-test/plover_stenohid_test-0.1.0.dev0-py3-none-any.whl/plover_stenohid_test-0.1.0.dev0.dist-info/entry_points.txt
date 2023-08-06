@@ -1,0 +1,9 @@
+[plover.linux.machine]
+QMK = plover_qmk.linux_backend:QMK
+
+[plover.mac.machine]
+QMK = plover_qmk.hidapi_backend:QMK
+
+[plover.windows.machine]
+QMK = plover_qmk.hidapi_backend:QMK
+
