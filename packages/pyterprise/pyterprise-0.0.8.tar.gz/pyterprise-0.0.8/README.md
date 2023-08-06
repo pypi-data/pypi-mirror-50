@@ -1,0 +1,56 @@
+### Pyterprise
+
+This is a simple Python client library for Terraform Enterprise with helper functions to abstract usage of the HTTP API. 
+The methods included in this library generally map 1 to 1 in terms of function naming conventions to 
+[terraform enterprise documentation.](https://www.terraform.io/docs/cloud/api/) Methods generally will 
+return the json response of the given endpoint.
+
+#### Installation:
+
+This module can be found and installed on pip3, although the library is compatible with python 2.7 as well.
+
+`pip3 install --user pyterprise`
+
+#### Usage:
+
+First import the module and authenticate using the init method, you can retrieve a token from the terraform enterprise UI.
+```python
+import pyterprise
+
+
+tfe_token = 'TOKENHERE'
+client = pyterprise.Client()
+
+# Supply your token as a parameter and the url for the terraform enterprise server.
+client.init(token=tfe_token, url='https://example-host.com')
+```
+
+
+Once initialized, you should be able to run various methods for accessing the API, most of the methods are basic python implementations 
+of http requests that will simply return the json response content as a string.
+
+Examples:
+```python
+
+# Get all most recent workspace statefiles to stdout.
+workspaces = client.list_workspace_ids('quantcast')
+for workspace in workspaces:
+    print(client.get_workspace_current_statefile(workspace_id=workspace))
+
+# Deleting and creating workspaces.
+client.create_workspace(organization='test-org', workspace_name='test-workspace')
+client.delete_workspace(organization='test-org', workspace_name='test-workspace')
+
+# Set a workspace environmental variable in a given workspace id.
+client.create_workspace_variable('test-workspace', key='TF_LOG', value='DEBUG')
+```
+
+Please consult module contents or terraform enterprise api documentation for available methods.
+
+#### Contributions
+Contributions are more than welcome, please feel free to do so to improve this client library. I originally created this library
+because, while it seemed there were good client libaries for Golang and Ruby, it seemed there were not any decent community 
+client libraries for Python for the Terraform Enterprise API. 
+
+As of writing this I am still actively working on this library
+to include the remaining API methods and include unit testing for methods.
