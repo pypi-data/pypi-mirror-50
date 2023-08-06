@@ -1,0 +1,14 @@
+DataFrameLabeler/DataFrameLabeler.py,sha256=9nEgKD1ESZKrrHNjcyx8uGkefHU6dUBsMZY4ZAujbmA,8406
+DataFrameLabeler/Rowiter.py,sha256=tcSzcGTBxyxCQoI4AxcrzXwDT6JrhU0zuTGT326GKW0,2650
+DataFrameLabeler/__init__.py,sha256=Ej1WQk32A1MYSm1XY4PtJ8ibYdeL3q_Y-0to1dKy0PI,47
+examples/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+examples/context.py,sha256=0WOqwSm7mcO8hiy_cAK6gpzFhny6DJMof4bcYnsOl0w,164
+tests/DataFrameLabeler_test.py,sha256=U27pW-rB4PpL3lFcNkdTp22Hm1TBTT9tT6Y6wqwZTUg,1695
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/context.py,sha256=zESKvhoNRAQE4JBkgeg-HyhC56bSv6QFtEhN00yU59s,179
+tests/rowiter_test.py,sha256=qD5GaQJbu4WrFpOJBYM4Br7Z2PB4YIc_xNcwJBe1QV4,5607
+DataFrameLabeler-0.0.1.dist-info/LICENSE,sha256=J21emXwGhxwIqpKQ3gInynqRJr5532PzZqvn1GIV8yc,1070
+DataFrameLabeler-0.0.1.dist-info/METADATA,sha256=p3BqxjTwnbOsU4e6CnvM6VH7w0G6ndSHbGKg_X8BpkM,2540
+DataFrameLabeler-0.0.1.dist-info/WHEEL,sha256=U88EhGIw8Sj2_phqajeu_EAi3RAo8-C6zV3REsWbWbs,92
+DataFrameLabeler-0.0.1.dist-info/top_level.txt,sha256=0HLO2XMVVp5Z8-QpVCgEE62qeSuWEYq3vAuTHIcJeTw,32
+DataFrameLabeler-0.0.1.dist-info/RECORD,,
