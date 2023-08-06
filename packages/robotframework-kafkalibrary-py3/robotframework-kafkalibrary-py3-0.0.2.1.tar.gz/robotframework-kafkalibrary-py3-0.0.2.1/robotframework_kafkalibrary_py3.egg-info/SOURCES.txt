@@ -1,0 +1,11 @@
+README.md
+setup.py
+KafkaLibrary/Consumer.py
+KafkaLibrary/Producer.py
+KafkaLibrary/__init__.py
+KafkaLibrary/version.py
+robotframework_kafkalibrary_py3.egg-info/PKG-INFO
+robotframework_kafkalibrary_py3.egg-info/SOURCES.txt
+robotframework_kafkalibrary_py3.egg-info/dependency_links.txt
+robotframework_kafkalibrary_py3.egg-info/requires.txt
+robotframework_kafkalibrary_py3.egg-info/top_level.txt
