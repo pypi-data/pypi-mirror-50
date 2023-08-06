@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: cuprocell
+Version: 0.0.2
+Summary: Python wrapper for CUDA C++ ProCell implementation
+Home-page: https://github.com/ericniso/py-cuprocell
+Author: Eric Nisoli
+Author-email: e.nisoli1@campus.unimib.it
+License: GPL-3.0
+Description: # Python CUDA ProCell
+        
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
