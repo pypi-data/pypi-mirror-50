@@ -1,0 +1,3 @@
+
+class EmptyResponseError(Exception):
+    pass
