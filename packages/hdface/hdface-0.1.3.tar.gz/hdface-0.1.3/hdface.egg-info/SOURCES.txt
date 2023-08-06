@@ -1,0 +1,13 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+hdface/__init__.py
+hdface/hdface.py
+hdface/image_tools.py
+hdface/models.py
+hdface/utils.py
+hdface.egg-info/PKG-INFO
+hdface.egg-info/SOURCES.txt
+hdface.egg-info/dependency_links.txt
+hdface.egg-info/top_level.txt
