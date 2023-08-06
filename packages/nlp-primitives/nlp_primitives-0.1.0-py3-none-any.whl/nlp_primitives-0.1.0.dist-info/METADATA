@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: nlp-primitives
+Version: 0.1.0
+Summary: UNKNOWN
+Home-page: http://www.featurelabs.com/
+Author: Feature Labs, Inc.
+Author-email: support@featurelabs.com
+License: BSD 3-clause
+Platform: UNKNOWN
+Requires-Dist: numpy (>=1.13.3)
+Requires-Dist: pandas (>=0.23.0)
+Requires-Dist: tqdm (>=4.19.2)
+Requires-Dist: featuretools (>=0.7.0)
+Requires-Dist: nltk (>=3.4)
+Requires-Dist: tensorflow (<=1.14.0)
+Requires-Dist: tensorflow-hub (<=0.4.0)
+Requires-Dist: scikit-learn (<0.21,>=0.20.0) ; python_version < "3"
+Requires-Dist: scikit-learn (>=0.20.0) ; python_version >= "3"
+
+UNKNOWN
+
+
