@@ -1,0 +1,92 @@
+Metadata-Version: 2.1
+Name: invenio-oarepo
+Version: 1.0.6
+Summary: Open Access Repository for Invenio
+Home-page: https://github.com/oarepo/invenio-oarepo
+Author: Miroslav Bauer
+Author-email: bauer@cesnet.cz
+License: MIT
+Keywords: invenio-oarepo oarepo Invenio
+Platform: any
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Development Status :: 4 - Beta
+Requires-Dist: Flask-BabelEx (>=0.9.3)
+Requires-Dist: invenio[auth,base,elasticsearch6,metadata,postgresql] (~=3.1.0)
+Requires-Dist: invenio-records-files (==1.0.0a11)
+Requires-Dist: invenio-files-rest (==1.0.0a23)
+Requires-Dist: invenio-files-multisum-storage (>=1.0.0)
+Requires-Dist: invenio-explicit-acls (>=1.0.0)
+Requires-Dist: invenio-oarepo-files-rest (>=1.0.0)
+Requires-Dist: invenio-openid-connect (>=1.0.0)
+Requires-Dist: invenio-records-links (>=1.0.0)
+Provides-Extra: all
+Requires-Dist: Sphinx (>=1.5.1) ; extra == 'all'
+Requires-Dist: check-manifest (>=0.25) ; extra == 'all'
+Requires-Dist: coverage (>=4.0) ; extra == 'all'
+Requires-Dist: isort (>=4.3.3) ; extra == 'all'
+Requires-Dist: mock (>=2.0.0) ; extra == 'all'
+Requires-Dist: pydocstyle (>=1.0.0) ; extra == 'all'
+Requires-Dist: pytest-cache (>=1.0) ; extra == 'all'
+Requires-Dist: pytest-invenio (<1.1.0,>=1.0.2) ; extra == 'all'
+Requires-Dist: pytest-mock (>=1.6.0) ; extra == 'all'
+Requires-Dist: pytest-cov (>=1.8.0) ; extra == 'all'
+Requires-Dist: pytest-random-order (>=0.5.4) ; extra == 'all'
+Requires-Dist: pytest-pep8 (>=1.0.6) ; extra == 'all'
+Requires-Dist: pytest (>=2.8.0) ; extra == 'all'
+Requires-Dist: selenium (>=3.4.3) ; extra == 'all'
+Provides-Extra: docs
+Requires-Dist: Sphinx (>=1.5.1) ; extra == 'docs'
+Provides-Extra: tests
+Requires-Dist: check-manifest (>=0.25) ; extra == 'tests'
+Requires-Dist: coverage (>=4.0) ; extra == 'tests'
+Requires-Dist: isort (>=4.3.3) ; extra == 'tests'
+Requires-Dist: mock (>=2.0.0) ; extra == 'tests'
+Requires-Dist: pydocstyle (>=1.0.0) ; extra == 'tests'
+Requires-Dist: pytest-cache (>=1.0) ; extra == 'tests'
+Requires-Dist: pytest-invenio (<1.1.0,>=1.0.2) ; extra == 'tests'
+Requires-Dist: pytest-mock (>=1.6.0) ; extra == 'tests'
+Requires-Dist: pytest-cov (>=1.8.0) ; extra == 'tests'
+Requires-Dist: pytest-random-order (>=0.5.4) ; extra == 'tests'
+Requires-Dist: pytest-pep8 (>=1.0.6) ; extra == 'tests'
+Requires-Dist: pytest (>=2.8.0) ; extra == 'tests'
+Requires-Dist: selenium (>=3.4.3) ; extra == 'tests'
+
+..
+    Copyright (C) 2019 CESNET.
+
+    Invenio OARepo is free software; you can redistribute it and/or modify it
+    under the terms of the MIT License; see LICENSE file for more details.
+
+================
+ Invenio OARepo
+================
+
+.. image:: https://img.shields.io/github/license/oarepo/invenio-oarepo.svg
+        :target: https://github.com/oarepo/invenio-oarepo/blob/master/LICENSE
+
+.. image:: https://img.shields.io/travis/oarepo/invenio-oarepo.svg
+        :target: https://travis-ci.org/oarepo/invenio-oarepo
+
+.. image:: https://img.shields.io/coveralls/oarepo/invenio-oarepo.svg
+        :target: https://coveralls.io/r/oarepo/invenio-oarepo
+
+.. image:: https://img.shields.io/pypi/v/invenio-oarepo.svg
+        :target: https://pypi.org/pypi/invenio-oarepo
+
+Open Access Repository for Invenio
+
+Further documentation is available on
+https://invenio-oarepo.readthedocs.io/
+
+
+
