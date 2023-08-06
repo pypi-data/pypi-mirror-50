@@ -1,0 +1,17 @@
+CONTRIBUTING.rst
+HISTORY.rst
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+rabotaotzyvy_ru/__init__.py
+rabotaotzyvy_ru/rabotaotzyvy_ru.py
+rabotaotzyvy_ru.egg-info/PKG-INFO
+rabotaotzyvy_ru.egg-info/SOURCES.txt
+rabotaotzyvy_ru.egg-info/dependency_links.txt
+rabotaotzyvy_ru.egg-info/not-zip-safe
+rabotaotzyvy_ru.egg-info/requires.txt
+rabotaotzyvy_ru.egg-info/top_level.txt
+tests/__init__.py
+tests/test_rabotaotzyvy_ru.py

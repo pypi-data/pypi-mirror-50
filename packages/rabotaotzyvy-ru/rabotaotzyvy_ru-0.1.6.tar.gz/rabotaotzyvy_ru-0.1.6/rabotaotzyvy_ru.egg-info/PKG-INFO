@@ -1,0 +1,74 @@
+Metadata-Version: 1.1
+Name: rabotaotzyvy-ru
+Version: 0.1.6
+Summary: rabotaotzyvy_ru scrubber
+Home-page: https://github.com/NMelis/rabotaotzyvy_ru
+Author: NMelis
+Author-email: melis.zhoroev@gmail.com
+License: MIT license
+Description: =============
+        Rabota Otzyvy
+        =============
+        
+        
+        .. image:: https://img.shields.io/pypi/v/rabotaotzyvy_ru.svg
+                :target: https://pypi.python.org/pypi/rabotaotzyvy_ru
+        
+        .. image:: https://img.shields.io/travis/NMelis/rabotaotzyvy_ru.svg
+                :target: https://travis-ci.org/NMelis/rabotaotzyvy_ru
+        
+        .. image:: https://readthedocs.org/projects/rabotaotzyvy-ru/badge/?version=latest
+                :target: https://rabotaotzyvy-ru.readthedocs.io/en/latest/?badge=latest
+                :alt: Documentation Status
+        
+        
+        
+        
+        rabotaotzyvy_ru scrubber
+        
+        
+        * Free software: MIT license
+        * Documentation: https://rabotaotzyvy-ru.readthedocs.io.
+        
+        
+        Features
+        --------
+        
+        * TODO
+        
+        Credits
+        -------
+        
+        This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+        
+        .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+        .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+        
+        
+        =======
+        History
+        =======
+        
+        0.1.0 (2019-07-29)
+        ------------------
+        
+        * Fix russian month
+        
+        0.1.0 (2019-07-28)
+        ------------------
+        
+        * First release on PyPI.
+        
+Keywords: rabotaotzyvy_ru
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
