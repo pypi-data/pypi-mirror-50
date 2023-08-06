@@ -1,0 +1,1 @@
+from iso3_lookup.lookup import Lookup
