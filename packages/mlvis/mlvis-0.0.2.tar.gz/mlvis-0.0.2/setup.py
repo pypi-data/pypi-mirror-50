@@ -1,0 +1,40 @@
+from setuptools import setup, find_packages
+from setuptools.command.develop import develop as _develop
+import os
+
+
+extension_dir = os.path.join(os.path.dirname(__file__), "mlvis", "static")
+
+
+class develop(_develop):
+    def run(self):
+        from notebook.nbextensions import install_nbextension
+        from notebook.services.config import ConfigManager
+
+        _develop.run(self)
+        install_nbextension(extension_dir, symlink=True,
+                            overwrite=True, user=False, destination="mlvis")
+        cm = ConfigManager()
+        cm.update('notebook', {"load_extensions": {"mlvis/index": True } })
+
+
+setup(name='mlvis',
+      cmdclass={'develop': develop},
+      version='0.0.2',
+      description='A wrapper around react components for use in jupyter notebooks',
+      url='https://github.com/',
+      author='Hong Wang',
+      author_email='hongw@uber.com',
+      license='MIT',
+      packages=find_packages(),
+      zip_safe=False,
+      data_files=[
+        ('share/jupyter/nbextensions/mlvis', [
+            'mlvis/static/index.js'
+        ]),
+      ],
+      install_requires=[
+          "ipython",
+          "jupyter-react"
+      ]
+      )
