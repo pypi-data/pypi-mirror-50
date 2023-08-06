@@ -1,0 +1,15 @@
+LICENSE.txt
+README.md
+setup.py
+lbftd/__init__.py
+lbftd/evalGibbs.py
+lbftd/loadGibbs.py
+lbftd/statevars.py
+mlbspline/__init__.py
+mlbspline/eval.py
+mlbspline/load.py
+uw_highP_geophysics_tools.egg-info/PKG-INFO
+uw_highP_geophysics_tools.egg-info/SOURCES.txt
+uw_highP_geophysics_tools.egg-info/dependency_links.txt
+uw_highP_geophysics_tools.egg-info/requires.txt
+uw_highP_geophysics_tools.egg-info/top_level.txt
