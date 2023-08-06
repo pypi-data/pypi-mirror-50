@@ -1,0 +1,3 @@
+include README.md
+include dSreg/models/stan_code/*.stan
+include dSreg/models/compiled/*.p

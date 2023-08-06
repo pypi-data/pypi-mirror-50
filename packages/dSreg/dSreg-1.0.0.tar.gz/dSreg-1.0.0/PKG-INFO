@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: dSreg
+Version: 1.0.0
+Summary: Joint inference of alternative splicing and regulatory changes
+Home-page: https://bitbucket.org/cmartiga/dSreg
+Author: UNKNOWN
+Author-email: cmarti@cnic.es
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: bioinformatics,Splicing regulation,alternative splicing,RNA-Seq,probabilistic models,bayesian
+Platform: ALL
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
