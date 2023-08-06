@@ -1,0 +1,17 @@
+tutti_aisthetics/__init__.py,sha256=3KXfAcA5rzzQXMtfwpHphgbJNZdA0XWaW96kdWVSZJw,22
+tutti_aisthetics/evaluater/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tutti_aisthetics/evaluater/predictor.py,sha256=H81GgVswFoKOc4LaWGjR95DYyt_m-mVyY0PDSuPoUbg,3675
+tutti_aisthetics/handlers/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tutti_aisthetics/handlers/data_generator.py,sha256=xGSfOVRbZ44FJYCQ-zjilY876KchXE_CtYu9JN0SZYo,5706
+tutti_aisthetics/handlers/model_builder.py,sha256=Q5aeYAB0qcPxeshwObEGUKZ4mrO1xg5szyZMmnxNUEM,2714
+tutti_aisthetics/model/weights_aisthetic.hdf5,sha256=5WOtkbPUdBDkX3I48Hq49qvRvQxLGKSwr5xoGiGpHLI,13174216
+tutti_aisthetics/utils/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tutti_aisthetics/utils/losses.py,sha256=8SD3VTao0eSXJQKx0EIz3sO7lmXc3nD44hn-wcV14s0,327
+tutti_aisthetics/utils/s3.py,sha256=BfzJkwasijnLJPh1ATHyAJa0nF43zAsjB0bqrcIGMWo,522
+tutti_aisthetics/utils/utils.py,sha256=8pmVALZiYuOJRN4S-pctyVWgcUJ8HW6ZGuhkbGpjIWM,2112
+tutti_aisthetics-1.0.1.dist-info/LICENSE,sha256=0hTKG5tZR25PGf1PJsyuGHKVGUxH8gMmRye92JISZ8c,26
+tutti_aisthetics-1.0.1.dist-info/METADATA,sha256=08MD4roEDzowhURsYIIiqUBXhRKZfCws_WkMPAny-H0,652
+tutti_aisthetics-1.0.1.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+tutti_aisthetics-1.0.1.dist-info/top_level.txt,sha256=dOC3sQecQmSGACVqJLngH9f53frg_a9N-L1EUV0vFag,17
+tutti_aisthetics-1.0.1.dist-info/zip-safe,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
+tutti_aisthetics-1.0.1.dist-info/RECORD,,
