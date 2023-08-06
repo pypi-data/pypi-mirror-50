@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: django-dynamic-config
+Version: 0.0.1
+Summary: Django Dynamic Config
+Home-page: https://github.com/anshengme/django-dynamic-config
+Author: ansheng
+Author-email: ianshengme@gmail.com
+License: LICENSE
+Description: # Django Dynamic Config
+        
+Keywords: django,django config,django dynamic config
+Platform: UNKNOWN
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 2.0
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Environment :: Web Environment
+Description-Content-Type: text/markdown

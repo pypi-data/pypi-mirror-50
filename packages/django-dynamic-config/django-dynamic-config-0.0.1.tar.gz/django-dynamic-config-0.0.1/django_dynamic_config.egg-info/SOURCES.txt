@@ -1,0 +1,14 @@
+README.md
+setup.py
+django_dynamic_config/__init__.py
+django_dynamic_config/admin.py
+django_dynamic_config/apps.py
+django_dynamic_config/models.py
+django_dynamic_config/utils.py
+django_dynamic_config.egg-info/PKG-INFO
+django_dynamic_config.egg-info/SOURCES.txt
+django_dynamic_config.egg-info/dependency_links.txt
+django_dynamic_config.egg-info/requires.txt
+django_dynamic_config.egg-info/top_level.txt
+django_dynamic_config/migrations/0001_initial.py
+django_dynamic_config/migrations/__init__.py
