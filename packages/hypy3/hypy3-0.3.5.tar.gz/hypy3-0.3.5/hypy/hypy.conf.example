@@ -1,0 +1,10 @@
+[credentials]
+host = server
+domain = DOMAIN
+user = username
+pass = password
+
+[options]
+protocol = ssh
+ssh_port = 22
+sync_interval = 4

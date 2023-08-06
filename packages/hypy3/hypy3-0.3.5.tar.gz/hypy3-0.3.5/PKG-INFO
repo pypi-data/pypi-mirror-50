@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: hypy3
+Version: 0.3.5
+Summary: Multiplataform Hyper-V Manager using Python and FreeRDP
+License: GPL-3.0
+Author: Gabriel Avanzi
+Author-email: gabriel.avanzi@gmail.com
+Requires-Python: >=3.5,<4.0
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: asciitree (>=0.3.3,<0.4.0)
+Requires-Dist: click (>=7.0,<8.0)
+Requires-Dist: paramiko (>=2.6,<3.0)
+Requires-Dist: pywinrm (>=0.3.0,<0.4.0)
