@@ -1,0 +1,23 @@
+language: python
+python:
+- '2.7'
+- '3.4'
+- '3.5'
+- '3.6'
+- '3.7'
+- pypy
+install:
+- pip install -e .[testing,doc]
+script:
+- pylint --rcfile=.pylintrc mitba tests
+- pytest tests
+- sphinx-build -a -W -E doc build/sphinx/html
+deploy:
+  provider: pypi
+  user: infradev
+  password:
+    secure: gr00ntp4+dctcZl6CSo70TP5zfXNm78ZyOw8pi0u4ugfq/0yYRIh05ABXLamS4lreqvHSq/wuRdCQrld+a7JhH0nr8wcS6cduZOt0uN9MSzDjtHVR3UxV/oHN4pO0gttxpXfD7lqA42bVuwFOtMfjgRaOxZw9/koLybm/2800P/bLAfoIe8KY7QPYz7WMfbsgJ/yHN9SyfA0YrRjZiAHiWtyv0HNGphLkFW3UIUuXuaDEvNLZNOxa7DaSqgFRSXZ5DEQqbU4LNBO6O6Sl4iFepGDSSwvirheKE5GlaoFVPAWlu3CXoEyEP7Sv72oWO4fFT05evY39i/3Rxz6b8qU2a9YCi85xcKLcKOaGXaB5y+BoRACnVf3mrrgJWJeuupByE1Wx9bUiFsnGpMjWwATRmA44miCm7FHk6/yEEVCctDdKQF6Sxasx2/MSWjxVOc3w6ILxSgkOEdKvdJsFLbMB5/ZKgcOV4OCrOfnKtqkhKie6DTTczVEb2uffuPr30WqX8MQG7JgJNgnsTWq9w/SBBPIsDjZMF4njijTdPUG30lAZMyvR1SwWeYyc9obApn0fAEM4KmBpSsBZhTn93in6EDCsPVC3VlgKw7JKOnwTZtuiEcQ03YCPO6WwYQhKFNXlUiwJWlOLUBQz7JzJE7ngyhfpcfT2QNLLO8rDc6uzD8=
+  on:
+    tags: true
+    distributions: sdist bdist_wheel
+    repo: Infinidat/mitba

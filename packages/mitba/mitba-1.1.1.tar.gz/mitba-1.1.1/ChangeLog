@@ -1,0 +1,35 @@
+CHANGES
+=======
+
+1.1.1
+-----
+
+* Fix PyPi secured password on travis
+
+1.1.0
+-----
+
+* Add documentation (fixes #4) (#5)
+* Add documentation (fixes #4)
+* Add ignore\_cache() context (fixes #1) (#3)
+* Updates (#2)
+* Update PyPi credentials
+* Switch to PBR
+* Add Pylint to Travis CI
+* Add unitest for 'populte\_cache' and change default value to immutable
+* Update README links: Remove Downloads & update Version
+
+1.0.1
+-----
+
+* bump version
+* Fix travis conf
+
+1.0.0
+-----
+
+* Use test functions instead of TestCase
+* Use flux package instead of time
+* Rename \_cache to \_\_mitba\_cache\_\_
+* pypi travis deployment
+* Initial version - ported from infi.pyutils.lazy

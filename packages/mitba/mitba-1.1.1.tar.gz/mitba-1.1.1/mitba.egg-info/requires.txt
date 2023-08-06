@@ -1,0 +1,18 @@
+flux
+Logbook>=0.12.2
+
+[doc]
+alabaster
+docutils
+releases
+Sphinx>=1.7.1
+
+[testing]
+pylint
+pytest-cov
+
+[testing:python_version < "3.0"]
+pytest
+
+[testing:python_version >= "3.0"]
+pytest>4.0
