@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: burgerkin-board
+Version: 0.1
+Summary: The board for the burgerkin game
+Home-page: https://github.com/kinecosystem/burgerkin-board
+Author: Shahar Solomianik
+Author-email: shahar@gnift.com
+License: MIT
+Download-URL: https://github.com/kinecosystem/burgerkin-board/archive/v_01.tar.gz
+Description: UNKNOWN
+Keywords: burgerkin,board
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
