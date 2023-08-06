@@ -1,0 +1,3 @@
+[console_scripts]
+niflow-nipype1-workflows = niflow.nipype1.workflows.cli:main
+
