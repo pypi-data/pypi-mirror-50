@@ -1,0 +1,8 @@
+PyQt5
+PyVISA
+PyYAML
+matplotlib
+numpy
+
+[dev]
+check-manifest
