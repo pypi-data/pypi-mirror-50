@@ -1,0 +1,11 @@
+mr.bob==0.1.2
+Sphinx
+GitPython==1.0.1
+alabaster
+tox
+nose
+coverage
+ipython
+twine
+pylint
+doc8
