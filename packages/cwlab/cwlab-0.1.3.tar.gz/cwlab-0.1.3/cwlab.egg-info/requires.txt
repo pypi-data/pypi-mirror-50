@@ -1,0 +1,20 @@
+flask
+flask_wtf
+flask-login
+flask-sqlalchemy
+pyexcel
+pyexcel-io
+pyexcel-ods
+pyexcel-ods3
+pyexcel-xls
+pyexcel-xlsx
+PyYAML
+pexpect
+unidecode
+psutil
+
+[:platform_system != "Windows"]
+cwltool
+
+[:platform_system == "Windows"]
+cwltool==1.0.20181201184214
