@@ -1,0 +1,122 @@
+Metadata-Version: 2.1
+Name: himl
+Version: 0.1.16
+Summary: A hierarchical config using yaml
+Home-page: https://github.com/adobe/himl
+Author: Adobe
+Author-email: noreply@adobe.com
+License: Apache2
+Description: # himl
+        A hierarchical config using yaml in Python
+        
+        Latest version is: 0.1.16
+        
+        
+        ## Installation
+        
+        ### Using `pip`
+        
+        ```sh
+        pip install himl
+        ```
+        
+        ### From Source
+        
+        ```
+        git clone https://github.com/adobe/himl
+        cd himl
+        sudo python setup.py install
+        ```
+        
+        ## Example
+        
+        ### Using the cli
+        
+        ```sh
+        usage: himl [-h] [--output-file OUTPUT_FILE] [--format OUTPUT_FORMAT]
+                     [--filter FILTER] [--exclude EXCLUDE]
+                     [--skip-interpolation-validation]
+                     [--skip-interpolation-resolving] [--enclosing-key ENCLOSING_KEY]
+                     [--cwd CWD]
+                     path
+        ```
+        
+        ```sh
+        himl examples/config_example/env=dev/region=us-east-1/cluster=cluster2
+        ```
+        
+        The configuration output will be something like this:
+        ```
+        cluster:
+          description: 'This is cluster: cluster2. It is using c3.2xlarge instance type.'
+          name: cluster2
+          node_type: c3.2xlarge
+        region:
+          location: us-east-1
+        env: dev
+        ```
+        
+        Where the examples folder looks something like this:
+        ```
+        $ tree examples/config_example
+        examples/config_example
+        ├── default.yaml
+        ├── env=dev
+        │   ├── env.yaml
+        │   ├── region=us-east-1
+        │   │   ├── cluster=cluster1
+        │   │   │   └── cluster.yaml
+        │   │   ├── cluster=cluster2
+        │   │   │   └── cluster.yaml
+        │   │   └── region.yaml
+        │   └── region=us-west-2
+        │       ├── cluster=cluster1
+        │       │   └── cluster.yaml
+        │       └── region.yaml
+        └── env=prod
+            ├── env.yaml
+            └── region=eu-west-2
+                ├── cluster=ireland1
+                │   └── cluster.yaml
+                └── region.yaml
+        ```
+        
+        ### Using the python module
+        
+        ```py
+        from himl import ConfigProcessor
+        
+        config_processor = ConfigProcessor()
+        path = "examples/config_example/env=dev/region=us-east-1/cluster=cluster2"
+        filters = () # can choose to output only specific keys
+        exclude_keys = () # can choose to remove specific keys
+        output_format = "yaml" # yaml/json
+        
+        
+        config_processor.process(path=path, filters=filters, exclude_keys=exclude_keys, 
+                                 output_format=output_format, print_data=True)
+        ```
+        
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Text Processing :: Markup :: HTML
+Requires-Python: >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*
+Description-Content-Type: text/markdown
