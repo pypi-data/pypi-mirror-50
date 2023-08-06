@@ -1,0 +1,9 @@
+README.md
+setup.py
+kazipdf.egg-info/PKG-INFO
+kazipdf.egg-info/SOURCES.txt
+kazipdf.egg-info/dependency_links.txt
+kazipdf.egg-info/top_level.txt
+publish/__init__.py
+publish/pdf2image.py
+publish/pdf2text.py
