@@ -1,0 +1,33 @@
+simphony/__init__.py,sha256=UGUiO89N2KYU_qkzksmoILYVsVpmYqdMG7V14duTZZQ,377
+simphony/_version.py,sha256=Zn1KFblwuFHiDRdRAiRnDBRkbPttWh44jKa5zG2ov0E,22
+simphony/errors.py,sha256=__6rguRQbEiVyTfvaTduvryjhRqgfVp2b2vbbgbOwc0,1828
+simphony/DeviceLibrary/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+simphony/DeviceLibrary/ann/__init__.py,sha256=1odgoc9VjuQkq2OyABcMtshLuXKCMBwUe2qaae0-F6Y,5606
+simphony/DeviceLibrary/ann/sparams/ebeam_wg_integral_1550/straightCoeffs.npy,sha256=hCSw2wOpFxYkQxniaXJXy3koLZXr6uxCISAPMDHBoXw,688
+simphony/DeviceLibrary/ebeam/__init__.py,sha256=QJpf_NpEd5qWArIMhSxXDSBJcf_ANeySSD0hohKGsS8,4788
+"simphony/DeviceLibrary/ebeam/sparams/WaveGuideTETMStrip,w=500,h=220.txt",sha256=M361OIGjmgN0HO5A8ne16fCZfcGGkVwHTJe7uXUZjtw,64
+simphony/DeviceLibrary/ebeam/sparams/ebeam_bdc_te1550.npz,sha256=WGhqbKKy6U-Gelw4gqrpc_70QyHw-X-QGqwB3FwJ2Eo,13914
+simphony/DeviceLibrary/ebeam/sparams/ebeam_dc_halfring_te1550.npz,sha256=_gSUgom7CC5mjEJKpVV3h4CQLbiEqZheTruF1gumbm4,27114
+simphony/DeviceLibrary/ebeam/sparams/ebeam_gc_te1550.npz,sha256=03vl0FLOcleNP0eyhaAj-NTZIb_Vd9NUReXSJV4BR54,7650
+simphony/DeviceLibrary/ebeam/sparams/ebeam_terminator_te1550.npz,sha256=RL3S11AE2jau6jM9Md0QIbcbahasLetmLOFKZqPKObk,2874
+simphony/DeviceLibrary/ebeam/sparams/ebeam_y_1550.npz,sha256=WJZdJqCeGAjLG9feyUytct3RahrpmAeSGQsKowP1n60,8202
+simphony/DeviceLibrary/ebeam/sparams/raw/ebeam_bdc_te1550/EBeam_1550_TE_BDC.sparam,sha256=ZG0iT66u3MecO9YtWXEbdf_55hCGvesu3OP0YdbWcpU,25314
+simphony/DeviceLibrary/ebeam/sparams/raw/ebeam_dc_halfring_te1550/te_ebeam_dc_halfring_straight_gap=30nm_radius=3um_width=520nm_thickness=210nm_CoupleLength=0um.dat,sha256=EykVPWupyD4ihMNlKxronsndfZS4tw7srsWBuWtwvKE,112579
+simphony/DeviceLibrary/ebeam/sparams/raw/ebeam_gc_te1550/GC_TE1550_thickness=220 deltaw=0.txt,sha256=-Tp6G0BmeD_gQNF-SQ5EYiUl2DVp6bla9gLVCF7BROE,17301
+"simphony/DeviceLibrary/ebeam/sparams/raw/ebeam_terminator_te1550/nanotaper_w1=500,w2=60,L=10_TE.sparam",sha256=gLnWKrsBZSoi4eeDmSZvXQ_eOa7R4uBxCrxE8hdy4B4,3054
+simphony/DeviceLibrary/ebeam/sparams/raw/ebeam_y_1550/Ybranch_Thickness =220 width=500.sparam,sha256=AOAJFcYXQBVFzhHpVt9IjFcVYB7OXJNdWmgClFtnrMs,27904
+simphony/core/__init__.py,sha256=Ml3TGTHbfHBQb84prKRfun5qyis1BGCwVDBJXal3uOQ,2255
+simphony/core/base.py,sha256=q-21Xm3aKZA9l-DQ5ICTlWulWmbLgeUhRUL4MMCTEeo,6504
+simphony/core/connect.py,sha256=gBk-mugq4Rcft5sYBE1pFZP3qtBuXw84_3DLsyJklIA,5794
+simphony/core/netlist.py,sha256=Y4PebwaxT26kVE4921XJ7ZzNzcdZTLq2v_5V8oEqO3g,5651
+simphony/simulation/__init__.py,sha256=jCA58_A6glvTFQg6GsscqAqdDYeB_50o6viNknttMRo,25
+simphony/simulation/simulation.py,sha256=TChcW_yUINw4yEi8rzVvoSum0q0FKVSg-tl1_S-fjcA,19654
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_core.py,sha256=u4FC8BXG7vgzVxOSPlt9HozfMrNb1qa9LKjblcJOyEk,6380
+tests/test_simphony.py,sha256=Nv06u-rLr8QTKwyF1x2Uk0xbdFV9vEa_z4DClkqqWvw,5720
+tests/test_simulation.py,sha256=15yLBmt8daC8dUvfkXvsiVv8fyKuxAkdfjd31PTlWKU,2493
+simphony-0.2.0.dist-info/LICENSE,sha256=E0Iyopb7vXKFvW3uKd3XS51SsfS0tyVSAqyWl011d3c,1070
+simphony-0.2.0.dist-info/METADATA,sha256=UFaEy_J2J4354NUtymRHy7ON8w7Pj1O54fikPzRiOJg,4576
+simphony-0.2.0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+simphony-0.2.0.dist-info/top_level.txt,sha256=-74UWreb0DdWNGDWixrngVuQiOkBU9rdsC50ZN1mhaw,15
+simphony-0.2.0.dist-info/RECORD,,
