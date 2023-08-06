@@ -1,0 +1,12 @@
+Metadata-Version: 1.2
+Name: pycopy-libc
+Version: 0.3.2
+Summary: Pycopy FFI helper module (deprecated)
+Home-page: https://github.com/pfalcon/pycopy-lib
+Author: Paul Sokolovsky
+Author-email: pycopy-dev@googlegroups.com
+Maintainer: Paul Sokolovsky
+Maintainer-email: pycopy-dev@googlegroups.com
+License: MIT
+Description: Pycopy FFI helper module (deprecated, replaced by pycopy-ffilib).
+Platform: UNKNOWN
