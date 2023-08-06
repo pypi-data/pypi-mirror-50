@@ -1,0 +1,68 @@
+Metadata-Version: 1.1
+Name: envrun-python
+Version: 0.0.3
+Summary: Run command with specified environment-variable file
+Home-page: https://github.com/ericgj/envrun-python
+Author: Eric Gjertsen
+Author-email: ericgj72@gmail.com
+License: MIT
+Description: envrun-python
+        =============
+        
+        .. image:: https://img.shields.io/pypi/v/envrun-python.svg
+            :target: https://pypi.python.org/pypi/envrun-python
+            :alt: Latest PyPI version
+        
+        .. image:: https://travis-ci.org/ericgj/envrun-python.png
+           :target: https://travis-ci.org/ericgj/envrun-python
+           :alt: Latest Travis CI build status
+        
+        Run command with specified environment-variable file
+        
+        Install
+        -------
+        
+        ::
+        
+          pip install envrun-python
+        
+        
+        Usage
+        -----
+        
+        Run specifying environment variables in YAML format::
+        
+          envrun -f env.yaml somecmd arg1 arg2
+        
+        
+        Or JSON, or .env format::
+        
+          envrun -f .env somecmd arg1 arg2
+        
+        
+        Run within a python virtualenv::
+        
+          envrun -e .venv pytest
+        
+        
+        That's basically it.
+        
+        Note the .env format parser is taken from
+        `python-dotenv <https://github.com/theskumar/python-dotenv>`_.
+        
+        
+        Contact
+        -------
+        
+        `Eric Gjertsen <ericgj72@gmail.com>`_.
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
