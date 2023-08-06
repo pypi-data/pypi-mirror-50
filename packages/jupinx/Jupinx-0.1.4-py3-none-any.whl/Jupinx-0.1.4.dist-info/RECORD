@@ -1,0 +1,15 @@
+jupinx/__init__.py,sha256=yx3Gr4luiPmxdSGFi_X5Fe32uwnc3LFpcCl1BjWk_ms,307
+jupinx/cmd/__init__.py,sha256=iH8sgUwZ6_tBH0s2eLQmHcZGs1DpuWBsFQyAhTk3og4,80
+jupinx/cmd/build.py,sha256=qsfE79iXjht1f_kMQ31-J5zgmBTs4F5OEnOAMpBb254,10037
+jupinx/cmd/quickstart.py,sha256=MHB16KwfcYsPpClcUxNvUnhRJRemLVFG9b1c9qgCiZ8,17338
+jupinx/templates/html/lectures-nbconvert.tpl,sha256=Hmy_SWt9OD98el0q-Uiz-J59yfXnQoaMF2nqi3OwwOY,21067
+jupinx/templates/quickstart/Makefile_t,sha256=sTU2KsUCEkR77LZ7AwwTZ4pY6_kmQrCZUJ3Z2FUhjOw,2356
+jupinx/templates/quickstart/conf.py_t,sha256=suw0-LUWwj4minMSSiUSsbtTndI-uAFZ6pHlAEtyFHc,5383
+jupinx/templates/quickstart/master_doc.rst_t,sha256=x3AdWwYpxptzO49LLPtYPJ_6N3DTH4IBsqRGZ9nIQ8M,492
+jupinx/util/__init__.py,sha256=lcVYAwqpODtFZzxq1iCC5OlHJoL2XGBZ8fhZUBvRRUk,74
+jupinx/util/template.py,sha256=78crhi_TplwcXWU3O7-erbqanTAPbBImARhK3o6e8PM,3304
+Jupinx-0.1.4.dist-info/METADATA,sha256=W6WidHGSiyy5v4gXujJTry-BlFISCswZYlbtHUeSveg,1163
+Jupinx-0.1.4.dist-info/WHEEL,sha256=U88EhGIw8Sj2_phqajeu_EAi3RAo8-C6zV3REsWbWbs,92
+Jupinx-0.1.4.dist-info/entry_points.txt,sha256=AlHBpma05mx9etdSMUotob7B8PiemVRnev4oWamHCiI,97
+Jupinx-0.1.4.dist-info/top_level.txt,sha256=f4HGPAgGSIM_DFVE53d_0HsIEzGo298HbN-rkRyw3nk,7
+Jupinx-0.1.4.dist-info/RECORD,,
