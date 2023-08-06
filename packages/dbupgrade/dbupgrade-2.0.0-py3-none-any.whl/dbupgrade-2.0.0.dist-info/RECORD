@@ -1,0 +1,17 @@
+dbupgrade/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+dbupgrade/apply.py,sha256=U2zFocmPv1mRq6zgW7IkNNsOw4fzkVxBgxFh7VACVu0,696
+dbupgrade/args.py,sha256=3Xn7tbxMkUUGGPPaTOdpiIYeZjB4cNrbzYHkZmi6aB8,2206
+dbupgrade/db.py,sha256=w3gwehc9yzlxGRCP2kJUSkgxZ7paZatRMOANcUEetiE,4485
+dbupgrade/files.py,sha256=02k0JtCbbeEw5212ZyiQ_sX30-6B0OWyRknkLaNbOxI,1099
+dbupgrade/filter.py,sha256=4JRRi_H98Z-Wxp8XZTuUI74fQuJMPjcDRBUMcUOGjek,1446
+dbupgrade/main.py,sha256=-tyVMehGfyRsCvFXPbU27zLkZjAr2cBkfZ532Q_P5ww,354
+dbupgrade/sql.py,sha256=hxHYA4N87nJfQjgedIA3kEwqr0vTjDksnVnOg5bwXRU,1749
+dbupgrade/sql_file.py,sha256=ARU7v5dWxAQ5xkgsRBgxMdsKvOkCKrhVJjecOkP4e1g,2095
+dbupgrade/upgrade.py,sha256=wBwXIKdleN8mUH30kpscjxpzUADFkpz8Kx0YSrmB5H8,1218
+dbupgrade/url.py,sha256=cbzYXnn9vPEvB4bSf0XPTkpzHB4nf5Bx4Y0D_Xj5CIA,82
+dbupgrade-2.0.0.data/scripts/dbupgrade,sha256=WUT9AOxOyoDkG8gYaoFxFvsp3TzZgXSWJacrBqfPm6s,2201
+dbupgrade-2.0.0.dist-info/LICENSE,sha256=ER5yUiDk1ku64AHB9cSF6HNoi5u10CgdKJuTy0mY5Ls,1073
+dbupgrade-2.0.0.dist-info/METADATA,sha256=mqWhYM1PjNwN7ti6B1O3pf-mENq6g7UEZCuNc0N-wuA,3679
+dbupgrade-2.0.0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+dbupgrade-2.0.0.dist-info/top_level.txt,sha256=OCpuOQJD8A61Kx0k_USQeMUkKQPP67k0AJWs-v3EzKs,10
+dbupgrade-2.0.0.dist-info/RECORD,,
