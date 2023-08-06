@@ -1,0 +1,25 @@
+Metadata-Version: 1.1
+Name: PyRexMacro
+Version: 0.1
+Summary: Text Macro Preprocessor, especially good for javascript, etc.
+Home-page: https://github.com/stevebeisner/PyRex
+Author: Steve Beisner
+Author-email: beisner@alum.mit.edu
+License: UNKNOWN
+Description: PyRex Macro Preprocessor
+        ------------------------
+         Especially useful for javascript, where one doesn't want to change the line
+         numbers of input lines:  lines in the output will be at the same line # position
+         as they were in the original input file!
+        
+Keywords: templates,python server pages
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Environment :: Other Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Text Processing
