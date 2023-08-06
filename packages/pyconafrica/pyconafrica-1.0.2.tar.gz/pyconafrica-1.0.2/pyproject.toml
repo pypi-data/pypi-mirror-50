@@ -1,0 +1,11 @@
+[build-system]
+requires = ["flit"]
+build-backend = "flit.buildapi"
+
+[tool.flit.metadata]
+module = "pyconafrica"
+author = "Edison Abahurire"
+author-email = "abahedison@gmail.com"
+home-page = "https://github.com/SimiCode/pyconafrica-json-api"
+classifiers = ["License :: OSI Approved :: MIT License"]
+
