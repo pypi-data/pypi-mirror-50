@@ -1,0 +1,158 @@
+#!/usr/bin/env python
+
+import argparse
+import sys
+
+from visdetect import run_analysis
+from visdetect import run_show
+
+def string_to_float_tuple(string):
+    return tuple(float(x.strip()) for x in string.split(','))
+
+def parse_args():
+    """Parse command line arguments."""
+
+    parser = argparse.ArgumentParser(description=__doc__)
+
+    parser.add_argument('-s', '--show',
+                        action='store_true',
+                        help='show mode')
+
+    parser.add_argument('-a', '--analyze',
+                        action='store_true',
+                        help='analyze mode')
+
+    parser.add_argument('-v', '--verbose',
+                        dest='verbose',
+                        action='store_true',
+                        help='print log messages')
+
+    analysis_args = parser.add_argument_group('arguments for analysis')
+
+    analysis_args.add_argument('--predictions',
+                            dest='predictions',
+                            required='--analyze' in sys.argv,
+                            help='<path>/bbox.json')
+
+    analysis_args.add_argument('--gt',
+                            dest='gt',
+                            required='--analyze' in sys.argv,
+                            help='<path>/test.json')
+
+    analysis_args.add_argument('--data-root',
+                            dest='data_root',
+                            required='--analyze' in sys.argv,
+                            help='Root directory of dataset that contains '
+                                 'annotations.csv, ground images, other '
+                                 'json files')
+
+    analysis_args.add_argument('--output',
+                            dest='output_dir',
+                            required='--analyze' in sys.argv,
+                            help='Path to write tensorboard files to')
+
+
+
+    # Tunable parameters for analysis
+    analysis_args.add_argument('--only-global',
+                            dest='analyse_only_global_metrics',
+                            action='store_true',
+                            help='usage makes tensorboard to'
+                                 'show only global metrics '
+                                 'local analysis (image-wise) would'
+                                 'be skipped. saves time!')
+
+    analysis_args.add_argument('--iou',
+                            dest='iou_threshold',
+                            help='IoU threshold to be used'
+                                 'for evaluation')
+
+    analysis_args.add_argument('--topk',
+                            dest='number_of_objects_per_error_global',
+                            default=100,
+                            help='Selects topk confidence pairs'
+                                 'to display on tensorboard for each'
+                                 'error type')
+
+    analysis_args.add_argument('--filter-pairs-type',
+                            dest='filter_pairs_of_error_type',
+                            type=int,
+                            help='Selects pairs of given type to create'
+                                 'a new annotations.csv in kensho'
+                                 'required format Either gt or pred object is '
+                                 'chosen from these pairs based on filter_object_type '
+                                 'argument It has to be between 1 and 7 (both inclusive)')
+
+    analysis_args.add_argument('--filter-object-type',
+                               dest='filter_object_type',
+                               type=str,
+                               default='pred',
+                               help='takes binary label either "pred" or "gt"'
+                                    'For type 7, choosing "pred" would raise an exception'
+                                    'as no predictions are present in type 7 pairs')
+
+    analysis_args.add_argument('--filter-conf',
+                            dest='conf_for_type_filtering',
+                            type=float,
+                            default=0.0,
+                            help='used when filter type is given'
+                                 'Only given type predictions'
+                                 'with conf > filter-conf'
+                                 'would be used. For Type 6 as there would'
+                                 'be no predictions, gt objects would be selected')
+
+    show_args = parser.add_argument_group('arguments for displaying')
+
+    show_args.add_argument('--port',
+                            dest='port',
+                           required='--show' in sys.argv,
+                            default='6006',
+                            help='navigate your web browser to localhost:6006 to '
+                                 'view the TensorBoard')
+
+    show_args.add_argument('--input',
+                            dest='input',
+                            required='--show' in sys.argv,
+                            help='Path to tensorboard directory'
+                                 'ex: <path>/tensorboard')
+
+    show_args.add_argument('--global',
+                            dest='global_only',
+                            action='store_true',
+                            help='usage makes tensorboard to'
+                                 'show only global metrics '
+                                 'local analysis (image-wise) would'
+                                 'be skipped. saves time!')
+
+    show_args.add_argument('--local',
+                           dest='local_only',
+                           action='store_true',
+                           help='usage makes tensorboard to'
+                                'show only local or per image '
+                                'results')
+
+    show_args.add_argument('--files',
+                           dest='files',
+                           help='files.txt '
+                                'usage makes tensorboard to'
+                                'show only local or per image '
+                                'results')
+
+    show_args.set_defaults(global_only=False,
+                           local_only=False)
+
+    parser.set_defaults(verbose=False,
+                        show=False,
+                        analyze=False)
+
+    return parser.parse_args()
+
+if __name__ == '__main__':
+
+    args = parse_args()
+    if args.show:
+        run_show.main(args)
+    elif args.analyze:
+        run_analysis.main(args)
+    else:
+        raise ValueError('--show or --analyze should be provided')
