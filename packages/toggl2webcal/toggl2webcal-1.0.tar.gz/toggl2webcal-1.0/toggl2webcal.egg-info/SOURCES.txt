@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+setup.py
+toggl2webcal/__init__.py
+toggl2webcal/export_ical.py
+toggl2webcal/import_toggl.py
+toggl2webcal/main.py
+toggl2webcal/models.py
+toggl2webcal.egg-info/PKG-INFO
+toggl2webcal.egg-info/SOURCES.txt
+toggl2webcal.egg-info/dependency_links.txt
+toggl2webcal.egg-info/entry_points.txt
+toggl2webcal.egg-info/requires.txt
+toggl2webcal.egg-info/top_level.txt

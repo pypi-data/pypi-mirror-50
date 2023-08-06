@@ -1,0 +1,3 @@
+[console_scripts]
+toggl2webcal = toggl2webcal.main:main
+
