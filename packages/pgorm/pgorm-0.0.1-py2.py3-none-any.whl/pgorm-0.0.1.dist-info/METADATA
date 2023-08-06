@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: pgorm
+Version: 0.0.1
+Summary: An ambitious PostgreSQL ORM in pure python using dataclasses, type hints, asyncio
+Home-page: https://github.com/reckonsys/pgorm
+Author: dhilipsiva
+Author-email: dhilipsiva@pm.me
+Maintainer: Reckonsys
+Maintainer-email: info@reckonsys.com
+License: MIT
+Keywords: database asyncio dataclasses reckonsys postgres postgresql orm pgorm sqlalchemy django-orm peewee orator
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Framework :: AsyncIO
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: SQL
+Classifier: Topic :: Database
+Classifier: Topic :: Database :: Database Engines/Servers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Typing :: Typed
+Requires-Dist: asyncpg
+Requires-Dist: inflection
+
+Coming to nearby PostgreSQL DBs soon...
+
+
