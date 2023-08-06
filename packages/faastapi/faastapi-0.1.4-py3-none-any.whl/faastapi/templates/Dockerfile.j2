@@ -1,0 +1,26 @@
+FROM python:3.7
+
+RUN apt-get -y update \
+    && apt-get install -y --no-install-recommends curl apt-transport-https ca-certificates \
+    && curl -sSLf https://github.com/openfaas-incubator/of-watchdog/releases/download/0.5.0/of-watchdog > /usr/bin/fwatchdog \
+    && chmod +x /usr/bin/fwatchdog \
+    && rm -rf /var/lib/apt/lists/* \
+    && mkdir -p /app/
+
+
+WORKDIR /app/
+
+RUN pip install -U --no-cache-dir pip \
+    && pip install --no-cache-dir gunicorn faastapi[sql,mysql,postgres,mongo,oauth,sqlite]
+
+COPY ./ ./
+
+ENV fprocess="gunicorn main:app -w 2 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000" \
+    cgi_headers="true" \
+    mode="http" \
+    upstream_url="http://127.0.0.1:8000"
+
+HEALTHCHECK --interval=5s CMD [ -e /tmp/.lock ] || exit 1
+
+CMD ["fwatchdog"]
+

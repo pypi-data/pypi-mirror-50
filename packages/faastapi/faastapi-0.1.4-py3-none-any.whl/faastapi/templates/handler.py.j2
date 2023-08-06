@@ -1,0 +1,14 @@
+"""
+Function handler
+"""
+
+
+def handle(context, msg):
+    response = dict(
+        msg=msg,
+        mongo_client=str(context.mongodb),
+        sql_client=str(context.sql),
+        async_sql_client=str(context.async_sql)
+    )
+    return response
+
