@@ -1,0 +1,5 @@
+lark-parser==0.7.1
+
+[testing]
+pytest-cov
+pytest>=3.7.4
