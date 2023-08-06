@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: vocmax
+Version: 0.0.1
+Summary: Calculate the maximum Voc for designing PV string lengths
+Home-page: https://github.com/toddkarin/vocmax
+Author: toddkarin
+Author-email: pvtools.lbl@gmail.com
+License: UNKNOWN
+Description: # vocmax
+        Calculate the maximum sting length for a photovoltaic installation.
+        
+        # Files
+        - **example_vocmax_calculation.py** - Script for calculating maximum string length. Start here!
+        - **vocmaxlib.py** - python module for running calculation.
+        - **NSRDB_sample/** - an example set of NSRDB data files for running sample calculation. You may want to download your own for the location of interest.
+        - **vocmax05_compress_database.py** - Script for compressing NSRDB data files.
+        
+        # Install
+        
+        This package has the following dependencies:
+        - pvlib
+        - matplotlib
+        - pandas
+        - numpy
+        
+        # Todo
+        
+        
+        # Install Notes
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
