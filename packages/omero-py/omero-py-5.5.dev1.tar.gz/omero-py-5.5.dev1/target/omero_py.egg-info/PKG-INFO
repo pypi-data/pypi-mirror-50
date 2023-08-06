@@ -1,0 +1,11 @@
+Metadata-Version: 1.1
+Name: omero-py
+Version: 5.5.dev1
+Summary: Python bindings to the OMERO.blitz server
+Home-page: https://docs.openmicroscopy.org/latest/omero/developers
+Author: The Open Microscopy Team
+Author-email: ome-devel@lists.openmicroscopy.org.uk
+License: UNKNOWN
+Download-URL: https://docs.openmicroscopy.org/latest/omero/developers
+Description: Python bindings to the OMERO.blitz server.
+Platform: UNKNOWN
