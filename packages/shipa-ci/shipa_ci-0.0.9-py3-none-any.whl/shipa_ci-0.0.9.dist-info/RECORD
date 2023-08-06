@@ -1,0 +1,12 @@
+gitignore.py,sha256=Kw9VphP7GfOdr6BmRryqBmlCvX6TkYhryak2-bGmbkk,2371
+shipa-ci.py,sha256=erno5X0rBR4MaOuLTc0aUzzFnSs9nmY7l6V9Hvz5c1I,4322
+shipa.py,sha256=HP8N8zH2Y_xkuU8_793Avy91U-xvIhMvKxGuYWM3yq8,4595
+shipa_ci-0.0.9.data/scripts/shipa-ci,sha256=zHiPHDoFb6h3IRXgRW5TcvfQMH7neOPiwJYaD334uvk,77
+shipa_ci-0.0.9.data/scripts/shipa-ci.py,sha256=CylgVkM5M3mpSUr1q9km-a6C_csKa3k2Jso_6MDHSrE,4309
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_gitignore.py,sha256=7KLrMloXOmwyMEKhh569kR1OxP9TdgYr29Sy5y_q3rs,6901
+shipa_ci-0.0.9.dist-info/LICENSE,sha256=TXCLGf6b_QYtWbVusB9Ozr32aTUbvMVBQYO8rKN_7vQ,1069
+shipa_ci-0.0.9.dist-info/METADATA,sha256=D0eRZPltEd5hkfcyXA8kC4im3-Ffwvu8daNsSt3GO0o,1050
+shipa_ci-0.0.9.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+shipa_ci-0.0.9.dist-info/top_level.txt,sha256=WiczxdUnjlnJSJjJ0RRoDLVKywQU7ZtIsn-yaFvfnyY,22
+shipa_ci-0.0.9.dist-info/RECORD,,

@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: shipa-ci
+Version: 0.0.9
+Summary: A CI tool to deploy applications to Shipa instances
+Home-page: https://github.com/shipa-corp/ci-integration
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: MIT
+Keywords: shipa-ci
+Platform: MacOS
+Platform: Debian
+Platform: Fedora
+Platform: CentOS
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: requests (>=2.22.0)
+
+A CI tool to deploy applications to Shipa instances
+
+https://github.com/shipa-corp/ci-integration
+
