@@ -1,0 +1,13 @@
+CHANGELOG.md
+CONTRIBUTING.md
+MANIFEST.in
+README.md
+setup.py
+backwork_upload_softlayer.egg-info/PKG-INFO
+backwork_upload_softlayer.egg-info/SOURCES.txt
+backwork_upload_softlayer.egg-info/dependency_links.txt
+backwork_upload_softlayer.egg-info/entry_points.txt
+backwork_upload_softlayer.egg-info/requires.txt
+backwork_upload_softlayer.egg-info/top_level.txt
+softlayer/__init__.py
+softlayer/softlayer.py
