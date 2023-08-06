@@ -1,0 +1,17 @@
+dscleaner/__init__.py,sha256=pcaOePuuRtEoD0lERGAnfYqBM8PF8OIdpPoiD5OFBN4,230
+dscleaner/__main__.py,sha256=c7sknd44VPvJ9_7mXtsObRQTJCsAHlRjT_2aKCRFc54,3602
+dscleaner/cli.py,sha256=LEyB_My72WDqjJjZ9p0bqxQFggYsfIboc0XByDWGaxE,1838
+dscleaner/csvfileinfo.py,sha256=ZaVuEpqNrCZK9FQ6h4iCwCGvW4BRx2v7x5iIb7bU-2c,2356
+dscleaner/fileinfo.py,sha256=O9OIjrYh9kBVbgiYhihuyMeuRxeUJieLYCi6s51Fnvk,5296
+dscleaner/fileutil.py,sha256=GgOcl-yAxg-h6-U9HXhtCBMoUXRE8UmQ55uI0VShGlU,5394
+dscleaner/filewriter.py,sha256=U3Dw6djFEN-jeHSEz2kJescuSzxxKWpwyx_4GyFyTNo,2443
+dscleaner/ifileinfo.py,sha256=lTJ5eHmerbcIz5PGAbwu8ibgF-eY7iIFVtVIQF7mIwY,3073
+dscleaner/merger.py,sha256=jr9GgMR1qNTUhCxtcTPS7Hwuaa2VCELH_OszawW9VBI,4228
+dscleaner/splitter.py,sha256=FDXetfAJ2sJ4BcEw1CBlaczBgE81UAE7JIhZMWVaU-c,3902
+dscleaner/test.py,sha256=yfDeqXc1pOg2wAKabHLiRYNaWIYjgz1aXv0N3iGzYB8,79
+dscleaner/utils.py,sha256=FLI2_Sgu9pXk-5aXi7jb9l9MsI8d_F8tC7Id3tERqHc,2012
+dscleaner-0.1.10.dist-info/LICENSE,sha256=N2a0FmACoB-VdT8hfIND2lZ1dK_bRhalBhBQvFiNeVk,1075
+dscleaner-0.1.10.dist-info/METADATA,sha256=T7x2hbvsJ09ceUMdjcL0HWnVAJ8siQ7NfP1cQ7wvKDk,918
+dscleaner-0.1.10.dist-info/WHEEL,sha256=qB97nP5e4MrOsXW5bIU5cUn_KSVr10EV0l-GCHG9qNs,97
+dscleaner-0.1.10.dist-info/top_level.txt,sha256=ZmZgVzg0_1CLglbrPXXyCqqZJguWqr4sBrE8RTy9RZo,10
+dscleaner-0.1.10.dist-info/RECORD,,
