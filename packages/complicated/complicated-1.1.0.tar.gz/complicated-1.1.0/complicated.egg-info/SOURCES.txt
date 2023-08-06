@@ -1,0 +1,13 @@
+.gitignore
+Readme.md
+setup.py
+bin/complicated
+complicated/__init__.py
+complicated/__init__.pyc
+complicated/lib.py
+complicated/lib.pyc
+complicated.egg-info/PKG-INFO
+complicated.egg-info/SOURCES.txt
+complicated.egg-info/dependency_links.txt
+complicated.egg-info/requires.txt
+complicated.egg-info/top_level.txt
