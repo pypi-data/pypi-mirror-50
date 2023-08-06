@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: smart_preprocess
+Version: 0.0.3
+Summary: A package for denoising TEM video data.
+Home-page: https://github.com/JStuckner/smart_preprocess/
+Author: Joshua Stuckner
+Author-email: stuckner@vt.edu
+License: MIT
+Description: # smart_preprocess
+        A GUI and a set of tools to preprocess SMART_TEM movie datasets for analysis. Includes methods for denoising.  Can import images from Gatan dm3 and dm4 files as well as many regular image files.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
