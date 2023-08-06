@@ -1,0 +1,17 @@
+LICENSE
+README.rst
+setup.cfg
+setup.py
+source/tpHoudiniLib/__init__.py
+source/tpHoudiniLib/core/__init__.py
+source/tpHoudiniLib/core/dcc.py
+source/tpHoudiniLib/core/gui.py
+source/tpHoudiniLib/core/helpers.py
+source/tpHoudiniLib/core/menu.py
+source/tpHoudiniLib/core/shelf.py
+source/tphoudinilib.egg-info/PKG-INFO
+source/tphoudinilib.egg-info/SOURCES.txt
+source/tphoudinilib.egg-info/dependency_links.txt
+source/tphoudinilib.egg-info/not-zip-safe
+source/tphoudinilib.egg-info/requires.txt
+source/tphoudinilib.egg-info/top_level.txt
