@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: palettes
+Version: 1.0.1
+Summary: Random Hex Color Codes
+Home-page: https://github.com/SafyreLyons/palettes
+Author: Safyre Lyons
+Author-email: lyons.safyre@gmail.com
+License: The Unlicence
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+
+# Palettes
+Based on [Palettes](https://www.npmjs.com/package/palettes) by Owocean
+
+### usage:
+install `pip install palettes`
+
+```python
+import * from palettes
+print(palettes())
+```
+
