@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: potentialfinder
+Version: 0.7
+Summary: Finding high-potential patterns in your data
+Home-page: https://github.com/patternsearch/potentialfinder
+Author: Mathias Riechert
+Author-email: mathias.riechert@gmail.com
+License: apache-2.0
+Download-URL: https://github.com/patternsearch/potentialfinder/archive/v_07.tar.gz
+Description: UNKNOWN
+Keywords: pattern search,python,exponential patterns
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6

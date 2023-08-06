@@ -1,0 +1,1 @@
+from potentialfinder import find_exponents
