@@ -1,0 +1,15 @@
+README.md
+setup.py
+DataFrameLabeler/DataFrameLabeler.py
+DataFrameLabeler/Rowiter.py
+DataFrameLabeler/__init__.py
+DataFrameLabeler.egg-info/PKG-INFO
+DataFrameLabeler.egg-info/SOURCES.txt
+DataFrameLabeler.egg-info/dependency_links.txt
+DataFrameLabeler.egg-info/top_level.txt
+examples/__init__.py
+examples/context.py
+tests/DataFrameLabeler_test.py
+tests/__init__.py
+tests/context.py
+tests/rowiter_test.py
