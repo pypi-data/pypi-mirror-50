@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: sentry-lark
+Version: 0.0.1
+Summary: Plugin for Sentry which allows sending notification via Lark messenger.
+Home-page: https://github.com/kuainiu/sentry-lark
+Author: Allen
+Author-email: hi@summic.com
+License: MIT
+Description: Sentry Lark 
+        =========================================
+        
+        Plugin for Sentry which allows sending notification via `Lark <https://feishu.cn/>`_ messenger.
+        
+        Presented plugin tested with Sentry from 8.9 to 9.1.2.
+        
+            **DISCLAIMER**: Sentry API is under development and `is not frozen <https://docs.sentry.io/server/plugins/>`_.
+        
+        Installation
+        ------------
+        
+        1. Install this package
+        
+        .. code-block:: bash
+        
+            pip install sentry-lark
+        
+        2. Restart your Sentry instance.
+        3. Go to your Sentry web interface. Open ``Settings`` page of one of your projects.
+        4. On ``Integrations`` (or ``Legacy Integrations``) page, find ``Lark Notifications`` plugin and enable it.
+        5. Configure plugin on ``Configure plugin`` page.
+        
+           See `Documentation <https://getfeishu.cn/hc/en-us/articles/360024984973-Use-Bots-in-group-chat>`_ to know how to create ``Bot Webhook``.
+        
+        6. Done!
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Software Development :: Bug Tracking
+Classifier: Topic :: Software Development :: Quality Assurance
+Classifier: Topic :: System :: Monitoring
+Description-Content-Type: text/x-rst
