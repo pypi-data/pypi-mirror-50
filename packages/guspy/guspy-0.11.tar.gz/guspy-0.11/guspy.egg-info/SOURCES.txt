@@ -1,0 +1,11 @@
+README.md
+setup.py
+guspy/__init__.py
+guspy/access.py
+guspy/parsers.py
+guspy.egg-info/PKG-INFO
+guspy.egg-info/SOURCES.txt
+guspy.egg-info/dependency_links.txt
+guspy.egg-info/top_level.txt
+resources/cli.json
+resources/objects.json
