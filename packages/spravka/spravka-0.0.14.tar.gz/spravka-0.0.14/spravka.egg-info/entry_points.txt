@@ -1,0 +1,3 @@
+[console_scripts]
+spravka = spravka.main:main
+
