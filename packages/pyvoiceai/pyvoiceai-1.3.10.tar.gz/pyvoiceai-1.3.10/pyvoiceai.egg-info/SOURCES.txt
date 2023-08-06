@@ -1,0 +1,17 @@
+README.md
+setup.cfg
+setup.py
+pyvoiceai/__init__.py
+pyvoiceai/app_asr.py
+pyvoiceai/app_asr_base_api.py
+pyvoiceai/app_auth_api.py
+pyvoiceai/app_client_api.py
+pyvoiceai/app_group_api.py
+pyvoiceai/app_voiceprint_api.py
+pyvoiceai/baseapi.py
+pyvoiceai/log.py
+pyvoiceai.egg-info/PKG-INFO
+pyvoiceai.egg-info/SOURCES.txt
+pyvoiceai.egg-info/dependency_links.txt
+pyvoiceai.egg-info/requires.txt
+pyvoiceai.egg-info/top_level.txt
