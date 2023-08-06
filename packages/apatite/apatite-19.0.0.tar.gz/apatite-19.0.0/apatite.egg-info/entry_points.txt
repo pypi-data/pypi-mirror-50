@@ -1,0 +1,3 @@
+[console_scripts]
+apatite = apatite.__main__:main
+
