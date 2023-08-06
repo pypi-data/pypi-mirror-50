@@ -1,0 +1,255 @@
+#!/usr/bin/env python
+#This file is part of ASC.
+
+#    ASC is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+
+#    ASC is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+
+#    You should have received a copy of the GNU General Public License
+#    along with ASC.  If not, see <http://www.gnu.org/licenses/>.
+
+# This will be exec()ed by the python interpreter at runtime.
+
+# Documentation for writing this table was taken from
+# http://www.pokecommunity.com/showthread.php?t=333767
+
+# Format:
+# {
+#        [[["<command_name>": {["hex":"<hex value>"],
+#                           ["args": ("<description>",
+#                            (<arg> [[[arg], arg], ...] ))]},
+#        ...], ...]}
+#
+
+# Commands work like this:
+# Branches:
+#     [b][comparison][condition][suffix]
+#         compare:
+#             ra    random value to byte
+#             hp    health percentage to percentage
+#             s_    if status(1/2/3/4/ailment) bits in word are set
+#             vb    var to byte
+#             vw    var to word
+#             mi    move id to halfword
+#             lb    var to list of bytes
+#             lh    var to list of halfwords
+#             dm    if has any damaging moves
+#             ml    if would move last
+#             mu    damage multiplier to byte
+#             ms    move script to byte
+#             ss    stage of a stat to byte
+#             df    if damage is fatal
+#             hm    if has move 0xAA
+#             hs    if has move with movescript 0xBBBB
+#             sr    if any move in moveset is restricted by disable or encore
+#             mr    if current move is restricted by disable or encore
+#             sf    if safari anger is high enough
+#             ll    if has lowest level
+#             ta    if taunt is in effect
+#         conditions:
+#             eq    equal/true
+#             ne    unequal/false    (yes, I know equal it would actually be the other way around, but this is easier to use)
+#             lo    lower than
+#             hi    higher than
+#         suffixes:
+#             2     duplicate
+#             b     bugged
+#         special branches:
+#             b     always branch, jump
+#             bl    branch with link, call
+# Enders:
+#     [e][way of ending]
+#         possibilities:
+#             ef     end script and flee
+#             es     end script and display safari message
+#             e      simple end; can return if used after a bl/call
+# Setters:
+#     [s][parameter]
+#         possibilities:
+#             sv    set move viability to +/-x
+# Getters:
+#     [g][parameter]
+
+({
+    # Real commands
+    "bralo": {"hex": 0x00, "args": ("value, address", (1, 4)),
+              "offset": [(1, "script")]},
+    "brahi": {"hex": 0x01, "args": ("value, address", (1, 4)),
+              "offset": [(1, "script")]},
+    "braeq": {"hex": 0x02, "args": ("value, address", (1, 4)),
+              "offset": [(1, "script")]},
+    "brane": {"hex": 0x03, "args": ("value, address", (1, 4)),
+              "offset": [(1, "script")]},
+
+    # (followed by the value that should be added FF=-1 FE=-2 …)
+    "sv": {"hex": 0x04, "args": ("num", (1,))},
+
+    "bhplo": {"hex": 0x05, "args": ("side, percentage, address", (1, 1, 4)),
+              "offset": [(2, "script")]},
+    "bhphi": {"hex": 0x06, "args": ("side, percentage, address", (1, 1, 4)),
+              "offset": [(2, "script")]},
+    "bhpeq": {"hex": 0x07, "args": ("side, percentage, address", (1, 1, 4)),
+              "offset": [(2, "script")]},
+    "bhpne": {"hex": 0x08, "args": ("side, percentage, address", (1, 1, 4)),
+              "offset": [(2, "script")]},
+    "bs1eq": {"hex": 0x09, "args": ("side, bits, address", (1, 4, 4)),
+              "offset": [(2, "script")]},
+    "bs1ne": {"hex": 0x0A, "args": ("side, bits, address", (1, 4, 4)),
+              "offset": [(2, "script")]},
+    "bs2eq": {"hex": 0x0B, "args": ("side, bits, address", (1, 4, 4)),
+              "offset": [(2, "script")]},
+    "bs2ne": {"hex": 0x0C, "args": ("side, bits, address", (1, 4, 4)),
+              "offset": [(2, "script")]},
+    "bs3eq": {"hex": 0x0D, "args": ("side, bits, address", (1, 4, 4)),
+              "offset": [(2, "script")]},
+    "bs3ne": {"hex": 0x0E, "args": ("side, bits, address", (1, 4, 4)),
+              "offset": [(2, "script")]},
+    "bs4eq": {"hex": 0x0F, "args": ("side, bits, address", (1, 4, 4)),
+              "offset": [(2, "script")]},
+    "bs4ne": {"hex": 0x10, "args": ("side, bits, address", (1, 4, 4)),
+              "offset": [(2, "script")]},
+    "bvblo": {"hex": 0x11, "args": ("byte, address", (1, 4)),
+              "offset": [(1, "script")]},
+    "bvbhi": {"hex": 0x12, "args": ("byte, address", (1, 4)),
+              "offset": [(1, "script")]},
+    "bvbeq": {"hex": 0x13, "args": ("byte, address", (1, 4)),
+              "offset": [(1, "script")]},
+    "bvbne": {"hex": 0x14, "args": ("byte, address", (1, 4)),
+              "offset": [(1, "script")]},
+    "bvwlo": {"hex": 0x15, "args": ("word, address", (1, 4)),
+              "offset": [(1, "script")]},
+    "bvwhi": {"hex": 0x16, "args": ("word, address", (1, 4)),
+              "offset": [(1, "script")]},
+    "bvweq": {"hex": 0x17, "args": ("word, address", (1, 4)),
+              "offset": [(1, "script")]},
+    "bvwne": {"hex": 0x18, "args": ("word, address", (1, 4)),
+              "offset": [(1, "script")]},
+    "bmieq": {"hex": 0x19, "args": ("moveid, address", (2, 4)),
+              "offset": [(1, "script")]},
+    "bmine": {"hex": 0x1A, "args": ("moveid, address", (2, 4)),
+              "offset": [(1, "script")]},
+    "blbeq": {"hex": 0x1B, "args": ("addr_list, addr_dst", (4, 4)),
+              "offset": [(0, "raw_h"), (1, "script")]},
+    "blbne": {"hex": 0x1C, "args": ("addr_list, addr_dst", (4, 4)),
+              "offset": [(0, "raw_h"), (1, "script")]},
+    "blheq": {"hex": 0x1D, "args": ("addr_list, addr_dst", (4, 4)),
+              "offset": [(0, "raw_h"), (1, "script")]},
+    "blhne": {"hex": 0x1E, "args": ("addr_list, addr_dst", (4, 4)),
+              "offset": [(0, "raw_h"), (1, "script")]},
+    "bdmeq": {"hex": 0x1F, "args": ("address", (4,))},
+    "bdmne": {"hex": 0x20, "args": ("address", (4,))},
+
+    "getturncounter": {"hex": 0x21},
+    "gettype": {"hex": 0x22, "args": ("typeof", (1,))},
+    "getcurrentmovepower": {"hex": 0x23},
+    "getmoverate": {"hex": 0x24},
+    "getmovequeue": {"hex": 0x25, "args": ("side", (1,))},
+
+    "bvbeq2": {"hex": 0x26, "args": ("byte, address", (1, 4)),
+              "offset": [(1, "script")]},
+    "bvbne2": {"hex": 0x27, "args": ("byte, address", (1, 4)),
+              "offset": [(1, "script")]},
+    "bmleq": {"hex": 0x28, "args": ("side, address", (1, 4)),
+              "offset": [(1, "script")]},
+    "bmlne": {"hex": 0x29, "args": ("side, address", (1, 4)),
+              "offset": [(1, "script")]},
+
+    #"—": {"hex": 0x2A},
+    #"—": {"hex": 0x2B},
+
+    "getothers": {"hex": 0x2C, "args": ("side", (1,))},
+    "getmoveid": {"hex": 0x2D},
+    "getmovescript": {"hex": 0x2E},
+    "getability": {"hex": 0x2F, "args": ("side", (1,))},
+    "getmaxmultiplier": {"hex": 0x30},
+    "bmueq": {"hex": 0x31, "args": ("multiplier, address", (1, 4)),
+              "offset": [(1, "script")]},
+
+    #"—": {"hex": 0x32},
+    #"—": {"hex": 0x33},
+
+    "bsaeq": {"hex": 0x34, "args": ("side, ailment, address", (1, 4, 4)),
+              "offset": [(2, "script")]},
+    "bsaneb": {"hex": 0x35, "args": ("side, ailment, address", (1, 4, 4)),
+              "offset": [(2, "script")]},
+
+    "getweather": {"hex": 0x36},
+
+    "bmseq": {"hex": 0x37, "args": ("movescriptid, address", (1, 4)),
+              "offset": [(1, "script")]},
+    "bmsne": {"hex": 0x38, "args": ("movescriptid, address", (1, 4)),
+              "offset": [(1, "script")]},
+    "bsslo": {"hex": 0x39, "args": ("side, stat, stage, address", (1, 1, 1, 4)),
+              "offset": [(3, "script")]},
+    "bsshi": {"hex": 0x3A, "args": ("side, stat, stage, address", (1, 1, 1, 4)),
+              "offset": [(3, "script")]},
+    "bsseq": {"hex": 0x3B, "args": ("side, stat, stage, address", (1, 1, 1, 4)),
+              "offset": [(3, "script")]},
+    "bssne": {"hex": 0x3C, "args": ("side, stat, stage, address", (1, 1, 1, 4)),
+              "offset": [(3, "script")]},
+    "bdfeq": {"hex": 0x3D, "args": ("address", (4,)),
+              "offset": [(0, "script")]},
+    "bdfne": {"hex": 0x3E, "args": ("address", (4,)),
+              "offset": [(0, "script")]},
+    "bhmeqb": {"hex": 0x3F, "args": ("side, moveid, address", (1, 1, 4)),
+              "offset": [(2, "script")]},
+    "bhmneb": {"hex": 0x40, "args": ("side, moveid, address", (1, 1, 4)),
+              "offset": [(2, "script")]},
+    "bhseq": {"hex": 0x41, "args": ("side, movescript, address", (1, 1, 4)),
+              "offset": [(2, "script")]},
+    "bhsne": {"hex": 0x42, "args": ("side, movescript, address", (1, 1, 4)),
+              "offset": [(2, "script")]},
+    "bsreq": {"hex": 0x43, "args": ("side, disableorencore, address", (1, 1, 4))},
+    "bmreq": {"hex": 0x44, "args": ("disableorencore, address", (1, 4)),
+              "offset": [(1, "script")]},
+
+    "ef": {"hex": 0x45},
+    "bsfeq": {"hex": 0x46, "args": ("address", (4,))},
+    "es": {"hex": 0x47},
+
+    "getholdeffect": {"hex": 0x48, "args": ("side", (1,))},
+    "getgender": {"hex": 0x49, "args": ("side", (1,))},
+    "getturnsinfield": {"hex": 0x4A, "args": ("side", (1,))},
+    "getstockpile": {"hex": 0x4B, "args": ("side", (1,))},
+    "getdoublebattle": {"hex": 0x4C},
+    "getitem": {"hex": 0x4D, "args": ("side", (1,))},
+    "getvarmovetype": {"hex": 0x4E},
+    "getvarmovepower": {"hex": 0x4F},
+    "getvarmovescript": {"hex": 0x50},
+    "getprotection": {"hex": 0x51, "args": ("side", (1,))},
+    #"—": {"hex": 0x52},
+    #"—": {"hex": 0x53},
+    #"—": {"hex": 0x54},
+    #"—": {"hex": 0x55},
+    #"—": {"hex": 0x56},
+    #"—": {"hex": 0x57},
+    "bl": {"hex": 0x58, "args": ("address", (4,)),
+              "offset": [(0, "script")]},
+    "b": {"hex": 0x59, "args": ("address", (4,)),
+              "offset": [(0, "script")]},
+    "e": {"hex": 0x5A},
+    "blleq": {"hex": 0x5B, "args": ("side, address", (1, 4)),
+              "offset": [(1, "script")]},
+    "btaeq": {"hex": 0x5C, "args": ("address", (4,)),
+              "offset": [(0, "script")]},
+    "btane": {"hex": 0x5D, "args": ("address", (4,)),
+              "offset": [(0, "script")]},
+
+    },
+
+# Alias:normal_name
+ {},
+ # ends:
+ [
+     "ef",
+     "ew",
+     "b",
+     "e",
+ ]
+)

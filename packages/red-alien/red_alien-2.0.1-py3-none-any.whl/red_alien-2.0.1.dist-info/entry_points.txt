@@ -1,0 +1,4 @@
+[console_scripts]
+asc-cli=asc.asc:main
+asc-qt=asc.asc_qt:main
+
