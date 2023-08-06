@@ -1,0 +1,6 @@
+[console_scripts]
+karabo-bridge-serve-files = karabo_data.export:main
+karabo-data-make-virtual-cxi = karabo_data.cli.make_virtual_cxi:main
+karabo-data-validate = karabo_data.validation:main
+lsxfel = karabo_data.lsxfel:main
+
