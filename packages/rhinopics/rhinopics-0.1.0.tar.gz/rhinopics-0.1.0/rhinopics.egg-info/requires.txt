@@ -1,0 +1,5 @@
+Click==7.0
+click-pathlib==2019.6.13.1
+exifread
+tqdm==4.32.1
+typing==3.6.6
