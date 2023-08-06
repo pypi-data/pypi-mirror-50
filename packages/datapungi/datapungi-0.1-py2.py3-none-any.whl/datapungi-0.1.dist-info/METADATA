@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: datapungi
+Version: 0.1
+Summary: Connects to API drivers
+Home-page: UNKNOWN
+License: UNKNOWN
+Author: James Otterson
+Author-email: jjotterson@gmail.com
+Description-Content-Type: text/markdown
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python
+Requires-Dist: requests
+Requires-Dist: pandas
+Requires-Dist: pytest
+Requires-Dist: pytest-html
+Requires-Dist: pyperclip
+Requires-Dist: lxml
+Requires-Dist: xlrd
+Requires-Dist: beautifulsoup4
+Requires-Dist: html5lib
+
+[![image](https://img.shields.io/pypi/v/datapungi.svg)](https://pypi.org/project/datapungi/) 
+[![Build Status](https://travis-ci.com/jjotterson/datapungi.svg?branch=master)](https://travis-ci.com/jjotterson/datapungi)
+<!--[![image](https://img.shields.io/pypi/pyversions/datapungi.svg)](https://pypi.org/project/datapungi/)-->
+
+install code: pip install datapungi
+
+<h1> datapungi  </h1>
