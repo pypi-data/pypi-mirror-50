@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: tnp
+Version: 0.1.0
+Summary: Practical pipelining on GCP.
+Home-page: https://github.com/timlyrics/tnp
+Author: Shaoqing Tan
+Author-email: tansq7@gmail.com
+License: MIT
+Description: # tnp
+        the north pipe.
+        
+        # summary
+        Practical pipelining on GCP.
+        
+        # install
+            pip install tnp
+        
+        # develop
+        to release make a tag like v0.1.0 that matches package version.
+        
+            python3 setup.py sdist
+            python3 -m twine upload dist/*
+        
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
