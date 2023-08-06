@@ -1,0 +1,12 @@
+README.md
+setup.py
+python_eloqua_wrapper/__init__.py
+python_eloqua_wrapper/cdo_info.py
+python_eloqua_wrapper/cdo_record.py
+python_eloqua_wrapper/contact_record.py
+python_eloqua_wrapper/eloqua_session.py
+python_eloqua_wrapper.egg-info/PKG-INFO
+python_eloqua_wrapper.egg-info/SOURCES.txt
+python_eloqua_wrapper.egg-info/dependency_links.txt
+python_eloqua_wrapper.egg-info/requires.txt
+python_eloqua_wrapper.egg-info/top_level.txt
