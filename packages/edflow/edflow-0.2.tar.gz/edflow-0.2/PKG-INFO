@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: edflow
+Version: 0.2
+Summary: Logistics for Deep Learning
+Home-page: https://github.com/pesser/edflow
+Author: Mimo Tilbich et al.
+Author-email: patrick.esser@iwr.uni-heidelberg.de, johannes.haux@iwr.uni-heidelberg.de
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Provides-Extra: docs
