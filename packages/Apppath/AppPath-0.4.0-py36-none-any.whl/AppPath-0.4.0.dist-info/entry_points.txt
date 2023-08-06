@@ -1,0 +1,3 @@
+[console_scripts]
+apppath-open = apppath.entry_points.open_apppath:open_arg
+
