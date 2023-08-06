@@ -1,0 +1,22 @@
+Metadata-Version: 2.0
+Name: simple-gcp-utils
+Version: 1.1.0
+Summary: Google Cloud Utilities for Python 3
+Home-page: https://github.com/armandoalmeida/gcloud-utils
+Author: Jose Armando de Almeida Neto
+Author-email: jose@armandoalmeida.com.br
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Requires-Dist: google-cloud-firestore
+Requires-Dist: google-cloud-datastore
+Requires-Dist: google-cloud-tasks
+Requires-Dist: google-cloud-storage
+Requires-Dist: google-cloud-bigquery
+
+# gcloud-utils
+
+
