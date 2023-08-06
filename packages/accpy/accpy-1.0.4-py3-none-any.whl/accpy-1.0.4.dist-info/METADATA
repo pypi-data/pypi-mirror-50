@@ -1,0 +1,73 @@
+Metadata-Version: 2.1
+Name: accpy
+Version: 1.0.4
+Summary: 愛嗑派，會計派，會計人一起來吃派吧！
+Home-page: http://www.ais.nptu.edu.tw/PythonCode/PythonCode.html
+Author: 台灣.屏東大學.周國華老師
+Author-email: ckhmike@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+##本程式提供多種以函式設計的會計應用功能，由台灣.屏東大學.周國華老師設計
+
+###BondEntry(a,b,c,d,e)
+
+BondEntry函式在產生公司債發行及付息還本的攤銷分錄，參數a是公司債票面總金額，參數b是公司債票面年利率(例如，3.5%，要輸入3.5)，參數c是公司債市場有效利率(例如，3.75%，要輸入3.75)，參數d是公司債每年付息次數，參數e是公司債存續年數。
+
+###BondPrice(a,b,c,d,e)
+
+BondPrice函式在計算公司債發行總價格，參數a是公司債票面總金額，參數b是公司債票面年利率(例如，3.5%，要輸入3.5)，參數c是公司債市場有效利率(例如，3.75%，要輸入3.75)，參數d是公司債每年付息次數，參數e是公司債存續年數。
+
+###BreakEven(a,b)
+
+BreakEven函式在計算多種產品組合下的損益兩平銷售金額，參數a是個案公司固定成本總額，參數b是個案公司銷售的產品共有幾種。
+
+
+###Confucious()
+
+Confucious函式提供一則關於至聖先師孔子與會計的小故事。
+
+###DDB(a,b,c,m)
+
+DDB函式(DDB是double declining balance的簡稱)在產生倍數餘額遞減法下各期的折舊分錄，參數a是設備資產的購置成本，參數b是設備資產的估計耐用年限，參數c是設備資產的估計殘值，參數m是直線法折舊率的倍數，通常是2或1.5倍。
+
+
+###FPDB(a,b,c)
+
+FPDB函式(FPDB是fixed percentage of declining balance的簡稱)在產生定率遞減法下各期的折舊分錄，參數a是設備資產的購置成本，參數b是設備資產的估計耐用年限，參數c是設備資產的估計殘值。
+
+###isave(a,b,c)
+
+isave函式(isave是InstallmentSavings的簡稱)在計算以每月存款方式進行零存整付的到期本利合，參數a是每月存款金額，參數b是存款次數(例如一年期就是12次)，參數c是存款的年利率(例如，3.5%，要輸入3.5)。
+
+###LoanPayment(a,b,c)
+
+LoanPayment函式在計算銀行貸款每月應償付之本息金額，參數a是貸款總金額，參數b是貸款總年數，參數c是貸款年利率(例如，3.5%，要輸入3.5)。
+
+
+###SLN(a,b,c)
+
+SLN函式(SLN是straight line method的簡稱)在產生直線法下各期的折舊分錄，參數a是設備資產的購置成本，參數b是設備資產的估計耐用年限，參數c是設備資產的估計殘值。
+
+###SYD(a,b,c)
+
+SYD函式(SYD是sum of years' digits的簡稱)在產生年數合計法下各期的折舊分錄，參數a是設備資產的購置成本，參數b是設備資產的估計耐用年限，參數c是設備資產的估計殘值。
+
+###YuTheGreat()
+
+YuTheGreat函式提供一則治水很厲害的大禹和會計的小故事。
+
+
+
+
+
+
+
+
+
+
+
