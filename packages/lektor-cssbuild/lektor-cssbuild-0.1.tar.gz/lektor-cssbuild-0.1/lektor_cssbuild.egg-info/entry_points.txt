@@ -1,0 +1,3 @@
+[lektor.plugins]
+cssbuild = lektor_cssbuild:CSSBuildPlugin
+
