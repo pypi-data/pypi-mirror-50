@@ -1,0 +1,3 @@
+[console_scripts]
+cox-tensorboard = cox.tensorboard_view:main
+
