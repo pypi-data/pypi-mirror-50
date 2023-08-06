@@ -1,0 +1,52 @@
+QMainWindow{
+    background-color: gray;
+	height: 1000px;
+	width: 1000px;
+}
+
+QLabel{
+	max-width: 300px;
+}
+
+QLineEdit{
+    max-width: 300px;
+    min-width: 300px;
+    border: 1px solid #CCC;
+    height: 30px;
+    padding-left: 10px;
+}
+
+QPushButton{
+    background: #3498db;
+    color: #ffffff;
+    padding: 10px 20px 10px 20px;
+    border-radius: 6px;
+    max-width: 200px;
+}
+
+QPushButton:hover {
+    background: #3cb0fd;
+}
+
+QPlainTextEdit {
+	max-width: 650px;
+	min-width: 650px;
+	max-height: 350px;
+	min-height: 350px;
+	border: 1px solid #CCC;
+    background: black;
+}
+
+/*Use the # and the name of the variable to access to a specific the Control*/
+#_safePubKeyPath QLabel {
+    max-width: 150px;
+    min-width: 0px
+}
+
+#_push QPushButton{
+    background: #3498db;
+    color: #ffffff;
+    padding: 10px 20px 10px 20px;
+    border-radius: 6px;
+    max-width: 400px;
+}
