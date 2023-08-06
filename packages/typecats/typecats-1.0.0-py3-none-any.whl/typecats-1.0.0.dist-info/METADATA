@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: typecats
+Version: 1.0.0
+Summary: Structure unstructured data for the purpose of static type checking
+Home-page: UNKNOWN
+Author: Peter Gaultney
+Author-email: pgaultney@xoi.io
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.6
+Requires-Dist: attrs (==19.1)
+Requires-Dist: cattrs (==1.0.0rc0)
+
+UNKNOWN
+
+
