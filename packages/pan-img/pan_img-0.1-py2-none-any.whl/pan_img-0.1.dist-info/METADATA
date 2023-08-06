@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: pan-img
+Version: 0.1
+Summary: An image download library
+Home-page: https://github.com/ipandzic/pan-img
+Author: Ivan Pandzic
+Author-email: ivan.pandzic@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# PAN-IMG
+
+A Python package for downloading images.
+
+
