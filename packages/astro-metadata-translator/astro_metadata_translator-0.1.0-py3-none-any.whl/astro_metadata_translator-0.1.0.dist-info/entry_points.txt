@@ -1,0 +1,3 @@
+[console_scripts]
+translate_header.py = astro_metadata_translator.bin.translateheader:main
+
