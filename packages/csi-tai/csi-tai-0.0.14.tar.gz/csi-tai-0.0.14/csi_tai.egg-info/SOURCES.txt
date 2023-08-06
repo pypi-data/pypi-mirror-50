@@ -1,0 +1,12 @@
+README.md
+setup.py
+csi/__init__.py
+csi/api_errors.py
+csi/csi_connector.py
+csi/csv_writer.py
+csi_tai.egg-info/PKG-INFO
+csi_tai.egg-info/SOURCES.txt
+csi_tai.egg-info/dependency_links.txt
+csi_tai.egg-info/top_level.txt
+test/__init__.py
+test/test_operations.py
