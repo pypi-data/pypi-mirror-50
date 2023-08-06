@@ -1,0 +1,7 @@
+setuptools
+biopython>=1.73
+unidecode
+lxml
+requests
+six
+future
