@@ -1,0 +1,85 @@
+Metadata-Version: 2.1
+Name: cellgrid
+Version: 0.5.0
+Summary: Cell classification by learning known phenotypes
+Home-page: https://github.com/Brodinlab/cellgrid
+Author: YC
+Author-email: yang.chen@scilifelab.se
+License: MIT license
+Keywords: cellgrid
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: fcsy (>=0.3.0)
+Requires-Dist: numpy (>=1.16.0)
+Requires-Dist: pandas (==0.24.2)
+Requires-Dist: scikit-learn
+Requires-Dist: xgboost (>=0.9.0)
+
+========
+CellGrid
+========
+
+
+.. image:: https://img.shields.io/pypi/v/cellgrid.svg
+        :target: https://pypi.python.org/pypi/cellgrid
+
+
+.. image:: https://travis-ci.org/Brodinlab/cellgrid.svg?branch=master
+        :target: https://travis-ci.org/Brodinlab/cellgrid
+
+.. image:: https://readthedocs.org/projects/cellgrid/badge/?version=latest
+        :target: https://cellgrid.readthedocs.io/en/latest/?badge=latest
+        :alt: Documentation Status
+
+
+
+
+Cell classification by learning known phenotypes
+
+
+* Free software: MIT license
+* Documentation: https://cellgrid.readthedocs.io.
+
+
+Usage
+--------
+
+Schema
+******
+
+A list of objects that defines name, parent, markers and the model class.
+
+y_train
+*******
+A (pandas) data frame that contains the layered labels.
+
+
+Credits
+-------
+
+This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+
+
+=======
+History
+=======
+
+0.0.2 (2019-07-18)
+------------------
+
+* First release on PyPI.
+
+
