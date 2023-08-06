@@ -1,0 +1,69 @@
+image: dtuwindenergy/wetb
+
+test-3.4:
+  stage:  
+    test
+#  except:
+#    - test_pypi
+  script:
+  - apt-get update
+  - pip3 install pytest
+  - pip3 install mock
+  - python3 -m pytest --cov=wetb
+  tags:
+  - python
+  
+# ===== build documentation =====
+pages:  # "pages" is a job specifically for GitLab pages [1]
+  stage:  # build, test, deploy defined by default [2]
+    deploy
+  script:  # use sphinx to build docs, move to public page
+  - apt-get update
+  - pip install sphinx --upgrade
+  - pip install nbsphinx==0.3.5
+  - pip install git+https://github.com/vidartf/nbsphinx-link.git
+  - cd docs; make html
+  - cd ../; mv docs/build/html public/
+  artifacts:  # required for GitLab pages [1]
+    paths:
+    - public
+  only:  # only run for these branches
+  - master
+  - /^test_doc.*/ 
+  tags:  # only runners with this tag can do the job [3]
+  - python
+
+
+  # ===== BUILD WHEELS AND UPLOAD TO PYPI =====
+pypi_linux:
+  stage:  
+    deploy
+  only:
+    - tags
+    - test_pypi
+  script:
+    - apt-get update
+    - pip install -e . --upgrade
+    - python3 -m pip install -U setuptools wheel
+    - python3 setup.py sdist bdist_wheel
+    - python3 -m pip install -U twine
+    - python3 -c 'from git_utils import rename_dist_file; rename_dist_file()'
+    - twine upload dist/* -u $TWINE_USERNAME -p $TWINE_PASSWORD
+    #- twine upload --repository-url https://test.pypi.org/legacy/ dist/* -u $TWINE_USERNAME -p $TWINE_PASSWORD # for testing purposes
+  tags:  
+    - python
+
+
+pypi_windows:
+  stage:  
+    deploy
+  only:
+    - tags
+    - test_pypi
+  script:
+    - c:/Anaconda3/envs/WindEnergyToolbox/python.exe setup.py bdist_wheel
+    - twine upload dist/* -u %TWINE_USERNAME% -p %TWINE_PASSWORD%
+    #- twine upload --repository-url https://test.pypi.org/legacy/ dist/* -u %TWINE_USERNAME% -p %TWINE_PASSWORD% # for testing purposes
+  tags:  
+    - CPAV_old
+
