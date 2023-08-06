@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: biothings
+Version: 0.4.0
+Summary: a toolkit for building high-performance data APIs in biology
+Home-page: https://github.com/biothings/biothings.api
+Author: Cyrus Afrasiabi, Sebastien Lelong, Xinghua Zhou, Chunlei Wu
+Author-email: cwu@scripps.edu
+License: Apache License, Version 2.0
+Description: [![biothings package](https://badge.fury.io/py/biothings.svg)](https://pypi.python.org/pypi/biothings)
+        [![biothings_version](https://img.shields.io/pypi/pyversions/biothings.svg)](https://pypi.python.org/pypi/biothings)
+        [![biothings_version](https://img.shields.io/pypi/format/biothings.svg)](https://pypi.python.org/pypi/biothings)
+        [![biothings_version](https://img.shields.io/pypi/status/biothings.svg)](https://pypi.python.org/pypi/biothings)
+        
+        
+        # BioThings SDK
+        
+        BioThings SDK provides a Python-based toolkit to build high-performance data APIs (or web services) from a single data source or multiple data sources. It has the particular focus on building data APIs for biomedical-related entities, a.k.a "BioThings" (such as genes, genetic variants, drugs, chemicals, diseases, etc.).
+        
+        Documentation about BioThings SDK can be found http://docs.biothings.io
+        
+Keywords: biology annotation web service client api
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Utilities
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Description-Content-Type: text/markdown
+Provides-Extra: hub
+Provides-Extra: web_extra
+Provides-Extra: dev
