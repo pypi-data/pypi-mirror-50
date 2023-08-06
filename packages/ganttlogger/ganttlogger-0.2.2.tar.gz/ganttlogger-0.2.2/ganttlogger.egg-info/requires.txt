@@ -1,0 +1,8 @@
+matplotlib
+numpy
+psutil
+pynput
+
+[:platform_system == "Windows"]
+pypiwin32
+colorama
