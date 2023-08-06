@@ -1,0 +1,15 @@
+dppy/__init__.py,sha256=cobUNZ_ABiWbH31EJ7xgqNojWYanpB_a-UzPxKrJ6fM,147
+dppy/beta_ensembles.py,sha256=wB8bQDlBL6KRY4GaODDREAt0T6uAHlTusj0NeH-Dpac,51321
+dppy/exact_sampling.py,sha256=yxrTUR4xqSrpXX8aQ906O8JnMSBqOKb3-h3Mg5iqU8o,27286
+dppy/exotic_dpps.py,sha256=kLqoMP6VBczBce_MABDEAan0XfBJ_3UAsU_pn5lacvI,22576
+dppy/exotic_dpps_core.py,sha256=zWjDm1-hEo9xbbH_Vswx70nZCPiptkXHrfXod9WORkg,9732
+dppy/finite_dpps.py,sha256=IOZoDANP7OUzDWoB80rrwUxiOSlAqTcI-iFDFpxrtSE,30237
+dppy/mcmc_sampling.py,sha256=pwyWq_9i2AE9wWMI2na3GR3yM8oOZMEdFgnhzwjsjeE,18288
+dppy/multivariate_jacobi_ope.py,sha256=oWbzsnhC3Z7mckxrOYm8o_o5WT3cOeCwIUhGdaEkN2U,36512
+dppy/random_matrices.py,sha256=BS7Do6It1UiNQWF3AzC4Q7zhIyjuKVPFtABHia0nwgI,13083
+dppy/utils.py,sha256=kvJhbvwvw3NaqUnWU804kRGULfCJqjDORgdOBGBhSfI,5816
+dppy-0.2.0.dev2.dist-info/LICENSE,sha256=rlJ9DOeoyZvzX_LWqL4KbrNscUT4BF7RZKLhj3C0yco,1069
+dppy-0.2.0.dev2.dist-info/METADATA,sha256=OlXVLignPPXTwq06XmvGCukzQFNm2Qh2m0urg6bjqrE,7108
+dppy-0.2.0.dev2.dist-info/WHEEL,sha256=_NOXIqFgOaYmlm9RJLPQZ13BJuEIrp5jx5ptRD5uh3Y,92
+dppy-0.2.0.dev2.dist-info/top_level.txt,sha256=NkQ0kZ-TxQGYY3xrYXeSFNwgQZ7OM4j_IpJAWDm4_7s,5
+dppy-0.2.0.dev2.dist-info/RECORD,,
