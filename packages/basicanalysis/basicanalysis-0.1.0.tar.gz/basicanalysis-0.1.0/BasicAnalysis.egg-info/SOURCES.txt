@@ -1,0 +1,14 @@
+README.rst
+setup.py
+BasicAnalysis/BasicAnalysis.py
+BasicAnalysis/__init__.py
+BasicAnalysis.egg-info/PKG-INFO
+BasicAnalysis.egg-info/SOURCES.txt
+BasicAnalysis.egg-info/dependency_links.txt
+BasicAnalysis.egg-info/top_level.txt
+basicanalysis/__init__.py
+basicanalysis/basicanalysis.py
+basicanalysis.egg-info/PKG-INFO
+basicanalysis.egg-info/SOURCES.txt
+basicanalysis.egg-info/dependency_links.txt
+basicanalysis.egg-info/top_level.txt
