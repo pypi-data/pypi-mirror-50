@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: galaxest
+Version: 0.0.4
+Summary: Run test from anywhere to anywhere in the galaxy
+Home-page: https://github.com/pancaprima/galaxest
+Author: Fernanda Panca Prima
+Author-email: pancaprima8@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Requires-Dist: requests
+Requires-Dist: tweak
+Requires-Dist: inquirer
+Requires-Dist: enum
+
+UNKNOWN
+
+
