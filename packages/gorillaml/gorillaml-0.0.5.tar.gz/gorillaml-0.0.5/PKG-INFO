@@ -1,0 +1,14 @@
+Metadata-Version: 1.2
+Name: gorillaml
+Version: 0.0.5
+Summary: This is the application which allow individual, organization, developer, publisher to manage, publish, monitor webservices, machine learning api, custom forms and many more active development very easily.
+Home-page: https://www.gorillaml.com
+Author: Washim Ahmed
+Author-email: washim.ahmed@gmail.com
+License: MIT license
+Description: This is the application which allow individual, organization, developer, publisher to manage, publish, monitor webservices, machine learning api, custom forms and many more active development very easily.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3
