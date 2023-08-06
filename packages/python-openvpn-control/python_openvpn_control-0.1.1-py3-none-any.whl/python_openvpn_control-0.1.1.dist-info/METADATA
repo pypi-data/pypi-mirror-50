@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: python-openvpn-control
+Version: 0.1.1
+Summary: Python wrapper of openvpn using subprocess.
+Home-page: https://github.com/petercrosby/python-openvpn-control
+Author: Peter Crosby
+Author-email: p.crosby25@gmail.com
+Maintainer: p.crosby25@gmail.com
+License: GPLv3
+Keywords: python setuptools openvpn
+Platform: linux
+Platform: linux2
+Platform: darwin
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: SQL
+Classifier: Natural Language :: English
+Classifier: Topic :: Database
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Typing :: Typed
+Requires-Python: >=3.6.8
+Description-Content-Type: text/markdown
+Requires-Dist: requests (>=2.22.0)
+Requires-Dist: setuptools (>=41.0.1)
+Provides-Extra: test
+Requires-Dist: unittests ; extra == 'test'
+Requires-Dist: coverage ; extra == 'test'
+Requires-Dist: codecov ; extra == 'test'
+
+# python-openvpn-control
+> OpenVPN wrapper using `subprocess.call`
+
+`from openvpn_control import OpenVpnControl`
+
