@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: mitba
+Version: 1.1.1
+Summary: Python library for caching results from functions and methods
+Home-page: https://github.com/Infinidat/mitba
+Author: Infinidat Ltd.
+Author-email: info@infinidat.com
+License: BSD3
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Requires-Dist: flux
+Requires-Dist: Logbook (>=0.12.2)
+Provides-Extra: doc
+Requires-Dist: alabaster ; extra == 'doc'
+Requires-Dist: docutils ; extra == 'doc'
+Requires-Dist: releases ; extra == 'doc'
+Requires-Dist: Sphinx (>=1.7.1) ; extra == 'doc'
+Provides-Extra: testing
+Requires-Dist: pylint ; extra == 'testing'
+Requires-Dist: pytest-cov ; extra == 'testing'
+Requires-Dist: pytest ; (python_version < "3.0") and extra == 'testing'
+Requires-Dist: pytest (>4.0) ; (python_version >= "3.0") and extra == 'testing'
+
+Mitba
+=====
+
+|                       |                                                                                    |
+|-----------------------|------------------------------------------------------------------------------------|
+| Build Status          | ![Build Status](https://secure.travis-ci.org/Infinidat/mitba.png ) |
+| Supported Versions    | ![Supported Versions](https://img.shields.io/badge/python-2.7%2C3.5%2C3.6%2C3.7-green.svg)    |
+| Latest Version        | ![Latest Version](https://img.shields.io/pypi/v/mitba.svg)                  |
+
+
+`mitba` is a small library for implementing method or function-level caching for results.
+
+* [Documentation](https://mitba.readthedocs.io/en/latest/)
+
+
+Licence
+-------
+BSD3
+
+
+
