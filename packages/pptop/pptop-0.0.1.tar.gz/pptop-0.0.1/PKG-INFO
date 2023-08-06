@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: pptop
+Version: 0.0.1
+Summary: Python profiler/analyzer
+Home-page: https://github.com/alttch/pptop
+Author: Altertech Group
+Author-email: div@altertech.com
+License: MIT
+Description: pptop
+        *****
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Software Development :: Debuggers
+Classifier: Topic :: Software Development :: Testing
+Description-Content-Type: text/markdown
