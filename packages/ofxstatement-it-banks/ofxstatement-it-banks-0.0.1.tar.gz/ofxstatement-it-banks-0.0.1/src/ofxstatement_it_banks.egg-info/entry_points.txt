@@ -1,0 +1,4 @@
+[ofxstatement]
+webank = ofxstatement.plugins.webank:WebankPlugin
+widiba = ofxstatement.plugins.widiba:WidibaPlugin
+
