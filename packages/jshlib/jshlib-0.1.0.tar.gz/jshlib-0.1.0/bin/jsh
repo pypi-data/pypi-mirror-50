@@ -1,0 +1,166 @@
+#!/usr/bin/env python
+
+# jsh: json-rpc shell
+#
+# Copyright (C) 2019 Rett Berg <github.com/vitiral>
+#
+# The source code is Licensed under either of
+#
+# * Apache License, Version 2.0, ([LICENSE-APACHE](LICENSE-APACHE) or
+#   http://www.apache.org/licenses/LICENSE-2.0)
+# * MIT license ([LICENSE-MIT](LICENSE-MIT) or
+#   http://opensource.org/licenses/MIT)
+#
+# at your option.
+#
+# Unless you explicitly state otherwise, any contribution intentionally submitted
+# for inclusion in the work by you, as defined in the Apache-2.0 license, shall
+# be dual licensed as above, without any additional terms or conditions.
+"""
+The jsh commandline interface.
+
+Use this at the command line. See HELP for more details.
+
+Use jshlib.py for the library to create your own JSH applications.
+"""
+
+# pylint: disable=invalid-name
+
+from __future__ import unicode_literals
+import sys
+import itertools
+import json
+import jshlib
+
+HELP = """
+jsh utility
+
+USAGE
+
+  Construct JSH request: jsh m=<method> ['--param1=\"value\"'] ..."
+"""
+
+if sys.version_info[0] == 2:
+    DecodeError = ValueError
+else:
+    DecodeError = json.JSONDecodeError
+
+
+def error_obj(argv, code, message, data=None):
+    """Construct an error including argv."""
+    if data is None:
+        data = {}
+    data['argv'] = argv
+    return jshlib.Error(code=code, message=message, data=data)
+
+
+def parse_arg(arg):
+    """Parse the argument and return (type, value)"""
+    if arg.startswith("--"):
+        param_value = arg.split('=', 1)
+        if len(param_value) != 2:
+            msg = "params must be of the form --key=<json string>. Got: {}".format(
+                arg)
+            return jshlib.ERROR, msg
+
+        param, valuestr = param_value
+        param = param[2:]  # strip '--'
+        try:
+            value = json.loads(valuestr)
+        except DecodeError as e:
+            msg = "param '{}' with value=<{}> did not parse: {}".format(
+                param, valuestr, e)
+            return jshlib.ERROR, msg
+
+        return jshlib.PARAMS, (param, value)
+
+    if arg.startswith('m=') or arg.startswith('method='):
+        _, method = arg.split('=', 1)
+        if method.startswith('rpc.'):
+            return jshlib.ERROR, "method must not start with \'rpc.\': {}".format(
+                arg)
+        return jshlib.METHOD, method
+
+    return jshlib.ERROR, HELP
+
+
+# pylint: disable=too-many-branches
+def _main(argv):
+    errors = []
+
+    method = None
+    params = {}
+
+    if len(argv) <= 1:
+        sys.stderr.write(HELP)
+        return 1
+
+    if len(argv) > 1 and argv[1] == jshlib.ARGV_JSH_REQUEST:
+        err = error_obj(
+            argv=argv,
+            code=jshlib.Error.INVALID_PARAMS,
+            message="jsh does not ITSELF support --jsh-request, you silly beast"
+        )
+        jshlib.dump_stdout(err)
+        return 1
+
+    for arg in itertools.islice(argv, 1, None):
+        ty, obj = parse_arg(arg)
+        if ty is jshlib.METHOD:
+            if method is None:
+                method = obj
+            else:
+                errors.append(
+                    jshlib.log(
+                        "Found a extra method specified: {}".format(obj)))
+        elif ty is jshlib.PARAMS:
+            param, value = obj
+
+            if param in params:
+                errors.append(
+                    jshlib.log(
+                        'found at least two params with same key: {}'.format(
+                            param)))
+            else:
+                params[param] = value
+        elif ty is jshlib.ERROR:
+            errors.append(jshlib.log(obj))
+        else:
+            err = error_obj(
+                argv=argv,
+                code=jshlib.Error.INTERNAL_ERROR,
+                message="unknown type",
+                data={'type': ty},
+            )
+            jshlib.dump_stdout(err)
+            return 1
+
+    if not method:
+        errors.append(jshlib.log("no method found"))
+
+    if errors:
+        err = error_obj(argv=argv,
+                        code=jshlib.Error.INVALID_PARAMS,
+                        message="errors encountered when parsing arguments",
+                        data={"errors": errors})
+        jshlib.dump_stdout(err)
+        return 1
+
+    request = jshlib.Request(method=method, params=params)
+
+    jshlib.dump_stdout(request)
+    return 0
+
+
+def main(argv):
+    """Main cmdline interface."""
+    try:
+        return _main(argv)
+    except Exception as e:  # pylint: disable=broad-except
+        err = jshlib.Error.internal_exc(e)
+        jshlib.dump_stdout(err)
+        return 1
+
+
+if __name__ == '__main__':
+    sys.exit(main(sys.argv))
