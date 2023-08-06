@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: ceasiompy
+Version: 0.0.1
+Summary: Conceptual aircraft design
+Home-page: UNKNOWN
+Author: CFS Engineering
+Author-email: aidan.jungo@cfs.ch
+License: Apache License 2.0
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Requires-Python: >3.0.0
+Requires-Dist: numpy
+
+Conceptual aircraft design
+
+
