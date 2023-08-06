@@ -1,0 +1,3 @@
+[console_scripts]
+abimap = abimap.main:main
+
