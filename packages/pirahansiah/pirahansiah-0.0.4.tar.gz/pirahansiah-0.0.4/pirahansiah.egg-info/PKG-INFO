@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: pirahansiah
+Version: 0.0.4
+Summary: farshid pirahansiah workshop computer vision
+Home-page: https://github.com/pirahansiah/pirahansiah
+Author: Farshid PirahanSiah
+Author-email: pirahansiah@gmail.com
+License: UNKNOWN
+Description: # computer_vision_workshop
+        
+        Source Code of Computer Vision Workshop
+        OpenCV
+        Python
+        C++
+        Farshid PirahanSiah, PhD.                        August 2019 
+        
+        
+        
+        Computer Vision: OpenCV
+        Deep Learning:     TensorFlow, PyTorch, Caffe, Torch 
+        Optimization:     OpenVINO, OpenCL, CUDA
+        Language:         C++, Python
+        
+        pip install -i https://test.pypi.org/simple/ farshid 
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
