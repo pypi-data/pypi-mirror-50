@@ -1,0 +1,3 @@
+[console_scripts]
+pipinit = pip_init.pip_init:exe
+
