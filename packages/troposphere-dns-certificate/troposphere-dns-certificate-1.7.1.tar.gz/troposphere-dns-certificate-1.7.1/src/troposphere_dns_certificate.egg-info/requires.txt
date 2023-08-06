@@ -1,0 +1,5 @@
+troposphere
+awacs
+wrapt
+python_minifier>=2.1.0
+boto3
