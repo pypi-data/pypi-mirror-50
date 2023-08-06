@@ -1,0 +1,25 @@
+Metadata-Version: 1.1
+Name: scpilib
+Version: 0.4.4
+Summary: Python module to provide scpi functionality from instrument side
+Home-page: https://github.com/srgblnch/python-scpilib
+Author: Sergi Blanch-Torne
+Author-email: sblanch@cells.es
+License: GPLv3+
+Description: 
+        This module has been prepared to provide an instrument the functionality
+        to be accessed via the SCPI Protocol.
+        
+        By now it only supports network connection, by default port 5025.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python
+Classifier: Topic :: Scientific/Engineering :: Interface Engine/Protocol Translator
+Classifier: Topic :: Software Development :: Embedded Systems
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Hardware

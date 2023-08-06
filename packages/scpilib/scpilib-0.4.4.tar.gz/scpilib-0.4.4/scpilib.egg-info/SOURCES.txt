@@ -1,0 +1,13 @@
+README.md
+setup.py
+scpilib/__init__.py
+scpilib/commands.py
+scpilib/lock.py
+scpilib/logger.py
+scpilib/scpi.py
+scpilib/tcpListener.py
+scpilib/version.py
+scpilib.egg-info/PKG-INFO
+scpilib.egg-info/SOURCES.txt
+scpilib.egg-info/dependency_links.txt
+scpilib.egg-info/top_level.txt
