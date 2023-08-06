@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: airflow-env-patch
+Version: 0.1
+Summary: airflow_env_patch
+Home-page: UNKNOWN
+Author: Mithril
+Author-email: UNKNOWN
+License: UNKNOWN
+Keywords: airflow
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Environment :: Web Environment
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+
+
+
+Patch airflow `env_vars`
+
+set env variables to
+- os.environ
+- spark.yarn.appMasterEnv
+- spark.executorEnv
+
