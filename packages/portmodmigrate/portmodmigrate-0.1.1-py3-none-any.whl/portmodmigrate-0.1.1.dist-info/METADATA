@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: portmodmigrate
+Version: 0.1.1
+Summary: A tool to help migrate from manually installed OpenMW mods to Portmod
+Home-page: https://gitlab.com/portmod/portmodmigrate
+Author: Portmod Authors
+Author-email: UNKNOWN
+License: GPLv3
+Platform: UNKNOWN
+Requires-Dist: portmod
+Requires-Dist: fuzzywuzzy
+
+UNKNOWN
+
+
