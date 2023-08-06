@@ -1,0 +1,52 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective_folderprotection">
+
+  <five:registerPackage package="." initialize=".initialize" />
+
+  <includeDependencies package="." />
+
+  <include package=".behaviors" />
+  <include package=".browser" />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="collective_folderprotection"
+      directory="profiles/default"
+      description="Installs the collective_folderprotection package"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+      
+  <genericsetup:registerProfile
+      name="test_fixture"
+      title="collective_folderprotection"
+      directory="profiles/test_fixture"
+      description="Test fixture for the collective_folderprotection package (Do not install)"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+  <!-- -*- extra stuff goes here -*- -->
+    
+    <subscriber handler=".events.insertCheckPasswordHook"
+        for="Products.CMFCore.interfaces.ISiteRoot
+             zope.traversing.interfaces.IBeforeTraverseEvent"
+        />
+
+    <subscriber handler=".events.preventRemove"
+        for="*
+             OFS.interfaces.IObjectWillBeRemovedEvent"
+        />
+
+    <subscriber handler=".events.preventRename"
+        for="*
+             OFS.interfaces.IObjectWillBeMovedEvent"
+        />
+
+  <browser:resourceDirectory
+      name="resources"
+      directory="static" />
+
+</configure>

@@ -1,0 +1,47 @@
+Changelog
+=========
+
+2.0.1 (2019-08-06)
+++++++++++++++++++
+
+- Fix rst format for pkg description
+  [frapell]
+
+
+2.0 (2019-08-06)
+++++++++++++++++
+
+- As of this version, this product only supports Plone 5.0+
+
+- Remove support for Archetypes
+  [enfold-josh]
+
+- Support Python 3 and Plone 5.2
+  [enfold-josh,frapell]
+
+- Catch exception raised when inserting post_traverse hook during a
+  non-publishing traversal.
+  [enfold-josh]
+
+- Fix tests.
+  [enfold-josh]
+
+- Change functional test files extensions to .robot
+  [enfold-josh]
+
+
+1.0-dev (unreleased)
+++++++++++++++++++++
+
+- Add support for Archetypes [frapell]
+
+- Make Dexterity an optional dependency [frapell]
+
+- Include behavior to prevent removing items from a folderish [frapell]
+
+- Include behavior to prevent renaming items in a folderish (only through UI). [frapell]
+
+- Include behavior to allow setting a password for viewing a folder [frapell]
+
+- Package created using templer
+  [frapell]
