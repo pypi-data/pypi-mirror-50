@@ -1,0 +1,3 @@
+[console_scripts]
+yamldirs = yamldirs.yamldirs_cmd:main
+
