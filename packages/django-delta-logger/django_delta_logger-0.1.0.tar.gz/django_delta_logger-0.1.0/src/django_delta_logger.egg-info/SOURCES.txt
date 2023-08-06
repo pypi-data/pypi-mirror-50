@@ -1,0 +1,16 @@
+README.md
+setup.py
+src/django_delta_logger/__init__.py
+src/django_delta_logger/apps.py
+src/django_delta_logger/delta_logger.py
+src/django_delta_logger/fields.py
+src/django_delta_logger/models.py
+src/django_delta_logger/serializers.py
+src/django_delta_logger/settings.py
+src/django_delta_logger.egg-info/PKG-INFO
+src/django_delta_logger.egg-info/SOURCES.txt
+src/django_delta_logger.egg-info/dependency_links.txt
+src/django_delta_logger.egg-info/requires.txt
+src/django_delta_logger.egg-info/top_level.txt
+src/django_delta_logger/migrations/0001_initial.py
+src/django_delta_logger/migrations/__init__.py
