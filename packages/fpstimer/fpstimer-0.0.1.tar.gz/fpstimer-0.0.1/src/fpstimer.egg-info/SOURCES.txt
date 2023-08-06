@@ -1,0 +1,8 @@
+MANIFEST.in
+README.md
+setup.py
+src/fpstimer/__init__.py
+src/fpstimer.egg-info/PKG-INFO
+src/fpstimer.egg-info/SOURCES.txt
+src/fpstimer.egg-info/dependency_links.txt
+src/fpstimer.egg-info/top_level.txt
