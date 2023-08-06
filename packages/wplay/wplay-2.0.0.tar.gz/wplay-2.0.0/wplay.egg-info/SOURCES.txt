@@ -1,0 +1,15 @@
+README.md
+setup.py
+wplay/__init__.py
+wplay/locationfinder.py
+wplay/messageblast.py
+wplay/onlinetracker.py
+wplay/savechat.py
+wplay/wchat.py
+wplay/wplay.py
+wplay.egg-info/PKG-INFO
+wplay.egg-info/SOURCES.txt
+wplay.egg-info/dependency_links.txt
+wplay.egg-info/entry_points.txt
+wplay.egg-info/requires.txt
+wplay.egg-info/top_level.txt
