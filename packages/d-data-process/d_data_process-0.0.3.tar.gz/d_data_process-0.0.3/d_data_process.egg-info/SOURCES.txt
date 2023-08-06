@@ -1,0 +1,9 @@
+setup.py
+d_data_process.egg-info/PKG-INFO
+d_data_process.egg-info/SOURCES.txt
+d_data_process.egg-info/dependency_links.txt
+d_data_process.egg-info/top_level.txt
+get_data/__init__.py
+get_data/source_databank.py
+get_data/source_email.py
+get_data/source_file.py
