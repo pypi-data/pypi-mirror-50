@@ -1,0 +1,17 @@
+cryptlex/__init__.py,sha256=ek4Vof4hHnB87A8wgV6rG5aNm-EqS-o8uUqQgoNUpAk,38
+cryptlex/lexfloatclient/__init__.py,sha256=Bi4Po23g4SMouEXiKn3v7fnQ0eVyakJpJA_iejvdLeY,112
+cryptlex/lexfloatclient/lexfloatclient.py,sha256=QtGiRDfzZuGsAQbWQnr34umLH0ib4ijloovTDTVP28w,9762
+cryptlex/lexfloatclient/lexfloatclient_exception.py,sha256=uO8Ph8L8XKhKpu4CwkLSURJJABVgDHDx-2sjRR5vuzE,3574
+cryptlex/lexfloatclient/lexfloatclient_native.py,sha256=sSsxbzQ2CSwW_UgoU2KDXDboZAZhUOk8k0oapCnQYSY,4837
+cryptlex/lexfloatclient/lexfloatstatus_codes.py,sha256=3a-PQSHs22eiTHZeVLYDjokqdudMat18aa_72uJFnQ8,877
+cryptlex/lexfloatclient/libs/linux/gcc/x86/libLexFloatClient.so,sha256=lEFsXdEJDT0p7AN6LyUREkSw93W-Jx-7MA5JOzxsFbs,1455620
+cryptlex/lexfloatclient/libs/linux/gcc/x86_64/libLexFloatClient.so,sha256=gxCII_0-Jdtkw8cUppFhK2qQ16mdkRd6AEhqtrLD6zQ,1394464
+cryptlex/lexfloatclient/libs/linux/musl/x86_64/libLexFloatClient.so,sha256=xoPDZPPTRc7UMxhkrQeoctIhTeqht4o2dSKmDQh7Erg,1018224
+cryptlex/lexfloatclient/libs/macos/x86_64/libLexFloatClient.dylib,sha256=kVLhrkHss4OFKd-FDrU38WWxgCezwju0pV_AyExBgKA,1127812
+cryptlex/lexfloatclient/libs/win32/x86/LexFloatClient.dll,sha256=Kbrc-GS7XsJ4nOcyyS2Ig9dibRhr4mAEJVKqBQkto50,887296
+cryptlex/lexfloatclient/libs/win32/x86_64/LexFloatClient.dll,sha256=KHuQ8cDZbiyMFF62DqLq4wKyY8iE7qJjtGNZU1vrJYA,1069056
+cryptlex.lexfloatclient-4.2.1.dist-info/LICENSE.txt,sha256=F9Wo1kUHQ1RcS--NweiVxi3tscDdAvhL-2Lc_aUCNvM,1065
+cryptlex.lexfloatclient-4.2.1.dist-info/METADATA,sha256=KO128-p7457A-Gz0nhUkPjDllQV5W2VepXTNhZlt0jM,1535
+cryptlex.lexfloatclient-4.2.1.dist-info/WHEEL,sha256=h_aVn5OB2IERUjMbi2pucmR_zzWJtk303YXvhh60NJ8,110
+cryptlex.lexfloatclient-4.2.1.dist-info/top_level.txt,sha256=9yV_AMqNGyffJyRvjfL2N_Tj3FNdhvfFbiNoYpdyz8o,9
+cryptlex.lexfloatclient-4.2.1.dist-info/RECORD,,
