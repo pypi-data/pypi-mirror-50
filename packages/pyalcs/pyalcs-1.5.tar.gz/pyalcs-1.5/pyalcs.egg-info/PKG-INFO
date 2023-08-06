@@ -1,0 +1,20 @@
+Metadata-Version: 1.2
+Name: pyalcs
+Version: 1.5
+Summary: Implementation of Anticipatory Learning Classifiers
+Home-page: https://github.com/ParrotPrediction/pyalcs
+Author: Parrot Prediction Ltd
+Author-email: nkozlowski@protonmail.com
+License: MIT
+Project-URL: Source, https://github.com/ParrotPrediction/pyalcs
+Project-URL: Tracking, https://github.com/ParrotPrediction/pyalcs/issues
+Description: UNKNOWN
+Keywords: acs lcs machine-learning reinforcement-learning openai
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.5
