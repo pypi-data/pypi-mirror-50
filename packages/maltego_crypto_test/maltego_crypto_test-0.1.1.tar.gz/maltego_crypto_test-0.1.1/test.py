@@ -1,0 +1,9 @@
+from maltego_crypto_test import MaltegoCrypto 
+
+private_key_path = "C:\\lib\\keys\\private_key.pem"
+encrypted_secrets = "V4zHtsulTNPh4DyoP7J/y8+dgpzpsE934z+hd0/CvOEIg/BCEGNHKuBDQeXAJZFsmqbK/ZVrfErOoY6RFJL337+vdHd0f0d3ZXFnf3VAFW3/wR395HKjESiwgEdufavOr+U1ykycbsdFNvy2epfTSbbF6XJAVhY36OyP8ISVAu9yPJ4AnlGCy49qbzdTGc2BQcv141FIJrSRmWDNbW941z1DyuzrakwT7W3VESSYLHUkoYLQijedd9OdPtPCPDIQ6XrSKz+FwUE/Kxmo0S53XU+nnfxGMYdB8vp0263rykir3Ww3MG5C0Sgy6fWtyXv7aXbDS+OZYr8DeAFwphppoqd8Jlrr9mQlRtCaWuWfK/B7/HCTx1Cf4MsU7eMnCkyEEv9isi1LAmWmkKkku3MNiEVdswUgVguDT47UOKgR7uziyhrs59UGpAeQA6BZ4dC0bsYbf9tvCDuCtKJ8akuJDg==$+bCj5pVCf1jFzK+V/kFqEg==$no+FH/73GvJtyiXLY0r+Us308Hb4LJD3NlLf3cpaN+DBL8EVka3e5426W5OBT2QRwA8+TQgOjBmMG7g/CmhGT+TYiCQS1T2tTKFBP9PSHyAelZ3WBKFJenNyazYbbrkbeOF4gvv4DbrjFhvQ87YiEPFByQ/P2ryLLTy+G0nFOao="
+
+
+token_fields = MaltegoCrypto.decrypt_secrets(private_key_path,encrypted_secrets)
+
+print(token_fields)
