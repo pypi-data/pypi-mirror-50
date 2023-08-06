@@ -1,0 +1,6 @@
+
+[dev]
+pytest>=3.0.2
+pytest-cov>=2.5.1
+pytest-flakes>=2.0.0
+tox
