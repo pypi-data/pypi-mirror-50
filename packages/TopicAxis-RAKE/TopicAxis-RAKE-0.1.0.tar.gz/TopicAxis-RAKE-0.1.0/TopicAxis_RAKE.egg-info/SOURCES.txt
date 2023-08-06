@@ -1,0 +1,14 @@
+MANIFEST.in
+MIT-License.txt
+README.md
+setup.py
+TopicAxis_RAKE.egg-info/PKG-INFO
+TopicAxis_RAKE.egg-info/SOURCES.txt
+TopicAxis_RAKE.egg-info/dependency_links.txt
+TopicAxis_RAKE.egg-info/not-zip-safe
+TopicAxis_RAKE.egg-info/top_level.txt
+rake/__init__.py
+rake/rake.py
+rake/stoplists.py
+rake/data/stoplists/FoxStoplist.txt
+rake/data/stoplists/SmartStoplist.txt

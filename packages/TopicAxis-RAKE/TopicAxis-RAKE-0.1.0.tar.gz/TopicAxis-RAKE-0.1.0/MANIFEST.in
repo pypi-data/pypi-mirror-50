@@ -1,0 +1,2 @@
+recursive-include rake/data *
+include README.md MIT-License.txt
