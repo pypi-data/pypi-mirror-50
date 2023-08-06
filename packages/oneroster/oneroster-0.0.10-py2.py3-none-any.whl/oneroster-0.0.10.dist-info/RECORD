@@ -1,0 +1,15 @@
+oneroster/__init__.py,sha256=VgTuKrsjueRvDYTDBz9rgyxmOzObLB7mU1PCmm0oJIQ,154
+oneroster/classlink.py,sha256=LFKDV0Z8mLWOWWmn3PL5zHM5-iFjZhdapodb1bNZxus,13668
+oneroster/clever.py,sha256=mwKubppppjGFfTx4RazmdjeF_pz2Otk6TrrYfy_-l0c,7215
+oneroster/util.py,sha256=oApjqz0FYRYSHGAFE8-_K0kdyEiQtVTFe4nIwzOcUSM,2430
+tests/__init__.py,sha256=hQvwtPgwwmIDKCYNjvVRKWuhLCYSBgxz7zpFCMBIQTg,39
+tests/conftest.py,sha256=73TVmaWcdV0LjB3YfymSzcexo-ed7DcA-hjd-7FpmRc,493
+tests/test_clever.py,sha256=wW7fU3nZEF4BPcDEJK7ZWuvaREouTO6XHBqOzCXIkmg,13880
+tests/test_integration.py,sha256=lX0RMl2PO-riV21MYtyHD4lNIQkGB2NuswcwyNjrpuU,1053
+tests/test_util.py,sha256=fZ0XaKvjvE0VNh5907KnRDwyUXrZZWYqeBUZsxgsWk8,1038
+tests/util.py,sha256=JBl1ps8vUyPipJyEtxObEfmVlehDJcfq_OKWWWCJTjc,732
+oneroster-0.0.10.dist-info/LICENSE.txt,sha256=6kbiFSfobTZ7beWiKnHpN902HgBx-Jzgcme0SvKqhKY,1091
+oneroster-0.0.10.dist-info/METADATA,sha256=n0Bmbi5Sq9D_IOzJzx4Rvf7dN_MJiwbmthCIePK7Nn0,7485
+oneroster-0.0.10.dist-info/WHEEL,sha256=53VSps8MltPLN_x9Ib61FU2ZSaJKzgrWQqu9rS-Dkgk,116
+oneroster-0.0.10.dist-info/top_level.txt,sha256=VT3M4KDgv0ieYZ3Y89JW2kRX9Yd9uqEBVBMRHjWu-10,16
+oneroster-0.0.10.dist-info/RECORD,,
