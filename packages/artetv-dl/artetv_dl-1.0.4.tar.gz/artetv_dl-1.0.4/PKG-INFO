@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: artetv_dl
+Version: 1.0.4
+Summary: Download videos from arte.tv
+Home-page: https://git.neodarz.net/neodarz/scripts/arte.tv-dl.git
+Author: NeodarZ
+Author-email: neodarz@neodarz.net
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Requires: pbd
+Description-Content-Type: text/markdown
