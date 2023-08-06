@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: KoreanInput
+Version: 1.0
+Summary: Korean Input for Pygame
+Home-page: UNKNOWN
+Author: Jaesuk Lim
+Author-email: flight0454@gmail.com
+License: UNKNOWN
+Keywords: Korean,KoreanKeyboard
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Requires-Python: >=3
+Requires-Dist: hgtk
+Requires-Dist: pygame
+Requires-Dist: text-to-image
+Requires-Dist: Pillow
+
+UNKNOWN
+
+
