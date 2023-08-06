@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: net-genconfig
+Version: 1.2.2
+Summary: Network device configuration generator
+Home-page: https://www.uis.cam.ac.uk/
+Author: Robert Franklin
+Author-email: rcf34@cam.ac.uk
+License: UNKNOWN
+Description: net-genconfig
+        =============
+        
+        This package generates configurations for network devices based on two sources
+        of information:
+        
+        * templates -- these Jinja2 files form the basis of a configuration file and
+          exist for each different device role (core router, edge switch, etc.)
+        
+        * inventory -- this is a big database of device details (including the role for
+          a particular device) and associated information, such as VLANs, subnets,
+          interfaces, etc.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
