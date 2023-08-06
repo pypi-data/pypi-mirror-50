@@ -1,0 +1,10 @@
+MANIFEST.in
+README.md
+setup.py
+latent_dirichlet_allocation/__init__.py
+latent_dirichlet_allocation.egg-info/PKG-INFO
+latent_dirichlet_allocation.egg-info/SOURCES.txt
+latent_dirichlet_allocation.egg-info/dependency_links.txt
+latent_dirichlet_allocation.egg-info/entry_points.txt
+latent_dirichlet_allocation.egg-info/requires.txt
+latent_dirichlet_allocation.egg-info/top_level.txt

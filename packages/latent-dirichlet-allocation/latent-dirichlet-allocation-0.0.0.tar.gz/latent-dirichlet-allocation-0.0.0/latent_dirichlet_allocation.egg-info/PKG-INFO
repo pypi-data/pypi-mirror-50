@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: latent-dirichlet-allocation
+Version: 0.0.0
+Summary: Latent-dirichlet-allocation
+Home-page: https://github.com/blester125/latent-dirichlet-allocation
+Author: blester125
+Author-email: blester125@gmail.com
+License: MIT
+Download-URL: https://github.com/blester125/latent-dirichlet-allocation/archive/0.0.0.tar.gz
+Description: # Latent-dirichlet-allocation
+        
+        <!---[<img src="https://travis-ci.com/blester125/latent-dirichlet-allocation.svg?branch=master" alt="Build Status">](https://travis-ci.com/blester125/latent-dirichlet-allocation)--->
+        
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Scientific/Engineering
+Classifier: Intended Audience :: Developers
+Classifier: Development Status :: 3 - Alpha
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Science/Research
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Provides-Extra: test
