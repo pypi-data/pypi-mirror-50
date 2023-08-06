@@ -1,0 +1,12 @@
+README.md
+gitignore.py
+setup.py
+shipa-ci
+shipa.py
+shipa_ci.egg-info/PKG-INFO
+shipa_ci.egg-info/SOURCES.txt
+shipa_ci.egg-info/dependency_links.txt
+shipa_ci.egg-info/requires.txt
+shipa_ci.egg-info/top_level.txt
+tests/__init__.py
+tests/test_gitignore.py
