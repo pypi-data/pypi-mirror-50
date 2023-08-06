@@ -1,0 +1,2 @@
+shapely
+git+ssh://git@https://github.com/calvinmetcalf/topojson.py.git#egg=0.1.01.dev0
