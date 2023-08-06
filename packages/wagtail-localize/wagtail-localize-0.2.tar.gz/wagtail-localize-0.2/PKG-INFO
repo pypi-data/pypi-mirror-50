@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: wagtail-localize
+Version: 0.2
+Summary: Wagtail Internationalisation Framework
+Home-page: UNKNOWN
+Author: Karl Hobley
+Author-email: karl@kaed.uk
+License: BSD
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
