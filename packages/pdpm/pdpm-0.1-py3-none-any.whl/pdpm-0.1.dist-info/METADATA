@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: pdpm
+Version: 0.1
+Summary: Python project manager
+Home-page: https://github.com/Okirshen/pdpm
+Author: Ofri Kirshen
+Author-email: okirshen@gmail.com
+License: MIT
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: Click
+
+### Python Development Projects Manager (PDPM)
+
+---
+
+##### A command line tool for managing Projects
+#### References:
+| Reference 	| URL                              	|
+|:---------:	|----------------------------------	|
+| GitHub    	| https://github.com/Okirshen/pdpm 	|
+
+---
+
+#### Init
+
+---
+
+To init the tool
+use this commands:
+```shell script
+pdpm setpath
+```
+This will set the project directory to be in the current directory 
+```shell script
+pdpm set-launcher LAUNCHER
+```
+
+**LAUNCHER**: code, pycharm, atom, etc... <br>
+This will set the command that will be used to launch the project
+
+---
+```shell script
+pdpm create [OPTIONS] PROJECT_NAME
+```
+* -s --start - If raised the project will be launched<br>
+This will create a project named **PROJECT_NAME**
+```shell script
+pdpm remove PROJECT_NAME
+```
+This will remove a project named **PROJECT_NAME**
+```shell script
+pdpm show
+project1
+project2
+project3
+project4
+```
+This will echo all projects in project folder
+```shell script
+pdpm start PROJECT_NAME
+```
+This will launch **PROJECT_NAME**
+
+---
+
+Created by: Ofri Kirshen <br>
+Email: okirshen@gmail.com
+
