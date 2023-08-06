@@ -1,0 +1,10 @@
+README.md
+setup.py
+flamingo/__init__.py
+flamingo/__main__.py
+flamingo/consts.py
+flamingo/core.py
+flamingo_server.egg-info/PKG-INFO
+flamingo_server.egg-info/SOURCES.txt
+flamingo_server.egg-info/dependency_links.txt
+flamingo_server.egg-info/top_level.txt
