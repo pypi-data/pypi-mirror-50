@@ -1,0 +1,1 @@
+{"extensions": {"python.details": {"document_names": {"description": "DESCRIPTION.rst"}}}, "extras": [], "generator": "bdist_wheel (0.30.0)", "metadata_version": "2.0", "name": "pyheart", "run_requires": [{"requires": ["logging (>=0.4.9.6)", "requests-toolbelt (>=0.9.1)"]}], "summary": "A simple Python3 heartbeat package.", "version": "0.0.5"}

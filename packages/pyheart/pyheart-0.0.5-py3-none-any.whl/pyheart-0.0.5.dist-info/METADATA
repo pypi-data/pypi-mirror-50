@@ -1,0 +1,15 @@
+Metadata-Version: 2.0
+Name: pyheart
+Version: 0.0.5
+Summary: A simple Python3 heartbeat package.
+Home-page: UNKNOWN
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: logging (>=0.4.9.6)
+Requires-Dist: requests-toolbelt (>=0.9.1)
+
+UNKNOWN
+
+
