@@ -1,0 +1,14 @@
+auroradns/__init__.py,sha256=nURb0NKtkICUqEz2AxfgGYnT3rGrX8vTr9BwWZb5XPM,79
+auroradns/cli.py,sha256=m4oOpcpgRNVKCPaWenkFdTMNdlkNLFm9sPQGhl8xC-o,6143
+auroradns/common/__init__.py,sha256=keROVFkcvnlhe8AQgGfQ_DnjL9h5bjBBW2Ji1yJCcZo,28
+auroradns/common/argparser.py,sha256=YDwagYNCd4q04INPVPsVOh7NfvRtmgCYIv71D6HrbcI,3347
+auroradns/common/dnsapi.py,sha256=G0FZlxqL_pkcGLtFyXBolvWpXASTJBz62Y33yfh3cKk,6614
+auroradns/common/outputs.py,sha256=7QWsPi6m4d9PE9G3Im-DniSJsQL6kiEZW4CYCuLyPuk,4753
+auroradns/common/sysinfo.py,sha256=1r7XsMHva6OduCH1ePn8JoI09ZMSfe17_uFy-QMeLg8,1718
+auroradns_cli-0.2.0.data/scripts/auroradns-cli,sha256=yQdFp2lKm3SsfRe8-RthaKqtxLoNWTAy3_cIWuckMwA,210
+auroradns_cli-0.2.0.dist-info/LICENSE,sha256=gjB_Nk0zqEQRtDy4zPTer-At9lE8psI175HV33AQ2ik,1052
+auroradns_cli-0.2.0.dist-info/METADATA,sha256=SpOZgWjId8dJLHGL7sqaw9fcy13AJ7tmTYrY7IAqMgg,5816
+auroradns_cli-0.2.0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+auroradns_cli-0.2.0.dist-info/entry_points.txt,sha256=SqYerQ285lVgIbX2a7IBxXF63JQCwjKyFSPQ_k-JcbM,54
+auroradns_cli-0.2.0.dist-info/top_level.txt,sha256=EAAmjFnTOcrj7LjovMeZ8mR8EZAfWygpx-4SfN75Ivw,10
+auroradns_cli-0.2.0.dist-info/RECORD,,
