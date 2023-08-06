@@ -1,0 +1,16 @@
+riposte/__init__.py,sha256=P0uLJpez_dBDoaSKjMZ_dbKkhdsTNKz8U7aaRAkO6xU,37
+riposte/_version.py,sha256=0dn1ZuqJDvTl105TFlqErflGyCwGKQm9LM1ic5uFGOg,116
+riposte/command.py,sha256=kMzsDhJGx8Z42UkpmP3xK20Z2hDGXkWxLMAjEYVHwxk,4324
+riposte/exceptions.py,sha256=UaQ-YT-rGnqrgADFUgc8sxWI7mSxo4ttW0WsUtEr59s,562
+riposte/guides.py,sha256=jcyKfZ0OQrgSRzXRZB3kb0dL6KEm8kCFpbr1AYytTG0,888
+riposte/input_streams.py,sha256=zNhwhE67ppNICAtjxAPs8HXpDvWr66Q9HCqIO5TXqrI,866
+riposte/riposte.py,sha256=BdLAI0vH74PysbyxYBLZuGUmtsUseFX_jHQSD-Zpb40,8302
+riposte/printer/__init__.py,sha256=jPsraQHvvKlu_OFAct7FGM1gS4S2HmgXlKUNqXckkMo,37
+riposte/printer/mixins.py,sha256=tbUt5h6sbkeqTwToW_-TNifPCoOW0LxJXZcirz3RjmA,890
+riposte/printer/palette.py,sha256=xPH_l_CvqWiC_syWrJwiZpAg8C4p9pWJj8EV3ph9Qkc,259
+riposte/printer/thread.py,sha256=Lk6GqvvK3lJsVNXRPK8ttCgvrsPPUXHhjb4Rjzd-S2k,774
+riposte-0.4.0.dist-info/LICENSE,sha256=5xOAODdKhQcl9JPbjOrjaFOC5TR6V6TQ4LwEt2uqOBw,1073
+riposte-0.4.0.dist-info/METADATA,sha256=A7SGiR127uYCgTzuoWYYqZ9Sdweqfz8FEa2QhyhfWG4,20156
+riposte-0.4.0.dist-info/WHEEL,sha256=_NOXIqFgOaYmlm9RJLPQZ13BJuEIrp5jx5ptRD5uh3Y,92
+riposte-0.4.0.dist-info/top_level.txt,sha256=DA7VzRHcOpCutudaTKihat8uLujV6XPZMMS_xDcqAHM,8
+riposte-0.4.0.dist-info/RECORD,,
