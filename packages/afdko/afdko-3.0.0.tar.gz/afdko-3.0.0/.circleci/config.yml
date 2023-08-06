@@ -1,0 +1,59 @@
+version: 2
+
+jobs:
+  linux-python3:
+    docker:
+      - image: circleci/python:3.6
+    environment:
+      CIBW_BUILD: cp37-manylinux1_x86_64
+      CIBW_TEST_REQUIRES: pytest
+      CIBW_TEST_COMMAND: cd {project} && pytest && pip uninstall --yes afdko
+      PYTHON: python
+      PIP: pip
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: bash .circleci/setup_linux_pyenv.sh
+      - run:  # do static code analysis on commits (but not on tags)
+          command: |
+            if [[ -z $CIRCLE_TAG ]]; then
+              bash .circleci/check_source_code.sh
+            fi
+      - run:
+          command: |
+            source venv/bin/activate
+            cibuildwheel --output-dir wheelhouse
+      # - store_artifacts:
+      #     path: wheelhouse/
+
+  osx-python3:
+    macos:
+      xcode: "10.0.0"
+    environment:
+      CIBW_BUILD: cp37-macosx_10_6_intel
+      CIBW_TEST_REQUIRES: pytest
+      CIBW_TEST_COMMAND: cd {project} && pytest && pip uninstall --yes afdko
+      PYTHON: python3
+      PIP: pip3
+    steps:
+      - checkout
+      - run: bash .circleci/setup_mac_pyenv.sh
+      - run:
+          command: |
+            source venv/bin/activate
+            cibuildwheel --output-dir wheelhouse
+      # - store_artifacts:
+      #     path: wheelhouse/
+
+workflows:
+  version: 2
+  all-tests:
+    jobs:
+      - linux-python3:
+          filters:  # run job for all branches and all tags
+            tags:
+              only: /.*/
+      - osx-python3:
+          filters:
+            tags:
+              only: /.*/
