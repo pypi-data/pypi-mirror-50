@@ -1,0 +1,10 @@
+numpy>1.12
+scipy
+torch
+torchvision
+tensorboardX
+opencv-python
+rasterio
+affine
+geopandas
+pandas

@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: iceberg_seals.search
+Version: 1.2.1
+Summary: The ICEBERG Seals usecase package
+Home-page: https://www.github.com/iceberg-project/seals/
+Author: ICEBERG Team
+Author-email: iceberg-ci@googlegroups.com
+License: MIT
+Description: ## Quality Metrics
+        
+        [![Build Status](https://travis-ci.com/iceberg-project/Seals.svg?branch=devel)](https://travis-ci.com/iceberg-project/Seals)
+        
+        ## Software Dependencies
+        
+        - torch
+        - torchvision
+        - tensorboardX
+        - cv2
+        - rasterio
+        - affine
+        - pandas
+        - numpy
+        - PIL
+        
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: Environment :: Console
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Utilities
+Classifier: Topic :: Scientific/Engineering
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Description-Content-Type: text/markdown
