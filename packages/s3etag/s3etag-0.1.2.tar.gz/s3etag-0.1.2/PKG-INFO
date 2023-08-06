@@ -1,0 +1,12 @@
+Metadata-Version: 1.1
+Name: s3etag
+Version: 0.1.2
+Summary: Compute AWS S3 Etags.
+Home-page: https://github.com/LiosK/s3etag
+Author: LiosK
+Author-email: contact@mail.liosk.net
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3 :: Only
