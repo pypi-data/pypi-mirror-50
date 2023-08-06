@@ -1,0 +1,6 @@
+[invenio_jsonschemas.schemas]
+invenio_oarepo_multilingual = invenio_oarepo_multilingual.jsonschemas
+
+[invenio_oarepo_mapping_includes]
+invenio_oarepo_multilingual = invenio_oarepo_multilingual.included_mappings
+

@@ -1,0 +1,32 @@
+{
+  "MultilingualString": {
+    "type": "nested",
+    "properties": {
+      "value": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 100
+          }
+        }
+      },
+      "lang": {
+        "type": "keyword",
+        "ignore_above": 3
+      }
+    }
+  },
+  "MultilingualKeyword": {
+    "type": "nested",
+    "properties": {
+      "value": {
+        "type": "keyword"
+      },
+      "lang": {
+        "type": "keyword",
+        "ignore_above": 3
+      }
+    }
+  }
+}
