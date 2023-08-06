@@ -1,0 +1,582 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>clover.over_sampling.SMOTE &mdash; cluster-over-sampling 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/copybutton.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/cluster-over-sampling.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="clover.over_sampling.BorderlineSMOTE" href="clover.over_sampling.BorderlineSMOTE.html" />
+    <link rel="prev" title="clover.over_sampling.RandomOverSampler" href="clover.over_sampling.RandomOverSampler.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> cluster-over-sampling
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../test.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contribute.html">Contribute</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-clover.distribution"><code class="docutils literal notranslate"><span class="pre">clover.distribution</span></code>: Distribution of generated samples</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../api.html#module-clover.over_sampling"><code class="docutils literal notranslate"><span class="pre">clover.over_sampling</span></code>: Clustering based over-samplers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="clover.over_sampling.RandomOverSampler.html"><code class="docutils literal notranslate"><span class="pre">clover.over_sampling</span></code>.RandomOverSampler</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">clover.over_sampling</span></code>.SMOTE</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#examples-using-clover-over-sampling-smote">Examples using <code class="docutils literal notranslate"><span class="pre">clover.over_sampling.SMOTE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="clover.over_sampling.BorderlineSMOTE.html"><code class="docutils literal notranslate"><span class="pre">clover.over_sampling</span></code>.BorderlineSMOTE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clover.over_sampling.SVMSMOTE.html"><code class="docutils literal notranslate"><span class="pre">clover.over_sampling</span></code>.SVMSMOTE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clover.over_sampling.ADASYN.html"><code class="docutils literal notranslate"><span class="pre">clover.over_sampling</span></code>.ADASYN</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../auto_examples/index.html">General</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Additional Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release_history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">cluster-over-sampling</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../api.html">API</a> &raquo;</li>
+        
+      <li><code class="docutils literal notranslate"><span class="pre">clover.over_sampling</span></code>.SMOTE</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/generated/clover.over_sampling.SMOTE.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="clover-over-sampling-smote">
+<h1><a class="reference internal" href="../api.html#module-clover.over_sampling" title="clover.over_sampling"><code class="xref py py-mod docutils literal notranslate"><span class="pre">clover.over_sampling</span></code></a>.SMOTE<a class="headerlink" href="#clover-over-sampling-smote" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="clover.over_sampling.SMOTE">
+<em class="property">class </em><code class="descclassname">clover.over_sampling.</code><code class="descname">SMOTE</code><span class="sig-paren">(</span><em>clusterer=None</em>, <em>distributor=None</em>, <em>sampling_strategy='auto'</em>, <em>random_state=None</em>, <em>k_neighbors=5</em>, <em>m_neighbors='deprecated'</em>, <em>out_step='deprecated'</em>, <em>kind='deprecated'</em>, <em>svm_estimator='deprecated'</em>, <em>n_jobs=1</em>, <em>ratio=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/clover/over_sampling/monkey_patching.html#SMOTE"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clover.over_sampling.SMOTE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to perform over-sampling using SMOTE.</p>
+<p>This object is an implementation of SMOTE - Synthetic Minority
+Over-sampling Technique as presented in <a class="reference internal" href="#r7238b90d3b5d-1" id="id1">[R7238b90d3b5d-1]</a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>clusterer</strong> <span class="classifier-delimiter">:</span> <span class="classifier">clusterer estimator, (default=None)</span></dt>
+<dd><p class="first">Clusterer to apply to input space before over-sampling.</p>
+<ul class="last simple">
+<li>When <code class="docutils literal notranslate"><span class="pre">None</span></code>, it corresponds to a clusterer that assigns
+a single cluster to all the samples.</li>
+<li>When clusterer, it applies clustering to the input space. Then
+over-sampling is applied inside each cluster and between clusters.</li>
+</ul>
+</dd>
+<dt><strong>distributor</strong> <span class="classifier-delimiter">:</span> <span class="classifier">distributor estimator, (default=None)</span></dt>
+<dd><p class="first">Distributor to distribute the generated samples per cluster label.</p>
+<ul class="last simple">
+<li>When <code class="docutils literal notranslate"><span class="pre">None</span></code>, it corresponds to the density distributor. If clusterer
+is also <code class="docutils literal notranslate"><span class="pre">None</span></code> than the distributor does not affect the over-sampling
+procedure. If a clusterer is used than the distributor is the default
+density distributor.</li>
+<li>When distributor, the generated samples are distributed to the clusters
+based on it.</li>
+</ul>
+</dd>
+<dt><strong>sampling_strategy</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float, str, dict or callable, (default=’auto’)</span></dt>
+<dd><p class="first">Sampling information to resample the data set.</p>
+<ul class="last">
+<li><p class="first">When <code class="docutils literal notranslate"><span class="pre">float</span></code>, it corresponds to the desired ratio of the number of
+samples in the minority class over the number of samples in the
+majority class after resampling. Therefore, the ratio is expressed as
+<img class="math" src="../_images/math/90eac0e6a9ea262b1ffcfbf3630fe85d07920bfe.png" alt="\alpha_{os} = N_{rm} / N_{M}"/> where <img class="math" src="../_images/math/4d8ffbb0b7a390d3405b1e36c7237b7cff68fe5f.png" alt="N_{rm}"/> is the
+number of samples in the minority class after resampling and
+<img class="math" src="../_images/math/d3a9c47ded0bdc6c1a2b4c6bcb3779923ac1560e.png" alt="N_{M}"/> is the number of samples in the majority class.</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last"><code class="docutils literal notranslate"><span class="pre">float</span></code> is only available for <strong>binary</strong> classification. An
+error is raised for multi-class classification.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">When <code class="docutils literal notranslate"><span class="pre">str</span></code>, specify the class targeted by the resampling. The
+number of samples in the different classes will be equalized.
+Possible choices are:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">'minority'</span></code>: resample only the minority class;</p>
+<p><code class="docutils literal notranslate"><span class="pre">'not</span> <span class="pre">minority'</span></code>: resample all classes but the minority class;</p>
+<p><code class="docutils literal notranslate"><span class="pre">'not</span> <span class="pre">majority'</span></code>: resample all classes but the majority class;</p>
+<p><code class="docutils literal notranslate"><span class="pre">'all'</span></code>: resample all classes;</p>
+<p><code class="docutils literal notranslate"><span class="pre">'auto'</span></code>: equivalent to <code class="docutils literal notranslate"><span class="pre">'not</span> <span class="pre">majority'</span></code>.</p>
+</div></blockquote>
+</li>
+<li><p class="first">When <code class="docutils literal notranslate"><span class="pre">dict</span></code>, the keys correspond to the targeted classes. The
+values correspond to the desired number of samples for each targeted
+class.</p>
+</li>
+<li><p class="first">When callable, function taking <code class="docutils literal notranslate"><span class="pre">y</span></code> and returns a <code class="docutils literal notranslate"><span class="pre">dict</span></code>. The keys
+correspond to the targeted classes. The values correspond to the
+desired number of samples for each class.</p>
+</li>
+</ul>
+</dd>
+<dt><strong>random_state</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, RandomState instance or None, optional (default=None)</span></dt>
+<dd><p class="first">Control the randomization of the algorithm.</p>
+<ul class="last simple">
+<li>If int, <code class="docutils literal notranslate"><span class="pre">random_state</span></code> is the seed used by the random number
+generator;</li>
+<li>If <code class="docutils literal notranslate"><span class="pre">RandomState</span></code> instance, random_state is the random number
+generator;</li>
+<li>If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the random number generator is the <code class="docutils literal notranslate"><span class="pre">RandomState</span></code>
+instance used by <code class="docutils literal notranslate"><span class="pre">np.random</span></code>.</li>
+</ul>
+</dd>
+<dt><strong>k_neighbors</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int or object, optional (default=5)</span></dt>
+<dd><p class="first last">If <code class="docutils literal notranslate"><span class="pre">int</span></code>, number of nearest neighbours to used to construct synthetic
+samples.  If object, an estimator that inherits from
+<code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.neighbors.base.KNeighborsMixin</span></code> that will be used to
+find the k_neighbors.</p>
+</dd>
+<dt><strong>m_neighbors</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int or object, optional (default=10)</span></dt>
+<dd><p class="first">If int, number of nearest neighbours to use to determine if a minority
+sample is in danger. Used with <code class="docutils literal notranslate"><span class="pre">kind={'borderline1',</span> <span class="pre">'borderline2',</span>
+<span class="pre">'svm'}</span></code>.  If object, an estimator that inherits
+from <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.neighbors.base.KNeighborsMixin</span></code> that will be used
+to find the k_neighbors.</p>
+<div class="last deprecated">
+<p><span class="versionmodified">Deprecated since version 0.4: </span>(imbalanced-learn warning)
+<code class="docutils literal notranslate"><span class="pre">m_neighbors</span></code> is deprecated in 0.4 (imbalanced-learn warning) and will be removed in 0.6. Use
+<a class="reference internal" href="clover.over_sampling.BorderlineSMOTE.html#clover.over_sampling.BorderlineSMOTE" title="clover.over_sampling.BorderlineSMOTE"><code class="xref py py-class docutils literal notranslate"><span class="pre">BorderlineSMOTE</span></code></a> or <a class="reference internal" href="clover.over_sampling.SVMSMOTE.html#clover.over_sampling.SVMSMOTE" title="clover.over_sampling.SVMSMOTE"><code class="xref py py-class docutils literal notranslate"><span class="pre">SVMSMOTE</span></code></a> instead to use the
+intended algorithm.</p>
+</div>
+</dd>
+<dt><strong>out_step</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float, optional (default=0.5)</span></dt>
+<dd><p class="first">Step size when extrapolating. Used with <code class="docutils literal notranslate"><span class="pre">kind='svm'</span></code>.</p>
+<div class="last deprecated">
+<p><span class="versionmodified">Deprecated since version 0.4: </span>(imbalanced-learn warning)
+<code class="docutils literal notranslate"><span class="pre">out_step</span></code> is deprecated in 0.4 (imbalanced-learn warning) and will be removed in 0.6. Use
+<a class="reference internal" href="clover.over_sampling.SVMSMOTE.html#clover.over_sampling.SVMSMOTE" title="clover.over_sampling.SVMSMOTE"><code class="xref py py-class docutils literal notranslate"><span class="pre">SVMSMOTE</span></code></a> instead to use the intended algorithm.</p>
+</div>
+</dd>
+<dt><strong>kind</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional (default=’regular’)</span></dt>
+<dd><p class="first">The type of SMOTE algorithm to use one of the following options:
+<code class="docutils literal notranslate"><span class="pre">'regular'</span></code>, <code class="docutils literal notranslate"><span class="pre">'borderline1'</span></code>, <code class="docutils literal notranslate"><span class="pre">'borderline2'</span></code>, <code class="docutils literal notranslate"><span class="pre">'svm'</span></code>.</p>
+<div class="last deprecated">
+<p><span class="versionmodified">Deprecated since version 0.4: </span>(imbalanced-learn warning)
+<code class="docutils literal notranslate"><span class="pre">kind</span></code> is deprecated in 0.4 (imbalanced-learn warning) and will be removed in 0.6. Use
+<a class="reference internal" href="clover.over_sampling.BorderlineSMOTE.html#clover.over_sampling.BorderlineSMOTE" title="clover.over_sampling.BorderlineSMOTE"><code class="xref py py-class docutils literal notranslate"><span class="pre">BorderlineSMOTE</span></code></a> or <a class="reference internal" href="clover.over_sampling.SVMSMOTE.html#clover.over_sampling.SVMSMOTE" title="clover.over_sampling.SVMSMOTE"><code class="xref py py-class docutils literal notranslate"><span class="pre">SVMSMOTE</span></code></a> instead to use the
+intended algorithm.</p>
+</div>
+</dd>
+<dt><strong>svm_estimator</strong> <span class="classifier-delimiter">:</span> <span class="classifier">object, optional (default=SVC())</span></dt>
+<dd><p class="first">If <code class="docutils literal notranslate"><span class="pre">kind='svm'</span></code>, a parametrized <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC" title="(in scikit-learn v0.21.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.svm.SVC</span></code></a>
+classifier can be passed.</p>
+<div class="last deprecated">
+<p><span class="versionmodified">Deprecated since version 0.4: </span>(imbalanced-learn warning)
+<code class="docutils literal notranslate"><span class="pre">out_step</span></code> is deprecated in 0.4 (imbalanced-learn warning) and will be removed in 0.6. Use
+<a class="reference internal" href="clover.over_sampling.SVMSMOTE.html#clover.over_sampling.SVMSMOTE" title="clover.over_sampling.SVMSMOTE"><code class="xref py py-class docutils literal notranslate"><span class="pre">SVMSMOTE</span></code></a> instead to use the intended algorithm.</p>
+</div>
+</dd>
+<dt><strong>n_jobs</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, optional (default=1)</span></dt>
+<dd><p class="first last">The number of threads to open if possible.</p>
+</dd>
+<dt><strong>ratio</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, dict, or callable</span></dt>
+<dd><div class="first last deprecated">
+<p><span class="versionmodified">Deprecated since version 0.4: </span>(imbalanced-learn warning)
+Use the parameter <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> instead. It will be removed
+in 0.6.</p>
+</div>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">SMOTENC</span></code></dt>
+<dd>Over-sample using SMOTE for continuous and categorical features.</dd>
+<dt><a class="reference internal" href="clover.over_sampling.BorderlineSMOTE.html#clover.over_sampling.BorderlineSMOTE" title="clover.over_sampling.BorderlineSMOTE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BorderlineSMOTE</span></code></a></dt>
+<dd>Over-sample using the borderline-SMOTE variant.</dd>
+<dt><a class="reference internal" href="clover.over_sampling.SVMSMOTE.html#clover.over_sampling.SVMSMOTE" title="clover.over_sampling.SVMSMOTE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SVMSMOTE</span></code></a></dt>
+<dd>Over-sample using the SVM-SMOTE variant.</dd>
+<dt><a class="reference internal" href="clover.over_sampling.ADASYN.html#clover.over_sampling.ADASYN" title="clover.over_sampling.ADASYN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ADASYN</span></code></a></dt>
+<dd>Over-sample using ADASYN.</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>See the original papers: <a class="reference internal" href="#r7238b90d3b5d-1" id="id2">[R7238b90d3b5d-1]</a> for more details.</p>
+<p>Supports multi-class resampling. A one-vs.-rest scheme is used as
+originally proposed in <a class="reference internal" href="#r7238b90d3b5d-1" id="id3">[R7238b90d3b5d-1]</a>.</p>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r7238b90d3b5d-1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[R7238b90d3b5d-1]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>, <a class="fn-backref" href="#id3">3</a>)</em> N. V. Chawla, K. W. Bowyer, L. O.Hall, W. P. Kegelmeyer, “SMOTE:
+synthetic minority over-sampling technique,” Journal of artificial
+intelligence research, 321-357, 2002.</td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">Counter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="k">import</span> <span class="n">make_classification</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">clover.over_sampling</span> <span class="k">import</span> <span class="n">SMOTE</span> <span class="c1"># doctest: +NORMALIZE_WHITESPACE</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">class_sep</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="gp">... </span><span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">],</span> <span class="n">n_informative</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_redundant</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flip_y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="gp">... </span><span class="n">n_features</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">n_clusters_per_class</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Original dataset shape </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">Counter</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="go">Original dataset shape Counter({1: 900, 0: 100})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sm</span> <span class="o">=</span> <span class="n">SMOTE</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X_res</span><span class="p">,</span> <span class="n">y_res</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Resampled dataset shape </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">Counter</span><span class="p">(</span><span class="n">y_res</span><span class="p">))</span>
+<span class="go">Resampled dataset shape Counter({0: 900, 1: 900})</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="clover.over_sampling.SMOTE.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>clusterer=None</em>, <em>distributor=None</em>, <em>sampling_strategy='auto'</em>, <em>random_state=None</em>, <em>k_neighbors=5</em>, <em>m_neighbors='deprecated'</em>, <em>out_step='deprecated'</em>, <em>kind='deprecated'</em>, <em>svm_estimator='deprecated'</em>, <em>n_jobs=1</em>, <em>ratio=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/clover/over_sampling/monkey_patching.html#SMOTE.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#clover.over_sampling.SMOTE.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="clover.over_sampling.SMOTE.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>self</em>, <em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#clover.over_sampling.SMOTE.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check inputs and statistics of the sampler.</p>
+<p>You should use <code class="docutils literal notranslate"><span class="pre">fit_resample</span></code> in all cases.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>X</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{array-like, sparse matrix}, shape (n_samples, n_features)</span></dt>
+<dd><p class="first last">Data array.</p>
+</dd>
+<dt><strong>y</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array-like, shape (n_samples,)</span></dt>
+<dd><p class="first last">Target array.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>self</strong> <span class="classifier-delimiter">:</span> <span class="classifier">object</span></dt>
+<dd><p class="first last">Return the instance itself.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="clover.over_sampling.SMOTE.fit_resample">
+<code class="descname">fit_resample</code><span class="sig-paren">(</span><em>self</em>, <em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#clover.over_sampling.SMOTE.fit_resample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resample the dataset.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>X</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{array-like, sparse matrix}, shape (n_samples, n_features)</span></dt>
+<dd><p class="first last">Matrix containing the data which have to be sampled.</p>
+</dd>
+<dt><strong>y</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array-like, shape (n_samples,)</span></dt>
+<dd><p class="first last">Corresponding label for each sample in X.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>X_resampled</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{array-like, sparse matrix}, shape (n_samples_new, n_features)</span></dt>
+<dd><p class="first last">The array containing the resampled data.</p>
+</dd>
+<dt><strong>y_resampled</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array-like, shape (n_samples_new,)</span></dt>
+<dd><p class="first last">The corresponding label of <cite>X_resampled</cite>.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="clover.over_sampling.SMOTE.fit_sample">
+<code class="descname">fit_sample</code><span class="sig-paren">(</span><em>self</em>, <em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#clover.over_sampling.SMOTE.fit_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resample the dataset.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>X</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{array-like, sparse matrix}, shape (n_samples, n_features)</span></dt>
+<dd><p class="first last">Matrix containing the data which have to be sampled.</p>
+</dd>
+<dt><strong>y</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array-like, shape (n_samples,)</span></dt>
+<dd><p class="first last">Corresponding label for each sample in X.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>X_resampled</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{array-like, sparse matrix}, shape (n_samples_new, n_features)</span></dt>
+<dd><p class="first last">The array containing the resampled data.</p>
+</dd>
+<dt><strong>y_resampled</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array-like, shape (n_samples_new,)</span></dt>
+<dd><p class="first last">The corresponding label of <cite>X_resampled</cite>.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="clover.over_sampling.SMOTE.get_params">
+<code class="descname">get_params</code><span class="sig-paren">(</span><em>self</em>, <em>deep=True</em><span class="sig-paren">)</span><a class="headerlink" href="#clover.over_sampling.SMOTE.get_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get parameters for this estimator.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>deep</strong> <span class="classifier-delimiter">:</span> <span class="classifier">boolean, optional</span></dt>
+<dd><p class="first last">If True, will return the parameters for this estimator and
+contained subobjects that are estimators.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>params</strong> <span class="classifier-delimiter">:</span> <span class="classifier">mapping of string to any</span></dt>
+<dd><p class="first last">Parameter names mapped to their values.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="clover.over_sampling.SMOTE.set_params">
+<code class="descname">set_params</code><span class="sig-paren">(</span><em>self</em>, <em>**params</em><span class="sig-paren">)</span><a class="headerlink" href="#clover.over_sampling.SMOTE.set_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the parameters of this estimator.</p>
+<p>The method works on simple estimators as well as on nested objects
+(such as pipelines). The latter have parameters of the form
+<code class="docutils literal notranslate"><span class="pre">&lt;component&gt;__&lt;parameter&gt;</span></code> so that it’s possible to update each
+component of a nested object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt>self</dt>
+<dd></dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="examples-using-clover-over-sampling-smote">
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">clover.over_sampling.SMOTE</span></code><a class="headerlink" href="#examples-using-clover-over-sampling-smote" title="Permalink to this headline">¶</a></h2>
+<div class="sphx-glr-thumbcontainer" tooltip="This example illustrates the data generation  process and the performance of various  over-samp..."><div class="figure" id="id5">
+<img alt="../_images/sphx_glr_plot_clustering_oversampling_thumb.png" src="../_images/sphx_glr_plot_clustering_oversampling_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/plot_clustering_oversampling.html#sphx-glr-auto-examples-plot-clustering-oversampling-py"><span class="std std-ref">Clustering based over-sampling</span></a></span></p>
+</div>
+</div><div style='clear:both'></div></div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="clover.over_sampling.BorderlineSMOTE.html" class="btn btn-neutral float-right" title="clover.over_sampling.BorderlineSMOTE" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="clover.over_sampling.RandomOverSampler.html" class="btn btn-neutral float-left" title="clover.over_sampling.RandomOverSampler" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Georgios Douzas
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
