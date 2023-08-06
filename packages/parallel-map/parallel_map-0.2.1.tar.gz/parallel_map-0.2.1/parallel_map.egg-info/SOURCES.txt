@@ -1,0 +1,11 @@
+README.md
+setup.py
+parallel_map.egg-info/PKG-INFO
+parallel_map.egg-info/SOURCES.txt
+parallel_map.egg-info/dependency_links.txt
+parallel_map.egg-info/top_level.txt
+src/__init__.py
+src/parallel_map.py
+src/version.py
+tests/__init__.py
+tests/test_basic.py
