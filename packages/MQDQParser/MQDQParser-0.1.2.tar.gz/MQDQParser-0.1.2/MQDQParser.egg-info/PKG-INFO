@@ -1,0 +1,15 @@
+Metadata-Version: 1.0
+Name: MQDQParser
+Version: 0.1.2
+Summary: UNKNOWN
+Home-page: https://github.com/bnagy/mqdq-parser
+Author: Ben Nagy
+Author-email: UNKNOWN
+License: 3-Clause BSD
+Description: 
+        	mqdq is a collection of utility and analysis 
+        	code for working with the XML format of scanned 
+        	Latin poems provided by MQDQ. These XML files 
+        	can be downloaded from http://www.pedecerto.eu/pagine/autori
+        	
+Platform: UNKNOWN
