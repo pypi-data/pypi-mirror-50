@@ -1,0 +1,11 @@
+csi/__init__.py,sha256=Phr4xXfIhGijt-6EygEzb4sryVQ5DuxR18bb94FDsv8,205
+csi/api_errors.py,sha256=fztrSHXpgI_uHuwX41jn4DUeiHyj9M6ThtdlR9EEO4Y,34
+csi/csi_connector.py,sha256=HgKCrz9jdH_AzcpXmpQTbzDMlZWY-lsYcIjD5PGkAGI,5367
+csi/csv_writer.py,sha256=UCET4aZl5bi_sBkGXQntzOqkAdyF0QI2Pfdt0V3eU7o,1257
+test/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+test/test_operations.py,sha256=2TUZKZr0VJyddvwRRQWJ8kk8esITGqCN6_fyBwpeFz4,3557
+csi_tai-0.0.16.dist-info/LICENSE,sha256=S210YhMkOFlCXQLvSexwGYnx30_oqNx3syytoup6uCI,1070
+csi_tai-0.0.16.dist-info/METADATA,sha256=rhYDx14-5eH976RsFFo6MY7CH61yAlpisg1rRMu4ESI,1912
+csi_tai-0.0.16.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+csi_tai-0.0.16.dist-info/top_level.txt,sha256=d1eadrIyKhSdjtPU-PEfTr6QW6hnn87Oy4nYMtJxVII,9
+csi_tai-0.0.16.dist-info/RECORD,,
