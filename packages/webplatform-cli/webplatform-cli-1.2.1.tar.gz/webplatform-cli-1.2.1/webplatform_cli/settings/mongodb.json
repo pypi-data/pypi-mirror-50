@@ -1,0 +1,11 @@
+{
+  "host": "localhost",
+  "container": {
+    "name": "mongodb",
+    "ports": {
+      "27017": 27017
+    },
+    "user": "mongodb",
+    "mem_limit": "1g"
+  }
+}
