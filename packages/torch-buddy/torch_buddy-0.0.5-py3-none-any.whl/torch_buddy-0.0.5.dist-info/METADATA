@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: torch-buddy
+Version: 0.0.5
+Summary: pytorch toolkit
+Home-page: https://github.com/NickYi1990/torch_buddy
+Author: 鲲(China)
+Author-email: 972775099@qq.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: pandas-summary (>=0.0.5)
+
+# torch_buddy
+
+
+
+## 命名规则
+文件夹名：小子字母 + 下划线
+函数名：下划线命名法, 参数等号左右不留空白
+
+1. cd folder  
+2. python3 setup.py sdist bdist_wheel  
+3. python3 -m twine upload dist/*  
+4. pip install kaggleBuddy --upgrade
+
