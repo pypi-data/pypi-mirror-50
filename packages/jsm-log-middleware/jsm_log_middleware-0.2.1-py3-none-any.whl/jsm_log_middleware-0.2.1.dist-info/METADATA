@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: jsm-log-middleware
+Version: 0.2.1
+Summary: Audit log
+Home-page: https://github.com/juntossomosmais/castle-of-soure
+Author: Ricardo Baltazar Chaves
+Author-email: Ricardo Baltazar <ricardobchaves6@gmail.com>
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Framework :: Django :: 2.1
+Classifier: Framework :: Django :: 2.2
+Classifier: Environment :: Web Environment
+Classifier: Natural Language :: Portuguese (Brazilian)
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: request-id-django-log
+Requires-Dist: django-stomp
+Requires-Dist: jsm-user-services
+
+# Castle of Soure
+
+## Config
+
+`LOG_APPLICATION_NAME="giza-necropolis/propileu/pentaon"`
+
+
+
