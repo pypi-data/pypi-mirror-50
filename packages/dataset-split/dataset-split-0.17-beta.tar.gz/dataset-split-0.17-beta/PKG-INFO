@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: dataset-split
+Version: 0.17-beta
+Summary: Simple script that splits a dataset into train/test/valid folders
+Home-page: http://github.com/muriloxyz/dataset-split
+Author: Murilo Ferreira
+Author-email: fferreira.murilo@gmail.com
+License: MIT
+Download-URL: https://github.com/muriloxyz/dataset-split/archive/v0.17-beta.tar.gz
+Description: Check Github repository for more informations
+Keywords: ml,ds,machine-learning,data,data-science,dataset,tool,utils
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
