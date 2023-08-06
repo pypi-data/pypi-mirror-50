@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: Responder3
+Version: 0.0.1
+Summary: Responder3
+Home-page: https://github.com/skelsec/Responder3
+Author: Tamas Jos
+Author-email: responder3@skelsec.com
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.7
+Requires-Dist: asn1crypto
+Requires-Dist: oscrypto
+Requires-Dist: certbuilder
+Requires-Dist: websockets
+Requires-Dist: rsa
+Requires-Dist: bson
+
+UNKNOWN
+
+

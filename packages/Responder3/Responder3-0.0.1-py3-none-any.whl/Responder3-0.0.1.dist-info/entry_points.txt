@@ -1,0 +1,3 @@
+[console_scripts]
+responder3 = responder3.__main__:main
+
