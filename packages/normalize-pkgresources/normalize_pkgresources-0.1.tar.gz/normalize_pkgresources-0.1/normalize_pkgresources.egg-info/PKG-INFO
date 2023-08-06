@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: normalize-pkgresources
+Version: 0.1
+Summary: Normalize the legacy pkg_resources api with the newer importlib.resources.
+Home-page: https://github.com/JonnyWaffles/normalize_pkgresources
+Author: Jonny Fuller
+Author-email: mr.waffles@gmail.com
+License: MIT
+Description: UNKNOWN
+Keywords: Packaging resources
+Platform: UNKNOWN
