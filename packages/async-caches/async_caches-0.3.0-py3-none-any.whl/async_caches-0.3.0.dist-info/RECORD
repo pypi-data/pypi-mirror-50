@@ -1,0 +1,15 @@
+caches/__init__.py,sha256=uaJZYdklDQ2dB_xwGjhNKpIQQrs0ml6xu9T-oLVKrJ4,68
+caches/core.py,sha256=Mn95jlAcNAiWiKAN7C5E0DXXERGO0izDiT5MIZbzZEs,8250
+caches/importer.py,sha256=twBBLDOlkI8U0KDHu7uH0QkbT1JOOQXcz9cqrkopHsA,1106
+caches/py.typed,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+caches/types.py,sha256=vEliC3GPKCB_Pny_q6d9GvRB7Si2wjH9e-QyLNcwfAU,240
+caches/backends/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+caches/backends/base.py,sha256=tIL6R1XfGZQrJlFQOmP6-Pfdwf3ZNKjIMcLtX5Uxnao,1739
+caches/backends/dummy.py,sha256=EcXTNug0uo6-TBqnL7PVJ95CuodrzbLQqPszmHbR0No,2045
+caches/backends/locmem.py,sha256=DkU76aKBKI81pRC-DxWE94PD64lvhRFrZdAeaRH-uLA,3597
+caches/backends/redis.py,sha256=iU5yw5J5G7aVPQh3GYZ3PDyl3yq-Te--Rx9speSyeEU,5054
+async_caches-0.3.0.dist-info/LICENSE,sha256=lhnDv20UIAYLU4KcruwrhJQx39ijfq0mRWFhhFgVxv4,1521
+async_caches-0.3.0.dist-info/METADATA,sha256=27BFkYCijMGezBrWw6KbXPK8lA8myoz1QDC63RP2fl0,2667
+async_caches-0.3.0.dist-info/WHEEL,sha256=S8S5VL-stOTSZDYxHyf0KP7eds0J72qrK0Evu3TfyAY,92
+async_caches-0.3.0.dist-info/top_level.txt,sha256=8T6I0lirNt1pZMCGMJzLEWjwu-DJ4TbplpAATQS2PhM,7
+async_caches-0.3.0.dist-info/RECORD,,
