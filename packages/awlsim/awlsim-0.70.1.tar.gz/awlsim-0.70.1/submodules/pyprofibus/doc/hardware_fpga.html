@@ -1,0 +1,71 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body>
+<h1>pyprofibus FPGA PHY documentation</h1>
+
+<p>Instead of using the serial port of the host computer to connect to the Profibus network an FPGA can be used. That improves the realtime capabilities and the speed of the pyprofibus system.</p>
+
+<h2>FPGA boards</h2>
+
+<p>Currently only the <a href="https://tinyfpga.com/">TinyFPGA BX</a> is supported as FPGA.</p>
+
+<p>However it's possible to add support for other FPGAs.
+The TinyFPGA&nbsp;BX has been chosen, because it has a fully Open Source toolchain. So the pyprofibus FPGA Verilog sources can be translated to the binary FPGA bitstream using only freely available tools.</p>
+
+<p>The pyprofibus releases come with pre-built bitstream images. So there's no need for the user to install the toolchain and build the FPGA bitstream. The only tool that is needed is the "flashing/programming tool" that is used to transfer the binary bitstream to the FPGA board.</p>
+
+<h3>Flashing / Programming tool</h3>
+
+<p>For the purpose of writing/downloading/flashing the binary FPGA bitstream to the TinyFPGA&nbsp;BX board the <a href="https://github.com/tinyfpga/TinyFPGA-Bootloader/">tinyprog</a> tool can be used.</p>
+
+<p>The helper script <code>tinyfpga_bx_program.sh</code> shipped with pyprofibus in the subdirectory <code>phy_fpga/bin/tinyfpga_bx</code> can be used to conveniently call <code>tinyprog</code> with the correct parameters. Just connect the TinyFPGA&nbsp;BX board via USB to the computer and run the <code>tinyfpga_bx_program.sh</code> script. It does everything to program the pyprofibus PHY to your TinyFPGA&nbsp;BX.</p>
+
+<h3>Build toolchain</h3>
+
+<p>If you want to modify the FPGA sources and build your own version of the FPGA bitstream, the following tools are required:</p>
+
+<h4>Project IceStorm</h4>
+
+<p>The <a href="http://www.clifford.at/icestorm/">Project IceStorm</a> is needed to build the bitstream for the TinyFPGA&nbsp;BX board.</p>
+
+<h4>Yosys</h4>
+
+<p>The <a href="http://www.clifford.at/yosys/">Yosys Open SYnthesis Suite</a> is required to synthesize the Verilog sources.</p>
+
+<h4>nextpnr</h4>
+
+<p>The <a href="https://github.com/YosysHQ/nextpnr">nextpnr FPGA place and route tool</a> is required for FPGA routing.</p>
+
+<h4>Python</h4>
+
+<p><a href="https://www.python.org/">Python 3.7</a> or later is required to auto-generate some parts of the sources.</p>
+
+<h4>GNU make an other standard GNU/Linux shell utilities</h4>
+
+<p><a href="https://www.gnu.org/software/make/">GNU make</a> and various other standard GNU/Linux shell utilities, that are already installed on any Desktop Linux distribution. Building on Windows is not supported.</p>
+
+<h4>Downloading and installing all toolchain tools</h4>
+
+<p>The script <code>build_toolchain.sh</code> that is included in the pyprofibus archive can be used to download, build and install all FPGA toolchain tools to the $HOME directory.</p>
+
+<p>Just run the script as follows. It will download all required packages, build and install everything to <code>$HOME/fpga-toolchain</code> by default.</p>
+
+<pre>
+cd phy_fpga
+./build_toolchain.sh
+</pre>
+
+<p>After successful execution of <code>build_toolchain.sh</code> please read the information about $PATH that the script prints to the console. The line printed by the script shall be added to your <code>$HOME/.bashrc</code></p>
+
+<p>No changes to the operating system are necessary.<br />
+Do not run <code>build_toolchain.sh</code> as root.<br />
+The toolchain can be uninstalled by simply deleting the directory <code>$HOME/fpga-toolchain</code></p>
+
+<h3>Building pyprofibus PHY-FPGA</h3>
+
+<p>To build the PHY-FPGA sources run the following commands:</p>
+
+<pre>
+cd phy_fpga
+make clean
+make
+</pre>
+</body></html>
